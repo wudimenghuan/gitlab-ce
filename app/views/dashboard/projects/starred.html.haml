@@ -1,10 +1,10 @@
-- page_title "Starred Projects"
-- header_title "Projects", projects_path
+- page_title "标记的项目"
+- header_title "项目", projects_path
 
 = render 'dashboard/projects_head'
 
 - if @projects.any?
   = render 'projects'
 - else
-  %h3 You don't have starred projects yet
-  %p.slead Visit project page and press on star icon and it will appear on this page.
+  %h3 你还没有标记任何项目
+  %p.slead 访问项目页面然后按下标记图标即可将项目显示在此页面。

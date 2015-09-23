@@ -6,7 +6,7 @@
         = link_to edit_group_path(group), class: "btn-sm btn btn-grouped" do
           %i.fa.fa-cogs
 
-      = link_to leave_group_group_members_path(group), data: { confirm: leave_group_message(group.name) }, method: :delete, class: "btn-sm btn btn-grouped", title: 'Leave this group' do
+      = link_to leave_group_group_members_path(group), data: { confirm: leave_group_message(group.name) }, method: :delete, class: "btn-sm btn btn-grouped", title: '离开此群组' do
         %i.fa.fa-sign-out
 
   = image_tag group_icon(group), class: "avatar s46 hidden-xs"
@@ -14,9 +14,9 @@
     %strong= group.name
 
   - if group_member
-    as
+    身份
     %span #{group_member.human_access}
 
   %div.light
-    #{pluralize(group.projects.count, "project")}, #{pluralize(group.users.count, "user")}
+    #{pluralize(group.projects.count, "个项目", "个项目")}, #{pluralize(group.users.count, "个用户", "个用户")}
 

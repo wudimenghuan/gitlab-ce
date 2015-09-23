@@ -1,5 +1,5 @@
-- page_title    "Projects"
-- header_title  "Projects", root_path
+- page_title    "项目"
+- header_title  "项目", root_path
 
 - if current_user
   = render 'dashboard/projects_head'
@@ -12,6 +12,6 @@
       = render 'explore/projects/dropdown'
     .oneline
       %i.fa.fa-star
-      See most starred projects
+      查看最多标记的项目
   = render 'projects', projects: @starred_projects
   = paginate @starred_projects, theme: 'gitlab'

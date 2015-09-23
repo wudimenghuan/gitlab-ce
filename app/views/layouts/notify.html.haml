@@ -37,10 +37,10 @@
         %br
         - if @target_url
           - if @reply_by_email
-            Reply to this email directly or
-            #{link_to "view it on GitLab", @target_url}.
+            直接回复此邮件或
+            #{link_to "在 GitLab 上查看", @target_url}.
           - else
-            #{link_to "View it on GitLab", @target_url}
+            #{link_to "在 GitLab 上查看", @target_url}
           = email_action @target_url
         - if @project && !@disable_footer
-          You're receiving this notification because you are a member of the #{link_to_unless @target_url, @project.name_with_namespace, namespace_project_url(@project.namespace, @project)} project team.
+          因为你是 #{link_to_unless @target_url, @project.name_with_namespace, namespace_project_url(@project.namespace, @project)} 项目团队成员，所以会收到此通知。

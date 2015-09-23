@@ -7,7 +7,7 @@
           %br
 .form-group
   = f.label :title, class: 'control-label' do
-    %strong= 'Title *'
+    %strong= '标题 *'
   .col-sm-10
     = f.text_field :title, maxlength: 255, autofocus: true, autocomplete: 'off',
         class: 'form-control pad js-gfm-input', required: true
@@ -15,13 +15,13 @@
     - if issuable.is_a?(MergeRequest)
       %p.help-block
         - if issuable.work_in_progress?
-          Remove the <code>WIP</code> prefix from the title to allow this
-          <strong>Work In Progress</strong> merge request to be merged when it's ready.
+          从标题中删除 <code>WIP</code> 前缀表示允许此标记为
+          <strong>正在处理中</strong> 的合并请求已准备好可以被接受。
         - else
-          Start the title with <code>[WIP]</code> or <code>WIP:</code> to prevent a
-          <strong>Work In Progress</strong> merge request from being merged before it's ready.
+          标题以 <code>[WIP]</code> 或 <code>WIP:</code> 开头将合并请求标记为
+          <strong>正在处理中</strong> 表示其还未准备好可以接受合并。
 .form-group.issuable-description
-  = f.label :description, 'Description', class: 'control-label'
+  = f.label :description, '描述', class: 'control-label'
   .col-sm-10
 
     = render layout: 'projects/md_preview', locals: { preview_class: "md-preview", referenced_users: true } do

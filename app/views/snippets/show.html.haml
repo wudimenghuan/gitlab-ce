@@ -1,30 +1,30 @@
-- page_title @snippet.title, "Snippets"
+- page_title @snippet.title, "代码片段"
 %h4.page-title
   = @snippet.title
 
   - if @snippet.private?
     %span.label.label-success
       %i.fa.fa-lock
-      private
+      私有
 
   .pull-right
-    = link_to new_snippet_path, class: "btn btn-new btn-sm", title: "New Snippet" do
-      Add new snippet
+    = link_to new_snippet_path, class: "btn btn-new btn-sm", title: "新代码片段" do
+      增加新的代码片段
 
 .append-bottom-10.prepend-top-10
   .pull-right
     %span.light
-      created by
+      属于
       = link_to user_snippets_path(@snippet.author) do
         = @snippet.author_name
 
   .back-link
     - if @snippet.author == current_user
       = link_to dashboard_snippets_path do
-        &larr; your snippets
+        &larr; 你的代码片段
     - else
       = link_to explore_snippets_path do
-        &larr; explore snippets
+        &larr; 浏览代码片段
 
 .file-holder
   .file-title

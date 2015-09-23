@@ -2,7 +2,7 @@
 %h3.page-title 邀请
 
 %p
-  您被
+  你被
   - if inviter = @member.created_by
     = link_to inviter.name, user_url(inviter)
   邀请加入 
@@ -21,7 +21,7 @@
 
 - if @member.source.users.include?(current_user)
   %p
-    注意，您已经是该#{@member.source.is_a?(Group) ? "群组" : "项目"}的成员。
+    注意，你已经是该#{@member.source.is_a?(Group) ? "群组" : "项目"}的成员。
     请使用另一个账号登入再接受邀请。
 - else
   .actions

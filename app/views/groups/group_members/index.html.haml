@@ -1,24 +1,24 @@
-- page_title "Members"
-- header_title group_title(@group, "Members", group_group_members_path(@group))
+- page_title "成员"
+- header_title group_title(@group, "成员", group_group_members_path(@group))
 - show_roles = should_user_see_group_roles?(current_user, @group)
 
 - if show_roles
   %p.light
-    Members of group have access to all group projects.
-    Read more about permissions
-    %strong= link_to "here", help_page_path("permissions", "permissions"), class: "vlink"
+    群组成员可以访问所有群组项目。
+    了解更多角色权限相关请点击
+    %strong= link_to "这里", help_page_path("permissions", "permissions"), class: "vlink"
 
 
 .clearfix.js-toggle-container
   = form_tag group_group_members_path(@group), method: :get, class: 'form-inline member-search-form'  do
     .form-group
-      = search_field_tag :search, params[:search], { placeholder: 'Find existing member by name', class: 'form-control search-text-input' }
-    = button_tag 'Search', class: 'btn'
+      = search_field_tag :search, params[:search], { placeholder: '使用名字查找已存在的成员', class: 'form-control search-text-input' }
+    = button_tag '搜索', class: 'btn'
 
   - if current_user && current_user.can?(:admin_group_member, @group)
     .pull-right
       = button_tag class: 'btn btn-new js-toggle-button', type: 'button' do
-        Add members
+        增加成员
         %i.fa.fa-chevron-down
 
     .js-toggle-content.hide.new-group-member-holder

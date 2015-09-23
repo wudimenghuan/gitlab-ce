@@ -1,10 +1,10 @@
-- header_title group_title(@group, "Settings", edit_group_path(@group))
+- header_title group_title(@group, "设置", edit_group_path(@group))
 - @blank_container = true
 
 .panel.panel-default
   .panel-heading
     %strong= @group.name
-    group settings:
+    群组设置：
   .panel-body
     = form_for @group, html: { multipart: true, class: "form-horizontal" }, authenticity_token: true do |f|
       - if @group.errors.any?
