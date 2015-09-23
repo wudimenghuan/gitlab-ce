@@ -6,7 +6,7 @@
 
 .back-link
   = link_to namespace_project_services_path(@project.namespace, @project) do
-    &larr; to services
+    &larr; 返回到服务
 
 %hr
 
@@ -14,8 +14,8 @@
   = render 'shared/service_settings', form: form
 
   .form-actions
-    = form.submit 'Save', class: 'btn btn-save'
+    = form.submit '保存', class: 'btn btn-save'
     &nbsp;
     - if @service.valid? && @service.activated?
       - disabled = @service.can_test? ? '':'disabled'
-      = link_to 'Test settings', test_namespace_project_service_path(@project.namespace, @project, @service.to_param), class: "btn #{disabled}"
+      = link_to '测试设置', test_namespace_project_service_path(@project.namespace, @project, @service.to_param), class: "btn #{disabled}"

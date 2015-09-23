@@ -34,8 +34,8 @@
     .file-actions
       .btn-group
         - if can?(current_user, :update_personal_snippet, @snippet)
-          = link_to "edit", edit_snippet_path(@snippet), class: "btn btn-sm", title: 'Edit Snippet'
-        = link_to "raw", raw_snippet_path(@snippet), class: "btn btn-sm", target: "_blank"
+          = link_to "编辑", edit_snippet_path(@snippet), class: "btn btn-sm", title: '编辑代码片段'
+        = link_to "原文件", raw_snippet_path(@snippet), class: "btn btn-sm", target: "_blank"
       - if can?(current_user, :admin_personal_snippet, @snippet)
-        = link_to "remove", snippet_path(@snippet), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-sm btn-remove", title: 'Delete Snippet'
+        = link_to "删除", snippet_path(@snippet), method: :delete, data: { confirm: "确定要继续么？" }, class: "btn btn-sm btn-remove", title: '删除代码片段'
   = render 'shared/snippets/blob'

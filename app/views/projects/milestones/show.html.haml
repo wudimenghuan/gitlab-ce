@@ -42,12 +42,12 @@
 %hr
 .context
   %p.lead
-    Progress:
-    #{@milestone.closed_items_count} closed
+    进度：
+    #{@milestone.closed_items_count} 已关闭
     &ndash;
-    #{@milestone.open_items_count} open
+    #{@milestone.open_items_count} 未关闭
     &nbsp;
-    %span.light #{@milestone.percent_complete}% complete
+    %span.light #{@milestone.percent_complete}% 完成
     %span.pull-right= @milestone.expires_at
   = milestone_progress_bar(@milestone)
 
@@ -55,46 +55,46 @@
 %ul.nav.nav-tabs
   %li.active
     = link_to '#tab-issues', 'data-toggle' => 'tab' do
-      Issues
+      问题
       %span.badge= @issues.count
   %li
     = link_to '#tab-merge-requests', 'data-toggle' => 'tab' do
-      Merge Requests
+      合并请求
       %span.badge= @merge_requests.count
   %li
     = link_to '#tab-participants', 'data-toggle' => 'tab' do
-      Participants
+      参与者
       %span.badge= @users.count
 
   .pull-right
     - if can?(current_user, :create_issue, @project)
-      = link_to new_namespace_project_issue_path(@project.namespace, @project, issue: { milestone_id: @milestone.id }), class: "btn  btn-grouped", title: "New Issue" do
+      = link_to new_namespace_project_issue_path(@project.namespace, @project, issue: { milestone_id: @milestone.id }), class: "btn  btn-grouped", title: "新问题" do
         %i.fa.fa-plus
-        New Issue
+        新问题
     - if can?(current_user, :read_issue, @project)
-      = link_to 'Browse Issues', namespace_project_issues_path(@milestone.project.namespace, @milestone.project, milestone_title: @milestone.title), class: "btn  edit-milestone-link btn-grouped"
+      = link_to '浏览问题', namespace_project_issues_path(@milestone.project.namespace, @milestone.project, milestone_title: @milestone.title), class: "btn  edit-milestone-link btn-grouped"
 
 .tab-content
   .tab-pane.active#tab-issues
     .row
       .col-md-4
-        = render('issues', title: 'Unstarted Issues (open and unassigned)', issues: @issues.opened.unassigned, id: 'unassigned')
+        = render('issues', title: '未开始的问题 (未关闭 & 未指派)', issues: @issues.opened.unassigned, id: 'unassigned')
       .col-md-4
-        = render('issues', title: 'Ongoing Issues (open and assigned)', issues: @issues.opened.assigned, id: 'ongoing')
+        = render('issues', title: '正在进行的问题 (未关闭 & 已指派)', issues: @issues.opened.assigned, id: 'ongoing')
       .col-md-4
-        = render('issues', title: 'Completed Issues (closed)', issues: @issues.closed, id: 'closed')
+        = render('issues', title: '完成的问题 (已关闭)', issues: @issues.closed, id: 'closed')
 
   .tab-pane#tab-merge-requests
     .row
       .col-md-3
-        = render('merge_requests', title: 'Work in progress (open and unassigned)', merge_requests: @merge_requests.opened.unassigned, id: 'unassigned')
+        = render('merge_requests', title: '正在处理的 (未关闭 & 未指派)', merge_requests: @merge_requests.opened.unassigned, id: 'unassigned')
       .col-md-3
-        = render('merge_requests', title: 'Waiting for merge (open and assigned)', merge_requests: @merge_requests.opened.assigned, id: 'ongoing')
+        = render('merge_requests', title: '等待合并 (未关闭 & 已指派)', merge_requests: @merge_requests.opened.assigned, id: 'ongoing')
       .col-md-3
-        = render('merge_requests', title: 'Rejected (closed)', merge_requests: @merge_requests.closed, id: 'closed')
+        = render('merge_requests', title: '拒绝 (已关闭)', merge_requests: @merge_requests.closed, id: 'closed')
       .col-md-3
         .panel.panel-primary
-          .panel-heading Merged
+          .panel-heading 已合并
           %ul.well-list
             - @merge_requests.merged.each do |merge_request|
               = render 'merge_request', merge_request: merge_request

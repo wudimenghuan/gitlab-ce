@@ -1,20 +1,20 @@
 %ul.nav.nav-sidebar
   = nav_link do
-    = link_to group_path(@group), title: 'Back to group', data: {placement: 'right'}, class: 'back-link' do
+    = link_to group_path(@group), title: '返回到群组', data: {placement: 'right'}, class: 'back-link' do
       = icon('caret-square-o-left fw')
       %span
-        Back to group
+        返回到群组
 
   %li.separate-item
 
   %ul.sidebar-subnav
     = nav_link(path: 'groups#edit') do
-      = link_to edit_group_path(@group), title: 'Group Settings', data: {placement: 'right'} do
+      = link_to edit_group_path(@group), title: '群组设置', data: {placement: 'right'} do
         = icon ('pencil-square-o fw')
         %span
-          Group Settings
+          群组设置
     = nav_link(path: 'groups#projects') do
-      = link_to projects_group_path(@group), title: 'Projects', data: {placement: 'right'} do
+      = link_to projects_group_path(@group), title: '项目', data: {placement: 'right'} do
         = icon('folder fw')
         %span
-          Projects
+          项目

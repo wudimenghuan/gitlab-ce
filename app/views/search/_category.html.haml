@@ -48,14 +48,14 @@
       = link_to search_filter_path(scope: 'snippet_blobs', snippets: true, group_id: nil, project_id: nil) do
         = icon('code fw')
         %span
-          Snippet Contents
+          代码片段内容
           %span.badge
             = @search_results.snippet_blobs_count
     %li{class: ("active" if @scope == 'snippet_titles')}
       = link_to search_filter_path(scope: 'snippet_titles', snippets: true, group_id: nil, project_id: nil) do
         = icon('book fw')
         %span
-          Titles and Filenames
+          标题和文件名
           %span.badge
             = @search_results.snippet_titles_count
 

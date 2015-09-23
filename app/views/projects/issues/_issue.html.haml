@@ -12,7 +12,7 @@
     .pull-right.light
       - if issue.closed?
         %span
-          CLOSED
+          已关闭
       - if issue.assignee
         = link_to_member(@project, issue.assignee, name: false)
       - note_count = issue.notes.user.count

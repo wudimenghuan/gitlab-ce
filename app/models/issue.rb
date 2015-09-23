@@ -95,4 +95,8 @@ class Issue < ActiveRecord::Base
   def source_project
     project
   end
+
+  def zh_name
+    '问题'
+  end
 end

@@ -1,5 +1,5 @@
 %div.issue-form-holder
-  %h3.page-title= @issue.new_record? ? "Create Issue" : "Edit Issue ##{@issue.iid}"
+  %h3.page-title= @issue.new_record? ? "新问题" : "编辑问题 ##{@issue.iid}"
   %hr
 
   = form_for [@project.namespace.becomes(Namespace), @project, @issue], html: { class: 'form-horizontal issue-form gfm-form' } do |f|

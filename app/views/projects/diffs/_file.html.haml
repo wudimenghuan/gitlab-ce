@@ -24,7 +24,7 @@
 
       .diff-btn-group
         - if blob.text?
-          = link_to '#', class: 'js-toggle-diff-comments btn btn-sm active has_tooltip', title: "Toggle comments for this file" do
+          = link_to '#', class: 'js-toggle-diff-comments btn btn-sm active has_tooltip', title: "切换此文件的评论显示" do
             %i.fa.fa-comments
           &nbsp;
 
@@ -47,5 +47,5 @@
       - old_file = project.repository.prev_blob_for_diff(@commit, diff_file)
       = render "projects/diffs/image", diff_file: diff_file, old_file: old_file, file: blob, index: i
     - else
-      .nothing-here-block No preview for this file type
+      .nothing-here-block 不能预览此文件类型
 

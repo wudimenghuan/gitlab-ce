@@ -6,25 +6,25 @@
           %li= msg
 
   .form-group
-    = f.label :name, class: 'control-label'
+    = f.label :name, "名称", class: 'control-label'
 
     .col-sm-10
       = f.text_field :name, class: 'form-control', required: true
 
   .form-group
-    = f.label :redirect_uri, class: 'control-label'
+    = f.label :redirect_uri, "重定向 URI", class: 'control-label'
 
     .col-sm-10
       = f.text_area :redirect_uri, class: 'form-control', required: true
 
       %span.help-block
-        Use one line per URI
+        每个 URI 使用一行
       - if Doorkeeper.configuration.native_redirect_uri
         %span.help-block
-          Use
+          使用
           %code= Doorkeeper.configuration.native_redirect_uri
-          for local tests
+          作为本地测试
 
   .form-actions
-    = f.submit 'Submit', class: "btn btn-create"
-    = link_to "Cancel", applications_profile_path, class: "btn btn-cancel"
+    = f.submit '提交', class: "btn btn-create"
+    = link_to "取消", applications_profile_path, class: "btn btn-cancel"

@@ -1,3 +1,4 @@
+#encoding: utf-8
 module DiffHelper
   def allowed_diff_size
     if diff_hard_limit_enabled?

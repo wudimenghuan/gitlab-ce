@@ -7,26 +7,26 @@
         %li
           = link_to url_for_new_issue do
             = icon('exclamation-circle fw')
-            New issue
+            新问题
       - if can?(current_user, :create_merge_request, @project)
         %li
           = link_to new_namespace_project_merge_request_path(@project.namespace, @project) do
             = icon('tasks fw')
-            New merge request
+            新合并请求
       - if can?(current_user, :create_snippet, @project)
         %li
           = link_to new_namespace_project_snippet_path(@project.namespace, @project) do
             = icon('file-text-o fw')
-            New snippet
+            新代码片段
       - if can?(current_user, :push_code, @project)
         %li.divider
         %li
           = link_to new_namespace_project_branch_path(@project.namespace, @project) do
             = icon('code-fork fw')
-            New branch
+            新分支
         %li
           = link_to new_namespace_project_tag_path(@project.namespace, @project) do
             = icon('tags fw')
-            New tag
+            新标签
 
 

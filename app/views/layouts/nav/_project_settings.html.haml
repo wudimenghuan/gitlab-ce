@@ -1,36 +1,36 @@
 %ul.nav.nav-sidebar
   = nav_link do
-    = link_to project_path(@project), title: 'Back to project', data: {placement: 'right'}, class: 'back-link' do
+    = link_to project_path(@project), title: '返回到项目', data: {placement: 'right'}, class: 'back-link' do
       = icon('caret-square-o-left fw')
       %span
-        Back to project
+        返回到项目
 
   %li.separate-item
 
   %ul.sidebar-subnav
     = nav_link(path: 'projects#edit') do
-      = link_to edit_project_path(@project), title: 'Project Settings', data: {placement: 'right'} do
+      = link_to edit_project_path(@project), title: '项目设置', data: {placement: 'right'} do
         = icon('pencil-square-o fw')
         %span
-          Project Settings
+          项目设置
     = nav_link(controller: :deploy_keys) do
-      = link_to namespace_project_deploy_keys_path(@project.namespace, @project), title: 'Deploy Keys', data: {placement: 'right'} do
+      = link_to namespace_project_deploy_keys_path(@project.namespace, @project), title: '部署密钥', data: {placement: 'right'} do
         = icon('key fw')
         %span
-          Deploy Keys
+          部署密钥
     = nav_link(controller: :hooks) do
-      = link_to namespace_project_hooks_path(@project.namespace, @project), title: 'Web Hooks', data: {placement: 'right'} do
+      = link_to namespace_project_hooks_path(@project.namespace, @project), title: 'Web 钩子', data: {placement: 'right'} do
         = icon('link fw')
         %span
-          Web Hooks
+          Web 钩子
     = nav_link(controller: :services) do
-      = link_to namespace_project_services_path(@project.namespace, @project), title: 'Services', data: {placement: 'right'} do
+      = link_to namespace_project_services_path(@project.namespace, @project), title: '服务', data: {placement: 'right'} do
         = icon('cogs fw')
         %span
-          Services
+          服务
     = nav_link(controller: :protected_branches) do
-      = link_to namespace_project_protected_branches_path(@project.namespace, @project), title: 'Protected Branches', data: {placement: 'right'} do
+      = link_to namespace_project_protected_branches_path(@project.namespace, @project), title: '保护分支', data: {placement: 'right'} do
         = icon('lock fw')
         %span
-          Protected Branches
+          保护分支
 

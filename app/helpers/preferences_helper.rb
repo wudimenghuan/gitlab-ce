@@ -24,8 +24,8 @@ module PreferencesHelper
 
   def project_view_choices
     [
-      ['Readme (default)', :readme],
-      ['Activity view', :activity]
+      ['Readme (默认)', :readme],
+      ['活动视图', :activity]
     ]
   end
 

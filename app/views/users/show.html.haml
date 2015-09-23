@@ -26,7 +26,7 @@
               %ul.dropdown-menu.dropdown-menu-right
                 %li
                   = link_to new_abuse_report_path(user_id: @user.id) do
-                    Report abuse
+                    举报滥用
 
       .username
         @#{@user.username}
@@ -38,7 +38,7 @@
 
     - if @groups.any?
       .prepend-top-20
-        %h4 Groups
+        %h4 群组
         = render 'groups', groups: @groups
         %hr
 
@@ -49,7 +49,7 @@
       .user-calendar-activities
       %hr
     %h4
-      User Activity
+      用户活动
 
       - if current_user
         %span.rss-icon.pull-right

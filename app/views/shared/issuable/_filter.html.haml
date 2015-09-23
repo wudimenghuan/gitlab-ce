@@ -31,22 +31,22 @@
       .issues-other-filters
         .filter-item.inline
           = users_select_tag(:assignee_id, selected: params[:assignee_id],
-            placeholder: 'Assignee', class: 'trigger-submit', any_user: true, null_user: true, first_user: true, current_user: true)
+            placeholder: '指派', class: 'trigger-submit', any_user: true, null_user: true, first_user: true, current_user: true)
 
         .filter-item.inline
           = users_select_tag(:author_id, selected: params[:author_id],
-            placeholder: 'Author', class: 'trigger-submit', any_user: true, first_user: true, current_user: true)
+            placeholder: '作者', class: 'trigger-submit', any_user: true, first_user: true, current_user: true)
 
         .filter-item.inline.milestone-filter
           = select_tag('milestone_title', projects_milestones_options,
             class: 'select2 trigger-submit', include_blank: true,
-            data: {placeholder: 'Milestone'})
+            data: {placeholder: '里程碑'})
 
         - if @project
           .filter-item.inline.labels-filter
             = select_tag('label_name', project_labels_options(@project),
               class: 'select2 trigger-submit', include_blank: true,
-              data: {placeholder: 'Label'})
+              data: {placeholder: '标签'})
 
         .pull-right
           = render 'shared/sort_dropdown'
@@ -54,12 +54,12 @@
     - if controller.controller_name == 'issues'
       .issues_bulk_update.hide
         = form_tag bulk_update_namespace_project_issues_path(@project.namespace, @project), method: :post  do
-          = select_tag('update[state_event]', options_for_select([['Open', 'reopen'], ['Closed', 'close']]), prompt: "Status", class: 'form-control')
-          = users_select_tag('update[assignee_id]', placeholder: 'Assignee', null_user: true, first_user: true, current_user: true)
-          = select_tag('update[milestone_id]', bulk_update_milestone_options, prompt: "Milestone")
+          = select_tag('update[state_event]', options_for_select([['未关闭', 'reopen'], ['已关闭', 'close']]), prompt: "状态", class: 'form-control')
+          = users_select_tag('update[assignee_id]', placeholder: '指派', null_user: true, first_user: true, current_user: true)
+          = select_tag('update[milestone_id]', bulk_update_milestone_options, prompt: "里程碑")
           = hidden_field_tag 'update[issues_ids]', []
           = hidden_field_tag :state_event, params[:state_event]
-          = button_tag "Update issues", class: "btn update_selected_issues btn-save"
+          = button_tag "更新问题", class: "btn update_selected_issues btn-save"
 
 :coffeescript
   new UsersSelect()

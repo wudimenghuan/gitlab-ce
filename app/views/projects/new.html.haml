@@ -1,5 +1,5 @@
-- page_title    'New Project'
-- header_title  'New Project'
+- page_title    '新项目'
+- header_title  '新项目'
 .project-edit-container
   .project-edit-errors
     = render 'projects/errors'
@@ -8,7 +8,7 @@
     = form_for @project, html: { class: 'new_project form-horizontal js-requires-input' } do |f|
       .form-group.project-name-holder
         = f.label :path, class: 'control-label' do
-          %strong Project path
+          %strong 项目路径
         .col-sm-10
           .input-group
             = f.text_field :path, placeholder: "my-awesome-project", class: "form-control", tabindex: 1, autofocus: true, required: true
@@ -18,7 +18,7 @@
       - if current_user.can_select_namespace?
         .form-group
           = f.label :namespace_id, class: 'control-label' do
-            %span Namespace
+            %span 命名空间
           .col-sm-10
             = f.select :namespace_id, namespaces_options(params[:namespace_id] || :current_user), {}, {class: 'select2', tabindex: 2}
 

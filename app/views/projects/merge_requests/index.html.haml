@@ -8,9 +8,9 @@
 
     - if can? current_user, :create_merge_request, @project
       .pull-left.hidden-xs
-        = link_to new_namespace_project_merge_request_path(@project.namespace, @project), class: "btn btn-new", title: "New Merge Request" do
+        = link_to new_namespace_project_merge_request_path(@project.namespace, @project), class: "btn btn-new", title: "新合并请求" do
           %i.fa.fa-plus
-          New Merge Request
+          新合并请求
   = render 'shared/issuable/filter', type: :merge_requests
 .merge-requests-holder
   = render 'merge_requests'

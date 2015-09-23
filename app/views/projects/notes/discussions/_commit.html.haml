@@ -4,14 +4,14 @@
     .discussion-actions
       = link_to "#", class: "js-toggle-button" do
         %i.fa.fa-chevron-up
-        Show/hide discussion
+        显示/隐藏讨论
     %div
       = link_to_member(@project, note.author, avatar: false)
-      started a discussion on commit
+      开始讨论在提交
       = link_to(note.noteable.short_id, namespace_project_commit_path(note.project.namespace, note.project, note.noteable), class: 'monospace')
     .last-update.hide.js-toggle-content
       - last_note = discussion_notes.last
-      last updated by
+      最后更新：
       = link_to_member(@project, last_note.author, avatar: false)
       %span.discussion-last-update
         #{time_ago_with_tooltip(last_note.updated_at, placement: 'bottom', html_class: 'discussion_updated_ago')}

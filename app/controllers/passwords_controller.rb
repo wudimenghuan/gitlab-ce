@@ -1,3 +1,4 @@
+#encoding: utf-8
 class PasswordsController < Devise::PasswordsController
 
   def create
@@ -51,7 +52,7 @@ class PasswordsController < Devise::PasswordsController
       ).first_or_initialize
 
       unless user.reset_password_period_valid?
-        flash[:alert] = 'Your password reset token has expired.'
+        flash[:alert] = '使用的密码重置授权已过期。'
         redirect_to(new_user_password_url(user_email: user['email']))
       end
     end

@@ -3,14 +3,14 @@
   %h5.note-search-caption.str-truncated
     %i.fa.fa-comment
     = link_to_member(project, note.author, avatar: false)
-    commented on
+    评论在
 
     - if note.for_commit?
       = link_to project do
         = project.name_with_namespace
       &middot;
       = link_to namespace_project_commit_path(project.namespace, project, note.commit_id, anchor: dom_id(note)) do
-        Commit #{truncate_sha(note.commit_id)}
+        提交 #{truncate_sha(note.commit_id)}
     - else
       = link_to project do
         = project.name_with_namespace

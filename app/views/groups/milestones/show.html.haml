@@ -36,51 +36,51 @@
         = milestone.issues.opened.count
       %td
         - if milestone.closed?
-          Closed
+          已关闭
         - else
-          Open
+          未关闭
       %td
         = milestone.expires_at
 
 .context
   %p.lead
-    Progress:
-    #{@group_milestone.closed_items_count} closed
+    进度：
+    #{@group_milestone.closed_items_count} 已关闭
     &ndash;
-    #{@group_milestone.open_items_count} open
+    #{@group_milestone.open_items_count} 未关闭
   = milestone_progress_bar(@group_milestone)
 
 %ul.nav.nav-tabs
   %li.active
     = link_to '#tab-issues', 'data-toggle' => 'tab' do
-      Issues
+      问题
       %span.badge= @group_milestone.issue_count
   %li
     = link_to '#tab-merge-requests', 'data-toggle' => 'tab' do
-      Merge Requests
+      合并请求
       %span.badge= @group_milestone.merge_requests_count
   %li
     = link_to '#tab-participants', 'data-toggle' => 'tab' do
-      Participants
+      参与者
       %span.badge= @group_milestone.participants.count
 
   .pull-right
-    = link_to 'Browse Issues', issues_group_path(@group, milestone_title: @group_milestone.title), class: "btn  edit-milestone-link btn-grouped"
+    = link_to '浏览问题', issues_group_path(@group, milestone_title: @group_milestone.title), class: "btn  edit-milestone-link btn-grouped"
 
 .tab-content
   .tab-pane.active#tab-issues
     .row
       .col-md-6
-        = render 'issues', title: "Open", issues: @group_milestone.opened_issues
+        = render 'issues', title: "未关闭", issues: @group_milestone.opened_issues
       .col-md-6
-        = render 'issues', title: "Closed", issues: @group_milestone.closed_issues
+        = render 'issues', title: "已关闭", issues: @group_milestone.closed_issues
 
   .tab-pane#tab-merge-requests
     .row
       .col-md-6
-        = render 'merge_requests', title: "Open", merge_requests: @group_milestone.opened_merge_requests
+        = render 'merge_requests', title: "未关闭", merge_requests: @group_milestone.opened_merge_requests
       .col-md-6
-        = render 'merge_requests', title: "Closed", merge_requests: @group_milestone.closed_merge_requests
+        = render 'merge_requests', title: "已关闭", merge_requests: @group_milestone.closed_merge_requests
 
   .tab-pane#tab-participants
     %ul.bordered-list

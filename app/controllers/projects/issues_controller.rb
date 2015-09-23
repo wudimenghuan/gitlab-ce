@@ -1,3 +1,4 @@
+#encoding: utf-8
 class Projects::IssuesController < Projects::ApplicationController
   before_action :module_enabled
   before_action :issue, only: [:edit, :update, :show, :toggle_subscription]
@@ -103,7 +104,7 @@ class Projects::IssuesController < Projects::ApplicationController
 
   def bulk_update
     result = Issues::BulkUpdateService.new(project, current_user, bulk_update_params).execute
-    redirect_to :back, notice: "#{result[:count]} issues updated"
+    redirect_to :back, notice: "#{result[:count]} 问题已更新"
   end
 
   def toggle_subscription

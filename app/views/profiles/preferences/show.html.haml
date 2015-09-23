@@ -30,21 +30,21 @@
 
   .panel.panel-default
     .panel-heading
-      Behavior
+      行为
     .panel-body
       .form-group
         = f.label :dashboard, class: 'control-label' do
-          Default Dashboard
+          默认仪表盘
           = link_to('(?)', help_page_path('profile', 'preferences') + '#default-dashboard', target: '_blank')
         .col-sm-10
           = f.select :dashboard, dashboard_choices, {}, class: 'form-control'
       .form-group
         = f.label :project_view, class: 'control-label' do
-          Project view
+          项目视图
           = link_to('(?)', help_page_path('profile', 'preferences') + '#default-project-view', target: '_blank')
         .col-sm-10
           = f.select :project_view, project_view_choices, {}, class: 'form-control'
           .help-block
-            Choose what content you want to see when visit project page
+            选择访问项目页面时看到的内容
     .panel-footer
-      = f.submit 'Save', class: 'btn btn-save'
+      = f.submit '保存', class: 'btn btn-save'

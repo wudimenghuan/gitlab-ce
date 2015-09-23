@@ -1,90 +1,89 @@
-- page_title "UI Development Kit", "Help"
+- page_title "UI 开发包", "帮助"
 - lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fermentum nisi sapien, non consequat lectus aliquam ultrices. Suspendisse sodales est euismod nunc condimentum, a consectetur diam ornare."
 
 .gitlab-ui-dev-kit
-  %h1 GitLab UI development kit
+  %h1 GitLab UI 开发包
   %p.light
-    Use page inspector in your browser to check element classes and structure
-    of examples below.
+    在浏览器中使用页面检查器查看下面例子中的元素样式和结构。
   %hr
   %ul
     %li
-      = link_to 'Blocks', '#blocks'
+      = link_to '区块', '#blocks'
     %li
-      = link_to 'Lists', '#lists'
+      = link_to '列表', '#lists'
     %li
-      = link_to 'Tables', '#tables'
+      = link_to '表格', '#tables'
     %li
-      = link_to 'Buttons', '#buttons'
+      = link_to '按钮', '#buttons'
     %li
-      = link_to 'Panels', '#panels'
+      = link_to '面板', '#panels'
     %li
-      = link_to 'Alerts', '#alerts'
+      = link_to '警告', '#alerts'
     %li
-      = link_to 'Forms', '#forms'
+      = link_to '表单', '#forms'
     %li
-      = link_to 'Files', '#file'
+      = link_to '文件', '#file'
     %li
       = link_to 'Markdown', '#markdown'
 
-  %h2#blocks Blocks
+  %h2#blocks 区块
 
   %h3
     %code .well
 
 
   .well
-    %h4 Something
+    %h4 某些文本
     = lorem
 
 
-  %h2#lists Lists
+  %h2#lists 列表
 
   %h3
     %code .well-list
   %ul.well-list
     %li
-      One item
+      一个项目
     %li
-      One item
+      一个项目
     %li
-      One item
+      一个项目
 
   %h3
     %code .panel .well-list
 
   .panel.panel-default
-    .panel-heading Your list
+    .panel-heading 我的列表
     %ul.well-list
       %li
-        One item
+        一个项目
       %li
-        One item
+        一个项目
       %li
-        One item
+        一个项目
 
   %h3
     %code .bordered-list
   %ul.bordered-list
     %li
-      One item
+      一个项目
     %li
-      One item
+      一个项目
     %li
-      One item
+      一个项目
 
 
 
-  %h2#tables Tables
+  %h2#tables 表格
 
   .example
     %table.table
       %thead
         %tr
           %th #
-          %th First Name
-          %th Last Name
-          %th Username
+          %th 名字
+          %th 姓氏
+          %th 用户名
       %tbody
         %tr
           %td 1
@@ -103,44 +102,44 @@
           %td @twitter
 
 
-  %h2#buttons Buttons
+  %h2#buttons 按钮
 
   .example
-    %button.btn.btn-default{:type => "button"} Default
-    %button.btn.btn-primary{:type => "button"} Primary
-    %button.btn.btn-success{:type => "button"} Success
-    %button.btn.btn-info{:type => "button"} Info
-    %button.btn.btn-warning{:type => "button"} Warning
-    %button.btn.btn-danger{:type => "button"} Danger
-    %button.btn.btn-link{:type => "button"} Link
+    %button.btn.btn-default{:type => "button"} 默认
+    %button.btn.btn-primary{:type => "button"} 主要
+    %button.btn.btn-success{:type => "button"} 成功
+    %button.btn.btn-info{:type => "button"} 信息
+    %button.btn.btn-warning{:type => "button"} 警告
+    %button.btn.btn-danger{:type => "button"} 危险
+    %button.btn.btn-link{:type => "button"} 链接
 
-  %h2#panels Panels
+  %h2#panels 面板
 
   .row
     .col-md-6
       .panel.panel-success
-        .panel-heading Success
+        .panel-heading 成功
         .panel-body
           = lorem
       .panel.panel-primary
-        .panel-heading Primary
+        .panel-heading 主要
         .panel-body
           = lorem
       .panel.panel-info
-        .panel-heading Info
+        .panel-heading 信息
         .panel-body
           = lorem
     .col-md-6
       .panel.panel-warning
-        .panel-heading Warning
+        .panel-heading 警告
         .panel-body
           = lorem
       .panel.panel-danger
-        .panel-heading Danger
+        .panel-heading 危险
         .panel-body
           = lorem
 
-  %h2#alert Alerts
+  %h2#alert 警告
 
   .row
     .col-md-6
@@ -156,47 +155,47 @@
       .alert.alert-danger
         = lorem
 
-  %h2#forms Forms
+  %h2#forms 表单
 
   %h3
     %code form.horizontal-form
 
   %form.form-horizontal
     .form-group
-      %label.col-sm-2.control-label{:for => "inputEmail3"} Email
+      %label.col-sm-2.control-label{:for => "inputEmail3"} 电子邮箱
       .col-sm-10
-        %input#inputEmail3.form-control{:placeholder => "Email", :type => "email"}/
+        %input#inputEmail3.form-control{:placeholder => "电子邮箱", :type => "email"}/
     .form-group
-      %label.col-sm-2.control-label{:for => "inputPassword3"} Password
+      %label.col-sm-2.control-label{:for => "inputPassword3"} 密码
       .col-sm-10
-        %input#inputPassword3.form-control{:placeholder => "Password", :type => "password"}/
+        %input#inputPassword3.form-control{:placeholder => "密码", :type => "password"}/
     .form-group
       .col-sm-offset-2.col-sm-10
         .checkbox
           %label
             %input{:type => "checkbox"}/
-            Remember me
+            记住我
     .form-group
       .col-sm-offset-2.col-sm-10
-        %button.btn.btn-default{:type => "submit"} Sign in
+        %button.btn.btn-default{:type => "submit"} 登入
 
   %h3
     %code form
 
   %form
     .form-group
-      %label{:for => "exampleInputEmail1"} Email address
-      %input#exampleInputEmail1.form-control{:placeholder => "Enter email", :type => "email"}/
+      %label{:for => "exampleInputEmail1"} 电子邮箱地址
+      %input#exampleInputEmail1.form-control{:placeholder => "输入电子邮箱", :type => "email"}/
     .form-group
-      %label{:for => "exampleInputPassword1"} Password
-      %input#exampleInputPassword1.form-control{:placeholder => "Password", :type => "password"}/
+      %label{:for => "exampleInputPassword1"} 密码
+      %input#exampleInputPassword1.form-control{:placeholder => "密码", :type => "password"}/
     .checkbox
       %label
         %input{:type => "checkbox"}/
-        Remember me
-    %button.btn.btn-default{:type => "submit"} Sign in
+        记住我
+    %button.btn.btn-default{:type => "submit"} 登入
 
-  %h2#file File
+  %h2#file 文件
   %h3
     %code .file-holder
 
@@ -207,8 +206,8 @@
         Awesome file
         .file-actions
           .btn-group
-            %a.btn Edit
-            %a.btn Remove
+            %a.btn 编辑
+            %a.btn 删除
       .file-contenta.code
         = render 'shared/file_highlight', blob: blob
 

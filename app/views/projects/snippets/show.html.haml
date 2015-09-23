@@ -14,14 +14,14 @@
   .pull-right
     = "##{@snippet.id}"
     %span.light
-      by
+      属于
       = link_to user_path(@snippet.author) do
         = image_tag avatar_icon(@snippet.author_email), class: "avatar avatar-inline s16"
         = @snippet.author_name
 
   .back-link
     = link_to namespace_project_snippets_path(@project.namespace, @project) do
-      &larr; project snippets
+      &larr; 项目代码片段
 
 .file-holder
   .file-title
@@ -31,10 +31,10 @@
     .file-actions
       .btn-group
         - if can?(current_user, :update_project_snippet, @snippet)
-          = link_to "edit", edit_namespace_project_snippet_path(@project.namespace, @project, @snippet), class: "btn btn-sm", title: 'Edit Snippet'
-        = link_to "raw", raw_namespace_project_snippet_path(@project.namespace, @project, @snippet), class: "btn btn-sm", target: "_blank"
+          = link_to "编辑", edit_namespace_project_snippet_path(@project.namespace, @project, @snippet), class: "btn btn-sm", title: '编辑代码片段'
+        = link_to "原文件", raw_namespace_project_snippet_path(@project.namespace, @project, @snippet), class: "btn btn-sm", target: "_blank"
       - if can?(current_user, :admin_project_snippet, @snippet)
-        = link_to "remove", namespace_project_snippet_path(@project.namespace, @project, @snippet), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-sm btn-remove", title: 'Delete Snippet'
+        = link_to "删除", namespace_project_snippet_path(@project.namespace, @project, @snippet), method: :delete, data: { confirm: "确定要继续么？" }, class: "btn btn-sm btn-remove", title: 'Delete Snippet'
   = render 'shared/snippets/blob'
 
 %div#notes= render "projects/notes/notes_with_form"

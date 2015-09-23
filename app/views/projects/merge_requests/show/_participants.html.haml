@@ -1,4 +1,4 @@
 .participants
-  %span #{@participants.count} participants
+  %span #{@participants.count} 个参与者
   - @participants.each do |participant|
     = link_to_member(@project, participant, name: false, size: 24)

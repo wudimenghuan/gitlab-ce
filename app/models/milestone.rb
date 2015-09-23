@@ -1,3 +1,4 @@
+#encoding: utf-8
 # == Schema Information
 #
 # Table name: milestones
@@ -83,9 +84,9 @@ class Milestone < ActiveRecord::Base
   def expires_at
     if due_date
       if due_date.past?
-        "expired at #{due_date.stamp("Aug 21, 2011")}"
+        "过期时间 #{due_date.stamp("2011-08-21")}"
       else
-        "expires at #{due_date.stamp("Aug 21, 2011")}"
+        "过期时间 #{due_date.stamp("2011-08-21")}"
       end
     end
   end

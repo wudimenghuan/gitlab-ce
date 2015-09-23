@@ -1,3 +1,4 @@
+#encoding: utf-8
 # Controller for viewing a file's blame
 class Projects::BlobController < Projects::ApplicationController
   include ExtractsPath

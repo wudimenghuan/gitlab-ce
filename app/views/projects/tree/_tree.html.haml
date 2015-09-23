@@ -10,7 +10,7 @@
         = link_to title, '#'
   - if current_user && can_push_branch?(@project, @ref)
     %li
-      = link_to namespace_project_new_blob_path(@project.namespace, @project, @id), title: 'New file', id: 'new-file-link' do
+      = link_to namespace_project_new_blob_path(@project.namespace, @project, @id), title: '新文件', id: 'new-file-link' do
         %small
           %i.fa.fa-plus
 
@@ -18,10 +18,10 @@
   %table#tree-slider{class: "table_#{@hex_path} tree-table" }
     %thead
       %tr
-        %th Name
-        %th Last Update
+        %th 名称
+        %th 最后更新
         %th.hidden-xs
-          .pull-left Last Commit
+          .pull-left 最后提交
           .last-commit.hidden-sm.pull-left
             &nbsp;
             %i.fa.fa-angle-right
@@ -30,7 +30,7 @@
               = link_to @commit.short_id, namespace_project_commit_path(@project.namespace, @project, @commit)
               &ndash;
               = truncate(@commit.title, length: 50)
-          = link_to 'History', namespace_project_commits_path(@project.namespace, @project, @id), class: 'pull-right'
+          = link_to '历史', namespace_project_commits_path(@project.namespace, @project, @id), class: 'pull-right'
 
     - if @path.present?
       %tr.tree-item

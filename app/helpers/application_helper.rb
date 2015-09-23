@@ -1,3 +1,4 @@
+#encoding: utf-8
 require 'digest/md5'
 require 'uri'
 
@@ -91,24 +92,24 @@ module ApplicationHelper
     if project.repo_exists?
       time_ago_with_tooltip(project.repository.commit.committed_date)
     else
-      'Never'
+      '从未'
     end
   rescue
-    'Never'
+    '从未'
   end
 
   def grouped_options_refs
     repository = @project.repository
 
     options = [
-      ['Branches', repository.branch_names],
-      ['Tags', VersionSorter.rsort(repository.tag_names)]
+      ['分支', repository.branch_names],
+      ['标签', VersionSorter.rsort(repository.tag_names)]
     ]
 
     # If reference is commit id - we should add it to branch/tag selectbox
     if(@ref && !options.flatten.include?(@ref) &&
        @ref =~ /\A[0-9a-zA-Z]{6,52}\z/)
-      options << ['Commit', [@ref]]
+      options << ['提交', [@ref]]
     end
 
     grouped_options_for_select(options, @ref || @project.default_branch)
@@ -167,13 +168,13 @@ module ApplicationHelper
 
   def search_placeholder
     if @project && @project.persisted?
-      'Search in this project'
+      '在项目中搜索'
     elsif @snippet || @snippets || @show_snippets
-      'Search snippets'
+      '搜索代码片段'
     elsif @group && @group.persisted?
-      'Search in this group'
+      '在群组中搜索'
     else
-      'Search'
+      '搜索'
     end
   end
 
@@ -291,7 +292,10 @@ module ApplicationHelper
 
   def state_filters_text_for(entity, project)
     titles = {
-      opened: "Open"
+      opened: "未关闭",
+      closed: "已关闭",
+      merged: "已合并",
+      all: "所有",
     }
 
     entity_title = titles[entity] || entity.to_s.humanize

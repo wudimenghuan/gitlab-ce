@@ -1,19 +1,19 @@
-#{@author.name} #{@action_name} #{@ref_type} #{@ref_name} at #{@project.name_with_namespace}
+#{@author.name} #{@action_name} #{@ref_type} #{@ref_name} 在 #{@project.name_with_namespace}
 - if @compare
   \
   \
   - if @reverse_compare
-    WARNING: The push did not contain any new commits, but force pushed to delete the commits and changes below.
+    警告：此推送不包含任何提交，但强制推送会删除下面的提交和变更。
     \
     \
-  = @reverse_compare ? "Deleted commits:" : "Commits:"
+  = @reverse_compare ? "删除的提交；" : "提交；"
   - @commits.each do |commit|
-    #{commit.short_id} by #{commit.author_name} at #{commit.committed_date.strftime("%Y-%m-%dT%H:%M:%SZ")}
+    #{commit.short_id} 由 #{commit.author_name} 在 #{commit.committed_date.strftime("%Y-%m-%dT%H:%M:%SZ")}
     #{commit.safe_message}
     \- - - - -
   \
   \
-  #{pluralize @diffs.count, "changed file"}:
+  #{pluralize @diffs.count, "个修改的文件", "个修改的文件"}:
   \
   - @diffs.each do |diff|
     - if diff.deleted_file
@@ -27,12 +27,12 @@
   - unless @disable_diffs
     \
     \
-    Changes:
+    变更：
     - @diffs.each do |diff|
       \
       \=====================================
       - if diff.deleted_file
-        #{diff.old_path} deleted
+        #{diff.old_path} 已删除
       - elsif diff.renamed_file
         #{diff.old_path} → #{diff.new_path}
       - else
@@ -42,8 +42,8 @@
   - if @compare.timeout
     \
     \
-    Huge diff. To prevent performance issues it was hidden
+    巨大差异。因为性能原因隐藏问题变更
   - if @target_url
     \
     \
-    View it on GitLab: #{@target_url}
+    在 GitLab 上查看: #{@target_url}

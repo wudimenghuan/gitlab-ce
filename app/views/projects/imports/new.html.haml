@@ -1,22 +1,22 @@
-- page_title "Import repository"
+- page_title "导入仓库"
 %h3.page-title
   - if @project.import_failed?
-    Import failed. Retry?
+    导入失败。是否重试？
   - else
-    Import repository
+    导入仓库
 
 %hr
 
 = form_for @project, url: namespace_project_import_path(@project.namespace, @project), method: :post, html: { class: 'form-horizontal' } do |f|
   .form-group.import-url-data
-    = f.label :import_url, class: 'control-label' do
-      %span Import existing git repo
+    = f.label :import_url, "导入链接", class: 'control-label' do
+      %span 导入已存在的 git 仓库
     .col-sm-10
       = f.text_field :import_url, class: 'form-control', placeholder: 'https://github.com/randx/six.git'
       .well.prepend-top-20
-        This URL must be publicly accessible or you can add a username and password like this: https://username:password@gitlab.com/company/project.git.
+        链接必须能公开访问或指定用户名和密码类似：https://username:password@gitlab.com/company/project.git.
         %br
-        The import will time out after 4 minutes. For big repositories, use a clone/push combination.
-        For SVN repositories, check #{link_to "this migrating from SVN doc.", "http://doc.gitlab.com/ce/workflow/migrating_from_svn.html"}
+        导入超过 4 分钟将会超时。对于大仓库，请使用 clone/push 组合操作。
+        对于 SVN 仓库，请查看#{link_to "从 SVN 合并文档。", "http://doc.gitlab.com/ce/workflow/migrating_from_svn.html"}
   .form-actions
-    = f.submit 'Start import', class: "btn btn-create", tabindex: 4
+    = f.submit '开始导入', class: "btn btn-create", tabindex: 4

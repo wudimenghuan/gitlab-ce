@@ -6,7 +6,7 @@
     - if current_application_settings.version_check_enabled
       = version_status_badge
   %p.slead
-    GitLab is open source software to collaborate on code.
+    GitLab 是用于代码协作的开源软件。
     %br
     Manage git repositories with fine grained access controls that keep your code secure.
     %br
@@ -35,21 +35,20 @@
   .col-md-4
     .panel.panel-default
       .panel-heading
-        Quick help
+        快速帮助
       %ul.well-list
         %li
-          See our website for
-          = link_to 'getting help', promo_url + '/getting-help/'
+          查看我们的网站
+          = link_to '获取帮助', promo_url + '/getting-help/'
         %li
-          Use the
-          = link_to 'search bar', '#', onclick: 'Shortcuts.focusSearch(event)'
-          on the top of this page
+          使用页面顶部的
+          = link_to '搜索功能', '#', onclick: 'Shortcuts.focusSearch(event)'
         %li
-          Use
-          = link_to 'shortcuts', '#', onclick: 'Shortcuts.showHelp(event)'
+          使用
+          = link_to '键盘快捷键', '#', onclick: 'Shortcuts.showHelp(event)'
         %li
-          Get a support
-          = link_to 'subscription', 'https://about.gitlab.com/pricing/'
+          获得技术支持
+          = link_to '订阅', 'https://about.gitlab.com/pricing/'
         %li
-          = link_to 'Compare', 'https://about.gitlab.com/features/#compare'
-          GitLab editions
+          = link_to '比较', 'https://about.gitlab.com/features/#compare'
+          GitLab 版本
