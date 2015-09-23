@@ -1,3 +1,4 @@
+#encoding: utf-8
 module NotificationsHelper
   include IconsHelper
 
@@ -18,31 +19,31 @@ module NotificationsHelper
     when Notification::N_DISABLED
       content_tag(:li, class: active_level_for(user_membership, Notification::N_DISABLED)) do
         link_to '#', class: 'update-notification', data: { notification_level: Notification::N_DISABLED } do
-          icon('microphone-slash fw', text: 'Disabled')
+          icon('microphone-slash fw', text: '关闭')
         end
       end
     when Notification::N_PARTICIPATING
       content_tag(:li, class: active_level_for(user_membership, Notification::N_PARTICIPATING)) do
         link_to '#', class: 'update-notification', data: { notification_level: Notification::N_PARTICIPATING } do
-          icon('volume-up fw', text: 'Participate')
+          icon('volume-up fw', text: '参与')
         end
       end
     when Notification::N_WATCH
       content_tag(:li, class: active_level_for(user_membership, Notification::N_WATCH)) do
         link_to '#', class: 'update-notification', data: { notification_level: Notification::N_WATCH } do
-          icon('eye fw', text: 'Watch')
+          icon('eye fw', text: '关注')
         end
       end
     when Notification::N_MENTION
       content_tag(:li, class: active_level_for(user_membership, Notification::N_MENTION)) do
         link_to '#', class: 'update-notification', data: { notification_level: Notification::N_MENTION }  do
-          icon('at fw', text: 'On mention')
+          icon('at fw', text: '被提及')
         end
       end
     when Notification::N_GLOBAL
       content_tag(:li, class: active_level_for(user_membership, Notification::N_GLOBAL)) do
         link_to '#', class: 'update-notification', data: { notification_level: Notification::N_GLOBAL } do
-          icon('globe fw', text: 'Global')
+          icon('globe fw', text: '全局')
         end
       end
     else

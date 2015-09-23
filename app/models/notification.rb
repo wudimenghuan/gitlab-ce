@@ -62,15 +62,15 @@ class Notification
   def to_s
     case level
     when N_DISABLED
-      'Disabled'
+      '关闭'
     when N_PARTICIPATING
-      'Participating'
+      '参与'
     when N_WATCH
-      'Watching'
+      '关注'
     when N_MENTION
-      'On mention'
+      '被提及'
     when N_GLOBAL
-      'Global'
+      '全局'
     else
       # do nothing      
     end

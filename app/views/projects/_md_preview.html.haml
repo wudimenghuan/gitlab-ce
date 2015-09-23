@@ -3,19 +3,19 @@
     %ul.center-top-menu
       %li.active
         = link_to '#md-write-holder', class: 'js-md-write-button', tabindex: '-1' do
-          Write
+          编写
       %li
         = link_to '#md-preview-holder', class: 'js-md-preview-button', tabindex: '-1' do
-          Preview
+          预览
 
     - if defined?(referenced_users) && referenced_users
       %span.referenced-users.pull-left.hide
         = icon('exclamation-triangle')
-        You are about to add
+        添加了
         %strong
           %span.js-referenced-users-count 0
-          people
-        to the discussion. Proceed with caution.
+          人
+        到此讨论。请谨慎行事。
 
   %div
     .md-write-holder

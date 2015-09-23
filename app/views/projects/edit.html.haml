@@ -5,7 +5,7 @@
   .project-edit-content
     .panel.panel-default
       .panel-heading
-        Project settings
+        项目设置
       .panel-body
         = form_for [@project.namespace.becomes(Namespace), @project], remote: true, html: { multipart: true, class: "edit_project form-horizontal fieldset-form" }, authenticity_token: true do |f|
 
