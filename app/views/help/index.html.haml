@@ -1,14 +1,15 @@
 %div
   %h1
     GitLab
-    %span= Gitlab::VERSION
-    %small= Gitlab::REVISION
-    - if current_application_settings.version_check_enabled
+    Community Edition
+    - if user_signed_in?
+      %span= Gitlab::VERSION
+      %small= Gitlab::REVISION
       = version_status_badge
   %p.slead
     GitLab 是用于代码协作的开源软件。
     %br
-    Manage git repositories with fine grained access controls that keep your code secure.
+    Manage git repositories with fine-grained access controls that keep your code secure.
     %br
     Perform code reviews and enhance collaboration with merge requests.
     %br
@@ -27,28 +28,14 @@
   .col-md-8
     .documentation-index
       = preserve do
-        - readme_text = File.read(Rails.root.join("doc", "README.md"))
-        - text = readme_text.dup
-        - readme_text.scan(/\]\(([^(]+)\)/) { |match| text.gsub!(match.first, "help/#{match.first}") }
-        = markdown text
-
+        = markdown(@help_index)
   .col-md-4
     .panel.panel-default
       .panel-heading
         快速帮助
       %ul.well-list
-        %li
-          查看我们的网站
-          = link_to '获取帮助', promo_url + '/getting-help/'
-        %li
-          使用页面顶部的
-          = link_to '搜索功能', '#', onclick: 'Shortcuts.focusSearch(event)'
-        %li
-          使用
-          = link_to '键盘快捷键', '#', onclick: 'Shortcuts.showHelp(event)'
-        %li
-          获得技术支持
-          = link_to '订阅', 'https://about.gitlab.com/pricing/'
-        %li
-          = link_to '比较', 'https://about.gitlab.com/features/#compare'
-          GitLab 版本
+        %li= link_to '查看我们的网站获取帮助', promo_url + '/getting-help/'
+        %li= link_to '使用页面顶部的搜索功能', '#', onclick: 'Shortcuts.focusSearch(event)'
+        %li= link_to '键盘快捷键', '#', onclick: 'Shortcuts.showHelp(event)'
+        %li= link_to '获取技术支持订阅', 'https://about.gitlab.com/pricing/'
+        %li= link_to '比较 GitLab 版本', 'https://about.gitlab.com/features/#compare'

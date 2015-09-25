@@ -1,5 +1,18 @@
 Please view this file on the master branch, on stable branches it's out of date.
 
+v 8.0.2
+  - Fix default avatar not rendering in network graph (Stan Hu)
+  - Skip check_initd_configured_correctly on omnibus installs
+  - Prevent double-prefixing of help page paths
+  - Clarify confirmation text on user deletion
+  - Make commit graphs responsive to window width changes (Stan Hu)
+  - Fix top margin for sign-in button on public pages
+  - Fix LDAP attribute mapping
+  - Remove git refs used internally by GitLab from network graph (Stan Hu)
+  - Use standard Markdown font in Markdown preview instead of fixed-width font (Stan Hu)
+  - Fix Reply by email for non-UTF-8 messages.
+  - Add option to use StartTLS with Reply by email IMAP server.
+
 v 8.0.1
   - Improve CI migration procedure and documentation
 
