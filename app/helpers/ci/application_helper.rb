@@ -1,11 +1,12 @@
+#encoding: utf-8
 module Ci
   module ApplicationHelper
     def loader_html
-      image_tag 'ci/loader.gif', alt: 'Loading'
+      image_tag 'ci/loader.gif', alt: '正在载入'
     end
 
     def date_from_to(from, to)
-      "#{from.to_s(:short)} - #{to.to_s(:short)}"
+      "#{from.stamp('08-27')} - #{to.stamp('08-27')}"
     end
 
     def duration_in_words(finished_at, started_at)
@@ -23,9 +24,9 @@ module Ci
       seconds = interval_in_seconds - minutes * 60
 
       if minutes >= 1
-        "#{pluralize(minutes, "minute")} #{pluralize(seconds, "second")}"
+        "#{pluralize(minutes, "分", "分")} #{pluralize(seconds, "秒", "秒")}"
       else
-        "#{pluralize(seconds, "second")}"
+        "#{pluralize(seconds, "秒", "秒")}"
       end
     end
 

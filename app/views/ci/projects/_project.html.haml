@@ -14,14 +14,14 @@
           = time_ago_in_words ci_project.last_commit_date
           ago
       - else
-        No builds yet
+        还没有构建
     %td
       - if ci_project.public
         %i.fa.fa-globe
-        Public
+        公开的
       - else
         %i.fa.fa-lock
-        Private
+        私有的
     %td
       = ci_project.commits.count
 - else
@@ -29,9 +29,9 @@
     %td
       = project.name_with_namespace
     %td
-      %small Not added to CI
+      %small 未增加到 CI
     %td
     %td
       = form_tag ci_projects_path do
         = hidden_field_tag :project, project.to_json(methods: [:name_with_namespace, :path_with_namespace, :ssh_url_to_repo])
-        = submit_tag 'Add project to CI', class: 'btn btn-default btn-sm'
+        = submit_tag '增加项目到 CI', class: 'btn btn-default btn-sm'

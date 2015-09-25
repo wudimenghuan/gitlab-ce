@@ -11,44 +11,44 @@
       .col-sm-6
         - if @commit.compare?
           %p
-            %span.attr-name Compare:
+            %span.attr-name 比较：
             #{gitlab_compare_link(@project, @commit.short_before_sha, @commit.short_sha)}
         - else
           %p
-            %span.attr-name Commit:
+            %span.attr-name 提交：
             #{gitlab_commit_link(@project, @commit.sha)}
 
         %p
-          %span.attr-name Branch:
+          %span.attr-name 分支：
           #{gitlab_ref_link(@project, @commit.ref)}
       .col-sm-6
         %p
-          %span.attr-name Author:
+          %span.attr-name 作者：
           #{@commit.git_author_name} (#{@commit.git_author_email})
         - if @commit.created_at
           %p
-            %span.attr-name Created at:
-            #{@commit.created_at.to_s(:short)}
+            %span.attr-name 创建时间：
+            #{@commit.created_at.stamp('08-27 19:00')}
 
 - if current_user && can?(current_user, :manage_builds, gl_project)
   .pull-right
     - if @commit.builds.running_or_pending.any?
-      = link_to "Cancel", cancel_ci_project_ref_commits_path(@project, @commit.ref, @commit.sha), class: 'btn btn-sm btn-danger'
+      = link_to "取消", cancel_ci_project_ref_commits_path(@project, @commit.ref, @commit.sha), class: 'btn btn-sm btn-danger'
 
 
 - if @commit.yaml_errors.present?
   .bs-callout.bs-callout-danger
-    %h4 Found errors in your .gitlab-ci.yml:
+    %h4 在 .gitlab-ci.yml 文件中发现错误：
     %ul
       - @commit.yaml_errors.split(",").each do |error|
         %li= error
 
 - unless @commit.push_data[:ci_yaml_file]
   .bs-callout.bs-callout-warning
-    \.gitlab-ci.yml not found in this commit
+    此提交里面没有发现 .gitlab-ci.yml 文件
 
 %h3
-  Builds
+  构建
   - if @commit.duration > 0
     %small.pull-right
       %i.fa.fa-time
@@ -57,31 +57,31 @@
 %table.table.builds
   %thead
     %tr
-      %th Status
-      %th Build ID
-      %th Stage
-      %th Name
-      %th Duration
-      %th Finished at
+      %th 状态
+      %th 构建 ID
+      %th 阶段
+      %th 名称
+      %th 花费时间
+      %th 结束时间
       - if @project.coverage_enabled?
-        %th Coverage
+        %th 覆盖率
       %th
   = render @commit.builds_without_retry_sorted, controls: true
 
 - if @commit.retried_builds.any?
   %h3
-    Retried builds
+    重试的构建
 
   %table.table.builds
     %thead
       %tr
-        %th Status
-        %th Build ID
-        %th Stage
-        %th Name
-        %th Duration
-        %th Finished at
+        %th 状态
+        %th 构建 ID
+        %th 阶段
+        %th 名称
+        %th 花费时间
+        %th 结束时间
         - if @project.coverage_enabled?
-          %th Coverage
+          %th 覆盖率
         %th
     = render @commit.retried_builds

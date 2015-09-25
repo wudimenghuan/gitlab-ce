@@ -15,24 +15,26 @@
     - unless @commit.builds_without_retry.include?(@build)
       %li.active
         %a
-          Build ##{@build.id}
+          构建 ##{@build.id}
           &middot;
           %i.fa.fa-warning-sign
-          This build was retried.
+          此构建已重试。
 
 .gray-content-block
   .build-head
     %h4
       - if @build.commit.tag?
-        Build for tag
+        标签
         %code #{@build.ref}
+        的构建
       - else
-        Build for commit
-        %strong.monospace= commit_link(@build.commit)
-        from
+        从
 
         = link_to ci_project_path(@build.project, ref: @build.ref) do
           %strong.monospace= "#{@build.ref}"
+        提交
+        %strong.monospace= commit_link(@build.commit)
+        的构建
 
       - if @build.duration
         .pull-right
@@ -43,7 +45,7 @@
     .clearfix
       = ci_status_with_icon(@build.status)
       .pull-right
-        = @build.updated_at.stamp('19:00 Aug 27')
+        = @build.updated_at.stamp('08-27 19:00')
 
 .row.prepend-top-default
   .col-md-9
@@ -68,33 +70,33 @@
     - if @build.coverage
       .build-widget
         %h4.title
-          Test coverage
+          测试覆盖
         %h1 #{@build.coverage}%
 
 
     .build-widget
       %h4.title
-        Build
+        构建
         - if current_user && can?(current_user, :manage_builds, gl_project)
           .pull-right
             - if @build.active?
-              = link_to "Cancel", cancel_ci_project_build_path(@project, @build), class: 'btn btn-sm btn-danger'
+              = link_to "取消", cancel_ci_project_build_path(@project, @build), class: 'btn btn-sm btn-danger'
             - elsif @build.commands.present?
-              = link_to "Retry", retry_ci_project_build_path(@project, @build), class: 'btn btn-sm btn-primary', method: :post
+              = link_to "重试", retry_ci_project_build_path(@project, @build), class: 'btn btn-sm btn-primary', method: :post
 
       - if @build.duration
         %p
-          %span.attr-name Duration:
+          %span.attr-name 运行时间：
           #{duration_in_words(@build.finished_at, @build.started_at)}
       %p
-        %span.attr-name Created:
-        #{time_ago_in_words(@build.created_at)} ago
+        %span.attr-name 创建时间：
+        #{time_ago_in_words(@build.created_at)}之前
       - if @build.finished_at
         %p
-          %span.attr-name Finished:
-          #{time_ago_in_words(@build.finished_at)} ago
+          %span.attr-name 结束时间：
+          #{time_ago_in_words(@build.finished_at)}之前
       %p
-        %span.attr-name Runner:
+        %span.attr-name Runner：
         - if @build.runner && current_user && current_user.admin
           \#{link_to "##{@build.runner.id}", ci_admin_runner_path(@build.runner.id)}
         - elsif @build.runner
@@ -103,15 +105,15 @@
     - if @build.trigger_request
       .build-widget
         %h4.title
-          Trigger
+          触发
 
         %p
-          %span.attr-name Token:
+          %span.attr-name 授权码：
           #{@build.trigger_request.trigger.short_token}
 
         - if @build.trigger_request.variables
           %p
-            %span.attr-name Variables:
+            %span.attr-name 变量：
 
           %code
             - @build.trigger_request.variables.each do |key, value|
@@ -119,35 +121,35 @@
 
     .build-widget
       %h4.title
-        Commit
+        提交
         .pull-right
           %small #{build_commit_link @build}
 
       - if @build.commit.compare?
         %p
-          %span.attr-name Compare:
+          %span.attr-name 比较：
           #{build_compare_link @build}
       %p
-        %span.attr-name Branch:
+        %span.attr-name 分支：
         #{build_ref_link @build}
       %p
-        %span.attr-name Author:
+        %span.attr-name 作者：
         #{@build.commit.git_author_name}
       %p
-        %span.attr-name Message:
+        %span.attr-name 信息：
         #{@build.commit.git_commit_message}
 
     - if @build.tags.any?
       .build-widget
         %h4.title
-          Tags
+          标签
         - @build.tag_list.each do |tag|
           %span.label.label-primary
             = tag
 
     - if @builds.present?
       .build-widget
-        %h4.title #{pluralize(@builds.count, "other build")} for #{@build.short_sha}:
+        %h4.title #{@build.short_sha} 的 #{pluralize(@builds.count, "个其他构建", "个其他构建")}：
         %table.builds
           - @builds.each_with_index do |build, i|
             %tr.build

@@ -12,13 +12,13 @@
         .checkbox
           = f.label :all_broken_builds do
             = f.check_box :all_broken_builds
-            Send emails only on broken builds
+            只有问题构建时才发送邮件
     .form-group
       .col-sm-offset-2.col-sm-10
         .checkbox
           = f.label :add_pusher do
             = f.check_box :add_pusher
-            Add pusher to recipients list
+            增加推送人到收件人列表
 
   .form-actions
     = f.submit '保存', class: 'btn btn-primary'

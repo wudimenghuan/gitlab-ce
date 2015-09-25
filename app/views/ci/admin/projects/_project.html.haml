@@ -13,17 +13,17 @@
         = time_ago_in_words project.last_commit_date
         ago
     - else
-      No builds yet
+      还没有构建
   %td
     - if project.public
       %i.fa.fa-globe
-      Public
+      公开的
     - else
       %i.fa.fa-lock
-      Private
+      私有的
   %td
     = project.commits.count
   %td
     = link_to [:ci, :admin, project], method: :delete, class: 'btn btn-danger btn-sm' do
       %i.fa.fa-remove
-      Remove
+      删除

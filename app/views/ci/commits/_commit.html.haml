@@ -24,7 +24,7 @@
 
   %td.timestamp
     - if commit.finished_at
-      %span #{time_ago_in_words commit.finished_at} ago
+      %span #{time_ago_in_words commit.finished_at}之前
 
   - if commit.project.coverage_enabled?
     %td.coverage

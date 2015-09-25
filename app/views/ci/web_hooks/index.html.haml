@@ -1,8 +1,8 @@
 %h3.page-title
-  Web hooks
+  Web 钩子
 
 %p.light
-  Web Hooks can be used for binding events when build completed.
+  构建完成时绑定事件会调用 Web 钩子。
 
 %hr.clearfix
 
@@ -12,11 +12,11 @@
       - @web_hook.errors.full_messages.each do |msg|
         %p= msg
   .form-group
-    = f.label :url, "URL", class: 'control-label'
+    = f.label :url, "链接", class: 'control-label'
     .col-sm-10
       = f.text_field :url, class: "form-control", placeholder: 'http://example.com/trigger-ci.json'
   .form-actions
-    = f.submit "Add Web Hook", class: "btn btn-create"
+    = f.submit "增加 Web 钩子", class: "btn btn-create"
 
 -if @web_hooks.any?
   %h4 Activated web hooks (#{@web_hooks.count})
@@ -29,10 +29,10 @@
         %td
           .pull-right
             - if @project.commits.any?
-              = link_to 'Test Hook', test_ci_project_web_hook_path(@project, hook), class: "btn btn-sm btn-grouped"
-            = link_to 'Remove', ci_project_web_hook_path(@project, hook), data: { confirm: 'Are you sure?'}, method: :delete, class: "btn btn-remove btn-sm btn-grouped"
+              = link_to '测试钩子', test_ci_project_web_hook_path(@project, hook), class: "btn btn-sm btn-grouped"
+            = link_to '删除', ci_project_web_hook_path(@project, hook), data: { confirm: '确定要继续么？'}, method: :delete, class: "btn btn-remove btn-sm btn-grouped"
 
-%h4 Web Hook data example
+%h4 Web 钩子数据示例
 
 :erb
   <pre>

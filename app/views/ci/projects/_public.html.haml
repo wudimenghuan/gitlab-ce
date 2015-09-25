@@ -1,16 +1,16 @@
 = content_for :title do
   %h3.project-title
-    Public projects
+    公开项目
 
 - if @projects.present?
   .projects
     %table.table
       %tr
-        %th Name
-        %th Last commit
-        %th Access
-        %th Commits
+        %th 名称
+        %th 最后提交
+        %th 访问
+        %th 提交数
       = render @projects
   = paginate @projects
 - else
-  %h4 No public projects yet
+  %h4 还没有公开项目

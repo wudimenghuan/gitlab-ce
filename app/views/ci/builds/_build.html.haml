@@ -4,7 +4,7 @@
 
   %td.build-link
     = link_to ci_project_build_path(build.project, build) do
-      %strong Build ##{build.id}
+      %strong 构建 ##{build.id}
 
   %td
     = build.stage
@@ -17,9 +17,9 @@
           %span.label.label-primary
             = tag
       - if build.trigger_request
-        %span.label.label-info triggered
+        %span.label.label-info 已触发的
       - if build.allow_failure
-        %span.label.label-danger allowed to fail
+        %span.label.label-danger 已允许失败
 
   %td.duration
     - if build.duration
@@ -27,7 +27,7 @@
 
   %td.timestamp
     - if build.finished_at
-      %span #{time_ago_in_words build.finished_at} ago
+      %span #{time_ago_in_words build.finished_at}之前
 
   - if build.project.coverage_enabled?
     %td.coverage
@@ -38,8 +38,8 @@
     - if defined?(controls) && current_user && can?(current_user, :manage_builds, gl_project)
       .pull-right
         - if build.active?
-          = link_to cancel_ci_project_build_path(build.project, build, return_to: request.original_url), title: 'Cancel build' do
+          = link_to cancel_ci_project_build_path(build.project, build, return_to: request.original_url), title: '取消构建' do
             %i.fa.fa-remove.cred
         - elsif build.commands.present?
-          = link_to retry_ci_project_build_path(build.project, build, return_to: request.original_url), method: :post, title: 'Retry build' do
+          = link_to retry_ci_project_build_path(build.project, build, return_to: request.original_url), method: :post, title: '重试构建' do
             %i.fa.fa-repeat
