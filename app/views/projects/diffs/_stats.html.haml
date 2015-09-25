@@ -1,14 +1,14 @@
 .js-toggle-container
   .commit-stat-summary
-    Showing
+    正在显示
     = link_to '#', class: 'js-toggle-button' do
-      %strong #{pluralize(diffs.count, "changed file")}
+      %strong #{pluralize(diffs.count, "个修改的文件", "个修改的文件")}
     - if current_controller?(:commit)
       - unless @commit.has_zero_stats?
-        with
-        %strong.cgreen #{@commit.stats.additions} additions
-        and
-        %strong.cred #{@commit.stats.deletions} deletions
+        包含
+        %strong.cgreen #{@commit.stats.additions} 行增加
+        和
+        %strong.cred #{@commit.stats.deletions} 行删除
   .file-stats.js-toggle-content.hide
     %ul
       - diffs.each_with_index do |diff, i|
