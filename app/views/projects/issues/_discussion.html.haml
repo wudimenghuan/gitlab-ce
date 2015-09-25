@@ -13,11 +13,11 @@
       .votes-holder.pull-right
         #votes= render 'votes/votes_block', votable: @issue
       .participants
-        %span= pluralize(@participants.count, 'participant')
+        %span= pluralize(@participants.count, '个参与者', '个参与者')
         - @participants.each do |participant|
           = link_to_member(@project, participant, name: false, size: 24)
     .col-md-3
-      %span.slead.has_tooltip{title: 'Cross-project reference'}
+      %span.slead.has_tooltip{title: '交叉项目参考'}
         = cross_project_reference(@project, @issue)
 
 .row
@@ -30,7 +30,7 @@
 
       - if @issue.labels.any?
         .issuable-context-title
-          %label 标签
+          %label 标记
         .issue-show-labels
           - @issue.labels.each do |label|
             = link_to_label(label)

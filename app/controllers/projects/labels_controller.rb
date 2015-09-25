@@ -55,7 +55,7 @@ class Projects::LabelsController < Projects::ApplicationController
     respond_to do |format|
       format.html do
         redirect_to(namespace_project_labels_path(@project.namespace, @project),
-                    notice: '标签已删除')
+                    notice: '标记已删除')
       end
       format.js
     end

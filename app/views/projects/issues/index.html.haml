@@ -1,9 +1,9 @@
-- page_title "Issues"
+- page_title "问题"
 = render "header_title"
 
 = content_for :meta_tags do
   - if current_user
-    = auto_discovery_link_tag(:atom, namespace_project_issues_url(@project.namespace, @project, :atom, private_token: current_user.private_token), title: "#{@project.name} issues")
+    = auto_discovery_link_tag(:atom, namespace_project_issues_url(@project.namespace, @project, :atom, private_token: current_user.private_token), title: "#{@project.name} 问题")
 
 .project-issuable-filter
   .controls

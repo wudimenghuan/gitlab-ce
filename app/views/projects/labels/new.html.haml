@@ -1,9 +1,9 @@
-- page_title "New Label"
+- page_title "新标记"
 = render "header_title"
 
-%h3 New label
+%h3 新标记
 .back-link
   = link_to namespace_project_labels_path(@project.namespace, @project) do
-    &larr; To labels list
+    &larr; 转到标记列表
 %hr
 = render 'form'

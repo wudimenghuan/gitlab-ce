@@ -27,7 +27,7 @@
 
       - if @merge_request.labels.any?
         .issuable-context-title
-          %label 标签
+          %label 标记
         .merge-request-show-labels
           - @merge_request.labels.each do |label|
             = link_to_label(label)

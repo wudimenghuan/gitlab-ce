@@ -68,17 +68,17 @@
   .form-group
     = f.label :label_ids, class: 'control-label' do
       %i.fa.fa-tag
-      标签
+      标记
     .col-sm-10
       - if issuable.project.labels.any?
         = f.collection_select :label_ids, issuable.project.labels.all, :id, :name,
           { selected: issuable.label_ids }, multiple: true, class: 'select2'
       - else
         .prepend-top-10
-        %span.light 没有标签。
+        %span.light 没有标记。
       &nbsp;
       - if can? current_user, :admin_label, issuable.project
-        = link_to '创建新的标签', new_namespace_project_label_path(issuable.project.namespace, issuable.project), target: :blank
+        = link_to '创建新的标记', new_namespace_project_label_path(issuable.project.namespace, issuable.project), target: :blank
 
 - if issuable.is_a?(MergeRequest)
   %hr

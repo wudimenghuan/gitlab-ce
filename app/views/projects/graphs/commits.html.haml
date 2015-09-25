@@ -1,13 +1,13 @@
-- page_title "Commits", "Graphs"
+- page_title "提交", "图表"
 = render "header_title"
 .tree-ref-holder
   = render 'shared/ref_switcher', destination: 'graphs_commits'
 = render 'head'
 
 %p.lead
-  Commit statistics for
+  提交统计
   %strong #{@ref}
-  #{@commits_graph.start_date.strftime('%b %d')} - #{@commits_graph.end_date.strftime('%b %d')}
+  #{@commits_graph.start_date.strftime('%m-%d')} - #{@commits_graph.end_date.strftime('%m-%d')}
 
 .row
   .col-md-6

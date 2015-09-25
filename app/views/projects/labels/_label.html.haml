@@ -7,4 +7,4 @@
 
     - if can? current_user, :admin_label, @project
       = link_to '编辑', edit_namespace_project_label_path(@project.namespace, @project, label), class: 'btn btn-sm'
-      = link_to '删除', namespace_project_label_path(@project.namespace, @project, label), class: 'btn btn-sm btn-remove remove-row', method: :delete, remote: true, data: {confirm: "确定要删除这个标签么？"}
+      = link_to '删除', namespace_project_label_path(@project.namespace, @project, label), class: 'btn btn-sm btn-remove remove-row', method: :delete, remote: true, data: {confirm: "确定要删除这个标记么？"}
