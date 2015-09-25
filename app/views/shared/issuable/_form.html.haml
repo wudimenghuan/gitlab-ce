@@ -15,10 +15,10 @@
     - if issuable.is_a?(MergeRequest)
       %p.help-block
         - if issuable.work_in_progress?
-          从标题中删除 <code>WIP</code> 前缀表示允许此标记为
+          从标题中删除 <code>WIP</code> 前缀表示允许此标识为
           <strong>正在处理中</strong> 的合并请求已准备好可以被接受。
         - else
-          标题以 <code>[WIP]</code> 或 <code>WIP:</code> 开头将合并请求标记为
+          标题以 <code>[WIP]</code> 或 <code>WIP:</code> 开头将合并请求标识为
           <strong>正在处理中</strong> 表示其还未准备好可以接受合并。
 .form-group.issuable-description
   = f.label :description, '描述', class: 'control-label'

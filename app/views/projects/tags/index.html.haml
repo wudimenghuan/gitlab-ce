@@ -1,4 +1,4 @@
-- page_title "Tags"
+- page_title "标签"
 = render "projects/commits/header_title"
 = render "projects/commits/head"
 
@@ -7,9 +7,9 @@
     .pull-right
       = link_to new_namespace_project_tag_path(@project.namespace, @project), class: 'btn btn-create new-tag-btn' do
         %i.fa.fa-add-sign
-        New tag
+        新标签
   .oneline
-    Tags give the ability to mark specific points in history as being important
+    标签用于标识历史重要版本
 
 .tags
   - unless @tags.empty?

@@ -34,25 +34,25 @@
   - elsif @merge_request.source_branch.present? && @merge_request.target_branch.present?
     - if @merge_request.compare_failed
       .alert.alert-danger
-        %h4 Compare failed
-        %p We can't compare selected branches. It may be because of huge diff. Please try again or select different branches.
+        %h4 合并失败
+        %p 无法合并选择的分支。可能是因为差异巨大或版本库处理超时。请重试或者选择其他的分支。
     - else
       .light-well.append-bottom-10
         .center
           %h4
-            There isn't anything to merge.
+            没有任何内容合并。
           %p.slead
             - if @merge_request.source_branch == @merge_request.target_branch
-              You'll need to use different branch names to get a valid comparison.
+              必须使用不同的分支名来比较。
             - else
               %span.label-branch #{@merge_request.source_branch}
-              and
+              和
               %span.label-branch #{@merge_request.target_branch}
-              are the same.
+              是一样的。
 
 
   %div
-    = f.submit 'Compare branches', class: "btn btn-new mr-compare-btn"
+    = f.submit '比较分支', class: "btn btn-new mr-compare-btn"
 
 :javascript
   var source_branch = $("#merge_request_source_branch")

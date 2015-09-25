@@ -3,16 +3,16 @@
   .accept-merge-holder.clearfix.js-toggle-container
     .accept-action
       = f.button class: "btn btn-create accept_merge_request" do
-        Accept Merge Request
+        接受合并请求
     - if can_remove_branch?(@merge_request.source_project, @merge_request.source_branch) && !@merge_request.for_fork?
       .accept-control.checkbox
         = label_tag :should_remove_source_branch, class: "remove_source_checkbox" do
           = check_box_tag :should_remove_source_branch
-          Remove source branch
+          删除来源分支
     .accept-control.right
       = link_to "#", class: "modify-merge-commit-link js-toggle-button" do
         = icon('edit')
-        Modify commit message
+        修改提交信息
     .js-toggle-content.hide.prepend-top-20
       = render 'shared/commit_message_container', params: params,
           text: @merge_request.merge_commit_message,

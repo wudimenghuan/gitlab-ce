@@ -21,11 +21,11 @@
   %ul.merge-request-tabs
     %li.commits-tab
       = link_to url_for(params), data: {target: '#commits', action: 'commits', toggle: 'tab'} do
-        Commits
+        提交
         %span.badge= @commits.size
     %li.diffs-tab.active
       = link_to url_for(params), data: {target: '#diffs', action: 'diffs', toggle: 'tab'} do
-        Changes
+        变更
         %span.badge= @diffs.size
 
   .tab-content

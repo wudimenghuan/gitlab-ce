@@ -1,4 +1,4 @@
-- page_title "#{@merge_request.title} (##{@merge_request.iid})", "Merge Requests"
+- page_title "#{@merge_request.title} (##{@merge_request.iid})", "合并请求"
 = render "header_title"
 
 - if params[:view] == 'parallel'
@@ -35,22 +35,23 @@
 
     - if @merge_request.open? && @merge_request.can_be_merged?
       .light
-        You can also accept this merge request manually using the
-        = link_to "command line", "#modal_merge_info", class: "how_to_merge_link vlink", title: "How To Merge", "data-toggle" => "modal"
+        也可以使用
+        = link_to "命令行", "#modal_merge_info", class: "how_to_merge_link vlink", title: "如何合并", "data-toggle" => "modal"
+        手工接受此合并请求
 
   - if @commits.present?
     %ul.merge-request-tabs
       %li.notes-tab
         = link_to namespace_project_merge_request_path(@project.namespace, @project, @merge_request), data: {target: '#notes', action: 'notes', toggle: 'tab'} do
-          Discussion
+          讨论
           %span.badge= @merge_request.mr_and_commit_notes.user.count
       %li.commits-tab
         = link_to commits_namespace_project_merge_request_path(@project.namespace, @project, @merge_request), data: {target: '#commits', action: 'commits', toggle: 'tab'} do
-          Commits
+          提交
           %span.badge= @commits.size
       %li.diffs-tab
         = link_to diffs_namespace_project_merge_request_path(@project.namespace, @project, @merge_request), data: {target: '#diffs', action: 'diffs', toggle: 'tab'} do
-          Changes
+          变更
           %span.badge= @merge_request.diffs.size
 
   .tab-content

@@ -1,4 +1,4 @@
-- page_title "New Tag"
+- page_title "新标签"
 = render "projects/commits/header_title"
 
 - if @error
@@ -7,25 +7,25 @@
     = @error
 %h3.page-title
   %i.fa.fa-code-fork
-  New tag
+  新标签
 = form_tag namespace_project_tags_path, method: :post, id: "new-tag-form", class: "form-horizontal" do
   .form-group
-    = label_tag :tag_name, 'Name for new tag', class: 'control-label'
+    = label_tag :tag_name, '新标签名称', class: 'control-label'
     .col-sm-10
       = text_field_tag :tag_name, params[:tag_name], placeholder: 'v3.0.1', required: true, tabindex: 1, class: 'form-control'
   .form-group
-    = label_tag :ref, 'Create from', class: 'control-label'
+    = label_tag :ref, '创建自', class: 'control-label'
     .col-sm-10
       = text_field_tag :ref, params[:ref], placeholder: 'master', required: true, tabindex: 2, class: 'form-control'
-      .light Branch name or commit SHA
+      .light 分支名称或提交 SHA
   .form-group
-    = label_tag :message, 'Message', class: 'control-label'
+    = label_tag :message, '信息', class: 'control-label'
     .col-sm-10
-      = text_field_tag :message, nil, placeholder: 'Enter message.', required: false, tabindex: 3, class: 'form-control'
-      .light (Optional) Entering a message will create an annotated tag.
+      = text_field_tag :message, nil, placeholder: '输入信息。', required: false, tabindex: 3, class: 'form-control'
+      .light (可选) 输入创建标签的信息。
   .form-actions
-    = button_tag 'Create tag', class: 'btn btn-create', tabindex: 3
-    = link_to 'Cancel', namespace_project_tags_path(@project.namespace, @project), class: 'btn btn-cancel'
+    = button_tag '创建标签', class: 'btn btn-create', tabindex: 3
+    = link_to '取消', namespace_project_tags_path(@project.namespace, @project), class: 'btn btn-cancel'
 
 :javascript
   disableButtonIfAnyEmptyField($("#new-tag-form"), ".form-control", ".btn-create");

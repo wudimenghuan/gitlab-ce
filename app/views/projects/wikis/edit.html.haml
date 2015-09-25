@@ -1,16 +1,16 @@
-- page_title "Edit", @page.title, "Wiki"
+- page_title "编辑", @page.title, "维基"
 = render "header_title"
 
 = render 'nav'
 .pull-right
   = render 'main_links'
 %h3.page-title
-  Editing -
+  正在编辑 -
   %span.light #{@page.title}
 %hr
 = render 'form'
 
 .pull-right
   - if @page.persisted? && can?(current_user, :admin_wiki, @project)
-    = link_to namespace_project_wiki_path(@project.namespace, @project, @page), data: { confirm: "Are you sure you want to delete this page?"}, method: :delete, class: "btn btn-sm btn-remove" do
-      Delete this page
+    = link_to namespace_project_wiki_path(@project.namespace, @project, @page), data: { confirm: "确定要删除本页面么？"}, method: :delete, class: "btn btn-sm btn-remove" do
+      删除本页面

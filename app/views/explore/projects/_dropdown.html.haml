@@ -6,7 +6,7 @@
     - elsif current_page?(trending_explore_projects_path) || current_page?(explore_root_path)
       热门项目
     - elsif current_page?(starred_explore_projects_path)
-      最多标记
+      最多星标
     - else
       = sort_title_recently_created
     %b.caret
@@ -15,7 +15,7 @@
       = link_to trending_explore_projects_path do
         热门项目
       = link_to starred_explore_projects_path do
-        最多标记
+        最多星标
       = link_to explore_projects_filter_path(sort: sort_value_recently_created) do
         = sort_title_recently_created
       = link_to explore_projects_filter_path(sort: sort_value_oldest_created) do
