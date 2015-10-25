@@ -1,21 +1,21 @@
 .dropdown.inline
   %button.dropdown-toggle.btn{type: 'button', 'data-toggle' => 'dropdown'}
-    %span.light sort:
+    %span.light 排序：
     - if @sort.present?
       = sort_options_hash[@sort]
     - elsif current_page?(trending_explore_projects_path) || current_page?(explore_root_path)
-      Trending projects
+      热门项目
     - elsif current_page?(starred_explore_projects_path)
-      Most stars
+      最多星标
     - else
       = sort_title_recently_created
     %b.caret
   %ul.dropdown-menu
     %li
       = link_to trending_explore_projects_path do
-        Trending projects
+        热门项目
       = link_to starred_explore_projects_path do
-        Most stars
+        最多星标
       = link_to explore_projects_filter_path(sort: sort_value_recently_created) do
         = sort_title_recently_created
       = link_to explore_projects_filter_path(sort: sort_value_oldest_created) do

@@ -3,7 +3,7 @@
 
 = content_for :meta_tags do
   - if current_user
-    = auto_discovery_link_tag(:atom, group_url(@group, format: :atom, private_token: current_user.private_token), title: "#{@group.name} activity")
+    = auto_discovery_link_tag(:atom, group_url(@group, format: :atom, private_token: current_user.private_token), title: "#{@group.name}活动")
 
 .dashboard
   .header-with-avatar.clearfix
@@ -38,4 +38,4 @@
         = render "projects", projects: @projects
   - else
     %p
-      This group does not have public projects
+      此群组没有公开项目

@@ -1,3 +1,4 @@
+#encoding: utf-8
 class InvitesController < ApplicationController
   before_action :member
   skip_before_action :authenticate_user!, only: :decline
@@ -53,9 +54,9 @@ class InvitesController < ApplicationController
   def authenticate_user!
     return if current_user
 
-    notice = "To accept this invitation, sign in"
-    notice << " or create an account" if current_application_settings.signup_enabled?
-    notice << "."
+    notice = "要接受此邀请，请登入"
+    notice << "或者创建账号" if current_application_settings.signup_enabled?
+    notice << "。"
 
     store_location_for :user, request.fullpath
     redirect_to new_user_session_path, notice: notice
@@ -65,14 +66,14 @@ class InvitesController < ApplicationController
     case source
     when Project
       project = member.source
-      label = "project #{project.name_with_namespace}"
+      label = "项目 #{project.name_with_namespace}"
       path = namespace_project_path(project.namespace, project)
     when Group
       group = member.source
-      label = "group #{group.name}"
+      label = "群组 #{group.name}"
       path = group_path(group)
     else
-      label = "who knows what"
+      label = "谁知道"
       path = dashboard_projects_path
     end
 

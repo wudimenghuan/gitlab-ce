@@ -1,5 +1,5 @@
-- page_title    "Groups"
-- header_title  "Groups", dashboard_groups_path
+- page_title    "群组"
+- header_title  "群组", dashboard_groups_path
 
 - if current_user
   = render 'dashboard/groups_head'
@@ -39,7 +39,7 @@
   - @groups.each do |group|
     = render 'shared/groups/group', group: group
   - unless @groups.present?
-    .nothing-here-block No public groups
+    .nothing-here-block 没有公开群组
 
 
 = paginate @groups, theme: "gitlab"

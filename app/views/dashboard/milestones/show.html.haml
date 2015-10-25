@@ -1,25 +1,25 @@
-- page_title @dashboard_milestone.title, "Milestones"
+- page_title @dashboard_milestone.title, "里程碑"
 %h4.page-title
   .issue-box{ class: "issue-box-#{@dashboard_milestone.closed? ? 'closed' : 'open'}" }
     - if @dashboard_milestone.closed?
-      Closed
+      已关闭
     - else
-      Open
-  Milestone #{@dashboard_milestone.title}
+      未关闭
+  里程碑 #{@dashboard_milestone.title}
 
 %hr
 - if (@dashboard_milestone.total_items_count == @dashboard_milestone.closed_items_count) && @dashboard_milestone.active?
   .alert.alert-success
-    %span All issues for this milestone are closed. You may close the milestone now.
+    %span 该里程碑的所有问题都已关闭。可以关闭此里程碑。
 
 .description
 %table.table
   %thead
     %tr
-      %th Project
-      %th Open issues
-      %th State
-      %th Due date
+      %th 项目
+      %th 未关闭问题
+      %th 状态
+      %th 到期日
   - @dashboard_milestone.milestones.each do |milestone|
     %tr
       %td
@@ -28,51 +28,51 @@
         = milestone.issues.opened.count
       %td
         - if milestone.closed?
-          Closed
+          已关闭
         - else
-          Open
+          未关闭
       %td
         = milestone.expires_at
 
 .context
   %p.lead
-    Progress:
-    #{@dashboard_milestone.closed_items_count} closed
+    进度：
+    #{@dashboard_milestone.closed_items_count} 已关闭
     &ndash;
-    #{@dashboard_milestone.open_items_count} open
+    #{@dashboard_milestone.open_items_count} 未关闭
   = milestone_progress_bar(@dashboard_milestone)
 
 %ul.nav.nav-tabs
   %li.active
     = link_to '#tab-issues', 'data-toggle' => 'tab' do
-      Issues
+      问题
       %span.badge= @dashboard_milestone.issue_count
   %li
     = link_to '#tab-merge-requests', 'data-toggle' => 'tab' do
-      Merge Requests
+      合并请求
       %span.badge= @dashboard_milestone.merge_requests_count
   %li
     = link_to '#tab-participants', 'data-toggle' => 'tab' do
-      Participants
+      参与者
       %span.badge= @dashboard_milestone.participants.count
 
   .pull-right
-    = link_to 'Browse Issues', issues_dashboard_path(milestone_title: @dashboard_milestone.title), class: "btn  edit-milestone-link btn-grouped"
+    = link_to '浏览问题', issues_dashboard_path(milestone_title: @dashboard_milestone.title), class: "btn  edit-milestone-link btn-grouped"
 
 .tab-content
   .tab-pane.active#tab-issues
     .row
       .col-md-6
-        = render 'issues', title: "Open", issues: @dashboard_milestone.opened_issues
+        = render 'issues', title: "未关闭", issues: @dashboard_milestone.opened_issues
       .col-md-6
-        = render 'issues', title: "Closed", issues: @dashboard_milestone.closed_issues
+        = render 'issues', title: "已关闭", issues: @dashboard_milestone.closed_issues
 
   .tab-pane#tab-merge-requests
     .row
       .col-md-6
-        = render 'merge_requests', title: "Open", merge_requests: @dashboard_milestone.opened_merge_requests
+        = render 'merge_requests', title: "未关闭", merge_requests: @dashboard_milestone.opened_merge_requests
       .col-md-6
-        = render 'merge_requests', title: "Closed", merge_requests: @dashboard_milestone.closed_merge_requests
+        = render 'merge_requests', title: "已关闭", merge_requests: @dashboard_milestone.closed_merge_requests
 
   .tab-pane#tab-participants
     %ul.bordered-list

@@ -12,7 +12,7 @@
     .pull-right.light
       - if issue.closed?
         %span
-          CLOSED
+          已关闭
       - if issue.assignee
         = link_to_member(@project, issue.assignee, name: false)
       - note_count = issue.notes.user.count
@@ -28,7 +28,7 @@
           = 0
 
   .issue-info
-    = "#{issue.to_reference} opened #{time_ago_with_tooltip(issue.created_at, placement: 'bottom')} by #{link_to_member(@project, issue.author, avatar: false)}".html_safe
+    = "#{issue.to_reference} #{time_ago_with_tooltip(issue.created_at, placement: 'bottom')}由 #{link_to_member(@project, issue.author, avatar: false)} 开启".html_safe
     - if issue.votes_count > 0
       = render 'votes/votes_inline', votable: issue
     - if issue.milestone
@@ -41,4 +41,4 @@
         = issue.task_status
 
     .pull-right.issue-updated-at
-      %span updated #{time_ago_with_tooltip(issue.updated_at, placement: 'bottom', html_class: 'issue_update_ago')}
+      %span #{time_ago_with_tooltip(issue.updated_at, placement: 'bottom', html_class: 'issue_update_ago')}更新

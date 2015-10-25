@@ -1,3 +1,4 @@
+#encoding: utf-8
 module DiffHelper
   def allowed_diff_size
     if diff_hard_limit_enabled?
@@ -138,7 +139,7 @@ module DiffHelper
     params_copy.delete(:format)
 
     link_to url_for(params_copy), id: "inline-diff-btn", class: (params[:view] != 'parallel' ? 'btn btn-sm active' : 'btn btn-sm') do
-      'Inline'
+      '内嵌'
     end
   end
 
@@ -149,7 +150,7 @@ module DiffHelper
     params_copy.delete(:format)
 
     link_to url_for(params_copy), id: "parallel-diff-btn", class: (params[:view] == 'parallel' ? 'btn active btn-sm' : 'btn btn-sm') do
-      'Side-by-side'
+      '并排对比'
     end
   end
 

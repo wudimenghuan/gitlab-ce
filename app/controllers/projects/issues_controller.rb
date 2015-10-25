@@ -1,3 +1,4 @@
+#encoding: utf-8
 class Projects::IssuesController < Projects::ApplicationController
   before_action :module_enabled
   before_action :issue, only: [:edit, :update, :show, :toggle_subscription]

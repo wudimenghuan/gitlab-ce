@@ -3,14 +3,14 @@
     .modal-content
       .modal-header
         %a.close{href: "#", "data-dismiss" => "modal"} ×
-        %h3.page-title New Wiki Page
+        %h3.page-title 新维基页面
       .modal-body
         = label_tag :new_wiki_path do
-          %span Page slug
+          %span 页面别名
         = text_field_tag :new_wiki_path, nil, placeholder: 'how-to-setup', class: 'form-control', required: true, :'data-wikis-path' => namespace_project_wikis_path(@project.namespace, @project)
         %p.hidden.text-danger{data: { error: "slug" }}
-          The page slug is invalid. Please don't use characters other then: a-z 0-9 _ - and /
+          无效的页面别名。请只使用下列字符 a-z 0-9 _ - 和 /
         %p.hint
-          Please don't use spaces.
+          请不要使用空格。
       .modal-footer
-        = link_to 'Build', '#', class: 'build-new-wiki btn btn-create'
+        = link_to '构建', '#', class: 'build-new-wiki btn btn-create'

@@ -2,11 +2,11 @@
   = render @issues
   - if @issues.blank?
     %li
-      .nothing-here-block No issues to show
+      .nothing-here-block 没有问题
 
 - if @issues.present?
   .pull-right
     %span.issue_counter #{@issues.total_count}
-    issues for this filter
+    个问题
 
   = paginate @issues, theme: "gitlab"

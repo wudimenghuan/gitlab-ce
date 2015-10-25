@@ -1,17 +1,17 @@
-- page_title "Snippets"
+- page_title "代码片段"
 = render "header_title"
 
 %h3.page-title
   Snippets
   - if can? current_user, :create_project_snippet, @project
-    = link_to new_namespace_project_snippet_path(@project.namespace, @project), class: "btn btn-new pull-right", title: "New Snippet" do
-      Add new snippet
+    = link_to new_namespace_project_snippet_path(@project.namespace, @project), class: "btn btn-new pull-right", title: "新代码片段" do
+      增加新的代码片段
 
 %p.light
-  Share code pastes with others out of git repository
+  在 git 版本仓库外共享代码
 
 %ul.bordered-list
   = render partial: "shared/snippets/snippet", collection: @snippets
   - if @snippets.empty?
     %li
-      .nothing-here-block Nothing here.
+      .nothing-here-block 没有内容。

@@ -1,3 +1,4 @@
+#encoding: utf-8
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   protect_from_forgery except: [:kerberos, :saml]
@@ -49,7 +50,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       # Add new authentication method
       current_user.identities.find_or_create_by(extern_uid: oauth['uid'], provider: oauth['provider'])
       log_audit_event(current_user, with: oauth['provider'])
-      redirect_to profile_account_path, notice: 'Authentication method updated'
+      redirect_to profile_account_path, notice: '认证方法已更新'
     else
       @user = Gitlab::OAuth::User.new(oauth)
       @user.save

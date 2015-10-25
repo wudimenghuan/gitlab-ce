@@ -1,9 +1,9 @@
 %table.table
   %thead
     %tr
-      %th User ID
-      %th Description
-      %th When
+      %th 用户 ID
+      %th 描述
+      %th 时间
   - @events.each do |event|
     %tr
       %td
@@ -12,6 +12,6 @@
         = event.description
       %td.light
         = time_ago_in_words event.updated_at
-        ago
+        之前
 
 = paginate @events

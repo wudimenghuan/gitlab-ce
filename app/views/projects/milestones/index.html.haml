@@ -1,15 +1,15 @@
-- page_title "Milestones"
+- page_title "里程碑"
 = render "header_title"
 = render 'shared/milestones_filter'
 
 .gray-content-block
   .pull-right
     - if can? current_user, :admin_milestone, @project
-      = link_to new_namespace_project_milestone_path(@project.namespace, @project), class: "pull-right btn btn-new", title: "New Milestone" do
+      = link_to new_namespace_project_milestone_path(@project.namespace, @project), class: "pull-right btn btn-new", title: "新里程碑" do
         %i.fa.fa-plus
-        New Milestone
+        新里程碑
   .oneline
-    Milestone allows you to group issues and set due date for it
+    里程碑可以让你分组问题并为其设置截止日期
 
 .milestones
   %ul.content-list
@@ -17,6 +17,6 @@
 
     - if @milestones.blank?
       %li
-        .nothing-here-block No milestones to show
+        .nothing-here-block 没有里程碑
 
   = paginate @milestones, theme: "gitlab"

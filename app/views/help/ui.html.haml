@@ -202,47 +202,47 @@
       .alert.alert-danger
         = lorem
 
-  %h2#forms Forms
+  %h2#forms 表单
 
   %h3
     %code form.horizontal-form
 
   %form.form-horizontal
     .form-group
-      %label.col-sm-2.control-label{:for => "inputEmail3"} Email
+      %label.col-sm-2.control-label{:for => "inputEmail3"} 电子邮箱
       .col-sm-10
-        %input#inputEmail3.form-control{:placeholder => "Email", :type => "email"}/
+        %input#inputEmail3.form-control{:placeholder => "电子邮箱", :type => "email"}/
     .form-group
-      %label.col-sm-2.control-label{:for => "inputPassword3"} Password
+      %label.col-sm-2.control-label{:for => "inputPassword3"} 密码
       .col-sm-10
-        %input#inputPassword3.form-control{:placeholder => "Password", :type => "password"}/
+        %input#inputPassword3.form-control{:placeholder => "密码", :type => "password"}/
     .form-group
       .col-sm-offset-2.col-sm-10
         .checkbox
           %label
             %input{:type => "checkbox"}/
-            Remember me
+            记住我
     .form-group
       .col-sm-offset-2.col-sm-10
-        %button.btn.btn-default{:type => "submit"} Sign in
+        %button.btn.btn-default{:type => "submit"} 登入
 
   %h3
     %code form
 
   %form
     .form-group
-      %label{:for => "exampleInputEmail1"} Email address
-      %input#exampleInputEmail1.form-control{:placeholder => "Enter email", :type => "email"}/
+      %label{:for => "exampleInputEmail1"} 电子邮箱地址
+      %input#exampleInputEmail1.form-control{:placeholder => "输入电子邮箱", :type => "email"}/
     .form-group
-      %label{:for => "exampleInputPassword1"} Password
-      %input#exampleInputPassword1.form-control{:placeholder => "Password", :type => "password"}/
+      %label{:for => "exampleInputPassword1"} 密码
+      %input#exampleInputPassword1.form-control{:placeholder => "密码", :type => "password"}/
     .checkbox
       %label
         %input{:type => "checkbox"}/
-        Remember me
-    %button.btn.btn-default{:type => "submit"} Sign in
+        记住我
+    %button.btn.btn-default{:type => "submit"} 登入
 
-  %h2#file File
+  %h2#file 文件
   %h3
     %code .file-holder
 
@@ -253,8 +253,8 @@
         Awesome file
         .file-actions
           .btn-group
-            %a.btn Edit
-            %a.btn Remove
+            %a.btn 编辑
+            %a.btn 删除
       .file-contenta.code
         = render 'shared/file_highlight', blob: blob
 

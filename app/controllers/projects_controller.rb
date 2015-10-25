@@ -1,3 +1,4 @@
+#encoding: utf-8
 class ProjectsController < ApplicationController
   prepend_before_filter :render_go_import, only: [:show]
   skip_before_action :authenticate_user!, only: [:show, :activity]
@@ -28,7 +29,7 @@ class ProjectsController < ApplicationController
     if @project.saved?
       redirect_to(
         project_path(@project),
-        notice: "Project '#{@project.name}' was successfully created."
+        notice: "项目 '#{@project.name}' 创建成功。"
       )
     else
       render 'new'
@@ -40,11 +41,11 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if status
-        flash[:notice] = "Project '#{@project.name}' was successfully updated."
+        flash[:notice] = "项目 '#{@project.name}' 更新成功。"
         format.html do
           redirect_to(
             edit_project_path(@project),
-            notice: "Project '#{@project.name}' was successfully updated."
+            notice: "项目 '#{@project.name}' 更新成功。"
           )
         end
         format.js
@@ -108,7 +109,7 @@ class ProjectsController < ApplicationController
     return access_denied! unless can?(current_user, :remove_project, @project)
 
     ::Projects::DestroyService.new(@project, current_user, {}).execute
-    flash[:alert] = "Project '#{@project.name}' was deleted."
+    flash[:alert] = "项目 '#{@project.name}' 已被删除。"
 
     if request.referer.include?('/admin')
       redirect_to admin_namespaces_projects_path

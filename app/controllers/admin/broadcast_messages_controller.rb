@@ -1,3 +1,4 @@
+#encoding: utf-8
 class Admin::BroadcastMessagesController < Admin::ApplicationController
   before_action :broadcast_messages
 
@@ -9,7 +10,7 @@ class Admin::BroadcastMessagesController < Admin::ApplicationController
     @broadcast_message = BroadcastMessage.new(broadcast_message_params)
 
     if @broadcast_message.save
-      redirect_to admin_broadcast_messages_path, notice: 'Broadcast Message was successfully created.'
+      redirect_to admin_broadcast_messages_path, notice: '广播信息创建成功。'
     else
       render :index
     end

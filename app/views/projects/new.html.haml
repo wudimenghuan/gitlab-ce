@@ -1,5 +1,5 @@
-- page_title    'New Project'
-- header_title  'New Project'
+- page_title    '新项目'
+- header_title  '新项目'
 .project-edit-container
   .project-edit-errors
     = render 'projects/errors'
@@ -18,7 +18,7 @@
       - if current_user.can_select_namespace?
         .form-group
           = f.label :namespace_id, class: 'control-label' do
-            %span Namespace
+            %span 命名空间
           .col-sm-10
             = f.select :namespace_id, namespaces_options(params[:namespace_id] || :current_user), {}, {class: 'select2', tabindex: 2}
 
@@ -26,7 +26,7 @@
 
         .project-import.js-toggle-container
           .form-group
-            %label.control-label Import project from
+            %label.control-label 导入项目
             .col-sm-10
               - if github_import_enabled?
                 - if github_import_configured?
@@ -69,7 +69,7 @@
               - if google_code_import_enabled?
                 = link_to new_import_google_code_path, class: 'btn import_google_code' do
                   %i.fa.fa-google
-                  Google Code
+                  Google 代码
 
               - if fogbugz_import_enabled?
                 = link_to new_import_fogbugz_path, class: 'btn import_fogbugz' do

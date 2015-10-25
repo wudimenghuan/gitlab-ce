@@ -2,7 +2,7 @@
   %div{ class: fluid_layout ? "container-fluid" : "container-fluid" }
     .header-content
       %button.navbar-toggle{type: 'button'}
-        %span.sr-only Toggle navigation
+        %span.sr-only 切换导航条
         = icon('bars')
 
       .navbar-collapse.collapse
@@ -11,18 +11,18 @@
             %li.hidden-sm.hidden-xs
               = render 'layouts/search'
           %li.visible-sm.visible-xs
-            = link_to search_path, title: 'Search', data: {toggle: 'tooltip', placement: 'bottom'} do
+            = link_to search_path, title: '搜索', data: {toggle: 'tooltip', placement: 'bottom'} do
               = icon('search')
           - if current_user.is_admin?
             %li
-              = link_to admin_root_path, title: 'Admin area', data: {toggle: 'tooltip', placement: 'bottom'} do
+              = link_to admin_root_path, title: '管理区域', data: {toggle: 'tooltip', placement: 'bottom'} do
                 = icon('wrench fw')
           - if current_user.can_create_project?
             %li
-              = link_to new_project_path, title: 'New project', data: {toggle: 'tooltip', placement: 'bottom'} do
+              = link_to new_project_path, title: '新项目', data: {toggle: 'tooltip', placement: 'bottom'} do
                 = icon('plus fw')
           %li
-            = link_to destroy_user_session_path, class: 'logout', method: :delete, title: 'Sign out', data: {toggle: 'tooltip', placement: 'bottom'} do
+            = link_to destroy_user_session_path, class: 'logout', method: :delete, title: '退出', data: {toggle: 'tooltip', placement: 'bottom'} do
               = icon('sign-out')
 
       %h1.title= title

@@ -1,5 +1,5 @@
-- page_title "Groups"
-- header_title  "Groups", dashboard_groups_path
+- page_title "群组"
+- header_title  "群组", dashboard_groups_path
 = render 'dashboard/groups_head'
 
 .gray-content-block
@@ -7,9 +7,9 @@
     %span.pull-right.hidden-xs
       = link_to new_group_path, class: "btn btn-new" do
         %i.fa.fa-plus
-        New Group
-  .title Welcome to the groups!
-  Group members have access to all group projects.
+        新群组
+  .title 欢迎来到群组！
+  群组成员可以访问群组的所有项目。
 
 %ul.content-list
   - @group_members.each do |group_member|

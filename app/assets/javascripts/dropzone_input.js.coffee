@@ -154,10 +154,10 @@ class @DropzoneInput
       preview = form.find(".js-md-preview")
       mdText = form.find(".markdown-area").val()
       if mdText.trim().length is 0
-        preview.text "Nothing to preview."
+        preview.text "没有内容可预览。"
         hideReferencedUsers()
       else
-        preview.text "Loading..."
+        preview.text "正在载入..."
         $.ajax(
           type: "POST",
           url: markdown_preview_path,

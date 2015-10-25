@@ -1,3 +1,4 @@
+#encoding: utf-8
 class Import::GoogleCodeController < Import::BaseController
   before_action :verify_google_code_import_enabled
   before_action :user_map, only: [:new_user_map, :create_user_map]
@@ -44,13 +45,13 @@ class Import::GoogleCodeController < Import::BaseController
     begin
       user_map = JSON.parse(user_map_json)
     rescue
-      flash.now[:alert] = "The entered user map is not a valid JSON user map."
+      flash.now[:alert] = "输入的用户映射表不是有效的 JSON 用户映射表。"
 
       render "new_user_map" and return
     end
 
     unless user_map.is_a?(Hash) && user_map.all? { |k, v| k.is_a?(String) && v.is_a?(String) }
-      flash.now[:alert] = "The entered user map is not a valid JSON user map."
+      flash.now[:alert] = "输入的用户映射表不是有效的 JSON 用户映射表。"
 
       render "new_user_map" and return
     end
@@ -62,7 +63,7 @@ class Import::GoogleCodeController < Import::BaseController
 
     session[:google_code_user_map] = user_map
 
-    flash[:notice] = "The user map has been saved. Continue by selecting the projects you want to import."
+    flash[:notice] = "用户映射表已保存。选择要导入的项目后继续。"
 
     redirect_to status_import_google_code_path
   end
