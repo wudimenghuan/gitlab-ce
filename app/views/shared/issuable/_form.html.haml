@@ -7,7 +7,7 @@
           %br
 .form-group
   = f.label :title, class: 'control-label' do
-    %strong= 'Title *'
+    %strong= '标题 *'
   .col-sm-10
     = f.text_field :title, maxlength: 255, autofocus: true, autocomplete: 'off',
         class: 'form-control pad js-gfm-input js-quick-submit', required: true
@@ -29,11 +29,10 @@
                                classes: 'description form-control js-quick-submit'
       .col-sm-12.hint
         .pull-left
-          Parsed with
-          #{link_to 'GitLab Flavored Markdown', help_page_path('markdown', 'markdown'), target: '_blank'}.
+          被解析为
+          #{link_to 'GitLab 特色 Markdown', help_page_path('markdown', 'markdown'), target: '_blank'} 格式。
         .pull-right
-          Attach files by dragging &amp; dropping
-          or #{link_to 'selecting them', '#', class: 'markdown-selector' }.
+          可以拖放或#{link_to '选择文件', '#', class: 'markdown-selector' }来附加图片(JPG, PNG, GIF)。
 
       .clearfix
       .error-alert

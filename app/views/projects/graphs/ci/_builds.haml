@@ -1,19 +1,19 @@
 %fieldset
   %legend
-    Builds chart for last week
+    上周构建图表
     (#{date_from_to(Date.today - 7.days, Date.today)})
 
   %canvas#weekChart.padded{width: 800, height: 200}
 
 %fieldset
   %legend
-    Builds chart for last month
+    上月构建图表
     (#{date_from_to(Date.today - 30.days, Date.today)})
 
   %canvas#monthChart.padded{width: 800, height: 300}
 
 %fieldset
-  %legend Builds chart for last year
+  %legend 去年构建图表
   %canvas#yearChart.padded{width: 800, height: 400}
 
 - [:week, :month, :year].each do |scope|

@@ -13,9 +13,9 @@ class InvitesController < ApplicationController
     if member.accept_invite!(current_user)
       label, path = source_info(member.source)
 
-      redirect_to path, notice: "You have been granted #{member.human_access} access to #{label}."
+      redirect_to path, notice: "已接受作为 #{member.human_access} 访问 #{label} 的邀请。"
     else
-      redirect_back_or_default(options: { alert: "The invitation could not be accepted." })
+      redirect_back_or_default(options: { alert: "此邀请无法被接受。" })
     end
   end
 
@@ -30,9 +30,9 @@ class InvitesController < ApplicationController
           new_user_session_path
         end
 
-      redirect_to path, notice: "You have declined the invitation to join #{label}."
+      redirect_to path, notice: "已拒绝加入 #{label} 的邀请。"
     else
-      redirect_back_or_default(options: { alert: "The invitation could not be declined." })
+      redirect_back_or_default(options: { alert: "此邀请无法被拒绝。" })
     end
   end
 

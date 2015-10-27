@@ -42,7 +42,7 @@
   .pull-right
     = link_to ci_status_path(@ci_commit), class: "ci-status ci-#{@ci_commit.status}" do
       = ci_status_icon(@ci_commit)
-      build:
+      构建：
       = @ci_commit.status
 
 .commit-info-row.branches

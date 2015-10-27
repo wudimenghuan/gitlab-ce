@@ -26,7 +26,7 @@ class Projects::BlobController < Projects::ApplicationController
     result = Files::CreateService.new(@project, current_user, @commit_params).execute
 
     if result[:status] == :success
-      flash[:notice] = "The changes have been successfully committed"
+      flash[:notice] = "你的更改已提交成功"
       respond_to do |format|
         format.html { redirect_to namespace_project_blob_path(@project.namespace, @project, File.join(@target_branch, @file_path)) }
         format.json { render json: { message: "success", filePath: namespace_project_blob_path(@project.namespace, @project, File.join(@target_branch, @file_path)) } }

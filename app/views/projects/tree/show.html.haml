@@ -2,7 +2,7 @@
 - header_title project_title(@project, "文件", project_files_path(@project))
 = content_for :meta_tags do
   - if current_user
-    = auto_discovery_link_tag(:atom, namespace_project_commits_url(@project.namespace, @project, @ref, format: :atom, private_token: current_user.private_token), title: "#{@project.name}:#{@ref} commits")
+    = auto_discovery_link_tag(:atom, namespace_project_commits_url(@project.namespace, @project, @ref, format: :atom, private_token: current_user.private_token), title: "#{@project.name}:#{@ref} 提交")
 
 = render 'projects/last_push'
 

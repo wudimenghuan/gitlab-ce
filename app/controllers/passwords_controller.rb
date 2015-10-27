@@ -1,3 +1,4 @@
+#encoding: utf-8
 class PasswordsController < Devise::PasswordsController
   before_action :resource_from_email, only: [:create]
   before_action :prevent_ldap_reset,  only: [:create]

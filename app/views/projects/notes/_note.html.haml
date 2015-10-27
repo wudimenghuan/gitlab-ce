@@ -25,12 +25,12 @@
           = '@' + note.author.username
 
         %span.note-last-update
-          %a{name: dom_id(note), href: "##{dom_id(note)}", title: 'Link here'}
+          %a{name: dom_id(note), href: "##{dom_id(note)}", title: '链接'}
             = time_ago_with_tooltip(note.created_at, placement: 'bottom', html_class: 'note_created_ago')
           - if note.updated_at != note.created_at
             %span
               &middot;
-              = icon('edit', title: 'edited')
+              = icon('edit', title: '编辑时间')
               = time_ago_with_tooltip(note.updated_at, placement: 'bottom', html_class: 'note_edited_ago')
               - if note.updated_by && note.updated_by != note.author
                 by #{link_to_member(note.project, note.updated_by, avatar: false, author_class: nil)}

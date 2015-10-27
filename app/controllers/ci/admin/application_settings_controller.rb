@@ -1,3 +1,4 @@
+#encoding: utf-8
 module Ci
   class Admin::ApplicationSettingsController < Ci::Admin::ApplicationController
     before_action :set_application_setting
@@ -8,7 +9,7 @@ module Ci
     def update
       if @application_setting.update_attributes(application_setting_params)
         redirect_to ci_admin_application_settings_path,
-          notice: 'Application settings saved successfully'
+          notice: '应用设置已保存成功'
       else
         render :show
       end

@@ -5,9 +5,9 @@
   %td.commit_status-link
     - if build.target_url
       = link_to build.target_url do
-        %strong Build ##{build.id}
+        %strong 构建 ##{build.id}
     - else
-      %strong Build ##{build.id}
+      %strong 构建 ##{build.id}
 
     - if build.show_warning?
       %i.fa.fa-warning.text-warning
@@ -22,7 +22,7 @@
     - if build.runner
       = runner_link(build.runner)
     - else
-      .light none
+      .light 无
 
   %td
     = build.name
@@ -33,9 +33,9 @@
           %span.label.label-primary
             = tag
       - if build.trigger_request
-        %span.label.label-info triggered
+        %span.label.label-info 被触发
       - if build.allow_failure
-        %span.label.label-danger allowed to fail
+        %span.label.label-danger 允许失败
 
   %td.duration
     - if build.duration
@@ -43,11 +43,11 @@
 
   %td.timestamp
     - if build.finished_at
-      %span #{time_ago_in_words build.finished_at} ago
+      %span #{time_ago_in_words build.finished_at}之前
 
   %td
     .pull-right
       - if current_user && can?(current_user, :manage_builds, @project)
         - if build.cancel_url
-          = link_to build.cancel_url, title: 'Cancel' do
+          = link_to build.cancel_url, title: '取消' do
             %i.fa.fa-remove.cred

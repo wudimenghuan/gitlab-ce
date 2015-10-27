@@ -1,14 +1,14 @@
-- page_title "New File", @path.presence, @ref
+- page_title "新文件", @path.presence, @ref
 = render "header_title"
 
 .gray-content-block.top-block
-  Create a new file
+  创建新文件
 
 .file-editor
   = form_tag(namespace_project_create_blob_path(@project.namespace, @project, @id), method: :post, class: 'form-horizontal form-new-file js-requires-input') do
     = render 'projects/blob/editor', ref: @ref
     = render 'shared/commit_message_container', params: params,
-             placeholder: 'Add new file'
+             placeholder: '增加新文件'
 
     - unless @project.empty_repo?
       .form-group.branch

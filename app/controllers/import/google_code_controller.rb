@@ -11,18 +11,18 @@ class Import::GoogleCodeController < Import::BaseController
     dump_file = params[:dump_file]
 
     unless dump_file.respond_to?(:read)
-      return redirect_back_or_default(options: { alert: "You need to upload a Google Takeout archive." })
+      return redirect_back_or_default(options: { alert: "需要上传 Google Takeout 存档。" })
     end
 
     begin
       dump = JSON.parse(dump_file.read)
     rescue
-      return redirect_back_or_default(options: { alert: "The uploaded file is not a valid Google Takeout archive." })
+      return redirect_back_or_default(options: { alert: "上传的文件不是有效的 Google Takeout 存档。" })
     end
 
     client = Gitlab::GoogleCodeImport::Client.new(dump)
     unless client.valid?
-      return redirect_back_or_default(options: { alert: "The uploaded file is not a valid Google Takeout archive." })
+      return redirect_back_or_default(options: { alert: "上传的文件不是有效的 Google Takeout 存档。" })
     end
 
     session[:google_code_dump] = dump

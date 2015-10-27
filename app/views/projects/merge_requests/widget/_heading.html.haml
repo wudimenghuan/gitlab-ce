@@ -4,10 +4,11 @@
   .mr-widget-heading
     .ci_widget{class: "ci-#{status}"}
       = ci_status_icon(ci_commit)
-      %span CI build #{status}
-      for #{@merge_request.last_commit_short_sha}.
+      #{@merge_request.last_commit_short_sha}
+      的
+      %span CI 状态 #{status}。
       %span.ci-coverage
-      = link_to "View build details", ci_status_path(ci_commit)
+      = link_to "查看构建明细", ci_status_path(ci_commit)
 
 - elsif @merge_request.has_ci?
   - # Compatibility with old CI integrations (ex jenkins) when you request status from CI server via AJAX

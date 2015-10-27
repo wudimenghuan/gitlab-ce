@@ -1,6 +1,6 @@
 = content_for :meta_tags do
   - if current_user
-    = auto_discovery_link_tag(:atom, namespace_project_path(@project.namespace, @project, format: :atom, private_token: current_user.private_token), title: "#{@project.name} activity")
+    = auto_discovery_link_tag(:atom, namespace_project_path(@project.namespace, @project, format: :atom, private_token: current_user.private_token), title: "#{@project.name} 活动")
 
 = content_for :flash_message do
   - if current_user && can?(current_user, :download_code, @project)
@@ -78,8 +78,8 @@
   - if access
     .prepend-top-20.project-footer
       .gray-content-block.footer-block.center
-        You have #{access} access to this project.
+        你拥有此项目的 #{access} 权限。
         - if @project.project_member_by_id(current_user)
           = link_to leave_namespace_project_project_members_path(@project.namespace, @project),
-            data: { confirm: leave_project_message(@project) }, method: :delete, title: 'Leave project', class: 'cred' do
-            Leave this project
+            data: { confirm: leave_project_message(@project) }, method: :delete, title: '离开项目', class: 'cred' do
+            离开此项目

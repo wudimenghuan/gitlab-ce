@@ -22,7 +22,7 @@
       - if ci && !project.empty_repo? && project.commit
         - if ci_commit = project.ci_commit(project.commit.sha)
           = link_to ci_status_path(ci_commit), class: "c#{ci_status_color(ci_commit)}",
-            title: "Build status: #{ci_commit.status}", data: {toggle: 'tooltip', placement: 'left'} do
+            title: "构建状态：#{ci_commit.status}", data: {toggle: 'tooltip', placement: 'left'} do
             = ci_status_icon(ci_commit)
           &nbsp;
       - if stars

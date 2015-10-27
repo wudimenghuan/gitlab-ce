@@ -1,22 +1,22 @@
 - ci_project = @project.gitlab_ci_project
 %fieldset
-  %legend Overall
+  %legend 整体
   %p
-    Total:
-    %strong= pluralize ci_project.builds.count(:all), 'build'
+    合计：
+    %strong= pluralize ci_project.builds.count(:all), '次构建', '次构建'
   %p
-    Successful:
-    %strong= pluralize ci_project.builds.success.count(:all), 'build'
+    成功：
+    %strong= pluralize ci_project.builds.success.count(:all), '次构建', '次构建'
   %p
-    Failed:
-    %strong= pluralize ci_project.builds.failed.count(:all), 'build'
+    失败：
+    %strong= pluralize ci_project.builds.failed.count(:all), '次构建', '次构建'
 
   %p
-    Success ratio:
+    成功率：
     %strong
       #{success_ratio(ci_project.builds.success, ci_project.builds.failed)}%
 
   %p
-    Commits covered:
+    提交覆盖：
     %strong
       = ci_project.commits.count(:all)

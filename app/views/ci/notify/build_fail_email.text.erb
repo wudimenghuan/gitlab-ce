@@ -1,9 +1,9 @@
-Build failed for <%= @project.name %>
+<%= @project.name %> 构建失败
 
-Status:   <%= @build.status %>
-Commit:   <%= @build.commit.short_sha %>
-Author:   <%= @build.commit.git_author_name %>
-Branch:   <%= @build.ref %>
-Message:  <%= @build.commit.git_commit_message %>
+状态：     <%= @build.status %>
+提交：     <%= @build.commit.short_sha %>
+作者：     <%= @build.commit.git_author_name %>
+分支：     <%= @build.ref %>
+信息：     <%= @build.commit.git_commit_message %>
 
-Url:      <%= namespace_project_build_url(@build.gl_project.namespace, @build.gl_project, @build) %>
+链接：     <%= namespace_project_build_url(@build.gl_project.namespace, @build.gl_project, @build) %>

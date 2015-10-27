@@ -8,10 +8,10 @@
     $('.project-home-panel .toggle-star').on 'ajax:success', (e, data, status, xhr) ->
       $(@).replaceWith(data.html)
     .on 'ajax:error', (e, xhr, status, error) ->
-      new Flash('Star toggle failed. Try again later.', 'alert')
+      new Flash('切换星标失败。请稍后重试。', 'alert')
 
 - else
-  = link_to new_user_session_path, class: 'btn has_tooltip star-btn', title: 'You must sign in to star a project' do
+  = link_to new_user_session_path, class: 'btn has_tooltip star-btn', title: '必须登入后才能给项目加注星标' do
     = icon('star fw')
     %span.count
       = @project.star_count

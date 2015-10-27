@@ -1,10 +1,10 @@
 - if @ci_project.generated_yaml_config
   %p.alert.alert-danger
-    CI Jobs are deprecated now, you can #{link_to "download", dumped_yaml_ci_project_path(@ci_project)}
-    or
-    %a.preview-yml{:href => "#yaml-content", "data-toggle" => "modal"} preview
-    yaml file which is based on your old jobs.
-    Put this file to the root of your project and name it .gitlab-ci.yml
+    CI 作业已被废弃，你需要#{link_to "下载", dumped_yaml_ci_project_path(@ci_project)}
+    或
+    %a.preview-yml{:href => "#yaml-content", "data-toggle" => "modal"} 预览
+    在你旧作业基本上生成的 yaml 文件。
+    然后将此文件放到项目根目录取名为 .gitlab-ci.yml
 
 - if no_runners_for_project?(@ci_project)
   = render 'no_runners'
@@ -17,8 +17,8 @@
       .modal-content
         .modal-header
           %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
-          %h4.modal-title Content of .gitlab-ci.yml
+          %h4.modal-title .gitlab-ci.yml 内容
         .modal-body
           = text_area_tag :yaml, @ci_project.generated_yaml_config, size: "70x25", class: "form-control"
         .modal-footer
-          %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
+          %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} 关闭

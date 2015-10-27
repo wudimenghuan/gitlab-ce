@@ -17,14 +17,14 @@
           .pull-right.hidden-xs
             = link_to profile_path, class: 'btn btn-sm' do
               = icon('user')
-              Profile settings
+              个人资料设置
         - elsif current_user
           .report_abuse.pull-right
             - if @user.abuse_report
-              %span#report_abuse_btn.light.btn.btn-sm.btn-close{title: 'Already reported for abuse', data: {toggle: 'tooltip', placement: 'right', container: 'body'}}
+              %span#report_abuse_btn.light.btn.btn-sm.btn-close{title: '已被举报为滥用', data: {toggle: 'tooltip', placement: 'right', container: 'body'}}
                 = icon('exclamation-circle')
             - else
-              %a.light.btn.btn-sm{href: new_abuse_report_path(user_id: @user.id), title: 'Report abuse', data: {toggle: 'tooltip', placement: 'right', container: 'body'}}
+              %a.light.btn.btn-sm{href: new_abuse_report_path(user_id: @user.id), title: '举报滥用', data: {toggle: 'tooltip', placement: 'right', container: 'body'}}
                 = icon('exclamation-circle')
 
       .username

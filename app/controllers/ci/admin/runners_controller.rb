@@ -1,3 +1,4 @@
+#encoding: utf-8
 module Ci
   class Admin::RunnersController < Ci::Admin::ApplicationController
     before_action :runner, except: :index
@@ -38,17 +39,17 @@ module Ci
 
     def resume
       if @runner.update_attributes(active: true)
-        redirect_to ci_admin_runners_path, notice: 'Runner was successfully updated.'
+        redirect_to ci_admin_runners_path, notice: 'Runner 已更新成功。'
       else
-        redirect_to ci_admin_runners_path, alert: 'Runner was not updated.'
+        redirect_to ci_admin_runners_path, alert: 'Runner 未更新。'
       end
     end
 
     def pause
       if @runner.update_attributes(active: false)
-        redirect_to ci_admin_runners_path, notice: 'Runner was successfully updated.'
+        redirect_to ci_admin_runners_path, notice: 'Runner 已更新成功。'
       else
-        redirect_to ci_admin_runners_path, alert: 'Runner was not updated.'
+        redirect_to ci_admin_runners_path, alert: 'Runner 未更新。'
       end
     end
 
@@ -57,7 +58,7 @@ module Ci
         @runner.assign_to(project, current_user)
       end
 
-      redirect_to ci_admin_runner_path(@runner), notice: "Runner was assigned to all projects"
+      redirect_to ci_admin_runner_path(@runner), notice: "Runner 已被指定给所有项目"
     end
 
     private
