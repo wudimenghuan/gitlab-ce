@@ -1,52 +1,52 @@
-- page_title "Emails"
+- page_title "电子邮箱"
 - header_title page_title, profile_emails_path
 
 .gray-content-block.top-block
-  Control emails linked to your account
+  控制连接到账号的电子邮箱
 
 %ul.prepend-top-default
   %li
-    Your
-    %b Primary Email
-    will be used for avatar detection and web based operations, such as edits and merges.
+    你的
+    %b 主要电子邮箱
+    将用于头像显示和在网站操作，比如：编辑和合并操作。
   %li
-    Your
-    %b Notification Email
-    will be used for account notifications.
+    你的
+    %b 通知电子邮箱
+    将用于账号通知。
   %li
-    Your
-    %b Public Email
-    will be displayed on your public profile.
+    你的
+    %b 公开电子邮箱
+    将显示在公开的个人资料上。
   %li
-    All email addresses will be used to identify your commits.
+    所有电子邮箱地址都将用于识别提交作者。
 
 .panel.panel-default
   .panel-heading
-    Emails (#{@emails.count + 1})
+    电子邮箱 (#{@emails.count + 1})
   %ul.well-list#emails-table
     %li
       %strong= @primary
-      %span.label.label-success Primary Email
+      %span.label.label-success 主要电子邮箱
       - if @primary === current_user.public_email
-        %span.label.label-info Public Email
+        %span.label.label-info 公开电子邮箱
       - if @primary === current_user.notification_email
-        %span.label.label-info Notification Email
+        %span.label.label-info 通知电子邮箱
     - @emails.each do |email|
       %li
         %strong= email.email
         - if email.email === current_user.public_email
-          %span.label.label-info Public Email
+          %span.label.label-info 公开电子邮箱
         - if email.email === current_user.notification_email
-          %span.label.label-info Notification Email
+          %span.label.label-info 通知电子邮箱
         %span.cgray
-          added #{time_ago_with_tooltip(email.created_at)}
-        = link_to 'Remove', profile_email_path(email), data: { confirm: 'Are you sure?'}, method: :delete, class: 'btn btn-sm btn-remove pull-right'
+          增加时间 #{time_ago_with_tooltip(email.created_at)}
+        = link_to '删除', profile_email_path(email), data: { confirm: '确定要继续么？'}, method: :delete, class: 'btn btn-sm btn-remove pull-right'
 
-%h4 Add email address
+%h4 增加电子邮箱地址
 = form_for 'email', url: profile_emails_path, html: { class: 'form-horizontal' } do |f|
   .form-group
-    = f.label :email, class: 'control-label'
+    = f.label :email, '电子邮箱', class: 'control-label'
     .col-sm-10
       = f.text_field :email, class: 'form-control'
   .form-actions
-    = f.submit 'Add email address', class: 'btn btn-create'
+    = f.submit '增加电子邮箱地址', class: 'btn btn-create'

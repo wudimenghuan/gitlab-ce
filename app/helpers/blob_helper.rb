@@ -1,3 +1,4 @@
+#encoding: utf-8
 module BlobHelper
   def highlight(blob_name, blob_content, nowrap: false, continue: false)
     @formatter ||= Rouge::Formatters::HTMLGitlab.new(
@@ -31,7 +32,7 @@ module BlobHelper
       end
 
     if blob && blob.text?
-      text = 'Edit'
+      text = '编辑'
       after = options[:after] || ''
       from_mr = options[:from_merge_request_id]
       link_opts = {}
@@ -53,14 +54,14 @@ module BlobHelper
   end
 
   def leave_edit_message
-    "Leave edit mode?\nAll unsaved changes will be lost."
+    "离开编辑模式？\n所有未保存的修改都会丢失。"
   end
 
   def editing_preview_title(filename)
     if Gitlab::MarkupHelper.previewable?(filename)
-      'Preview'
+      '预览'
     else
-      'Preview changes'
+      '预览修改'
     end
   end
 

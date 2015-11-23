@@ -1,20 +1,20 @@
 .wiki
   %h1
-    GitLab CI is now integrated in GitLab UI
-  %h2 For existing projects
+    GitLab CI 现在已集成到 GitLab 界面
+  %h2 已开启 CI 的项目
 
   %p
-    Check the following pages to find the CI status you're looking for:
+    在下列页面查看相关 CI 状态：
 
   %ul
-    %li Projects page - shows CI status for each project.
-    %li Project commits page - show CI status for each commit.
+    %li 项目页面 - 显示每个项目的 CI 状态。
+    %li 项目提交页面 - 显示每个提交的 CI 状态。
 
 
 
-  %h2 For new projects
+  %h2 新项目
 
   %p
-    If you want to enable CI for a new project it is easy as adding
+    只需简单的在仓库根目录增加
     = link_to ".gitlab-ci.yml", "http://doc.gitlab.com/ce/ci/yaml/README.html"
-    file to your repository
+    文件就可以给新项目开启 CI 功能。

@@ -1,26 +1,26 @@
 %ul.nav.nav-tabs.append-bottom-20
   %li{class: ("active" if @scope.nil?)}
-    = link_to 'All builds', ci_admin_builds_path
+    = link_to '所有构建', ci_admin_builds_path
   
   %li{class: ("active" if @scope == "pending")}
-    = link_to "Pending", ci_admin_builds_path(scope: :pending)
+    = link_to "等待的", ci_admin_builds_path(scope: :pending)
 
   %li{class: ("active" if @scope == "running")}
-    = link_to "Running", ci_admin_builds_path(scope: :running)
+    = link_to "正在运行的", ci_admin_builds_path(scope: :running)
 
 
 %table.builds
   %thead
     %tr
-      %th Build
-      %th Status
-      %th Commit
+      %th 构建
+      %th 状态
+      %th 提交
       %th Runner
-      %th Project
-      %th Message
-      %th Branch
-      %th Duration
-      %th Finished at
+      %th 项目
+      %th 信息
+      %th 分支
+      %th 花费时间
+      %th 结束时间
 
   - @builds.each do |build|
     = render "ci/admin/builds/build", build: build

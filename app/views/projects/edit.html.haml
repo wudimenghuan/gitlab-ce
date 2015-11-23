@@ -122,48 +122,48 @@
         - if @project.archived?
           .panel.panel-success
             .panel-heading
-              Unarchive project
+              解档项目
             .panel-body
               %p
-                Unarchiving the project will mark its repository as active.
+                解档项目将恢复项目版本仓库可修改。
                 %br
-                The project can be committed to.
+                项目可以被提交。
                 %br
-                %strong Once active this project shows up in the search and on the dashboard.
-              = link_to 'Unarchive', unarchive_namespace_project_path(@project.namespace, @project),
-                  data: { confirm: "Are you sure that you want to unarchive this project?\nWhen this project is unarchived it is active and can be committed to again." },
+                %strong 解档后该项目可以被搜索到并显示在仪表盘中。
+              = link_to '解档', unarchive_namespace_project_path(@project.namespace, @project),
+                  data: { confirm: "确定要解档本项目么？\n解档项目后可以重新提交版本仓库修改。" },
                   method: :post, class: "btn btn-success"
         - else
           .panel.panel-warning
             .panel-heading
-              Archive project
+              归档项目
             .panel-body
               %p
-                Archiving the project will mark its repository as read-only.
+                归档项目将标识其版本仓库为只读。
                 %br
-                It is hidden from the dashboard and doesn't show up in searches.
+                同时将在仪表盘隐藏并且不能搜索到。
                 %br
-                %strong Archived projects cannot be committed to!
-              = link_to 'Archive', archive_namespace_project_path(@project.namespace, @project),
-                  data: { confirm: "Are you sure that you want to archive this project?\nAn archived project cannot be committed to." },
+                %strong 已归档的项目不能被提交！
+              = link_to '归档', archive_namespace_project_path(@project.namespace, @project),
+                  data: { confirm: "确定要归档本项目么？\n已归档的项目不能被提交。" },
                   method: :post, class: "btn btn-warning"
       - else
-        .nothing-here-block Only the project owner can archive a project
+        .nothing-here-block 只有项目所有者才能归档项目
 
       .panel.panel-default.panel.panel-warning
-        .panel-heading Rename repository
+        .panel-heading 重命名仓库
         .errors-holder
         .panel-body
           = form_for([@project.namespace.becomes(Namespace), @project], html: { class: 'form-horizontal' }) do |f|
             .form-group.project_name_holder
               = f.label :name, class: 'control-label' do
-                Project name
+                项目名称
               .col-sm-9
                 .form-group
-                  = f.text_field :name, placeholder: "Example Project", class: "form-control"
+                  = f.text_field :name, placeholder: "示例项目", class: "form-control"
             .form-group
               = f.label :path, class: 'control-label' do
-                %span Path
+                %span 路径
               .col-sm-9
                 .form-group
                   .input-group

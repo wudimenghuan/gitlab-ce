@@ -1,3 +1,4 @@
+#encoding: utf-8
 module Ci
   class Admin::RunnerProjectsController < Ci::Admin::ApplicationController
     layout 'ci/project'
@@ -13,7 +14,7 @@ module Ci
       if @runner.assign_to(project, current_user)
         redirect_to ci_admin_runner_path(@runner)
       else
-        redirect_to ci_admin_runner_path(@runner), alert: 'Failed adding runner to project'
+        redirect_to ci_admin_runner_path(@runner), alert: '增加 runner 到项目失败'
       end
     end
 

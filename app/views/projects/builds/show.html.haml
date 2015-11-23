@@ -122,15 +122,15 @@
       - if @build.trigger_request
         .build-widget
           %h4.title
-            Trigger
+            触发
 
           %p
-            %span.attr-name Token:
+            %span.attr-name 授权码：
             #{@build.trigger_request.trigger.short_token}
 
           - if @build.trigger_request.variables
             %p
-              %span.attr-name Variables:
+              %span.attr-name 变量：
 
             %code
               - @build.trigger_request.variables.each do |key, value|

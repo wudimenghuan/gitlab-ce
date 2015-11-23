@@ -26,7 +26,7 @@
             - if last_build
               = link_to last_build.short_sha, [last_build.project, last_build]
             - else
-              unknown
+              未知
           %td
             %span.badge.badge-success
               #{builds.success.count}
@@ -34,15 +34,15 @@
             %span.badge.badge-important
               #{builds.failed.count}
           %td
-            #{time_ago_in_words(runner_project.created_at)} ago
+            #{time_ago_in_words(runner_project.created_at)}之前
           %td
-            = link_to 'Disable', [:ci, @project, runner_project], data: { confirm: "Are you sure?" }, method: :delete, class: 'btn btn-danger btn-sm right'
+            = link_to '禁用', [:ci, @project, runner_project], data: { confirm: "确定要继续么？" }, method: :delete, class: 'btn btn-danger btn-sm right'
   .col-md-4
-    %h5 Available
+    %h5 可用的
     %table.table
       %tr
         %th ID
-        %th Token
+        %th 授权码
         %th
 
       - (Ci::Runner.all - @project.runners).each do |runner|
@@ -54,4 +54,4 @@
           %td
             = form_for [:ci, @project, @runner_project] do |f|
               = f.hidden_field :runner_id, value: runner.id
-              = f.submit 'Add', class: 'btn btn-sm'
+              = f.submit '增加', class: 'btn btn-sm'

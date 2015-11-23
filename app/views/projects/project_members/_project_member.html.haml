@@ -52,4 +52,4 @@
         .prepend-top-10
           = f.select :access_level, options_for_select(ProjectMember.access_roles, member.access_level), {}, class: 'form-control'
         .prepend-top-10
-          = f.submit 'Save', class: 'btn btn-save'
+          = f.submit '保存', class: 'btn btn-save'

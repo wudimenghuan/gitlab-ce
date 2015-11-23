@@ -19,7 +19,7 @@
       = @service.help
 
   .form-group
-    = f.label :active, "Active", class: "control-label"
+    = f.label :active, "有效的", class: "control-label"
     .col-sm-10
       = f.check_box :active
 
@@ -48,7 +48,7 @@
           .light #{help}
 
   .form-actions
-    = f.submit 'Save', class: 'btn btn-save'
+    = f.submit '保存', class: 'btn btn-save'
     &nbsp;
     - if @service.valid? && @service.activated? && @service.can_test?
-      = link_to 'Test settings', test_namespace_project_ci_service_path(@project.namespace, @project, @service.to_param), class: 'btn'
+      = link_to '测试设置', test_namespace_project_ci_service_path(@project.namespace, @project, @service.to_param), class: 'btn'

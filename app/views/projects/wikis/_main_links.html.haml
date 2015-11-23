@@ -2,14 +2,14 @@
   - if can?(current_user, :create_wiki, @project)
     = link_to '#modal-new-wiki', class: "add-new-wiki btn btn-new btn-grouped", "data-toggle" => "modal" do
       %i.fa.fa-plus
-      New Page
+      新页面
 
   - if (@page && @page.persisted?)
     = link_to namespace_project_wiki_history_path(@project.namespace, @project, @page), class: "btn btn-grouped" do
-      Page History
+      页面历史
     - if can?(current_user, :create_wiki, @project)
       = link_to namespace_project_wiki_edit_path(@project.namespace, @project, @page), class: "btn btn-grouped" do
         %i.fa.fa-pencil-square-o
-        Edit
+        编辑
 
 = render 'projects/wikis/new'

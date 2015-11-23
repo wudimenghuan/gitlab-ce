@@ -60,17 +60,17 @@
                   = project.name
               %td
                 .pull-right
-                  = link_to 'Disable', [:ci, :admin, project, runner_project], method: :delete, class: 'btn btn-danger btn-xs'
+                  = link_to '禁用', [:ci, :admin, project, runner_project], method: :delete, class: 'btn btn-danger btn-xs'
 
     %table.table
       %thead
         %tr
-          %th Project
+          %th 项目
           %th
             .pull-right
-              = link_to 'Assign to all', assign_all_ci_admin_runner_path(@runner),
+              = link_to '指派给所有', assign_all_ci_admin_runner_path(@runner),
                 class: 'btn btn-sm assign-all-runner',
-                title: 'Assign runner to all projects',
+                title: '指派 runner 给所有项目',
                 method: :put
 
       %tr
@@ -78,7 +78,7 @@
           = form_tag ci_admin_runner_path(@runner), id: 'runner-projects-search', class: 'form-inline', method: :get do
             .form-group
               = search_field_tag :search, params[:search], class: 'form-control', spellcheck: false
-            = submit_tag 'Search', class: 'btn'
+            = submit_tag '搜索', class: 'btn'
 
         %td
       - @projects.each do |project|
@@ -89,19 +89,19 @@
             .pull-right
               = form_for [:ci, :admin, project, project.runner_projects.new] do |f|
                 = f.hidden_field :runner_id, value: @runner.id
-                = f.submit 'Enable', class: 'btn btn-xs'
+                = f.submit '启用', class: 'btn btn-xs'
     = paginate @projects
 
   .col-md-6
-    %h4 Recent builds served by this runner
+    %h4 此 runner 最近完成的构建
     %table.builds.runner-builds
       %thead
         %tr
-          %th Build ID
-          %th Status
-          %th Project
-          %th Commit
-          %th Finished at
+          %th 构建 ID
+          %th 状态
+          %th 项目
+          %th 提交
+          %th 结束时间
 
       - @builds.each do |build|
         - gl_project = build.gl_project
@@ -127,4 +127,4 @@
 
           %td.timestamp
             - if build.finished_at
-              %span #{time_ago_in_words build.finished_at} ago
+              %span #{time_ago_in_words build.finished_at}之前

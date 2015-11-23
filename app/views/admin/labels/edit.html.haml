@@ -1,9 +1,9 @@
-- page_title "Edit", @label.name, "Labels"
+- page_title "编辑", @label.name, "标记"
 %h3
-  Edit label
+  编辑标记
   %span.light #{@label.name}
 .back-link
   = link_to admin_labels_path do
-    &larr; To labels list
+    &larr; 返回标记列表
 %hr
 = render 'form'

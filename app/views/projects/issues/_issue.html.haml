@@ -12,7 +12,7 @@
     .pull-right.light
       - if issue.closed?
         %span
-          CLOSED
+          已关闭
       - if issue.assignee
         = link_to_member(@project, issue.assignee, name: false)
       - note_count = issue.notes.user.count
@@ -39,4 +39,4 @@
         = issue.task_status
 
     .pull-right.issue-updated-at
-      %span updated #{time_ago_with_tooltip(issue.updated_at, placement: 'bottom', html_class: 'issue_update_ago')}
+      %span #{time_ago_with_tooltip(issue.updated_at, placement: 'bottom', html_class: 'issue_update_ago')}更新

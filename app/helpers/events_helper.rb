@@ -1,3 +1,4 @@
+#encoding: utf-8
 module EventsHelper
   def link_to_author(event)
     author = event.author
@@ -29,7 +30,7 @@ module EventsHelper
     link_opts = {
       class: "event-filter-link btn btn-default #{active}",
       id:    "#{key}_event_filter",
-      title: "Filter by #{tooltip.downcase}",
+      title: "#{tooltip.downcase}过滤",
     }
 
     link_to request.path, link_opts do
@@ -175,7 +176,7 @@ module EventsHelper
       end
     else
       content_tag :strong do
-        "(deleted)"
+        "(已删除)"
       end
     end
   end
