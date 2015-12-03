@@ -123,7 +123,7 @@ class ProjectsController < ApplicationController
     ::Projects::DestroyService.new(@project, current_user, {}).execute
     flash[:alert] = "项目 '#{@project.name}' 已被删除。"
 
-    redirect_back_or_default(default: dashboard_projects_path, options: {})
+    redirect_to dashboard_projects_path
   rescue Projects::DestroyService::DestroyError => ex
     redirect_to edit_project_path(@project), alert: ex.message
   end
