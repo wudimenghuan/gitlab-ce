@@ -1,10 +1,13 @@
 Please view this file on the master branch, on stable branches it's out of date.
 
-v 8.3.0 (unreleased)
+v 8.2.1
+  - Forcefully update builds that didn't want to update with state machine
+  - Fix: saving GitLabCiService as Admin Template
 
 v 8.2.0
   - Improved performance of finding projects and groups in various places
   - Improved performance of rendering user profile pages and Atom feeds
+  - Expose build artifacts path as config option
   - Fix grouping of contributors by email in graph.
   - Remove CSS property preventing hard tabs from rendering in Chromium 45 (Stan Hu)
   - Fix Drone CI service template not saving properly (Stan Hu)
