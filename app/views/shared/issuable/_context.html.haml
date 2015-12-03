@@ -34,16 +34,16 @@
     %div.prepend-top-20.clearfix
       .issuable-context-title
         %label
-          Subscription:
+          订阅：
       %button.btn.btn-block.subscribe-button{:type => 'button'}
         = icon('eye')
-        %span= subscribed ? 'Unsubscribe' : 'Subscribe'
+        %span= subscribed ? '取消订阅' : '订阅'
       - subscribtion_status = subscribed ? 'subscribed' : 'unsubscribed'
       .subscription-status{data: {status: subscribtion_status}}
         .description-block.unsubscribed{class: ( 'hidden' if subscribed )}
-          You're not receiving notifications from this thread.
+          不会再接收此主题的通知。
         .description-block.subscribed{class: ( 'hidden' unless subscribed )}
-          You're receiving notifications because you're subscribed to this thread.
+          订阅此主题将会接收到通知。
 
 :javascript
   new Subscription("#{toggle_subscription_path(issuable)}");

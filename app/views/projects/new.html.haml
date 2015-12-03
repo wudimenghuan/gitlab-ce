@@ -25,7 +25,7 @@
       - if import_sources_enabled?
         .project-import.js-toggle-container
           .form-group
-            %label.control-label Import project from
+            %label.control-label 导入项目
             .col-sm-10
               - if github_import_enabled?
                 - if github_import_configured?
@@ -78,7 +78,7 @@
               - if git_import_enabled?
                 = link_to "#", class: 'btn js-toggle-button import_git' do
                   %i.fa.fa-git
-                  %span Any repo by URL
+                  %span 其他仓库的链接
 
           .js-toggle-content.hide
             = render "shared/import_form", f: f
@@ -87,29 +87,29 @@
 
       .form-group
         = f.label :description, class: 'control-label' do
-          Description
-          %span.light (optional)
+          描述
+          %span.light (可选)
         .col-sm-10
           = f.text_area :description, placeholder: "Awesome project", class: "form-control", rows: 3, maxlength: 250, tabindex: 3
       = render 'shared/visibility_level', f: f, visibility_level: default_project_visibility, can_change_visibility_level: true, form_model: @project
 
       .form-actions
-        = f.submit 'Create project', class: "btn btn-create project-submit", tabindex: 4
+        = f.submit '创建项目', class: "btn btn-create project-submit", tabindex: 4
 
         - if current_user.can_create_group?
           .pull-right
             .light.inline
               .space-right
-                Need a group for several dependent projects?
+                需要一个有多个关联项目的群组？
             = link_to new_group_path, class: "btn" do
-              Create a group
+              创建群组
 
 .save-project-loader.hide
   .center
     %h2
       %i.fa.fa-spinner.fa-spin
-      Creating project &amp; repository.
-    %p Please wait a moment, this page will automatically refresh when ready.
+      正在创建项目 &amp; 版本库。
+    %p 请稍候，页面会处理完成后自动刷新。
 
 :javascript
   $('.how_to_import_link').bind('click', function (e) {

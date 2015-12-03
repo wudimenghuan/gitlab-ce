@@ -142,7 +142,7 @@ module DiffHelper
     params_copy.delete(:format)
 
     link_to url_for(params_copy), id: "inline-diff-btn", class: (diff_view == 'inline' ? 'btn active' : 'btn') do
-      'Inline'
+      '内嵌'
     end
   end
 
@@ -153,7 +153,7 @@ module DiffHelper
     params_copy.delete(:format)
 
     link_to url_for(params_copy), id: "parallel-diff-btn", class: (diff_view == 'parallel' ? 'btn active' : 'btn') do
-      'Side-by-side'
+      '并排对比'
     end
   end
 

@@ -42,7 +42,7 @@ class Groups::GroupMembersController < Groups::ApplicationController
     @group_member.destroy
 
     respond_to do |format|
-      format.html { redirect_to group_group_members_path(@group), notice: 'User was successfully removed from group.' }
+      format.html { redirect_to group_group_members_path(@group), notice: '用户从群组删除成功。' }
       format.js { render nothing: true }
     end
   end
@@ -67,10 +67,10 @@ class Groups::GroupMembersController < Groups::ApplicationController
     if can?(current_user, :destroy_group_member, @group_member)
       @group_member.destroy
 
-      redirect_to(dashboard_groups_path, notice: "You left #{group.name} group.")
+      redirect_to(dashboard_groups_path, notice: "已离开 #{group.name} 群组。")
     else
       if @group.last_owner?(current_user)
-        redirect_to(dashboard_groups_path, alert: "You can not leave #{group.name} group because you're the last owner. Transfer or delete the group.")
+        redirect_to(dashboard_groups_path, alert: "不能离开 #{group.name} 群组，因为你是最后一个群组所有者。请转移或删除群组。")
       else
         return render_403
       end

@@ -20,7 +20,7 @@ module Ci
       @error = e.message
       @status = false
     rescue
-      @error = "Undefined error"
+      @error = "未定义错误"
       @status = false
     end
   end

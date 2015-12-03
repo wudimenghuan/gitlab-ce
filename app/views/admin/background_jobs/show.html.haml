@@ -1,16 +1,16 @@
-- page_title "Background Jobs"
-%h3.page-title Background Jobs
-%p.light GitLab uses #{link_to "sidekiq", "http://sidekiq.org/"} library for async job processing
+- page_title "后台作业"
+%h3.page-title 后台作业
+%p.light GitLab 使用 #{link_to "sidekiq", "http://sidekiq.org/"} 库同步作业处理
 
 %hr
 
 .panel.panel-default
-  .panel-heading Sidekiq running processes
+  .panel-heading Sidekiq 运行进程
   .panel-body
     - if @sidekiq_processes.empty?
       %h4.cred
         %i.fa.fa-exclamation-triangle
-        There are no running sidekiq processes. Please restart GitLab
+        没有运行的 sidekiq 进程，请重新启动 GitLab
     - else
       .table-holder
         %table.table

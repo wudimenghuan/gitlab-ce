@@ -54,7 +54,7 @@ class Projects::BlobController < Projects::ApplicationController
     result = Files::DeleteService.new(@project, current_user, @commit_params).execute
 
     if result[:status] == :success
-      flash[:notice] = "Your changes have been successfully committed"
+      flash[:notice] = "你的更改已提交成功"
       redirect_to after_destroy_path
     else
       flash[:alert] = result[:message]
@@ -113,7 +113,7 @@ class Projects::BlobController < Projects::ApplicationController
     result = service.new(@project, current_user, @commit_params).execute
 
     if result[:status] == :success
-      flash[:notice] = "Your changes have been successfully committed"
+      flash[:notice] = "你的更改已提交成功"
       respond_to do |format|
         format.html { redirect_to success_path }
         format.json { render json: { message: "success", filePath: success_path } }

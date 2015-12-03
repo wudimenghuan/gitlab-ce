@@ -1,7 +1,7 @@
 %div
   %h1
     GitLab
-    Community Edition
+    社区版
     - if user_signed_in?
       %span= Gitlab::VERSION
       %small= Gitlab::REVISION
@@ -17,7 +17,10 @@
     %br
     Used by more than 100,000 organizations, GitLab is the most popular solution to manage git repositories on-premises.
     %br
-    了解 Gitlab 更多内容请访问 #{link_to promo_host, promo_url, target: '_blank'}.
+    了解 Gitlab 更多内容请访问 #{link_to promo_host, promo_url, target: '_blank'}。
+    %br
+    需要改进中文翻译，比如将上面的大段英文和下面的文档翻译，请#{link_to '派生 https://gitlab.com/larryli/gitlab 项目', 'https://gitlab.com/larryli/gitlab/fork/new'}，
+    修改文件后提交#{link_to '合并请求', 'https://gitlab.com/larryli/gitlab/merge_requests/new'}。
     - if current_application_settings.help_page_text.present?
       %hr
       = markdown(current_application_settings.help_page_text)

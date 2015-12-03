@@ -13,9 +13,9 @@
   - if projects.size > projects_limit
     %li.bottom.center
       .light
-        #{projects_limit} of #{pluralize(projects.count, 'project')} displayed.
+        已显示 #{projects_limit} / #{pluralize(projects.count, '个项目', '个项目')}。
         = link_to '#', class: 'js-expand' do
-          Show all
+          显示全部
 
 :javascript
   new ProjectsList();

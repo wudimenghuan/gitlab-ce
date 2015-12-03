@@ -2,7 +2,7 @@
 - header_title  @user.name, user_path(@user)
 
 = content_for :meta_tags do
-  = auto_discovery_link_tag(:atom, user_url(@user, format: :atom), title: "#{@user.name} activity")
+  = auto_discovery_link_tag(:atom, user_url(@user, format: :atom), title: "#{@user.name}活动")
 
 = render 'shared/show_aside'
 
@@ -15,12 +15,12 @@
 
   .cover-desc
     %span
-      @#{@user.username}.
+      @#{@user.username}。
     - if @user.bio.present?
       %span
-        #{@user.bio}.
+        #{@user.bio}。
     %span
-      Member since #{@user.created_at.stamp("Aug 21, 2011")}
+      注册时间：#{@user.created_at.stamp("2011-8-21")}
 
   .cover-desc
     - unless @user.public_email.blank?
@@ -32,11 +32,11 @@
           = icon('skype')
     - unless @user.linkedin.blank?
       .profile-link-holder
-        = link_to "https://www.linkedin.com/in/#{@user.linkedin}", title: "LinkedIn" do
+        = link_to "https://www.linkedin.com/in/#{@user.linkedin}", title: "领英" do
           = icon('linkedin-square')
     - unless @user.twitter.blank?
       .profile-link-holder
-        = link_to "https://twitter.com/#{@user.twitter}", title: "Twitter" do
+        = link_to "https://twitter.com/#{@user.twitter}", title: "特推" do
           = icon('twitter-square')
     - unless @user.website_url.blank?
       .profile-link-holder
@@ -54,12 +54,12 @@
     - elsif current_user
       %span.report-abuse
         - if @user.abuse_report
-          %button.btn.btn-danger{ title: 'Already reported for abuse',
+          %button.btn.btn-danger{ title: '已被举报为滥用',
             data: { toggle: 'tooltip', placement: 'left', container: 'body' }}
             = icon('exclamation-circle')
         - else
           = link_to new_abuse_report_path(user_id: @user.id), class: 'btn btn-gray',
-            title: 'Report abuse', data: {toggle: 'tooltip', placement: 'left', container: 'body'} do
+            title: '举报滥用', data: {toggle: 'tooltip', placement: 'left', container: 'body'} do
             = icon('exclamation-circle')
     - if current_user
       &nbsp;
@@ -76,19 +76,19 @@
 %ul.center-middle-menu
   %li.active
     = link_to "#activity", 'data-toggle' => 'tab' do
-      Activity
+      活动
   - if @groups.any?
     %li
       = link_to "#groups", 'data-toggle' => 'tab' do
-        Groups
+        群组
   - if @contributed_projects.present?
     %li
       = link_to "#contributed", 'data-toggle' => 'tab' do
-        Contributed projects
+        贡献项目
   - if @projects.present?
     %li
       = link_to "#personal", 'data-toggle' => 'tab' do
-        Personal projects
+        个人项目
 
 .tab-content
   .tab-pane.active#activity

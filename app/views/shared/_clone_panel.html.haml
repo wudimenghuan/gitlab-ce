@@ -15,12 +15,12 @@
         type: 'button', |
         class: "btn #{ 'active' if default_clone_protocol == 'http' }#{ ' has_tooltip' if current_user && current_user.require_password? }", |
         :"data-clone" => project.http_url_to_repo, |
-        :"data-title" => "Set a password on your account<br> to pull or push via #{gitlab_config.protocol.upcase}.",
+        :"data-title" => "在账户中设置密码<br>然后再使用 #{gitlab_config.protocol.upcase} 拉取和推送。",
         :"data-html" => "true",
         :"data-container" => "body"}
         = gitlab_config.protocol.upcase
   = text_field_tag :project_clone, default_url_to_repo(project), class: "js-select-on-focus form-control", readonly: true
   - if project.kind_of?(Project)
-    .input-group-addon.has_tooltip{title: "#{visibility_level_label(project.visibility_level)} project", data: { container: "body" } }
+    .input-group-addon.has_tooltip{title: "#{visibility_level_label(project.visibility_level)}项目", data: { container: "body" } }
       .visibility-level-label
         = visibility_level_icon(project.visibility_level)

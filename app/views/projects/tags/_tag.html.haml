@@ -20,7 +20,7 @@
     = render 'projects/branches/commit', commit: commit, project: @project
   - else
     %p
-      Cant find HEAD commit for this tag
+      无法找到该标签的 HEAD 提交
   - if release && release.description.present?
     .description.prepend-top-default
       .wiki

@@ -3,9 +3,9 @@
     .snippet-box{class: visibility_level_color(@snippet.visibility_level)}
       = visibility_level_icon(@snippet.visibility_level)
       = visibility_level_label(@snippet.visibility_level)
-    %span.snippet-id Snippet ##{@snippet.id}
+    %span.snippet-id 代码片段 ##{@snippet.id}
     %span.creator
-      &middot; created by #{link_to_member(@project, @snippet.author, size: 24)}
+      &middot; 由 #{link_to_member(@project, @snippet.author, size: 24)} 创建于
       &middot;
       = time_ago_with_tooltip(@snippet.created_at, placement: 'bottom', html_class: 'snippet_updated_ago')
       - if @snippet.updated_at != @snippet.created_at

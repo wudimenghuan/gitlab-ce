@@ -1,16 +1,16 @@
 %p.lead
-  To register a new runner visit #{link_to 'this page ', ci_runners_path}
+  注册新 runner 请访问#{link_to '此页面', ci_runners_path}
 
 .row
   .col-md-8
-    %h5 Activated:
+    %h5 已激活的:
     %table.table
       %tr
         %th Runner ID
-        %th Runner Description
-        %th Last build
-        %th Builds Stats
-        %th Registered
+        %th Runner 描述
+        %th 最后构建
+        %th 构建统计
+        %th 注册时间
         %th
 
       - @runner_projects.each do |runner_project|

@@ -14,7 +14,7 @@
           = notification_list_item(level, @membership)
 
 - when GroupMember
-  .btn.disabled.notifications-btn.has_tooltip{title: "To change the notification level, you need to be a member of the project itself, not only its group."}
+  .btn.disabled.notifications-btn.has_tooltip{title: "要修改通知等级，需要你是项目成员，而不仅仅是群组成员。"}
     = icon('bell')
     = notification_label(@membership)
     = icon('angle-down')

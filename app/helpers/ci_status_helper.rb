@@ -23,7 +23,7 @@ module CiStatusHelper
 
   def ci_status_with_icon(status)
     content_tag :span, class: "ci-status ci-#{status}" do
-      ci_icon_for_status(status) + '&nbsp;'.html_safe + status
+      ci_icon_for_status(status) + '&nbsp;'.html_safe + ci_status_zh(status)
     end
   end
 
@@ -43,10 +43,28 @@ module CiStatusHelper
     icon(icon_name)
   end
 
+
+  def ci_status_zh(status)
+    case status
+    when 'pending'
+      '排队'
+    when 'running'
+      '运行'
+    when 'success'
+      '成功'
+    when 'failed'
+      '失败'
+    when 'canceled'
+      '取消'
+    else
+      '未知'
+    end
+  end
+
   def render_ci_status(ci_commit)
     link_to ci_status_path(ci_commit),
       class: "c#{ci_status_color(ci_commit)}",
-      title: "Build status: #{ci_commit.status}",
+      title: "构建状态：#{ci_status_zh(ci_commit.status)}",
       data: { toggle: 'tooltip', placement: 'left' } do
       ci_status_icon(ci_commit)
     end

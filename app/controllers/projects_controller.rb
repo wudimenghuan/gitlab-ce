@@ -121,7 +121,7 @@ class ProjectsController < ApplicationController
     return access_denied! unless can?(current_user, :remove_project, @project)
 
     ::Projects::DestroyService.new(@project, current_user, {}).execute
-    flash[:alert] = "Project '#{@project.name}' was deleted."
+    flash[:alert] = "项目 '#{@project.name}' 已被删除。"
 
     redirect_back_or_default(default: dashboard_projects_path, options: {})
   rescue Projects::DestroyService::DestroyError => ex

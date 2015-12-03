@@ -1,24 +1,24 @@
-- page_title @milestone.title, "Milestones"
+- page_title @milestone.title, "里程碑"
 = render "header_title"
 
 %h4.page-title
   .issue-box{ class: "issue-box-#{@milestone.closed? ? 'closed' : 'open'}" }
     - if @milestone.closed?
-      Closed
+      已关闭
     - else
-      Open
-  Milestone #{@milestone.title}
+      未关闭
+  里程碑 #{@milestone.title}
   .pull-right
     - if can?(current_user, :admin_milestones, @group)
       - if @milestone.active?
-        = link_to 'Close Milestone', group_milestone_path(@group, @milestone.safe_title, title: @milestone.title, milestone: {state_event: :close }), method: :put, class: "btn btn-sm btn-close"
+        = link_to '关闭里程碑', group_milestone_path(@group, @milestone.safe_title, title: @milestone.title, milestone: {state_event: :close }), method: :put, class: "btn btn-sm btn-close"
       - else
-        = link_to 'Reopen Milestone', group_milestone_path(@group, @milestone.safe_title, title: @milestone.title, milestone: {state_event: :activate }), method: :put, class: "btn btn-sm btn-grouped btn-reopen"
+        = link_to '重新打开里程碑', group_milestone_path(@group, @milestone.safe_title, title: @milestone.title, milestone: {state_event: :activate }), method: :put, class: "btn btn-sm btn-grouped btn-reopen"
 
 %hr
 - if @milestone.complete? && @milestone.active?
   .alert.alert-success
-    %span All issues for this milestone are closed. You may close the milestone now.
+    %span 此里程碑的所有问题都已关闭。可以选择关闭此里程碑。
 
 .description
 
@@ -26,10 +26,10 @@
   %table.table
     %thead
       %tr
-        %th Project
-        %th Open issues
-        %th State
-        %th Due date
+        %th 项目
+        %th 未关闭的问题
+        %th 状态
+        %th 到期时间
     - @milestone.milestones.each do |milestone|
       %tr
         %td
@@ -38,51 +38,51 @@
           = milestone.issues.opened.count
         %td
           - if milestone.closed?
-            Closed
+            已关闭
           - else
-            Open
+            未关闭
         %td
           = milestone.expires_at
 
 .context
   %p.lead
-    Progress:
-    #{@milestone.closed_items_count} closed
+    进度：
+    #{@milestone.closed_items_count} 已关闭
     &ndash;
-    #{@milestone.open_items_count} open
+    #{@milestone.open_items_count} 未关闭
   = milestone_progress_bar(@milestone)
 
 %ul.nav.nav-tabs
   %li.active
     = link_to '#tab-issues', 'data-toggle' => 'tab' do
-      Issues
+      问题
       %span.badge= @milestone.issue_count
   %li
     = link_to '#tab-merge-requests', 'data-toggle' => 'tab' do
-      Merge Requests
+      合并请求
       %span.badge= @milestone.merge_requests_count
   %li
     = link_to '#tab-participants', 'data-toggle' => 'tab' do
-      Participants
+      参与者
       %span.badge= @milestone.participants.count
 
   .pull-right
-    = link_to 'Browse Issues', issues_group_path(@group, milestone_title: @milestone.title), class: "btn  edit-milestone-link btn-grouped"
+    = link_to '浏览问题', issues_group_path(@group, milestone_title: @milestone.title), class: "btn  edit-milestone-link btn-grouped"
 
 .tab-content
   .tab-pane.active#tab-issues
     .row
       .col-md-6
-        = render 'issues', title: "Open", issues: @milestone.opened_issues
+        = render 'issues', title: "未关闭", issues: @milestone.opened_issues
       .col-md-6
-        = render 'issues', title: "Closed", issues: @milestone.closed_issues
+        = render 'issues', title: "已关闭", issues: @milestone.closed_issues
 
   .tab-pane#tab-merge-requests
     .row
       .col-md-6
-        = render 'merge_requests', title: "Open", merge_requests: @milestone.opened_merge_requests
+        = render 'merge_requests', title: "未关闭", merge_requests: @milestone.opened_merge_requests
       .col-md-6
-        = render 'merge_requests', title: "Closed", merge_requests: @milestone.closed_merge_requests
+        = render 'merge_requests', title: "已关闭", merge_requests: @milestone.closed_merge_requests
 
   .tab-pane#tab-participants
     %ul.bordered-list

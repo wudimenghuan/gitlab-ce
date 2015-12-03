@@ -15,7 +15,7 @@
       = render "projects/merge_requests/show/participants"
     .col-md-3
       .input-group.cross-project-reference
-        %span.slead.has_tooltip{title: 'Cross-project reference'}
+        %span.slead.has_tooltip{title: '交叉项目参考'}
           = cross_project_reference(@project, @merge_request)
         = clipboard_button
 
