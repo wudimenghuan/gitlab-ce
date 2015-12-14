@@ -1,5 +1,14 @@
 Please view this file on the master branch, on stable branches it's out of date.
 
+v 8.2.3
+  - Fix application settings cache not expiring after changes (Stan Hu)
+  - Fix Error 500s when creating global milestones with Unicode characters (Stan Hu)
+  - Update documentation for "Guest" permissions
+  - Properly convert Emoji-only comments into Award Emojis
+  - Enable devise paranoid mode to prevent user enumeration attack
+  - Webhook payload has added, modified, and removed properties for each commit
+  - Fix 500 error when creating a merge request that removes a submodule
+
 v 8.2.2
   - Fix 404 in redirection after removing a project (Stan Hu)
   - Ensure cached application settings are refreshed at startup (Stan Hu)
