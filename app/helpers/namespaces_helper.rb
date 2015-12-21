@@ -3,8 +3,8 @@ module NamespacesHelper
     groups = current_user.owned_groups + current_user.masters_groups
     users = [current_user.namespace]
 
-    group_opts = ["Groups", groups.sort_by(&:human_name).map {|g| [display_path ? g.path : g.human_name, g.id]} ]
-    users_opts = [ "Users", users.sort_by(&:human_name).map {|u| [display_path ? u.path : u.human_name, u.id]} ]
+    group_opts = ["群组", groups.sort_by(&:human_name).map {|g| [display_path ? g.path : g.human_name, g.id]} ]
+    users_opts = [ "用户", users.sort_by(&:human_name).map {|u| [display_path ? u.path : u.human_name, u.id]} ]
 
     options = []
     options << group_opts

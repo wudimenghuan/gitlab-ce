@@ -25,7 +25,7 @@ module ProjectsHelper
     default_opts = { avatar: true, name: true, size: 16, author_class: 'author', title: ":name" }
     opts = default_opts.merge(opts)
 
-    return "(deleted)" unless author
+    return "(已删除)" unless author
 
     author_html =  ""
 
@@ -172,7 +172,7 @@ module ProjectsHelper
     # In order to prevent 500 error
     # when application cannot allocate memory
     # to calculate repo size - just show 'Unknown'
-    'unknown'
+    '未知'
   end
 
   def default_url_to_repo(project = @project)
