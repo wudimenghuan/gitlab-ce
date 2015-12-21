@@ -1,21 +1,21 @@
-- page_title "History", @page.title.capitalize, "Wiki"
+- page_title "历史记录", @page.title.capitalize, "维基"
 = render "header_title"
 
 = render 'nav'
 .gray-content-block
   %h3.page-title
-    %span.light History for
     = link_to @page.title, namespace_project_wiki_path(@project.namespace, @project, @page)
+    %span.light 历史记录
 
 .table-holder
   %table.table
     %thead
       %tr
-        %th Page version
-        %th Author
-        %th Commit Message
-        %th Last updated
-        %th Format
+        %th 页面版本
+        %th 作者
+        %th 提交信息
+        %th 最后更新
+        %th 格式
     %tbody
       - @page.versions.each_with_index do |version, index|
         - commit = version

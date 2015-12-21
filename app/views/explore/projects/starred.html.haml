@@ -12,6 +12,6 @@
       = render 'explore/projects/dropdown'
     .oneline
       %i.fa.fa-star
-      See most starred projects
+      查看最多星标的项目
   = render 'projects', projects: @starred_projects
   = paginate @starred_projects, theme: 'gitlab'

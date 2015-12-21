@@ -1,3 +1,4 @@
+#encoding: utf-8
 module NotificationsHelper
   include IconsHelper
 
@@ -16,15 +17,15 @@ module NotificationsHelper
   def notification_list_item(notification_level, user_membership)
     case notification_level
     when Notification::N_DISABLED
-      update_notification_link(Notification::N_DISABLED, user_membership, 'Disabled', 'microphone-slash')
+      update_notification_link(Notification::N_DISABLED, user_membership, '关闭', 'microphone-slash')
     when Notification::N_PARTICIPATING
-      update_notification_link(Notification::N_PARTICIPATING, user_membership, 'Participate', 'volume-up')
+      update_notification_link(Notification::N_PARTICIPATING, user_membership, '参与', 'volume-up')
     when Notification::N_WATCH
-      update_notification_link(Notification::N_WATCH, user_membership, 'Watch', 'eye')
+      update_notification_link(Notification::N_WATCH, user_membership, '关注', 'eye')
     when Notification::N_MENTION
-      update_notification_link(Notification::N_MENTION, user_membership, 'On mention', 'at')
+      update_notification_link(Notification::N_MENTION, user_membership, '被提及', 'at')
     when Notification::N_GLOBAL
-      update_notification_link(Notification::N_GLOBAL, user_membership, 'Global', 'globe')
+      update_notification_link(Notification::N_GLOBAL, user_membership, '全局', 'globe')
     else
       # do nothing
     end

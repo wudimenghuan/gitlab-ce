@@ -1,3 +1,4 @@
+#encoding: utf-8
 class Admin::UsersController < Admin::ApplicationController
   before_action :user, except: [:index, :new, :create]
 
@@ -33,40 +34,40 @@ class Admin::UsersController < Admin::ApplicationController
 
   def block
     if user.block
-      redirect_back_or_admin_user(notice: "Successfully blocked")
+      redirect_back_or_admin_user(notice: "禁用成功")
     else
-      redirect_back_or_admin_user(alert: "Error occurred. User was not blocked")
+      redirect_back_or_admin_user(alert: "发生错误。用户未被禁止")
     end
   end
 
   def unblock
     if user.activate
-      redirect_back_or_admin_user(notice: "Successfully unblocked")
+      redirect_back_or_admin_user(notice: "启用成功")
     else
-      redirect_back_or_admin_user(alert: "Error occurred. User was not unblocked")
+      redirect_back_or_admin_user(alert: "发生错误。用户未被启用")
     end
   end
 
   def unlock
     if user.unlock_access!
-      redirect_back_or_admin_user(alert: "Successfully unlocked")
+      redirect_back_or_admin_user(alert: "解除锁定成功")
     else
-      redirect_back_or_admin_user(alert: "Error occurred. User was not unlocked")
+      redirect_back_or_admin_user(alert: "发生错误。用户未被解除锁定")
     end
   end
 
   def confirm
     if user.confirm
-      redirect_back_or_admin_user(notice: "Successfully confirmed")
+      redirect_back_or_admin_user(notice: "确认成功")
     else
-      redirect_back_or_admin_user(alert: "Error occurred. User was not confirmed")
+      redirect_back_or_admin_user(alert: "发生错误。用户未被确认")
     end
   end
 
   def disable_two_factor
     user.disable_two_factor!
     redirect_to admin_user_path(user),
-      notice: 'Two-factor Authentication has been disabled for this user'
+      notice: '此用户已禁止两步验证'
   end
 
   def create
@@ -83,7 +84,7 @@ class Admin::UsersController < Admin::ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to [:admin, @user], notice: 'User was successfully created.' }
+        format.html { redirect_to [:admin, @user], notice: '用户创建成功。' }
         format.json { render json: @user, status: :created, location: @user }
       else
         format.html { render "new" }
@@ -105,7 +106,7 @@ class Admin::UsersController < Admin::ApplicationController
     respond_to do |format|
       user.skip_reconfirmation!
       if user.update_attributes(user_params_with_pass)
-        format.html { redirect_to [:admin, user], notice: 'User was successfully updated.' }
+        format.html { redirect_to [:admin, user], notice: '用户更新成功。' }
         format.json { head :ok }
       else
         # restore username to keep form action url.
@@ -132,7 +133,7 @@ class Admin::UsersController < Admin::ApplicationController
     user.update_secondary_emails!
 
     respond_to do |format|
-      format.html { redirect_back_or_admin_user(notice: "Successfully removed email.") }
+      format.html { redirect_back_or_admin_user(notice: "删除电子邮箱成功。") }
       format.js { render nothing: true }
     end
   end

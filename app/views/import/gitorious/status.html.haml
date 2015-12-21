@@ -28,10 +28,10 @@
             - if project.import_status == 'finished'
               %span
                 %i.fa.fa-check
-                done
+                完成
             - elsif project.import_status == 'started'
               %i.fa.fa-spinner.fa-spin
-              started
+              已开始
             - else
               = project.human_import_status_name
 
@@ -42,7 +42,7 @@
           %td.import-target
             = repo.full_name
           %td.import-actions.job-status
-            = button_tag "Import", class: "btn js-add-to-import"
+            = button_tag "导入", class: "btn js-add-to-import"
 
 :javascript
   new ImporterStatus("#{jobs_import_gitorious_path}", "#{import_gitorious_path}");

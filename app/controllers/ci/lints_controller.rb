@@ -8,7 +8,7 @@ module Ci
     def create
       if params[:content].blank?
         @status = false
-        @error = "Please provide content of .gitlab-ci.yml"
+        @error = "请提供 .gitlab-ci.yml 文件内容"
       else
         @config_processor = Ci::GitlabCiYamlProcessor.new params[:content]
         @stages = @config_processor.stages
@@ -19,7 +19,7 @@ module Ci
       @error = e.message
       @status = false
     rescue
-      @error = "Undefined error"
+      @error = "未定义错误"
       @status = false
     end
   end

@@ -4,49 +4,49 @@
       = link_to search_filter_path(scope: 'blobs') do
         = icon('code fw')
         %span
-          Code
+          代码
           %span.badge
             = @search_results.blobs_count
     %li{class: ("active" if @scope == 'issues')}
       = link_to search_filter_path(scope: 'issues') do
         = icon('exclamation-circle fw')
         %span
-          Issues
+          问题
           %span.badge
             = @search_results.issues_count
     %li{class: ("active" if @scope == 'merge_requests')}
       = link_to search_filter_path(scope: 'merge_requests') do
         = icon('tasks fw')
         %span
-          Merge requests
+          合并请求
           %span.badge
             = @search_results.merge_requests_count
     %li{class: ("active" if @scope == 'milestones')}
       = link_to search_filter_path(scope: 'milestones') do
         = icon('clock-o fw')
         %span
-          Milestones
+          里程碑
           %span.badge
             = @search_results.milestones_count
     %li{class: ("active" if @scope == 'notes')}
       = link_to search_filter_path(scope: 'notes') do
         = icon('comments fw')
         %span
-          Comments
+          评论
           %span.badge
             = @search_results.notes_count
     %li{class: ("active" if @scope == 'wiki_blobs')}
       = link_to search_filter_path(scope: 'wiki_blobs') do
         = icon('book fw')
         %span
-          Wiki
+          维基
           %span.badge
             = @search_results.wiki_blobs_count
     %li{class: ("active" if @scope == 'commits')}
       = link_to search_filter_path(scope: 'commits') do
         = icon('history fw')
         %span
-          Commits
+          提交
           %span.badge
             = @search_results.commits_count
 
@@ -55,14 +55,14 @@
       = link_to search_filter_path(scope: 'snippet_blobs', snippets: true, group_id: nil, project_id: nil) do
         = icon('code fw')
         %span
-          Snippet Contents
+          代码片段内容
           %span.badge
             = @search_results.snippet_blobs_count
     %li{class: ("active" if @scope == 'snippet_titles')}
       = link_to search_filter_path(scope: 'snippet_titles', snippets: true, group_id: nil, project_id: nil) do
         = icon('book fw')
         %span
-          Titles and Filenames
+          标题和文件名
           %span.badge
             = @search_results.snippet_titles_count
 
@@ -71,28 +71,28 @@
       = link_to search_filter_path(scope: 'projects') do
         = icon('bookmark fw')
         %span
-          Projects
+          项目
           %span.badge
             = @search_results.projects_count
     %li{class: ("active" if @scope == 'issues')}
       = link_to search_filter_path(scope: 'issues') do
         = icon('exclamation-circle fw')
         %span
-          Issues
+          问题
           %span.badge
             = @search_results.issues_count
     %li{class: ("active" if @scope == 'merge_requests')}
       = link_to search_filter_path(scope: 'merge_requests') do
         = icon('tasks fw')
         %span
-          Merge requests
+          合并请求
           %span.badge
             = @search_results.merge_requests_count
     %li{class: ("active" if @scope == 'milestones')}
       = link_to search_filter_path(scope: 'milestones') do
         = icon('clock-o fw')
         %span
-          Milestones
+          里程碑
           %span.badge
             = @search_results.milestones_count
 

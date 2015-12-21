@@ -26,7 +26,7 @@
   - if @commit
     = render 'projects/branches/commit', commit: @commit, project: @project
   - else
-    Cant find HEAD commit for this tag
+    无法找到该标签的 HEAD 提交
 
 
 .append-bottom-default.prepend-top-default
@@ -36,4 +36,4 @@
         = preserve do
           = markdown @release.description
   - else
-    This tag has no release notes.
+    此标签无发布备注。

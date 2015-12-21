@@ -2,13 +2,14 @@
   = render @merge_requests
   - if @merge_requests.blank?
     %li
-      .nothing-here-block No merge requests to show
+      .nothing-here-block 没有合并请求显示
 
 - if @merge_requests.present?
   .issuable-filter-count
     %span.pull-right
+      此过滤器下
       = @merge_requests.total_count
-      merge requests for this filter
+      个合并请求
 
   = paginate @merge_requests, theme: "gitlab"
 

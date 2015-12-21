@@ -1,4 +1,4 @@
-# encoding: utf-8
+#encoding: utf-8
 module CommitsHelper
   # Returns a link to the commit author. If the author has a matching user and
   # is a member of the current @project it will link to the team member page.
@@ -168,7 +168,7 @@ module CommitsHelper
                                   tree_join(commit_sha, diff.new_path)),
       class: 'btn btn-small view-file js-view-file'
     ) do
-      raw('View file @') + content_tag(:span, commit_sha[0..6],
+      raw('查看文件 @') + content_tag(:span, commit_sha[0..6],
                                        class: 'commit-short-id')
     end
   end

@@ -82,7 +82,7 @@
       - if @build.coverage
         .build-widget
           %h4.title
-            Test coverage
+            测试覆盖
           %h1 #{@build.coverage}%
 
       - if current_user && can?(current_user, :download_build_artifacts, @project) && @build.download_url
@@ -120,15 +120,15 @@
       - if @build.trigger_request
         .build-widget
           %h4.title
-            Trigger
+            触发
 
           %p
-            %span.attr-name Token:
+            %span.attr-name 授权码：
             #{@build.trigger_request.trigger.short_token}
 
           - if @build.trigger_request.variables
             %p
-              %span.attr-name Variables:
+              %span.attr-name 变量：
 
             %code
               - @build.trigger_request.variables.each do |key, value|
@@ -175,7 +175,7 @@
                     - else
                       %span ##{build.id}
 
-                %td.status= build.status
+                %td.status= ci_status_zh(build.status)
 
 
   :javascript

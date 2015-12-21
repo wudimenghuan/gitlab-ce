@@ -1,3 +1,4 @@
+#encoding: utf-8
 class Projects::ApplicationController < ApplicationController
   before_action :project
   before_action :repository

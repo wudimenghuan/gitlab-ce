@@ -1,3 +1,4 @@
+#encoding: utf-8
 module BlobHelper
   def highlight(blob_name, blob_content, nowrap: false, continue: false)
     @formatter ||= Rouge::Formatters::HTMLGitlab.new(

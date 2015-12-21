@@ -3,7 +3,7 @@
 
 = content_for :meta_tags do
   - if current_user
-    = auto_discovery_link_tag(:atom, group_url(@group, format: :atom, private_token: current_user.private_token), title: "#{@group.name} activity")
+    = auto_discovery_link_tag(:atom, group_url(@group, format: :atom, private_token: current_user.private_token), title: "#{@group.name}活动")
 
 .dashboard
   .header-with-avatar.clearfix
@@ -26,7 +26,7 @@
           - if current_user
             = render "events/event_last_push", event: @last_push
             .pull-right
-              = link_to group_path(@group, { format: :atom, private_token: current_user.private_token }), title: "Feed", class: 'btn rss-btn' do
+              = link_to group_path(@group, { format: :atom, private_token: current_user.private_token }), title: "动态", class: 'btn rss-btn' do
                 %i.fa.fa-rss
 
             = render 'shared/event_filter'
@@ -38,4 +38,4 @@
         = render "projects", projects: @projects
   - else
     %p
-      This group does not have public projects
+      此群组没有公开项目

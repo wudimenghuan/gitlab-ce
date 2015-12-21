@@ -13,7 +13,7 @@ class @UsersSelect
       firstUser = $(select).data('first-user')
 
       $(select).select2
-        placeholder: "Search for a user"
+        placeholder: "搜索一个用户"
         multiple: $(select).hasClass('multiselect')
         minimumInputLength: 0
         query: (query) =>

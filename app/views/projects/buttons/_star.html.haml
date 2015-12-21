@@ -1,5 +1,5 @@
 - if current_user
-  = link_to toggle_star_namespace_project_path(@project.namespace, @project), class: 'btn star-btn toggle-star has_tooltip', method: :post, remote: true, title: "Star project" do
+  = link_to toggle_star_namespace_project_path(@project.namespace, @project), class: 'btn star-btn toggle-star has_tooltip', method: :post, remote: true, title: "星标项目" do
     = icon('star fw')
     %span.count
       = @project.star_count
@@ -9,11 +9,11 @@
       $(this).replaceWith(data.html);
     })
     .on('ajax:error', function (e, xhr, status, error) {
-      new Flash('Star toggle failed. Try again later.', 'alert');
+      new Flash('切换星标失败。请稍后重试。', 'alert');
     });
 
 - else
-  = link_to new_user_session_path, class: 'btn has_tooltip star-btn', title: 'You must sign in to star a project' do
+  = link_to new_user_session_path, class: 'btn has_tooltip star-btn', title: '必须登入后才能给项目加注星标' do
     = icon('star fw')
     %span.count
       = @project.star_count

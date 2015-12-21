@@ -1,8 +1,8 @@
-- page_title "Notifications"
+- page_title "通知"
 - header_title page_title, profile_notifications_path
 
 .gray-content-block.top-block
-  These are your global notification settings.
+  这里是全局通知设置。
 
 .prepend-top-default
 = form_for @user, url: profile_notifications_path, method: :put, html: { class: 'update-notifications form-horizontal global-notifications-form' } do |f|
@@ -67,10 +67,10 @@
 
   .col-md-6
     %p
-      To specify the notification level per project of a group you belong to,
+      给所属群组的项目指定通知等级，
       %br
-      you need to be a member of the project itself, not only its group.
-    %h4 Projects:
+      需要自己属于项目成员，而不仅仅是群组成员。
+    %h4 项目：
     %ul.bordered-list
       - @project_members.each do |project_member|
         - notification = Notification.new(project_member)

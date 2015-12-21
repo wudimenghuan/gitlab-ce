@@ -1,13 +1,13 @@
-- page_title "Applications"
-%h3.page-title Your applications
-%p= link_to 'New Application', new_oauth_application_path, class: 'btn btn-success'
+- page_title "应用"
+%h3.page-title 应用
+%p= link_to '新应用', new_oauth_application_path, class: 'btn btn-success'
 
 .table-holder
   %table.table.table-striped
     %thead
       %tr
-        %th Name
-        %th Callback URL
+        %th 名称
+        %th 回调链接
         %th
         %th
     %tbody
@@ -15,5 +15,5 @@
         %tr{:id => "application_#{application.id}"}
           %td= link_to application.name, oauth_application_path(application)
           %td= application.redirect_uri
-          %td= link_to 'Edit', edit_oauth_application_path(application), class: 'btn btn-link'
+          %td= link_to '编辑', edit_oauth_application_path(application), class: 'btn btn-link'
           %td= render 'delete_form', application: application
