@@ -127,6 +127,7 @@ Settings.omniauth['auto_link_ldap_user'] = false if Settings.omniauth['auto_link
 
 Settings.omniauth['providers']  ||= []
 
+
 Settings['shared'] ||= Settingslogic.new({})
 Settings.shared['path'] = File.expand_path(Settings.shared['path'] || "shared", Rails.root)
 
