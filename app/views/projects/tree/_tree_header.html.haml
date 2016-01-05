@@ -20,16 +20,24 @@
           %li
             = link_to namespace_project_new_blob_path(@project.namespace, @project, @id), title: '创建文件', id: 'new-file-link' do
               = icon('pencil fw')
-              创建文件
+              新文件
           %li
             = link_to '#modal-upload-blob', { 'data-target' => '#modal-upload-blob', 'data-toggle' => 'modal'} do
               = icon('file fw')
               上传文件
-          %li.divider
           %li
             = link_to '#modal-create-new-dir', { 'data-target' => '#modal-create-new-dir', 'data-toggle' => 'modal'} do
               = icon('folder fw')
               新目录
+          %li.divider
+          %li
+            = link_to new_namespace_project_branch_path(@project.namespace, @project) do
+              = icon('code-fork fw')
+              新分支
+          %li
+            = link_to new_namespace_project_tag_path(@project.namespace, @project) do
+              = icon('tags fw')
+              新标签
   - elsif !on_top_of_branch?
     %li
       %span.btn.btn-sm.add-to-tree.disabled.has_tooltip{title: "你只可以在分支上增加文件。", data: {container: 'body'}}

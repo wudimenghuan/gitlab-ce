@@ -1,7 +1,0 @@
-<p>你好 <%= @resource.email %>!</p>
-
-<p>由于账号被试图攻击，你的账号被锁定。</p>
-
-<p>点击下面的链接解锁你的账号：</p>
-
-<p><%= link_to '解锁账号', unlock_url(@resource, unlock_token: @token) %></p>
