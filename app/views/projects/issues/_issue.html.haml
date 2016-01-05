@@ -9,11 +9,11 @@
     %ul.controls.light
       - if issue.closed?
         %li
-          CLOSED
+          已关闭
 
       - if issue.assignee
         %li
-          = link_to_member(@project, issue.assignee, name: false, title: "Assigned to :name")
+          = link_to_member(@project, issue.assignee, name: false, title: "指派给 :name")
 
       - note_count = issue.notes.user.count
       - if note_count > 0
@@ -29,8 +29,8 @@
 
   .issue-info
     #{issue.to_reference} &middot;
-    opened #{time_ago_with_tooltip(issue.created_at, placement: 'bottom')}
-    by #{link_to_member(@project, issue.author, avatar: false)}
+    #{link_to_member(@project, issue.author, avatar: false)}
+    在 #{time_ago_with_tooltip(issue.created_at, placement: 'bottom')} 开启
     - if issue.milestone
       &nbsp;
       = link_to namespace_project_issues_path(issue.project.namespace, issue.project, milestone_title: issue.milestone.title) do

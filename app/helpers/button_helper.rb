@@ -35,7 +35,7 @@ module ButtonHelper
         clone: project.http_url_to_repo,
         container: 'body',
         html: 'true',
-        title: "Set a password on your account<br>to pull or push via #{protocol}"
+        title: "在账户中设置密码<br>然后再使用 #{protocol} 拉取和推送。"
       },
       type: :button
   end
@@ -51,7 +51,7 @@ module ButtonHelper
         clone: project.ssh_url_to_repo,
         container: 'body',
         html: 'true',
-        title: 'Add an SSH key to your profile<br>to pull or push via SSH.'
+        title: '在个人资料中增加 SSH 密钥<br>然后再使用 SSH 拉取和推送。'
       },
       type: :button
   end

@@ -1,27 +1,27 @@
-- page_title "Applications"
+- page_title "应用"
 - header_title page_title, applications_profile_path
 
 .gray-content-block.top-block
   - if user_oauth_applications?
-    Manage applications that can use GitLab as an OAuth provider,
-    and applications that you've authorized to use your account.
+    管理使用 GitLab 作为 OAuth 提供者的应用，
+    和授权使用你的账户的应用。
   - else
-    Manage applications that you've authorized to use your account.
+    管理授权使用你的账户的应用。
 
 - if user_oauth_applications?
   .oauth-applications
     %h3
-      Your applications
+      你的应用
       .pull-right
-        = link_to 'New Application', new_oauth_application_path, class: 'btn btn-success'
+        = link_to '新应用', new_oauth_application_path, class: 'btn btn-success'
     - if @applications.any?
       .table-holder
         %table.table.table-striped
           %thead
             %tr
-              %th Name
-              %th Callback URL
-              %th Clients
+              %th 名称
+              %th 回调链接
+              %th 客户端
               %th
               %th
           %tbody
@@ -32,22 +32,22 @@
                   - application.redirect_uri.split.each do |uri|
                     %div= uri
                 %td= application.access_tokens.count
-                %td= link_to 'Edit', edit_oauth_application_path(application), class: 'btn btn-link btn-sm'
+                %td= link_to '编辑', edit_oauth_application_path(application), class: 'btn btn-link btn-sm'
                 %td= render 'doorkeeper/applications/delete_form', application: application
 
 .oauth-authorized-applications.prepend-top-20
   - if user_oauth_applications?
     %h3
-      Authorized applications
+      已认证应用
 
   - if @authorized_tokens.any?
     .table-holder
       %table.table.table-striped
         %thead
           %tr
-            %th Name
-            %th Authorized At
-            %th Scope
+            %th 名称
+            %th 认证时间
+            %th 范围
             %th
         %tbody
           - @authorized_apps.each do |app|
@@ -60,11 +60,11 @@
           - @authorized_anonymous_tokens.each do |token|
             %tr
               %td
-                Anonymous
+                匿名
                 %div.help-block
-                  %em Authorization was granted by entering your username and password in the application.
+                  %em 获准在此应用程序中输入你的用户名和密码的授权。
               %td= token.created_at
               %td= token.scopes
               %td= render 'doorkeeper/authorized_applications/delete_form', token: token
   - else
-    %p.light You don't have any authorized applications
+    %p.light 没有认证任何应用

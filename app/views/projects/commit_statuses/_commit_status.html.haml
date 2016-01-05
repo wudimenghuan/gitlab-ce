@@ -25,14 +25,14 @@
     - if commit_status.ref
       = link_to commit_status.ref, namespace_project_commits_path(commit_status.project.namespace, commit_status.project, commit_status.ref)
     - else
-      .light none
+      .light 无
 
   - if defined?(runner) && runner
     %td
       - if commit_status.try(:runner)
         = runner_link(commit_status.runner)
       - else
-        .light none
+        .light 无
 
   - if defined?(stage) && stage
     %td
@@ -67,13 +67,13 @@
   %td
     .pull-right
       - if current_user && can?(current_user, :download_build_artifacts, commit_status.project) && commit_status.download_url
-        = link_to commit_status.download_url, title: 'Download artifacts' do
+        = link_to commit_status.download_url, title: '下载附件' do
           %i.fa.fa-download
       - if current_user && can?(current_user, :manage_builds, commit_status.project)
         - if commit_status.active?
           - if commit_status.cancel_url
-            = link_to commit_status.cancel_url, method: :post, title: 'Cancel' do
+            = link_to commit_status.cancel_url, method: :post, title: '取消' do
               %i.fa.fa-remove.cred
         - elsif defined?(allow_retry) && allow_retry && commit_status.retry_url
-          = link_to commit_status.retry_url, method: :post, title: 'Retry' do
+          = link_to commit_status.retry_url, method: :post, title: '重试' do
             %i.fa.fa-repeat

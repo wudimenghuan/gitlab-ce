@@ -39,7 +39,7 @@
            -F ref=REF_NAME \
            #{builds_trigger_url(@project.id)}
   %h3
-    Use .gitlab-ci.yml
+    使用 .gitlab-ci.yml
 
   %p.light
     Copy the snippet to
@@ -54,7 +54,7 @@
         script:
           - "curl -X POST -F token=TOKEN -F ref=REF_NAME #{builds_trigger_url(@project.id)}"
   %h3
-    Pass build variables
+    通过构建变量传递
 
   %p.light
     Add

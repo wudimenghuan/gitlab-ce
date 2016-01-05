@@ -9,24 +9,24 @@
         = link_to user.name, user_path(user)
       %span.cgray= user.username
       - if user == current_user
-        %span.label.label-success It's you
+        %span.label.label-success 自己
       - if user.blocked?
         %label.label.label-danger
-          %strong Blocked
+          %strong 被禁用
     - else
       = image_tag avatar_icon(member.invite_email, 24), class: "avatar s24", alt: ''
       %strong
         = member.invite_email
       %span.cgray
-        invited
+        邀请时间
         - if member.created_by
-          by
+          由
           = link_to member.created_by.name, user_path(member.created_by)
         = time_ago_with_tooltip(member.created_at)
 
       - if show_controls && can?(current_user, :admin_group_member, @group)
-        = link_to resend_invite_group_group_member_path(@group, member), method: :post, class: "btn-xs btn", title: 'Resend invite' do
-          Resend invite
+        = link_to resend_invite_group_group_member_path(@group, member), method: :post, class: "btn-xs btn", title: '重发邀请' do
+          重发邀请
 
   - if should_user_see_group_roles?(current_user, @group)
     %span.pull-right

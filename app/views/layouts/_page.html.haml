@@ -2,7 +2,7 @@
   = render "layouts/broadcast"
   .sidebar-wrapper.nicescroll{ class: nav_sidebar_class }
     .header-logo
-      = link_to root_path, class: 'home', title: 'Dashboard', id: 'js-shortcuts-home' do
+      = link_to root_path, class: 'home', title: '仪表盘', id: 'js-shortcuts-home' do
         = brand_header_logo
         .gitlab-text-container
           %h3 GitLab
@@ -17,8 +17,8 @@
     .collapse-nav
       = render partial: 'layouts/collapse_button'
     - if current_user
-      = link_to current_user, class: 'sidebar-user', title: "Profile" do
-        = image_tag avatar_icon(current_user, 60), alt: 'Profile', class: 'avatar avatar s36'
+      = link_to current_user, class: 'sidebar-user', title: "个人资料" do
+        = image_tag avatar_icon(current_user, 60), alt: '个人资料', class: 'avatar avatar s36'
         .username
           = current_user.username
   .content-wrapper

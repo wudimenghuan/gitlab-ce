@@ -76,19 +76,19 @@
 %ul.center-top-menu.no-top.no-bottom.bottom-border.wide
   %li.active
     = link_to "#activity", 'data-toggle' => 'tab' do
-      Activity
+      活动
   - if @groups.any?
     %li
       = link_to "#groups", 'data-toggle' => 'tab' do
-        Groups
+        群组
   - if @contributed_projects.present?
     %li
       = link_to "#contributed", 'data-toggle' => 'tab' do
-        Contributed projects
+        贡献项目
   - if @projects.present?
     %li
       = link_to "#personal", 'data-toggle' => 'tab' do
-        Personal projects
+        个人项目
 
 .tab-content
   .tab-pane.active#activity

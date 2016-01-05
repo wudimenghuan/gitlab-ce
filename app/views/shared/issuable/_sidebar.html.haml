@@ -3,26 +3,26 @@
     .block.assignee
       .title
         %label
-          Assignee
+          指派
         - if can?(current_user, :"admin_#{issuable.to_ability_name}", @project)
           .pull-right
-            = link_to 'Edit', '#', class: 'edit-link'
+            = link_to '编辑', '#', class: 'edit-link'
       .value
         - if issuable.assignee
           %strong= link_to_member(@project, issuable.assignee, size: 24)
         - else
-          .light None
+          .light 无
 
       .selectbox
-        = users_select_tag("#{issuable.class.table_name.singularize}[assignee_id]", placeholder: 'Select assignee', class: 'custom-form-control js-select2 js-assignee', selected: issuable.assignee_id, project: @target_project, null_user: true, current_user: true, first_user: true)
+        = users_select_tag("#{issuable.class.table_name.singularize}[assignee_id]", placeholder: '选择指派', class: 'custom-form-control js-select2 js-assignee', selected: issuable.assignee_id, project: @target_project, null_user: true, current_user: true, first_user: true)
 
     .block.milestone
       .title
         %label
-          Milestone
+          里程碑
         - if can?(current_user, :"admin_#{issuable.to_ability_name}", @project)
           .pull-right
-            = link_to 'Edit', '#', class: 'edit-link'
+            = link_to '编辑', '#', class: 'edit-link'
       .value
         - if issuable.milestone
           %span.back-to-milestone
@@ -31,32 +31,32 @@
                 = icon('clock-o')
                 = issuable.milestone.title
         - else
-          .light None
+          .light 无
       .selectbox
-        = f.select(:milestone_id, milestone_options(issuable), { include_blank: true }, { class: 'select2 select2-compact js-select2 js-milestone', data: { placeholder: 'Select milestone' }})
+        = f.select(:milestone_id, milestone_options(issuable), { include_blank: true }, { class: 'select2 select2-compact js-select2 js-milestone', data: { placeholder: '选择里程碑' }})
         = hidden_field_tag :issuable_context
         = f.submit class: 'btn hide'
 
     - if issuable.project.labels.any?
       .block
         .title
-          %label Labels
+          %label 标记
           - if can?(current_user, :"admin_#{issuable.to_ability_name}", @project)
             .pull-right
-              = link_to 'Edit', '#', class: 'edit-link'
+              = link_to '编辑', '#', class: 'edit-link'
         .value.issuable-show-labels
           - if issuable.labels.any?
             - issuable.labels.each do |label|
               = link_to_label(label)
           - else
-            .light None
+            .light 无
         .selectbox
           = f.collection_select :label_ids, issuable.project.labels.all, :id, :name,
-            { selected: issuable.label_ids }, multiple: true, class: 'select2 js-select2', data: { placeholder: "Select labels" }
+            { selected: issuable.label_ids }, multiple: true, class: 'select2 js-select2', data: { placeholder: "选择标记" }
 
     .block
       .title
-        Cross-project reference
+        交叉项目参考
       .cross-project-reference
         %span#cross-project-reference
           = cross_project_reference(@project, issuable)
@@ -68,15 +68,15 @@
       - subscribed = issuable.subscribed?(current_user)
       .block.light
         .title
-          %label.light Notifications
+          %label.light 通知
         - subscribtion_status = subscribed ? 'subscribed' : 'unsubscribed'
         %button.btn.btn-block.btn-gray.subscribe-button{:type => 'button'}
-          %span= subscribed ? 'Unsubscribe' : 'Subscribe'
+          %span= subscribed ? '取消订阅' : '订阅'
         .subscription-status{data: {status: subscribtion_status}}
           .unsubscribed{class: ( 'hidden' if subscribed )}
-            You're not receiving notifications from this thread.
+            你将不会再收到此主题的通知。
           .subscribed{class: ( 'hidden' unless subscribed )}
-            You're receiving notifications because you're subscribed to this thread.
+            因为你订阅了本主题，将会收到相关通知。
 
   :javascript
     new Subscription("#{toggle_subscription_path(issuable)}");

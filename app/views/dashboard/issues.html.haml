@@ -1,8 +1,8 @@
-- page_title "Issues"
-- header_title  "Issues", issues_dashboard_path(assignee_id: current_user.id)
+- page_title "问题"
+- header_title  "问题", issues_dashboard_path(assignee_id: current_user.id)
 = content_for :meta_tags do
   - if current_user
-    = auto_discovery_link_tag(:atom, issues_dashboard_url(format: :atom, private_token: current_user.private_token), title: "#{current_user.name} issues")
+    = auto_discovery_link_tag(:atom, issues_dashboard_url(format: :atom, private_token: current_user.private_token), title: "#{current_user.name} 问题")
 
 .project-issuable-filter
   .controls
@@ -12,12 +12,12 @@
           = link_to issues_dashboard_url(format: :atom, private_token: current_user.private_token), class: 'btn' do
             %i.fa.fa-rss
 
-    = render 'shared/new_project_item_select', path: 'issues/new', label: "New Issue"
+    = render 'shared/new_project_item_select', path: 'issues/new', label: "新问题"
 
   = render 'shared/issuable/filter', type: :issues
 
 .gray-content-block.second-block
-  List all issues from all projects you have access to.
+  列出你能访问到的所有项目的所有问题。
 
 .prepend-top-default
   = render 'shared/issues'

@@ -13,7 +13,7 @@
 = nested_form_for @project, url: url_for(controller: 'projects/variables', action: 'update'), html: { class: 'form-horizontal' }  do |f|
   - if @project.errors.any?
     #error_explanation
-      %p.lead= "#{pluralize(@project.errors.count, "error")} prohibited this project from being saved:"
+      %p.lead= "发生 #{pluralize(@project.errors.count, "个错误', '个错误")}，无法保存："
       .alert.alert-error
         %ul
           - @project.errors.full_messages.each do |msg|

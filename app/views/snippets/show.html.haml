@@ -10,5 +10,5 @@
         = @snippet.file_name
       .file-actions.hidden-xs
         = clipboard_button(clipboard_target: ".blob-content[data-blob-id='#{@snippet.id}']")
-        = link_to 'Raw', raw_snippet_path(@snippet), class: "btn btn-sm", target: "_blank"
+        = link_to '原文件', raw_snippet_path(@snippet), class: "btn btn-sm", target: "_blank"
     = render 'shared/snippets/blob'

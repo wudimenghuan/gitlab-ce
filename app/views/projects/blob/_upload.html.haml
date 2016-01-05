@@ -18,7 +18,7 @@
 
           .form-actions
             = button_tag button_title, class: 'btn btn-small btn-create btn-upload-file', id: 'submit-all'
-            = link_to "Cancel", '#', class: "btn btn-cancel", "data-dismiss" => "modal"
+            = link_to "取消", '#', class: "btn btn-cancel", "data-dismiss" => "modal"
 
 :javascript
   disableButtonIfEmptyField($('.js-upload-blob-form').find('.js-commit-message'), '.btn-upload-file');

@@ -7,9 +7,9 @@
     %span.pull-right.hidden-xs
       = link_to new_group_path, class: "btn btn-new" do
         %i.fa.fa-plus
-        New Group
+        新群组
   .oneline
-    Group members have access to all group projects.
+    群组成员可以访问群组的所有项目。
 
 %ul.content-list
   - @group_members.each do |group_member|

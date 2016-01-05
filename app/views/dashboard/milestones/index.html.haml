@@ -1,20 +1,20 @@
-- page_title "Milestones"
-- header_title "Milestones", dashboard_milestones_path
+- page_title "里程碑"
+- header_title "里程碑", dashboard_milestones_path
 
 .project-issuable-filter
   .controls
-    = render 'shared/new_project_item_select', path: 'milestones/new', label: "New Milestone", include_groups: true
+    = render 'shared/new_project_item_select', path: 'milestones/new', label: "新里程碑", include_groups: true
 
   = render 'shared/milestones_filter'
 
 .gray-content-block
-  List all milestones from all projects you have access to.
+  所有可以访问的项目的所有里程碑列表。
 
 .milestones
   %ul.content-list
     - if @milestones.blank?
       %li
-        .nothing-here-block No milestones to show
+        .nothing-here-block 没有里程碑显示
     - else
       - @milestones.each do |milestone|
         = render 'milestone', milestone: milestone

@@ -4,8 +4,8 @@ class @ProjectSelect
       @groupId = $(select).data('group-id')
       @includeGroups = $(select).data('include-groups')
 
-      placeholder = "Search for project"
-      placeholder += " or group" if @includeGroups
+      placeholder = "搜索项目"
+      placeholder += "或群组" if @includeGroups
 
       $(select).select2
         placeholder: placeholder
