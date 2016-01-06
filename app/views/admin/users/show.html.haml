@@ -108,13 +108,13 @@
       - unless @user.confirmed?
         .panel.panel-info
           .panel-heading
-            Confirm user
+            确认用户
           .panel-body
             - if @user.unconfirmed_email.present?
               - email = " (#{@user.unconfirmed_email})"
-            %p This user has an unconfirmed email address#{email}. You may force a confirmation.
+            %p 此用户有一个未确认的电子邮箱地址 #{email}。你可以强制确认。
             %br
-            = link_to 'Confirm user', confirm_admin_user_path(@user), method: :put, class: "btn btn-info", data: { confirm: 'Are you sure?' }
+            = link_to '确认用户', confirm_admin_user_path(@user), method: :put, class: "btn btn-info", data: { confirm: '确认要继续么？' }
       - if @user.blocked?
         .panel.panel-info
           .panel-heading
