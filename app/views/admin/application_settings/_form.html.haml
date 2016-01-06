@@ -146,21 +146,21 @@
         = f.number_field :max_artifacts_size, class: 'form-control'
 
   %fieldset
-    %legend Spam and Anti-bot Protection
+    %legend Spam 与防机器人保护
     .form-group
       .col-sm-offset-2.col-sm-10
         .checkbox
           = f.label :recaptcha_enabled do
             = f.check_box :recaptcha_enabled
-            Enable reCAPTCHA
-          %span.help-block#recaptcha_help_block Helps preventing bots from creating accounts
+            开启 reCAPTCHA
+          %span.help-block#recaptcha_help_block 用于阻止创建账户机器人
 
     .form-group
       = f.label :recaptcha_site_key, 'reCAPTCHA Site Key', class: 'control-label col-sm-2'
       .col-sm-10
         = f.text_field :recaptcha_site_key, class: 'form-control'
         .help-block
-          Generate site and private keys here:
+          在后面的网址生成网站密钥 (Site Key) 和私钥 (Private Key)：
           %a{ href: 'http://www.google.com/recaptcha', target: 'blank'} http://www.google.com/recaptcha
     .form-group
       = f.label :recaptcha_private_key, 'reCAPTCHA Private Key', class: 'control-label col-sm-2'
