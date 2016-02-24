@@ -1,16 +1,15 @@
-- page_title 'Preferences'
+- page_title '偏好设置'
 - header_title page_title, profile_preferences_path
 - @blank_container = true
 
 .alert.alert-help
-  These settings allow you to customize the appearance and behavior of the site.
-  They are saved with your account and will persist to any device you use to
-  access the site.
+  此设置允许自定义本站点的外观和行为。
+  设置会保存在个人资料中并在所有设备上生效。
 
 = form_for @user, url: profile_preferences_path, remote: true, method: :put, html: {class: 'js-preferences-form form-horizontal'} do |f|
   .panel.panel-default.application-theme
     .panel-heading
-      Application theme
+      程序主题
     .panel-body
       - Gitlab::Themes.each do |theme|
         = label_tag do
@@ -20,7 +19,7 @@
 
   .panel.panel-default.syntax-theme
     .panel-heading
-      Syntax highlighting theme
+      代码预览主题
     .panel-body
       - Gitlab::ColorSchemes.each do |scheme|
         = label_tag do
@@ -30,28 +29,28 @@
 
   .panel.panel-default
     .panel-heading
-      Behavior
+      行为
     .panel-body
       .form-group
         = f.label :layout, class: 'control-label' do
-          Layout width
+          页面宽度
         .col-sm-10
           = f.select :layout, layout_choices, {}, class: 'form-control'
           .help-block
-            Choose between fixed (max. 1200px) and fluid (100%) application layout.
+            选择固定 (最大 1200px) 或自适应 (100%) 页面宽度。
       .form-group
         = f.label :dashboard, class: 'control-label' do
-          Default Dashboard
+          默认仪表盘
           = link_to('(?)', help_page_path('profile', 'preferences') + '#default-dashboard', target: '_blank')
         .col-sm-10
           = f.select :dashboard, dashboard_choices, {}, class: 'form-control'
       .form-group
         = f.label :project_view, class: 'control-label' do
-          Project view
+          项目视图
           = link_to('(?)', help_page_path('profile', 'preferences') + '#default-project-view', target: '_blank')
         .col-sm-10
           = f.select :project_view, project_view_choices, {}, class: 'form-control'
           .help-block
-            Choose what content you want to see on a project's home page.
+            选择访问项目页面时看到的内容。
     .panel-footer
-      = f.submit 'Save changes', class: 'btn btn-save'
+      = f.submit '保存修改', class: 'btn btn-save'

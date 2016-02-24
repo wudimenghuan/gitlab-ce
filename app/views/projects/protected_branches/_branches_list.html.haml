@@ -1,13 +1,13 @@
 - unless @branches.empty?
   %br
-  %h4 Already Protected:
+  %h4 已经保护的：
   .table-holder
     %table.table.protected-branches-list
       %thead
         %tr.no-border
-          %th Branch
-          %th Developers can push
-          %th Last commit
+          %th 分支
+          %th 开发者可以推送
+          %th 上次提交
           %th
 
       %tbody
@@ -18,7 +18,7 @@
               = link_to namespace_project_commits_path(@project.namespace, @project, branch.name) do
                 %strong= branch.name
                 - if @project.root_ref?(branch.name)
-                  %span.label.label-info default
+                  %span.label.label-info 默认
               %td
                 = check_box_tag "developers_can_push", branch.id, branch.developers_can_push, "data-url" => @url
               %td
@@ -28,8 +28,8 @@
                   &middot;
                   #{time_ago_with_tooltip(commit.committed_date)}
                 - else
-                  (branch was removed from repository)
+                  (分支已从仓库中删除)
               %td
                 .pull-right
                   - if can? current_user, :admin_project, @project
-                    = link_to 'Unprotect', [@project.namespace.becomes(Namespace), @project, branch], data: { confirm: 'Branch will be writable for developers. Are you sure?' }, method: :delete, class: "btn btn-remove btn-sm"
+                    = link_to '取消保护', [@project.namespace.becomes(Namespace), @project, branch], data: { confirm: '该分支将允许开发者修改。确定要继续么？' }, method: :delete, class: "btn btn-remove btn-sm"

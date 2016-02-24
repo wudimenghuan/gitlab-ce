@@ -48,21 +48,21 @@
 
 - if @ci_commit.retried.any?
   .gray-content-block.second-block
-    Retried builds
+    重试的构建
 
   .table-holder
     %table.table.builds
       %thead
         %tr
-          %th Status
-          %th Build ID
-          %th Ref
-          %th Stage
-          %th Name
-          %th Duration
-          %th Finished at
+          %th 状态
+          %th 构建 ID
+          %th 参考
+          %th 阶段
+          %th 名称
+          %th 运行时间
+          %th 结束时间
           - if @ci_commit.project.build_coverage_enabled?
-            %th Coverage
+            %th 覆盖率
           %th
       = render partial: "projects/commit_statuses/commit_status", collection: @ci_commit.retried,
                locals: { coverage: @ci_commit.project.build_coverage_enabled?, stage: true }

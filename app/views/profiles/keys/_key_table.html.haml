@@ -4,9 +4,9 @@
     %table.table
       %thead.panel-heading
         %tr
-          %th Title
-          %th Fingerprint
-          %th Added at
+          %th 标题
+          %th 指纹
+          %th 增加时间
           %th
       %tbody
         - @keys.each do |key|
@@ -14,6 +14,6 @@
 - else
   .nothing-here-block
     - if is_admin
-      User has no ssh keys
+      用户没有 ssh 密钥
     - else
-      There are no SSH keys with access to your account.
+      没有密钥。

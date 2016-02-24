@@ -1,14 +1,14 @@
-- page_title @milestone.title, "Milestones"
-- header_title "Milestones", dashboard_milestones_path
+- page_title @milestone.title, "里程碑"
+- header_title "里程碑", dashboard_milestones_path
 
 .detail-page-header
   .status-box{ class: "status-box-#{@milestone.closed? ? 'closed' : 'open'}" }
     - if @milestone.closed?
-      Closed
+      已关闭
     - else
-      Open
+      未关闭
   %span.identifier
-    Milestone #{@milestone.title}
+    里程碑 #{@milestone.title}
 
 .detail-page-description.gray-content-block.second-block
   %h2.title

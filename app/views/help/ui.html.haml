@@ -1,45 +1,44 @@
-- page_title "UI Development Kit", "Help"
-- lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fermentum nisi sapien, non consequat lectus aliquam ultrices. Suspendisse sodales est euismod nunc condimentum, a consectetur diam ornare."
+- page_title "UI 开发包", "帮助"
+- lorem = "《大教堂与市集》（The Cathedral and the Bazaar）是埃里克·斯蒂芬·雷蒙 Eric Steven Raymond 所撰写的软件工程方法论。以 Linux 的核心开发过程以及作者自己主持开发的开放源代码软件──Fetchmail 为讨论案例。文章在 1997 年 5 月 27 日发表，并在 1999 年出版成书。"
 
 .gitlab-ui-dev-kit
-  %h1 GitLab UI development kit
+  %h1 GitLab UI 开发包
   %p.light
-    Use page inspector in your browser to check element classes and structure
-    of examples below.
+    在浏览器中使用页面检查器查看下面例子中的元素样式和结构。
   %hr
   %ul
     %li
-      = link_to 'Blocks', '#blocks'
+      = link_to '区块', '#blocks'
     %li
-      = link_to 'Lists', '#lists'
+      = link_to '列表', '#lists'
     %li
-      = link_to 'Tables', '#tables'
+      = link_to '表格', '#tables'
     %li
-      = link_to 'Nav', '#nav'
+      = link_to '导航', '#nav'
     %li
-      = link_to 'Buttons', '#buttons'
+      = link_to '按钮', '#buttons'
     %li
-      = link_to 'Panels', '#panels'
+      = link_to '面板', '#panels'
     %li
-      = link_to 'Alerts', '#alerts'
+      = link_to '警告', '#alerts'
     %li
-      = link_to 'Forms', '#forms'
+      = link_to '表单', '#forms'
     %li
-      = link_to 'Files', '#file'
+      = link_to '文件', '#file'
     %li
       = link_to 'Markdown', '#markdown'
 
-  %h2#blocks Blocks
+  %h2#blocks 区块
 
   %h4
     %code .gray-content-block
 
   .gray-content-block.middle-block
-    %h4 Normal block inside content
+    %h4 包含内容的普通区块
     = lorem
 
   .gray-content-block.second-block
-    %h4 Second block
+    %h4 第二个区块
     = lorem
 
 
@@ -62,63 +61,63 @@
       = link_to '#', class: 'btn btn-gray' do
         = icon('rss')
 
-  %h2#lists Lists
+  %h2#lists 列表
 
   %h4
     %code .content-list
   %ul.content-list
     %li
-      One item
+      一个项目
     %li
-      One item
+      一个项目
     %li
-      One item
+      一个项目
 
   %h4
     %code .well-list
   %ul.well-list
     %li
-      One item
+      一个项目
     %li
-      One item
+      一个项目
     %li
-      One item
+      一个项目
 
   %h4
     %code .panel .well-list
 
   .panel.panel-default
-    .panel-heading Your list
+    .panel-heading 你的列表
     %ul.well-list
       %li
-        One item
+        一个项目
       %li
-        One item
+        一个项目
       %li
-        One item
+        一个项目
 
   %h4
     %code .bordered-list
   %ul.bordered-list
     %li
-      One item
+      一个项目
     %li
-      One item
+      一个项目
     %li
-      One item
+      一个项目
 
 
 
-  %h2#tables Tables
+  %h2#tables 表格
 
   .example
     %table.table
       %thead
         %tr
           %th #
-          %th First Name
-          %th Last Name
-          %th Username
+          %th 名字
+          %th 姓氏
+          %th 用户名
       %tbody
         %tr
           %td 1
@@ -226,47 +225,47 @@
       .alert.alert-danger
         = lorem
 
-  %h2#forms Forms
+  %h2#forms 表单
 
   %h4
     %code form.horizontal-form
 
   %form.form-horizontal
     .form-group
-      %label.col-sm-2.control-label{:for => "inputEmail3"} Email
+      %label.col-sm-2.control-label{:for => "inputEmail3"} 电子邮箱
       .col-sm-10
-        %input#inputEmail3.form-control{:placeholder => "Email", :type => "email"}/
+        %input#inputEmail3.form-control{:placeholder => "电子邮箱", :type => "email"}/
     .form-group
-      %label.col-sm-2.control-label{:for => "inputPassword3"} Password
+      %label.col-sm-2.control-label{:for => "inputPassword3"} 密码
       .col-sm-10
-        %input#inputPassword3.form-control{:placeholder => "Password", :type => "password"}/
+        %input#inputPassword3.form-control{:placeholder => "密码", :type => "password"}/
     .form-group
       .col-sm-offset-2.col-sm-10
         .checkbox
           %label
             %input{:type => "checkbox"}/
-            Remember me
+            记住我
     .form-group
       .col-sm-offset-2.col-sm-10
-        %button.btn.btn-default{:type => "submit"} Sign in
+        %button.btn.btn-default{:type => "submit"} 登入
 
   %h4
     %code form
 
   %form
     .form-group
-      %label{:for => "exampleInputEmail1"} Email address
-      %input#exampleInputEmail1.form-control{:placeholder => "Enter email", :type => "email"}/
+      %label{:for => "exampleInputEmail1"} 电子邮箱地址
+      %input#exampleInputEmail1.form-control{:placeholder => "输入电子邮箱", :type => "email"}/
     .form-group
-      %label{:for => "exampleInputPassword1"} Password
-      %input#exampleInputPassword1.form-control{:placeholder => "Password", :type => "password"}/
+      %label{:for => "exampleInputPassword1"} 密码
+      %input#exampleInputPassword1.form-control{:placeholder => "密码", :type => "password"}/
     .checkbox
       %label
         %input{:type => "checkbox"}/
-        Remember me
-    %button.btn.btn-default{:type => "submit"} Sign in
+        记住我
+    %button.btn.btn-default{:type => "submit"} 登入
 
-  %h2#file File
+  %h2#file 文件
   %h4
     %code .file-holder
 
@@ -277,8 +276,8 @@
         Awesome file
         .file-actions
           .btn-group
-            %a.btn Edit
-            %a.btn.btn-danger Remove
+            %a.btn 编辑
+            %a.btn.btn-danger 删除
       .file-contenta.code
         = render 'shared/file_highlight', blob: blob
 

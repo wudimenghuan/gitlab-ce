@@ -77,11 +77,11 @@
   - if current_user.can_change_username?
     .panel.panel-warning.update-username
       .panel-heading
-        Change Username
+        修改用户名
       .panel-body
         = form_for @user, url: update_username_profile_path,  method: :put, remote: true do |f|
           %p
-            Changing your username will change path to all personal projects!
+            修改用户名会同时修改所有个人项目的路径！
           %div
             .input-group
               .input-group-addon
@@ -91,28 +91,28 @@
           .loading-gif.hide
             %p
               = icon('spinner spin')
-              Saving new username
+              正在保存新的用户名
           .form-actions
-            = f.submit 'Save username', class: "btn btn-warning"
+            = f.submit '保存用户名', class: "btn btn-warning"
 
   - if signup_enabled?
     .panel.panel-danger.remove-account
       .panel-heading
-        Remove account
+        删除账号
       .panel-body
         - if @user.can_be_removed?
-          %p Deleting an account has the following effects:
+          %p 删除账号会有如下影响：
           %ul
-            %li All user content like authored issues, snippets, comments will be removed
+            %li 所有用户内容，比如：问题、代码片段、注释将被删除
             - rp = current_user.personal_projects.count
             - unless rp.zero?
-              %li #{pluralize rp, 'personal project'} will be removed and cannot be restored
+              %li #{pluralize rp, '个个人项目', '个个人项目'}将被删除且无法恢复
           .form-actions
-            = link_to 'Delete account', user_registration_path, data: { confirm: "REMOVE #{current_user.name}? Are you sure?" }, method: :delete, class: "btn btn-remove"
+            = link_to '删除账号', user_registration_path, data: { confirm: "确定要删除 #{current_user.name} 么？" }, method: :delete, class: "btn btn-remove"
         - else
           - if @user.solo_owned_groups.present?
             %p
-              Your account is currently an owner in these groups:
-              %strong #{@user.solo_owned_groups.map(&:name).join(', ')}
+              你的账号当前是下列群组的所有者：
+              %strong #{@user.solo_owned_groups.map(&:name).join('、')}
             %p
-              You must transfer ownership or delete these groups before you can delete your account.
+              请在删除账号前转移群组所有权或删除之。

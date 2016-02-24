@@ -16,7 +16,7 @@
             = link_to server['label'], "#tab-#{server['provider_name']}", 'data-toggle' => 'tab'
         - if signin_enabled?
           %li
-            = link_to 'Standard', '#tab-signin', 'data-toggle' => 'tab'
+            = link_to '基本', '#tab-signin', 'data-toggle' => 'tab'
       .tab-content
         - if crowd_enabled?
           %div.tab-pane.active{id: "tab-crowd"}

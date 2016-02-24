@@ -1,5 +1,5 @@
 %h3.page-title
-  New Merge Request
+  新合并请求
 
 = form_for [@project.namespace.becomes(Namespace), @project, @merge_request], url: new_namespace_project_merge_request_path(@project.namespace, @project), method: :get, html: { class: "merge-request-form form-inline js-requires-input" } do |f|
   .hide.alert.alert-danger.mr-compare-errors
@@ -7,23 +7,23 @@
     .col-md-6
       .panel.panel-default
         .panel-heading
-          %strong Source branch
+          %strong 来源分支
         .panel-body
           = f.select(:source_project_id, [[@merge_request.source_project_path,@merge_request.source_project.id]] , {}, { class: 'source_project select2 span3', disabled: @merge_request.persisted?, required: true })
           &nbsp;
-          = f.select(:source_branch, @merge_request.source_branches, { include_blank: true }, { class: 'source_branch select2 span2', required: true, data: { placeholder: "Select source branch" } })
+          = f.select(:source_branch, @merge_request.source_branches, { include_blank: true }, { class: 'source_branch select2 span2', required: true, data: { placeholder: "选择来源分支" } })
         .panel-footer
           .mr_source_commit
 
     .col-md-6
       .panel.panel-default
         .panel-heading
-          %strong Target branch
+          %strong 目标分支
         .panel-body
           - projects =  @project.forked_from_project.nil? ? [@project] : [@project, @project.forked_from_project]
           = f.select(:target_project_id, options_from_collection_for_select(projects, 'id', 'path_with_namespace', f.object.target_project_id), {}, { class: 'target_project select2 span3', disabled: @merge_request.persisted?, required: true })
           &nbsp;
-          = f.select(:target_branch, @merge_request.target_branches, { include_blank: true }, { class: 'target_branch select2 span2', required: true, data: { placeholder: "Select target branch" } })
+          = f.select(:target_branch, @merge_request.target_branches, { include_blank: true }, { class: 'target_branch select2 span2', required: true, data: { placeholder: "选择目标分支" } })
         .panel-footer
           .mr_target_commit
 
@@ -35,25 +35,25 @@
   - elsif @merge_request.source_branch.present? && @merge_request.target_branch.present?
     - if @merge_request.compare_failed
       .alert.alert-danger
-        %h4 Compare failed
-        %p We can't compare selected branches. It may be because of huge diff. Please try again or select different branches.
+        %h4 合并失败
+        %p 无法合并选择的分支。可能是因为差异巨大或版本库处理超时。请重试或者选择其他的分支。
     - else
       .light-well.append-bottom-default
         .center
           %h4
-            There isn't anything to merge.
+            没有任何内容合并。
           %p.slead
             - if @merge_request.source_branch == @merge_request.target_branch
-              You'll need to use different branch names to get a valid comparison.
+              必须使用不同的分支名来比较。
             - else
               %span.label-branch #{@merge_request.source_branch}
-              and
+              和
               %span.label-branch #{@merge_request.target_branch}
-              are the same.
+              是一样的。
 
 
   .form-actions
-    = f.submit 'Compare branches and continue', class: "btn btn-new mr-compare-btn"
+    = f.submit '比较分支后继续', class: "btn btn-new mr-compare-btn"
 
 :javascript
   var source_branch = $("#merge_request_source_branch")
@@ -81,7 +81,7 @@
 :javascript
   $(".merge-request-form").on('submit', function () {
     if ($("#merge_request_source_branch").val() === "" || $('#merge_request_target_branch').val() === "") {
-      $(".mr-compare-errors").html("You must select source and target branch to proceed");
+      $(".mr-compare-errors").html("必须选择来源和目标分支去处理");
       $(".mr-compare-errors").fadeIn();
       event.preventDefault();
       return;

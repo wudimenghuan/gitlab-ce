@@ -23,16 +23,16 @@
     .dropdown.inline.append-right-10
       %a.dropdown-toggle.btn{href: '#', "data-toggle" => "dropdown"}
         %i.fa.fa-tags
-        %span.light Tags:
+        %span.light 标签：
         - if params[:tag].present?
           = params[:tag]
         - else
-          Any
+          任何
         %b.caret
       %ul.dropdown-menu
         %li
           = link_to explore_projects_filter_path(tag: nil) do
-            Any
+            任何
 
         - @tags.each do |tag|
           %li{ class: (tag.name == params[:tag]) ? 'active' : 'light' }

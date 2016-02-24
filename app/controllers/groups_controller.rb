@@ -32,7 +32,7 @@ class GroupsController < Groups::ApplicationController
 
     if @group.save
       @group.add_owner(current_user)
-      redirect_to @group, notice: "Group '#{@group.name}' was successfully created."
+      redirect_to @group, notice: "群组 '#{@group.name}' 创建成功。"
     else
       render action: "new"
     end
@@ -78,7 +78,7 @@ class GroupsController < Groups::ApplicationController
 
   def update
     if @group.update_attributes(group_params)
-      redirect_to edit_group_path(@group), notice: "Group '#{@group.name}' was successfully updated."
+      redirect_to edit_group_path(@group), notice: "群组 '#{@group.name}' 更新成功。"
     else
       render action: "edit"
     end
@@ -87,7 +87,7 @@ class GroupsController < Groups::ApplicationController
   def destroy
     DestroyGroupService.new(@group, current_user).execute
 
-    redirect_to root_path, alert: "Group '#{@group.name}' was successfully deleted."
+    redirect_to root_path, alert: "群组 '#{@group.name}' 被成功删除。"
   end
 
   protected

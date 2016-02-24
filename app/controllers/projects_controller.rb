@@ -31,7 +31,7 @@ class ProjectsController < ApplicationController
     if @project.saved?
       redirect_to(
         project_path(@project),
-        notice: "Project '#{@project.name}' was successfully created."
+        notice: "项目 '#{@project.name}' 创建成功。"
       )
     else
       render 'new'
@@ -43,11 +43,11 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if status
-        flash[:notice] = "Project '#{@project.name}' was successfully updated."
+        flash[:notice] = "项目 '#{@project.name}' 更新成功。"
         format.html do
           redirect_to(
             edit_project_path(@project),
-            notice: "Project '#{@project.name}' was successfully updated."
+            notice: "项目 '#{@project.name}' 更新成功。"
           )
         end
         format.js

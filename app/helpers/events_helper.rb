@@ -1,3 +1,4 @@
+#encoding: utf-8
 module EventsHelper
   def link_to_author(event)
     author = event.author
@@ -177,7 +178,7 @@ module EventsHelper
       end
     else
       content_tag :strong do
-        "(deleted)"
+        "(已删除)"
       end
     end
   end

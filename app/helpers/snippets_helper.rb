@@ -1,10 +1,11 @@
+#encoding: utf-8
 module SnippetsHelper
   def lifetime_select_options
     options = [
-        ['forever', nil],
-        ['1 day',   "#{Date.current + 1.day}"],
-        ['1 week',  "#{Date.current + 1.week}"],
-        ['1 month', "#{Date.current + 1.month}"]
+        ['从未', nil],
+        ['1 天',   "#{Date.current + 1.day}"],
+        ['1 周',  "#{Date.current + 1.week}"],
+        ['1 月', "#{Date.current + 1.month}"]
     ]
     options_for_select(options)
   end

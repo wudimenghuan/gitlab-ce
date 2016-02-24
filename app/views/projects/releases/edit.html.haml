@@ -1,12 +1,13 @@
-- page_title "Edit", @tag.name, "Tags"
+- page_title "编辑", @tag.name, "标签"
 = render "projects/commits/header_title"
 = render "projects/commits/head"
 
 .gray-content-block
   .oneline
     .title
-      Release notes for tag
+      标签
       %strong #{@tag.name}
+      的发布备注
 
 .prepend-top-default
   = form_for(@release, method: :put, url: namespace_project_tag_release_path(@project.namespace, @project, @tag.name), html: { class: 'form-horizontal gfm-form release-form' }) do |f|
@@ -15,5 +16,5 @@
       = render 'projects/notes/hints'
       .error-alert
       .form-actions.prepend-top-default
-        = f.submit 'Save changes', class: 'btn btn-save'
-        = link_to "Cancel", namespace_project_tag_path(@project.namespace, @project, @tag.name), class: "btn btn-default btn-cancel"
+        = f.submit '保存修改', class: 'btn btn-save'
+        = link_to "取消", namespace_project_tag_path(@project.namespace, @project, @tag.name), class: "btn btn-default btn-cancel"

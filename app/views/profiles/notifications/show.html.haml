@@ -1,8 +1,8 @@
-- page_title "Notifications"
+- page_title "通知"
 - header_title page_title, profile_notifications_path
 
 .gray-content-block.top-block
-  These are your global notification settings.
+  这里是全局通知设置。
 
 .prepend-top-default
 = form_for @user, url: profile_notifications_path, method: :put, html: { class: 'update-notifications form-horizontal global-notifications-form' } do |f|
@@ -15,51 +15,51 @@
   = hidden_field_tag :notification_type, 'global'
 
   .form-group
-    = f.label :notification_email, class: "control-label"
+    = f.label :notification_email, '通知电子邮箱', class: "control-label"
     .col-sm-10
       = f.select :notification_email, @user.all_emails, { include_blank: false }, class: "form-control"
 
   .form-group
-    = f.label :notification_level, class: 'control-label'
+    = f.label :notification_level, '通知等级', class: 'control-label'
     .col-sm-10
       .radio
         = f.label :notification_level, value: Notification::N_DISABLED do
           = f.radio_button :notification_level, Notification::N_DISABLED
           .level-title
-            Disabled
-          %p You will not get any notifications via email
+            关闭
+          %p 将不会通过电子邮件收到任何通知
 
       .radio
         = f.label :notification_level, value: Notification::N_MENTION do
           = f.radio_button :notification_level, Notification::N_MENTION
           .level-title
-            On Mention
-          %p You will receive notifications only for comments in which you were @mentioned
+            被提及
+          %p 只收到评论中 @自己 的通知
 
       .radio
         = f.label :notification_level, value: Notification::N_PARTICIPATING do
           = f.radio_button :notification_level, Notification::N_PARTICIPATING
           .level-title
-            Participating
-          %p You will only receive notifications from related resources (e.g. from your commits or assigned issues)
+            参与
+          %p 只收到有关的通知 (比如：来自自己的提交或指派给自己的问题)
 
       .radio
         = f.label :notification_level, value: Notification::N_WATCH do
           = f.radio_button :notification_level, Notification::N_WATCH
           .level-title
-            Watch
-          %p You will receive notifications for any activity
+            关注
+          %p 将收到参与项目的所有通知
 
   .gray-content-block
-    = f.submit 'Save changes', class: "btn btn-create"
+    = f.submit '保存修改', class: "btn btn-create"
 
 .row.all-notifications.prepend-top-default
   .col-md-6
     %p
-      You can also specify notification level per group or per project.
+      也可以单独指定每个群组或项目的通知等级。
       %br
-      By default, all projects and groups will use the notification level set above.
-    %h4 Groups:
+      所有项目和群组默认使用上面的全局设置。
+    %h4 群组：
     %ul.bordered-list
       - @group_members.each do |group_member|
         - notification = Notification.new(group_member)
@@ -67,10 +67,10 @@
 
   .col-md-6
     %p
-      To specify the notification level per project of a group you belong to,
+      给所属群组的项目指定通知等级，
       %br
-      you need to be a member of the project itself, not only its group.
-    %h4 Projects:
+      需要自己属于项目成员，而不仅仅是群组成员。
+    %h4 项目：
     %ul.bordered-list
       - @project_members.each do |project_member|
         - notification = Notification.new(project_member)

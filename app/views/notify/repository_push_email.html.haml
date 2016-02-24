@@ -43,14 +43,14 @@
             = diff.new_path
 
   - unless @message.disable_diffs?
-    %h4 Changes:
+    %h4 变更：
     - @message.diffs.each_with_index do |diff, i|
       %li{id: "diff-#{i}"}
         %a{href: @message.target_url + "#diff-#{i}"}
           - if diff.deleted_file
             %strong
               = diff.old_path
-            deleted
+            已删除
           - elsif diff.renamed_file
             %strong
               = diff.old_path
@@ -65,4 +65,4 @@
         %br
 
   - if @message.compare_timeout
-    %h5 Huge diff. To prevent performance issues changes are hidden
+    %h5 巨大差异。因为性能原因隐藏问题变更

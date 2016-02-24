@@ -1,3 +1,4 @@
+#encoding: utf-8
 require 'nokogiri'
 
 module GitlabMarkdownHelper
@@ -115,21 +116,21 @@ module GitlabMarkdownHelper
   end
 
   MARKDOWN_TIPS = [
-    "End a line with two or more spaces for a line-break, or soft-return",
-    "Inline code can be denoted by `surrounding it with backticks`",
-    "Blocks of code can be denoted by three backticks ``` or four leading spaces",
-    "Emoji can be added by :emoji_name:, for example :thumbsup:",
-    "Notify other participants using @user_name",
-    "Notify a specific group using @group_name",
-    "Notify the entire team using @all",
-    "Reference an issue using a hash, for example issue #123",
-    "Reference a merge request using an exclamation point, for example MR !123",
-    "Italicize words or phrases using *asterisks* or _underscores_",
-    "Bold words or phrases using **double asterisks** or __double underscores__",
-    "Strikethrough words or phrases using ~~two tildes~~",
-    "Make a bulleted list using + pluses, - minuses, or * asterisks",
-    "Denote blockquotes using > at the beginning of a line",
-    "Make a horizontal line using three or more hyphens ---, asterisks ***, or underscores ___"
+    "行中断（软换行）是在行尾使用两个或更多的空格",
+    "可以用 `英文反引号包围` 来内嵌代码",
+    "使用三个 ``` 英文反引号或行首四个空格来声明代码块",
+    "可以使用 :emoji_name: 代码来插入 Emoji 表情，比如 :thumbsup:",
+    "使用 @user_name 通知其他参与者",
+    "使用 @group_name 通知指定的群组",
+    "使用 @all 通知整个团队",
+    "使用英文 # 井号引用指定 id 的问题，比如 #123",
+    "使用英文 ! 感叹号引用指定 id 的合并请求，比如 !123",
+    "使用英文 *星号* or _下划线_ 标记指定的单词或短语为斜体",
+    "使用英文 **双星号** 或 __双下划线__ 标记指定的单词或短语为粗体",
+    "使用英文 ~~双波浪号~~ 标记指定的单词或短语为删除线",
+    "可以在行首使用英文 + 加号、- 减号 或 * 星号标记一个带符号列表",
+    "可以在行首使用英文 > 大于号表示引用",
+    "使用三个或更多的英文 --- 减号、*** 星号或 ___ 下划线来标记一个横线"
   ].freeze
 
   # Returns a random markdown tip for use as a textarea placeholder

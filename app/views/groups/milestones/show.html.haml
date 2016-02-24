@@ -1,20 +1,20 @@
-- page_title @milestone.title, "Milestones"
+- page_title @milestone.title, "里程碑"
 = render "header_title"
 
 .detail-page-header
   .status-box{ class: "status-box-#{@milestone.closed? ? 'closed' : 'open'}" }
     - if @milestone.closed?
-      Closed
+      已关闭
     - else
-      Open
+      未关闭
   %span.identifier
-    Milestone #{@milestone.title}
+    里程碑 #{@milestone.title}
   .pull-right
     - if can?(current_user, :admin_milestones, @group)
       - if @milestone.active?
-        = link_to 'Close Milestone', group_milestone_path(@group, @milestone.safe_title, title: @milestone.title, milestone: {state_event: :close }), method: :put, class: "btn btn-grouped btn-close"
+        = link_to '关闭里程碑', group_milestone_path(@group, @milestone.safe_title, title: @milestone.title, milestone: {state_event: :close }), method: :put, class: "btn btn-grouped btn-close"
       - else
-        = link_to 'Reopen Milestone', group_milestone_path(@group, @milestone.safe_title, title: @milestone.title, milestone: {state_event: :activate }), method: :put, class: "btn btn-grouped btn-reopen"
+        = link_to '重新打开里程碑', group_milestone_path(@group, @milestone.safe_title, title: @milestone.title, milestone: {state_event: :activate }), method: :put, class: "btn btn-grouped btn-reopen"
 
 .detail-page-description.gray-content-block.second-block
   %h2.title
@@ -22,16 +22,16 @@
 
 - if @milestone.complete? && @milestone.active?
   .alert.alert-success.prepend-top-default
-    %span All issues for this milestone are closed. You may close the milestone now.
+    %span 此里程碑的所有问题都已关闭。可以选择关闭此里程碑。
 
 .table-holder
   %table.table
     %thead
       %tr
-        %th Project
-        %th Open issues
-        %th State
-        %th Due date
+        %th 项目
+        %th 未关闭的问题
+        %th 状态
+        %th 到期时间
     - @milestone.milestones.each do |milestone|
       %tr
         %td

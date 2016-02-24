@@ -2,16 +2,16 @@
   %table.table#audits
     %thead
       %tr
-        %th Action
-        %th When
+        %th 动作
+        %th 发生时间
 
     %tbody
       - events.each do |event|
         %tr
           %td
             %span
-              Signed in with 
+              使用
               %b= event.details[:with]
-              authentication
-          %td #{time_ago_in_words event.created_at} ago
+              认证登入
+          %td #{time_ago_in_words event.created_at}之前
 = paginate events, theme: "gitlab"

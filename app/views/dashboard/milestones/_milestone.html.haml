@@ -4,14 +4,14 @@
       %strong
         = link_to_gfm truncate(milestone.title, length: 100), dashboard_milestone_path(milestone.safe_title, title: milestone.title)
     .col-sm-6
-      .pull-right.light #{milestone.percent_complete}% complete
+      .pull-right.light #{milestone.percent_complete}% 完成
   .row
     .col-sm-6
       = link_to issues_dashboard_path(milestone_title: milestone.title) do
-        = pluralize milestone.issue_count, 'Issue'
+        = pluralize milestone.issue_count, '个问题', '个问题'
       &middot;
       = link_to merge_requests_dashboard_path(milestone_title: milestone.title) do
-        = pluralize milestone.merge_requests_count, 'Merge Request'
+        = pluralize milestone.merge_requests_count, '个合并请求', '个合并请求'
     .col-sm-6
       = milestone_progress_bar(milestone)
   .row

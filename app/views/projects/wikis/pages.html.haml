@@ -1,9 +1,9 @@
-- page_title "Pages", "Wiki"
+- page_title "页面", "维基"
 = render "header_title"
 
 = render 'nav'
 .gray-content-block
-  All pages in this wiki are listed below.
+  此维基的所有页面都列在下面。
   
 %ul.content-list
   - @wiki_pages.each do |wiki_page|
@@ -12,5 +12,5 @@
         = link_to wiki_page.title, namespace_project_wiki_path(@project.namespace, @project, wiki_page)
         %small (#{wiki_page.format})
         .pull-right
-          %small Last edited #{time_ago_with_tooltip(wiki_page.commit.authored_date)}
+          %small 最后编辑时间：#{time_ago_with_tooltip(wiki_page.commit.authored_date)}
 = paginate @wiki_pages, theme: 'gitlab'

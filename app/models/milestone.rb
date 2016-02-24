@@ -1,3 +1,4 @@
+#encoding: utf-8
 # == Schema Information
 #
 # Table name: milestones
@@ -17,8 +18,8 @@ class Milestone < ActiveRecord::Base
   # Represents a "No Milestone" state used for filtering Issues and Merge
   # Requests that have no milestone assigned.
   MilestoneStruct = Struct.new(:title, :name, :id)
-  None = MilestoneStruct.new('No Milestone', 'No Milestone', 0)
-  Any = MilestoneStruct.new('Any Milestone', '', -1)
+  None = MilestoneStruct.new('无里程碑', 'No Milestone', 0)
+  Any = MilestoneStruct.new('任何里程碑', '', -1)
 
   include InternalId
   include Sortable

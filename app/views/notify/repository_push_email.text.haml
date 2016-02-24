@@ -27,12 +27,12 @@
   - unless @message.disable_diffs?
     \
     \
-    Changes:
+    变更：
     - @message.diffs.each do |diff|
       \
       \=====================================
       - if diff.deleted_file
-        #{diff.old_path} deleted
+        #{diff.old_path} 已删除
       - elsif diff.renamed_file
         #{diff.old_path} → #{diff.new_path}
       - else
@@ -42,8 +42,8 @@
   - if @message.compare_timeout
     \
     \
-    Huge diff. To prevent performance issues it was hidden
+    巨大差异。因为性能原因隐藏问题变更
   - if @message.target_url
     \
     \
-    View it on GitLab: #{@message.target_url}
+    在 GitLab 上查看: #{@message.target_url}

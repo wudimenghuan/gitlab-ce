@@ -1,3 +1,4 @@
+#encoding: utf-8
 class Admin::UsersController < Admin::ApplicationController
   before_action :user, except: [:index, :new, :create]
 
@@ -85,7 +86,7 @@ class Admin::UsersController < Admin::ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to [:admin, @user], notice: 'User was successfully created.' }
+        format.html { redirect_to [:admin, @user], notice: '用户创建成功。' }
         format.json { render json: @user, status: :created, location: @user }
       else
         format.html { render "new" }
@@ -107,7 +108,7 @@ class Admin::UsersController < Admin::ApplicationController
     respond_to do |format|
       user.skip_reconfirmation!
       if user.update_attributes(user_params_with_pass)
-        format.html { redirect_to [:admin, user], notice: 'User was successfully updated.' }
+        format.html { redirect_to [:admin, user], notice: '用户更新成功。' }
         format.json { head :ok }
       else
         # restore username to keep form action url.
@@ -134,7 +135,7 @@ class Admin::UsersController < Admin::ApplicationController
     user.update_secondary_emails!
 
     respond_to do |format|
-      format.html { redirect_back_or_admin_user(notice: "Successfully removed email.") }
+      format.html { redirect_back_or_admin_user(notice: "删除电子邮箱成功。") }
       format.js { render nothing: true }
     end
   end
