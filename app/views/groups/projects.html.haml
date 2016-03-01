@@ -4,7 +4,7 @@
 .panel.panel-default.prepend-top-default
   .panel-heading
     %strong= @group.name
-    projects:
+    项目：
     - if can? current_user, :admin_group, @group
       .controls
         = link_to new_project_path(namespace_id: @group.id), class: "btn btn-sm btn-success" do
