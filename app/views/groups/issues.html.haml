@@ -10,16 +10,16 @@
     - if current_user
       = link_to issues_group_url(@group, format: :atom, private_token: current_user.private_token), class: 'btn' do
         = icon('rss')
-    = render 'shared/new_project_item_select', path: 'issues/new', label: "New Issue"
+    = render 'shared/new_project_item_select', path: 'issues/new', label: "新问题"
 
 = render 'shared/issuable/filter', type: :issues
 
 .gray-content-block.second-block
-  Only issues from
+  仅
   %strong #{@group.name}
-  group are listed here.
+  群组的问题显示在此处。
   - if current_user
-    To see all issues you should visit #{link_to 'dashboard', issues_dashboard_path} page.
+    请到#{link_to '仪表盘', issues_dashboard_path}页面访问所有问题。
 
 .prepend-top-default
   = render 'shared/issues'

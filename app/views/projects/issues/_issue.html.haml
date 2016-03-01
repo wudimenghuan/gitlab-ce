@@ -9,11 +9,11 @@
     %ul.controls.light
       - if issue.closed?
         %li
-          CLOSED
+          已关闭
 
       - if issue.assignee
         %li
-          = link_to_member(@project, issue.assignee, name: false, title: "Assigned to :name")
+          = link_to_member(@project, issue.assignee, name: false, title: "指派给 :name")
 
       - upvotes, downvotes = issue.upvotes, issue.downvotes
       - if upvotes > 0

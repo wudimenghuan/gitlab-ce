@@ -3,11 +3,11 @@
     .modal-content
       .modal-header
         %a.close{href: "#", "data-dismiss" => "modal"} ×
-        %h3.page-title New Wiki Page
+        %h3.page-title 新维基页面
       .modal-body
         .form-group
           = label_tag :new_wiki_path do
-            %span Page slug
+            %span 页面别名
           = text_field_tag :new_wiki_path, nil, placeholder: 'how-to-setup', class: 'form-control', required: true, :'data-wikis-path' => namespace_project_wikis_path(@project.namespace, @project)
         .form-actions
-          = link_to 'Create Page', '#', class: 'build-new-wiki btn btn-create'
+          = link_to '创建页面', '#', class: 'build-new-wiki btn btn-create'

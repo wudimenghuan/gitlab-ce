@@ -13,5 +13,5 @@
 
   - if @merge_request.updated_at != @merge_request.created_at
     %small
-      Edited
+      编辑时间：
       = time_ago_with_tooltip(@merge_request.updated_at, placement: 'bottom')

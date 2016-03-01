@@ -1,16 +1,16 @@
-- page_title "#{@build.name} (##{@build.id})", "Builds"
+- page_title "#{@build.name} (##{@build.id})", "构建"
 = render "header_title"
 
 .build-page
   .gray-content-block.top-block
-    Build ##{@build.id} for commit
-    %strong.monospace= link_to @build.commit.short_sha, ci_status_path(@build.commit)
-    from
-    = link_to @build.ref, namespace_project_commits_path(@project.namespace, @project, @build.ref)
     - merge_request = @build.merge_request
     - if merge_request
-      via
-      = link_to "merge request ##{merge_request.iid}", merge_request_path(merge_request)
+      通过
+      = link_to "合并请求 ##{merge_request.iid}", merge_request_path(merge_request)
+    从
+    = link_to @build.ref, namespace_project_commits_path(@project.namespace, @project, @build.ref)
+    %strong.monospace= link_to @build.commit.short_sha, ci_status_path(@build.commit)
+    提交的构建 ##{@build.id}
 
   #up-build-trace
   - if @commit.matrix_for_ref?(@build.ref)
@@ -79,7 +79,7 @@
       - if @build.erased?
         .erased.alert.alert-warning
           - erased_by = "by #{link_to @build.erased_by.name, user_path(@build.erased_by)}" if @build.erased_by
-          Build has been erased #{erased_by.html_safe} #{time_ago_with_tooltip(@build.erased_at)}
+          构建被 #{erased_by.html_safe} 在 #{time_ago_with_tooltip(@build.erased_at)}删除
       - else
         %pre.trace#build-trace
           %code.bash
@@ -92,59 +92,59 @@
       - if @build.coverage
         .build-widget
           %h4.title
-            Test coverage
+            测试覆盖
           %h1 #{@build.coverage}%
 
       - if can?(current_user, :read_build, @project) && @build.artifacts?
         .build-widget.artifacts
-          %h4.title Build artifacts
+          %h4.title 构建附件
           .center
             .btn-group{ role: :group }
               = link_to @build.artifacts_download_url, class: 'btn btn-sm btn-primary' do
                 = icon('download')
-                Download
+                下载
 
               - if @build.artifacts_metadata?
                 = link_to @build.artifacts_browse_url, class: 'btn btn-sm btn-primary' do
                   = icon('folder-open')
-                  Browse
+                  浏览
 
       .build-widget
         %h4.title
-          Build ##{@build.id}
+          构建 ##{@build.id}
           - if can?(current_user, :update_build, @project)
             .center
               .btn-group{ role: :group }
                 - if @build.cancel_url
-                  = link_to "Cancel", @build.cancel_url, class: 'btn btn-sm btn-danger', method: :post
+                  = link_to "取消", @build.cancel_url, class: 'btn btn-sm btn-danger', method: :post
                 - elsif @build.retry_url
-                  = link_to "Retry", @build.retry_url, class: 'btn btn-sm btn-primary', method: :post
+                  = link_to "重试", @build.retry_url, class: 'btn btn-sm btn-primary', method: :post
 
                 - if @build.erasable?
                   = link_to erase_namespace_project_build_path(@project.namespace, @project, @build),
                             class: 'btn btn-sm btn-warning', method: :post,
-                            data: { confirm: 'Are you sure you want to erase this build?' } do
+                            data: { confirm: '确定要删除此构建么？' } do
                     = icon('eraser')
-                    Erase
+                    删除
 
         .clearfix
           - if @build.duration
             %p
-              %span.attr-name Duration:
+              %span.attr-name 运行时间：
               #{duration_in_words(@build.finished_at, @build.started_at)}
           %p
-            %span.attr-name Created:
+            %span.attr-name 创建时间：
             #{time_ago_with_tooltip(@build.created_at)}
           - if @build.finished_at
             %p
-              %span.attr-name Finished:
+              %span.attr-name 结束时间：
               #{time_ago_with_tooltip(@build.finished_at)}
           - if @build.erased_at
             %p
-              %span.attr-name Erased:
+              %span.attr-name 删除时间：
               #{time_ago_with_tooltip(@build.erased_at)}
           %p
-            %span.attr-name Runner:
+            %span.attr-name Runner：
             - if @build.runner && current_user && current_user.admin
               = link_to "##{@build.runner.id}", admin_runner_path(@build.runner.id)
             - elsif @build.runner

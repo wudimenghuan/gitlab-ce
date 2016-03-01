@@ -1,5 +1,5 @@
-- page_title "Projects"
-- header_title group_title(@group, "Projects", projects_group_path(@group))
+- page_title "项目"
+- header_title group_title(@group, "项目", projects_group_path(@group))
 
 .panel.panel-default.prepend-top-default
   .panel-heading
@@ -9,7 +9,7 @@
       .controls
         = link_to new_project_path(namespace_id: @group.id), class: "btn btn-sm btn-success" do
           = icon('plus')
-          New Project
+          新项目
   %ul.well-list
     - @projects.each do |project|
       %li

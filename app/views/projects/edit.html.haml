@@ -5,149 +5,148 @@
   .project-edit-content
     .panel.panel-default
       .panel-heading
-        Project settings
+        项目设置
       .panel-body
         = form_for [@project.namespace.becomes(Namespace), @project], remote: true, html: { multipart: true, class: "edit_project form-horizontal fieldset-form" }, authenticity_token: true do |f|
 
           %fieldset
             .form-group.project_name_holder
               = f.label :name, class: 'control-label' do
-                Project name
+                项目名称
               .col-sm-10
                 = f.text_field :name, class: "form-control", id: "project_name_edit"
 
 
             .form-group
               = f.label :description, class: 'control-label' do
-                Project description
-                %span.light (optional)
+                项目描述
+                %span.light (可选)
               .col-sm-10
                 = f.text_area :description, class: "form-control", rows: 3, maxlength: 250
 
             - unless @project.empty_repo?
               .form-group
-                = f.label :default_branch, "Default Branch", class: 'control-label'
+                = f.label :default_branch, "默认分支", class: 'control-label'
                 .col-sm-10= f.select(:default_branch, @project.repository.branch_names, {}, {class: 'select2 select-wide'})
 
 
           = render 'shared/visibility_level', f: f, visibility_level: @project.visibility_level, can_change_visibility_level: can_change_visibility_level?(@project, current_user), form_model: @project
 
           .form-group
-            = f.label :tag_list, "Tags", class: 'control-label'
+            = f.label :tag_list, "标签", class: 'control-label'
             .col-sm-10
               = f.text_field :tag_list, value: @project.tag_list.to_s, maxlength: 2000, class: "form-control"
-              %p.help-block Separate tags with commas.
+              %p.help-block 使用英文逗号分割。
 
           %fieldset.features
             %legend
-              Features:
+              功能：
             .form-group
               .col-sm-offset-2.col-sm-10
                 .checkbox
                   = f.label :issues_enabled do
                     = f.check_box :issues_enabled
-                    %strong Issues
+                    %strong 问题
                     %br
-                    %span.descr Lightweight issue tracking system for this project
+                    %span.descr 轻量级问题跟踪系统
 
             .form-group
               .col-sm-offset-2.col-sm-10
                 .checkbox
                   = f.label :merge_requests_enabled do
                     = f.check_box :merge_requests_enabled
-                    %strong Merge Requests
+                    %strong 合并请求
                     %br
-                    %span.descr Submit changes to be merged upstream
+                    %span.descr 合并上游修改
 
             .form-group
               .col-sm-offset-2.col-sm-10
                 .checkbox
                   = f.label :builds_enabled do
                     = f.check_box :builds_enabled
-                    %strong Builds
+                    %strong 构建
                     %br
-                    %span.descr Test and deploy your changes before merge
+                    %span.descr 合并前测试和部署变更
 
             .form-group
               .col-sm-offset-2.col-sm-10
                 .checkbox
                   = f.label :wiki_enabled do
                     = f.check_box :wiki_enabled
-                    %strong Wiki
+                    %strong 维基
                     %br
-                    %span.descr Pages for project documentation
+                    %span.descr 项目文档页面
 
             .form-group
               .col-sm-offset-2.col-sm-10
                 .checkbox
                   = f.label :snippets_enabled do
                     = f.check_box :snippets_enabled
-                    %strong Snippets
+                    %strong 代码片段
                     %br
-                    %span.descr Share code pastes with others out of git repository
+                    %span.descr 共享 git 版本仓库外的代码
 
           %fieldset.features
             %legend
-              Project avatar:
+              项目头像：
             .form-group
               .col-sm-offset-2.col-sm-10
                 - if @project.avatar?
                   = project_icon("#{@project.namespace.to_param}/#{@project.to_param}", alt: '', class: 'avatar project-avatar s160')
                 %p.light
                   - if @project.avatar_in_git
-                    Project avatar in repository: #{ @project.avatar_in_git }
+                    项目头像保存在版本仓库：#{ @project.avatar_in_git }
                 %p.light
                   - if @project.avatar?
-                    You can change your project avatar here
+                    在这里可以修改项目头像
                   - else
-                    You can upload a project avatar here
+                    在这里可以上传项目头像
                 %a.choose-btn.btn.btn-sm.js-choose-project-avatar-button
                   %i.icon-paper-clip
-                  %span Choose File ...
+                  %span 选择文件...
                 &nbsp;
                 %span.file_name.js-avatar-filename File name...
                 = f.file_field :avatar, class: "js-project-avatar-input hidden"
-                .light The maximum file size allowed is 200KB.
+                .light 文件大小限制为 200KB。
                 - if @project.avatar?
                   %hr
-                  = link_to 'Remove avatar', namespace_project_avatar_path(@project.namespace, @project), data: { confirm: "Project avatar will be removed. Are you sure?"}, method: :delete, class: "btn btn-remove btn-sm remove-avatar"
+                  = link_to '删除头像', namespace_project_avatar_path(@project.namespace, @project), data: { confirm: "确定要删除项目头像么？"}, method: :delete, class: "btn btn-remove btn-sm remove-avatar"
 
           %fieldset.features
             %legend
-              Continuous Integration
+              持续集成
             .form-group
               .col-sm-offset-2.col-sm-10
-                %p Get recent application code using the following command:
+                %p 使用下面的命令来获取程序代码：
                 .radio
                   = f.label :build_allow_git_fetch_false do
                     = f.radio_button :build_allow_git_fetch, 'false'
                     %strong git clone
                     %br
-                    %span.descr Slower but makes sure you have a clean dir before every build
+                    %span.descr 比较慢，但可以在每次构建前保证你有一个干净的文件目录
                 .radio
                   = f.label :build_allow_git_fetch_true do
                     = f.radio_button :build_allow_git_fetch, 'true'
                     %strong git fetch
                     %br
-                    %span.descr Faster
+                    %span.descr 比较快
 
             .form-group
-              = f.label :build_timeout_in_minutes, 'Timeout', class: 'control-label'
+              = f.label :build_timeout_in_minutes, '超时', class: 'control-label'
               .col-sm-10
                 = f.number_field :build_timeout_in_minutes, class: 'form-control', min: '0'
-                %p.help-block per build in minutes
+                %p.help-block 每次构建时间的最大分钟数
             .form-group
-              = f.label :build_coverage_regex, "Test coverage parsing", class: 'control-label'
+              = f.label :build_coverage_regex, "测试覆盖解析", class: 'control-label'
               .col-sm-10
                 .input-group
                   %span.input-group-addon /
                   = f.text_field :build_coverage_regex, class: 'form-control', placeholder: '\(\d+.\d+\%\) covered'
                   %span.input-group-addon /
                 %p.help-block
-                  We will use this regular expression to find test coverage output in build trace.
-                  Leave blank if you want to disable this feature
+                  我们将使用此正则表达式在构建信息中查找测试覆盖输出。如果不想使用此功能，请留空
                 .bs-callout.bs-callout-info
-                  %p Below are examples of regex for existing tools:
+                  %p 下面是现有工具的正则表达式例子：
                   %ul
                     %li
                       Simplecov (Ruby) -
@@ -164,8 +163,8 @@
                   .checkbox
                     = f.label :public_builds do
                       = f.check_box :public_builds
-                      %strong Public builds
-                    .help-block Allow everyone to access builds for Public and Internal projects
+                      %strong 公开构建
+                    .help-block 允许所有人访问公开和内部项目的构建
 
           %fieldset.features
             %legend
@@ -183,16 +182,15 @@
 
     .danger-settings
       .panel.panel-default
-        .panel-heading Housekeeping
+        .panel-heading 维护
         .errors-holder
         .panel-body
           %p
-            Runs a number of housekeeping tasks within the current repository,
-            such as compressing file revisions and removing unreachable objects.
+            执行当前仓库的一些维护任务，诸如压缩文件修订版本和删除无用对象等。
             %br
 
           .form-actions
-            = link_to 'Housekeeping', housekeeping_namespace_project_path(@project.namespace, @project),
+            = link_to '维护', housekeeping_namespace_project_path(@project.namespace, @project),
                 method: :post, class: "btn btn-default"
 
       - if can? current_user, :archive_project, @project

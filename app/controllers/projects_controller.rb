@@ -73,7 +73,7 @@ class ProjectsController < ApplicationController
     return access_denied! unless can?(current_user, :remove_fork_project, @project)
 
     if @project.unlink_fork
-      flash[:notice] = 'The fork relationship has been removed.'
+      flash[:notice] = '派生关系被删除。'
     end
   end
 
@@ -94,7 +94,7 @@ class ProjectsController < ApplicationController
     end
 
     if @project.pending_delete?
-      flash[:alert] = "Project queued for delete."
+      flash[:alert] = "项目正在排队删除。"
     end
 
     respond_to do |format|
@@ -125,7 +125,7 @@ class ProjectsController < ApplicationController
     return access_denied! unless can?(current_user, :remove_project, @project)
 
     ::Projects::DestroyService.new(@project, current_user, {}).pending_delete!
-    flash[:alert] = "Project '#{@project.name}' will be deleted."
+    flash[:alert] = "项目 '#{@project.name}' 已被删除。"
 
     redirect_to dashboard_projects_path
   rescue Projects::DestroyService::DestroyError => ex

@@ -1,4 +1,4 @@
-- page_title           "#{@issue.title} (##{@issue.iid})", "Issues"
+- page_title           "#{@issue.title} (##{@issue.iid})", "问题"
 - page_description     @issue.description
 - page_card_attributes @issue.card_attributes
 
@@ -8,16 +8,16 @@
   .detail-page-header
     .pull-right
       - if can?(current_user, :create_issue, @project)
-        = link_to new_namespace_project_issue_path(@project.namespace, @project), class: 'btn btn-nr btn-grouped new-issue-link btn-success', title: 'New Issue', id: 'new_issue_link' do
+        = link_to new_namespace_project_issue_path(@project.namespace, @project), class: 'btn btn-nr btn-grouped new-issue-link btn-success', title: '新问题', id: 'new_issue_link' do
           = icon('plus')
-          New Issue
+          新问题
       - if can?(current_user, :update_issue, @issue)
-        = link_to 'Reopen', issue_path(@issue, issue: {state_event: :reopen}, status_only: true, format: 'json'), data: {no_turbolink: true}, class: "btn btn-nr btn-grouped btn-reopen #{issue_button_visibility(@issue, false)}", title: 'Reopen Issue'
-        = link_to 'Close', issue_path(@issue, issue: {state_event: :close}, status_only: true, format: 'json'), data: {no_turbolink: true}, class: "btn btn-nr btn-grouped btn-close #{issue_button_visibility(@issue, true)}", title: 'Close Issue'
+        = link_to '重新打开', issue_path(@issue, issue: {state_event: :reopen}, status_only: true, format: 'json'), data: {no_turbolink: true}, class: "btn btn-nr btn-grouped btn-reopen #{issue_button_visibility(@issue, false)}", title: '重新打开问题'
+        = link_to '关闭', issue_path(@issue, issue: {state_event: :close}, status_only: true, format: 'json'), data: {no_turbolink: true}, class: "btn btn-nr btn-grouped btn-close #{issue_button_visibility(@issue, true)}", title: '关闭问题'
 
         = link_to edit_namespace_project_issue_path(@project.namespace, @project, @issue), class: 'btn btn-nr btn-grouped issuable-edit' do
           = icon('pencil-square-o')
-          Edit
+          编辑
 
     .pull-left
       .status-box{ class: "status-box-closed #{issue_button_visibility(@issue, false)}"} Closed
@@ -25,10 +25,10 @@
 
     .issue-meta
       %span.identifier
-        Issue ##{@issue.iid}
+        问题 ##{@issue.iid}
       %span.creator
         &middot;
-        by #{link_to_member(@project, @issue.author, size: 24)}
+        提交者：#{link_to_member(@project, @issue.author, size: 24)}
         &middot;
         = time_ago_with_tooltip(@issue.created_at, placement: 'bottom', html_class: 'issue_created_ago')
 
@@ -46,7 +46,7 @@
               = @issue.description
       - if @issue.updated_at != @issue.created_at
         %small
-          Edited
+          编辑时间
           = time_ago_with_tooltip(@issue.updated_at, placement: 'bottom', html_class: 'issue_edited_ago')
 
       .merge-requests

@@ -127,9 +127,9 @@ class Milestone < ActiveRecord::Base
   def expires_at
     if due_date
       if due_date.past?
-        "expired on #{due_date.to_s(:medium)}"
+        "过期时间 #{due_date.to_s(:medium)}"
       else
-        "expires on #{due_date.to_s(:medium)}"
+        "过期时间 #{due_date.to_s(:medium)}"
       end
     end
   end

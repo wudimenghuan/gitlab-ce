@@ -14,31 +14,31 @@
       - @hook.errors.full_messages.each do |msg|
         %p= msg
   .form-group
-    = f.label :url, "URL:", class: 'control-label'
+    = f.label :url, "链接：", class: 'control-label'
     .col-sm-10
       = f.text_field :url, class: "form-control"
   .form-group
-    = f.label :enable_ssl_verification, "SSL verification", class: 'control-label checkbox'
+    = f.label :enable_ssl_verification, "SSL 验证证书", class: 'control-label checkbox'
     .col-sm-10
       .checkbox
         = f.label :enable_ssl_verification do
           = f.check_box :enable_ssl_verification
-          %strong Enable SSL verification
+          %strong 启用 SSL 验证证书
   .form-actions
-    = f.submit "Add System Hook", class: "btn btn-create"
+    = f.submit "增加系统钩子", class: "btn btn-create"
 %hr
 
 -if @hooks.any?
   .panel.panel-default
     .panel-heading
-      System hooks (#{@hooks.count})
+      系统钩子 (#{@hooks.count})
     %ul.well-list
       - @hooks.each do |hook|
         %li
           .list-item-name
             %strong= hook.url
-            %p SSL Verification: #{hook.enable_ssl_verification ? "enabled" : "disabled"}
+            %p SSL 验证证书: #{hook.enable_ssl_verification ? "已启用" : "已禁用"}
 
           .pull-right
-            = link_to 'Test Hook', admin_hook_test_path(hook), class: "btn btn-sm"
-            = link_to 'Remove', admin_hook_path(hook), data: { confirm: 'Are you sure?' }, method: :delete, class: "btn btn-remove btn-sm"
+            = link_to '测试钩子', admin_hook_test_path(hook), class: "btn btn-sm"
+            = link_to '删除', admin_hook_path(hook), data: { confirm: '确定要继续么？' }, method: :delete, class: "btn btn-remove btn-sm"

@@ -480,12 +480,16 @@ class MergeRequest < ActiveRecord::Base
 
   def state_human_name
     if merged?
-      "Merged"
+      "已合并"
     elsif closed?
-      "Closed"
+      "已关闭"
     else
-      "Open"
+      "未关闭"
     end
+  end
+
+  def zh_name
+    '合并请求'
   end
 
   def target_sha

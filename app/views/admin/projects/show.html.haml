@@ -1,42 +1,42 @@
-- page_title @project.name_with_namespace, "Projects"
+- page_title @project.name_with_namespace, "项目"
 %h3.page-title
-  Project: #{@project.name_with_namespace}
+  项目：#{@project.name_with_namespace}
   = link_to edit_project_path(@project), class: "btn btn-nr pull-right" do
     %i.fa.fa-pencil-square-o
-    Edit
+    编辑
 %hr
 .row
   .col-md-6
     .panel.panel-default
       .panel-heading
-        Project info:
+        项目信息：
       %ul.well-list
         %li
-          %span.light Name:
+          %span.light 名称：
           %strong
             = link_to @project.name, project_path(@project)
         %li
-          %span.light Namespace:
+          %span.light 命名空间：
           %strong
             - if @project.namespace
               = link_to @project.namespace.human_name, [:admin, @project.group || @project.owner]
             - else
-              Global
+              全局
         %li
-          %span.light Owned by:
+          %span.light 所有者：
           %strong
             - if @project.owner
               = link_to @project.owner_name, [:admin, @project.owner]
             - else
-              (deleted)
+              (已删除)
 
         %li
-          %span.light Created by:
+          %span.light 创建者：
           %strong
-            = @project.creator.try(:name) || '(deleted)'
+            = @project.creator.try(:name) || '(已删除)'
 
         %li
-          %span.light Created on:
+          %span.light 创建时间：
           %strong
             = @project.created_at.to_s(:medium)
 

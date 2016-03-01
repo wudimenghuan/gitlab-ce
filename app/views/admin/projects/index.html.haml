@@ -1,4 +1,4 @@
-- page_title "Projects"
+- page_title "项目"
 = render 'shared/show_aside'
 
 .row.prepend-top-default
@@ -40,13 +40,13 @@
                     = label
         %hr
         = hidden_field_tag :sort, params[:sort]
-        = button_tag "Search", class: "btn submit btn-primary"
-        = link_to "Reset", admin_namespaces_projects_path, class: "btn btn-cancel"
+        = button_tag "搜索", class: "btn submit btn-primary"
+        = link_to "重置", admin_namespaces_projects_path, class: "btn btn-cancel"
 
   %section.col-md-9
     .panel.panel-default
       .panel-heading
-        Projects (#{@projects.total_count})
+        项目 (#{@projects.total_count})
         .controls
           .dropdown.inline
             %button.dropdown-toggle.btn.btn-sm{type: 'button', 'data-toggle' => 'dropdown'}

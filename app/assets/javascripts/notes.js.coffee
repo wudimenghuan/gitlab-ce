@@ -538,19 +538,19 @@ class @Notes
   updateCloseButton: (e) =>
     textarea = $(e.target)
     form = textarea.parents('form')
-    form.find('.js-note-target-close').text('Close')
+    form.find('.js-note-target-close').text('关闭')
 
   updateTargetButtons: (e) =>
     textarea = $(e.target)
     form = textarea.parents('form')
     if textarea.val().trim().length > 0
-      form.find('.js-note-target-reopen').text('Comment & reopen')
-      form.find('.js-note-target-close').text('Comment & close')
+      form.find('.js-note-target-reopen').text('评论 & 重新打开')
+      form.find('.js-note-target-close').text('评论 & 关闭')
       form.find('.js-note-target-reopen').addClass('btn-comment-and-reopen')
       form.find('.js-note-target-close').addClass('btn-comment-and-close')
     else
-      form.find('.js-note-target-reopen').text('Reopen')
-      form.find('.js-note-target-close').text('Close')
+      form.find('.js-note-target-reopen').text('重新打开')
+      form.find('.js-note-target-close').text('关闭')
       form.find('.js-note-target-reopen').removeClass('btn-comment-and-reopen')
       form.find('.js-note-target-close').removeClass('btn-comment-and-close')
 

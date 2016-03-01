@@ -4,6 +4,6 @@
     %span
       = participants.count
   .title
-    = pluralize participants.count, "participant"
+    = pluralize participants.count, "个参与者", "个参与者"
   - participants.each do |participant|
     = link_to_member(@project, participant, name: false, size: 24)

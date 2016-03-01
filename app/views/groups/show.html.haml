@@ -5,14 +5,14 @@
 
 = content_for :meta_tags do
   - if current_user
-    = auto_discovery_link_tag(:atom, group_url(@group, format: :atom, private_token: current_user.private_token), title: "#{@group.name} activity")
+    = auto_discovery_link_tag(:atom, group_url(@group, format: :atom, private_token: current_user.private_token), title: "#{@group.name} 活动")
 
 .cover-block
   .cover-controls
     - if @group && can?(current_user, :admin_group, @group)
       = link_to icon('pencil'), edit_group_path(@group), class: 'btn'
     - if current_user
-      = link_to icon('rss'), group_path(@group, { format: :atom, private_token: current_user.private_token }), title: "Feed", class: 'btn rss-btn'
+      = link_to icon('rss'), group_path(@group, { format: :atom, private_token: current_user.private_token }), title: "动态", class: 'btn rss-btn'
 
   .avatar-holder
     = link_to group_icon(@group), target: '_blank' do
@@ -31,11 +31,11 @@
   %ul.nav-links
     %li.active
       = link_to "#activity", 'data-toggle' => 'tab' do
-        Activity
+        活动
     - if @projects.present?
       %li
         = link_to "#projects", 'data-toggle' => 'tab' do
-          Projects
+          项目
 
 - if can?(current_user, :read_group, @group)
   %div{ class: container_class }
@@ -55,4 +55,4 @@
 
 - else
   %p.nav-links.no-top
-    No projects to show
+    没有项目

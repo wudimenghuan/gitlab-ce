@@ -13,18 +13,18 @@
   .row
     .col-md-7
       .form-group
-        = f.label :name, class: "control-label"
+        = f.label :name, "姓名", class: "control-label"
         .col-sm-10
           = f.text_field :name, class: "form-control", required: true
-          %span.help-block Enter your name, so people you know can recognize you.
+          %span.help-block 输入其他人能知道的名字。
 
       .form-group
-        = f.label :email, class: "control-label"
+        = f.label :email, "电子邮箱", class: "control-label"
         .col-sm-10
           - if @user.ldap_user? && @user.ldap_email?
             = f.text_field :email, class: "form-control", required: true, readonly: true
             %span.help-block.light
-              Your email address was automatically set based on the LDAP server.
+              LDAP 用户的电子邮箱只读
           - else
             - if @user.temp_oauth_email?
               = f.text_field :email, class: "form-control", required: true, value: nil

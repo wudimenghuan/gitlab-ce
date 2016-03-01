@@ -18,12 +18,12 @@
     - if projects.size > projects_limit && projects.kind_of?(Array)
       %li.bottom.center
         .light
-          #{projects_limit} of #{pluralize(projects.count, 'project')} displayed.
+          已显示 #{projects_limit} / #{pluralize(projects.count, '个项目', '个项目')}。
           = link_to '#', class: 'js-expand' do
-            Show all
+            显示全部
     = paginate projects, theme: "gitlab" if projects.respond_to? :total_pages
   - else
-    %h3 No projects found
+    %h3 没有项目
 
 :javascript
   new ProjectsList();

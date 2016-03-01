@@ -53,7 +53,7 @@
         day: " 1 天",
         days: " %d 天",
         month: "大约 1 个月",
-        months: " %d 月",
+        months: " %d 个月",
         year: "大约 1 年",
         years: " %d 年",
         wordSeparator: "",

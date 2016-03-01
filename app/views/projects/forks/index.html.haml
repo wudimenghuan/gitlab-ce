@@ -2,16 +2,16 @@
   .nav-text
     - public_count = @public_forks.size
     - protected_count = @protected_forks.size
-    - full_count_title = "#{public_count} public and #{protected_count} private"
-    == #{pluralize(@all_forks.size, 'fork')}: #{full_count_title}
+    - full_count_title = "#{public_count} 个公开和 #{protected_count} 个私有"
+    == #{pluralize(@all_forks.size, '个派生', '个派生')}: #{full_count_title}
 
   .nav-controls
-    = search_field_tag :filter_projects, nil, placeholder: 'Search forks', class: 'projects-list-filter project-filter-form-field form-control input-short',
+    = search_field_tag :filter_projects, nil, placeholder: '搜索派生', class: 'projects-list-filter project-filter-form-field form-control input-short',
       spellcheck: false, data: { 'filter-selector' => 'span.namespace-name' }
 
     .dropdown
       %button.dropdown-toggle.btn.sort-forks{type: 'button', 'data-toggle' => 'dropdown'}
-        %span.light sort:
+        %span.light 排序：
         - if @sort.present?
           = sort_options_hash[@sort]
         - else
@@ -31,20 +31,20 @@
 
     - if current_user && can?(current_user, :fork_project, @project)
       - if current_user.already_forked?(@project) && current_user.manageable_namespaces.size < 2
-        = link_to namespace_project_path(current_user, current_user.fork_of(@project)), title: 'Go to your fork', class: 'btn btn-new' do
+        = link_to namespace_project_path(current_user, current_user.fork_of(@project)), title: '转到您的派生', class: 'btn btn-new' do
           = icon('code-fork fw')
-          Fork
+          派生
       - else
-        = link_to new_namespace_project_fork_path(@project.namespace, @project), title: "Fork project", class: 'btn btn-new' do
+        = link_to new_namespace_project_fork_path(@project.namespace, @project), title: "派生项目", class: 'btn btn-new' do
           = icon('code-fork fw')
-          Fork
+          派生
 
 
 .projects-list-holder
   - if @public_forks.blank?
     %ul.content-list
       %li
-        .nothing-here-block No forks to show
+        .nothing-here-block 没有派生
   - else
     = render 'shared/projects/list', projects: @public_forks, use_creator_avatar: true,
       forks: true, show_last_commit_as_description: true
@@ -53,5 +53,5 @@
       %ul.projects-list.private-forks-notice
         %li.project-row
           = icon('lock fw', base: 'circle', class: 'fa-lg private-fork-icon')
-          %strong= pluralize(protected_count, 'private fork')
-          %span you have no access to.
+          %strong= pluralize(protected_count, '个私有派生', '个私有派生')
+          %span 您没有权限访问。

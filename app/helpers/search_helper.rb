@@ -73,7 +73,7 @@ module SearchHelper
   def groups_autocomplete(term, limit = 5)
     current_user.authorized_groups.search(term).limit(limit).map do |group|
       {
-        label: "group: #{search_result_sanitize(group.name)}",
+        label: "群组: #{search_result_sanitize(group.name)}",
         url: group_path(group)
       }
     end
@@ -84,7 +84,7 @@ module SearchHelper
     current_user.authorized_projects.search_by_title(term).
       sorted_by_stars.non_archived.limit(limit).map do |p|
       {
-        label: "project: #{search_result_sanitize(p.name_with_namespace)}",
+        label: "项目: #{search_result_sanitize(p.name_with_namespace)}",
         url: namespace_project_path(p.namespace, p)
       }
     end

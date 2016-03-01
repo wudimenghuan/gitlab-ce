@@ -1,14 +1,14 @@
-- page_title "Labels"
+- page_title "标记"
 = render "header_title"
 
 .top-area
   .nav-text
-    Labels can be applied to issues and merge requests.
+    标记可应用于问题和合并请求。
   .nav-controls
     - if can? current_user, :admin_label, @project
       = link_to new_namespace_project_label_path(@project.namespace, @project), class: "btn btn-new" do
         = icon('plus')
-        New label
+        新标记
 
 .labels
   - if @labels.present?

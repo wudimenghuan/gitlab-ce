@@ -1,71 +1,71 @@
-- page_title "Account"
+- page_title "账号"
 - header_title page_title, profile_account_path
 
 - if current_user.ldap_user?
   .alert.alert-info
-    Some options are unavailable for LDAP accounts
+    部分设置对于 LDAP 账号无效
 
 .account-page.prepend-top-default
   .panel.panel-default.update-token
     .panel-heading
-      Reset Private token
+      重置私有授权
     .panel-body
       = form_for @user, url: reset_private_token_profile_path, method: :put do |f|
         .data
           %p
-            Your private token is used to access application resources without authentication.
+            私有授权可以免登录访问应用资源。
             %br
-            It can be used for atom feeds or the API.
+            通常在 RSS 和 API 中使用。
             %span.cred
-              Keep it secret!
+              注意保密！
 
           %p.cgray
             - if current_user.private_token
-              = text_field_tag "token", current_user.private_token, class: "form-control"
+              = text_field_tag "授权", current_user.private_token, class: "form-control"
             - else
-              %span You don`t have one yet. Click generate to fix it.
+              %span 没有私有授权，点生成按钮可修复。
 
         .form-actions
           - if current_user.private_token
-            = f.submit 'Reset private token', data: { confirm: "Are you sure?" }, class: "btn btn-default"
+            = f.submit '重置私有授权', data: { confirm: "Are you sure?" }, class: "btn btn-default"
           - else
-            = f.submit 'Generate', class: "btn btn-default"
+            = f.submit '生成', class: "btn btn-default"
 
   .panel.panel-default
     .panel-heading
-      Two-factor Authentication
+      两步验证
     .panel-body
       - if current_user.two_factor_enabled?
         .pull-right
-          = link_to 'Disable Two-factor Authentication', profile_two_factor_auth_path, method: :delete, class: 'btn btn-close btn-sm',
-              data: { confirm: 'Are you sure?' }
+          = link_to '禁止两步验证', profile_two_factor_auth_path, method: :delete, class: 'btn btn-close btn-sm',
+              data: { confirm: '确定要继续么？' }
         %p.text-success
           %strong
-            Two-factor Authentication is enabled
+            两步验证已开启
         %p
-          If you lose your recovery codes you can
+          如果丢失了恢复代码，可以
           %strong
             = succeed ',' do
-              = link_to 'generate new ones', codes_profile_two_factor_auth_path, method: :post, data: { confirm: 'Are you sure?' }
-          invalidating all previous codes.
+              = link_to '生成新的', codes_profile_two_factor_auth_path, method: :post, data: { confirm: '确定要继续么？' }
+          并取消以前的所有代码。
 
       - else
         %p
-          Increase your account's security by enabling two-factor authentication (2FA).
+          开启两步验证 (2FA) 增加账户安全性。
         %p
-          Each time you log in you’ll be required to provide your username and
-          password as usual, plus a randomly-generated code from your phone.
+          每次登入时除了需要通常情况下的用户名和密码外，
+          还需要额外输入一个手机应用上随机生成的代码。
 
         .form-actions
-          = link_to 'Enable Two-factor Authentication', new_profile_two_factor_auth_path, class: 'btn btn-success'
+          = link_to '开启两步验证', new_profile_two_factor_auth_path, class: 'btn btn-success'
 
   - if button_based_providers.any?
     .panel.panel-default
       .panel-heading
-        Connected Accounts
+        连接到的账户
       .panel-body
         .oauth-buttons.append-bottom-10
-          %p Click on icon to activate signin with one of the following services
+          %p 点击下列服务的图标激活第三方登入
           - button_based_providers.each do |provider|
             .btn-group
               = link_to provider_image_tag(provider), user_omniauth_authorize_path(provider), method: :post, class: "btn btn-lg #{'active' if auth_active?(provider)}", "data-no-turbolink" => "true"

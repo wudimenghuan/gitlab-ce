@@ -36,7 +36,8 @@
 
     .commit-row-info
       = commit_author_link(commit, avatar: true, size: 24)
-      创建在
+      在
       .committed_ago
         #{time_ago_with_tooltip(commit.committed_date, skip_js: true)} &nbsp;
+      创建
       = link_to_browse_code(project, commit)

@@ -6,9 +6,9 @@
   %td.build-link
     - if can?(current_user, :read_build, project) && build.target_url
       = link_to build.target_url do
-        %strong Build ##{build.id}
+        %strong 构建 ##{build.id}
     - else
-      %strong Build ##{build.id}
+      %strong 构建 ##{build.id}
 
     - if build.show_warning?
       %i.fa.fa-warning.text-warning
@@ -61,13 +61,13 @@
   %td
     .pull-right
       - if can?(current_user, :read_build, project) && build.artifacts?
-        = link_to build.artifacts_download_url, title: 'Download artifacts' do
+        = link_to build.artifacts_download_url, title: '下载附件' do
           %i.fa.fa-download
       - if can?(current_user, :update_build, build.project)
         - if build.active?
           - if build.cancel_url
-            = link_to build.cancel_url, method: :post, title: 'Cancel' do
+            = link_to build.cancel_url, method: :post, title: '取消' do
               %i.fa.fa-remove.cred
         - elsif defined?(allow_retry) && allow_retry && build.retry_url
-          = link_to build.retry_url, method: :post, title: 'Retry' do
+          = link_to build.retry_url, method: :post, title: '重试' do
             %i.fa.fa-repeat

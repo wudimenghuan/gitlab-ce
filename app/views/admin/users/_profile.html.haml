@@ -1,13 +1,13 @@
 .panel.panel-default
   .panel-heading
-    Profile
+    个人资料
   %ul.well-list
     %li
-      %span.light Member since
+      %span.light 注册时间：
       %strong= user.created_at.to_s(:medium)
     - unless user.public_email.blank?
       %li
-        %span.light E-mail:
+        %span.light 电子邮箱：
         %strong= link_to user.public_email, "mailto:#{user.public_email}"
     - unless user.skype.blank?
       %li

@@ -135,81 +135,81 @@
           %td the Bird
           %td @twitter
 
-  %h2#navs Navigation
+  %h2#navs 导航条
 
   %h4
     %code .top-area
-  %p Holder for top page navigation. Includes navigation, search field, sorting and button
+  %p 页面顶部导航。包括导航、搜索区域、排序和按钮
 
   .example
     .top-area
       %ul.nav-links
         %li.active
-          %a Open
+          %a 打开的
         %li
-          %a Closed
+          %a 关闭的
       .nav-controls
         = text_field_tag 'sample', nil, class: 'form-control'
         .dropdown
           %button.dropdown-toggle.btn{type: 'button', 'data-toggle' => 'dropdown'}
-            %span Sort by name
+            %span 按名称排序
             %b.caret
           %ul.dropdown-menu
             %li
-              %a Sort by date
+              %a 按日期排序
 
-        = link_to 'New issue', '#', class: 'btn btn-new'
+        = link_to '新问题', '#', class: 'btn btn-new'
 
   %h4
     %code .nav-links
-  %p Only nav links without button and search
+  %p 不含按钮和搜索的导航
   .example
     %ul.nav-links
       %li.active
-        %a Open
+        %a 打开的
       %li
-        %a Closed
+        %a 关闭的
 
 
-  %h2#buttons Buttons
+  %h2#buttons 按钮
 
   .example
-    %button.btn.btn-default{:type => "button"} Default
-    %button.btn.btn-gray{:type => "button"} Gray
-    %button.btn.btn-primary{:type => "button"} Primary
-    %button.btn.btn-success{:type => "button"} Success
-    %button.btn.btn-info{:type => "button"} Info
-    %button.btn.btn-warning{:type => "button"} Warning
-    %button.btn.btn-danger{:type => "button"} Danger
-    %button.btn.btn-link{:type => "button"} Link
+    %button.btn.btn-default{:type => "button"} 默认
+    %button.btn.btn-gray{:type => "button"} 灰色
+    %button.btn.btn-primary{:type => "button"} 主要
+    %button.btn.btn-success{:type => "button"} 成功
+    %button.btn.btn-info{:type => "button"} 信息
+    %button.btn.btn-warning{:type => "button"} 警告
+    %button.btn.btn-danger{:type => "button"} 危险
+    %button.btn.btn-link{:type => "button"} 链接
 
-  %h2#panels Panels
+  %h2#panels 面板
 
   .row
     .col-md-6
       .panel.panel-success
-        .panel-heading Success
+        .panel-heading 成功
         .panel-body
           = lorem
       .panel.panel-primary
-        .panel-heading Primary
+        .panel-heading 主要
         .panel-body
           = lorem
       .panel.panel-info
-        .panel-heading Info
+        .panel-heading 信息
         .panel-body
           = lorem
     .col-md-6
       .panel.panel-warning
-        .panel-heading Warning
+        .panel-heading 警告
         .panel-body
           = lorem
       .panel.panel-danger
-        .panel-heading Danger
+        .panel-heading 危险
         .panel-body
           = lorem
 
-  %h2#alert Alerts
+  %h2#alert 警告
 
   .row
     .col-md-6

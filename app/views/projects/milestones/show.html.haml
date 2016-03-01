@@ -1,4 +1,4 @@
-- page_title       @milestone.title, "Milestones"
+- page_title       @milestone.title, "里程碑"
 - page_description @milestone.description
 
 = render "header_title"
@@ -6,13 +6,13 @@
 .detail-page-header
   .status-box{ class: status_box_class(@milestone) }
     - if @milestone.closed?
-      Closed
+      已关闭
     - elsif @milestone.expired?
-      Expired
+      已过期
     - else
-      Open
+      未关闭
   %span.identifier
-    Milestone ##{@milestone.iid}
+    里程碑 ##{@milestone.iid}
   - if @milestone.expires_at
     %span.creator
       &middot;
@@ -20,17 +20,17 @@
   .pull-right
     - if can?(current_user, :admin_milestone, @project)
       - if @milestone.active?
-        = link_to 'Close Milestone', namespace_project_milestone_path(@project.namespace, @project, @milestone, milestone: {state_event: :close }), method: :put, class: "btn btn-close btn-nr btn-grouped"
+        = link_to '关闭里程碑', namespace_project_milestone_path(@project.namespace, @project, @milestone, milestone: {state_event: :close }), method: :put, class: "btn btn-close btn-nr btn-grouped"
       - else
-        = link_to 'Reopen Milestone', namespace_project_milestone_path(@project.namespace, @project, @milestone, milestone: {state_event: :activate }), method: :put, class: "btn btn-reopen btn-nr btn-grouped"
+        = link_to '重新打开里程碑', namespace_project_milestone_path(@project.namespace, @project, @milestone, milestone: {state_event: :activate }), method: :put, class: "btn btn-reopen btn-nr btn-grouped"
 
-      = link_to namespace_project_milestone_path(@project.namespace, @project, @milestone), data: { confirm: 'Are you sure?' }, method: :delete, class: "btn btn-grouped btn-nr" do
+      = link_to namespace_project_milestone_path(@project.namespace, @project, @milestone), data: { confirm: '确定要继续么？' }, method: :delete, class: "btn btn-grouped btn-nr" do
         = icon('trash-o')
-        Delete
+        删除
 
       = link_to edit_namespace_project_milestone_path(@project.namespace, @project, @milestone), class: "btn btn-grouped btn-nr" do
         = icon('pencil-square-o')
-        Edit
+        编辑
 
 .detail-page-description.milestone-detail.second-block
   %h2.title
@@ -44,77 +44,77 @@
 
 - if @milestone.issues.any? && @milestone.can_be_closed?
   .alert.alert-success.prepend-top-default
-    %span All issues for this milestone are closed. You may close milestone now.
+    %span 本里程碑的所有问题和合并请求都已关闭，可以选择关闭本里程碑。
 
 .context.prepend-top-default
   .milestone-summary
-    %h4 Progress
+    %h4 进度
     %strong= @milestone.issues.count
-    issues:
+    问题：
     %span.milestone-stat
       %strong= @milestone.open_items_count
-      open and
+      个未关闭和
       %strong= @milestone.closed_items_count
-      closed
+      个已关闭
     %span.milestone-stat
       %strong== #{@milestone.percent_complete}%
-      complete
+      完成
     %span.milestone-stat
       %span.time-elapsed
         %strong== #{@milestone.percent_time_used}%
-        time elapsed
+        时间流逝
     %span.pull-right.tab-issues-buttons
       - if can?(current_user, :create_issue, @project)
-        = link_to new_namespace_project_issue_path(@project.namespace, @project, issue: { milestone_id: @milestone.id }), class: "btn  btn-grouped", title: "New Issue" do
+        = link_to new_namespace_project_issue_path(@project.namespace, @project, issue: { milestone_id: @milestone.id }), class: "btn  btn-grouped", title: "新问题" do
           %i.fa.fa-plus
-          New Issue
+          新问题
       - if can?(current_user, :read_issue, @project)
-        = link_to 'Browse Issues', namespace_project_issues_path(@milestone.project.namespace, @milestone.project, milestone_title: @milestone.title), class: "btn btn-grouped"
+        = link_to '浏览问题', namespace_project_issues_path(@milestone.project.namespace, @milestone.project, milestone_title: @milestone.title), class: "btn btn-grouped"
     %span.pull-right.tab-merge-requests-buttons.hidden
       - if can?(current_user, :read_merge_request, @project)
-        = link_to 'Browse Merge Requests', namespace_project_merge_requests_path(@milestone.project.namespace, @milestone.project, milestone_title: @milestone.title), class: "btn btn-grouped"
+        = link_to '浏览合并请求', namespace_project_merge_requests_path(@milestone.project.namespace, @milestone.project, milestone_title: @milestone.title), class: "btn btn-grouped"
 
   = milestone_progress_bar(@milestone)
 
 %ul.nav-links.no-top.no-bottom
   %li.active
     = link_to '#tab-issues', 'data-toggle' => 'tab', 'data-show' => '.tab-issues-buttons' do
-      Issues
+      问题
       %span.badge= @issues.count
   %li
     = link_to '#tab-merge-requests', 'data-toggle' => 'tab', 'data-show' => '.tab-merge-requests-buttons' do
-      Merge Requests
+      合并请求
       %span.badge= @merge_requests.count
   %li
     = link_to '#tab-participants', 'data-toggle' => 'tab' do
-      Participants
+      参与者
       %span.badge= @users.count
   %li
     = link_to '#tab-labels', 'data-toggle' => 'tab', 'data-show' => '.tab-issues-buttons' do
-      Labels
+      标记
       %span.badge= @labels.count
 
 .tab-content.milestone-content
   .tab-pane.active#tab-issues
     .row.prepend-top-default
       .col-md-4
-        = render('issues', title: 'Unstarted Issues (open and unassigned)', issues: @issues.opened.unassigned, id: 'unassigned')
+        = render('issues', title: '未开始的问题 (未关闭 & 未指派)', issues: @issues.opened.unassigned, id: 'unassigned')
       .col-md-4
-        = render('issues', title: 'Ongoing Issues (open and assigned)', issues: @issues.opened.assigned, id: 'ongoing')
+        = render('issues', title: '正在进行的问题 (未关闭 & 已指派)', issues: @issues.opened.assigned, id: 'ongoing')
       .col-md-4
-        = render('issues', title: 'Completed Issues (closed)', issues: @issues.closed, id: 'closed')
+        = render('issues', title: '完成的问题 (已关闭)', issues: @issues.closed, id: 'closed')
 
   .tab-pane#tab-merge-requests
     .row.prepend-top-default
       .col-md-3
-        = render('merge_requests', title: 'Work in progress (open and unassigned)', merge_requests: @merge_requests.opened.unassigned, id: 'unassigned')
+        = render('merge_requests', title: '正在处理的 (未关闭 & 未指派)', merge_requests: @merge_requests.opened.unassigned, id: 'unassigned')
       .col-md-3
-        = render('merge_requests', title: 'Waiting for merge (open and assigned)', merge_requests: @merge_requests.opened.assigned, id: 'ongoing')
+        = render('merge_requests', title: '等待合并 (未关闭 & 已指派)', merge_requests: @merge_requests.opened.assigned, id: 'ongoing')
       .col-md-3
-        = render('merge_requests', title: 'Rejected (closed)', merge_requests: @merge_requests.closed, id: 'closed')
+        = render('merge_requests', title: '拒绝 (已关闭)', merge_requests: @merge_requests.closed, id: 'closed')
       .col-md-3
         .panel.panel-primary
-          .panel-heading Merged
+          .panel-heading 已合并
           %ul.well-list
             - @merge_requests.merged.each do |merge_request|
               = render 'merge_request', merge_request: merge_request
@@ -139,7 +139,7 @@
 
           %span.issues-count
             = link_to namespace_project_issues_path(*args, options.merge(state: 'opened')) do
-              = pluralize label.open_issues_count, 'open issue'
+              = pluralize label.open_issues_count, '个未关闭的问题', '个未关闭的问题'
           %span.issues-count
             = link_to namespace_project_issues_path(*args, options.merge(state: 'closed')) do
-              = pluralize label.closed_issues_count, 'closed issue'
+              = pluralize label.closed_issues_count, '个已关闭的问题', '个已关闭的问题'

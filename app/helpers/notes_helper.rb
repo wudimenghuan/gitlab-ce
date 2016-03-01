@@ -69,9 +69,9 @@ module NotesHelper
     }
 
     button_tag class: 'btn btn-nr reply-btn js-discussion-reply-button',
-               data: data, title: 'Add a reply' do
+               data: data, title: '增加回复' do
       link_text = icon('comment')
-      link_text << ' Reply'
+      link_text << ' 回复'
     end
   end
 end

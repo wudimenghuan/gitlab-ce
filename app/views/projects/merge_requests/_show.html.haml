@@ -1,4 +1,4 @@
-- page_title           "#{@merge_request.title} (##{@merge_request.iid})", "Merge Requests"
+- page_title           "#{@merge_request.title} (##{@merge_request.iid})", "合并请求"
 - page_description     @merge_request.description
 - page_card_attributes @merge_request.card_attributes
 
@@ -40,28 +40,28 @@
 
     - if @merge_request.source_branch_exists? && @merge_request.mergeable? && @merge_request.can_be_merged_by?(current_user)
       .light.prepend-top-default
-        You can also accept this merge request manually using the
-        = succeed '.' do
-          = link_to "command line", "#modal_merge_info", class: "how_to_merge_link vlink", title: "How To Merge", "data-toggle" => "modal"
+        也可以使用
+        = succeed '手工接受此合并请求。' do
+          = link_to "命令行", "#modal_merge_info", class: "how_to_merge_link vlink", title: "如何合并", "data-toggle" => "modal"
 
     - if @commits.present?
       %ul.merge-request-tabs.nav-links.no-top.no-bottom
         %li.notes-tab
           = link_to namespace_project_merge_request_path(@project.namespace, @project, @merge_request), data: {target: 'div#notes', action: 'notes', toggle: 'tab'} do
-            Discussion
+            讨论
             %span.badge= @merge_request.mr_and_commit_notes.user.count
         %li.commits-tab
           = link_to commits_namespace_project_merge_request_path(@project.namespace, @project, @merge_request), data: {target: 'div#commits', action: 'commits', toggle: 'tab'} do
-            Commits
+            提交
             %span.badge= @commits.size
         - if @ci_commit
           %li.builds-tab
             = link_to builds_namespace_project_merge_request_path(@project.namespace, @project, @merge_request), data: {target: '#builds', action: 'builds', toggle: 'tab'} do
-              Builds
+              构建
               %span.badge= @statuses.size
         %li.diffs-tab
           = link_to diffs_namespace_project_merge_request_path(@project.namespace, @project, @merge_request), data: {target: 'div#diffs', action: 'diffs', toggle: 'tab'} do
-            Changes
+            变更
             %span.badge= @merge_request.diffs.size
 
       .tab-content

@@ -34,42 +34,42 @@ class Admin::UsersController < Admin::ApplicationController
 
   def block
     if user.block
-      redirect_back_or_admin_user(notice: "Successfully blocked")
+      redirect_back_or_admin_user(notice: "禁用成功")
     else
-      redirect_back_or_admin_user(alert: "Error occurred. User was not blocked")
+      redirect_back_or_admin_user(alert: "发生错误。用户未被禁止")
     end
   end
 
   def unblock
     if user.ldap_blocked?
-      redirect_back_or_admin_user(alert: "This user cannot be unlocked manually from GitLab")
+      redirect_back_or_admin_user(alert: "此用户无法通过 GitLab 来启用")
     elsif user.activate
-      redirect_back_or_admin_user(notice: "Successfully unblocked")
+      redirect_back_or_admin_user(notice: "启用成功")
     else
-      redirect_back_or_admin_user(alert: "Error occurred. User was not unblocked")
+      redirect_back_or_admin_user(alert: "发生错误。用户未被启用")
     end
   end
 
   def unlock
     if user.unlock_access!
-      redirect_back_or_admin_user(alert: "Successfully unlocked")
+      redirect_back_or_admin_user(alert: "解除锁定成功")
     else
-      redirect_back_or_admin_user(alert: "Error occurred. User was not unlocked")
+      redirect_back_or_admin_user(alert: "发生错误。用户未被解除锁定")
     end
   end
 
   def confirm
     if user.confirm
-      redirect_back_or_admin_user(notice: "Successfully confirmed")
+      redirect_back_or_admin_user(notice: "确认成功")
     else
-      redirect_back_or_admin_user(alert: "Error occurred. User was not confirmed")
+      redirect_back_or_admin_user(alert: "发生错误。用户未被确认")
     end
   end
 
   def disable_two_factor
     user.disable_two_factor!
     redirect_to admin_user_path(user),
-      notice: 'Two-factor Authentication has been disabled for this user'
+      notice: '此用户已禁止两步验证'
   end
 
   def create

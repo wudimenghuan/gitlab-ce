@@ -1,18 +1,17 @@
-- page_title "Groups"
+- page_title "群组"
 %h3.page-title
-  Groups (#{number_with_delimiter(@groups.total_count)})
-  = link_to 'New Group', new_admin_group_path, class: "btn btn-new pull-right"
+  群组 (#{number_with_delimiter(@groups.total_count)})
+  = link_to '新群组', new_admin_group_path, class: "btn btn-new pull-right"
 
 %p.light
-  Group allows you to keep projects organized.
-  Use groups for uniting related projects.
+  群组用于管理有组织的关联项目。
 
 %hr
 = form_tag admin_groups_path, method: :get, class: 'form-inline' do
   = hidden_field_tag :sort, @sort
   .form-group
     = text_field_tag :name, params[:name], class: "form-control"
-  = button_tag "Search", class: "btn submit btn-primary"
+  = button_tag "搜索", class: "btn submit btn-primary"
 
   .pull-right
     .dropdown.inline

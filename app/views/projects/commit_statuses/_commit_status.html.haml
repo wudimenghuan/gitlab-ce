@@ -3,7 +3,7 @@
     - if can?(current_user, :read_commit_status, commit_status) && commit_status.target_url
       = link_to commit_status.target_url, class: "ci-status ci-#{commit_status.status}" do
         = ci_icon_for_status(commit_status.status)
-        = commit_status.status
+        = ci_status_zh(commit_status.status)
     - else
       = ci_status_with_icon(commit_status.status)
 
@@ -15,7 +15,7 @@
       %strong ##{commit_status.id}
 
     - if commit_status.show_warning?
-      %i.fa.fa-warning.text-warning{data: { toggle: "tooltip" }, title: "This build is stuck, open it to know more"}
+      %i.fa.fa-warning.text-warning{data: { toggle: "tooltip" }, title: "此构建被卡住，打开它了解更多"}
 
   - if defined?(commit_sha) && commit_sha
     %td
@@ -67,13 +67,13 @@
   %td
     .pull-right
       - if can?(current_user, :read_commit_status, commit_status) && commit_status.artifacts_download_url
-        = link_to commit_status.artifacts_download_url, title: 'Download artifacts' do
+        = link_to commit_status.artifacts_download_url, title: '下载附件' do
           %i.fa.fa-download
       - if can?(current_user, :update_commit_status, commit_status)
         - if commit_status.active?
           - if commit_status.cancel_url
-            = link_to commit_status.cancel_url, method: :post, title: 'Cancel' do
+            = link_to commit_status.cancel_url, method: :post, title: '取消' do
               %i.fa.fa-remove.cred
         - elsif defined?(allow_retry) && allow_retry && commit_status.retry_url
-          = link_to commit_status.retry_url, method: :post, title: 'Retry' do
+          = link_to commit_status.retry_url, method: :post, title: '重试' do
             %i.fa.fa-repeat
