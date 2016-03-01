@@ -1,11 +1,14 @@
 - page_title "历史记录", @page.title.capitalize, "维基"
 = render "header_title"
-
 = render 'nav'
-.gray-content-block
-  %h3.page-title
-    = link_to @page.title, namespace_project_wiki_path(@project.namespace, @project, @page)
-    %span.light 历史记录
+
+.top-area
+  .nav-text
+    %strong
+      = link_to @page.title.capitalize, namespace_project_wiki_path(@project.namespace, @project, @page)
+    %span.light
+      &middot;
+      历史记录
 
 .table-holder
   %table.table

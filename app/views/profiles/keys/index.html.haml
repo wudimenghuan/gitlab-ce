@@ -1,14 +1,14 @@
 - page_title "SSH 密钥"
 - header_title page_title, profile_keys_path
 
-.gray-content-block.top-block
-  .pull-right
+.top-area
+  .nav-text
+    在增加 SSH 密钥之前需要先
+    = link_to "生成密钥。", help_page_path("ssh", "README")
+  .nav-controls
     = link_to new_profile_key_path, class: "btn btn-new" do
       = icon('plus')
       增加 SSH 密钥
-  .oneline
-    在增加 SSH 密钥之前需要先
-    = link_to "生成密钥。", help_page_path("ssh", "README")
 
 .prepend-top-default
 = render 'key_table'

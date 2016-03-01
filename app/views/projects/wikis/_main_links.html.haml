@@ -1,12 +1,11 @@
-%span.pull-right
-  - if (@page && @page.persisted?)
-    = link_to namespace_project_wiki_history_path(@project.namespace, @project, @page), class: "btn btn-grouped" do
-      页面历史
-    - if can?(current_user, :create_wiki, @project)
-      = link_to namespace_project_wiki_edit_path(@project.namespace, @project, @page), class: "btn btn-grouped" do
-        %i.fa.fa-pencil-square-o
-        编辑
-    - if can?(current_user, :admin_wiki, @project)
-      = link_to namespace_project_wiki_path(@project.namespace, @project, @page), data: { confirm: "确定要继续删除此页面么？"}, method: :delete, class: "btn btn-remove" do
-        = icon('trash')
-        删除
+- if (@page && @page.persisted?)
+  = link_to namespace_project_wiki_history_path(@project.namespace, @project, @page), class: "btn btn-grouped" do
+    页面历史
+  - if can?(current_user, :create_wiki, @project)
+    = link_to namespace_project_wiki_edit_path(@project.namespace, @project, @page), class: "btn btn-grouped" do
+      %i.fa.fa-pencil-square-o
+      编辑
+  - if can?(current_user, :admin_wiki, @project)
+    = link_to namespace_project_wiki_path(@project.namespace, @project, @page), data: { confirm: "确定要继续删除此页面么？"}, method: :delete, class: "btn btn-remove" do
+      = icon('trash')
+      删除

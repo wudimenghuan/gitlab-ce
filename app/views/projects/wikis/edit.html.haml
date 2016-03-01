@@ -1,16 +1,20 @@
 - page_title "编辑", @page.title.capitalize, "维基"
 = render "header_title"
-
 = render 'nav'
-.gray-content-block
-  .pull-right
+
+.top-area
+  .nav-text
+    %strong
+      - if @page.persisted?
+        = link_to @page.title.capitalize, namespace_project_wiki_path(@project.namespace, @project, @page)
+      - else
+        = @page.title.capitalize
+    %span.light
+      &middot;
+      编辑页面
+
+  .nav-controls
     = render 'main_links'
 
-  %h3.page-title.oneline
-    %span.light 编辑页面
-    - if @page.persisted?
-      = link_to @page.title, namespace_project_wiki_path(@project.namespace, @project, @page)
-    - else
-      = @page.title
 
 = render 'form'

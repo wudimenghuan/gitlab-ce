@@ -32,10 +32,9 @@
     %li.active
       = link_to "#activity", 'data-toggle' => 'tab' do
         活动
-    - if @projects.present?
-      %li
-        = link_to "#projects", 'data-toggle' => 'tab' do
-          项目
+    %li
+      = link_to "#projects", 'data-toggle' => 'tab' do
+        项目
 
 - if can?(current_user, :read_group, @group)
   %div{ class: container_class }

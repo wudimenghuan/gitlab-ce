@@ -2,15 +2,12 @@
 = render "header_title"
 
 = render 'nav'
-.gray-content-block
-  此维基的所有页面都列在下面。
-  
+
 %ul.content-list
   - @wiki_pages.each do |wiki_page|
     %li
-      %h4
-        = link_to wiki_page.title, namespace_project_wiki_path(@project.namespace, @project, wiki_page)
-        %small (#{wiki_page.format})
-        .pull-right
-          %small 最后编辑时间：#{time_ago_with_tooltip(wiki_page.commit.authored_date)}
+      = link_to wiki_page.title, namespace_project_wiki_path(@project.namespace, @project, wiki_page)
+      %small (#{wiki_page.format})
+      .pull-right
+        %small 最后编辑时间：#{time_ago_with_tooltip(wiki_page.commit.authored_date)}
 = paginate @wiki_pages, theme: 'gitlab'
