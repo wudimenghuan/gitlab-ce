@@ -1,0 +1,29 @@
+- page_title "预览 | 外观"
+%h3.page-title
+  外观设置 - 预览
+%hr
+
+.ui-box
+  .title
+    登入页面
+  %div
+    .login-page
+      .container
+        .content
+          .login-title
+            %h1= brand_title
+      %hr
+      .container
+        .content
+          .row
+            .col-sm-7
+              .brand-image
+                = brand_image
+              .brand_text
+                = brand_text
+            .col-sm-4
+              .login-box
+                %h3.page-title 登入
+                = text_field_tag :login, nil, class: "form-control top", placeholder: "用户名或电子邮箱"
+                = password_field_tag :password, nil, class: "form-control bottom", placeholder: "密码"
+                = button_tag "登入", class: "btn-create btn"

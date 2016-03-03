@@ -23,7 +23,7 @@
             显示全部
     = paginate projects, theme: "gitlab" if projects.respond_to? :total_pages
   - else
-    %h3 没有项目
+    .nothing-here-block 没有项目
 
 :javascript
   new ProjectsList();

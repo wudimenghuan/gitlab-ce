@@ -1,0 +1,58 @@
+= form_for @appearance, url: admin_appearances_path, html: { class: 'form-horizontal'} do |f|
+  - if @appearance.errors.any?
+    .alert.alert-danger
+      - @appearance.errors.full_messages.each do |msg|
+        %p= msg
+
+  %fieldset.sign-in
+    %legend
+      登入/注册页面：
+  .form-group
+    = f.label :title, "标题", class: 'control-label'
+    .col-sm-10
+      = f.text_field :title, class: "form-control"
+  .form-group
+    = f.label :description, "描述", class: 'control-label'
+    .col-sm-10
+      = f.text_area :description, class: "form-control", rows: 10
+      .hint
+        描述被解析为 #{link_to "GitLab 特色 Markdown", help_page_path('markdown', 'markdown'), target: '_blank'} 格式。
+  .form-group
+    = f.label :logo, class: 'control-label'
+    .col-sm-10
+      - if @appearance.logo?
+        = image_tag @appearance.logo_url, class: 'appearance-logo-preview'
+        - if @appearance.persisted?
+          %br
+          = link_to '删除 Logo', logo_admin_appearances_path, data: { confirm: "确定要删除 Logo 么？"}, method: :delete, class: "btn btn-remove btn-small remove-logo"
+        %hr
+      = f.hidden_field :logo_cache
+      = f.file_field :logo, class: ""
+      .hint
+        文件最大大小为 1MB。页面是按照 640x360 像素 LOGO 设计。
+
+  %fieldset.app_logo
+    %legend
+      导航条：
+  .form-group
+    = f.label :header_logo, '头部 Logo', class: 'control-label'
+    .col-sm-10
+      - if @appearance.header_logo?
+        = image_tag @appearance.header_logo_url, class: 'appearance-light-logo-preview'
+        - if @appearance.persisted?
+          %br
+          = link_to '删除头部 Logo', header_logos_admin_appearances_path, data: { confirm: "确定要删除头部 Logo 么？"}, method: :delete, class: "btn btn-remove btn-small remove-logo"
+        %hr
+      = f.hidden_field :header_logo_cache
+      = f.file_field :header_logo, class: ""
+      .hint
+        文件最大大小为 1MB。页面是按照 72x72 像素头部 LOGO 设计。
+
+  .form-actions
+    = f.submit '保存', class: 'btn btn-save'
+    - if @appearance.persisted?
+      = link_to '预览最后保存', preview_admin_appearances_path, class: 'btn', target: '_blank'
+
+    - if @appearance.updated_at
+      %span.pull-right
+        最后编辑：#{time_ago_with_tooltip(@appearance.updated_at)}

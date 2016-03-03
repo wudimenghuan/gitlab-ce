@@ -12,11 +12,13 @@ class Profiles::TwoFactorAuthsController < Profiles::ApplicationController
 
     current_user.save! if current_user.changed?
 
-    if two_factor_grace_period_expired?
-      flash.now[:alert] = '您必须给您的账户启用两步验证。'
-    else
-      grace_period_deadline = current_user.otp_grace_period_started_at + two_factor_grace_period.hours
-      flash.now[:alert] = "您必须在 #{l(grace_period_deadline)} 之前给您的账户启用两步验证。"
+    if two_factor_authentication_required?
+      if two_factor_grace_period_expired?
+        flash.now[:alert] = '您必须给您的账户启用两步验证。'
+      else
+        grace_period_deadline = current_user.otp_grace_period_started_at + two_factor_grace_period.hours
+        flash.now[:alert] = "您必须在 #{l(grace_period_deadline)} 之前给您的账户启用两步验证。"
+      end
     end
 
     @qr_code = build_qr_code
