@@ -25,7 +25,7 @@
           合并请求
 
       - if branch.name != @repository.root_ref
-        = link_to namespace_project_compare_index_path(@project.namespace, @project, from: @repository.root_ref, to: branch.name), class: 'btn btn-grouped btn-xs', method: :post, title: "Compare" do
+        = link_to namespace_project_compare_index_path(@project.namespace, @project, from: @repository.root_ref, to: branch.name), class: 'btn btn-grouped btn-xs', method: :post, title: "比较" do
           = icon("exchange")
           比较
 
@@ -34,7 +34,7 @@
           = icon("trash-o")
 
     - if branch.name != @repository.root_ref
-      .divergence-graph{ title: "#{number_commits_ahead} commits ahead, #{number_commits_behind} commits behind #{@repository.root_ref}" }
+      .divergence-graph{ title: "比 #{@repository.root_ref} 超前 #{number_commits_ahead} 次提交，落后 #{number_commits_behind} 次提交" }
         .graph-side
           .bar.bar-behind{ style: "width: #{number_commits_behind * bar_graph_width_factor}%" }
           %span.count.count-behind= number_commits_behind
