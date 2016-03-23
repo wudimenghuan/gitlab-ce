@@ -47,12 +47,12 @@
           %span
             Runners
       = nav_link(controller: :variables) do
-        = link_to namespace_project_variables_path(@project.namespace, @project), title: 'Variables' do
+        = link_to namespace_project_variables_path(@project.namespace, @project), title: '变量' do
           = icon('code fw')
           %span
-            Variables
+            变量
       = nav_link path: 'triggers#index' do
-        = link_to namespace_project_triggers_path(@project.namespace, @project), title: 'Triggers' do
+        = link_to namespace_project_triggers_path(@project.namespace, @project), title: '触发器' do
           = icon('retweet fw')
           %span
-            Triggers
+            触发器

@@ -15,5 +15,5 @@
       = render 'projects/notes/hints'
       .error-alert
       .form-actions.prepend-top-default
-        = f.submit 'Save changes', class: 'btn btn-save'
-        = link_to "Cancel", namespace_project_tag_path(@project.namespace, @project, @tag.name), class: "btn btn-default btn-cancel"
+        = f.submit '保存修改', class: 'btn btn-save'
+        = link_to "取消", namespace_project_tag_path(@project.namespace, @project, @tag.name), class: "btn btn-default btn-cancel"

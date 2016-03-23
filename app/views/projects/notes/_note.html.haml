@@ -7,10 +7,10 @@
       .note-header
         - if note_editable?(note)
           .note-actions
-            = link_to '#', title: 'Edit comment', class: 'js-note-edit' do
+            = link_to '#', title: '编辑评论', class: 'js-note-edit' do
               = icon('pencil-square-o')
 
-            = link_to namespace_project_note_path(note.project.namespace, note.project, note), title: 'Remove comment', method: :delete, data: { confirm: 'Are you sure you want to remove this comment?' }, remote: true, class: 'js-note-delete danger' do
+            = link_to namespace_project_note_path(note.project.namespace, note.project, note), title: '删除评论', method: :delete, data: { confirm: '确定要删除评论么？' }, remote: true, class: 'js-note-delete danger' do
               = icon('trash-o')
 
         - unless note.system

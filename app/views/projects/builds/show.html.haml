@@ -29,10 +29,10 @@
       - if @build.retried?
         %li.active
           %a
-            Build ##{@build.id}
+            构建 ##{@build.id}
             &middot;
             %i.fa.fa-warning
-            This build was retried.
+            此构建已重试。
 
   .gray-content-block.middle-block
     .build-head
@@ -80,7 +80,7 @@
       - if @build.erased?
         .erased.alert.alert-warning
           - erased_by = "by #{link_to @build.erased_by.name, user_path(@build.erased_by)}" if @build.erased_by
-          Build has been erased #{erased_by.html_safe} #{time_ago_with_tooltip(@build.erased_at)}
+          构建被 #{erased_by.html_safe} 在 #{time_ago_with_tooltip(@build.erased_at)}删除
       - else
         %pre.trace#build-trace
           %code.bash
@@ -154,15 +154,15 @@
       - if @build.trigger_request
         .build-widget
           %h4.title
-            Trigger
+            触发
 
           %p
-            %span.attr-name Token:
+            %span.attr-name 授权码：
             #{@build.trigger_request.trigger.short_token}
 
           - if @build.trigger_request.variables
             %p
-              %span.attr-name Variables:
+              %span.attr-name 变量：
 
             %code
               - @build.trigger_request.variables.each do |key, value|
@@ -170,32 +170,32 @@
 
       .build-widget
         %h4.title
-          Commit
+          提交
           .pull-right
             %small
               = link_to @build.commit.short_sha, ci_status_path(@build.commit), class: "monospace"
         %p
-          %span.attr-name Branch:
+          %span.attr-name 分支：
           = link_to @build.ref, namespace_project_commits_path(@project.namespace, @project, @build.ref)
         %p
-          %span.attr-name Author:
+          %span.attr-name 作者：
           #{@build.commit.git_author_name}
         %p
-          %span.attr-name Message:
+          %span.attr-name 信息：
           #{@build.commit.git_commit_message}
 
       - if @build.tags.any?
         .build-widget
           %h4.title
-            Tags
+            标签
           - @build.tag_list.each do |tag|
             %span.label.label-primary
               = tag
 
       - if @builds.present?
         .build-widget
-          %h4.title #{pluralize(@builds.count(:id), "other build")} for
-          = succeed ":" do
+          %h4.title 此提交还有 #{pluralize(@builds.count(:id), "次其他构建", "次其他构建")}
+          = succeed "：" do
             = link_to @build.commit.short_sha, ci_status_path(@build.commit), class: "monospace"
           %table.table.builds
             - @builds.each_with_index do |build, i|
@@ -209,7 +209,7 @@
                     - else
                       %span ##{build.id}
 
-                %td.status= build.status
+                %td.status= ci_status_zh(build.status)
 
 
   :javascript

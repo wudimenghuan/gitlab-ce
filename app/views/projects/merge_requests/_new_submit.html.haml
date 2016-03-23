@@ -1,14 +1,14 @@
 %h3.page-title
-  New Merge Request
+  新合并请求
 %p.slead
   - source_title, target_title = format_mr_branch_names(@merge_request)
-  From
+  从
   %strong.label-branch #{source_title}
-  %span into
+  %span 合并到
   %strong.label-branch #{target_title}
 
   %span.pull-right
-    = link_to 'Change branches', mr_change_branches_path(@merge_request)
+    = link_to '改变分支', mr_change_branches_path(@merge_request)
 %hr
 = form_for [@project.namespace.becomes(Namespace), @project, @merge_request], html: { class: 'merge-request-form form-horizontal gfm-form js-requires-input' } do |f|
   = render 'shared/issuable/form', f: f, issuable: @merge_request

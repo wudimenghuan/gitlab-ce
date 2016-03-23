@@ -1,3 +1,4 @@
+#encoding: utf-8
 module SearchHelper
   def search_autocomplete_opts(term)
     return unless current_user
@@ -52,16 +53,16 @@ module SearchHelper
       ref    = @ref || @project.repository.root_ref
 
       [
-        { label: "#{prefix} - Files",          url: namespace_project_tree_path(@project.namespace, @project, ref) },
-        { label: "#{prefix} - Commits",        url: namespace_project_commits_path(@project.namespace, @project, ref) },
-        { label: "#{prefix} - Network",        url: namespace_project_network_path(@project.namespace, @project, ref) },
-        { label: "#{prefix} - Graph",          url: namespace_project_graph_path(@project.namespace, @project, ref) },
-        { label: "#{prefix} - Issues",         url: namespace_project_issues_path(@project.namespace, @project) },
-        { label: "#{prefix} - Merge Requests", url: namespace_project_merge_requests_path(@project.namespace, @project) },
-        { label: "#{prefix} - Milestones",     url: namespace_project_milestones_path(@project.namespace, @project) },
-        { label: "#{prefix} - Snippets",       url: namespace_project_snippets_path(@project.namespace, @project) },
-        { label: "#{prefix} - Members",        url: namespace_project_project_members_path(@project.namespace, @project) },
-        { label: "#{prefix} - Wiki",           url: namespace_project_wikis_path(@project.namespace, @project) },
+        { label: "#{prefix} - 文件",        url: namespace_project_tree_path(@project.namespace, @project, ref) },
+        { label: "#{prefix} - 提交",        url: namespace_project_commits_path(@project.namespace, @project, ref) },
+        { label: "#{prefix} - 网络",        url: namespace_project_network_path(@project.namespace, @project, ref) },
+        { label: "#{prefix} - 图表",        url: namespace_project_graph_path(@project.namespace, @project, ref) },
+        { label: "#{prefix} - 问题",        url: namespace_project_issues_path(@project.namespace, @project) },
+        { label: "#{prefix} - 合并请求",    url: namespace_project_merge_requests_path(@project.namespace, @project) },
+        { label: "#{prefix} - 里程碑",      url: namespace_project_milestones_path(@project.namespace, @project) },
+        { label: "#{prefix} - 代码脚本",    url: namespace_project_snippets_path(@project.namespace, @project) },
+        { label: "#{prefix} - 成员",        url: namespace_project_project_members_path(@project.namespace, @project) },
+        { label: "#{prefix} - 维基",        url: namespace_project_wikis_path(@project.namespace, @project) },
       ]
     else
       []
@@ -72,7 +73,7 @@ module SearchHelper
   def groups_autocomplete(term, limit = 5)
     current_user.authorized_groups.search(term).limit(limit).map do |group|
       {
-        label: "group: #{search_result_sanitize(group.name)}",
+        label: "群组: #{search_result_sanitize(group.name)}",
         url: group_path(group)
       }
     end
@@ -83,7 +84,7 @@ module SearchHelper
     current_user.authorized_projects.search_by_title(term).
       sorted_by_stars.non_archived.limit(limit).map do |p|
       {
-        label: "project: #{search_result_sanitize(p.name_with_namespace)}",
+        label: "项目: #{search_result_sanitize(p.name_with_namespace)}",
         url: namespace_project_path(p.namespace, p)
       }
     end

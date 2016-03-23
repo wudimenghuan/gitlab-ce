@@ -91,7 +91,7 @@ class GroupsController < Groups::ApplicationController
   def destroy
     DestroyGroupService.new(@group, current_user).execute
 
-    redirect_to root_path, alert: "Group '#{@group.name}' was successfully deleted."
+    redirect_to root_path, alert: "群组 '#{@group.name}' 被成功删除。"
   end
 
   protected

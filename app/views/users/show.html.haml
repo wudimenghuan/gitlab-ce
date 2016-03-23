@@ -4,7 +4,7 @@
 - @no_container = true
 
 = content_for :meta_tags do
-  = auto_discovery_link_tag(:atom, user_url(@user, format: :atom), title: "#{@user.name} activity")
+  = auto_discovery_link_tag(:atom, user_url(@user, format: :atom), title: "#{@user.name}活动")
 
 = render 'shared/show_aside'
 
