@@ -1,4 +1,4 @@
-- page_title "Audit Log"
+- page_title "审核日志"
 - header_title page_title, audit_log_profile_path
 
 .row.prepend-top-default
@@ -6,6 +6,6 @@
     %h3.prepend-top-0
       = page_title
     %p
-      This is a security log of important events involving your account.
+      这是一个涉及到你账户的重要安全日志事件。
   .col-lg-9
     = render 'event_table', events: @events

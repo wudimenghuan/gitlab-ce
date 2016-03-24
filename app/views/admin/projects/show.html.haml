@@ -50,32 +50,32 @@
             = link_to @project.ssh_url_to_repo, project_path(@project)
         - if @project.repository.exists?
           %li
-            %span.light fs:
+            %span.light 文件系统：
             %strong
               = @project.repository.path_to_repo
 
           %li
-            %span.light Size
+            %span.light 大小
             %strong
               = repository_size(@project)
 
           %li
-            %span.light last commit:
+            %span.light 最后提交：
             %strong
               = last_commit(@project)
         - else
           %li
-            %span.light repository:
+            %span.light 版本库：
             %strong.cred
-              does not exist
+              不存在
 
         - if @project.archived?
           %li
-            %span.light archived:
-            %strong repository is read-only
+            %span.light 已归档：
+            %strong 版本库只读
 
         %li
-          %span.light access:
+          %span.light 访问：
           %strong
             %span{ class: visibility_level_color(@project.visibility_level) }
               = visibility_level_icon(@project.visibility_level)

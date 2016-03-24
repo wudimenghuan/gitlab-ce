@@ -6,7 +6,7 @@
   - else
     %strong
       = link_to event.ref_name, namespace_project_commits_path(event.project.namespace, event.project, event.ref_name), title: h(event.target_title)
-  at
+  在
   = link_to_project event.project
 
 - if event.push_with_commits?

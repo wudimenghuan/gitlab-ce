@@ -24,25 +24,25 @@ module SearchHelper
   # Autocomplete results for various settings pages
   def default_autocomplete
     [
-      { label: "Profile settings", url: profile_path },
-      { label: "SSH Keys",         url: profile_keys_path },
-      { label: "Dashboard",        url: root_path },
-      { label: "Admin Section",       url: admin_root_path },
+      { label: "个人资料设置", url: profile_path },
+      { label: "SSH 密钥",         url: profile_keys_path },
+      { label: "仪表盘",        url: root_path },
+      { label: "管理后台",       url: admin_root_path },
     ]
   end
 
   # Autocomplete results for internal help pages
   def help_autocomplete
     [
-      { label: "help: API Help",           url: help_page_path("api", "README") },
-      { label: "help: Markdown Help",      url: help_page_path("markdown", "markdown") },
-      { label: "help: Permissions Help",   url: help_page_path("permissions", "permissions") },
-      { label: "help: Public Access Help", url: help_page_path("public_access", "public_access") },
-      { label: "help: Rake Tasks Help",    url: help_page_path("raketasks", "README") },
-      { label: "help: SSH Keys Help",      url: help_page_path("ssh", "README") },
-      { label: "help: System Hooks Help",  url: help_page_path("system_hooks", "system_hooks") },
-      { label: "help: Webhooks Help",      url: help_page_path("web_hooks", "web_hooks") },
-      { label: "help: Workflow Help",      url: help_page_path("workflow", "README") },
+      { label: "帮助: API 帮助",           url: help_page_path("api", "README") },
+      { label: "帮助: Markdown 帮助",      url: help_page_path("markdown", "markdown") },
+      { label: "帮助: 权限帮助",           url: help_page_path("permissions", "permissions") },
+      { label: "帮助: 公开访问帮助",       url: help_page_path("public_access", "public_access") },
+      { label: "帮助: Rake 任务帮助",      url: help_page_path("raketasks", "README") },
+      { label: "帮助: SSH 密钥帮助",       url: help_page_path("ssh", "README") },
+      { label: "帮助: 系统钩子帮助",       url: help_page_path("system_hooks", "system_hooks") },
+      { label: "帮助: Web 钩子帮助",       url: help_page_path("web_hooks", "web_hooks") }
+      { label: "帮助: 工作流帮助",         url: help_page_path("workflow", "README") },
     ]
   end
 
