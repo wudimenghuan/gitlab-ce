@@ -3,21 +3,21 @@
     .block.issuable-sidebar-header
       %span.issuable-count.hide-collapsed.pull-left
         = issuable.iid
-        of
+        \/
         = issuables_count(issuable)
       %a.gutter-toggle.pull-right.js-sidebar-toggle{href: '#'}
         = sidebar_gutter_toggle_icon
       .issuable-nav.hide-collapsed.pull-right.btn-group{role: 'group', "aria-label" => '...'}
         - if prev_issuable = prev_issuable_for(issuable)
-          = link_to 'Prev', [@project.namespace.becomes(Namespace), @project, prev_issuable], class: 'btn btn-default prev-btn'
+          = link_to '上一个', [@project.namespace.becomes(Namespace), @project, prev_issuable], class: 'btn btn-default prev-btn'
         - else
           %a.btn.btn-default.disabled{href: '#'}
-            Prev
+            上一个
         - if next_issuable = next_issuable_for(issuable)
-          = link_to 'Next', [@project.namespace.becomes(Namespace), @project, next_issuable], class: 'btn btn-default next-btn'
+          = link_to '下一个', [@project.namespace.becomes(Namespace), @project, next_issuable], class: 'btn btn-default next-btn'
         - else
           %a.btn.btn-default.disabled{href: '#'}
-            Next
+            下一个
 
     = form_for [@project.namespace.becomes(Namespace), @project, issuable], remote: true, html: {class: 'issuable-context-form inline-update js-issuable-update'} do |f|
       .block.assignee
@@ -27,22 +27,22 @@
           - else
             = icon('user')
         .title.hide-collapsed
-          Assignee
+          指派
           - if can?(current_user, :"admin_#{issuable.to_ability_name}", @project)
-            = link_to 'Edit', '#', class: 'edit-link pull-right'
+            = link_to '编辑', '#', class: 'edit-link pull-right'
         .value.bold.hide-collapsed
           - if issuable.assignee
             = link_to_member(@project, issuable.assignee, size: 32) do
               - if issuable.instance_of?(MergeRequest) && !issuable.can_be_merged_by?(issuable.assignee)
-                %span.pull-right.cannot-be-merged{ data: { toggle: 'tooltip', placement: 'left' }, title: 'Not allowed to merge' }
+                %span.pull-right.cannot-be-merged{ data: { toggle: 'tooltip', placement: 'left' }, title: '不允许合并' }
                   = icon('exclamation-triangle')
               %span.username
                 = issuable.assignee.to_reference
           - else
-            .light None
+            .light 无
 
         .selectbox.hide-collapsed
-          = users_select_tag("#{issuable.class.table_name.singularize}[assignee_id]", placeholder: 'Select assignee', class: 'custom-form-control js-select2 js-assignee', selected: issuable.assignee_id, project: @target_project, null_user: true, current_user: true, first_user: true)
+          = users_select_tag("#{issuable.class.table_name.singularize}[assignee_id]", placeholder: '选择指派', class: 'custom-form-control js-select2 js-assignee', selected: issuable.assignee_id, project: @target_project, null_user: true, current_user: true, first_user: true)
 
       .block.milestone
         .sidebar-collapsed-icon
@@ -51,17 +51,17 @@
             - if issuable.milestone
               = issuable.milestone.title
             - else
-              No
+              否
         .title.hide-collapsed
-          Milestone
+          里程碑
           - if can?(current_user, :"admin_#{issuable.to_ability_name}", @project)
-            = link_to 'Edit', '#', class: 'edit-link pull-right'
+            = link_to '编辑', '#', class: 'edit-link pull-right'
         .value.bold.hide-collapsed
           - if issuable.milestone
             = link_to namespace_project_milestone_path(@project.namespace, @project, issuable.milestone) do
               = issuable.milestone.title
           - else
-            .light None
+            .light 无
         .selectbox.hide-collapsed
           = f.select(:milestone_id, milestone_options(issuable), { include_blank: true }, { class: 'select2 select2-compact js-select2 js-milestone', data: { placeholder: 'Select milestone' }})
           = hidden_field_tag :issuable_context
@@ -74,15 +74,15 @@
             %span
               = issuable.labels.count
           .title.hide-collapsed
-            Labels
+            标记
             - if can?(current_user, :"admin_#{issuable.to_ability_name}", @project)
-              = link_to 'Edit', '#', class: 'edit-link pull-right'
+              = link_to '编辑', '#', class: 'edit-link pull-right'
           .value.issuable-show-labels.hide-collapsed{class: ("has-labels" if issuable.labels.any?)}
             - if issuable.labels.any?
               - issuable.labels.each do |label|
                 = link_to_label(label, type: issuable.to_ability_name)
             - else
-              .light None
+              .light 无
           .selectbox.hide-collapsed
             = f.collection_select :label_ids, issuable.project.labels.all, :id, :name,
               { selected: issuable.label_ids }, multiple: true, class: 'select2 js-select2', data: { placeholder: "Select labels" }
@@ -94,15 +94,15 @@
           .sidebar-collapsed-icon
             = icon('rss')
           .title.hide-collapsed
-            Notifications
+            通知
           - subscribtion_status = subscribed ? 'subscribed' : 'unsubscribed'
           %button.btn.btn-block.btn-gray.subscribe-button.hide-collapsed{:type => 'button'}
-            %span= subscribed ? 'Unsubscribe' : 'Subscribe'
+            %span= subscribed ? '取消订阅' : '订阅'
           .subscription-status.hide-collapsed{data: {status: subscribtion_status}}
             .unsubscribed{class: ( 'hidden' if subscribed )}
-              You're not receiving notifications from this thread.
+              你将不会再收到此主题的通知。
             .subscribed{class: ( 'hidden' unless subscribed )}
-              You're receiving notifications because you're subscribed to this thread.
+              因为你订阅了本主题，将会收到相关通知。
 
       - project_ref = cross_project_reference(@project, issuable)
       .block.project-reference
@@ -110,7 +110,7 @@
           = clipboard_button(clipboard_text: project_ref)
         .cross-project-reference.hide-collapsed
           %span
-            Reference:
+            参考：
             %cite{title: project_ref}
               = project_ref
           = clipboard_button(clipboard_text: project_ref)

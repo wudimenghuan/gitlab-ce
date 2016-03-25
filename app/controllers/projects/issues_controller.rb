@@ -1,3 +1,4 @@
+encoding: utf-8
 class Projects::IssuesController < Projects::ApplicationController
   include ToggleSubscriptionAction
   include IssuableActions
@@ -117,7 +118,7 @@ class Projects::IssuesController < Projects::ApplicationController
 
   def bulk_update
     result = Issues::BulkUpdateService.new(project, current_user, bulk_update_params).execute
-    redirect_back_or_default(default: { action: 'index' }, options: { notice: "#{result[:count]} issues updated" })
+    redirect_back_or_default(default: { action: 'index' }, options: { notice: "#{result[:count]} 问题已更新" })
   end
 
   def closed_by_merge_requests

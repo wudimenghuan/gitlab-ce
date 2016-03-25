@@ -1,18 +1,17 @@
-- page_title "Groups"
+- page_title "群组"
 %h3.page-title
-  Groups (#{number_with_delimiter(@groups.total_count)})
-  = link_to 'New Group', new_admin_group_path, class: "btn btn-new pull-right"
+  群组 (#{number_with_delimiter(@groups.total_count)})
+  = link_to '新群组', new_admin_group_path, class: "btn btn-new pull-right"
 
 %p.light
-  Group allows you to keep projects organized.
-  Use groups for uniting related projects.
+  群组用于管理有组织的关联项目。
 
 %hr
 = form_tag admin_groups_path, method: :get, class: 'form-inline' do
   = hidden_field_tag :sort, @sort
   .form-group
     = text_field_tag :name, params[:name], class: "form-control"
-  = button_tag "Search", class: "btn submit btn-primary"
+  = button_tag "搜索", class: "btn submit btn-primary"
 
   .pull-right
     .dropdown.inline
@@ -41,8 +40,8 @@
     %li
       .clearfix
         .pull-right.prepend-top-10
-          = link_to 'Edit', edit_admin_group_path(group), id: "edit_#{dom_id(group)}", class: "btn btn-sm"
-          = link_to 'Destroy', [:admin, group], data: {confirm: "REMOVE #{group.name}? Are you sure?"}, method: :delete, class: "btn btn-sm btn-remove"
+          = link_to '编辑', edit_admin_group_path(group), id: "edit_#{dom_id(group)}", class: "btn btn-sm"
+          = link_to '销毁', [:admin, group], data: {confirm: "确定要删除 #{group.name}？"}, method: :delete, class: "btn btn-sm btn-remove"
 
         %h4
           = link_to [:admin, group] do
@@ -60,7 +59,7 @@
           = truncate group.description, length: 150
       .clearfix
         %p.light
-          #{pluralize(group.members.size, 'member')}, #{pluralize(group.projects.count, 'project')}
+          #{pluralize(group.members.size, '个用户', '个用户')}, #{pluralize(group.projects.count, '个项目', '个项目')}
 
 
 = paginate @groups, theme: "gitlab"

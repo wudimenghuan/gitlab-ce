@@ -7,7 +7,7 @@
     %span
       = participants.count
   .title.hide-collapsed
-    = pluralize participants.count, "participant"
+    = pluralize participants.count, "个参与者", "个参与者"
   .hide-collapsed.participants-list
     - participants.each do |participant|
       .participants-author.js-participants-author

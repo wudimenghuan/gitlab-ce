@@ -24,9 +24,9 @@ module CiStatusHelper
 
   def ci_label_for_status(status)
     if status == 'success'
-      'passed'
+      '通过'
     else
-      status
+      ci_status_zh(status)
     end
   end
 
@@ -46,11 +46,28 @@ module CiStatusHelper
     icon(icon_name + ' fw')
   end
 
+  def ci_status_zh(status)
+    case status
+    when 'pending'
+      '排队'
+    when 'running'
+      '运行'
+    when 'success'
+      '成功'
+    when 'failed'
+      '失败'
+    when 'canceled'
+      '取消'
+    else
+      '未知'
+    end
+  end
+
   def render_ci_status(ci_commit, tooltip_placement: 'auto left')
     link_to ci_status_icon(ci_commit),
       ci_status_path(ci_commit),
       class: "ci-status-link ci-status-icon-#{ci_commit.status.dasherize}",
-      title: "Build #{ci_status_label(ci_commit)}",
+      title: "构建状态： #{ci_status_label(ci_commit)}",
       data: { toggle: 'tooltip', placement: tooltip_placement }
   end
 

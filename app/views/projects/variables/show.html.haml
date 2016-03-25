@@ -1,13 +1,13 @@
-- page_title "Variables"
+- page_title "变量"
 %h3.page-title
-  Secret Variables
+  私密变量
 
 %p.light
-  These variables will be set to environment by the runner.
+  这些变量将会设置为 runner 的环境变量，且不会显示在构建日志中。
   %br
-  So you can use them for passwords, secret keys or whatever you want.
+  所以你可以使用它们来保存密码、密钥和其他你想设置的。
   %br
-  The value of the variable can be visible in build log if explicitly asked to do so.
+  如果明确要求，变量的值可以在构建日志中可见。
 
 %hr
 
@@ -15,7 +15,7 @@
 = nested_form_for @project, url: url_for(controller: 'projects/variables', action: 'update'), html: { class: 'form-horizontal' }  do |f|
   - if @project.errors.any?
     #error_explanation
-      %p.lead= "#{pluralize(@project.errors.count, "error")} prohibited this project from being saved:"
+      %p.lead= "发生 #{pluralize(@project.errors.count, "个错误', '个错误")}，无法保存："
       .alert.alert-error
         %ul
           - @project.errors.full_messages.each do |msg|
@@ -23,20 +23,20 @@
 
   = f.fields_for :variables do |variable_form|
     .form-group
-      = variable_form.label :key, 'Key', class: 'control-label'
+      = variable_form.label :key, '键', class: 'control-label'
       .col-sm-10
         = variable_form.text_field :key, class: 'form-control', placeholder: "PROJECT_VARIABLE"
 
     .form-group
-      = variable_form.label :value, 'Value', class: 'control-label'
+      = variable_form.label :value, '值', class: 'control-label'
       .col-sm-10
         = variable_form.text_area :value, class: 'form-control', rows: 2, placeholder: ""
 
-        = variable_form.link_to_remove "Remove this variable", class: 'btn btn-danger pull-right prepend-top-10'
+        = variable_form.link_to_remove "删除此变量", class: 'btn btn-danger pull-right prepend-top-10'
     %hr
   %p
     .clearfix
-      = f.link_to_add "Add a variable", :variables, class: 'btn btn-success pull-right'
+      = f.link_to_add "增加变量", :variables, class: 'btn btn-success pull-right'
 
   .form-actions
-    = f.submit 'Save changes', class: 'btn btn-save', return_to: request.original_url
+    = f.submit '保存修改', class: 'btn btn-save', return_to: request.original_url

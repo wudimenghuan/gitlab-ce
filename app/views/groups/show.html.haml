@@ -2,14 +2,14 @@
 
 = content_for :meta_tags do
   - if current_user
-    = auto_discovery_link_tag(:atom, group_url(@group, format: :atom, private_token: current_user.private_token), title: "#{@group.name} activity")
+    = auto_discovery_link_tag(:atom, group_url(@group, format: :atom, private_token: current_user.private_token), title: "#{@group.name} 活动")
 
 .cover-block
   .cover-controls
     - if @group && can?(current_user, :admin_group, @group)
       = link_to icon('pencil'), edit_group_path(@group), class: 'btn'
     - if current_user
-      = link_to icon('rss'), group_path(@group, { format: :atom, private_token: current_user.private_token }), title: "Feed", class: 'btn rss-btn'
+      = link_to icon('rss'), group_path(@group, { format: :atom, private_token: current_user.private_token }), title: "动态", class: 'btn rss-btn'
 
   .avatar-holder
     = link_to group_icon(@group), target: '_blank' do
@@ -32,11 +32,11 @@
     %ul.nav-links
       %li.active
         = link_to "#projects", 'data-toggle' => 'tab' do
-          All Projects
+          所有项目
       - if @shared_projects.present?
         %li
           = link_to "#shared", 'data-toggle' => 'tab' do
-            Shared Projects
+            共享项目
     .nav-controls
       = form_tag request.original_url, method: :get, class: 'project-filter-form', id: 'project-filter-form' do |f|
         = search_field_tag :filter_projects, nil, placeholder: 'Filter by name', class: 'projects-list-filter form-control', spellcheck: false
@@ -44,7 +44,7 @@
       - if can? current_user, :create_projects, @group
         = link_to new_project_path(namespace_id: @group.id), class: 'btn btn-new pull-right' do
           = icon('plus')
-          New Project
+          新项目
 
   .tab-content
     .tab-pane.active#projects

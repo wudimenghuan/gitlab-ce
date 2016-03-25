@@ -1,10 +1,11 @@
+#encoding: utf-8
 module SelectsHelper
   def users_select_tag(id, opts = {})
     css_class = "ajax-users-select "
     css_class << "multiselect " if opts[:multiple]
     css_class << (opts[:class] || '')
     value = opts[:selected] || ''
-    placeholder = opts[:placeholder] || 'Search for a user'
+    placeholder = opts[:placeholder] || '选择用户'
 
     null_user = opts[:null_user] || false
     any_user = opts[:any_user] || false

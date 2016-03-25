@@ -9,7 +9,7 @@
     - if current_action?(:new) || current_action?(:create)
       %span.editor-file-name
         \/
-      = text_field_tag 'file_name', params[:file_name], placeholder: "File name",
+      = text_field_tag 'file_name', params[:file_name], placeholder: "文件名",
         required: true, class: 'form-control new-file-name'
 
     .pull-right

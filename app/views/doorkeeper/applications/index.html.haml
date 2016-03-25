@@ -1,4 +1,4 @@
-- page_title "Applications"
+- page_title "应用"
 - header_title page_title, applications_profile_path
 
 .row.prepend-top-default
@@ -7,14 +7,13 @@
       = page_title
     %p
       - if user_oauth_applications?
-        Manage applications that can use GitLab as an OAuth provider,
-        and applications that you've authorized to use your account.
+        管理应用程序可以使用OAuth GitLab作为提供者,授权使用你的帐户。
       - else
-        Manage applications that you've authorized to use your account.
+        管理应用程序授权使用您的帐户。
   .col-lg-9
     - if user_oauth_applications?
       %h5.prepend-top-0
-        Add new application
+        添加新应用程序
       = render 'form', application: @application
       %hr
     - if user_oauth_applications?
@@ -26,9 +25,9 @@
             %table.table
               %thead
                 %tr
-                  %th Name
-                  %th Callback URL
-                  %th Clients
+                  %th 名称
+                  %th 回调链接
+                  %th 客户端
                   %th.last-heading
               %tbody
                 - @applications.each do |application|
@@ -41,25 +40,25 @@
                     %td
                       = link_to edit_oauth_application_path(application), class: "btn btn-transparent append-right-5" do
                         %span.sr-only
-                          Edit
+                          编辑
                         = icon('pencil')
                       = render 'delete_form', application: application, small: true
         - else
           .profile-settings-message.text-center
-            You don't have any applications
+            你没有任何应用程序
     .oauth-authorized-applications.prepend-top-20.append-bottom-default
       - if user_oauth_applications?
         %h5
-          Authorized applications (#{@authorized_tokens.size})
+          授权应用程序 (#{@authorized_tokens.size})
 
       - if @authorized_tokens.any?
         .table-responsive
           %table.table.table-striped
             %thead
               %tr
-                %th Name
-                %th Authorized At
-                %th Scope
+                %th 名称
+                %th 授权时间
+                %th 权限
                 %th
             %tbody
               - @authorized_apps.each do |app|
@@ -72,12 +71,12 @@
               - @authorized_anonymous_tokens.each do |token|
                 %tr
                   %td
-                    Anonymous
+                    匿名
                     %div.help-block
-                      %em Authorization was granted by entering your username and password in the application.
+                      %em 授权通过输入您的用户名和密码被授予应用程序中。
                   %td= token.created_at
                   %td= token.scopes
                   %td= render 'delete_form', token: token
       - else
         .profile-settings-message.text-center
-          You don't have any authorized applications
+          你没有任何授权的应用程序

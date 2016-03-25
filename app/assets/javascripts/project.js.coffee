@@ -42,11 +42,11 @@ class @Project
       $('#notification-form').submit()
       label = null
       switch notification_level
-        when 0 then label = ' Disabled '
-        when 1 then label = ' Participating '
-        when 2 then label = ' Watching '
-        when 3 then label = ' Global '
-        when 4 then label = ' On Mention '
+        when 0 then label = ' 禁止 '
+        when 1 then label = ' 参与的 '
+        when 2 then label = ' 关注的 '
+        when 3 then label = ' 全局 '
+        when 4 then label = ' 被提及 '
       $('#notifications-button').empty().append("<i class='fa fa-bell'></i>" + label + "<i class='fa fa-angle-down'></i>")
       $(@).parents('ul').find('li.active').removeClass 'active'
       $(@).parent().addClass 'active'

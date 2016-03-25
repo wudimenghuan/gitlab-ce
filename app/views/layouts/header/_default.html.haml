@@ -2,7 +2,7 @@
   %div{ class: fluid_layout ? "container-fluid" : "container-fluid" }
     .header-content
       %button.navbar-toggle{type: 'button'}
-        %span.sr-only Toggle navigation
+        %span.sr-only 切换导航条
         = icon('bars')
 
       .navbar-collapse.collapse
@@ -10,32 +10,32 @@
           %li.hidden-sm.hidden-xs
             = render 'layouts/search'
           %li.visible-sm.visible-xs
-            = link_to search_path, title: 'Search', data: {toggle: 'tooltip', placement: 'bottom', container: 'body'} do
+            = link_to search_path, title: '搜索', data: {toggle: 'tooltip', placement: 'bottom', container: 'body'} do
               = icon('search')
           - if current_user
             - if session[:impersonator_id]
               %li.impersonation
-                = link_to stop_impersonation_admin_users_path, method: :delete, title: 'Stop Impersonation', data: { toggle: 'tooltip', placement: 'bottom', container: 'body' } do
+                = link_to stop_impersonation_admin_users_path, method: :delete, title: '中止假冒', data: { toggle: 'tooltip', placement: 'bottom', container: 'body' } do
                   = icon('user-secret fw')
             - if current_user.is_admin?
               %li
-                = link_to admin_root_path, title: 'Admin Area', data: {toggle: 'tooltip', placement: 'bottom', container: 'body'} do
+                = link_to admin_root_path, title: '管理区域', data: {toggle: 'tooltip', placement: 'bottom', container: 'body'} do
                   = icon('wrench fw')
             %li
-              = link_to dashboard_todos_path, title: 'Todos', data: {toggle: 'tooltip', placement: 'bottom', container: 'body'} do
+              = link_to dashboard_todos_path, title: '待办事项', data: {toggle: 'tooltip', placement: 'bottom', container: 'body'} do
                 %span.badge.todos-pending-count
                   = todos_pending_count
             - if current_user.can_create_project?
               %li
-                = link_to new_project_path, title: 'New project', data: {toggle: 'tooltip', placement: 'bottom', container: 'body'} do
+                = link_to new_project_path, title: '新项目', data: {toggle: 'tooltip', placement: 'bottom', container: 'body'} do
                   = icon('plus fw')
             - if Gitlab::Sherlock.enabled?
               %li
-                = link_to sherlock_transactions_path, title: 'Sherlock Transactions',
+                = link_to sherlock_transactions_path, title: '夏洛克事务',
                   data: {toggle: 'tooltip', placement: 'bottom', container: 'body'} do
                   = icon('tachometer fw')
             %li
-              = link_to destroy_user_session_path, class: 'logout', method: :delete, title: 'Sign out', data: {toggle: 'tooltip', placement: 'bottom', container: 'body'} do
+              = link_to destroy_user_session_path, class: 'logout', method: :delete, title: '退出', data: {toggle: 'tooltip', placement: 'bottom', container: 'body'} do
                 = icon('sign-out')
           - else
             %li

@@ -28,7 +28,7 @@
 
       .file-actions.hidden-xs
         - if blob_text_viewable?(blob)
-          = link_to '#', class: 'js-toggle-diff-comments btn active has_tooltip', title: "Toggle comments for this file" do
+          = link_to '#', class: 'js-toggle-diff-comments btn active has_tooltip', title: "切换此文件的评论显示" do
             = icon('comments')
           \
 
@@ -55,4 +55,4 @@
         - old_file = project.repository.prev_blob_for_diff(diff_commit, diff_file)
         = render "projects/diffs/image", diff_file: diff_file, old_file: old_file, file: blob, index: i, diff_refs: diff_refs
       - else
-        .nothing-here-block No preview for this file type
+        .nothing-here-block 不能预览此文件类型
