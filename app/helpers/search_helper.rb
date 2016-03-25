@@ -41,7 +41,7 @@ module SearchHelper
       { label: "帮助: Rake 任务帮助",      url: help_page_path("raketasks", "README") },
       { label: "帮助: SSH 密钥帮助",       url: help_page_path("ssh", "README") },
       { label: "帮助: 系统钩子帮助",       url: help_page_path("system_hooks", "system_hooks") },
-      { label: "帮助: Web 钩子帮助",       url: help_page_path("web_hooks", "web_hooks") }
+      { label: "帮助: Web 钩子帮助",       url: help_page_path("web_hooks", "web_hooks") },
       { label: "帮助: 工作流帮助",         url: help_page_path("workflow", "README") },
     ]
   end

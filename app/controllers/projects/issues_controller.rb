@@ -1,4 +1,3 @@
-encoding: utf-8
 class Projects::IssuesController < Projects::ApplicationController
   include ToggleSubscriptionAction
   include IssuableActions
