@@ -106,7 +106,7 @@
             允许用户注册使用 GitLab 为 OAuth 提供者的应用
 
   %fieldset
-    %legend 登入限制
+    %legend 登录限制
     .form-group
       .col-sm-offset-2.col-sm-10
         .checkbox
@@ -118,7 +118,7 @@
         .checkbox
           = f.label :signin_enabled do
             = f.check_box :signin_enabled
-            开启登入
+            开启登录
     .form-group
       = f.label :two_factor_authentication, '两步验证', class: 'control-label col-sm-2'
       .col-sm-10
@@ -147,7 +147,7 @@
         = f.text_field :after_sign_out_path, class: 'form-control', placeholder: 'http://company.example.com', :'aria-describedby' => 'after_sign_out_path_help_block'
         %span.help-block#after_sign_out_path_help_block 用户退出后将会重定向到此页面
     .form-group
-      = f.label :sign_in_text, '登入文字', class: 'control-label col-sm-2'
+      = f.label :sign_in_text, '登录文字', class: 'control-label col-sm-2'
       .col-sm-10
         = f.text_area :sign_in_text, class: 'form-control', rows: 4
         .help-block Markdown 可用

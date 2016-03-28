@@ -54,7 +54,7 @@ class InvitesController < ApplicationController
   def authenticate_user!
     return if current_user
 
-    notice = "要接受此邀请，请登入"
+    notice = "要接受此邀请，请登录"
     notice << "或者创建账号" if current_application_settings.signup_enabled?
     notice << "。"
 
