@@ -131,7 +131,7 @@
   - else
     .pull-right
       - if current_user.can?(:"destroy_#{issuable.to_ability_name}", @project)
-        = link_to polymorphic_path([@project.namespace.becomes(Namespace), @project, issuable]), data: { confirm: "#{issuable.class.name.titleize} will be removed! Are you sure?" },
+        = link_to polymorphic_path([@project.namespace.becomes(Namespace), @project, issuable]), data: { confirm: "#{issuable.class.name.titleize} 将被删除！你确定吗？" },
                                                                                                   method: :delete, class: 'btn btn-grouped' do
           = icon('trash-o')
           删除
