@@ -59,7 +59,7 @@
             = f.check_box :email_author_in_body
             在通知邮件正文包含作者名称
           .help-block
-            有些电子邮件服务器不支持重写邮件发送人名称功能。
+            有些邮件服务器不支持重写邮件发送人名称功能。
             开启此选项将在邮件正文中提供问题、合并请求和评论作者的名称，
             否则只试图重写邮件发送人为作者。
     .form-group
@@ -135,7 +135,7 @@
       = f.label :restricted_signup_domains, '注册限制域名', class: 'control-label col-sm-2'
       .col-sm-10
         = f.text_area :restricted_signup_domains_raw, placeholder: 'domain.com', class: 'form-control'
-        .help-block 用户使用的电子邮箱地址后缀必须匹配这些域名才能注册。泛域名可用。使用英文逗号分隔多个域名。比如：domain.com, *.domain.com
+        .help-block 用户使用的邮箱地址后缀必须匹配这些域名才能注册。泛域名可用。使用英文逗号分隔多个域名。比如：domain.com, *.domain.com
     .form-group
       = f.label :home_page_url, '主页链接', class: 'control-label col-sm-2'
       .col-sm-10

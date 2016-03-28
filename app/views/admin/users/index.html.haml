@@ -62,7 +62,7 @@
       = link_to '新用户', new_admin_user_path, class: "btn btn-new"
     = form_tag admin_users_path, method: :get, class: 'form-inline' do
       .form-group
-        = search_field_tag :name, params[:name], placeholder: '姓名、电子邮箱或用户名', class: 'form-control', spellcheck: false
+        = search_field_tag :name, params[:name], placeholder: '姓名、邮箱或用户名', class: 'form-control', spellcheck: false
         = hidden_field_tag "filter", params[:filter]
       = button_tag class: 'btn btn-primary' do
         %i.fa.fa-search

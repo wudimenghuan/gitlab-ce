@@ -1,7 +1,7 @@
 <p>欢迎 <%= @resource.name %>!</p>
 
 <% if @resource.unconfirmed_email.present? %>
-  <p>你可以通过下面的链接确认你的电子邮箱 (<%= @resource.unconfirmed_email %>)：</p>
+  <p>你可以通过下面的链接确认你的邮箱 (<%= @resource.unconfirmed_email %>)：</p>
 <% else %>
   <p>你可以通过下面的链接确认你的账号：</p>
 <% end %>

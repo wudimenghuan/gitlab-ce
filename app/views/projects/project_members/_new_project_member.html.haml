@@ -4,7 +4,7 @@
     .col-sm-10
       = users_select_tag(:user_ids, multiple: true, class: 'input-large', scope: :all, email_user: true)
       .help-block
-        搜索已存在的用户或使用电子邮箱地址邀请新用户。
+        搜索已存在的用户或使用邮箱地址邀请新用户。
 
   .form-group
     = f.label :access_level, "项目访问", class: 'control-label'

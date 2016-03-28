@@ -48,11 +48,11 @@
         %input{type: "file", name: "dump_file", id: "dump_file"}
     %li
       %p
-        是否想自定义 Google 代码电子邮箱地址和用户名导入到 GitLab？
+        是否想自定义 Google 代码邮箱地址和用户名导入到 GitLab？
       %p
         = label_tag :create_user_map_0 do
           = radio_button_tag :create_user_map, 0, true
-          否，直接导入到已存在的电子邮箱地址和用户名。
+          否，直接导入到已存在的邮箱地址和用户名。
       %p
         = label_tag :create_user_map_1 do
           = radio_button_tag :create_user_map, 1, false

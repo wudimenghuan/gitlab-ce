@@ -48,11 +48,11 @@
         %span.help-block 输入其他人能知道的名字。
 
       .form-group
-        = f.label :email, "电子邮箱", class: "label-light"
+        = f.label :email, "邮箱", class: "label-light"
         - if @user.ldap_user? && @user.ldap_email?
           = f.text_field :email, class: "form-control", required: true, readonly: true
           %span.help-block.light
-            LDAP 用户的电子邮箱只读。
+            LDAP 用户的邮箱只读。
         - else
           - if @user.temp_oauth_email?
             = f.text_field :email, class: "form-control", required: true, value: nil
@@ -71,7 +71,7 @@
       .form-group
         = f.label :public_email, '公开邮箱', class: "label-light"
         = f.select :public_email, options_for_select(@user.all_emails, selected: @user.public_email), {include_blank: 'Do not show on profile'}, class: "select2"
-        %span.help-block 此电子邮箱将显示在公开的个人资料上。
+        %span.help-block 此邮箱将显示在公开的个人资料上。
       .form-group
         = f.label :skype, class: "label-light"
         = f.text_field :skype, class: "form-control"

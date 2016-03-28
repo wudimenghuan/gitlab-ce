@@ -7,13 +7,13 @@
 
 = form_tag create_user_map_import_google_code_path, class: 'form-horizontal' do
   %p
-    自定义 Google 代码电子邮箱地址和用户名导入到 GitLab。
+    自定义 Google 代码邮箱地址和用户名导入到 GitLab。
     下一步，请先选择要导入的项目。
   %p
     The user map is a JSON document mapping the Google Code users that participated on your projects to the way their email addresses and usernames will be imported into GitLab. You can change this by changing the value on the right hand side of <code>:</code>. Be sure to preserve the surrounding double quotes, other punctuation and the email address or username on the left hand side.
   %ul
     %li
-      %strong 默认：直接导入 Google 代码电子邮箱地址或用户名
+      %strong 默认：直接导入 Google 代码邮箱地址或用户名
       %p
         <code>"johnsmith@example.com": "johnsm...@example.com"</code>
         will add "By johnsm...@example.com" to all issues and comments originally created by johnsmith@example.com.
@@ -30,7 +30,7 @@
         <code>"johnsmith@example.com": "John Smith"</code>
         will add "By John Smith" to all issues and comments originally created by johnsmith@example.com.
     %li
-      %strong 映射 Google 代码用户到完整电子邮箱地址
+      %strong 映射 Google 代码用户到完整邮箱地址
       %p
         <code>"johnsmith@example.com": "johnsmith@example.com"</code>
         will add "By <a href="#">johnsmith@example.com</a>" to all issues and comments originally created by johnsmith@example.com.

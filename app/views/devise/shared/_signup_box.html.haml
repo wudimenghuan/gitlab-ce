@@ -15,7 +15,7 @@
       %div
         = f.text_field :username, class: "form-control middle", value: user[:username], placeholder: "用户名", required: true
       %div
-        = f.email_field :email, class: "form-control middle", value: user[:email], placeholder: "电子邮箱", required: true
+        = f.email_field :email, class: "form-control middle", value: user[:email], placeholder: "邮箱", required: true
       .form-group.append-bottom-20#password-strength
         = f.password_field :password, class: "form-control bottom", value: user[:password], id: "user_password_sign_up", placeholder: "密码", required: true
       %div

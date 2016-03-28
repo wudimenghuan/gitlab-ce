@@ -7,7 +7,7 @@
       %strong= user.created_at.to_s(:medium)
     - unless user.public_email.blank?
       %li
-        %span.light 电子邮箱：
+        %span.light 邮箱：
         %strong= link_to user.public_email, "mailto:#{user.public_email}"
     - unless user.skype.blank?
       %li

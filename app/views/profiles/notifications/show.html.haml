@@ -21,7 +21,7 @@
       %h5
         全局通知设置
       .form-group
-        = f.label :notification_email, '通知电子邮箱', class: "label-light"
+        = f.label :notification_email, '通知邮箱', class: "label-light"
         = f.select :notification_email, @user.all_emails, { include_blank: false }, class: "select2"
       .form-group
         = f.label :notification_level, '通知等级', class: 'label-light'
@@ -30,7 +30,7 @@
             = f.radio_button :notification_level, Notification::N_DISABLED
             .level-title
               关闭
-            %p 将不会通过电子邮件收到任何通知
+            %p 将不会通过邮件收到任何通知
 
         .radio
           = f.label :notification_level, value: Notification::N_MENTION do

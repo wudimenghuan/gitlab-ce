@@ -135,7 +135,7 @@ class Admin::UsersController < Admin::ApplicationController
     user.update_secondary_emails!
 
     respond_to do |format|
-      format.html { redirect_back_or_admin_user(notice: "删除电子邮箱成功。") }
+      format.html { redirect_back_or_admin_user(notice: "删除邮箱成功。") }
       format.js { render nothing: true }
     end
   end

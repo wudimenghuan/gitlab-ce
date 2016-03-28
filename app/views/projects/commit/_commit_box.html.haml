@@ -11,7 +11,7 @@
         %span.caret
       %ul.dropdown-menu
         - unless @commit.parents.length > 1
-          %li= link_to "电子邮件补丁", namespace_project_commit_path(@project.namespace, @project, @commit, format: :patch)
+          %li= link_to "邮件补丁", namespace_project_commit_path(@project.namespace, @project, @commit, format: :patch)
         %li= link_to "差异文件",    namespace_project_commit_path(@project.namespace, @project, @commit, format: :diff)
     = link_to namespace_project_tree_path(@project.namespace, @project, @commit), class: "btn btn-grouped" do
       = icon('files-o')

@@ -28,14 +28,14 @@
           %strong
             = @user.username
         %li
-          %span.light 电子邮箱：
+          %span.light 邮箱：
           %strong
             = mail_to @user.email
         - @user.emails.each do |email|
           %li
-            %span.light 第二电子邮箱：
+            %span.light 第二邮箱：
             %strong= email.email
-            = link_to remove_email_admin_user_path(@user, email), data: { confirm: "确定要删除 #{email.email}？" }, method: :delete, class: "btn-xs btn btn-remove pull-right", title: '删除第二电子邮箱', id: "remove_email_#{email.id}" do
+            = link_to remove_email_admin_user_path(@user, email), data: { confirm: "确定要删除 #{email.email}？" }, method: :delete, class: "btn-xs btn btn-remove pull-right", title: '删除第二邮箱', id: "remove_email_#{email.id}" do
               %i.fa.fa-times
 
         %li.two-factor-status
@@ -132,7 +132,7 @@
           .panel-body
             - if @user.unconfirmed_email.present?
               - email = " (#{@user.unconfirmed_email})"
-            %p 此用户有一个未确认的电子邮箱地址 #{email}。你可以强制确认。
+            %p 此用户有一个未确认的邮箱地址 #{email}。你可以强制确认。
             %br
             = link_to '确认用户', confirm_admin_user_path(@user), method: :put, class: "btn btn-info", data: { confirm: '确认要继续么？' }
       - if @user.blocked?
