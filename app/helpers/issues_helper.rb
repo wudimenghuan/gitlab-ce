@@ -64,7 +64,7 @@ module IssuesHelper
       current_user.can?(ability, project)
     end
 
-    no_project = OpenStruct.new(id: 0, name_with_namespace: 'No project')
+    no_project = OpenStruct.new(id: 0, name_with_namespace: '没有项目')
     projects.unshift(no_project)
     projects.delete(issuable.project)
 

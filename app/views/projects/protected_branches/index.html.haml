@@ -6,9 +6,9 @@
 .well
   %p 保护分支设计为：
   %ul
-    %li prevent pushes from everybody except #{link_to "masters", help_page_path("permissions", "permissions"), class: "vlink"}
-    %li prevent anyone from force pushing to the branch
-    %li prevent anyone from deleting the branch
+    %li 禁止除了#{link_to "主开发人员", help_page_path("permissions", "permissions"), class: "vlink"}外所有人推送
+    %li 禁止任何强制推送此分支
+    %li 禁止任何人删除此分支
   %p 点击#{link_to "项目权限", help_page_path("permissions", "permissions"), class: "underlined-link"}了解更多
 
 - if can? current_user, :admin_project, @project

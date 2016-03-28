@@ -36,19 +36,19 @@
     .light-well.append-bottom-default
       .center
         %h4
-          There isn't anything to merge.
+          没有任何内容合并。
         %p.slead
           - if @merge_request.source_branch == @merge_request.target_branch
-            You'll need to use different branch names to get a valid comparison.
+            必须使用不同的分支名来比较。
           - else
             %span.label-branch #{@merge_request.source_branch}
-            and
+            和
             %span.label-branch #{@merge_request.target_branch}
-            are the same.
+            是一样的。
 
 
   .form-actions
-    = f.submit 'Compare branches and continue', class: "btn btn-new mr-compare-btn"
+    = f.submit '比较分支后继续', class: "btn btn-new mr-compare-btn"
 
 :javascript
   var source_branch = $("#merge_request_source_branch")

@@ -41,11 +41,11 @@ module VisibilityLevelHelper
   def group_visibility_level_description(level)
     case level
     when Gitlab::VisibilityLevel::PRIVATE
-      "The group and its projects can only be viewed by members."
+      "该群组和其项目只有其成员能以看到。"
     when Gitlab::VisibilityLevel::INTERNAL
-      "The group and any internal projects can be viewed by any logged in user."
+      "该群组和其内部项目只有已登录用户能看到。"
     when Gitlab::VisibilityLevel::PUBLIC
-      "The group and any public projects can be viewed without any authentication."
+      "该群组和其公开项目可以被任何授权的用户看到。"
     end
   end
 

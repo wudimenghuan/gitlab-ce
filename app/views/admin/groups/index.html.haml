@@ -59,7 +59,7 @@
           = truncate group.description, length: 150
       .clearfix
         %p.light
-          #{pluralize(group.members.size, '个用户', '个用户')}, #{pluralize(group.projects.count, '个项目', '个项目')}
+          #{pluralize(group.members.size, '个用户', '个用户')}，#{pluralize(group.projects.count, '个项目', '个项目')}
 
 
 = paginate @groups, theme: "gitlab"

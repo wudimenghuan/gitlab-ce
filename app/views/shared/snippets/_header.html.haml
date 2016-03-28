@@ -11,7 +11,7 @@
     - if @snippet.updated_at != @snippet.created_at
       %span
         &middot;
-        = icon('edit', title: 'edited')
+        = icon('edit', title: '编辑时间')
         = time_ago_with_tooltip(@snippet.updated_at, placement: 'bottom', html_class: 'snippet_edited_ago')
 
   .pull-right

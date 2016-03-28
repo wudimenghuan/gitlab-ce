@@ -1,10 +1,9 @@
-- page_title "Webhooks"
+- page_title "Web 钩子"
 %h3.page-title
-  Webhooks
+  Web 钩子
 
 %p.light
-  #{link_to "Webhooks ", help_page_path("web_hooks", "web_hooks"), class: "vlink"} can be
-  used for binding events when something is happening within the project.
+  #{link_to "Web 钩子", help_page_path("web_hooks", "web_hooks"), class: "vlink"}用于在项目发生相关事件时通知外部服务器。
 
 %hr.clearfix
 
@@ -14,78 +13,78 @@
       - @hook.errors.full_messages.each do |msg|
         %p= msg
   .form-group
-    = f.label :url, "URL", class: 'control-label'
+    = f.label :url, "链接", class: 'control-label'
     .col-sm-10
       = f.text_field :url, class: "form-control", placeholder: 'http://example.com/trigger-ci.json'
   .form-group
-    = f.label :url, "Trigger", class: 'control-label'
+    = f.label :url, "触发", class: 'control-label'
     .col-sm-10.prepend-top-10
       %div
         = f.check_box :push_events, class: 'pull-left'
         .prepend-left-20
           = f.label :push_events, class: 'list-label' do
-            %strong Push events
+            %strong 推送事件
           %p.light
-            This url will be triggered by a push to the repository
+            推送仓库时将触发此链接
       %div
         = f.check_box :tag_push_events, class: 'pull-left'
         .prepend-left-20
           = f.label :tag_push_events, class: 'list-label' do
-            %strong Tag push events
+            %strong 标签推送事件
           %p.light
-            This url will be triggered when a new tag is pushed to the repository
+            新标签推送仓库时将触发此链接
       %div
         = f.check_box :note_events, class: 'pull-left'
         .prepend-left-20
           = f.label :note_events, class: 'list-label' do
-            %strong Comments
+            %strong 评论
           %p.light
-            This url will be triggered when someone adds a comment
+            增加新评论时将触发此链接
       %div
         = f.check_box :issues_events, class: 'pull-left'
         .prepend-left-20
           = f.label :issues_events, class: 'list-label' do
-            %strong Issues events
+            %strong 问题事件
           %p.light
-            This url will be triggered when an issue is created/updated/merged
+            问题创建、更新、合并时将触发此链接
       %div
         = f.check_box :merge_requests_events, class: 'pull-left'
         .prepend-left-20
           = f.label :merge_requests_events, class: 'list-label' do
-            %strong Merge Request events
+            %strong 合并请求事件
           %p.light
-            This url will be triggered when a merge request is created/updated/merged
+            合并请求创建、更新、合并时将触发此链接
       %div
         = f.check_box :build_events, class: 'pull-left'
         .prepend-left-20
           = f.label :build_events, class: 'list-label' do
-            %strong Build events
+            %strong 构建事件
           %p.light
-            This url will be triggered when the build status changes
+            构建状态改变时将触发此链接
   .form-group
-    = f.label :enable_ssl_verification, "SSL verification", class: 'control-label checkbox'
+    = f.label :enable_ssl_verification, "SSL 证书验证", class: 'control-label checkbox'
     .col-sm-10
       .checkbox
         = f.label :enable_ssl_verification do
           = f.check_box :enable_ssl_verification
-          %strong Enable SSL verification
+          %strong 开启 SSL 证书验证
   .form-actions
-    = f.submit "Add Webhook", class: "btn btn-create"
+    = f.submit "增加 Web 钩子", class: "btn btn-create"
 
 -if @hooks.any?
   .panel.panel-default
     .panel-heading
-      Webhooks (#{@hooks.count})
+      Web 钩子 (#{@hooks.count})
     %ul.well-list
       - @hooks.each do |hook|
         %li
           .pull-right
-            = link_to 'Test Hook', test_namespace_project_hook_path(@project.namespace, @project, hook), class: "btn btn-sm btn-grouped"
-            = link_to 'Remove', namespace_project_hook_path(@project.namespace, @project, hook), data: { confirm: 'Are you sure?'}, method: :delete, class: "btn btn-remove btn-sm btn-grouped"
+            = link_to '测试钩子', test_namespace_project_hook_path(@project.namespace, @project, hook), class: "btn btn-sm btn-grouped"
+            = link_to '删除', namespace_project_hook_path(@project.namespace, @project, hook), data: { confirm: '确定要删除么？'}, method: :delete, class: "btn btn-remove btn-sm btn-grouped"
           .clearfix
             %span.monospace= hook.url
           %p
             - %w(push_events tag_push_events issues_events note_events merge_requests_events build_events).each do |trigger|
               - if hook.send(trigger)
                 %span.label.label-gray= trigger.titleize
-            SSL Verification: #{hook.enable_ssl_verification ? "enabled" : "disabled"}
+            SSL 证书验证：#{hook.enable_ssl_verification ? "已启用" : "已禁用"}

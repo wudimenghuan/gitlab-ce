@@ -44,7 +44,7 @@
 
 - if @milestone.complete?(current_user) && @milestone.active?
   .alert.alert-success.prepend-top-default
-    %span All issues for this milestone are closed. You may close milestone now.
+    %span 本里程碑的全部问题和合并请求都已关闭，可以选择关闭本里程碑。
 
 = render 'shared/milestones/summary', milestone: @milestone, project: @project
 = render 'shared/milestones/tabs', milestone: @milestone

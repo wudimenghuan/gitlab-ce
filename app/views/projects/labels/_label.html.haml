@@ -4,11 +4,11 @@
   .pull-right
     %strong.append-right-20
       = link_to_label(label, type: :merge_request) do
-        = pluralize label.open_merge_requests_count, 'open merge request'
+        = pluralize label.open_merge_requests_count, '个未关闭合并请求', '个未关闭合并请求'
 
     %strong.append-right-20
       = link_to_label(label) do
-        = pluralize label.open_issues_count, 'open issue'
+        = pluralize label.open_issues_count, '个未关闭问题', '个未关闭问题'
 
     - if current_user
       .label-subscription{data: {url: toggle_subscription_namespace_project_label_path(@project.namespace, @project, label)}}
@@ -17,8 +17,8 @@
           %span= label_subscription_toggle_button_text(label)
 
     - if can? current_user, :admin_label, @project
-      = link_to 'Edit', edit_namespace_project_label_path(@project.namespace, @project, label), class: 'btn btn-sm'
-      = link_to 'Delete', namespace_project_label_path(@project.namespace, @project, label), class: 'btn btn-sm btn-remove remove-row', method: :delete, remote: true, data: {confirm: "Remove this label? Are you sure?"}
+      = link_to '编辑', edit_namespace_project_label_path(@project.namespace, @project, label), class: 'btn btn-sm'
+      = link_to '删除', namespace_project_label_path(@project.namespace, @project, label), class: 'btn btn-sm btn-remove remove-row', method: :delete, remote: true, data: {confirm: "确定要删除这个标记么？"}
 
 - if current_user
   :javascript

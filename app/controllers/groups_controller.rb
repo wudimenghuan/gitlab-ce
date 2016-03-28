@@ -30,7 +30,7 @@ class GroupsController < Groups::ApplicationController
     @group = Groups::CreateService.new(current_user, group_params).execute
 
     if @group.persisted?
-      redirect_to @group, notice: "Group '#{@group.name}' was successfully created."
+      redirect_to @group, notice: "群组 '#{@group.name}' 创建成功。"
     else
       render action: "new"
     end
@@ -82,7 +82,7 @@ class GroupsController < Groups::ApplicationController
 
   def update
     if Groups::UpdateService.new(@group, current_user, group_params).execute
-      redirect_to edit_group_path(@group), notice: "Group '#{@group.name}' was successfully updated."
+      redirect_to edit_group_path(@group), notice: "群组 '#{@group.name}' 更新成功。"
     else
       render action: "edit"
     end

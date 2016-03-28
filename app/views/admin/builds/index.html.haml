@@ -2,7 +2,7 @@
   %ul.nav-links
     %li{class: ('active' if @scope.nil?)}
       = link_to admin_builds_path do
-        所有
+        全部
         %span.badge.js-totalbuilds-count= @all_builds.count(:id)
 
     %li{class: ('active' if @scope == 'running')}

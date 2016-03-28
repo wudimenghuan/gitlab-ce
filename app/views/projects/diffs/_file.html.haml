@@ -20,7 +20,7 @@
           %strong
             = diff_file.new_path
           - if diff_file.deleted_file
-            deleted
+            已删除
 
       - if diff_file.mode_changed?
         %small
@@ -44,7 +44,7 @@
     - return unless blob.respond_to?('text?')
     - if diff_file.too_large?
       .nothing-here-block
-        This diff could not be displayed because it is too large.
+        此 diff 太大无法显示。
     - else
       - if blob_text_viewable?(blob)
         - if diff_view == 'parallel'
@@ -55,4 +55,4 @@
         - old_file = project.repository.prev_blob_for_diff(diff_commit, diff_file)
         = render "projects/diffs/image", diff_file: diff_file, old_file: old_file, file: blob, index: i, diff_refs: diff_refs
       - else
-        .nothing-here-block No preview for this file type
+        .nothing-here-block 不能预览此文件类型

@@ -1,12 +1,13 @@
-- page_title "Edit", @tag.name, "Tags"
+- page_title "编辑", @tag.name, "标签"
 = render "projects/commits/header_title"
 = render "projects/commits/head"
 
 .gray-content-block
   .oneline
     .title
-      Release notes for tag
+      标签
       %strong #{@tag.name}
+      的发布备注
 
 .prepend-top-default
   = form_for(@release, method: :put, url: namespace_project_tag_release_path(@project.namespace, @project, @tag.name), html: { class: 'form-horizontal gfm-form release-form js-quick-submit' }) do |f|

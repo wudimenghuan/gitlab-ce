@@ -9,12 +9,12 @@
     .pull-left
       .status-box{ class: "status-box-closed #{issue_button_visibility(@issue, false)}"}
         %span.hidden-xs
-          Closed
+          已关闭
         %span.hidden-sm.hidden-md.hidden-lg
           = icon('check')
       .status-box{ class: "status-box-open #{issue_button_visibility(@issue, true)}"}
         %span.hidden-xs
-          Open
+          未关闭
         %span.hidden-sm.hidden-md.hidden-lg
           = icon('circle-o')
 
@@ -24,30 +24,31 @@
     .issue-meta
       = confidential_icon(@issue)
       %strong.identifier
-        Issue ##{@issue.iid}
+        问题 ##{@issue.iid}
       %span.creator
-        opened
+        在
         .editor-details
           .editor-details
             = time_ago_with_tooltip(@issue.created_at)
-            by
+            由
             %strong
               = link_to_member(@project, @issue.author, size: 24, mobile_classes: "hidden-xs")
             %strong
               = link_to_member(@project, @issue.author, size: 24, mobile_classes: "hidden-sm hidden-md hidden-lg",
                 by_username: true, avatar: false)
+        打开
 
     .pull-right.issue-btn-group
       - if can?(current_user, :create_issue, @project)
-        = link_to new_namespace_project_issue_path(@project.namespace, @project), class: 'btn btn-nr btn-grouped new-issue-link btn-success', title: 'New issue', id: 'new_issue_link' do
+        = link_to new_namespace_project_issue_path(@project.namespace, @project), class: 'btn btn-nr btn-grouped new-issue-link btn-success', title: '新问题', id: 'new_issue_link' do
           = icon('plus')
-          New issue
+          新问题
       - if can?(current_user, :update_issue, @issue)
-        = link_to 'Reopen issue', issue_path(@issue, issue: {state_event: :reopen}, status_only: true, format: 'json'), data: {no_turbolink: true}, class: "btn btn-nr btn-grouped btn-reopen #{issue_button_visibility(@issue, false)}", title: 'Reopen issue'
-        = link_to 'Close issue', issue_path(@issue, issue: {state_event: :close}, status_only: true, format: 'json'), data: {no_turbolink: true}, class: "btn btn-nr btn-grouped btn-close #{issue_button_visibility(@issue, true)}", title: 'Close issue'
+        = link_to '重新打开问题', issue_path(@issue, issue: {state_event: :reopen}, status_only: true, format: 'json'), data: {no_turbolink: true}, class: "btn btn-nr btn-grouped btn-reopen #{issue_button_visibility(@issue, false)}", title: '重新打开问题'
+        = link_to '关闭问题', issue_path(@issue, issue: {state_event: :close}, status_only: true, format: 'json'), data: {no_turbolink: true}, class: "btn btn-nr btn-grouped btn-close #{issue_button_visibility(@issue, true)}", title: '关闭问题'
         = link_to edit_namespace_project_issue_path(@project.namespace, @project, @issue), class: 'btn btn-nr btn-grouped issuable-edit' do
           = icon('pencil-square-o')
-          Edit
+          编辑
 
 
   .issue-details.issuable-details
