@@ -150,7 +150,8 @@ class Issue < ActiveRecord::Base
       return false unless user.can?(:admin_issue, to_project)
     end
 
-    !moved? && user.can?(:admin_issue, self.project)
+    !moved? && persisted? &&
+      user.can?(:admin_issue, self.project)
   end
 
   def to_branch_name

@@ -8,7 +8,7 @@
 
     %strong.append-right-20
       = link_to_label(label) do
-        = pluralize label.open_issues_count, '个未关闭问题', '个未关闭问题'
+        = pluralize label.open_issues_count(current_user), '个未关闭问题', '个未关闭问题'
 
     - if current_user
       .label-subscription{data: {url: toggle_subscription_namespace_project_label_path(@project.namespace, @project, label)}}

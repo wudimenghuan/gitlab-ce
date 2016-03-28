@@ -10,6 +10,8 @@
     - if current_user
       = link_to issues_group_url(@group, format: :atom, private_token: current_user.private_token), class: 'btn' do
         = icon('rss')
+        %span.icon-label
+          订阅
     = render 'shared/new_project_item_select', path: 'issues/new', label: "新问题"
 
 = render 'shared/issuable/filter', type: :issues

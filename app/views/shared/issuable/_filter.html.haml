@@ -42,7 +42,7 @@
               placeholder: "搜索作者", data: { first_user: (current_user.username if current_user), null_user: true, current_user: true, project_id: @project.id, field_name: "update[assignee_id]" } })
           .filter-item.inline
             = dropdown_tag("里程碑", options: { title: "指派到里程碑", toggle_class: 'js-milestone-select', filter: true, dropdown_class: "dropdown-menu-selectable",
-              placeholder: "搜索里程碑", data: { show_no: true, field_name: "update[milestone_id]", project_id: @project.id, milestones: namespace_project_milestones_path(@project.namespace, @project, :js), use_id: true } })
+              placeholder: "搜索里程碑", data: { show_no: true, field_name: "update[milestone_id]", project_id: @project.id, milestones: namespace_project_milestones_path(@project.namespace, @project, :json), use_id: true } })
           = hidden_field_tag 'update[issues_ids]', []
           = hidden_field_tag :state_event, params[:state_event]
           .filter-item.inline
