@@ -77,7 +77,7 @@
                       %em 通过在应用中输入你的账号和密码认证授权。
                   %td= token.created_at
                   %td= token.scopes
-                  %td= render 'delete_form', token: token
+                  %td= render 'doorkeeper/authorized_applications/delete_form', token: token
       - else
         .profile-settings-message.text-center
           没有任何已认证的应用
