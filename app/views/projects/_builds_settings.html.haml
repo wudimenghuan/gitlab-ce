@@ -1,6 +1,14 @@
 %fieldset.builds-feature
   %legend
     构建：
+
+  - unless @repository.gitlab_ci_yml
+    .form-group
+      .col-sm-offset-2.col-sm-10
+        %p 在使用持续集成前，需要先配置构建。
+        = link_to '开始使用构建', help_page_path('ci/quick_start', 'README'), class: 'btn btn-info'
+        %hr
+
   .form-group
     .col-sm-offset-2.col-sm-10
       %p 使用下面的命令来获取程序代码：
