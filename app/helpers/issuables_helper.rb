@@ -37,7 +37,7 @@ module IssuablesHelper
     end
   end
 
-  def milestone_dropdown_label(milestone_title, default_label = "Milestone")
+  def milestone_dropdown_label(milestone_title, default_label = "里程碑")
     if milestone_title == Milestone::Upcoming.name
       milestone_title = Milestone::Upcoming.title
     end
