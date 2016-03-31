@@ -31,14 +31,14 @@ class @UsersSelect
                 showDivider += 1
                 users.unshift(
                   beforeDivider: true
-                  name: 'Unassigned',
+                  name: '未指派',
                   id: 0
                 )
 
               if showAnyUser
                 showDivider += 1
                 name = showAnyUser
-                name = 'Any User' if name == true
+                name = '任何用户' if name == true
                 anyUser = {
                   beforeDivider: true
                   name: name,
@@ -173,7 +173,7 @@ class @UsersSelect
   initSelection: (element, callback) ->
     id = $(element).val()
     if id == "0"
-      nullUser = { name: 'Unassigned' }
+      nullUser = { name: '未指派' }
       callback(nullUser)
     else if id != ""
       @user(id, callback)

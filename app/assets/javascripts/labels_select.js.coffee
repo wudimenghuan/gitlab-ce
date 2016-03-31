@@ -98,13 +98,13 @@ class @LabelsSelect
             if showNo
               data.unshift(
                 id: 0
-                title: 'No Label'
+                title: '没有标记'
               )
 
             if showAny
               data.unshift(
                 isAny: true
-                title: 'Any Label'
+                title: '任何标记'
               )
 
             if data.length > 2
@@ -134,7 +134,7 @@ class @LabelsSelect
           fields: ['title']
         selectable: true
         toggleLabel: (selected) ->
-          if selected and selected.title isnt 'Any Label'
+          if selected and selected.title isnt '任何标记'
             selected.title
           else
             defaultLabel

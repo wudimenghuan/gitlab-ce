@@ -21,7 +21,7 @@ module IssuablesHelper
   end
 
   def user_dropdown_label(user_id, default_label)
-    return "Unassigned" if user_id == "0"
+    return "未指派" if user_id == "0"
 
     if @project
       member = @project.team.find_member(user_id)
