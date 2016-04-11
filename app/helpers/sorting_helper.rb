@@ -28,7 +28,7 @@ module SortingHelper
   end
 
   def sort_title_oldest_updated
-    '最旧更新的'
+    '最早更新的'
   end
 
   def sort_title_recently_updated
@@ -36,7 +36,7 @@ module SortingHelper
   end
 
   def sort_title_oldest_created
-    '最旧创建的'
+    '最早创建的'
   end
 
   def sort_title_recently_created
@@ -48,7 +48,7 @@ module SortingHelper
   end
 
   def sort_title_milestone_later
-    '最旧的里程碑'
+    '最早的里程碑'
   end
 
   def sort_title_name
@@ -64,7 +64,7 @@ module SortingHelper
   end
 
   def sort_title_oldest_signin
-    '最旧登录'
+    '最早登录'
   end
 
   def sort_title_downvotes
