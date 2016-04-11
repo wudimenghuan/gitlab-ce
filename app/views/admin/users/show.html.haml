@@ -75,7 +75,7 @@
               否
 
         %li
-          %span.light 当前登入 IP：
+          %span.light 当前登录 IP：
           %strong
             - if @user.current_sign_in_ip
               = @user.current_sign_in_ip
@@ -83,7 +83,7 @@
               从未
 
         %li
-          %span.light 当前登入时间：
+          %span.light 当前登录时间：
           %strong
             - if @user.current_sign_in_at
               = @user.current_sign_in_at.to_s(:medium)
@@ -91,7 +91,7 @@
               从未
 
         %li
-          %span.light 上次登入 IP：
+          %span.light 上次登录 IP：
           %strong
             - if @user.last_sign_in_ip
               = @user.last_sign_in_ip
@@ -99,7 +99,7 @@
               从未
 
         %li
-          %span.light 上次登入时间：
+          %span.light 上次登录时间：
           %strong
             - if @user.last_sign_in_at
               = @user.last_sign_in_at.to_s(:medium)
@@ -107,7 +107,7 @@
               从未
 
         %li
-          %span.light 登入次数：
+          %span.light 登录次数：
           %strong
             = @user.sign_in_count
 
@@ -142,7 +142,7 @@
           .panel-body
             %p 禁用用户有如下效果：
             %ul
-              %li 用户无法登入
+              %li 用户无法登录
               %li 用户无法访问 git 版本仓库
               %li 个人项目将被移除
               %li 拥有的群组将被移除
@@ -155,7 +155,7 @@
           .panel-body
             %p 禁用用户有如下效果：
             %ul
-              %li 用户无法登入
+              %li 用户无法登录
               %li 用户无法访问 git 版本仓库
               %li 用户将从加入的项目和群组中删除
               %li 个人项目将被移除

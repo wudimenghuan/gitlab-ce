@@ -9,7 +9,7 @@
         显示/隐藏讨论
     %div
       = link_to_member(@project, note.author, avatar: false)
-      %p 开始讨论在提交 #{commit_description}
+      开始讨论在提交 #{commit_description}
       - if commit
         = link_to(commit.short_id, namespace_project_commit_path(note.project.namespace, note.project, note.noteable), class: 'monospace')
     .last-update.hide.js-toggle-content

@@ -362,6 +362,11 @@ class Repository
     expire_tag_count_cache
   end
 
+  def before_import
+    expire_emptiness_caches
+    expire_exists_cache
+  end
+
   # Runs code after a repository has been forked/imported.
   def after_import
     expire_emptiness_caches
@@ -818,7 +823,7 @@ class Repository
   end
 
   def fetch_ref(source_path, source_ref, target_ref)
-    args = %W(#{Gitlab.config.git.bin_path} fetch -f #{source_path} #{source_ref}:#{target_ref})
+    args = %W(#{Gitlab.config.git.bin_path} fetch --no-tags -f #{source_path} #{source_ref}:#{target_ref})
     Gitlab::Popen.popen(args, path_to_repo)
   end
 

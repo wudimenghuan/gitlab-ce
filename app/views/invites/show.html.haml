@@ -5,7 +5,7 @@
   你被
   - if inviter = @member.created_by
     = link_to inviter.name, user_url(inviter)
-  邀请加入 
+  邀请加入
   - case @member.source
   - when Project
     - project = @member.source
@@ -22,7 +22,7 @@
 - if @member.source.users.include?(current_user)
   %p
     注意，你已经是该#{@member.source.is_a?(Group) ? "群组" : "项目"}的成员。
-    请使用另一个账号登入再接受邀请。
+    请使用另一个账号登录再接受邀请。
 - else
   .actions
     = link_to "接受邀请", accept_invite_url(@token), method: :post, class: "btn btn-success"

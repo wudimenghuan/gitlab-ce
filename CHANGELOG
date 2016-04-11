@@ -1,6 +1,29 @@
 Please view this file on the master branch, on stable branches it's out of date.
 
-v 8.6.3 (unreleased)
+v 8.6.5
+  - Fix importing from GitHub Enterprise. !3529
+  - Perform the language detection after updating merge requests in `GitPushService`, leading to faster visual feedback for the end-user. !3533
+  - Check permissions when user attempts to import members from another project. !3535
+  - Only update repository language if it is not set to improve performance. !3556
+  - Return status code 303 after a branch DELETE operation to avoid project deletion (Stan Hu). !3583
+  - Unblock user when active_directory is disabled and it can be found !3550
+  - Fix a 2FA authentication spoofing vulnerability.
+
+v 8.6.4
+  - Don't attempt to fetch any tags from a forked repo (Stan Hu)
+
+v 8.6.3
+  - Mentions on confidential issues doesn't create todos for non-members. !3374
+  - Destroy related todos when an Issue/MR is deleted. !3376
+  - Fix error 500 when target is nil on todo list. !3376
+  - Fix copying uploads when moving issue to another project. !3382
+  - Ensuring Merge Request API returns boolean values for work_in_progress (Abhi Rao). !3432
+  - Fix raw/rendered diff producing different results on merge requests. !3450
+  - Fix commit comment alignment (Stan Hu). !3466
+  - Fix Error 500 when searching for a comment in a project snippet. !3468
+  - Allow temporary email as notification email. !3477
+  - Fix issue with dropdowns not selecting values. !3478
+  - Update gitlab-shell version and doc to 2.6.12. gitlab-org/gitlab-ee!280
 
 v 8.6.2
   - Fix dropdown alignment. !3298
