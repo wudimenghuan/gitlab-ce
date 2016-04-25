@@ -1,4 +1,4 @@
-- page_title "Projects"
+- page_title "项目"
 = render 'shared/show_aside'
 
 .row.prepend-top-default
@@ -74,7 +74,7 @@
                   = sort_title_oldest_updated
                 = link_to admin_namespaces_projects_path(sort: sort_value_largest_repo) do
                   = sort_title_largest_repo
-          = link_to 'New Project', new_project_path, class: "btn btn-sm btn-success"
+          = link_to '新项目', new_project_path, class: "btn btn-sm btn-success"
       %ul.well-list
         - @projects.each do |project|
           %li
@@ -87,8 +87,8 @@
                 %span.label.label-warning archived
               %span.label.label-gray
                 = repository_size(project)
-              = link_to 'Edit', edit_namespace_project_path(project.namespace, project), id: "edit_#{dom_id(project)}", class: "btn btn-sm"
-              = link_to 'Destroy', [project.namespace.becomes(Namespace), project], data: { confirm: remove_project_message(project) }, method: :delete, class: "btn btn-sm btn-remove"
+              = link_to '编辑', edit_namespace_project_path(project.namespace, project), id: "edit_#{dom_id(project)}", class: "btn btn-sm"
+              = link_to '销毁', [project.namespace.becomes(Namespace), project], data: { confirm: remove_project_message(project) }, method: :delete, class: "btn btn-sm btn-remove"
         - if @projects.blank?
           .nothing-here-block 0 projects matches
     = paginate @projects, theme: "gitlab"

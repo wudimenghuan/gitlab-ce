@@ -1,5 +1,5 @@
 %h3.page-title
-  New Merge Request
+  新合并请求
 
 = form_for [@project.namespace.becomes(Namespace), @project, @merge_request], url: new_namespace_project_merge_request_path(@project.namespace, @project), method: :get, html: { class: "merge-request-form form-inline js-requires-input" } do |f|
   .hide.alert.alert-danger.mr-compare-errors

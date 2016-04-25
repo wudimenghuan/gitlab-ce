@@ -1,4 +1,4 @@
-# encoding: utf-8
+#encoding: utf-8
 module CommitsHelper
   # Returns a link to the commit author. If the author has a matching user and
   # is a member of the current @project it will link to the team member page.
@@ -102,14 +102,14 @@ module CommitsHelper
     if current_controller?(:projects, :commits)
       if @repo.blob_at(commit.id, @path)
         return link_to(
-          "Browse File »",
+          "浏览文件 »",
           namespace_project_blob_path(project.namespace, project,
                                       tree_join(commit.id, @path)),
           class: "pull-right"
         )
       elsif @path.present?
         return link_to(
-          "Browse Directory »",
+          "浏览目录 »",
           namespace_project_tree_path(project.namespace, project,
                                       tree_join(commit.id, @path)),
           class: "pull-right"

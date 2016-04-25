@@ -2,7 +2,7 @@
 
 = content_for :meta_tags do
   - if current_user
-    = auto_discovery_link_tag(:atom, namespace_project_path(@project.namespace, @project, format: :atom, private_token: current_user.private_token), title: "#{@project.name} activity")
+    = auto_discovery_link_tag(:atom, namespace_project_path(@project.namespace, @project, format: :atom, private_token: current_user.private_token), title: "#{@project.name} 活动")
 
 = content_for :flash_message do
   - if current_user && can?(current_user, :download_code, @project)
@@ -16,13 +16,13 @@
   %ul.nav
     %li
       = link_to namespace_project_commits_path(@project.namespace, @project, current_ref) do
-        = pluralize(number_with_delimiter(@project.commit_count), 'commit')
+        = pluralize(number_with_delimiter(@project.commit_count), '次提交', '次提交')
     %li
       = link_to namespace_project_branches_path(@project.namespace, @project) do
-        = pluralize(number_with_delimiter(@repository.branch_names.count), 'branch')
+        = pluralize(number_with_delimiter(@repository.branch_names.count), '个分支', '个分支')
     %li
       = link_to namespace_project_tags_path(@project.namespace, @project) do
-        = pluralize(number_with_delimiter(@repository.tag_names.count), 'tag')
+        = pluralize(number_with_delimiter(@repository.tag_names.count), '个标签', '个标签')
 
     %li
       = link_to project_files_path(@project) do
@@ -68,7 +68,7 @@
     .text-warning.center.prepend-top-20
       %p
         = icon("exclamation-triangle fw")
-        Archived project! Repository is read-only
+        已归档项目！版本仓库只读
 
   %div{class: "project-show-#{default_project_view}"}
     = render default_project_view

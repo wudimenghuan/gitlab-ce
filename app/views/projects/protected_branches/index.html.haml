@@ -1,15 +1,15 @@
-- page_title "Protected branches"
-%h3.page-title Protected branches
-%p.light Keep stable branches secure and force developers to use Merge Requests
+- page_title "保护分支"
+%h3.page-title 保护分支
+%p.light 此功能用于保护稳定分支被覆盖以及合并保护分支前必须强制代码评审
 %hr
 
 .well
-  %p Protected branches are designed to
+  %p 保护分支设计为：
   %ul
-    %li prevent pushes from everybody except #{link_to "masters", help_page_path("permissions", "permissions"), class: "vlink"}
-    %li prevent anyone from force pushing to the branch
-    %li prevent anyone from deleting the branch
-  %p Read more about #{link_to "project permissions", help_page_path("permissions", "permissions"), class: "underlined-link"}
+    %li 禁止除了#{link_to "主开发人员", help_page_path("permissions", "permissions"), class: "vlink"}外所有人推送
+    %li 禁止任何强制推送此分支
+    %li 禁止任何人删除此分支
+  %p 点击#{link_to "项目权限", help_page_path("permissions", "permissions"), class: "underlined-link"}了解更多
 
 - if can? current_user, :admin_project, @project
   = form_for [@project.namespace.becomes(Namespace), @project, @protected_branch], html: { class: 'form-horizontal' } do |f|

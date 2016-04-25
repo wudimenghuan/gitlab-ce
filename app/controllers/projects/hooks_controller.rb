@@ -1,3 +1,4 @@
+#encoding: utf-8
 class Projects::HooksController < Projects::ApplicationController
   # Authorize
   before_action :authorize_admin_project!
@@ -28,12 +29,12 @@ class Projects::HooksController < Projects::ApplicationController
       status, message = TestHookService.new.execute(hook, current_user)
 
       if status
-        flash[:notice] = 'Hook successfully executed.'
+        flash[:notice] = '钩子执行成功。'
       else
-        flash[:alert] = "Hook execution failed: #{message}"
+        flash[:alert] = "钩子执行失败：#{message}"
       end
     else
-      flash[:alert] = 'Hook execution failed. Ensure the project has commits.'
+      flash[:alert] = '钩子执行失败。确保项目已提交。'
     end
 
     redirect_back_or_default(default: { action: 'index' })

@@ -1,9 +1,9 @@
-- page_title "Triggers"
+- page_title "触发器"
 %h3.page-title
-  Triggers
+  触发器
 
 %p.light
-  Triggers can be used to force a rebuild of a specific branch or tag with an API call.
+  触发器被 API 调用用于强制重新构建指定的分支或标签。
 
 %hr.clearfix
 
@@ -11,22 +11,22 @@
   .table-holder
     %table.table
       %thead
-        %th Token
-        %th Last used
+        %th 授权
+        %th 最后使用
         %th
       = render partial: 'trigger', collection: @triggers, as: :trigger
 - else
-  %h4 No triggers
+  %h4 没有触发器
 
 = form_for @trigger, url: url_for(controller: 'projects/triggers', action: 'create'), html: { class: 'form-horizontal' } do |f|
   .clearfix
-    = f.submit "Add Trigger", class: 'btn btn-success pull-right'
+    = f.submit "增加触发器", class: 'btn btn-success pull-right'
 
 %hr.clearfix
 
 -if @triggers.any?
   %h3
-    Use CURL
+    使用 CURL
 
   %p.light
     Copy the token above and set your branch or tag name. This is the reference that will be rebuild.
@@ -39,7 +39,7 @@
            -F ref=REF_NAME \
            #{builds_trigger_url(@project.id)}
   %h3
-    Use .gitlab-ci.yml
+    使用 .gitlab-ci.yml
 
   %p.light
     Copy the snippet to
@@ -54,7 +54,7 @@
         script:
           - "curl -X POST -F token=TOKEN -F ref=REF_NAME #{builds_trigger_url(@project.id)}"
   %h3
-    Pass build variables
+    通过构建变量传递
 
   %p.light
     Add

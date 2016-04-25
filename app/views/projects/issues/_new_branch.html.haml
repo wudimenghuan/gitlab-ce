@@ -2,4 +2,4 @@
   .pull-right
     = link_to namespace_project_branches_path(@project.namespace, @project, branch_name: @issue.to_branch_name, issue_iid: @issue.iid), method: :post, class: 'btn has-tooltip', title: @issue.to_branch_name do
       = icon('code-fork')
-      New Branch
+      新分支

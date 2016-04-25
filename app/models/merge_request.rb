@@ -1,3 +1,4 @@
+#encoding: utf-8
 # == Schema Information
 #
 # Table name: merge_requests
@@ -500,12 +501,16 @@ class MergeRequest < ActiveRecord::Base
 
   def state_human_name
     if merged?
-      "Merged"
+      "已合并"
     elsif closed?
-      "Closed"
+      "已关闭"
     else
-      "Open"
+      "未关闭"
     end
+  end
+
+  def zh_name
+    '合并请求'
   end
 
   def state_icon_name

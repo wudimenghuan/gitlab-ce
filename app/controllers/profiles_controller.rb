@@ -1,3 +1,4 @@
+#encoding: utf-8
 class ProfilesController < Profiles::ApplicationController
   include ActionView::Helpers::SanitizeHelper
 
@@ -26,7 +27,7 @@ class ProfilesController < Profiles::ApplicationController
 
   def reset_private_token
     if current_user.reset_authentication_token!
-      flash[:notice] = "Token was successfully updated"
+      flash[:notice] = "令牌已成功更新"
     end
 
     redirect_to profile_account_path

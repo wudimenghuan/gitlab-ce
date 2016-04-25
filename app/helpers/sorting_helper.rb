@@ -1,3 +1,4 @@
+#encoding: utf-8
 module SortingHelper
   def sort_options_hash
     {

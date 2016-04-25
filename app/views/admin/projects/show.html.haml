@@ -60,32 +60,32 @@
             = link_to @project.ssh_url_to_repo, project_path(@project)
         - if @project.repository.exists?
           %li
-            %span.light fs:
+            %span.light 文件系统：
             %strong
               = @project.repository.path_to_repo
 
           %li
-            %span.light Size
+            %span.light 大小
             %strong
               = repository_size(@project)
 
           %li
-            %span.light last commit:
+            %span.light 最后提交：
             %strong
               = last_commit(@project)
         - else
           %li
-            %span.light repository:
+            %span.light 版本库：
             %strong.cred
-              does not exist
+              不存在
 
         - if @project.archived?
           %li
-            %span.light archived:
-            %strong repository is read-only
+            %span.light 已归档：
+            %strong 版本库只读
 
         %li
-          %span.light access:
+          %span.light 访问：
           %strong
             %span{ class: visibility_level_color(@project.visibility_level) }
               = visibility_level_icon(@project.visibility_level)
@@ -148,13 +148,13 @@
 
     .panel.panel-default
       .panel-heading
-        Project members
+        项目成员
         %small
           (#{@project.users.count})
         .pull-right
           = link_to namespace_project_project_members_path(@project.namespace, @project), class: "btn btn-xs" do
             %i.fa.fa-pencil-square-o
-            Manage Access
+            管理权限
       %ul.well-list.project_members
         - @project_members.each do |project_member|
           - user = project_member.user
@@ -169,7 +169,7 @@
                 (invited)
             .pull-right
               - if project_member.owner?
-                %span.light Owner
+                %span.light 拥有者
               - else
                 %span.light= project_member.human_access
                 = link_to namespace_project_project_member_path(@project.namespace, @project, project_member), data: { confirm: remove_from_project_team_message(@project, project_member)}, method: :delete, remote: true, class: "btn btn-sm btn-remove" do

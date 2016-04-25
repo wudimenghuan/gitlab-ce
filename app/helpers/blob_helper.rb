@@ -72,7 +72,7 @@ module BlobHelper
       project,
       ref,
       path,
-      label:      "Replace",
+      label:      "替换",
       action:     "replace",
       btn_class:  "default",
       modal_type: "upload"
@@ -84,7 +84,7 @@ module BlobHelper
       project,
       ref,
       path,
-      label:      "Delete",
+      label:      "删除",
       action:     "delete",
       btn_class:  "remove",
       modal_type: "remove"
@@ -96,14 +96,14 @@ module BlobHelper
   end
 
   def leave_edit_message
-    "Leave edit mode?\nAll unsaved changes will be lost."
+    "离开编辑模式？\n所有未保存的修改都会丢失。"
   end
 
   def editing_preview_title(filename)
     if Gitlab::MarkupHelper.previewable?(filename)
-      'Preview'
+      '预览'
     else
-      'Preview Changes'
+      '预览修改'
     end
   end
 

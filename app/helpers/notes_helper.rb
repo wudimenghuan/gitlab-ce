@@ -1,3 +1,4 @@
+#encoding: utf-8
 module NotesHelper
   # Helps to distinguish e.g. commit notes in mr notes list
   def note_for_main_target?(note)
@@ -52,7 +53,7 @@ module NotesHelper
 
     button_tag(class: 'btn add-diff-note js-add-diff-note-button',
                data: data,
-               title: 'Add a comment to this line') do
+               title: '在此行增加注释') do
       icon('comment-o')
     end
   end

@@ -38,10 +38,10 @@
             - if project.import_status == 'finished'
               %span
                 %i.fa.fa-check
-                done
+                完成
             - elsif project.import_status == 'started'
               %i.fa.fa-spinner.fa-spin
-              started
+              已开始
             - else
               = project.human_import_status_name
 
