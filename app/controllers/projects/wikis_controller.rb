@@ -48,7 +48,7 @@ class Projects::WikisController < Projects::ApplicationController
     if @page = WikiPages::UpdateService.new(@project, current_user, wiki_params).execute(@page)
       redirect_to(
         namespace_project_wiki_path(@project.namespace, @project, @page),
-        notice: 'Wiki was successfully updated.'
+        notice: '维基更新成功。'
       )
     else
       render 'edit'
@@ -61,7 +61,7 @@ class Projects::WikisController < Projects::ApplicationController
     if @page.persisted?
       redirect_to(
         namespace_project_wiki_path(@project.namespace, @project, @page),
-        notice: 'Wiki was successfully updated.'
+        notice: '维基更新成功。'
       )
     else
       render action: "edit"

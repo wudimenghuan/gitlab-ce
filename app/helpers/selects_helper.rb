@@ -4,7 +4,7 @@ module SelectsHelper
     css_class << "multiselect " if opts[:multiple]
     css_class << (opts[:class] || '')
     value = opts[:selected] || ''
-    placeholder = opts[:placeholder] || 'Search for a user'
+    placeholder = opts[:placeholder] || '选择用户'
 
     null_user     = opts[:null_user]    || false
     any_user      = opts[:any_user]     || false

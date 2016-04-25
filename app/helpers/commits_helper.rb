@@ -117,7 +117,7 @@ module CommitsHelper
       end
     end
     link_to(
-      "Browse Files",
+      "浏览文件",
       namespace_project_tree_path(project.namespace, project, commit),
       class: "pull-right"
     )
@@ -126,10 +126,10 @@ module CommitsHelper
   def revert_commit_link(commit, continue_to_path, btn_class: nil)
     return unless current_user
 
-    tooltip = "Revert this #{commit.change_type_title} in a new merge request"
+    tooltip = "在新的合并请求中恢复此 #{commit.change_type_title}"
 
     if can_collaborate_with_project?
-      link_to 'Revert', '#modal-revert-commit', 'data-toggle' => 'modal', 'data-container' => 'body', title: tooltip, class: "btn btn-default btn-grouped btn-#{btn_class} has-tooltip"
+      link_to '恢复', '#modal-revert-commit', 'data-toggle' => 'modal', 'data-container' => 'body', title: tooltip, class: "btn btn-default btn-grouped btn-#{btn_class} has-tooltip"
     elsif can?(current_user, :fork_project, @project)
       continue_params = {
         to: continue_to_path,
@@ -140,7 +140,7 @@ module CommitsHelper
         namespace_key: current_user.namespace.id,
         continue: continue_params)
 
-      link_to 'Revert', fork_path, class: 'btn btn-grouped btn-close', method: :post, 'data-toggle' => 'tooltip', 'data-container' => 'body', title: tooltip
+      link_to '恢复', fork_path, class: 'btn btn-grouped btn-close', method: :post, 'data-toggle' => 'tooltip', 'data-container' => 'body', title: tooltip
     end
   end
 
@@ -210,7 +210,7 @@ module CommitsHelper
                                   tree_join(commit_sha, diff.new_path)),
       class: 'btn view-file js-view-file btn-file-option'
     ) do
-      raw('View file @') + content_tag(:span, commit_sha[0..6],
+      raw('查看文件 @') + content_tag(:span, commit_sha[0..6],
                                        class: 'commit-short-id')
     end
   end

@@ -2,19 +2,19 @@
 module PreferencesHelper
   def layout_choices
     [
-        ['Fixed', :fixed],
-        ['Fluid', :fluid]
+        ['固定', :fixed],
+        ['自适应', :fluid]
     ]
   end
 
   # Maps `dashboard` values to more user-friendly option text
   DASHBOARD_CHOICES = {
-    projects: 'Your Projects (default)',
-    stars:    'Starred Projects',
-    project_activity: "Your Projects' Activity",
-    starred_project_activity: "Starred Projects' Activity",
-    groups: "Your Groups",
-    todos: "Your Todos"
+    projects: '你的项目 (默认)',
+    stars:    '星标项目',
+    project_activity: "你的项目活动",
+    starred_project_activity: "星标项目活动",
+    groups: "你的群组",
+    todos: "你的代办事项"
   }.with_indifferent_access.freeze
 
   # Returns an Array usable by a select field for more user-friendly option text
