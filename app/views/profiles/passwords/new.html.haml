@@ -1,12 +1,12 @@
-- page_title    "New Password"
-- header_title  "New Password"
-%h3.page-title Setup new password
+- page_title    "新密码"
+- header_title  "新密码"
+%h3.page-title 设置新密码
 %hr
 = form_for @user, url: profile_password_path, method: :post, html: { class: 'form-horizontal '} do |f|
   %p.slead
-    Please set a new password before proceeding.
+    请立即设置一个新密码。
     %br
-    After a successful password update you will be redirected to login screen.
+    密码被成功修改后将会重定向到登录页面。
 
   = form_errors(@user)
 
