@@ -1,46 +1,46 @@
 .admin-dashboard.prepend-top-default
   .row
     .col-md-4
-      %h4 Statistics
+      %h4 统计
       %hr
       %p
-        Forks
+        派生
         %span.light.pull-right
           = number_with_delimiter(ForkedProjectLink.count)
       %p
-        Issues
+        问题
         %span.light.pull-right
           = number_with_delimiter(Issue.count)
       %p
-        Merge Requests
+        合并请求
         %span.light.pull-right
           = number_with_delimiter(MergeRequest.count)
       %p
-        Notes
+        笔记
         %span.light.pull-right
           = number_with_delimiter(Note.count)
       %p
-        Snippets
+        代码片段
         %span.light.pull-right
           = number_with_delimiter(Snippet.count)
       %p
-        SSH Keys
+        SSH 密钥
         %span.light.pull-right
           = number_with_delimiter(Key.count)
       %p
-        Milestones
+        里程碑
         %span.light.pull-right
           = number_with_delimiter(Milestone.count)
       %p
-        Active Users
+        活跃用户
         %span.light.pull-right
           = number_with_delimiter(User.active.count)
     .col-md-4
       %h4
-        Features
+        功能
       %hr
       %p
-        Sign up
+        注册
         %span.light.pull-right
           = boolean_to_icon signup_enabled?
       %p
