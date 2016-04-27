@@ -16,16 +16,16 @@
     = form_errors(@protected_branch)
 
     .form-group
-      = f.label :name, "Branch", class: 'control-label'
+      = f.label :name, "分支", class: 'control-label'
       .col-sm-10
-        = f.select(:name, @project.open_branches.map { |br| [br.name, br.name] } , {include_blank: true}, {class: "select2", data: {placeholder: "Select branch"}})
+        = f.select(:name, @project.open_branches.map { |br| [br.name, br.name] } , {include_blank: true}, {class: "select2", data: {placeholder: "选择分支"}})
     .form-group
       .col-sm-offset-2.col-sm-10
         .checkbox
           = f.label :developers_can_push do
             = f.check_box :developers_can_push
-            %strong Developers can push
-          .help-block Allow developers to push to this branch
+            %strong 开发者可以推送
+          .help-block 允许开发者推送到此分支
     .form-actions
-      = f.submit 'Protect', class: "btn-create btn"
+      = f.submit '保护', class: "btn-create btn"
 = render 'branches_list'

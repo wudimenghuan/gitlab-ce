@@ -39,7 +39,7 @@
             = icon('pencil-square-o')
             编辑
           \
-          = link_to 'Close Milestone', namespace_project_milestone_path(@project.namespace, @project, milestone, milestone: {state_event: :close }), method: :put, remote: true, class: "btn btn-xs btn-close"
+          = link_to '关闭里程碑', namespace_project_milestone_path(@project.namespace, @project, milestone, milestone: {state_event: :close }), method: :put, remote: true, class: "btn btn-xs btn-close"
           = link_to namespace_project_milestone_path(milestone.project.namespace, milestone.project, milestone), data: { confirm: '确定要继续么？' }, method: :delete, class: "btn btn-xs btn-remove" do
             = icon('trash-o')
             删除

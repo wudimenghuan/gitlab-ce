@@ -180,8 +180,8 @@ module BlobHelper
     licenses = Licensee::License.all
 
     @licenses_for_select = {
-      Popular: licenses.select(&:featured).map { |license| [license.name, license.key] },
-      Other: licenses.reject(&:featured).map { |license| [license.name, license.key] }
+      常用: licenses.select(&:featured).map { |license| [license.name, license.key] },
+      其他: licenses.reject(&:featured).map { |license| [license.name, license.key] }
     }
   end
 end

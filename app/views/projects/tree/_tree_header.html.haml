@@ -15,7 +15,7 @@
   - if current_user
     %li
       - if !on_top_of_branch?
-        %span.btn.add-to-tree.disabled.has-tooltip{title: "You can only add files when you are on a branch", data: { container: 'body' }}
+        %span.btn.add-to-tree.disabled.has-tooltip{title: "您只能在分支上增加文件", data: { container: 'body' }}
           = icon('plus')
       - else
         %span.dropdown

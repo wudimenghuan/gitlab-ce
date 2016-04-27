@@ -34,7 +34,7 @@
 
     - if @repository.changelog
       %li
-        = link_to 'Changelog', changelog_path(@project)
+        = link_to '变更日志', changelog_path(@project)
 
     - if @repository.license_blob
       %li
@@ -42,21 +42,21 @@
 
     - if @repository.contribution_guide
       %li
-        = link_to 'Contribution guide', contribution_guide_path(@project)
+        = link_to '贡献指南', contribution_guide_path(@project)
 
     - if current_user && can_push_branch?(@project, @project.default_branch)
       - unless @repository.changelog
         %li.missing
           = link_to add_special_file_path(@project, file_name: 'CHANGELOG') do
-            Add Changelog
+            增加变更日志
       - unless @repository.license_blob
         %li.missing
           = link_to add_special_file_path(@project, file_name: 'LICENSE') do
-            Add License
+            增加许可证
       - unless @repository.contribution_guide
         %li.missing
           = link_to add_special_file_path(@project, file_name: 'CONTRIBUTING.md', commit_message: 'Add contribution guide') do
-            Add Contribution guide
+            增加贡献指南
 
 - if @repository.commit
   .content-block.second-block.white

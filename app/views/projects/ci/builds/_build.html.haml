@@ -23,14 +23,14 @@
     - if build.ref
       = link_to build.ref, namespace_project_commits_path(build.project.namespace, build.project, build.ref)
     - else
-      .light none
+      .light 无
 
   - if defined?(runner) && runner
     %td
       - if build.try(:runner)
         = runner_link(build.runner)
       - else
-        .light none
+        .light 无
 
   - if defined?(stage) && stage
     %td
@@ -45,9 +45,9 @@
           %span.label.label-primary
             = tag
       - if build.try(:trigger_request)
-        %span.label.label-info triggered
+        %span.label.label-info 被触发
       - if build.try(:allow_failure)
-        %span.label.label-danger allowed to fail
+        %span.label.label-danger 允许失败
 
   %td.duration
     - if build.duration

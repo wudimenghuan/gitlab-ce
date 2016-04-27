@@ -126,14 +126,14 @@ module CommitsHelper
   def revert_commit_link(commit, continue_to_path, btn_class: nil)
     return unless current_user
 
-    tooltip = "在新的合并请求中恢复此 #{commit.change_type_title}"
+    tooltip = "在新的合并请求中恢复此#{commit.change_type_title}"
 
     if can_collaborate_with_project?
       link_to '恢复', '#modal-revert-commit', 'data-toggle' => 'modal', 'data-container' => 'body', title: tooltip, class: "btn btn-default btn-grouped btn-#{btn_class} has-tooltip"
     elsif can?(current_user, :fork_project, @project)
       continue_params = {
         to: continue_to_path,
-        notice: edit_in_new_fork_notice + ' Try to revert this commit again.',
+        notice: edit_in_new_fork_notice + ' 请重试恢复此提交。',
         notice_now: edit_in_new_fork_notice_now
       }
       fork_path = namespace_project_forks_path(@project.namespace, @project,
@@ -147,21 +147,21 @@ module CommitsHelper
   def cherry_pick_commit_link(commit, continue_to_path, btn_class: nil)
     return unless current_user
 
-    tooltip = "Cherry-pick this #{commit.change_type_title} in a new merge request"
+    tooltip = "挑选 Cherry-pick 此#{commit.change_type_title}到一个新的合并请求"
 
     if can_collaborate_with_project?
-      link_to 'Cherry-pick', '#modal-cherry-pick-commit', 'data-toggle' => 'modal', 'data-container' => 'body', title: tooltip, class: "btn btn-default btn-grouped btn-#{btn_class} has-tooltip"
+      link_to '挑选 Cherry-pick', '#modal-cherry-pick-commit', 'data-toggle' => 'modal', 'data-container' => 'body', title: tooltip, class: "btn btn-default btn-grouped btn-#{btn_class} has-tooltip"
     elsif can?(current_user, :fork_project, @project)
       continue_params = {
         to: continue_to_path,
-        notice: edit_in_new_fork_notice + ' Try to cherry-pick this commit again.',
+        notice: edit_in_new_fork_notice + ' 请重试挑选 Cherry-pick 此提交。',
         notice_now: edit_in_new_fork_notice_now
       }
       fork_path = namespace_project_forks_path(@project.namespace, @project,
         namespace_key: current_user.namespace.id,
         continue: continue_params)
 
-      link_to 'Cherry-pick', fork_path, class: 'btn btn-grouped btn-close', method: :post, 'data-toggle' => 'tooltip', 'data-container' => 'body', title: tooltip
+      link_to '挑选 Cherry-pick', fork_path, class: 'btn btn-grouped btn-close', method: :post, 'data-toggle' => 'tooltip', 'data-container' => 'body', title: tooltip
     end
   end
 

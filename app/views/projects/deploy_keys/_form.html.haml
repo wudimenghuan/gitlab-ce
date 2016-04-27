@@ -3,16 +3,17 @@
     = form_errors(@key)
 
     .form-group
-      = f.label :title, class: "control-label"
+      = f.label :title, '标题', class: "control-label"
       .col-sm-10= f.text_field :title, class: 'form-control', autofocus: true, required: true
     .form-group
-      = f.label :key, class: "control-label"
+      = f.label :key, '公钥', class: "control-label"
       .col-sm-10
         %p.light
-          Paste a machine public key here. Read more about how to generate it
-          = link_to "here", help_page_path("ssh", "README")
+          在这里粘贴机器 SSH 公钥。如何生成请点击
+          = link_to "这里", help_page_path("ssh", "README")
+          了解更多
         = f.text_area :key, class: "form-control thin_area", rows: 5, required: true
 
     .form-actions
-      = f.submit 'Create Deploy Key', class: "btn-create btn"
-      = link_to "Cancel", namespace_project_deploy_keys_path(@project.namespace, @project), class: "btn btn-cancel"
+      = f.submit '创建部署密钥', class: "btn-create btn"
+      = link_to "取消", namespace_project_deploy_keys_path(@project.namespace, @project), class: "btn btn-cancel"
