@@ -6,7 +6,7 @@ class Admin::ImpersonationController < Admin::ApplicationController
 
   def create
     if @user.blocked?
-      flash[:alert] = "You cannot impersonate a blocked user"
+      flash[:alert] = "你不能假冒禁用的用户"
 
       redirect_to admin_user_path(@user)
     else
@@ -15,7 +15,7 @@ class Admin::ImpersonationController < Admin::ApplicationController
 
       warden.set_user(user, scope: 'user')
 
-      flash[:alert] = "You are impersonating #{user.username}."
+      flash[:alert] = "你正在假冒 #{user.username}."
 
       redirect_to root_path
     end

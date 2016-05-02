@@ -11,7 +11,7 @@
     = f.label :content, '内容', class: 'control-label'
     .col-sm-10
       = render layout: 'projects/md_preview', locals: { preview_class: "md-preview" } do
-        = render 'projects/zen', f: f, attr: :content, classes: 'note-textarea', placeholder: 'Write your content or drag files here...'
+        = render 'projects/zen', f: f, attr: :content, classes: 'note-textarea', placeholder: '撰写内容或拖放文件到此处...'
         = render 'projects/notes/hints'
 
       .clearfix
