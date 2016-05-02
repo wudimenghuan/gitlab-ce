@@ -15,7 +15,7 @@ class Admin::ImpersonationController < Admin::ApplicationController
 
       warden.set_user(user, scope: 'user')
 
-      flash[:alert] = "You are impersonating #{user.username}."
+      flash[:alert] = "你正在假冒 #{user.username}."
 
       redirect_to root_path
     end
