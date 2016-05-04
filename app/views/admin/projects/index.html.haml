@@ -90,5 +90,5 @@
               = link_to '编辑', edit_namespace_project_path(project.namespace, project), id: "edit_#{dom_id(project)}", class: "btn btn-sm"
               = link_to '销毁', [project.namespace.becomes(Namespace), project], data: { confirm: remove_project_message(project) }, method: :delete, class: "btn btn-sm btn-remove"
         - if @projects.blank?
-          .nothing-here-block 0 projects matches
+          .nothing-here-block 没有匹配的项目
     = paginate @projects, theme: "gitlab"
