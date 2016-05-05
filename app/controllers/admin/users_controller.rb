@@ -139,7 +139,7 @@ class Admin::UsersController < Admin::ApplicationController
     DeleteUserWorker.perform_async(current_user.id, user.id)
 
     respond_to do |format|
-      format.html { redirect_to admin_users_path, notice: "The user is being deleted." }
+      format.html { redirect_to admin_users_path, notice: "用户删除成功。" }
       format.json { head :ok }
     end
   end
