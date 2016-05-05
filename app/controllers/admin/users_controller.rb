@@ -34,7 +34,7 @@ class Admin::UsersController < Admin::ApplicationController
 
   def impersonate
     if user.blocked?
-      flash[:alert] = "You cannot impersonate a blocked user"
+      flash[:alert] = "你不能假冒禁用的用户"
 
       redirect_to admin_user_path(user)
     else
