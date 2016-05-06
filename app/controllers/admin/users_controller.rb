@@ -34,7 +34,7 @@ class Admin::UsersController < Admin::ApplicationController
 
   def impersonate
     if user.blocked?
-      flash[:alert] = "You cannot impersonate a blocked user"
+      flash[:alert] = "你不能假冒禁用的用户"
 
       redirect_to admin_user_path(user)
     else
@@ -42,7 +42,7 @@ class Admin::UsersController < Admin::ApplicationController
 
       warden.set_user(user, scope: :user)
 
-      flash[:alert] = "You are now impersonating #{user.username}"
+      flash[:alert] = "你正在假冒 #{user.username}"
 
       redirect_to root_path
     end
@@ -139,7 +139,7 @@ class Admin::UsersController < Admin::ApplicationController
     DeleteUserWorker.perform_async(current_user.id, user.id)
 
     respond_to do |format|
-      format.html { redirect_to admin_users_path, notice: "The user is being deleted." }
+      format.html { redirect_to admin_users_path, notice: "用户删除成功。" }
       format.json { head :ok }
     end
   end

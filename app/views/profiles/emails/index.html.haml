@@ -45,5 +45,5 @@
             - if email.email === current_user.public_email
               %span.label.label-info 公开邮箱
             - if email.email === current_user.notification_email
-              %span.label.label-info Notification Email
+              %span.label.label-info 通知邮箱
             = link_to '删除', profile_email_path(email), data: { confirm: '确定要继续么？'}, method: :delete, class: 'btn btn-sm btn-warning prepend-left-10'
