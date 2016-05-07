@@ -181,7 +181,7 @@ class ProjectsController < Projects::ApplicationController
 
     redirect_to(
       project_path(@project),
-      notice: "Housekeeping successfully started"
+      notice: "维护已开启成功"
     )
   rescue ::Projects::HousekeepingService::LeaseTaken => ex
     redirect_to(

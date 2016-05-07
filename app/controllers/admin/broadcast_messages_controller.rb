@@ -21,7 +21,7 @@ class Admin::BroadcastMessagesController < Admin::ApplicationController
 
   def update
     if @broadcast_message.update(broadcast_message_params)
-      redirect_to admin_broadcast_messages_path, notice: 'Broadcast Message was successfully updated.'
+      redirect_to admin_broadcast_messages_path, notice: '广播信息更新成功。'
     else
       render :edit
     end

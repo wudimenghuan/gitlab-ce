@@ -8,7 +8,7 @@ class Projects::VariablesController < Projects::ApplicationController
 
   def update
     if project.update_attributes(project_params)
-      redirect_to namespace_project_variables_path(project.namespace, project), notice: 'Variables were successfully updated.'
+      redirect_to namespace_project_variables_path(project.namespace, project), notice: '变量更新成功。'
     else
       render action: 'show'
     end

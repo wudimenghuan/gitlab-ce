@@ -48,7 +48,7 @@ class Projects::ForksController < Projects::ApplicationController
         if continue_params
           redirect_to continue_params[:to], notice: continue_params[:notice]
         else
-          redirect_to namespace_project_path(@forked_project.namespace, @forked_project), notice: "项目 '#{@forked_project.name}' 项目成功。"
+          redirect_to namespace_project_path(@forked_project.namespace, @forked_project), notice: "项目 '#{@forked_project.name}' 派生成功。"
         end
       end
     else

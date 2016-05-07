@@ -58,7 +58,7 @@ module BlobHelper
     elsif can?(current_user, :fork_project, project)
       continue_params = {
         to:     request.fullpath,
-        notice: edit_in_new_fork_notice + " Try to #{action} this file again.",
+        notice: edit_in_new_fork_notice + "请重新尝试#{action}此文件。",
         notice_now: edit_in_new_fork_notice_now
       }
       fork_path = namespace_project_forks_path(project.namespace, project, namespace_key: current_user.namespace.id, continue: continue_params)

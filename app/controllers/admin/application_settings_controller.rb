@@ -16,7 +16,7 @@ class Admin::ApplicationSettingsController < Admin::ApplicationController
 
   def reset_runners_token
     @application_setting.reset_runners_registration_token!
-    flash[:notice] = 'New runners registration token has been generated!'
+    flash[:notice] = '已生成新的 runner 注册授权码！'
     redirect_to admin_runners_path
   end
 
@@ -25,7 +25,7 @@ class Admin::ApplicationSettingsController < Admin::ApplicationController
 
     redirect_to(
       admin_application_settings_path,
-      notice: 'Started asynchronous removal of all repository check states.'
+      notice: '已开始取消所有版本仓库状态检查。'
     )
   end
 

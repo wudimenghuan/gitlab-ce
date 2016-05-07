@@ -43,7 +43,7 @@ class PasswordsController < Devise::PasswordsController
     return unless resource && resource.ldap_user?
 
     redirect_to after_sending_reset_password_instructions_path_for(resource_name),
-      alert: "Cannot reset password for LDAP user."
+      alert: "无法重设 LDAP 用户的密码。"
   end
 
   def throttle_reset
