@@ -183,9 +183,9 @@ class HipchatService < Service
     title = obj_attr[:title]
 
     merge_request_url = "#{project_url}/merge_requests/#{merge_request_id}"
-    merge_request_link = "<a href=\"#{merge_request_url}\">merge request !#{merge_request_id}</a>"
-    message = "#{user_name} #{state} #{merge_request_link} in " \
-      "#{project_link}: <b>#{title}</b>"
+    merge_request_link = "<a href=\"#{merge_request_url}\">合并请求 !#{merge_request_id}</a>"
+    message = "#{user_name} #{state} #{project_link} 的 #{merge_request_link}" \
+      "：<b>#{title}</b>"
 
     if description
       description = format_body(description)
