@@ -248,7 +248,7 @@ class HipchatService < Service
   end
 
   def create_build_message(data)
-    ref_type = data[:tag] ? 'tag' : 'branch'
+    ref_type = data[:tag] ? '标签' : '分支'
     ref = data[:ref]
     sha = data[:sha]
     user_name = data[:commit][:author_name]
@@ -258,7 +258,7 @@ class HipchatService < Service
     branch_link = "<a href=\"#{project_url}/commits/#{CGI.escape(ref)}\">#{ref}</a>"
     commit_link = "<a href=\"#{project_url}/commit/#{CGI.escape(sha)}/builds\">#{Commit.truncate_sha(sha)}</a>"
 
-    "#{project_link}: Commit #{commit_link} of #{branch_link} #{ref_type} by #{user_name} #{humanized_status(status)} in #{duration} second(s)"
+    "#{project_link}: 提交 #{commit_link} #{ref_type} #{branch_link} 作者 #{user_name} 构建#{humanized_status(status)} 用时 #{duration} 秒"
   end
 
   def project_name
