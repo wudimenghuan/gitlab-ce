@@ -182,32 +182,32 @@ class Event < ActiveRecord::Base
   def action_name
     if push?
       if new_ref?
-        "pushed new"
+        "推送了新的"
       elsif rm_ref?
-        "deleted"
+        "删除了"
       else
-        "pushed to"
+        "推送到了"
       end
     elsif closed?
-      "closed"
+      "关闭了"
     elsif merged?
-      "accepted"
+      "接受了"
     elsif joined?
-      'joined'
+      '加入了'
     elsif left?
-      'left'
+      '离开了'
     elsif destroyed?
-      'destroyed'
+      '删除了'
     elsif commented?
-      "commented on"
+      "评论了"
     elsif created_project?
       if project.external_import?
-        "imported"
+        "导入了"
       else
-        "created"
+        "创建了"
       end
     else
-      "opened"
+      "打开了"
     end
   end
 
