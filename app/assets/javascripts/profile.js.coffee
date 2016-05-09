@@ -20,7 +20,7 @@ class @Profile
 
     $('.update-notifications').on 'ajax:success', (e, data) ->
       if data.saved
-        new Flash("Notification settings saved", "notice")
+        new Flash("通知设置已保存", "notice")
       else
         new Flash("保存新设置失败", "alert")
 
