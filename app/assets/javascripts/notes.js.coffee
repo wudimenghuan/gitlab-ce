@@ -316,7 +316,7 @@ class @Notes
     @renderNote(note)
 
   addNoteError: (xhr, note, status) =>
-    flash = new Flash('Your comment could not be submitted! Please check your network connection and try again.', 'alert')
+    flash = new Flash('无法提交你的评论！请检查你的网络连接后重试。', 'alert')
     flash.pinTo('.md-area')
 
   ###
