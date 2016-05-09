@@ -56,7 +56,7 @@ module Files
 
         if different_branch?
           if repository.branch_names.include?(@target_branch)
-            raise_error("Branch with such name already exists. You need to switch to this branch in order to make changes")
+            raise_error("该名称的分支已存在。你需要切换到该分支以进行更改")
           end
         end
       end
