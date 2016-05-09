@@ -271,7 +271,21 @@ class Event < ActiveRecord::Base
   end
 
   def ref_type
-    tag? ? "tag" : "branch"
+    tag? ? "标签" : "分支"
+  end
+
+  def target_type_zh
+    if milestone?
+      "里程碑"
+    elsif note?
+      "批注"
+    elsif issue?
+      "问题"
+    elsif merge_request?
+      "合并请求"
+    else
+      target_type
+    end
   end
 
   def push_with_commits?
