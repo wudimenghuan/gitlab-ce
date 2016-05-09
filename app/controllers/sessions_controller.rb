@@ -98,7 +98,7 @@ class SessionsController < Devise::SessionsController
 
         sign_in(user) and return
       else
-        flash.now[:alert] = 'Invalid two-factor code.'
+        flash.now[:alert] = '无效的双重认证代码。'
         render :two_factor and return
       end
     else
