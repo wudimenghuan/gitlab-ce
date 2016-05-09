@@ -4,7 +4,7 @@ module Emails
       @current_user = @user = User.find(user_id)
       @target_url = user_url(@user)
       @token = token
-      mail(to: @user.notification_email, subject: subject("Account was created for you"))
+      mail(to: @user.notification_email, subject: subject("已为你创建账户"))
     end
 
     def new_email_email(email_id)
