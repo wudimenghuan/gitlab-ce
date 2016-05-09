@@ -106,7 +106,7 @@ class @Issue
         $container.find('.checking').hide()
         $container.find('.unavailable').show()
 
-        new Flash('Failed to check if a new branch can be created.', 'alert')
+        new Flash('检查能否创建新分支失败', 'alert')
       .success (data) ->
         if data.can_create_branch
           $container.find('.checking').hide()
