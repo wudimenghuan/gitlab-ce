@@ -161,8 +161,8 @@ class HipchatService < Service
     issue_url = obj_attr[:url]
     description = obj_attr[:description]
 
-    issue_link = "<a href=\"#{issue_url}\">issue ##{issue_iid}</a>"
-    message = "#{user_name} #{state} #{issue_link} in #{project_link}: <b>#{title}</b>"
+    issue_link = "<a href=\"#{issue_url}\">问题 ##{issue_iid}</a>"
+    message = "#{user_name} #{state} #{project_link} 的 #{issue_link}：<b>#{title}</b>"
 
     if description
       description = format_body(description)
