@@ -48,7 +48,7 @@ class @Project
       if data.saved
         new Flash("Notification settings saved", "notice")
       else
-        new Flash("Failed to save new settings", "alert")
+        new Flash("保存新设置失败", "alert")
 
 
     @projectSelectDropdown()
