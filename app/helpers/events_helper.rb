@@ -18,7 +18,7 @@ module EventsHelper
                   event.target_type.titleize.downcase
                 end
               else
-                'project'
+                '项目'
               end
 
     [event.action_name, target].join(" ")
