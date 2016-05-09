@@ -279,7 +279,7 @@ class HipchatService < Service
   def humanized_status(status)
     case status
     when 'success'
-      'passed'
+      '成功'
     else
       status
     end
