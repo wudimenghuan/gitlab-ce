@@ -213,30 +213,30 @@ class HipchatService < Service
       commit_attr = HashWithIndifferentAccess.new(data[:commit])
       subject_desc = commit_attr[:id]
       subject_desc = Commit.truncate_sha(subject_desc)
-      subject_type = "commit"
+      subject_type = "提交"
       title = format_title(commit_attr[:message])
     when "Issue"
       subj_attr = HashWithIndifferentAccess.new(data[:issue])
       subject_id = subj_attr[:iid]
       subject_desc = "##{subject_id}"
-      subject_type = "issue"
+      subject_type = "问题"
       title = format_title(subj_attr[:title])
     when "MergeRequest"
       subj_attr = HashWithIndifferentAccess.new(data[:merge_request])
       subject_id = subj_attr[:iid]
       subject_desc = "!#{subject_id}"
-      subject_type = "merge request"
+      subject_type = "合并请求"
       title = format_title(subj_attr[:title])
     when "Snippet"
       subj_attr = HashWithIndifferentAccess.new(data[:snippet])
       subject_id = subj_attr[:id]
       subject_desc = "##{subject_id}"
-      subject_type = "snippet"
+      subject_type = "代码片段"
       title = format_title(subj_attr[:title])
     end
 
     subject_html = "<a href=\"#{note_url}\">#{subject_type} #{subject_desc}</a>"
-    message = "#{user_name} commented on #{subject_html} in #{project_link}: "
+    message = "#{user_name} 评论了 #{project_link} 的 #{subject_html}："
     message << title
 
     if note
