@@ -50,11 +50,7 @@ module EventsHelper
   end
 
   def event_preposition(event)
-    if event.push? || event.commented? || event.target
-      "at"
-    elsif event.milestone?
-      "in"
-    end
+    "的"
   end
 
   def event_feed_title(event)
