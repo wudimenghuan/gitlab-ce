@@ -26,7 +26,7 @@ module Files
       if commit
         success
       else
-        error("Something went wrong. Your changes were not committed")
+        error("出错了，你的变更未提交")
       end
     rescue Repository::CommitError, Gitlab::Git::Repository::InvalidBlobName, GitHooksService::PreReceiveError, ValidationError => ex
       error(ex.message)
