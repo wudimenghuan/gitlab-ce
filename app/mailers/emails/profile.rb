@@ -20,7 +20,7 @@ module Emails
 
       @current_user = @user = @key.user
       @target_url = user_url(@user)
-      mail(to: @user.notification_email, subject: subject("SSH key was added to your account"))
+      mail(to: @user.notification_email, subject: subject("你的账户已添加 SSH 秘钥"))
     end
   end
 end
