@@ -20,7 +20,7 @@ module Emails
       @current_user = @group_member.user
 
       mail(to: @group_member.invite_email,
-           subject: "Invitation to join group #{@group.name}")
+           subject: "邀请加入群组 #{@group.name}")
     end
 
     def group_invite_accepted_email(group_member_id)
