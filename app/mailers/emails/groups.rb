@@ -8,7 +8,7 @@ module Emails
       @current_user = @group_member.user
 
       mail(to: @group_member.user.notification_email,
-           subject: subject("Access to group was granted"))
+           subject: subject("被授予访问群组"))
     end
 
     def group_member_invited_email(group_member_id, token)
