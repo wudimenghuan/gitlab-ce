@@ -91,7 +91,7 @@ class Event < ActiveRecord::Base
     if project
       project.name_with_namespace
     else
-      "(deleted project)"
+      "(已删除的项目)"
     end
   end
 
