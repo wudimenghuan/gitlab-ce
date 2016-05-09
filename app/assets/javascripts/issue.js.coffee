@@ -89,7 +89,7 @@ class @Issue
 
     $.getJSON($container.data('url'))
       .error ->
-        new Flash('Failed to load related branches', 'alert')
+        new Flash('加载关联的分支失败', 'alert')
       .success (data) ->
         if 'html' of data
           $container.html(data.html)
