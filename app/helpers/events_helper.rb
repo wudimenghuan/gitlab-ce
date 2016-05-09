@@ -60,30 +60,29 @@ module EventsHelper
   def event_feed_title(event)
     words = []
     words << event.author_name
-    words << event_action_name(event)
+    words << event_action_name(event)    
+    words << event.project_name
 
     if event.push?
+      words << "的"
       words << event.ref_type
       words << event.ref_name
-      words << "at"
     elsif event.commented?
+      words << "的"
       if event.note_commit?
         words << event.note_short_commit_id
       else
         words << "##{truncate event.note_target_iid}"
       end
-      words << "at"
     elsif event.milestone?
+      words << "的"
       words << "##{event.target_iid}" if event.target_iid
-      words << "in"
     elsif event.target
-      words << "##{event.target_iid}:"
+      words << "的"
+      words << "##{event.target_iid}："
       words << event.target.title if event.target.respond_to?(:title)
-      words << "at"
     end
-
-    words << event.project_name
-
+    
     words.join(" ")
   end
 
