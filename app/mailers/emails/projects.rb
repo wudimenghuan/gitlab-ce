@@ -20,7 +20,7 @@ module Emails
       @current_user = @project_member.user
 
       mail(to: @project_member.invite_email,
-           subject: "Invitation to join project #{@project.name_with_namespace}")
+           subject: "邀请加入项目 #{@project.name_with_namespace}")
     end
 
     def project_invite_accepted_email(project_member_id)
