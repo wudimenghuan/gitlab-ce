@@ -10,7 +10,7 @@ module Emails
     def new_email_email(email_id)
       @email = Email.find(email_id)
       @current_user = @user = @email.user
-      mail(to: @user.notification_email, subject: subject("Email was added to your account"))
+      mail(to: @user.notification_email, subject: subject("你的账户已添加邮箱"))
     end
 
     def new_ssh_key_email(key_id)
