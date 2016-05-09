@@ -66,7 +66,7 @@ module Files
       result = CreateBranchService.new(project, current_user).execute(@target_branch, @source_branch, source_project: @source_project)
 
       unless result[:status] == :success
-        raise_error("Something went wrong when we tried to create #{@target_branch} for you: #{result[:message]}")
+        raise_error("为你创建分支 #{@target_branch} 时发生了错误：#{result[:message]}")
       end
     end
   end
