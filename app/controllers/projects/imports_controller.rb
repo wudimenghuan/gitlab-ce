@@ -50,7 +50,7 @@ class Projects::ImportsController < Projects::ApplicationController
     if @project.forked?
       '项目派生成功。'
     else
-      'The project was successfully imported.'
+      '项目导入成功。'
     end
   end
 
