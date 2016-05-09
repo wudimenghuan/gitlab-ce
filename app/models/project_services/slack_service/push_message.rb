@@ -47,7 +47,7 @@ class SlackService
     end
 
     def new_branch_message
-      "#{user_name} pushed new #{ref_type} #{branch_link} to #{project_link}"
+      "#{user_name} 推送了新的 #{ref_type} #{branch_link} 到了 #{project_link}"
     end
 
     def removed_branch_message
