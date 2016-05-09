@@ -51,7 +51,7 @@ module Files
 
       unless project.empty_repo?
         unless @source_project.repository.branch_names.include?(@source_branch)
-          raise_error("You can only create or edit files when you are on a branch")
+          raise_error("你只能在分支上创建或编辑文件")
         end
 
         if different_branch?
