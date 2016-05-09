@@ -79,7 +79,7 @@ class @Issue
 
     $.getJSON($container.data('url'))
       .error ->
-        new Flash('Failed to load referenced merge requests', 'alert')
+        new Flash('加载引用的合并请求失败', 'alert')
       .success (data) ->
         if 'html' of data
           $container.html(data.html)
