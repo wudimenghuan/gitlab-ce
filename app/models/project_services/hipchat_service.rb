@@ -110,7 +110,7 @@ class HipchatService < Service
   end
 
   def create_push_message(push)
-    ref_type = Gitlab::Git.tag_ref?(push[:ref]) ? 'tag' : 'branch'
+    ref_type = Gitlab::Git.tag_ref?(push[:ref]) ? '标签' : '分支'
     ref = Gitlab::Git.ref_name(push[:ref])
 
     before = push[:before]
@@ -119,23 +119,22 @@ class HipchatService < Service
     message = ""
     message << "#{push[:user_name]} "
     if Gitlab::Git.blank_ref?(before)
-      message << "pushed new #{ref_type} <a href=\""\
+      message << "推送了新的 #{ref_type} <a href=\""\
                  "#{project_url}/commits/#{CGI.escape(ref)}\">#{ref}</a>"\
-                 " to #{project_link}\n"
+                 " 到了 #{project_link}\n"
     elsif Gitlab::Git.blank_ref?(after)
-      message << "removed #{ref_type} <b>#{ref}</b> from <a href=\"#{project.web_url}\">#{project_name}</a> \n"
+      message << "删除了 <a href=\"#{project.web_url}\">#{project_name}</a> 的 #{ref_type} <b>#{ref}</b>\n"
     else
-      message << "pushed to #{ref_type} <a href=\""\
-                  "#{project.web_url}/commits/#{CGI.escape(ref)}\">#{ref}</a> "
-      message << "of <a href=\"#{project.web_url}\">#{project.name_with_namespace.gsub!(/\s/,'')}</a> "
-      message << "(<a href=\"#{project.web_url}/compare/#{before}...#{after}\">Compare changes</a>)"
+      message << "推送到了 <a href=\"#{project.web_url}\">#{project.name_with_namespace.gsub!(/\s/,'')}</a> 的 #{ref_type} <a href=\""\
+                  "#{project.web_url}/commits/#{CGI.escape(ref)}\">#{ref}</a>"
+      message << "(<a href=\"#{project.web_url}/compare/#{before}...#{after}\">比较</a>)"
 
       push[:commits].take(MAX_COMMITS).each do |commit|
         message << "<br /> - #{commit[:message].lines.first} (<a href=\"#{commit[:url]}\">#{commit[:id][0..5]}</a>)"
       end
 
       if push[:commits].count > MAX_COMMITS
-        message << "<br />... #{push[:commits].count - MAX_COMMITS} more commits"
+        message << "<br />... 和 #{push[:commits].count - MAX_COMMITS} 次更多提交"
       end
     end
 
