@@ -15,7 +15,7 @@
         - if event.target
           %strong= link_to "##{event.target_iid}", [event.project.namespace.becomes(Namespace), event.project, event.target]
 
-      at
+      在
       %strong
         - if event.project
           = link_to_project event.project
