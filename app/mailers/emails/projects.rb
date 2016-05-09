@@ -8,7 +8,7 @@ module Emails
       @current_user = @project_member.user
 
       mail(to: @project_member.user.notification_email,
-           subject: subject("Access to project was granted"))
+           subject: subject("被授予访问项目"))
     end
 
     def project_member_invited_email(project_member_id, token)
