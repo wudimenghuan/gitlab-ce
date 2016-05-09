@@ -51,7 +51,7 @@ class SlackService
     end
 
     def removed_branch_message
-      "#{user_name} removed #{ref_type} #{ref} from #{project_link}"
+      "#{user_name} 删除了 #{project_link} 的 #{ref_type} #{ref}"
     end
 
     def push_message
