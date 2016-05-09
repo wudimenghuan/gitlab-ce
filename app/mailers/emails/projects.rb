@@ -47,7 +47,7 @@ module Emails
       @target_url = namespace_project_url(@project.namespace, @project)
 
       mail(to: @created_by.notification_email,
-           subject: subject("Invitation declined"))
+           subject: subject("邀请被拒绝"))
     end
 
     def project_was_moved_email(project_id, user_id, old_path_with_namespace)

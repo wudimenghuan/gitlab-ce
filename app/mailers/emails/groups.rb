@@ -46,7 +46,7 @@ module Emails
       
       @target_url = group_url(@group)
       mail(to: @created_by.notification_email,
-           subject: subject("Invitation declined"))
+           subject: subject("邀请被拒绝"))
     end
   end
 end
