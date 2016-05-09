@@ -33,7 +33,7 @@ module Emails
       @current_user = @group_member.created_by
 
       mail(to: @group_member.created_by.notification_email,
-           subject: subject("Invitation accepted"))
+           subject: subject("邀请被接受"))
     end
 
     def group_invite_declined_email(group_id, invite_email, access_level, created_by_id)

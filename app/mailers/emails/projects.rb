@@ -33,7 +33,7 @@ module Emails
       @current_user = @project_member.created_by
 
       mail(to: @project_member.created_by.notification_email,
-           subject: subject("Invitation accepted"))
+           subject: subject("邀请被接受"))
     end
 
     def project_invite_declined_email(project_id, invite_email, access_level, created_by_id)
