@@ -1,13 +1,22 @@
 .event-title
   %span.author_name= link_to_author event
-  %span.event_label.pushed #{event.action_name} #{event.ref_type}
-  - if event.rm_ref?
-    %strong= event.ref_name
-  - else
-    %strong
-      = link_to event.ref_name, namespace_project_commits_path(event.project.namespace, event.project, event.ref_name), title: h(event.target_title)
-  在
-  = link_to_project event.project
+  %span.event_label.pushed #{event.action_name}
+  - if event.new_ref?
+    = event.ref_type
+    - if event.rm_ref?
+      %strong= event.ref_name
+    - else
+      %strong= link_to event.ref_name, namespace_project_commits_path(event.project.namespace, event.project, event.ref_name), title: h(event.target_title)
+    到了
+    = link_to_project event.project
+  -else
+    = link_to_project event.project
+    的
+    = event.ref_type
+    - if event.rm_ref?
+      %strong= event.ref_name
+    - else
+      %strong= link_to event.ref_name, namespace_project_commits_path(event.project.namespace, event.project, event.ref_name), title: h(event.target_title)
 
 - if event.push_with_commits?
   - project = event.project
