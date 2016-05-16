@@ -437,13 +437,13 @@ class MergeRequest < ActiveRecord::Base
   end
 
   def merge_commit_message
-    message = "Merge branch '#{source_branch}' into '#{target_branch}'"
+    message = "合并分支 '#{source_branch}' 到 '#{target_branch}'"
     message << "\n\n"
     message << title.to_s
     message << "\n\n"
     message << description.to_s
     message << "\n\n"
-    message << "See merge request !#{iid}"
+    message << "查看合并请求 !#{iid}"
     message
   end
 
