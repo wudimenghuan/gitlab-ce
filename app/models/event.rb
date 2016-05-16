@@ -341,17 +341,11 @@ class Event < ActiveRecord::Base
   end
 
   def note_target_type
-    if note_commit?
-      "提交"
-    elsif issue_note?
-      "问题"
-    elsif note_project_snippet?
-      "代码片段"
-    elsif target.noteable_type == "MergeRequest"
-      "合并请求"
+    if target.noteable_type.present?
+      target.noteable_type.titleize
     else
-      target.noteable_type
-    end
+      "Wall"
+    end.downcase
   end
 
   def body?
