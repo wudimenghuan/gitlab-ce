@@ -1,17 +1,20 @@
 .event-title
   %span.author_name= link_to_author event
   %span.event_label{class: event.action_name}
-    = event_action_name(event)
-
-  - if event.target
-    %strong= link_to event.target.reference_link_text, [event.project.namespace.becomes(Namespace), event.project, event.target]
-
-  = event_preposition(event)
-
-  - if event.project
-    = link_to_project event.project
-  - else
-    = event.project_name
+    = event.action_name
+    
+    - if !event.target_type
+      项目
+      
+    - if event.project
+      = link_to_project event.project
+    - else
+      = event.project_name
+      
+    - if event.target
+      的
+      = event.target_type_zh
+      %strong= link_to event.target.reference_link_text, [event.project.namespace.becomes(Namespace), event.project, event.target]
 
 - if event.target.respond_to?(:title)
   .event-body
