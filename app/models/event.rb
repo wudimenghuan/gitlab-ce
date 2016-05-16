@@ -275,13 +275,14 @@ class Event < ActiveRecord::Base
   end
 
   def target_type_zh
-    if milestone?
+    case target_type
+    when "Milestone"
       "里程碑"
-    elsif note?
+    when "Note"
       "批注"
-    elsif issue?
+    when "Issue"
       "问题"
-    elsif merge_request?
+    when "MergeRequest"
       "合并请求"
     else
       target_type
@@ -341,11 +342,18 @@ class Event < ActiveRecord::Base
   end
 
   def note_target_type
-    if target.noteable_type.present?
-      target.noteable_type.titleize
+    case target.noteable_type
+    when "Commit"
+      "提交"
+    when "Issue"
+      "问题"
+    when "Snippet"
+      "代码片段"
+    when "MergeRequest"
+      "合并请求"
     else
-      "Wall"
-    end.downcase
+      target.noteable_type
+    end
   end
 
   def body?
