@@ -45,9 +45,9 @@
           = link_to "(?)", help_page_path("integration/gitlab")
           必须先配置好 OmniAuth。
     .form-group
-      %label.control-label.col-sm-2 Enabled Git access protocols
+      %label.control-label.col-sm-2 启用的 Git 访问协议
       .col-sm-10
-        = select(:application_setting, :enabled_git_access_protocol, [['Both SSH and HTTP(S)', nil], ['Only SSH', 'ssh'], ['Only HTTP(S)', 'http']], {}, class: 'form-control')
+        = select(:application_setting, :enabled_git_access_protocol, [['SSH 和 HTTP(S)', nil], ['只有 SSH', 'ssh'], ['只有 HTTP(S)', 'http']], {}, class: 'form-control')
         %span.help-block#clone-protocol-help
           仅允许将所选协议用于Git访问。
     .form-group
@@ -67,14 +67,14 @@
             开启此选项将在邮件正文中提供问题、合并请求和评论作者的名称，
             否则只试图重写邮件发送人为作者。
     .form-group
-      = f.label :admin_notification_email, class: 'control-label col-sm-2'
+      = f.label :admin_notification_email, '管理员通知邮箱', class: 'control-label col-sm-2'
       .col-sm-10
         = f.text_field :admin_notification_email, class: 'form-control'
         .help-block
           滥用举报会使用此邮箱发送邮件。滥用举报总是在管理区域可用。
 
   %fieldset
-    %legend Account and Limit Settings
+    %legend 账户与限制设置
     .form-group
       .col-sm-offset-2.col-sm-10
         .checkbox
@@ -116,13 +116,13 @@
         .checkbox
           = f.label :signup_enabled do
             = f.check_box :signup_enabled
-            Sign-up enabled
+            开启注册
     .form-group
       .col-sm-offset-2.col-sm-10
         .checkbox
           = f.label :send_user_confirmation_email do
             = f.check_box :send_user_confirmation_email
-            Send confirmation email on sign-up
+            注册时发送确认邮件
     .form-group
       = f.label :domain_whitelist, '注册域名白名单', class: 'control-label col-sm-2'
       .col-sm-10
