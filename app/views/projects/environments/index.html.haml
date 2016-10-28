@@ -1,5 +1,5 @@
 - @no_container = true
-- page_title "Environments"
+- page_title "运行环境"
 = render "projects/pipelines/head"
 
 %div{ class: container_class }
@@ -7,27 +7,27 @@
     .top-area
       .nav-controls
         = link_to new_namespace_project_environment_path(@project.namespace, @project), class: 'btn btn-create' do
-          New environment
+          新建运行环境
 
   - if @environments.blank?
     .blank-state.blank-state-no-icon
       %h2.blank-state-title
-        You don't have any environments right now.
+        你现在还没有任何运行环境。
       %p.blank-state-text
-        Environments are places where code gets deployed, such as staging or production.
+        运行环境是部署代码的地方, 比如模拟环境或者生产现场
         %br
         = succeed "." do
-          = link_to "Read more about environments", help_page_path("ci/environments")
+          = link_to "运行环境的介绍", help_page_path("ci/environments")
       - if can?(current_user, :create_environment, @project)
         = link_to new_namespace_project_environment_path(@project.namespace, @project), class: 'btn btn-create' do
-          New environment
+          新建运行环境
   - else
     .table-holder
       %table.table.builds.environments
         %tbody
-          %th Environment
-          %th Last Deployment
-          %th Commit
+          %th 运行环境
+          %th 最后部署时间
+          %th 提交
           %th
           %th
         = render @environments

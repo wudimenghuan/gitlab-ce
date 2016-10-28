@@ -30,7 +30,7 @@
           选择的等级将无法用于非管理用户的项目和代码片段。
           如果公开等级被限制，用户个人资料只对已登录用户可见。
     .form-group
-      = f.label :import_sources, class: 'control-label col-sm-2'
+      = f.label :import_sources, '导入来源', class: 'control-label col-sm-2'
       .col-sm-10
         - data_attrs = { toggle: 'buttons' }
         .btn-group{ data: data_attrs }
