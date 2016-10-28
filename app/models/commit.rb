@@ -114,7 +114,7 @@ class Commit
   #
   #   "Commit: Alex Denisov - Project git clone panel"
   def link_title
-    "Commit: #{author_name} - #{title}"
+    "提交: #{author_name} - #{title}"
   end
 
   # Returns the commits title.
@@ -253,9 +253,9 @@ class Commit
 
   def revert_description
     if merged_merge_request
-      "This reverts merge request #{merged_merge_request.to_reference}"
+      "这将还原合并请求 #{merged_merge_request.to_reference}"
     else
-      "This reverts commit #{sha}"
+      "这将还原提交 #{sha}"
     end
   end
 
@@ -288,7 +288,7 @@ class Commit
   end
 
   def change_type_title
-    merged_merge_request ? 'merge request' : 'commit'
+    merged_merge_request ? '合并请求' : '提交'
   end
 
   # Get the URI type of the given path

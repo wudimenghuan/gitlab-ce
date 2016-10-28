@@ -22,7 +22,7 @@ module ProjectsHelper
     default_opts = { avatar: true, name: true, size: 16, author_class: 'author', title: ":name", tooltip: false }
     opts = default_opts.merge(opts)
 
-    return "(deleted)" unless author
+    return "(已删除)" unless author
 
     author_html =  ""
 
@@ -71,15 +71,15 @@ module ProjectsHelper
   end
 
   def remove_project_message(project)
-    "You are going to remove #{project.name_with_namespace}.\n Removed project CANNOT be restored!\n Are you ABSOLUTELY sure?"
+    "将要删除 #{project.name_with_namespace} 。\n 删除项目后无法恢复！\n 百分之百确定要继续么？"
   end
 
   def transfer_project_message(project)
-    "You are going to transfer #{project.name_with_namespace} to another owner. Are you ABSOLUTELY sure?"
+    "将要转移 #{project.name_with_namespace} 给其他人。百分之百确定要继续么？"
   end
 
   def remove_fork_project_message(project)
-    "You are going to remove the fork relationship to source project #{@project.forked_from_project.name_with_namespace}.  Are you ABSOLUTELY sure?"
+    "将要删除从源项目 #{@project.forked_from_project.name_with_namespace} 的派生关系。百分之百确定要继续么？"
   end
 
   def project_nav_tabs
@@ -233,7 +233,7 @@ module ProjectsHelper
     if project.last_activity_at
       time_ago_with_tooltip(project.last_activity_at, placement: 'bottom', html_class: 'last_activity_time_ago')
     else
-      "Never"
+      "从未"
     end
   end
 

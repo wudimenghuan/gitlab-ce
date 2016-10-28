@@ -1,16 +1,16 @@
 - @no_container = true
-- page_title "Tags"
+- page_title "标签"
 = render "projects/commits/head"
 
 %div{ class: container_class }
   .top-area
     .nav-text
-      Tags give the ability to mark specific points in history as being important
+      标签用于标识重要的历史版本
 
     .nav-controls
       - if can? current_user, :push_code, @project
         = link_to new_namespace_project_tag_path(@project.namespace, @project), class: 'btn btn-create new-tag-btn' do
-          New tag
+          新建标签
       .dropdown.inline
         %button.dropdown-toggle.btn{ type: 'button', data: { toggle: 'dropdown'} }
           %span.light= @sort.humanize
@@ -18,7 +18,7 @@
         %ul.dropdown-menu.dropdown-menu-align-right
           %li
             = link_to namespace_project_tags_path(sort: nil) do
-              Name
+              名称
             = link_to namespace_project_tags_path(sort: sort_value_recently_updated) do
               = sort_title_recently_updated
             = link_to namespace_project_tags_path(sort: sort_value_oldest_updated) do
@@ -33,9 +33,9 @@
 
     - else
       .nothing-here-block
-        Repository has no tags yet.
+        版本库没有标签。
         %br
         %small
-          Use git tag command to add a new one:
+          使用 git tag 命令增加标签：
           %br
           %span.monospace git tag -a v1.4 -m 'version 1.4'

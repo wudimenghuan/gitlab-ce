@@ -21,7 +21,7 @@ module ButtonHelper
       class: "btn btn-clipboard",
       data: data,
       type: :button,
-      title: "Copy to Clipboard"
+      title: "复制到剪贴板"
   end
 
   def http_clone_button(project, placement = 'right', append_link: true)
@@ -37,7 +37,7 @@ module ButtonHelper
         html: true,
         placement: placement,
         container: 'body',
-        title: "Set a password on your account<br>to pull or push via #{protocol}"
+        title: "在账户中设置密码<br>然后再使用 #{protocol} 拉取和推送。"
       }
   end
 
@@ -52,7 +52,7 @@ module ButtonHelper
         html: true,
         placement: placement,
         container: 'body',
-        title: 'Add an SSH key to your profile<br>to pull or push via SSH.'
+        title: '在个人资料中增加 SSH 密钥<br>然后再使用 SSH 拉取和推送。'
       }
   end
 end

@@ -1,5 +1,5 @@
 .commit-info-row.commit-info-row-header
-  %span.hidden-xs Authored by
+  %span.hidden-xs 作者
   %strong
     = commit_author_link(@commit, avatar: true, size: 24)
   #{time_ago_with_tooltip(@commit.authored_date)}
@@ -10,7 +10,7 @@
         = icon('comment')
         = @notes_count
     = link_to namespace_project_tree_path(@project.namespace, @project, @commit), class: "btn btn-default append-right-10 hidden-xs hidden-sm" do
-      Browse Files
+      浏览文件
     .dropdown.inline
       %a.btn.btn-default.dropdown-toggle{ data: { toggle: "dropdown" } }
         %span.hidden-xs Options
@@ -18,7 +18,7 @@
       %ul.dropdown-menu.dropdown-menu-align-right
         %li.visible-xs-block.visible-sm-block
           = link_to namespace_project_tree_path(@project.namespace, @project, @commit) do
-            Browse Files
+            浏览文件
         - unless @commit.has_been_reverted?(current_user)
           %li.clearfix
             = revert_commit_link(@commit, namespace_project_commit_path(@project.namespace, @project, @commit.id), has_tooltip: false)
@@ -26,24 +26,24 @@
           = cherry_pick_commit_link(@commit, namespace_project_commit_path(@project.namespace, @project, @commit.id), has_tooltip: false)
         %li.divider
         %li.dropdown-header
-          Download
+          下载
         - unless @commit.parents.length > 1
-          %li= link_to "Email Patches", namespace_project_commit_path(@project.namespace, @project, @commit, format: :patch)
-        %li= link_to "Plain Diff",    namespace_project_commit_path(@project.namespace, @project, @commit, format: :diff)
+          %li= link_to "电子邮件补丁", namespace_project_commit_path(@project.namespace, @project, @commit, format: :patch)
+        %li= link_to "差异文件",    namespace_project_commit_path(@project.namespace, @project, @commit, format: :diff)
 
 - if @commit.different_committer?
   .commit-info-row
-    %span.light Committed by
+    %span.light 提交者
     %strong
       = commit_committer_link(@commit, avatar: true, size: 24)
     #{time_ago_with_tooltip(@commit.committed_date)}
 
 .commit-info-row
-  %span.hidden-xs.hidden-sm Commit
+  %span.hidden-xs.hidden-sm 提交
   = link_to @commit.id, namespace_project_commit_path(@project.namespace, @project, @commit), class: "monospace hidden-xs hidden-sm"
   = link_to @commit.short_id, namespace_project_commit_path(@project.namespace, @project, @commit), class: "monospace visible-xs-inline visible-sm-inline"
   = clipboard_button(clipboard_text: @commit.id)
-  %span.cgray= pluralize(@commit.parents.count, "parent")
+  %span.cgray= pluralize(@commit.parents.count, "个父辈", "个父辈")
   - @commit.parents.each do |parent|
     = link_to parent.short_id, namespace_project_commit_path(@project.namespace, @project, parent), class: "monospace"
 
@@ -52,13 +52,13 @@
 
 - if @commit.status
   .commit-info-row
-    Builds for
-    = pluralize(@commit.pipelines.count, 'pipeline')
+    = pluralize(@commit.pipelines.count, '个管道', '个管道')
+    的构建
     = link_to builds_namespace_project_commit_path(@project.namespace, @project, @commit.id), class: "ci-status-link ci-status-icon-#{@commit.status}" do
       = ci_icon_for_status(@commit.status)
       %span.ci-status-label
         = ci_label_for_status(@commit.status)
-    in
+    耗费
     = time_interval_in_words @commit.pipelines.total_duration
 
 .commit-box.content-block

@@ -10,13 +10,13 @@
         = icon('caret-down')
       %ul.dropdown-menu.dropdown-menu-align-right
         = nav_link(path: 'groups#projects') do
-          = link_to 'Projects', projects_group_path(@group), title: 'Projects'
+          = link_to '项目', projects_group_path(@group), title: '项目'
         %li.divider
         - if can_edit
           %li
-            = link_to 'Edit Group', edit_group_path(@group)
+            = link_to '编辑群组', edit_group_path(@group)
         - if can_leave
           %li
             = link_to polymorphic_path([:leave, @group, :members]),
-              data: { confirm: leave_confirmation_message(@group) }, method: :delete, title: 'Leave group' do
-              Leave Group
+              data: { confirm: leave_confirmation_message(@group) }, method: :delete, title: '离开群组' do
+              离开群组

@@ -1,5 +1,5 @@
 - @no_container = true
-- page_title "Builds"
+- page_title "构建"
 = render "projects/pipelines/head"
 
 %div{ class: container_class }
@@ -7,36 +7,36 @@
     %ul.nav-links
       %li{class: ('active' if @scope.nil?)}
         = link_to project_builds_path(@project) do
-          All
+          全部
           %span.badge.js-totalbuilds-count
             = number_with_delimiter(@all_builds.count(:id))
 
       %li{class: ('active' if @scope == 'pending')}
         = link_to project_builds_path(@project, scope: :pending) do
-          Pending
+          排队中
           %span.badge
             = number_with_delimiter(@all_builds.pending.count(:id))
 
       %li{class: ('active' if @scope == 'running')}
         = link_to project_builds_path(@project, scope: :running) do
-          Running
+          运行中
           %span.badge
             = number_with_delimiter(@all_builds.running.count(:id))
 
       %li{class: ('active' if @scope == 'finished')}
         = link_to project_builds_path(@project, scope: :finished) do
-          Finished
+          已完成
           %span.badge
             = number_with_delimiter(@all_builds.finished.count(:id))
 
     .nav-controls
       - if can?(current_user, :update_build, @project)
         - if @all_builds.running_or_pending.any?
-          = link_to 'Cancel running', cancel_all_namespace_project_builds_path(@project.namespace, @project),
-            data: { confirm: 'Are you sure?' }, class: 'btn btn-danger', method: :post
+          = link_to '取消运行', cancel_all_namespace_project_builds_path(@project.namespace, @project),
+            data: { confirm: '确认取消运行？' }, class: 'btn btn-danger', method: :post
 
         - unless @repository.gitlab_ci_yml
-          = link_to 'Get started with Builds', help_page_path('ci/quick_start/README'), class: 'btn btn-info'
+          = link_to '开始构建', help_page_path('ci/quick_start/README'), class: 'btn btn-info'
 
         = link_to ci_lint_path, class: 'btn btn-default' do
           %span CI Lint
@@ -44,19 +44,19 @@
   %ul.content-list.builds-content-list
     - if @builds.blank?
       %li
-        .nothing-here-block No builds to show
+        .nothing-here-block 没有构建可显示
     - else
       .table-holder
         %table.table.builds
           %thead
             %tr
-              %th Status
-              %th Commit
-              %th Stage
-              %th Name
+              %th 状态
+              %th 提交
+              %th 阶段
+              %th 名称
               %th
               - if @project.build_coverage_enabled?
-                %th Coverage
+                %th 覆盖率
               %th
 
           = render @builds, commit_sha: true, ref: true, stage: true, allow_retry: true, coverage: @project.build_coverage_enabled?

@@ -169,7 +169,7 @@ class Projects::IssuesController < Projects::ApplicationController
 
     respond_to do |format|
       format.json do
-        render json: { notice: "#{result[:count]} issues updated" }
+        render json: { notice: "#{result[:count]} 问题已更新" }
       end
     end
   end

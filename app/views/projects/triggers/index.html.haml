@@ -1,34 +1,34 @@
-- page_title "Triggers"
+- page_title "触发器"
 
 .row.prepend-top-default.append-bottom-default
   .col-lg-3
     %h4.prepend-top-0
       = page_title
     %p
-      Triggers can force a specific branch or tag to rebuild with an API call.
+      触发器被 API 调用用于强制重新构建指定的分支或标签。
   .col-lg-9
     %h5.prepend-top-0
-      Your triggers
+      你的触发器
     - if @triggers.any?
       .table-responsive
         %table.table
           %thead
-            %th Token
-            %th Last used
+            %th 授权码
+            %th 最后使用
             %th
           = render partial: 'trigger', collection: @triggers, as: :trigger
     - else
       %p.settings-message.text-center.append-bottom-default
-        No triggers have been created yet. Add one using the button below.
+        没有触发器，请使用下面的按钮增加。
 
     = form_for @trigger, url: url_for(controller: 'projects/triggers', action: 'create') do |f|
-      = f.submit "Add Trigger", class: 'btn btn-success'
+      = f.submit "增加触发器", class: 'btn btn-success'
 
     %h5.prepend-top-default
-      Use CURL
+      使用 CURL
 
     %p.light
-      Copy the token above, set your branch or tag name, and that reference will be rebuilt.
+      复制授权码到下面并设置你的分支或标签名。此例子是将触发重新构建。
 
     %pre
       :plain
@@ -37,13 +37,13 @@
              -F ref=REF_NAME \
              #{builds_trigger_url(@project.id)}
     %h5.prepend-top-default
-      Use .gitlab-ci.yml
+      使用 .gitlab-ci.yml
 
     %p.light
-      In the
+      在依赖项目的
       %code .gitlab-ci.yml
-      of the dependent project, include the following snippet.
-      The project will rebuild at the end of the build.
+      文件中, 包含以下代码片段
+      此例子将在依赖项目构建结束试触发此项目重新构建。
 
     %pre
       :plain
@@ -52,12 +52,13 @@
           script:
             - "curl -X POST -F token=TOKEN -F ref=REF_NAME #{builds_trigger_url(@project.id)}"
     %h5.prepend-top-default
-      Pass build variables
+      通过构建变量传递
 
     %p.light
-      Add
+      增加
       %code variables[VARIABLE]=VALUE
-      to an API request. Variable values can be used to distinguish between triggered builds and normal builds.
+      到 API 请求中。
+      变量的值可以被用来区分触发构建。
 
     %pre.append-bottom-0
       :plain

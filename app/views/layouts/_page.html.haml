@@ -1,10 +1,10 @@
 .page-with-sidebar{ class: "#{page_sidebar_class} #{page_gutter_class}" }
   .sidebar-wrapper.nicescroll{ class: nav_sidebar_class }
     .sidebar-action-buttons
-      = link_to '#', class: 'nav-header-btn toggle-nav-collapse', title: "Open/Close" do
-        %span.sr-only Toggle navigation
+      = link_to '#', class: 'nav-header-btn toggle-nav-collapse', title: "打开/关闭" do
+        %span.sr-only 切换导航栏
         = icon('bars')
-      = link_to '#', class: "nav-header-btn pin-nav-btn has-tooltip #{'is-active' if pinned_nav?} js-nav-pin", title: pinned_nav? ? "Unpin navigation" : "Pin Navigation", data: {placement: 'right', container: 'body'} do
+      = link_to '#', class: "nav-header-btn pin-nav-btn has-tooltip #{'is-active' if pinned_nav?} js-nav-pin", title: pinned_nav? ? "隐藏导航栏" : "固定导航栏", data: {placement: 'right', container: 'body'} do
         %span.sr-only Toggle navigation pinning
         = icon('fw thumb-tack')
 

@@ -10,7 +10,7 @@ class NotificationSetting < ActiveRecord::Base
   validates :user, presence: true
   validates :level, presence: true
   validates :user_id, uniqueness: { scope: [:source_type, :source_id],
-                                    message: "already exists in source",
+                                    message: "已存在与源",
                                     allow_nil: true }
 
   scope :for_groups, -> { where(source_type: 'Namespace') }

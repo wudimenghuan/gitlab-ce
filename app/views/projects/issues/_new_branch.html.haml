@@ -5,9 +5,9 @@
         method: :post, class: 'btn btn-new btn-inverted has-tooltip', title: @issue.to_branch_name, disabled: 'disabled' do
         .checking
           = icon('spinner spin')
-          Checking branches
+          正在检查分支
         .available.hide
-          New branch
+          新建分支
         .unavailable.hide
           = icon('exclamation-triangle')
-          New branch unavailable
+          新分支不可用

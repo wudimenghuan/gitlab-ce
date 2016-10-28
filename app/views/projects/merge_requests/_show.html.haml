@@ -20,55 +20,55 @@
               = link_to koding_project_url(@merge_request.source_project, @merge_request.source_branch, @merge_request.commits.first.short_id), class: "btn inline btn-grouped btn-sm", target: '_blank' do
                 Run in IDE (Koding)
             = link_to "#modal_merge_info", class: "btn inline btn-grouped btn-sm", "data-toggle" => "modal" do
-              Check out branch
+              检出分支
 
           %span.dropdown.inline.prepend-left-5
             %a.btn.btn-sm.dropdown-toggle{ data: {toggle: :dropdown} }
-              Download as
+              下载为
               %span.caret
             %ul.dropdown-menu.dropdown-menu-align-right
-              %li= link_to "Email Patches", merge_request_path(@merge_request, format: :patch)
-              %li= link_to "Plain Diff",    merge_request_path(@merge_request, format: :diff)
+              %li= link_to "邮件补丁", merge_request_path(@merge_request, format: :patch)
+              %li= link_to "差异文件",    merge_request_path(@merge_request, format: :diff)
       .normal
-        %span Request to merge
+        %span 合并请求
         %span.label-branch= source_branch_with_namespace(@merge_request)
-        %span into
+        %span 到
         %span.label-branch
           = link_to @merge_request.target_branch, namespace_project_commits_path(@project.namespace, @project, @merge_request.target_branch)
         - if @merge_request.open? && @merge_request.diverged_from_target_branch?
-          %span (#{pluralize(@merge_request.diverged_commits_count, 'commit')} behind)
+          %span (落后 #{pluralize(@merge_request.diverged_commits_count, '次提交', '次提交')})
 
     = render "projects/merge_requests/show/how_to_merge"
     = render "projects/merge_requests/widget/show.html.haml"
 
     - if @merge_request.source_branch_exists? && @merge_request.mergeable? && @merge_request.can_be_merged_by?(current_user)
       .light.prepend-top-default.append-bottom-default
-        You can also accept this merge request manually using the
-        = succeed '.' do
-          = link_to "command line", "#modal_merge_info", class: "how_to_merge_link vlink", title: "How To Merge", "data-toggle" => "modal"
+        也可以使用
+        = succeed '手工接受此合并请求。' do
+          = link_to "命令行", "#modal_merge_info", class: "how_to_merge_link vlink", title: "如何合并", "data-toggle" => "modal"
 
     - if @commits_count.nonzero?
       %ul.merge-request-tabs.nav-links.no-top.no-bottom
         %li.notes-tab
           = link_to namespace_project_merge_request_path(@project.namespace, @project, @merge_request), data: { target: 'div#notes', action: 'notes', toggle: 'tab' } do
-            Discussion
+            讨论
             %span.badge= @merge_request.mr_and_commit_notes.user.count
         %li.commits-tab
           = link_to commits_namespace_project_merge_request_path(@project.namespace, @project, @merge_request), data: { target: 'div#commits', action: 'commits', toggle: 'tab' } do
-            Commits
+            提交
             %span.badge= @commits_count
         - if @pipeline
           %li.pipelines-tab
             = link_to pipelines_namespace_project_merge_request_path(@project.namespace, @project, @merge_request), data: { target: '#pipelines', action: 'pipelines', toggle: 'tab' } do
-              Pipelines
+              管道
               %span.badge= @merge_request.all_pipelines.size
           %li.builds-tab
             = link_to builds_namespace_project_merge_request_path(@project.namespace, @project, @merge_request), data: { target: '#builds', action: 'builds', toggle: 'tab' } do
-              Builds
+              构建
               %span.badge= @statuses.size
         %li.diffs-tab
           = link_to diffs_namespace_project_merge_request_path(@project.namespace, @project, @merge_request), data: { target: 'div#diffs', action: 'diffs', toggle: 'tab' } do
-            Changes
+            变更
             %span.badge= @merge_request.diff_size
         %li#resolve-count-app.line-resolve-all-container.pull-right.prepend-top-10.hidden-xs{ "v-cloak" => true }
           %resolve-count{ "inline-template" => true, ":logged-out" => "#{current_user.nil?}"  }
