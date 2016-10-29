@@ -152,15 +152,15 @@ module CommitsHelper
   def cherry_pick_commit_link(commit, continue_to_path, btn_class: nil, has_tooltip: true)
     return unless current_user
 
-    tooltip = "挑选此 #{commit.change_type_title} 到一个新的合并请求"
+    tooltip = "挑选(Cherry-Pick)此 #{commit.change_type_title} 到一个新的合并请求"
 
     if can_collaborate_with_project?
       btn_class = "btn btn-default btn-#{btn_class}" unless btn_class.nil?
-      link_to '挑选', '#modal-cherry-pick-commit', 'data-toggle' => 'modal', 'data-container' => 'body', title: (tooltip if has_tooltip), class: "#{btn_class} #{'has-tooltip' if has_tooltip}"
+      link_to '挑选(Cherry-Pick)', '#modal-cherry-pick-commit', 'data-toggle' => 'modal', 'data-container' => 'body', title: (tooltip if has_tooltip), class: "#{btn_class} #{'has-tooltip' if has_tooltip}"
     elsif can?(current_user, :fork_project, @project)
       continue_params = {
         to: continue_to_path,
-        notice: edit_in_new_fork_notice + ' 请重试挑选此提交。',
+        notice: edit_in_new_fork_notice + ' 请重试挑选(Cherry-Pick)此提交。',
         notice_now: edit_in_new_fork_notice_now
       }
       fork_path = namespace_project_forks_path(@project.namespace, @project,
@@ -168,7 +168,7 @@ module CommitsHelper
         continue: continue_params)
 
       btn_class = "btn btn-grouped btn-close" unless btn_class.nil?
-      link_to '挑选', fork_path, class: "#{btn_class}", method: :post, 'data-toggle' => 'tooltip', 'data-container' => 'body', title: (tooltip if has_tooltip)
+      link_to '挑选(Cherry-Pick)', fork_path, class: "#{btn_class}", method: :post, 'data-toggle' => 'tooltip', 'data-container' => 'body', title: (tooltip if has_tooltip)
     end
   end
 

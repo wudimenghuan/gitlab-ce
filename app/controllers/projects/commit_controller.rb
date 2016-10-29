@@ -70,7 +70,7 @@ class Projects::CommitController < Projects::ApplicationController
 
     return render_404 if @target_branch.blank?
 
-    create_commit(Commits::CherryPickService, success_notice: "#{@commit.change_type_title} 已挑选 cherry-pick 成功。",
+    create_commit(Commits::CherryPickService, success_notice: "#{@commit.change_type_title} 已成功挑选(Cherry-pick)。",
                                               success_path: successful_change_path, failure_path: failed_change_path)
   end
 
