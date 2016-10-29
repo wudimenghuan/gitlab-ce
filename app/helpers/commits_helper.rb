@@ -128,15 +128,15 @@ module CommitsHelper
   def revert_commit_link(commit, continue_to_path, btn_class: nil, has_tooltip: true)
     return unless current_user
 
-    tooltip = "在新的合并请求中恢复此#{commit.change_type_title}" if has_tooltip
+    tooltip = "在新的合并请求中撤销此#{commit.change_type_title}" if has_tooltip
 
     if can_collaborate_with_project?
       btn_class = "btn btn-warning btn-#{btn_class}" unless btn_class.nil?
-      link_to '恢复', '#modal-revert-commit', 'data-toggle' => 'modal', 'data-container' => 'body', title: (tooltip if has_tooltip), class: "#{btn_class} #{'has-tooltip' if has_tooltip}"
+      link_to '撤销', '#modal-revert-commit', 'data-toggle' => 'modal', 'data-container' => 'body', title: (tooltip if has_tooltip), class: "#{btn_class} #{'has-tooltip' if has_tooltip}"
     elsif can?(current_user, :fork_project, @project)
       continue_params = {
         to: continue_to_path,
-        notice: edit_in_new_fork_notice + ' 请重试恢复此提交。',
+        notice: edit_in_new_fork_notice + ' 请重试撤销此提交。',
         notice_now: edit_in_new_fork_notice_now
       }
       fork_path = namespace_project_forks_path(@project.namespace, @project,
@@ -145,7 +145,7 @@ module CommitsHelper
 
       btn_class = "btn btn-grouped btn-warning" unless btn_class.nil?
 
-      link_to '恢复', fork_path, class: btn_class, method: :post, 'data-toggle' => 'tooltip', 'data-container' => 'body', title: (tooltip if has_tooltip)
+      link_to '撤销', fork_path, class: btn_class, method: :post, 'data-toggle' => 'tooltip', 'data-container' => 'body', title: (tooltip if has_tooltip)
     end
   end
 

@@ -61,7 +61,7 @@ class Projects::CommitController < Projects::ApplicationController
 
     return render_404 if @target_branch.blank?
 
-    create_commit(Commits::RevertService, success_notice: "#{@commit.change_type_title} 已恢复成功。",
+    create_commit(Commits::RevertService, success_notice: "#{@commit.change_type_title} 已成功撤销。",
                                           success_path: successful_change_path, failure_path: failed_change_path)
   end
 
