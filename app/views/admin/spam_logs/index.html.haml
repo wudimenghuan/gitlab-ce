@@ -1,5 +1,5 @@
-- page_title "Spam 日志"
-%h3.page-title Spam 日志
+- page_title "垃圾日志"
+%h3.page-title 垃圾日志
 %hr
 - if @spam_logs.present?
   .table-holder
@@ -18,4 +18,4 @@
       = render @spam_logs
   = paginate @spam_logs
 - else
-  %h4 没有 Spam 日志
+  %h4 没有垃圾日志

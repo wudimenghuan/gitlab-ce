@@ -11,13 +11,13 @@
           = image_tag group_icon(@group), alt: '', class: 'avatar group-avatar s160'
           %p.light
             - if @group.avatar?
-              你可以在这里修改群组头像
+              你可以在这里修改群组图标
             - else
-              你可以在这里上传群组头像
+              你可以在这里上传群组图标
           = render 'shared/choose_group_avatar_button', f: f
           - if @group.avatar?
             %hr
-            = link_to '删除头像', group_avatar_path(@group.to_param), data: { confirm: "确定要删除群组头像么？"}, method: :delete, class: "btn btn-remove btn-sm remove-avatar"
+            = link_to '删除图标', group_avatar_path(@group.to_param), data: { confirm: "确定要删除群组图标么？"}, method: :delete, class: "btn btn-remove btn-sm remove-avatar"
 
       = render 'shared/visibility_level', f: f, visibility_level: @group.visibility_level, can_change_visibility_level: can_change_group_visibility_level?(@group), form_model: @group
 

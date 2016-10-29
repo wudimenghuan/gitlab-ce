@@ -89,9 +89,9 @@
       .form-group
         = f.label :bio, '简历', class: "label-light"
         = f.text_area :bio, rows: 4, class: "form-control", maxlength: 250
-        %span.help-block 使用少于 250 字符的文字描述自己。
+        %span.help-block 使用少于 250 字符的文字简单介绍自己。
       .prepend-top-default.append-bottom-default
-        = f.submit '更新个人资料设置', class: "btn btn-success"
+        = f.submit '更新个人资料', class: "btn btn-success"
         = link_to "取消", user_path(current_user), class: "btn btn-cancel"
 
 .modal.modal-profile-crop

@@ -43,7 +43,7 @@
       .blank-state-icon
         = custom_icon("issues", size: 50)
       %h3.blank-state-title
-        还没有问题。
+        还没有任何问题。
       %p.blank-state-text
         问题是跟踪项目进度的最佳方式
       - if can? current_user, :create_issue, @project

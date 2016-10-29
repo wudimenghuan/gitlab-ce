@@ -8,40 +8,40 @@
         %h4 统计
         %hr
         %p
-          派生
+          派生项目数
           %span.light.pull-right
             = number_with_delimiter(ForkedProjectLink.count)
         %p
-          问题
+          问题数
           %span.light.pull-right
             = number_with_delimiter(Issue.count)
         %p
-          合并请求
+          合并请求数
           %span.light.pull-right
             = number_with_delimiter(MergeRequest.count)
         %p
-          笔记
+          批注数
           %span.light.pull-right
             = number_with_delimiter(Note.count)
         %p
-          代码片段
+          代码片段数
           %span.light.pull-right
             = number_with_delimiter(Snippet.count)
         %p
-          SSH 密钥
+          SSH 密钥数
           %span.light.pull-right
             = number_with_delimiter(Key.count)
         %p
-          里程碑
+          里程碑数
           %span.light.pull-right
             = number_with_delimiter(Milestone.count)
         %p
-          活跃用户
+          激活用户数
           %span.light.pull-right
             = number_with_delimiter(User.active.count)
       .col-md-4
         %h4
-          功能
+          特性
         %hr
         %p
           注册
@@ -134,7 +134,7 @@
 
     .row.prepend-top-10
       .col-md-4
-        %h4 最近项目
+        %h4 最近创建的项目
         %hr
         - @projects.each do |project|
           %p
@@ -143,7 +143,7 @@
               #{time_ago_with_tooltip(project.created_at)}
 
       .col-md-4
-        %h4 最近用户
+        %h4 最近注册的用户
         %hr
         - @users.each do |user|
           %p
@@ -153,7 +153,7 @@
               #{time_ago_with_tooltip(user.created_at)}
 
       .col-md-4
-        %h4 最近群组
+        %h4 最近创建的群组
         %hr
         - @groups.each do |group|
           %p
