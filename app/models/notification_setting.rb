@@ -10,7 +10,7 @@ class NotificationSetting < ActiveRecord::Base
   validates :user, presence: true
   validates :level, presence: true
   validates :user_id, uniqueness: { scope: [:source_type, :source_id],
-                                    message: "already exists in source",
+                                    message: "已存在于源",
                                     allow_nil: true }
 
   scope :for_groups, -> { where(source_type: 'Namespace') }
@@ -39,6 +39,33 @@ class NotificationSetting < ActiveRecord::Base
 
   before_create :set_events
   before_save :events_to_boolean
+
+  def event_title_zh(event)
+    case event.to_sym
+    when :new_note
+      '新建评论'
+    when :new_issue
+      '新建问题'
+    when :reopen_issue
+      '重新打开问题'
+    when :close_issue
+      '关闭问题'
+    when :reassign_issue
+      '重新指派问题'
+    when :new_merge_request
+      '新建合并请求'
+    when :reopen_merge_request
+      '重新打开合并请求'
+    when :close_merge_request
+      '关闭合并请求'
+    when :reassign_merge_request
+      '重新指派合并请求'
+    when :merge_merge_request
+      '接受合并请求'
+    else
+      event.to_s.humanize
+    end
+  end
 
   def self.find_or_create_for(source)
     setting = find_or_initialize_by(source: source)

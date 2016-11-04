@@ -2,7 +2,7 @@
   .panel.panel-default
     .panel-heading
       %strong= membership_source.name
-      access requests
+      访问请求
       %span.badge= requesters.size
     %ul.content-list
       = render partial: 'shared/members/member', collection: requesters, as: :member

@@ -4,13 +4,13 @@
   - if can?(current_user, :admin_project_member, @project)
     .panel.panel-default
       .panel-heading
-        Add new user to project
+        增加新用户到项目
         .controls
-          = link_to import_namespace_project_project_members_path(@project.namespace, @project), class: "btn btn-grouped", title: "Import members from another project" do
-            Import members
+          = link_to import_namespace_project_project_members_path(@project.namespace, @project), class: "btn btn-grouped", title: "从其他项目导入成员" do
+            导入成员
       .panel-body
         %p.light
-          Users with access to this project are listed below.
+          下面是可以访问此项目全部用户。
         = render "new_project_member"
 
     = render 'shared/members/requests', membership_source: @project, requesters: @requesters

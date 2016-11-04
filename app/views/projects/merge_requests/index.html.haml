@@ -1,7 +1,7 @@
 - @no_container = true
 - @bulk_edit = can?(current_user, :admin_merge_request, @project)
 
-- page_title "Merge Requests"
+- page_title "合并请求"
 = render "projects/issues/head"
 = render 'projects/last_push'
 
@@ -13,8 +13,8 @@
 
       - merge_project = can?(current_user, :create_merge_request, @project) ? @project : (current_user && current_user.fork_of(@project))
       - if merge_project
-        = link_to new_namespace_project_merge_request_path(merge_project.namespace, merge_project), class: "btn btn-new", title: "New Merge Request" do
-          New Merge Request
+        = link_to new_namespace_project_merge_request_path(merge_project.namespace, merge_project), class: "btn btn-new", title: "新合并请求" do
+          新合并请求
 
   = render 'shared/issuable/filter', type: :merge_requests
 

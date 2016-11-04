@@ -4,7 +4,7 @@
 - show_footer = local_assigns.fetch(:show_footer, true)
 - data_options = local_assigns.fetch(:data_options, {})
 - classes = local_assigns.fetch(:classes, [])
-- dropdown_data = {toggle: 'dropdown', field_name: 'label_name[]', show_no: "true", show_any: "true", selected: params[:label_name], namespace_path: @project.try(:namespace).try(:path), project_path: @project.try(:path), labels: labels_filter_path, default_label: "Label"}
+- dropdown_data = {toggle: 'dropdown', field_name: 'label_name[]', show_no: "true", show_any: "true", selected: params[:label_name], namespace_path: @project.try(:namespace).try(:path), project_path: @project.try(:path), labels: labels_filter_path, default_label: "标记"}
 - dropdown_data.merge!(data_options)
 - classes << 'js-extra-options' if extra_options
 - classes << 'js-filter-submit' if filter_submit
@@ -16,10 +16,10 @@
 .dropdown
   %button.dropdown-menu-toggle.js-label-select.js-multiselect{class: classes.join(' '), type: "button", data: dropdown_data}
     %span.dropdown-toggle-text
-      = h(multi_label_name(params[:label_name], "Label"))
+      = h(multi_label_name(params[:label_name], "标记"))
     = icon('chevron-down')
   .dropdown-menu.dropdown-select.dropdown-menu-paging.dropdown-menu-labels.dropdown-menu-selectable
-    = render partial: "shared/issuable/label_page_default", locals: { title: "Filter by label", show_footer: show_footer, show_create: show_create }
+    = render partial: "shared/issuable/label_page_default", locals: { title: "按标记过滤", show_footer: show_footer, show_create: show_create }
     - if show_create and @project and can?(current_user, :admin_label, @project)
       = render partial: "shared/issuable/label_page_create"
     = dropdown_loading

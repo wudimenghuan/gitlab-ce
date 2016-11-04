@@ -1,12 +1,12 @@
-- page_title "Snippets"
+- page_title "代码片段"
 
 .sub-header-block
   .pull-right
     - if can?(current_user, :create_project_snippet, @project)
-      = link_to new_namespace_project_snippet_path(@project.namespace, @project), class: "btn btn-new", title: "New Snippet" do
-        New Snippet
+      = link_to new_namespace_project_snippet_path(@project.namespace, @project), class: "btn btn-new", title: "新建代码片段" do
+        新建代码片段
 
   .oneline
-    Share code pastes with others out of git repository
+    在 git 版本仓库外共享代码
 
 = render 'snippets/snippets'

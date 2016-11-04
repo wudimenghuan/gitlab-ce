@@ -57,6 +57,6 @@ module Taskable
     return '' if description.blank?
 
     sum = tasks.summary
-    "#{sum.complete_count} of #{sum.item_count} #{'task'.pluralize(sum.item_count)} completed"
+    "共计： #{sum.item_count} 个任务（#{sum.complete_count} 个已完成）"
   end
 end

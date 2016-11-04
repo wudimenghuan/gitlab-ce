@@ -20,12 +20,31 @@ module NotificationsHelper
     icon("#{notification_icon_class(level)} fw", text: text)
   end
 
+  def notification_levels
+    [
+        ['关闭', :disabled],
+        ['参与', :participating],
+        ['关注', :watch],
+        ['全局', :global],
+        ['被提及', :mention],
+        ['自定义', :custom]
+    ]
+  end
+
   def notification_title(level)
     case level.to_sym
+    when :disabled
+      '关闭'
     when :participating
-      'Participate'
+      '参与'
+    when :watch
+      '关注'
     when :mention
-      'On mention'
+      '被提及'
+    when :global
+      '全局'
+    when :custom
+      '自定义'
     else
       level.to_s.titlecase
     end
@@ -34,17 +53,17 @@ module NotificationsHelper
   def notification_description(level)
     case level.to_sym
     when :participating
-      'You will only receive notifications for threads you have participated in'
+      '您将只收到您参与的主题的通知'
     when :mention
-      'You will receive notifications only for comments in which you were @mentioned'
+      '您将只收到评论中提及(@)您的通知'
     when :watch
-      'You will receive notifications for any activity'
+      '您将收到所参与项目的所有活动通知'
     when :disabled
-      'You will not get any notifications via email'
+      '您将不会收到任何通知邮件'
     when :global
-      'Use your global notification setting'
+      '使用您的全局通知设置'
     when :custom
-      'You will only receive notifications for the events you choose'
+      '您将只收到您所选择的活动的通知'
     end
   end
 
