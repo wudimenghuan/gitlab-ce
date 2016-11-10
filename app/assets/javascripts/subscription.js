@@ -24,7 +24,7 @@
           btn.removeClass('disabled');
           status = current_status === 'subscribed' ? 'unsubscribed' : 'subscribed';
           _this.subscription_status.attr('data-status', status);
-          action = status === 'subscribed' ? 'Unsubscribe' : 'Subscribe';
+          action = status === 'subscribed' ? '取消订阅' : '订阅';
           btn.find('span').text(action);
           _this.subscription_status.find('>div').toggleClass('hidden');
           if (btn.attr('data-original-title')) {

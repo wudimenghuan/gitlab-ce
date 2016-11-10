@@ -10,8 +10,8 @@ class Key < ActiveRecord::Base
 
   validates :title, presence: true, length: { within: 0..255 }
   validates :key, presence: true, length: { within: 0..5000 }, format: { with: /\A(ssh|ecdsa)-.*\Z/ }
-  validates :key, format: { without: /\n|\r/, message: 'should be a single line' }
-  validates :fingerprint, uniqueness: true, presence: { message: 'cannot be generated' }
+  validates :key, format: { without: /\n|\r/, message: '应该是单行' }
+  validates :fingerprint, uniqueness: true, presence: { message: '无法生成' }
 
   delegate :name, :email, to: :user, prefix: true
 

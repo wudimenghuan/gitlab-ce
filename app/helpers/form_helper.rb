@@ -2,8 +2,8 @@ module FormHelper
   def form_errors(model)
     return unless model.errors.any?
 
-    pluralized = 'error'.pluralize(model.errors.count)
-    headline   = "The form contains the following #{pluralized}:"
+    pluralized = '错误'.pluralize(model.errors.count)
+    headline   = "表单包含以下 #{pluralized}:"
 
     content_tag(:div, class: 'alert alert-danger', id: 'error_explanation') do
       content_tag(:h4, headline) <<

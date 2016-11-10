@@ -37,5 +37,6 @@
 
       .commit-row-info
         = commit_author_link(commit, avatar: false, size: 24)
-        authored
+        在
         #{time_ago_with_tooltip(commit.committed_date)}
+        提交

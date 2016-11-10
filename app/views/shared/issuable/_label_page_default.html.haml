@@ -1,7 +1,7 @@
-- title = local_assigns.fetch(:title, 'Assign labels')
+- title = local_assigns.fetch(:title, '指派标记')
 - show_create = local_assigns.fetch(:show_create, true)
 - show_footer = local_assigns.fetch(:show_footer, true)
-- filter_placeholder = local_assigns.fetch(:filter_placeholder, 'Search labels')
+- filter_placeholder = local_assigns.fetch(:filter_placeholder, '搜索标记')
 - show_boards_content = local_assigns.fetch(:show_boards_content, false)
 .dropdown-page-one
   = dropdown_title(title)
@@ -20,11 +20,11 @@
         - if can?(current_user, :admin_label, @project)
           %li
             %a.dropdown-toggle-page{href: "#"}
-              Create new label
+              创建新的标记
         %li
           = link_to namespace_project_labels_path(@project.namespace, @project), :"data-is-link" => true do
             - if show_create && @project && can?(current_user, :admin_label, @project)
-              Manage labels
+              管理标记
             - else
-              View labels
+              查看标记
   = dropdown_loading

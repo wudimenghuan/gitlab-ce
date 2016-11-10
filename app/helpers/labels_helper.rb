@@ -150,22 +150,22 @@ module LabelsHelper
 
   def label_subscription_status(label)
     case label
-    when GroupLabel then 'Subscribing to group labels is currently not supported.'
+    when GroupLabel then '目前还不支持订阅组标记。'
     when ProjectLabel then label.subscribed?(current_user) ? 'subscribed' : 'unsubscribed'
     end
   end
 
   def label_subscription_toggle_button_text(label)
     case label
-    when GroupLabel then 'Subscribing to group labels is currently not supported.'
-    when ProjectLabel then label.subscribed?(current_user) ? 'Unsubscribe' : 'Subscribe'
+    when GroupLabel then '目前还不支持订阅组标记。'
+    when ProjectLabel then label.subscribed?(current_user) ? '取消订阅' : '订阅'
     end
   end
 
   def label_deletion_confirm_text(label)
     case label
-    when GroupLabel then 'Remove this label? This will affect all projects within the group. Are you sure?'
-    when ProjectLabel then 'Remove this label? Are you sure?'
+    when GroupLabel then '确定要删除此标记？这将影响到群组内的所有项目。'
+    when ProjectLabel then '确定要删除此标记？'
     end
   end
 
