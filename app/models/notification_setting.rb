@@ -1,4 +1,4 @@
-class NotificationSetting < ActiveRecord::Base
+﻿class NotificationSetting < ActiveRecord::Base
   enum level: { global: 3, watch: 2, mention: 4, participating: 1, disabled: 0, custom: 5 }
 
   default_value_for :level, NotificationSetting.levels[:global]
@@ -10,7 +10,7 @@ class NotificationSetting < ActiveRecord::Base
   validates :user, presence: true
   validates :level, presence: true
   validates :user_id, uniqueness: { scope: [:source_type, :source_id],
-                                    message: "already exists in source",
+                                    message: "已存在于源",
                                     allow_nil: true }
 
   scope :for_groups, -> { where(source_type: 'Namespace') }

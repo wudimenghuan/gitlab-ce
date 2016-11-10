@@ -12,10 +12,10 @@
         = link_to(commit.short_id, namespace_project_commit_path(@project.namespace, @project, commit.id), class: 'commit_short_id')
         = time_ago_with_tooltip(commit.committed_date)
       - else
-        (branch was removed from repository)
+        (分支已从版本库中删除)
 
   = render partial: 'update_protected_branch', locals: { protected_branch: protected_branch }
 
   - if can_admin_project
     %td
-      = link_to 'Unprotect', [@project.namespace.becomes(Namespace), @project, protected_branch], data: { confirm: 'Branch will be writable for developers. Are you sure?' }, method: :delete, class: 'btn btn-warning'
+      = link_to '取消保护', [@project.namespace.becomes(Namespace), @project, protected_branch], data: { confirm: '该分支将允许开发者修改。确定要取消保护？' }, method: :delete, class: 'btn btn-warning'

@@ -1,7 +1,8 @@
 .panel.panel-default
   .panel-heading
-    Users with access to
+    有权访问
     %strong #{@project.name}
+    的用户
     %span.badge= @project_members.total_count
   %ul.content-list
     = render partial: 'shared/members/member', collection: members, as: :member

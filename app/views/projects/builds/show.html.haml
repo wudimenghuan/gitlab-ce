@@ -1,6 +1,6 @@
 - @no_container = true
-- page_title "#{@build.name} (##{@build.id})", "Builds"
-- header_title project_title(@project, "Builds", project_builds_path(@project))
+- page_title "#{@build.name} (##{@build.id})", "构建"
+- header_title project_title(@project, "构建", project_builds_path(@project))
 = render "projects/pipelines/head", build_subnav: true
 
 %div{ class: container_class }
@@ -12,25 +12,25 @@
         .bs-callout.bs-callout-warning
           %p
             - if no_runners_for_project?(@build.project)
-              This build is stuck, because the project doesn't have any runners online assigned to it.
+              此构建被卡住，因为没有任何活动runnner指定给该项目。
             - elsif @build.tags.any?
-              This build is stuck, because you don't have any active runners online with any of these tags assigned to them:
+              此构建被卡住，因为没有任何该项目指定标签的 runner 在线。指定的标签如下：
               - @build.tags.each do |tag|
                 %span.label.label-primary
                   = tag
             - else
-              This build is stuck, because you don't have any active runners that can run this build.
+              此构建被卡住，因为没有任何活动的 runner 能运行此构建。
 
             %br
-            Go to
+            转到
             = link_to namespace_project_runners_path(@build.project.namespace, @build.project) do
-              Runners page
+              Runners 页面
 
     .prepend-top-default
       - if @build.erased?
         .erased.alert.alert-warning
-          - erased_by = "by #{link_to @build.erased_by.name, user_path(@build.erased_by)}" if @build.erased_by
-          Build has been erased #{erased_by.html_safe} #{time_ago_with_tooltip(@build.erased_at)}
+          - erased_by = "被 #{link_to @build.erased_by.name, user_path(@build.erased_by)}" if @build.erased_by
+          构建 #{erased_by.html_safe} 在 #{time_ago_with_tooltip(@build.erased_at)} 删除
       - else
         #js-build-scroll.scroll-controls
           .scroll-step
@@ -41,7 +41,7 @@
           - if @build.active?
             .autoscroll-container
               %button.btn.btn-sm#autoscroll-button{:type => "button", :data => {:state => 'disabled'}}
-                Enable autoscroll
+                启用自动滚动
         %pre.build-trace#build-trace
           %code.bash.js-build-output
           = icon("refresh spin", class: "js-build-refresh")

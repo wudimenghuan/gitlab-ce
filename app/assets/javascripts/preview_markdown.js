@@ -20,10 +20,10 @@
       preview = form.find('.js-md-preview');
       mdText = form.find('textarea.markdown-area').val();
       if (mdText.trim().length === 0) {
-        preview.text('Nothing to preview.');
+        preview.text('没有预览。');
         return this.hideReferencedUsers(form);
       } else {
-        preview.text('Loading...');
+        preview.text('载入中...');
         return this.renderMarkdown(mdText, (function(_this) {
           return function(response) {
             preview.html(response.body);

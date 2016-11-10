@@ -7,7 +7,7 @@
       - if snippet.private?
         %span.label.label-gray.hidden-xs
           = icon('lock')
-          private
+          私有
     %span.monospace.pull-right.hidden-xs
       = snippet.file_name
 
@@ -29,4 +29,4 @@
   .snippet-info.hidden-xs
     = link_to user_snippets_path(snippet.author) do
       = snippet.author_name
-    authored #{time_ago_with_tooltip(snippet.created_at)}
+    编辑于 #{time_ago_with_tooltip(snippet.created_at)}
