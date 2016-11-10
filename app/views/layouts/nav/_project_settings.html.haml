@@ -1,30 +1,30 @@
 - if project_nav_tab? :team
   = nav_link(controller: [:project_members, :teams]) do
-    = link_to namespace_project_project_members_path(@project.namespace, @project), title: 'Members', class: 'team-tab tab' do
+    = link_to namespace_project_project_members_path(@project.namespace, @project), title: '成员', class: 'team-tab tab' do
       %span
-        Members
+        成员
 - if can_edit
   - if @project.allowed_to_share_with_group?
     = nav_link(controller: :group_links) do
-      = link_to namespace_project_group_links_path(@project.namespace, @project), title: "Groups" do
+      = link_to namespace_project_group_links_path(@project.namespace, @project), title: "群组" do
         %span
-          Groups
+          群组
   = nav_link(controller: :deploy_keys) do
-    = link_to namespace_project_deploy_keys_path(@project.namespace, @project), title: 'Deploy Keys' do
+    = link_to namespace_project_deploy_keys_path(@project.namespace, @project), title: '部署密钥' do
       %span
-        Deploy Keys
+        部署密钥
   = nav_link(controller: :hooks) do
-    = link_to namespace_project_hooks_path(@project.namespace, @project), title: 'Webhooks' do
+    = link_to namespace_project_hooks_path(@project.namespace, @project), title: 'Web 钩子' do
       %span
-        Webhooks
+        Web 钩子
   = nav_link(controller: :services) do
-    = link_to namespace_project_services_path(@project.namespace, @project), title: 'Services' do
+    = link_to namespace_project_services_path(@project.namespace, @project), title: '服务' do
       %span
-        Services
+        服务
   = nav_link(controller: :protected_branches) do
-    = link_to namespace_project_protected_branches_path(@project.namespace, @project), title: 'Protected Branches' do
+    = link_to namespace_project_protected_branches_path(@project.namespace, @project), title: '保护分支' do
       %span
-        Protected Branches
+        保护分支
 
   - if @project.feature_available?(:builds, current_user)
     = nav_link(controller: :runners) do
@@ -32,14 +32,14 @@
         %span
           Runners
     = nav_link(controller: :variables) do
-      = link_to namespace_project_variables_path(@project.namespace, @project), title: 'Variables' do
+      = link_to namespace_project_variables_path(@project.namespace, @project), title: '变量' do
         %span
-          Variables
+          变量
     = nav_link(controller: :triggers) do
-      = link_to namespace_project_triggers_path(@project.namespace, @project), title: 'Triggers' do
+      = link_to namespace_project_triggers_path(@project.namespace, @project), title: '触发器' do
         %span
-          Triggers
+          触发器
     = nav_link(controller: :pipelines_settings) do
-      = link_to namespace_project_pipelines_settings_path(@project.namespace, @project), title: 'CI/CD Pipelines' do
+      = link_to namespace_project_pipelines_settings_path(@project.namespace, @project), title: 'CI/CD 管道' do
         %span
-          CI/CD Pipelines
+          CI/CD 管道
