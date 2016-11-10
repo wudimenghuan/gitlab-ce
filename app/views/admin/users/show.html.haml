@@ -134,7 +134,7 @@
               - email = " (#{@user.unconfirmed_email})"
             %p 此用户有一个未确认的邮箱地址 #{email}。你可以强制确认。
             %br
-            = link_to '确认用户', confirm_admin_user_path(@user), method: :put, class: "btn btn-info", data: { confirm: 'Are you sure?' }
+            = link_to '确认用户', confirm_admin_user_path(@user), method: :put, class: "btn btn-info", data: { confirm: '确定要确认该邮箱地址？' }
       - if @user.blocked?
         .panel.panel-info
           .panel-heading
@@ -145,7 +145,7 @@
               %li 登录
               %li 访问 Git 版本库
             %br
-            = link_to '解锁用户', unblock_admin_user_path(@user), method: :put, class: "btn btn-info", data: { confirm: 'Are you sure?' }
+            = link_to '解锁用户', unblock_admin_user_path(@user), method: :put, class: "btn btn-info", data: { confirm: '确定要解锁该用户？' }
       - else
         .panel.panel-warning
           .panel-heading
@@ -159,15 +159,15 @@
               %li 个人项目将被移除
               %li 拥有的群组将被移除
             %br
-            = link_to 'Block user', block_admin_user_path(@user), data: { confirm: '用户将被禁用！确定要继续么？' }, method: :put, class: "btn btn-warning"
+            = link_to '禁用用户', block_admin_user_path(@user), data: { confirm: '用户将被禁用！确定要继续么？' }, method: :put, class: "btn btn-warning"
       - if @user.access_locked?
         .panel.panel-info
           .panel-heading
-            This account has been locked
+            该账号已经被锁定。
           .panel-body
-            %p This user has been temporarily locked due to excessive number of failed logins. You may manually unlock the account.
+            %p 该账号由于多次登录失败，已被临时锁定。 你可以手动解锁该账号。
             %br
-            = link_to '禁用用户', unlock_admin_user_path(@user), method: :put, class: "btn btn-info", data: { confirm: 'Are you sure?' }
+            = link_to '解锁用户', unlock_admin_user_path(@user), method: :put, class: "btn btn-info", data: { confirm: '确定要解锁该用户？' }
 
       .panel.panel-danger
         .panel-heading

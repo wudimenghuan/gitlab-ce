@@ -33,7 +33,7 @@ class Admin::UsersController < Admin::ApplicationController
 
   def impersonate
     if user.blocked?
-      flash[:alert] = "你不能假冒禁用的用户"
+      flash[:alert] = "你不能扮演被禁用的用户"
 
       redirect_to admin_user_path(user)
     else
@@ -43,7 +43,7 @@ class Admin::UsersController < Admin::ApplicationController
 
       Gitlab::AppLogger.info("User #{current_user.username} has started impersonating #{user.username}")
 
-      flash[:alert] = "你正在假冒 #{user.username}"
+      flash[:alert] = "你正在扮演 #{user.username}"
 
       redirect_to root_path
     end
