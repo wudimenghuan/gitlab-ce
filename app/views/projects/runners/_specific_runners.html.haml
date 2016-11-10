@@ -18,7 +18,7 @@
 
 
 - if @project_runners.any?
-  %h4.underlined-title 此项目有效可用的 runner
+  %h4.underlined-title 当前项目有效可用的 runner
   %ul.bordered-list.activated-specific-runners
     = render partial: 'runner', collection: @project_runners, as: :runner
 

@@ -9,10 +9,10 @@
 
 .row-content-block.second-block.center
   %h3.page-title
-    此项目的版本仓库是空的
+    当前项目的版本仓库是空的
   - if can?(current_user, :push_code, @project)
     %p
-      如有已有文件请按照下面的命令行指令推送它们。
+      可以通过下面的命令行推送一个已存在的版本库。
     %p
       或者可以从增加
       = succeed '，' do
@@ -24,7 +24,7 @@
       = link_to '.gitignore', add_special_file_path(@project, file_name: '.gitignore'), class: 'underlined-link'
       文件开始本项目。
     %p
-      You will need to be owner or have the master permission level for the initial push, as the master branch is automatically protected.
+      由于主分支(master)会被自动保护，只有当前项目的拥有者或者您具备主程序员权限才能进行初始推送。
 
 - if can?(current_user, :push_code, @project)
   %div{ class: container_class }
