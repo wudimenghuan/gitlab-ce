@@ -1,7 +1,7 @@
-- page_title "新建管道"
+- page_title "新建流水线"
 
 %h3.page-title
-  新建管道
+  新建流水线
 %hr
 
 = form_for @pipeline, as: :pipeline, url: namespace_project_pipelines_path(@project.namespace, @project), html: { id: "new-pipeline-form", class: "form-horizontal js-new-pipeline-form js-requires-input" } do |f|
@@ -12,7 +12,7 @@
       = f.text_field :ref, required: true, tabindex: 2, class: 'form-control js-branch-name ui-autocomplete-input', autocomplete: :false, id: :ref
       .help-block 已存在的分支或标签
   .form-actions
-    = f.submit '创建管道', class: 'btn btn-create', tabindex: 3
+    = f.submit '创建流水线', class: 'btn btn-create', tabindex: 3
     = link_to '取消', namespace_project_pipelines_path(@project.namespace, @project), class: 'btn btn-cancel'
 
 :javascript

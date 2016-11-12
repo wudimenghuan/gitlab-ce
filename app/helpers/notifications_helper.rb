@@ -97,7 +97,7 @@
   def notification_event_name(event)
     case event
     when :success_pipeline
-      '管道成功'
+      '流水线成功'
     when :new_note
       '新建评论'
     when :new_issue

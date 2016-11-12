@@ -1,5 +1,5 @@
 - @no_container = true
-- page_title "管道"
+- page_title "流水线"
 = render "projects/pipelines/head"
 
 %div{ class: container_class }
@@ -28,10 +28,10 @@
     .nav-controls
       - if can? current_user, :create_pipeline, @project
         = link_to new_namespace_project_pipeline_path(@project.namespace, @project), class: 'btn btn-create' do
-          运行管道
+          运行流水线
 
         - unless @repository.gitlab_ci_yml
-          = link_to '开始使用管道', help_page_path('ci/quick_start/README'), class: 'btn btn-info'
+          = link_to '开始使用流水线', help_page_path('ci/quick_start/README'), class: 'btn btn-info'
 
         = link_to ci_lint_path, class: 'btn btn-default' do
           %span CI Lint
@@ -40,13 +40,13 @@
     - stages = @pipelines.stages
     - if @pipelines.blank?
       %div
-        .nothing-here-block 没有管道
+        .nothing-here-block 没有流水线
     - else
       .table-holder
         %table.table.ci-table
           %thead
             %th 状态
-            %th 管道
+            %th 流水线
             %th 提交
             %th 阶段
             %th

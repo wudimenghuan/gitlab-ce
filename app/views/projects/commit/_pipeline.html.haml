@@ -3,7 +3,7 @@
     .pull-right
       .btn.btn-grouped.btn-white.toggle-pipeline-btn
         %span.toggle-btn-text 隐藏
-        %span 管道图表
+        %span 流水线图表
         %span.caret
       - if can?(current_user, :update_pipeline, pipeline.project)
         - if pipeline.builds.latest.failed.any?(&:retryable?)
@@ -14,7 +14,7 @@
 
     .oneline.clearfix
       - if defined?(pipeline_details) && pipeline_details
-        管道
+        流水线
         = link_to "##{pipeline.id}", namespace_project_pipeline_path(pipeline.project.namespace, pipeline.project, pipeline.id), class: "monospace"
         with
         = pluralize pipeline.statuses.count(:id), '个构建', '个构建'

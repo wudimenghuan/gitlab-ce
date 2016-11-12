@@ -1,13 +1,13 @@
 %ul.content-list.pipelines
   - if pipelines.blank?
     %li
-      .nothing-here-block 没有管道可以显示
+      .nothing-here-block 没有流水线可以显示
   - else
     .table-holder
       %table.table.ci-table
         %tbody
           %th 状态
-          %th 管道
+          %th 流水线
           %th 提交
           %th 阶段
           %th

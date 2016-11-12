@@ -1,6 +1,6 @@
 %p
 .commit-info-row
-  管道
+  流水线
   = link_to "##{@pipeline.id}", namespace_project_pipeline_path(@project.namespace, @project, @pipeline.id), class: "monospace"
   ：
   - if @pipeline.ref
