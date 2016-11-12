@@ -62,7 +62,7 @@
             - if @pipeline
               %li.pipelines-tab
                 = link_to pipelines_namespace_project_merge_request_path(@project.namespace, @project, @merge_request), data: { target: '#pipelines', action: 'pipelines', toggle: 'tab' } do
-                  管道
+                  流水线
                   %span.badge= @pipelines.size
               %li.builds-tab
                 = link_to builds_namespace_project_merge_request_path(@project.namespace, @project, @merge_request), data: { target: '#builds', action: 'builds', toggle: 'tab' } do

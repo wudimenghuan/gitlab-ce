@@ -32,7 +32,7 @@
       - if @pipelines.any?
         %li.builds-tab
           = link_to url_for(params), data: {target: 'div#pipelines', action: 'pipelines', toggle: 'tab'} do
-            管道
+            流水线
             %span.badge= @pipelines.size
         %li.builds-tab
           = link_to url_for(params), data: {target: 'div#builds', action: 'builds', toggle: 'tab'} do

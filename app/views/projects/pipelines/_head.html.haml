@@ -5,9 +5,9 @@
       %ul{ class: (container_class) }
         - if project_nav_tab? :pipelines
           = nav_link(controller: :pipelines) do
-            = link_to project_pipelines_path(@project), title: '管道', class: 'shortcuts-pipelines' do
+            = link_to project_pipelines_path(@project), title: '流水线', class: 'shortcuts-pipelines' do
               %span
-                管道
+                流水线
 
         - if project_nav_tab? :builds
           = nav_link(controller: %w(builds)) do

@@ -12,7 +12,7 @@
         - unless @repository.gitlab_ci_yml
           .form-group
             %p Pipelines need to be configured before you can begin using Continuous Integration.
-            = link_to '开始使用 CI/CD 管道', help_page_path('ci/quick_start/README'), class: 'btn btn-info'
+            = link_to '开始使用 CI/CD 流水线', help_page_path('ci/quick_start/README'), class: 'btn btn-info'
         .form-group
           %p 使用下面的命令来获取最新的程序代码：
           .radio
@@ -63,7 +63,7 @@
           .checkbox
             = f.label :public_builds do
               = f.check_box :public_builds
-              %strong 公共管道
+              %strong 公共流水线
             .help-block 允许所有人访问公共和内部项目的构建跟踪
 
         .form-group.append-bottom-default

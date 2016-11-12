@@ -11,7 +11,7 @@ module Projects
 
     class LeaseTaken < StandardError
       def to_s
-        "Somebody already triggered housekeeping for this project in the past #{LEASE_TIMEOUT / 60} minutes"
+        "已经有人在 #{LEASE_TIMEOUT / 60} 分钟内触发了该项目的维护操作。"
       end
     end
 
