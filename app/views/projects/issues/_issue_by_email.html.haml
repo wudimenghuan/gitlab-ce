@@ -1,6 +1,6 @@
 .issues-footer.text-center
   %button.issue-email-modal-btn{ type: "button", data: { toggle: "modal", target: "#issue-email-modal" } }
-    Email a new issue to this project
+    通过电子邮件向此项目发送新问题
 
 #issue-email-modal.modal.fade{ tabindex: "-1", role: "dialog" }
   .modal-dialog{ role: "document" }
@@ -9,26 +9,26 @@
         %button.close{ type: "button", data: { dismiss: "modal" }, aria: { label: "close" } }
           %span{ aria: { hidden: "true" } }= icon("times")
         %h4.modal-title
-          Create new issue by email
+          通过电子邮件创建新问题
       .modal-body
         %p
-          You can create a new issue inside this project by sending an email to the following email address:
+          您可以通过向以下地址发送电子邮件来创建问题:
         .email-modal-input-group.input-group
           = text_field_tag :issue_email, email, class: "monospace js-select-on-focus form-control", readonly: true
           .input-group-btn
             = clipboard_button(clipboard_target: '#issue_email')
         %p
-          The subject will be used as the title of the new issue, and the message will be the description.
-
-          = link_to 'Slash commands', help_page_path('user/project/slash_commands'), target: '_blank', tabindex: -1
-          and styling with
+          邮件主题将作为问题的标题, 问题描述则是邮件内容。
+          支持
+          = link_to 'Slash 命令', help_page_path('user/project/slash_commands'), target: '_blank', tabindex: -1
+          和
           = link_to 'Markdown', help_page_path('user/markdown'), target: '_blank', tabindex: -1
-          are supported.
+          格式。
 
         %p
-          This is a private email address, generated just for you.
+          这是一个专门为您创建的私人邮件地址。
 
-          Anyone who gets ahold of it can create issues as if they were you.
-          You should
-          = link_to 'reset it', new_issue_address_namespace_project_path(@project.namespace, @project), class: 'incoming-email-token-reset'
-          if that ever happens.
+          如果该邮件地址被泄露，其他人就可以通过该邮件地址以您的身份创建问题。
+          一旦发现邮件地址被泄露，您可以点击
+          = link_to '复位', new_issue_address_namespace_project_path(@project.namespace, @project), class: 'incoming-email-token-reset'
+          来重置该邮件地址。

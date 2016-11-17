@@ -8,7 +8,7 @@
         %span.input-group-addon 从
         = hidden_field_tag :from, params[:from]
         = button_tag type: 'button', class: "form-control compare-dropdown-toggle js-compare-dropdown", required: true, data: { refs_url: refs_namespace_project_path(@project.namespace, @project), toggle: "dropdown", target: ".js-compare-from-dropdown", selected: params[:from], field_name: :from } do
-          .dropdown-toggle-text= params[:from] || 'Select branch/tag'
+          .dropdown-toggle-text= params[:from] || '选择分支/标记'
       = render "ref_dropdown"
     .compare-ellipsis.inline ...
     .form-group.dropdown.compare-form-group.to.js-compare-to-dropdown
@@ -16,7 +16,7 @@
         %span.input-group-addon 到
         = hidden_field_tag :to, params[:to]
         = button_tag type: 'button', class: "form-control compare-dropdown-toggle js-compare-dropdown", required: true, data: { refs_url: refs_namespace_project_path(@project.namespace, @project), toggle: "dropdown", target: ".js-compare-to-dropdown", selected: params[:to], field_name: :to } do
-          .dropdown-toggle-text= params[:to] || 'Select branch/tag'
+          .dropdown-toggle-text= params[:to] || '选择分支/标记'
       = render "ref_dropdown"
     &nbsp;
     = button_tag "比较", class: "btn btn-create commits-compare-btn"
