@@ -1,12 +1,12 @@
-- page_title 'Artifacts', "#{@build.name} (##{@build.id})", 'Builds'
-- header_title project_title(@project, "Builds", project_builds_path(@project))
+- page_title '工件', "#{@build.name} (##{@build.id})", '构建'
+- header_title project_title(@project, "构建", project_builds_path(@project))
 
 .top-block.row-content-block.clearfix
   .pull-right
     = link_to download_namespace_project_build_artifacts_path(@project.namespace, @project, @build),
       class: 'btn btn-default download' do
       = icon('download')
-      下载附件打包
+      下载工件
 
 .tree-holder
   %div.tree-content-holder

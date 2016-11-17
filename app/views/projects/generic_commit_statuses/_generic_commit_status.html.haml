@@ -13,7 +13,7 @@
       %strong ##{generic_commit_status.id}
 
     - if defined?(retried) && retried
-      = icon('warning', class: 'text-warning has-tooltip', title: '状态被重试。')
+      = icon('warning', class: 'text-warning has-tooltip', title: '状态已重试。')
 
   - if defined?(commit_sha) && commit_sha
     %td

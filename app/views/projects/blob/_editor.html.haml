@@ -16,18 +16,18 @@
 
     .pull-right
       .license-selector.js-license-selector-wrap.hidden
-        = dropdown_tag("选择一个授权(License)模板", options: { toggle_class: 'js-license-selector', title: "选择一个授权", filter: true, placeholder: "Filter", data: { data: licenses_for_select, project: @project.name, fullname: @project.namespace.human_name } } )
+        = dropdown_tag("选择一个授权(License)模板", options: { toggle_class: 'js-license-selector', title: "选择一个授权", filter: true, placeholder: "过滤器", data: { data: licenses_for_select, project: @project.name, fullname: @project.namespace.human_name } } )
       .gitignore-selector.js-gitignore-selector-wrap.hidden
-        = dropdown_tag("选择一个 .gitignore 模板", options: { toggle_class: 'js-gitignore-selector', title: "选择一个模板", filter: true, placeholder: "Filter", data: { data: gitignore_names } } )
+        = dropdown_tag("选择一个 .gitignore 模板", options: { toggle_class: 'js-gitignore-selector', title: "选择一个模板", filter: true, placeholder: "过滤器", data: { data: gitignore_names } } )
       .gitlab-ci-yml-selector.js-gitlab-ci-yml-selector-wrap.hidden
-        = dropdown_tag("选择一个 GitLab CI Yaml 模板", options: { toggle_class: 'js-gitlab-ci-yml-selector', title: "选择一个模板", filter: true, placeholder: "Filter", data: { data: gitlab_ci_ymls } } )
+        = dropdown_tag("选择一个 GitLab CI Yaml 模板", options: { toggle_class: 'js-gitlab-ci-yml-selector', title: "选择一个模板", filter: true, placeholder: "过滤器", data: { data: gitlab_ci_ymls } } )
       = button_tag class: 'soft-wrap-toggle btn', type: 'button' do
         %span.no-wrap
           = custom_icon('icon_no_wrap')
-          No wrap
+          不自动换行
         %span.soft-wrap
           = custom_icon('icon_soft_wrap')
-          Soft wrap
+          自动换行
       .encoding-selector
         = select_tag :encoding, options_for_select([ "base64", "text" ], "text"), class: 'select2'
 

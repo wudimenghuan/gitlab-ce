@@ -2,22 +2,22 @@
   .row-content-block.build-content.middle-block.pipeline-actions
     .pull-right
       .btn.btn-grouped.btn-white.toggle-pipeline-btn
-        %span.toggle-btn-text Hide
-        %span pipeline graph
+        %span.toggle-btn-text 隐藏
+        %span 流水线图表
         %span.caret
       - if can?(current_user, :update_pipeline, pipeline.project)
         - if pipeline.builds.latest.failed.any?(&:retryable?)
-          = link_to "Retry failed", retry_namespace_project_pipeline_path(pipeline.project.namespace, pipeline.project, pipeline.id), class: 'btn btn-grouped btn-primary', method: :post
+          = link_to "失败重试", retry_namespace_project_pipeline_path(pipeline.project.namespace, pipeline.project, pipeline.id), class: 'btn btn-grouped btn-primary', method: :post
 
         - if pipeline.builds.running_or_pending.any?
-          = link_to "Cancel running", cancel_namespace_project_pipeline_path(pipeline.project.namespace, pipeline.project, pipeline.id), data: { confirm: 'Are you sure?' }, class: 'btn btn-grouped btn-danger', method: :post
+          = link_to "取消运行", cancel_namespace_project_pipeline_path(pipeline.project.namespace, pipeline.project, pipeline.id), data: { confirm: '您确定要取消运行？' }, class: 'btn btn-grouped btn-danger', method: :post
 
     .oneline.clearfix
       - if defined?(pipeline_details) && pipeline_details
-        Pipeline
+        流水线
         = link_to "##{pipeline.id}", namespace_project_pipeline_path(pipeline.project.namespace, pipeline.project, pipeline.id), class: "monospace"
         with
-        = pluralize pipeline.statuses.count(:id), "build"
+        = pluralize pipeline.statuses.count(:id), '个构建', '个构建'
         - if pipeline.ref
           for
           = link_to pipeline.ref, namespace_project_commits_path(pipeline.project.namespace, pipeline.project, pipeline.ref), class: "monospace"
@@ -25,7 +25,7 @@
           for commit
           = link_to pipeline.short_sha, namespace_project_commit_path(pipeline.project.namespace, pipeline.project, pipeline.sha), class: "monospace"
         - if pipeline.duration
-          in
+          持续了
           = time_interval_in_words pipeline.duration
 
   .row-content-block.build-content.middle-block.pipeline-graph.hidden
@@ -45,26 +45,26 @@
 
 - if pipeline.yaml_errors.present?
   .bs-callout.bs-callout-danger
-    %h4 Found errors in your .gitlab-ci.yml:
+    %h4 在您的 .gitlab-ci.yml 文件中发现错误：
     %ul
       - pipeline.yaml_errors.split(",").each do |error|
         %li= error
-    You can also test your .gitlab-ci.yml in the #{link_to "Lint", ci_lint_path}
+    您可以在 #{link_to "Lint", ci_lint_path} 验证您的 .gitlab-ci.yml 文件。 
 
 - if pipeline.project.builds_enabled? && !pipeline.ci_yaml_file
   .bs-callout.bs-callout-warning
-    \.gitlab-ci.yml not found in this commit
+    这个提交没有 \.gitlab-ci.yml 文件
 
 .table-holder.pipeline-holder
   %table.table.ci-table.pipeline
     %thead
       %tr
-        %th Status
-        %th Build ID
-        %th Name
+        %th 状态
+        %th 构建 ID
+        %th 名称
         %th
         - if pipeline.project.build_coverage_enabled?
-          %th Coverage
+          %th 覆盖率
         %th
     - pipeline.statuses.relevant.stages.each do |stage|
       = render 'projects/commit/ci_stage', stage: stage, statuses: pipeline.statuses.relevant.where(stage: stage)

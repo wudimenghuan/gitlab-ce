@@ -19,15 +19,15 @@
               %button.btn.btn-small.btn-default.pull-right.has-tooltip{ type: "button",
                 "@click" => "showNewIssueForm",
                 "v-if" => "list.type !== 'done'",
-                "aria-label" => "Add an issue",
-                "title" => "Add an issue",
+                "aria-label" => "添加问题",
+                "title" => "添加问题",
                 data: { placement: "top", container: "body" } }
                 = icon("plus")
           - if can?(current_user, :admin_list, @project)
             %board-delete{ "inline-template" => true,
               ":list" => "list",
               "v-if" => "!list.preset && list.id" }
-              %button.board-delete.has-tooltip.pull-right{ type: "button", title: "Delete list", "aria-label" => "Delete list", data: { placement: "bottom" }, "@click.stop" => "deleteBoard" }
+              %button.board-delete.has-tooltip.pull-right{ type: "button", title: "删除列表", "aria-label" => "Delete list", data: { placement: "bottom" }, "@click.stop" => "deleteBoard" }
                 = icon("trash")
       %board-list{ "inline-template" => true,
         "v-if" => "list.type !== 'blank'",
@@ -48,9 +48,9 @@
               %form{ "@submit" => "submit($event)" }
                 .flash-container{ "v-if" => "error" }
                   .flash-alert
-                    An error occured. Please try again.
+                    发生错误。请再试一次。
                 %label.label-light{ ":for" => "list.id + '-title'" }
-                  Title
+                  标题
                 %input.form-control{ type: "text",
                   "v-model" => "title",
                   "v-el:input" => true,
@@ -59,10 +59,10 @@
                   %button.btn.btn-success.pull-left{ type: "submit",
                     ":disabled" => "title === ''",
                     "v-el:submit-button" => true }
-                    Submit issue
+                    提交问题
                   %button.btn.btn-default.pull-right{ type: "button",
                     "@click" => "cancel" }
-                    Cancel
+                    取消
         %ul.board-list{ "v-el:list" => true,
           "v-show" => "!loading",
           ":data-board" => "list.id",
@@ -71,8 +71,8 @@
           %li.board-list-count.text-center{ "v-if" => "showCount" }
             = icon("spinner spin", "v-show" => "list.loadingMore" )
             %span{ "v-if" => "list.issues.length === list.issuesSize" }
-              Showing all issues
+              显示所有问题
             %span{ "v-else" => true }
-              Showing {{ list.issues.length }} of {{ list.issuesSize }} issues
+              显示 {{ list.issuesSize }} 个问题中的 {{ list.issues.length }} 个
       - if can?(current_user, :admin_list, @project)
         = render "projects/boards/components/blank_state"

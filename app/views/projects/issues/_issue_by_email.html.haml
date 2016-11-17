@@ -1,6 +1,6 @@
 .issues-footer.text-center
   %button.issue-email-modal-btn{ type: "button", data: { toggle: "modal", target: "#issue-email-modal" } }
-    Email a new issue to this project
+    通过电子邮件向此项目发送新问题
 
 #issue-email-modal.modal.fade{ tabindex: "-1", role: "dialog" }
   .modal-dialog{ role: "document" }
@@ -9,19 +9,19 @@
         %button.close{ type: "button", data: { dismiss: "modal" }, aria: { label: "close" } }
           %span{ aria: { hidden: "true" } }= icon("times")
         %h4.modal-title
-          Create new issue by email
+          通过电子邮件创建新问题
       .modal-body
         %p
-          Write an email to the below email address. (This is a private email address, so keep it secret.)
+          向以下地址发送电子邮件。（这是一个私人邮件地址，请保密。）
         .email-modal-input-group.input-group
           = text_field_tag :issue_email, email, class: "monospace js-select-on-focus form-control", readonly: true
           .input-group-btn
             = clipboard_button(clipboard_target: '#issue_email')
         %p
-          Send an email to this address to create an issue.
+          发送电子邮件到此地址以创建问题。
         %p
-          Use the subject line as the title of your issue.
+          使用主题行作为您的问题的标题。
         %p
-          Use the message as the body of your issue (feel free to include some nice
-          = succeed ")." do
+          邮件内容将作为问题的内容，支持
+          = succeed "。" do
             = link_to "Markdown", help_page_path('markdown', 'markdown')
