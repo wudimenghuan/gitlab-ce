@@ -23,5 +23,5 @@
     - else
       #{@scope.capitalize} 的构建
 
-  %ul.content-list.builds-content-list
+  %ul.content-list.builds-content-list.admin-builds-table
     = render "projects/builds/table", builds: @builds, admin: true

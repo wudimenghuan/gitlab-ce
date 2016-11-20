@@ -12,7 +12,7 @@ class SentNotificationsController < ApplicationController
 
   def unsubscribe_and_redirect
     noteable = @sent_notification.noteable
-    noteable.unsubscribe(@sent_notification.recipient)
+    noteable.unsubscribe(@sent_notification.recipient, @sent_notification.project)
 
     flash[:notice] = "您已取消订阅此主题。"
 

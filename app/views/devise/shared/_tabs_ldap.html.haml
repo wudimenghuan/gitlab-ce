@@ -8,3 +8,6 @@
   - if signin_enabled?
     %li
       = link_to '标准', '#ldap-standard', 'data-toggle' => 'tab'
+  - if signin_enabled? && signup_enabled?
+    %li
+      = link_to '注册', '#register-pane', 'data-toggle' => 'tab'

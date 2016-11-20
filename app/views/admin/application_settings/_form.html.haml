@@ -280,6 +280,31 @@
           存储在单个UDP数据包中的点数。 增加点数可以减少发送次数，但会增加每个UDP数据包的大小。
 
   %fieldset
+    %legend 背景任务
+    %p
+      这些设置要求重启才可以生效。
+    .form-group
+      .col-sm-offset-2.col-sm-10
+        .checkbox
+          = f.label :sidekiq_throttling_enabled do
+            = f.check_box :sidekiq_throttling_enabled
+            启用 Sidekiq 任务限流
+          .help-block
+            限制运行缓慢的任务所分配的资源数量。
+    .form-group
+      = f.label :sidekiq_throttling_queues, '要限流的 Sidekiq 队列', class: 'control-label col-sm-2'
+      .col-sm-10
+        = f.select :sidekiq_throttling_queues, sidekiq_queue_options_for_select, { include_hidden: false }, multiple: true, class: 'select2 select-wide', data: { field: 'sidekiq_throttling_queues' }
+        .help-block
+          选择你希望限流的那个队列。
+    .form-group
+      = f.label :sidekiq_throttling_factor, '限流因素', class: 'control-label col-sm-2'
+      .col-sm-10
+        = f.number_field :sidekiq_throttling_factor, class: 'form-control', min: '0.01', max: '0.99', step: '0.01'
+        .help-block
+          限流队列的因素。其值在 0.0 到 1.0 之间（不包）。
+
+  %fieldset
     %legend 垃圾与防机器人保护
     .form-group
       .col-sm-offset-2.col-sm-10

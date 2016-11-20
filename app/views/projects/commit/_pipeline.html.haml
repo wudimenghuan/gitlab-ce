@@ -1,10 +1,6 @@
 .pipeline-graph-container
   .row-content-block.build-content.middle-block.pipeline-actions
     .pull-right
-      .btn.btn-grouped.btn-white.toggle-pipeline-btn
-        %span.toggle-btn-text 隐藏
-        %span 流水线图表
-        %span.caret
       - if can?(current_user, :update_pipeline, pipeline.project)
         - if pipeline.builds.latest.failed.any?(&:retryable?)
           = link_to "失败重试", retry_namespace_project_pipeline_path(pipeline.project.namespace, pipeline.project, pipeline.id), class: 'btn btn-grouped btn-primary', method: :post
@@ -49,7 +45,7 @@
     %ul
       - pipeline.yaml_errors.split(",").each do |error|
         %li= error
-    您可以在 #{link_to "Lint", ci_lint_path} 验证您的 .gitlab-ci.yml 文件。 
+    您可以在 #{link_to "Lint", ci_lint_path} 验证您的 .gitlab-ci.yml 文件。
 
 - if pipeline.project.builds_enabled? && !pipeline.ci_yaml_file
   .bs-callout.bs-callout-warning

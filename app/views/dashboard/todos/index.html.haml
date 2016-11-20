@@ -84,7 +84,7 @@
       = render "shared/empty_states/todos_all_done.svg"
       - if todos_filter_empty?
         %h4.text-center
-          做得好！ 你没有任何待办事项。
+          = Gitlab.config.gitlab.no_todos_messages.sample
         %p.text-center
           想找点事情做？ 看看
           = succeed "," do

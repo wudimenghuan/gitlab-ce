@@ -58,9 +58,9 @@ class Groups::MilestonesController < Groups::ApplicationController
 
   def render_new_with_error(empty_project_ids)
     @milestone = Milestone.new(milestone_params)
-    @milestone.errors.add(:project_id, "请至少选择一个项目。") if empty_project_ids
+    @milestone.errors.add(:base, "请至少选择一个项目。") if empty_project_ids
     render :new
-  end
+end
 
   def authorize_admin_milestones!
     return render_404 unless can?(current_user, :admin_milestones, group)
