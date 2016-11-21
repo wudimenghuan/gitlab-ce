@@ -74,6 +74,16 @@
               script:
                 - "curl -X POST -F token=TOKEN -F ref=REF_NAME #{builds_trigger_url(@project.id)}"
         %h5.prepend-top-default
+          使用 Web 钩子
+
+        %p.light
+          添加下列 Web 钩子到其它项目以响应推送和标签推送事件。
+          会在对应事件发生时重新构建项目。
+
+        %pre
+          :plain
+             #{builds_trigger_url(@project.id, ref: 'REF_NAME')}?token=TOKEN
+        %h5.prepend-top-default
           通过构建变量传递
 
         %p.light
@@ -81,10 +91,18 @@
           %code variables[VARIABLE]=VALUE
           到 API 请求中。变量的值可以被用来区分触发构建。
 
-        %pre.append-bottom-0
+          With cURL:
+
+        %pre
           :plain
             curl -X POST \
                  -F token=TOKEN \
                  -F "ref=REF_NAME" \
                  -F "variables[RUN_NIGHTLY_BUILD]=true" \
                  #{builds_trigger_url(@project.id)}
+        %p.light
+          With webhook:
+
+        %pre.append-bottom-0
+          :plain
+             #{builds_trigger_url(@project.id, ref: 'REF_NAME')}?token=TOKEN&variables[RUN_NIGHTLY_BUILD]=true

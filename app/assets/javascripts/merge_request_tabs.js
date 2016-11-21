@@ -130,7 +130,7 @@
     MergeRequestTabs.prototype.scrollToElement = function(container) {
       var $el, navBarHeight;
       if (window.location.hash) {
-        navBarHeight = $('.navbar-gitlab').outerHeight() + $('.layout-nav').outerHeight();
+        navBarHeight = $('.navbar-gitlab').outerHeight() + $('.layout-nav').outerHeight() + document.querySelector('.js-tabs-affix').offsetHeight;
         $el = $(container + " " + window.location.hash + ":not(.match)");
         if ($el.length) {
           return $.scrollTo(container + " " + window.location.hash + ":not(.match)", {
@@ -145,7 +145,8 @@
       if (action === 'show') {
         action = 'notes';
       }
-      $(".merge-request-tabs a[data-action='" + action + "']").tab('show').trigger('shown.bs.tab');
+      // important note: the .tab('show') method triggers 'shown.bs.tab' event itself
+      $(".merge-request-tabs a[data-action='" + action + "']").tab('show');
     };
 
     // Replaces the current Merge Request-specific action in the URL with a new one
@@ -227,8 +228,8 @@
           return function(data) {
             $('#diffs').html(data.html);
 
-            if (typeof DiffNotesApp !== 'undefined') {
-              DiffNotesApp.compileComponents();
+            if (typeof gl.diffNotesCompileComponents !== 'undefined') {
+              gl.diffNotesCompileComponents();
             }
 
             gl.utils.localTimeAgo($('.js-timeago', 'div#diffs'));

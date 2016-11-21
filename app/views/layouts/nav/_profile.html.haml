@@ -17,6 +17,10 @@
         = link_to applications_profile_path, title: '应用' do
           %span
             应用
+    = nav_link(controller: :chat_names) do
+      = link_to profile_chat_names_path, title: '聊天' do
+        %span
+          Chat
     = nav_link(controller: :personal_access_tokens) do
       = link_to profile_personal_access_tokens_path, title: '个人访问令牌' do
         %span

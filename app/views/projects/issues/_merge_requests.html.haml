@@ -19,11 +19,17 @@
             在
             - project = merge_request.target_project
             = link_to project.name_with_namespace, namespace_project_path(project.namespace, project)
-        %span.merge-request-status.prepend-left-10
-          - if merge_request.merged?
+
+        - if merge_request.merged?
+          %span.merge-request-status.prepend-left-10.merged
             已合并
-          - elsif merge_request.closed?
+        - elsif merge_request.closed?
+          %span.merge-request-status.prepend-left-10.closed
             已关闭
+        - else
+          %span.merge-request-status.prepend-left-10.open
+            未合并
+
     - if @closed_by_merge_requests.present?
       %li
         = render partial: 'projects/issues/closed_by_box', locals: {merge_request_count: @merge_requests.count}

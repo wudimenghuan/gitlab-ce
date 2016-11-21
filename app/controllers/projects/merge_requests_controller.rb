@@ -38,7 +38,6 @@ class Projects::MergeRequestsController < Projects::ApplicationController
   def index
     @merge_requests = merge_requests_collection
     @merge_requests = @merge_requests.page(params[:page])
-    @merge_requests = @merge_requests.preload(:target_project)
 
     if params[:label_name].present?
       labels_params = { project_id: @project.id, title: params[:label_name] }
@@ -507,6 +506,7 @@ class Projects::MergeRequestsController < Projects::ApplicationController
       @merge_request.close
     end
 
+    labels
     define_pipelines_vars
   end
 

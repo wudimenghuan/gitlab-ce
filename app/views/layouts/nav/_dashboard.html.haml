@@ -26,12 +26,12 @@
       = link_to assigned_issues_dashboard_path, title: '问题', class: 'dashboard-shortcuts-issues' do
         %span
           问题
-          %span.count= number_with_delimiter(current_user.assigned_issues.opened.count)
+          %span.count= number_with_delimiter(cached_assigned_issuables_count(current_user, :issues, :opened))
     = nav_link(path: 'dashboard#merge_requests') do
       = link_to assigned_mrs_dashboard_path, title: '合并请求', class: 'dashboard-shortcuts-merge_requests' do
         %span
           合并请求
-          %span.count= number_with_delimiter(current_user.assigned_merge_requests.opened.count)
+          %span.count= number_with_delimiter(cached_assigned_issuables_count(current_user, :merge_requests, :opened))
     = nav_link(controller: 'dashboard/snippets') do
       = link_to dashboard_snippets_path, title: '代码片段' do
         %span
