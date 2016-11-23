@@ -20,7 +20,7 @@ class Projects::ServicesController < Projects::ApplicationController
     if @service.update_attributes(service_params[:service])
       redirect_to(
         edit_namespace_project_service_path(@project.namespace, @project, @service.to_param),
-        notice: 'Successfully updated.'
+        notice: '已更新成功。'
       )
     else
       render 'edit'
@@ -34,9 +34,9 @@ class Projects::ServicesController < Projects::ApplicationController
     outcome = @service.test(data)
 
     if outcome[:success]
-      message = { notice: 'We sent a request to the provided URL' }
+      message = { notice: '已发送请求到提供的链接' }
     else
-      error_message = "We tried to send a request to the provided URL but an error occurred"
+      error_message = "已发送请求到提供的链接，但收到一个错误回应"
       error_message << ": #{outcome[:result]}" if outcome[:result].present?
       message = { alert: error_message }
     end
