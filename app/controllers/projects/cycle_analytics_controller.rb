@@ -34,7 +34,7 @@ class Projects::CycleAnalyticsController < Projects::ApplicationController
                                  [:code, "代码", "相关合并请求", "编写代码的时间"],
                                  [:test, "测试", "由提交触发的构建", "构建和测试程序所花费的时间"],
                                  [:review, "评审", "已合并的合并请求", "评审代码所花费的时间"],
-                                 [:staging, "步骤", "相关已部署的构建", "各个步骤所花费的时间"],
+                                 [:staging, "预发布", "已部署的构建", "预发布所花费的时间"],
                                  [:production, "生产", "相关问题", "产品从概念提出到生产发布的时间"]]
 
     stats = cycle_analytics_view_data.reduce([]) do |stats, (stage_method, stage_text, stage_legend, stage_description)|
