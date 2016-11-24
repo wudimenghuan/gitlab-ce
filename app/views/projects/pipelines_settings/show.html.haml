@@ -1,4 +1,4 @@
-- page_title "CI/CD Pipelines"
+- page_title "CI/CD 流水线"
 
 .row.prepend-top-default
   .col-lg-3.profile-settings-sidebar
@@ -9,7 +9,7 @@
       %fieldset.builds-feature
         - unless @repository.gitlab_ci_yml
           .form-group
-            %p Pipelines need to be configured before you can begin using Continuous Integration.
+            %p 在使用持续集成之前，需要先配置流水线
             = link_to '开始使用 CI/CD 流水线', help_page_path('ci/quick_start/README'), class: 'btn btn-info'
             %hr
         .form-group.append-bottom-default

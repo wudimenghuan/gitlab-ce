@@ -12,13 +12,13 @@
       - if defined?(pipeline_details) && pipeline_details
         流水线
         = link_to "##{pipeline.id}", namespace_project_pipeline_path(pipeline.project.namespace, pipeline.project, pipeline.id), class: "monospace"
-        with
+        包含
         = pluralize pipeline.statuses.count(:id), '个构建', '个构建'
         - if pipeline.ref
-          for
+          来自
           = link_to pipeline.ref, namespace_project_commits_path(pipeline.project.namespace, pipeline.project, pipeline.ref), class: "monospace"
         - if defined?(link_to_commit) && link_to_commit
-          for commit
+          的提交
           = link_to pipeline.short_sha, namespace_project_commit_path(pipeline.project.namespace, pipeline.project, pipeline.sha), class: "monospace"
         - if pipeline.duration
           持续了

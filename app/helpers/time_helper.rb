@@ -5,9 +5,9 @@ module TimeHelper
     seconds = interval_in_seconds - minutes * 60
 
     if minutes >= 1
-      "#{pluralize(minutes, "分")} #{pluralize(seconds, "秒")}"
+      "#{pluralize(minutes, "分", "分")} #{pluralize(seconds, "秒", "秒")}"
     else
-      "#{pluralize(seconds, "秒")}"
+      "#{pluralize(seconds, "秒", "秒")}"
     end
   end
 

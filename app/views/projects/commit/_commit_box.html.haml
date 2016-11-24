@@ -71,13 +71,13 @@
     .well-segment.pipeline-info
       .icon-container
         = ci_icon_for_status(@commit.status)
-      Pipeline
-      = link_to "##{@commit.pipelines.last.id}", pipelines_namespace_project_commit_path(@project.namespace, @project, @commit.id), class: "monospace"
-      for
+      提交
       = link_to @commit.short_id, namespace_project_commit_path(@project.namespace, @project, @commit), class: "monospace"
+      的 流水线
+      = link_to "##{@commit.pipelines.last.id}", pipelines_namespace_project_commit_path(@project.namespace, @project, @commit.id), class: "monospace"
       %span.ci-status-label
         = ci_label_for_status(@commit.status)
-      in
+      于
       = time_interval_in_words @commit.pipelines.total_duration
 
 :javascript

@@ -7,11 +7,11 @@
         = f.label :name, "姓名"
         = f.text_field :name, class: "form-control top", required: true, title: "必填项。"
       %div.username.form-group
-        = f.label :username
+        = f.label :username, "用户名"
         = f.text_field :username, class: "form-control middle", pattern: Gitlab::Regex::NAMESPACE_REGEX_STR_SIMPLE, required: true, title: '用户名只能包含阿拉伯字符。'
-        %p.validation-error.hide Username is already taken.
-        %p.validation-success.hide Username is available.
-        %p.validation-pending.hide Checking username availability...
+        %p.validation-error.hide 用户名已经被使用。
+        %p.validation-success.hide 用户名有效。
+        %p.validation-pending.hide 正在检查用户名有效性...
       %div.form-group
         = f.label :email, "邮箱"
         = f.email_field :email, class: "form-control middle", required: true, title: "请提供一个有效的邮箱地址。"
@@ -27,5 +27,5 @@
 .clearfix.submit-container
   %p
     %span.light 没有收到确认邮件？
-    = succeed '.' do
+    = succeed '。' do
       = link_to "重新发送确认邮件", new_confirmation_path(resource_name)

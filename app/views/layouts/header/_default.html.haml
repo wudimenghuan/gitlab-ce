@@ -46,10 +46,10 @@
                   %li
                     = link_to "个人资料设置", profile_path, aria: { label: "个人资料设置" }
                   %li
-                    = link_to "Help", help_path, aria: { label: "Help" }
+                    = link_to "帮助", help_path, aria: { label: "帮助" }
                   %li.divider
                   %li
-                    = link_to "退出", destroy_user_session_path, method: :delete, class: "sign-out-link", aria: { label: "Sign out" }
+                    = link_to "退出", destroy_user_session_path, method: :delete, class: "sign-out-link", aria: { label: "退出" }
           - else
             %li
               %div
