@@ -31,10 +31,8 @@
     .form-group
       = f.label :import_sources, '导入来源', class: 'control-label col-sm-2'
       .col-sm-10
-        - data_attrs = { toggle: 'buttons' }
-        .btn-group{ data: data_attrs }
-          - import_sources_checkboxes('import-sources-help').each do |source|
-            = source
+        - import_sources_checkboxes('import-sources-help').each do |source|
+          .checkbox= source
         %span.help-block#import-sources-help
           项目创建时可用的代码导入来源。GitHub
           = link_to "(?)", help_page_path("integration/github")

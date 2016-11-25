@@ -69,7 +69,7 @@
 
   - if @commit.status
     .well-segment.pipeline-info
-      .icon-container
+      %div{class: "icon-container ci-status-icon-#{@commit.status}"}
         = ci_icon_for_status(@commit.status)
       提交
       = link_to @commit.short_id, namespace_project_commit_path(@project.namespace, @project, @commit), class: "monospace"
