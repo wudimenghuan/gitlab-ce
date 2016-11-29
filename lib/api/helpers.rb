@@ -112,9 +112,7 @@ module API
     end
 
     def find_project_issue(id)
-      issue = user_project.issues.find(id)
-      not_found! unless can?(current_user, :read_issue, issue)
-      issue
+      IssuesFinder.new(current_user, project_id: user_project.id).find(id)
     end
 
     def paginate(relation)
@@ -180,20 +178,6 @@ module API
         end
       end
       ActionController::Parameters.new(attrs).permit!
-    end
-
-    # Helper method for validating all labels against its names
-    def validate_label_params(params)
-      errors = {}
-
-      params[:labels].to_s.split(',').each do |label_name|
-        label = available_labels.find_or_initialize_by(title: label_name.strip)
-        next if label.valid?
-
-        errors[label.title] = label.errors
-      end
-
-      errors
     end
 
     # Checks the occurrences of datetime attributes, each attribute if present in the params hash must be in ISO 8601
