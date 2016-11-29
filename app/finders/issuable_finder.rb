@@ -23,7 +23,7 @@ class IssuableFinder
 
   attr_accessor :current_user, :params
 
-  def initialize(current_user, params)
+  def initialize(current_user, params = {})
     @current_user = current_user
     @params = params
   end
@@ -41,6 +41,14 @@ class IssuableFinder
     items = by_label(items)
     items = by_due_date(items)
     sort(items)
+  end
+
+  def find(*params)
+    execute.find(*params)
+  end
+
+  def find_by(*params)
+    execute.find_by(*params)
   end
 
   def group
@@ -61,31 +69,26 @@ class IssuableFinder
   def project
     return @project if defined?(@project)
 
-    if project?
-      @project = Project.find(params[:project_id])
+    project = Project.find(params[:project_id])
+    project = nil unless Ability.allowed?(current_user, :"read_#{klass.to_ability_name}", project)
 
-      unless Ability.allowed?(current_user, :read_project, @project)
-        @project = nil
-      end
-    else
-      @project = nil
-    end
-
-    @project
+    @project = project
   end
 
   def projects
     return @projects if defined?(@projects)
+    return @projects = project if project?
 
-    if project?
-      @projects = project
-    elsif current_user && params[:authorized_only].presence && !current_user_related?
-      @projects = current_user.authorized_projects.reorder(nil)
-    elsif group
-      @projects = GroupProjectsFinder.new(group).execute(current_user).reorder(nil)
-    else
-      @projects = ProjectsFinder.new.execute(current_user).reorder(nil)
-    end
+    projects =
+      if current_user && params[:authorized_only].presence && !current_user_related?
+        current_user.authorized_projects
+      elsif group
+        GroupProjectsFinder.new(group).execute(current_user)
+      else
+        ProjectsFinder.new.execute(current_user)
+      end
+
+    @projects = projects.with_feature_available_for_user(klass, current_user).reorder(nil)
   end
 
   def search
@@ -193,7 +196,7 @@ class IssuableFinder
     when 'opened'
       items.opened
     else
-      raise 'You must specify default state'
+      items
     end
   end
 
