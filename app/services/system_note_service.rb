@@ -38,13 +38,13 @@ module SystemNoteService
   #
   # Example Note text:
   #
-  #   "Assignee removed"
+  #   "removed assignee"
   #
-  #   "Reassigned to @rspeicher"
+  #   "assigned to @rspeicher"
   #
   # Returns the created Note object
   def change_assignee(noteable, project, author, assignee)
-    body = assignee.nil? ? '已删除指派' : "重新指派给 #{assignee.to_reference}"
+    body = assignee.nil? ? '已删除指派' : "指派给 #{assignee.to_reference}"
 
     create_note(noteable: noteable, project: project, author: author, note: body)
   end
@@ -59,11 +59,11 @@ module SystemNoteService
   #
   # Example Note text:
   #
-  #   "Added ~1 and removed ~2 ~3 labels"
+  #   "added ~1 and removed ~2 ~3 labels"
   #
-  #   "Added ~4 label"
+  #   "added ~4 label"
   #
-  #   "Removed ~5 label"
+  #   "removed ~5 label"
   #
   # Returns the created Note object
   def change_label(noteable, project, author, added_labels, removed_labels)
@@ -85,7 +85,6 @@ module SystemNoteService
     end
 
     body << ' ' << '标记'
-    body = body.capitalize
 
     create_note(noteable: noteable, project: project, author: author, note: body)
   end
@@ -99,14 +98,13 @@ module SystemNoteService
   #
   # Example Note text:
   #
-  #   "Milestone removed"
+  #   "removed milestone"
   #
-  #   "Miletone changed to 7.11"
+  #   "changed milestone to 7.11"
   #
   # Returns the created Note object
   def change_milestone(noteable, project, author, milestone)
-    body = '里程碑 '
-    body += milestone.nil? ? '已删除' : "修改为 #{milestone.to_reference(project)}"
+    body = milestone.nil? ? '已删除里程碑' : "修改里程碑为 #{milestone.to_reference(project)}"
 
     create_note(noteable: noteable, project: project, author: author, note: body)
   end
@@ -138,15 +136,15 @@ module SystemNoteService
   #
   # Example Note text:
   #
-  #   "Status changed to merged"
+  #   "merged"
   #
-  #   "Status changed to closed by bc17db76"
+  #   "closed via bc17db76"
   #
   # Returns the created Note object
   def change_status(noteable, project, author, status, source)
-    body = "状态"
-    body << "被 #{source.gfm_reference(project)}" if source
-    body << "更改为 #{status_zh(status)}"
+    body = ""
+    body << "被 #{source.gfm_reference(project)} " if source
+    body << "#{status_zh(status)}"
 
     create_note(noteable: noteable, project: project, author: author, note: body)
   end
@@ -166,13 +164,13 @@ module SystemNoteService
   end
 
   def remove_merge_request_wip(noteable, project, author)
-    body = '将合并请求重新标记为进行中'
+    body = '将合并请求重新标记为进行中(WIP)'
 
     create_note(noteable: noteable, project: project, author: author, note: body)
   end
 
   def add_merge_request_wip(noteable, project, author)
-    body = '将合并请求标记为 **进行中**'
+    body = '将合并请求标记为 **进行中(WIP)**'
 
     create_note(noteable: noteable, project: project, author: author, note: body)
   end
@@ -192,7 +190,7 @@ module SystemNoteService
   #
   # Example Note text:
   #
-  #   "Title changed from **Old** to **New**"
+  #   "changed title from **Old** to **New**"
   #
   # Returns the created Note object
   def change_title(noteable, project, author, old_title)
@@ -215,7 +213,7 @@ module SystemNoteService
   #
   # Example Note text:
   #
-  # "Made the issue confidential"
+  # "made the issue confidential"
   #
   # Returns the created Note object
   def change_issue_confidentiality(issue, project, author)
@@ -234,11 +232,16 @@ module SystemNoteService
   #
   # Example Note text:
   #
-  #   "Target branch changed from `Old` to `New`"
+  #   "changed target branch from `Old` to `New`"
   #
   # Returns the created Note object
   def change_branch(noteable, project, author, branch_type, old_branch, new_branch)
-    body = "#{branch_type} branch changed from `#{old_branch}` to `#{new_branch}`".capitalize
+    case branch_type
+    when 'source'
+      body = "源分支从 `#{old_branch}` 变更为 `#{new_branch}`"
+    when 'target'
+      body = "目标分支从 `#{old_branch}` 变更为 `#{new_branch}`"
+    end
     create_note(noteable: noteable, project: project, author: author, note: body)
   end
 
@@ -253,7 +256,7 @@ module SystemNoteService
   #
   # Example Note text:
   #
-  #   "Restored target branch `feature`"
+  #   "restored target branch `feature`"
   #
   # Returns the created Note object
   def change_branch_presence(noteable, project, author, branch_type, branch, presence)
@@ -266,9 +269,9 @@ module SystemNoteService
 
     case branch_type
     when :source
-      body = "#{verb} 源分支 `#{branch}`".capitalize
+      body = "#{verb} 源分支 `#{branch}`"
     when :target
-      body = "#{verb} 目标分支 `#{branch}`".capitalize
+      body = "#{verb} 目标分支 `#{branch}`"
     end
     create_note(noteable: noteable, project: project, author: author, note: body)
   end
@@ -276,7 +279,7 @@ module SystemNoteService
   # Called when a branch is created from the 'new branch' button on a issue
   # Example note text:
   #
-  #   "Started branch `201-issue-branch-button`"
+  #   "created branch `201-issue-branch-button`"
   def new_issue_branch(issue, project, author, branch)
     link = url_helpers.namespace_project_compare_url(project.namespace, project, from: project.default_branch, to: branch)
 
@@ -292,11 +295,11 @@ module SystemNoteService
   #
   # Example Note text:
   #
-  #   "Mentioned in #1"
+  #   "mentioned in #1"
   #
-  #   "Mentioned in !2"
+  #   "mentioned in !2"
   #
-  #   "Mentioned in 54f7727c"
+  #   "mentioned in 54f7727c"
   #
   # See cross_reference_note_content.
   #
@@ -326,12 +329,12 @@ module SystemNoteService
   end
 
   def cross_reference?(note_text)
-    note_text.start_with?(cross_reference_note_prefix)
+    note_text =~ /\A#{cross_reference_note_prefix}/i
   end
 
   # Check if a cross-reference is disallowed
   #
-  # This method prevents adding a "Mentioned in !1" note on every single commit
+  # This method prevents adding a "mentioned in !1" note on every single commit
   # in a merge request. Additionally, it prevents the creation of references to
   # external issues (which would fail).
   #
@@ -393,7 +396,7 @@ module SystemNoteService
   #
   # Example Note text:
   #
-  #   "Soandso marked the task Whatever as completed."
+  #   "marked the task Whatever as completed."
   #
   # Returns the created Note object
   def change_task_status(noteable, project, author, new_task)
@@ -411,7 +414,7 @@ module SystemNoteService
   #
   # Example Note text:
   #
-  #   "Moved to some_namespace/project_new#11"
+  #   "moved to some_namespace/project_new#11"
   #
   # Returns the created Note object
   def noteable_moved(noteable, project, noteable_ref, author, direction:)
@@ -433,10 +436,12 @@ module SystemNoteService
 
   def notes_for_mentioner(mentioner, noteable, notes)
     if mentioner.is_a?(Commit)
-      notes.where('note LIKE ?', "#{cross_reference_note_prefix}%#{mentioner.to_reference(nil)}")
+      text = "#{cross_reference_note_prefix}%#{mentioner.to_reference(nil)}"
+      notes.where('(note LIKE ? OR note LIKE ?)', text, text.capitalize)
     else
       gfm_reference = mentioner.gfm_reference(noteable.project)
-      notes.where(note: cross_reference_note_content(gfm_reference))
+      text = cross_reference_note_content(gfm_reference)
+      notes.where(note: [text, text.capitalize])
     end
   end
 

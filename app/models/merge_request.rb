@@ -605,18 +605,6 @@ class MergeRequest < ActiveRecord::Base
     self.target_project.repository.branch_names.include?(self.target_branch)
   end
 
-  # Reset merge request events cache
-  #
-  # Since we do cache @event we need to reset cache in special cases:
-  # * when a merge request is updated
-  # Events cache stored like  events/23-20130109142513.
-  # The cache key includes updated_at timestamp.
-  # Thus it will automatically generate a new fragment
-  # when the event is updated because the key changes.
-  def reset_events_cache
-    Event.reset_event_cache_for(self)
-  end
-
   def merge_commit_message
     message = "合并分支 '#{source_branch}' 到 '#{target_branch}'\n\n"
     message << "#{title}\n\n"
@@ -797,7 +785,7 @@ class MergeRequest < ActiveRecord::Base
   end
 
   def all_pipelines
-    return unless source_project
+    return Ci::Pipeline.none unless source_project
 
     @all_pipelines ||= source_project.pipelines
       .where(sha: all_commits_sha, ref: source_branch)
