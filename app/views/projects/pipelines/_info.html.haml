@@ -28,13 +28,13 @@
         = ci_icon_for_status(@commit.status)
       = pluralize @pipeline.statuses.count(:id), "个构建", "个构建"
       - if @pipeline.ref
-        from
+        来自
         = link_to @pipeline.ref, namespace_project_commits_path(@project.namespace, @project, @pipeline.ref), class: "monospace"
       - if @pipeline.duration
-        in
+        耗时
         = time_interval_in_words(@pipeline.duration)
       - if @pipeline.queued_duration
-        = "(queued for #{time_interval_in_words(@pipeline.queued_duration)})"
+        = "(排队 #{time_interval_in_words(@pipeline.queued_duration)})"
 
   .well-segment.branch-info
     .icon-container.commit-icon
