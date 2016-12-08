@@ -2,10 +2,10 @@
   %ul.pipelines-tabs.nav-links.no-top.no-bottom
     %li.js-pipeline-tab-link
       = link_to namespace_project_pipeline_path(@project.namespace, @project, @pipeline), data: { target: 'div#js-tab-pipeline', action: 'pipelines', toggle: 'tab' },  class: 'pipeline-tab' do
-        Pipeline
+        流水线
     %li.js-builds-tab-link
       = link_to builds_namespace_project_pipeline_path(@project.namespace, @project, @pipeline), data: {target: 'div#js-tab-builds', action: 'builds', toggle: 'tab' }, class: 'builds-tab' do
-        Builds
+        构建
         %span.badge.js-builds-counter= pipeline.statuses.count
 
 
@@ -21,7 +21,7 @@
               .stage-name
                 %a{name: stage}
                 - if stage
-                  = stage.titleize
+                  = ci_stage_zh(stage)
               .builds-container
                 %ul
                   = render "projects/commit/pipeline_stage", statuses: statuses
@@ -29,26 +29,26 @@
   #js-tab-builds.tab-pane
     - if pipeline.yaml_errors.present?
       .bs-callout.bs-callout-danger
-        %h4 Found errors in your .gitlab-ci.yml:
+        %h4 在您的 .gitlab-ci.yml 文件中发现以下错误:
         %ul
           - pipeline.yaml_errors.split(",").each do |error|
             %li= error
-        You can also test your .gitlab-ci.yml in the #{link_to "Lint", ci_lint_path}
+        您可以通过 #{link_to "Lint", ci_lint_path} 工具对 .gitlab-ci.yml 文件进行检测
 
     - if pipeline.project.builds_enabled? && !pipeline.ci_yaml_file
       .bs-callout.bs-callout-warning
-        \.gitlab-ci.yml not found in this commit
+        未在本次提交中找到 .gitlab-ci.yml 文件 
 
     .table-holder.pipeline-holder
       %table.table.ci-table.pipeline
         %thead
           %tr
-            %th Status
-            %th Build ID
-            %th Name
+            %th 状态
+            %th 构建 ID
+            %th 名称
             %th
             - if pipeline.project.build_coverage_enabled?
-              %th Coverage
+              %th 覆盖率
             %th
         - pipeline.statuses.relevant.stages.each do |stage|
           = render 'projects/commit/ci_stage', stage: stage, statuses: pipeline.statuses.relevant.where(stage: stage)
