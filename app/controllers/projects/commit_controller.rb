@@ -61,7 +61,7 @@ class Projects::CommitController < Projects::ApplicationController
 
     return render_404 if @target_branch.blank?
 
-    create_commit(Commits::RevertService, success_notice: "#{@commit.change_type_title} 已成功撤销。",
+    create_commit(Commits::RevertService, success_notice: "#{@commit.change_type_title(current_user)} 已成功撤销。",
                                           success_path: successful_change_path, failure_path: failed_change_path)
   end
 
@@ -70,26 +70,24 @@ class Projects::CommitController < Projects::ApplicationController
 
     return render_404 if @target_branch.blank?
 
-    create_commit(Commits::CherryPickService, success_notice: "#{@commit.change_type_title} 已成功挑选(Cherry-pick)。",
+    create_commit(Commits::CherryPickService, success_notice: "#{@commit.change_type_title(current_user)} 已成功挑选(Cherry-pick)。",
                                               success_path: successful_change_path, failure_path: failed_change_path)
   end
 
   private
 
   def successful_change_path
-    return referenced_merge_request_url if @commit.merged_merge_request
-
-    namespace_project_commits_url(@project.namespace, @project, @target_branch)
+    referenced_merge_request_url || namespace_project_commits_url(@project.namespace, @project, @target_branch)
   end
 
   def failed_change_path
-    return referenced_merge_request_url if @commit.merged_merge_request
-
-    namespace_project_commit_url(@project.namespace, @project, params[:id])
+    referenced_merge_request_url || namespace_project_commit_url(@project.namespace, @project, params[:id])
   end
 
   def referenced_merge_request_url
-    namespace_project_merge_request_url(@project.namespace, @project, @commit.merged_merge_request)
+    if merge_request = @commit.merged_merge_request(current_user)
+      namespace_project_merge_request_url(@project.namespace, @project, merge_request)
+    end
   end
 
   def commit
