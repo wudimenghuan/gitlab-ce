@@ -130,7 +130,7 @@ module CommitsHelper
   def revert_commit_link(commit, continue_to_path, btn_class: nil, has_tooltip: true)
     return unless current_user
 
-    tooltip = "在新的合并请求中撤销此#{commit.change_type_title}" if has_tooltip
+    tooltip = "在新的合并请求中撤销此 #{commit.change_type_title(current_user)}" if has_tooltip
 
     if can_collaborate_with_project?
       btn_class = "btn btn-warning btn-#{btn_class}" unless btn_class.nil?
@@ -154,7 +154,7 @@ module CommitsHelper
   def cherry_pick_commit_link(commit, continue_to_path, btn_class: nil, has_tooltip: true)
     return unless current_user
 
-    tooltip = "挑选(Cherry-Pick)此 #{commit.change_type_title} 到一个新的合并请求"
+    tooltip = "挑选(Cherry-Pick)此 #{commit.change_type_title(current_user)} 到一个新的合并请求"
 
     if can_collaborate_with_project?
       btn_class = "btn btn-default btn-#{btn_class}" unless btn_class.nil?
