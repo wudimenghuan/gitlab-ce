@@ -84,16 +84,16 @@ module MergeRequests
       elsif iid && issue = merge_request.target_project.get_issue(iid, current_user)
         case issue
         when Issue
-          merge_request.title = "Resolve \"#{issue.title}\""
+          merge_request.title = "解决 \"#{issue.title}\""
         when ExternalIssue
-          merge_request.title = "Resolve #{issue.title}"
+          merge_request.title = "解决 #{issue.title}"
         end
       else
         merge_request.title = merge_request.source_branch.titleize.humanize
       end
 
       if iid
-        closes_issue = "Closes ##{iid}"
+        closes_issue = "关闭 ##{iid}"
 
         if merge_request.description.present?
           merge_request.description += closes_issue.prepend("\n\n")
