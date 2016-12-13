@@ -156,16 +156,16 @@
         {
           header: "" + name
         }, {
-          text: 'Issues assigned to me',
+          text: '指派给我的问题',
           url: issuesPath + "/?assignee_id=" + userId
         }, {
-          text: "Issues I've created",
+          text: "我创建的问题",
           url: issuesPath + "/?author_id=" + userId
         }, 'separator', {
-          text: 'Merge requests assigned to me',
+          text: '指派给我的合并请求',
           url: mrPath + "/?assignee_id=" + userId
         }, {
-          text: "Merge requests I've created",
+          text: "我创建的合并请求",
           url: mrPath + "/?author_id=" + userId
         }
       ];

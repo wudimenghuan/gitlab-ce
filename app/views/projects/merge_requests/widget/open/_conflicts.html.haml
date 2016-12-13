@@ -1,21 +1,21 @@
 %h4.has-conflicts
   = icon("exclamation-triangle")
-  This merge request contains merge conflicts
+  此合并请求包含有合并冲突
 
 %p
-  Please
+  请
   - if @merge_request.conflicts_can_be_resolved_by?(current_user)
     - if @merge_request.conflicts_can_be_resolved_in_ui?
-      = link_to "resolve these conflicts", conflicts_namespace_project_merge_request_path(@project.namespace, @project, @merge_request)
+      = link_to "解决这些冲突", conflicts_namespace_project_merge_request_path(@project.namespace, @project, @merge_request)
     - else
-      %span.has-tooltip{title: "These conflicts cannot be resolved through GitLab"}
-        resolve these conflicts locally
+      %span.has-tooltip{title: "这些冲突无法在 Gitlab中解决"}
+        在本地解决这些冲突
   - else
-    resolve these conflicts
+    解决这些冲突
 
-  or
+  或者
 
   - if @merge_request.can_be_merged_via_command_line_by?(current_user)
-    #{link_to "merge this request manually", "#modal_merge_info", class: "how_to_merge_link vlink", "data-toggle" => "modal"}.
+    #{link_to "手工合并此请求", "#modal_merge_info", class: "how_to_merge_link vlink", "data-toggle" => "modal"}.
   - else
-    ask someone with write access to this repository to merge this request manually.
+    询问具有此仓库写权限的成员来手工合并此请求。

@@ -9,7 +9,7 @@ module Ci
       uniqueness: { scope: :gl_project_id },
       length: { maximum: 255 },
       format: { with: /\A[a-zA-Z0-9_]+\z/,
-                message: "can contain only letters, digits and '_'." }
+                message: "只能包含字母、数字和下划线。" }
 
     scope :order_key_asc, -> { reorder(key: :asc) }
 

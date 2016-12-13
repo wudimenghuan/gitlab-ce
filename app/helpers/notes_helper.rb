@@ -85,8 +85,8 @@ module NotesHelper
 
     data = discussion.reply_attributes.merge(line_type: line_type)
 
-    button_tag 'Reply...', class: 'btn btn-text-field js-discussion-reply-button',
-                           data: data, title: 'Add a reply'
+    button_tag '回复...', class: 'btn btn-text-field js-discussion-reply-button',
+                           data: data, title: '增加回复'
   end
 
   def preload_max_access_for_authors(notes, project)

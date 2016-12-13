@@ -4,11 +4,11 @@
       = visibility_level_label(@snippet.visibility_level)
     = visibility_level_icon(@snippet.visibility_level, fw: false)
   %strong.item-title
-    Snippet #{@snippet.to_reference}
+    代码片段 #{@snippet.to_reference}
   %span.creator
-    authored
+    由 #{link_to_member(@project, @snippet.author, size: 24, author_class: "author item-title", avatar_class: "hidden-xs")}
+    创建于
     = time_ago_with_tooltip(@snippet.created_at, placement: 'bottom', html_class: 'snippet_updated_ago')
-    by #{link_to_member(@project, @snippet.author, size: 24, author_class: "author item-title", avatar_class: "hidden-xs")}
 
   .snippet-actions
     - if @snippet.project_id?

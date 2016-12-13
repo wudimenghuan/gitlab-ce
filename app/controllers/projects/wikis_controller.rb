@@ -50,7 +50,7 @@ class Projects::WikisController < Projects::ApplicationController
     if @page = WikiPages::UpdateService.new(@project, current_user, wiki_params).execute(@page)
       redirect_to(
         namespace_project_wiki_path(@project.namespace, @project, @page),
-        notice: 'Wiki was successfully updated.'
+        notice: '维基更新成功。'
       )
     else
       render 'edit'
@@ -63,7 +63,7 @@ class Projects::WikisController < Projects::ApplicationController
     if @page.persisted?
       redirect_to(
         namespace_project_wiki_path(@project.namespace, @project, @page),
-        notice: 'Wiki was successfully updated.'
+        notice: '维基更新成功。'
       )
     else
       render action: "edit"
@@ -76,7 +76,7 @@ class Projects::WikisController < Projects::ApplicationController
     unless @page
       redirect_to(
         namespace_project_wiki_path(@project.namespace, @project, :home),
-        notice: "Page not found"
+        notice: "页面不存在"
       )
     end
   end
@@ -87,7 +87,7 @@ class Projects::WikisController < Projects::ApplicationController
 
     redirect_to(
       namespace_project_wiki_path(@project.namespace, @project, :home),
-      notice: "Page was successfully deleted"
+      notice: "维基删除成功"
     )
   end
 
@@ -118,7 +118,7 @@ class Projects::WikisController < Projects::ApplicationController
 
     @sidebar_wiki_pages = @project_wiki.pages.first(15)
   rescue ProjectWiki::CouldNotCreateWikiError
-    flash[:notice] = "Could not create Wiki Repository at this time. Please try again later."
+    flash[:notice] = "现在不能创建维基版本仓库。请稍后重试。"
     redirect_to project_path(@project)
     return false
   end

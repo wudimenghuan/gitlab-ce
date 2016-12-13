@@ -17,7 +17,7 @@ class Projects::RunnersController < Projects::ApplicationController
 
   def update
     if @runner.update_attributes(runner_params)
-      redirect_to runner_path(@runner), notice: 'Runner was successfully updated.'
+      redirect_to runner_path(@runner), notice: 'Runner 更新成功。'
     else
       render 'edit'
     end
@@ -33,17 +33,17 @@ class Projects::RunnersController < Projects::ApplicationController
 
   def resume
     if @runner.update_attributes(active: true)
-      redirect_to runner_path(@runner), notice: 'Runner was successfully updated.'
+      redirect_to runner_path(@runner), notice: 'Runner 更新成功。'
     else
-      redirect_to runner_path(@runner), alert: 'Runner was not updated.'
+      redirect_to runner_path(@runner), alert: 'Runner 没有更新。'
     end
   end
 
   def pause
     if @runner.update_attributes(active: false)
-      redirect_to runner_path(@runner), notice: 'Runner was successfully updated.'
+      redirect_to runner_path(@runner), notice: 'Runner 更新成功。'
     else
-      redirect_to runner_path(@runner), alert: 'Runner was not updated.'
+      redirect_to runner_path(@runner), alert: 'Runner 没有更新。'
     end
   end
 

@@ -29,13 +29,13 @@ class Projects::CycleAnalyticsController < Projects::ApplicationController
   def generate_cycle_analytics_data
     stats_values = []
 
-    cycle_analytics_view_data = [[:issue, "Issue", "Related Issues", "Time before an issue gets scheduled"],
-                                 [:plan, "Plan", "Related Commits", "Time before an issue starts implementation"],
-                                 [:code, "Code", "Related Merge Requests", "Time spent coding"],
-                                 [:test, "Test", "Relative Builds Trigger by Commits", "The time taken to build and test the application"],
-                                 [:review, "Review", "Relative Merged Requests", "The time taken to review the code"],
-                                 [:staging, "Staging", "Relative Deployed Builds", "The time taken in staging"],
-                                 [:production, "Production", "Related Issues", "The total time taken from idea to production"]]
+    cycle_analytics_view_data = [[:issue, "问题", "相关问题", "一个问题从提出到制定计划的时间"],
+                                 [:plan, "计划", "相关提交", "一个问题从提出到开始实现的时间"],
+                                 [:code, "代码", "相关合并请求", "编写代码的时间"],
+                                 [:test, "测试", "由提交触发的构建", "构建和测试程序所花费的时间"],
+                                 [:review, "评审", "已合并的合并请求", "评审代码所花费的时间"],
+                                 [:staging, "预发布", "已部署的构建", "预发布所花费的时间"],
+                                 [:production, "生产", "相关问题", "产品从概念提出到生产发布的时间"]]
 
     stats = cycle_analytics_view_data.reduce([]) do |stats, (stage_method, stage_text, stage_legend, stage_description)|
       value = @cycle_analytics.send(stage_method).presence
@@ -57,9 +57,9 @@ class Projects::CycleAnalyticsController < Projects::ApplicationController
     deploys = @cycle_analytics.summary.deploys
 
     summary = [
-      { title: "New Issue".pluralize(issues), value: issues },
-      { title: "Commit".pluralize(commits), value: commits },
-      { title: "Deploy".pluralize(deploys), value: deploys }
+      { title: "新建问题数", value: issues },
+      { title: "提交数", value: commits },
+      { title: "部署次数", value: deploys }
     ]
 
     cycle_analytics_hash = { summary: summary,

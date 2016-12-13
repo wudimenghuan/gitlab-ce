@@ -3,15 +3,15 @@
     %ul.nav-links.clearfix
       %li.active
         %a.js-md-write-button{ href: "#md-write-holder", tabindex: -1 }
-          Write
+          编写
       %li
         %a.js-md-preview-button{ href: "#md-preview-holder", tabindex: -1 }
-          Preview
+          预览
 
       - if defined?(@issue) && @issue.confidential?
         %li.confidential-issue-warning
           = icon('warning')
-          %span This is a confidential issue. Your comment will not be visible to the public.
+          %span 这是一个保密问题。 您的评论不会公开显示。
 
       %li.pull-right
         .toolbar-group
@@ -23,7 +23,7 @@
           = markdown_toolbar_button({icon: "list-ol fw", data: { "md-tag" => "1. ", "md-prepend" => true }, title: "Add a numbered list" })
           = markdown_toolbar_button({icon: "check-square-o fw", data: { "md-tag" => "* [ ] ", "md-prepend" => true }, title: "Add a task list" })
         .toolbar-group
-          %button.toolbar-btn.js-zen-enter.has-tooltip.hidden-xs{ type: "button", tabindex: -1, aria: { label: "Go full screen" }, title: "Go full screen", data: { container: "body" } }
+          %button.toolbar-btn.js-zen-enter.has-tooltip.hidden-xs{ type: "button", tabindex: -1, aria: { label: "转到全屏" }, title: "Go full screen", data: { container: "body" } }
             =icon("arrows-alt fw")
 
   .md-write-holder
@@ -34,8 +34,8 @@
     %div.referenced-users.hide
       %span
         = icon("exclamation-triangle")
-        You are about to add
+        你添加了
         %strong
           %span.js-referenced-users-count 0
-          people
-        to the discussion. Proceed with caution.
+          人
+        到此讨论。请谨慎行事。
