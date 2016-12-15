@@ -112,7 +112,8 @@
                 %span.descr 开启此仓库的容器注册表
                 = link_to icon('question-circle'), help_page_path('user/project/container_registry'), target: '_blank'
 
-        = render 'merge_request_settings', f: f
+        = render 'merge_request_settings', form: f
+
         %hr
         %fieldset.features.append-bottom-default
           %h5.prepend-top-0
