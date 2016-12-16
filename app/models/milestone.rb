@@ -2,7 +2,7 @@ class Milestone < ActiveRecord::Base
   # Represents a "No Milestone" state used for filtering Issues and Merge
   # Requests that have no milestone assigned.
   MilestoneStruct = Struct.new(:title, :name, :id)
-  None = MilestoneStruct.new('无里程碑', 'No Milestone', 0)
+  None = MilestoneStruct.new('无里程碑', '无里程碑', 0)
   Any = MilestoneStruct.new('任何里程碑', '', -1)
   Upcoming = MilestoneStruct.new('即将到来', '#upcoming', -2)
 
