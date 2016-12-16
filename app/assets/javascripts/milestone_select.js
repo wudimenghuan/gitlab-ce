@@ -48,7 +48,7 @@
               if (showNo) {
                 extraOptions.push({
                   id: -1,
-                  name: 'No Milestone',
+                  name: '无里程碑',
                   title: '无里程碑'
                 });
               }
