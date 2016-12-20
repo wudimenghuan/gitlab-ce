@@ -1,3 +1,4 @@
+- @content_class = "limit-container-width"
 - page_title           "#{@merge_request.title} (#{@merge_request.to_reference})", "合并请求"
 - page_description     @merge_request.description
 - page_card_attributes @merge_request.card_attributes
@@ -41,7 +42,7 @@
     = render "projects/merge_requests/widget/show.html.haml"
 
     - if @merge_request.source_branch_exists? && @merge_request.mergeable? && @merge_request.can_be_merged_by?(current_user)
-      .light.prepend-top-default.append-bottom-default
+      .merge-manually.light.prepend-top-default.append-bottom-default
         也可以通过
         = link_to "命令行", "#modal_merge_info", class: "how_to_merge_link vlink", title: "如何合并", "data-toggle" => "modal"
         手工接受此合并请求。
@@ -53,7 +54,7 @@
             %li.notes-tab
               = link_to namespace_project_merge_request_path(@project.namespace, @project, @merge_request), data: { target: 'div#notes', action: 'notes', toggle: 'tab' } do
                 讨论
-                %span.badge= @merge_request.mr_and_commit_notes.user.count
+                %span.badge= @merge_request.related_notes.user.count
             - if @merge_request.source_project
               %li.commits-tab
                 = link_to commits_namespace_project_merge_request_path(@project.namespace, @project, @merge_request), data: { target: 'div#commits', action: 'commits', toggle: 'tab' } do

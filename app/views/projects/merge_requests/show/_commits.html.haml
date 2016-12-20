@@ -1,6 +1,2 @@
-.content-block.oneline-block
-  = icon("sort-amount-desc")
-  首先显示最近提交
-
 %ol#commits-list.list-unstyled
   = render "projects/commits/commits", project: @merge_request.source_project, ref: @merge_request.source_branch

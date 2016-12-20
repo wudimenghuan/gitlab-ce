@@ -2,8 +2,8 @@
 
 %li.group-row{ class: css_class }
   .controls
-    = link_to '编辑', edit_admin_group_path(group), id: "edit_#{dom_id(group)}", class: 'btn'
-    = link_to '删除', [:admin, group], data: { confirm: "确定要删除 #{group.name}?" }, method: :delete, class: 'btn btn-remove'
+    = link_to '编辑', admin_group_edit_path(group), id: "edit_#{dom_id(group)}", class: 'btn'
+    = link_to '删除', [:admin, group], data: { confirm: "确定要移除 #{group.name} 群组？" }, method: :delete, class: 'btn btn-remove'
   .stats
     %span
       = icon('bookmark')
@@ -20,7 +20,7 @@
     = image_tag group_icon(group), class: "avatar s40 hidden-xs"
   .title
     = link_to [:admin, group], class: 'group-name' do
-      = group.name
+      = group.full_name
 
   - if group.description.present?
     .description

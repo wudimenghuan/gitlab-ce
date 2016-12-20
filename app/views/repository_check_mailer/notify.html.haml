@@ -2,7 +2,7 @@
   #{@message}.
 
 %p
-  = link_to "在 GitLab 管理后台查看受影响的项目", admin_namespaces_projects_url(last_repository_check_failed: 1)
+  = link_to "在 GitLab 管理后台查看受影响的项目", admin_projects_url(last_repository_check_failed: 1)
 
 %p
   因为你是 #{Gitlab.config.gitlab.url} 的管理员，所以会收到此邮件。

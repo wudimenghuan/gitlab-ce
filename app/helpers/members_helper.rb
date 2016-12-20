@@ -41,4 +41,12 @@ module MembersHelper
     "你确定要离开 " \
     "\"#{member_source.human_name}\" #{member_source.class.to_s.humanize(capitalize: false)}?"
   end
+
+  def filter_group_project_member_path(options = {})
+    options = params.slice(:search, :sort).merge(options)
+
+    path = request.path
+    path << "?#{options.to_param}"
+    path
+  end
 end

@@ -46,8 +46,7 @@
           - else
             这个构建将会部署到 #{environment_link_for_build(@build.project, @build)}
             - if environment.try(:last_deployment)
-              并且将替换掉其
-              = link_to '最新的部署', deployment_link(environment.last_deployment)
+              并且将替换掉其 #{deployment_link(environment.last_deployment, text: '最新的部署')}
 
     .prepend-top-default
       - if @build.erased?

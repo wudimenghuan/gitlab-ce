@@ -1,24 +1,19 @@
 .page-content-header
   .header-main-content
-    %strong 提交
-    %strong.monospace.js-details-short= @commit.short_id
-    = link_to("#", class: "js-details-expand hidden-xs hidden-sm") do
-      %span.text-expander
-        \...
-    %span.js-details-content.hide
-      %strong.monospace.commit-hash-full= @commit.id
+    %strong
     = clipboard_button(clipboard_text: @commit.id)
-    %span.hidden-xs 由
+    = @commit.short_id
+    %span 由
     = author_avatar(@commit, size: 24)
     %strong
-      = commit_author_link(@commit, avatar: true, size: 24)    
-    %span 编写于
-    #{time_ago_with_tooltip(@commit.authored_date)}
+      = commit_author_link(@commit, avatar: true, size: 24)
+    %span.hidden-xs 编写于
+    #{time_ago_with_tooltip(@commit.authored_date)}    
     - if @commit.different_committer?
       %span.light 由
       %strong
         = commit_committer_link(@commit, avatar: true, size: 24)
-      %span 提交于
+      %span.light 提交于
       #{time_ago_with_tooltip(@commit.committed_date)}
 
   .header-action-buttons

@@ -18,6 +18,12 @@
           使用
           %code= Doorkeeper.configuration.native_redirect_uri
           作为本地测试
+
+  .form-group
+    = f.label :scopes, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = render 'shared/tokens/scopes_form', prefix: 'doorkeeper_application', token: application, scopes: @scopes
+
   .form-actions
     = f.submit '提交', class: "btn btn-save wide"
     = link_to "取消", admin_applications_path, class: "btn btn-default"

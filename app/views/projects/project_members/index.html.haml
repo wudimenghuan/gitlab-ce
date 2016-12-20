@@ -21,6 +21,7 @@
         = search_field_tag :search, params[:search], { placeholder: '通过姓名查找现有成员', class: 'form-control', spellcheck: false }
         %button.member-search-btn{ type: "submit", "aria-label" => "搜索" }
           = icon("search")
+        = render 'shared/members/sort_dropdown'
   - if @group_links.any?
     = render 'groups', group_links: @group_links
 

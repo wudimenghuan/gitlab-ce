@@ -6,23 +6,23 @@
 - issuables = @issues || @merge_requests
 
 %ul.nav-links.issues-state-filters
-  %li{class: ("active" if params[:state] == 'opened')}
+  %li{class: ("active" if params[:state] == 'opened')}>
     = link_to page_filter_path(state: 'opened', label: true), id: 'state-opened', title: "只显示当前未关闭的 #{page_context_word} 。" do
       #{issuables_state_counter_text(type, :opened)}
 
   - if type == :merge_requests
-    %li{class: ("active" if params[:state] == 'merged')}
+    %li{class: ("active" if params[:state] == 'merged')}>
       = link_to page_filter_path(state: 'merged', label: true), id: 'state-merged', title: '只显示当前已合并的合并请求。' do
         #{issuables_state_counter_text(type, :merged)}
 
-    %li{class: ("active" if params[:state] == 'closed')}
+    %li{class: ("active" if params[:state] == 'closed')}>
       = link_to page_filter_path(state: 'closed', label: true), id: 'state-closed', title: '只显示当前已关闭、未合并的合并请求。' do
         #{issuables_state_counter_text(type, :closed)}
   - else
-    %li{class: ("active" if params[:state] == 'closed')}
+    %li{class: ("active" if params[:state] == 'closed')}>
       = link_to page_filter_path(state: 'closed', label: true), id: 'state-all', title: '只显示当前已关闭的问题。' do
         #{issuables_state_counter_text(type, :closed)}
 
-  %li{class: ("active" if params[:state] == 'all')}
+  %li{class: ("active" if params[:state] == 'all')}>
     = link_to page_filter_path(state: 'all', label: true), id: 'state-all', title: "显示全部 #{page_context_word}." do
       #{issuables_state_counter_text(type, :all)}

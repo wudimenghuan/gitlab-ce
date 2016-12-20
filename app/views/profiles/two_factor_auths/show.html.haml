@@ -30,7 +30,7 @@
               请在手机应用中输入以下信息手动进行绑定。
             %p.prepend-top-0.append-bottom-0
               账号:
-              = current_user.email
+              = @account_string
             %p.prepend-top-0.append-bottom-0
               密钥:
               = current_user.otp_secret.scan(/.{4}/).join(' ')

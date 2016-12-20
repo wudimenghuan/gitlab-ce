@@ -1,5 +1,6 @@
 .form-group.commit_message-group
   - nonce = SecureRandom.hex
+  - descriptions = local_assigns.slice(:message_with_description, :message_without_description)
   = label_tag "commit_message-#{nonce}", class: 'control-label' do
     提交信息
   .col-sm-10
@@ -8,8 +9,16 @@
       = text_area_tag 'commit_message',
           (params[:commit_message] || local_assigns[:text] || local_assigns[:placeholder]),
           class: 'form-control js-commit-message', placeholder: local_assigns[:placeholder],
+          data: descriptions,
           required: true, rows: (local_assigns[:rows] || 3),
           id: "commit_message-#{nonce}"
     - if local_assigns[:hint]
       %p.hint
         建议第一行最多 52 个字节，其他行最多 72 字节。
+    - if descriptions.present?
+      %p.hint.js-with-description-hint
+        = link_to "#", class: "js-with-description-link" do
+          在提交信息中包含描述
+      %p.hint.js-without-description-hint.hide
+        = link_to "#", class: "js-without-description-link" do
+          不在提交信息中包含描述
