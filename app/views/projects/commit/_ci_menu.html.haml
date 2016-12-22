@@ -8,7 +8,4 @@
       = link_to pipelines_namespace_project_commit_path(@project.namespace, @project, @commit.id) do
         流水线
         %span.badge= @ci_pipelines.count
-  = nav_link(path: 'commit#builds') do
-    = link_to builds_namespace_project_commit_path(@project.namespace, @project, @commit.id) do
       构建
-      %span.badge= @statuses.count

@@ -280,13 +280,15 @@ module ProjectsHelper
     end
   end
 
-  def add_special_file_path(project, file_name:, commit_message: nil)
+  def add_special_file_path(project, file_name:, commit_message: nil, target_branch: nil, context: nil)
     namespace_project_new_blob_path(
       project.namespace,
       project,
       project.default_branch || 'master',
       file_name:      file_name,
-      commit_message: commit_message || "增加 #{file_name.downcase}"
+      commit_message: commit_message || "添加 #{file_name.downcase}",
+      target_branch: target_branch,
+      context: context
     )
   end
 
@@ -296,7 +298,7 @@ module ProjectsHelper
       project,
       project.default_branch || 'master',
       file_name:      '.koding.yml',
-      commit_message: "增加 Koding stack 脚本",
+      commit_message: "添加 Koding stack 脚本",
       content: <<-CONTENT.strip_heredoc
         provider:
           aws:

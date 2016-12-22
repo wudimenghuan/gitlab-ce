@@ -21,6 +21,8 @@
         = dropdown_tag("选择一个 .gitignore 模板", options: { toggle_class: 'btn js-gitignore-selector', title: "选择一个模板", filter: true, placeholder: "过滤器", data: { data: gitignore_names } } )
       .gitlab-ci-yml-selector.js-gitlab-ci-yml-selector-wrap.hidden
         = dropdown_tag("选择一个 GitLab CI Yaml 模板", options: { toggle_class: 'btn js-gitlab-ci-yml-selector', title: "选择一个模板", filter: true, placeholder: "过滤器", data: { data: gitlab_ci_ymls } } )
+      .dockerfile-selector.js-dockerfile-selector-wrap.hidden
+        = dropdown_tag("Choose a Dockerfile template", options: { toggle_class: 'btn js-dockerfile-selector', title: "Choose a template", filter: true, placeholder: "Filter", data: { data: dockerfile_names } } )
       = button_tag class: 'soft-wrap-toggle btn', type: 'button' do
         %span.no-wrap
           = custom_icon('icon_no_wrap')
