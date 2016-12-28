@@ -11,7 +11,7 @@
       %code
         = @build.ref    
     的提交
-    = link_to namespace_project_commit_path(@project.namespace, @project, @build.pipeline.sha) do
+    = link_to ci_status_path(@build.pipeline) do
       %strong= @build.pipeline.short_sha
     - if @build.user
       由
