@@ -34,8 +34,8 @@
     - if @page && @page.persisted?
       = f.submit '保存修改', class: "btn-save btn"
       .pull-right
-          = link_to namespace_project_wiki_path(@project.namespace, @project, @page), data: { confirm: "确定要删除此页面？"}, method: :delete, class: "btn btn-danger btn-grouped" do
-        = link_to "取消", namespace_project_wiki_path(@project.namespace, @project, @page), class: "btn btn-cancel btn-grouped"
+        = link_to namespace_project_wiki_path(@project.namespace, @project, @page), data: { confirm: "确定要删除此页面？"}, method: :delete, class: "btn btn-danger btn-grouped" do
+          = link_to "取消", namespace_project_wiki_path(@project.namespace, @project, @page), class: "btn btn-cancel btn-grouped"
     - else
       = f.submit '创建页面', class: "btn-create btn"
       .pull-right
