@@ -98,7 +98,7 @@ class Namespace < ActiveRecord::Base
 
   def move_dir
     if any_project_has_container_registry_tags?
-      raise Exception.new('无法移动命名空间，因为至少有一个项目有标签位于容器注册表中')
+      raise Gitlab::UpdatePathError.new('无法移动命名空间，因为至少有一个项目有标签位于容器注册表中')
     end
 
     # Move the namespace directory in all storages paths used by member projects
@@ -111,7 +111,7 @@ class Namespace < ActiveRecord::Base
 
         # if we cannot move namespace directory we should rollback
         # db changes in order to prevent out of sync between db and fs
-        raise Exception.new('命名空间目录不能移动。')
+        raise Gitlab::UpdatePathError.new('命名空间目录不能移动。')
       end
     end
 

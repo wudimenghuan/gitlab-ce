@@ -82,6 +82,8 @@ class GroupsController < Groups::ApplicationController
     if Groups::UpdateService.new(@group, current_user, group_params).execute
       redirect_to edit_group_path(@group), notice: "群组 '#{@group.name}' 更新成功。"
     else
+      @group.reset_path!
+
       render action: "edit"
     end
   end

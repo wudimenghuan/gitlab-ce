@@ -175,10 +175,10 @@ class MergeRequest < ActiveRecord::Base
     work_in_progress?(title) ? title : "WIP: #{title}"
   end
 
-  def to_reference(from_project = nil)
+  def to_reference(from_project = nil, full: false)
     reference = "#{self.class.reference_prefix}#{iid}"
 
-    "#{project.to_reference(from_project)}#{reference}"
+    "#{project.to_reference(from_project, full: full)}#{reference}"
   end
 
   def first_commit
@@ -576,11 +576,7 @@ class MergeRequest < ActiveRecord::Base
     ext = Gitlab::ReferenceExtractor.new(project, current_user)
     ext.analyze(description)
 
-    issues = ext.issues
-    closing_issues = Gitlab::ClosingIssueExtractor.new(project, current_user).
-      closed_by_message(description)
-
-    issues - closing_issues
+    ext.issues - closes_issues
   end
 
   def target_project_path
