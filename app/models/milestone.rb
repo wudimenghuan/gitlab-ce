@@ -202,4 +202,8 @@ class Milestone < ActiveRecord::Base
       errors.add(:start_date, "不能大于截止日期")
     end
   end
+
+  def issues_finder_params
+    { project_id: project_id }
+  end
 end
