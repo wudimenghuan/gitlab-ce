@@ -94,7 +94,7 @@ module SortingHelper
   end
 
   def sort_title_largest_group
-    'Largest group'
+    '最大的群组'
   end
 
   def sort_title_recently_signin
@@ -114,27 +114,27 @@ module SortingHelper
   end
 
   def sort_title_last_joined
-    'Last joined'
+    '最近加入'
   end
 
   def sort_title_oldest_joined
-    'Oldest joined'
+    '最早加入'
   end
 
   def sort_title_access_level_asc
-    'Access level, ascending'
+    '访问级别, 升序'
   end
 
   def sort_title_access_level_desc
-    'Access level, descending'
+    '访问级别, 降序'
   end
 
   def sort_title_name_asc
-    'Name, ascending'
+    '名称, 升序'
   end
 
   def sort_title_name_desc
-    'Name, descending'
+    '名称, 降序'
   end
 
   def sort_value_last_joined
