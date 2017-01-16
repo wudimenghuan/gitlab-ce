@@ -1,5 +1,5 @@
 - @no_container = true
-- page_title "Milestones"
+- page_title "里程碑"
 = render "projects/issues/head"
 
 %div{ class: container_class }
@@ -8,8 +8,8 @@
 
     .nav-controls
       - if can?(current_user, :admin_milestone, @project)
-        = link_to new_namespace_project_milestone_path(@project.namespace, @project), class: "btn btn-new", title: "New Milestone" do
-          New Milestone
+        = link_to new_namespace_project_milestone_path(@project.namespace, @project), class: "btn btn-new", title: "新建里程碑" do
+          新建里程碑
 
   .milestones
     %ul.content-list
@@ -17,6 +17,6 @@
 
       - if @milestones.blank?
         %li
-          .nothing-here-block No milestones to show
+          .nothing-here-block 没有里程碑
 
     = paginate @milestones, theme: "gitlab"

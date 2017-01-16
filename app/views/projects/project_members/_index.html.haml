@@ -1,10 +1,10 @@
 .row.prepend-top-default
   .col-lg-3.settings-sidebar
     %h4.prepend-top-0
-      Members
+      成员
     - if can?(current_user, :admin_project_member, @project)
       %p
-        Add a new member to
+        添加新用户到
         %strong= @project.name
   .col-lg-9
     .light.prepend-top-default
@@ -14,7 +14,7 @@
         = render 'shared/members/requests', membership_source: @project, requesters: @requesters
         .append-bottom-default.clearfix
           %h5.member.existing-title
-            Existing members and groups
+            现有用户和群组
         - if @group_links.any?
           = render 'projects/project_members/groups', group_links: @group_links
 

@@ -2,7 +2,7 @@
 
 = content_for :meta_tags do
   - if current_user
-    = auto_discovery_link_tag(:atom, group_url(@group, format: :atom, private_token: current_user.private_token), title: "#{@group.name} activity")
+    = auto_discovery_link_tag(:atom, group_url(@group, format: :atom, private_token: current_user.private_token), title: "#{@group.name} 活动")
 
 .group-home-panel.text-center
   %div{ class: container_class }
@@ -27,22 +27,22 @@
     %ul.nav-links
       %li.active
         = link_to "#projects", 'data-toggle' => 'tab' do
-          All Projects
+          全部项目
       - if @shared_projects.present?
         %li
           = link_to "#shared", 'data-toggle' => 'tab' do
-            Shared Projects
+            共享的项目
       - if @nested_groups.present?
         %li
           = link_to "#groups", 'data-toggle' => 'tab' do
             Subgroups
     .nav-controls
       = form_tag request.path, method: :get, class: 'project-filter-form', id: 'project-filter-form' do |f|
-        = search_field_tag :filter_projects, nil, placeholder: 'Filter by name', class: 'projects-list-filter form-control', spellcheck: false
+        = search_field_tag :filter_projects, nil, placeholder: '按名称过滤', class: 'projects-list-filter form-control', spellcheck: false
       = render 'shared/projects/dropdown'
       - if can? current_user, :create_projects, @group
         = link_to new_project_path(namespace_id: @group.id), class: 'btn btn-new pull-right' do
-          New Project
+          新建项目
 
   .tab-content
     .tab-pane.active#projects

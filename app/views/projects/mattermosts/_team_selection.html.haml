@@ -3,7 +3,7 @@
   %strong= link_to Gitlab.config.mattermost.host, Gitlab.config.mattermost.host
 %hr
 = form_for(:mattermost, method: :post, url: namespace_project_mattermost_path(@project.namespace, @project)) do |f|
-  %h4 Team
+  %h4 团队
   %p
     = @teams.one? ? 'The team' : 'Select the team'
     where the slash commands will be used in

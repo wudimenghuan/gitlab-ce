@@ -14,10 +14,10 @@ class Profiles::TwoFactorAuthsController < Profiles::ApplicationController
 
     if two_factor_authentication_required? && !current_user.two_factor_enabled?
       if two_factor_grace_period_expired?
-        flash.now[:alert] = 'You must enable Two-Factor Authentication for your account.'
+        flash.now[:alert] = '您必须给您的账户启用两步验证。'
       else
         grace_period_deadline = current_user.otp_grace_period_started_at + two_factor_grace_period.hours
-        flash.now[:alert] = "You must enable Two-Factor Authentication for your account before #{l(grace_period_deadline)}."
+        flash.now[:alert] = "您必须在 #{l(grace_period_deadline)} 之前给您的账户启用两步验证。"
       end
     end
 
@@ -34,7 +34,7 @@ class Profiles::TwoFactorAuthsController < Profiles::ApplicationController
 
       render 'create'
     else
-      @error = 'Invalid pin code'
+      @error = 'PIN 码无效'
       @qr_code = build_qr_code
       setup_u2f_registration
       render 'show'
@@ -48,7 +48,7 @@ class Profiles::TwoFactorAuthsController < Profiles::ApplicationController
 
     if @u2f_registration.persisted?
       session.delete(:challenges)
-      redirect_to profile_two_factor_auth_path, notice: "Your U2F device was registered!"
+      redirect_to profile_two_factor_auth_path, notice: "你的 U2F 设备已经被注册！"
     else
       @qr_code = build_qr_code
       setup_u2f_registration
@@ -69,7 +69,7 @@ class Profiles::TwoFactorAuthsController < Profiles::ApplicationController
 
   def skip
     if two_factor_grace_period_expired?
-      redirect_to new_profile_two_factor_auth_path, alert: 'Cannot skip two factor authentication setup'
+      redirect_to new_profile_two_factor_auth_path, alert: '无法跳过两步验证设置'
     else
       session[:skip_tfa] = current_user.otp_grace_period_started_at + two_factor_grace_period.hours
       redirect_to root_path

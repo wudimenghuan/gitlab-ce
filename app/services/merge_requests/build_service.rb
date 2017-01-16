@@ -37,23 +37,23 @@ module MergeRequests
       if merge_request.target_branch.blank? || merge_request.source_branch.blank?
         messages <<
           if params[:source_branch] || params[:target_branch]
-            "You must select source and target branch"
+            "必须选择来源和目标分支"
           end
       end
 
       if merge_request.source_project == merge_request.target_project &&
           merge_request.target_branch == merge_request.source_branch
 
-        messages << 'You must select different branches'
+        messages << '必须选择不同的分支'
       end
 
       # See if source and target branches exist
       if merge_request.source_branch.present? && !merge_request.source_project.commit(merge_request.source_branch)
-        messages << "Source branch \"#{merge_request.source_branch}\" does not exist"
+        messages << "源分支 \"#{merge_request.source_branch}\" 不存在"
       end
 
       if merge_request.target_branch.present? && !merge_request.target_project.commit(merge_request.target_branch)
-        messages << "Target branch \"#{merge_request.target_branch}\" does not exist"
+        messages << "目标分支 \"#{merge_request.target_branch}\" 不存在"
       end
 
       messages
@@ -84,16 +84,16 @@ module MergeRequests
       elsif iid && issue = merge_request.target_project.get_issue(iid, current_user)
         case issue
         when Issue
-          merge_request.title = "Resolve \"#{issue.title}\""
+          merge_request.title = "解决 \"#{issue.title}\""
         when ExternalIssue
-          merge_request.title = "Resolve #{issue.title}"
+          merge_request.title = "解决 #{issue.title}"
         end
       else
         merge_request.title = merge_request.source_branch.titleize.humanize
       end
 
       if iid
-        closes_issue = "Closes ##{iid}"
+        closes_issue = "关闭 ##{iid}"
 
         if merge_request.description.present?
           merge_request.description += closes_issue.prepend("\n\n")

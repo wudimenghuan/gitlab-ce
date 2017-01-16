@@ -1,15 +1,12 @@
 - supports_slash_commands = local_assigns.fetch(:supports_slash_commands, false)
 .comment-toolbar.clearfix
   .toolbar-text
-    Styling with
+    支持
     = link_to 'Markdown', help_page_path('user/markdown'), target: '_blank', tabindex: -1
     - if supports_slash_commands
-      and
+      及
       = link_to 'slash commands', help_page_path('user/project/slash_commands'), target: '_blank', tabindex: -1
-      are
-    - else
-      is
-    supported
+    格式
   %button.toolbar-button.markdown-selector{ type: 'button', tabindex: '-1' }
     = icon('file-image-o', class: 'toolbar-button-icon')
-    Attach a file
+    附加文件

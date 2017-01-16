@@ -15,7 +15,7 @@
     - else
       %span.api.monospace API
     - if pipeline.latest?
-      %span.label.label-success.has-tooltip{ title: 'Latest build for this branch' } latest
+      %span.label.label-success.has-tooltip{ title: '这个分支的最新构建' } latest
     - if pipeline.triggered?
       %span.label.label-primary triggered
     - if pipeline.yaml_errors.present?

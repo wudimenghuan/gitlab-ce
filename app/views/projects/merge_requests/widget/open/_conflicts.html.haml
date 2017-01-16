@@ -4,20 +4,21 @@
 
 %h4.has-conflicts
   = icon("exclamation-triangle")
-  This merge request contains merge conflicts
+  此合并请求包含有合并冲突
 
 %p
-  To merge this request, resolve these conflicts
   - if can_resolve && !can_resolve_in_ui
-    locally
-  or
+    请在本地解决这些冲突
+  - else
+    请解决这些冲突
+  或者
   - unless can_merge
-    ask someone with write access to this repository to
-  merge it locally.
+    请求具有推送权限的成员
+  在本地合并。
 
 - if (can_resolve && can_resolve_in_ui) || can_merge
   .btn-group
     - if can_resolve && can_resolve_in_ui
-      = link_to "Resolve conflicts", conflicts_namespace_project_merge_request_path(@project.namespace, @project, @merge_request), class: "btn"
+      = link_to "解决冲突", conflicts_namespace_project_merge_request_path(@project.namespace, @project, @merge_request), class: "btn"
     - if can_merge
-      = link_to "Merge locally", "#modal_merge_info", class: "btn how_to_merge_link vlink", "data-toggle" => "modal"
+      = link_to "手工合并此请求", "#modal_merge_info", class: "btn how_to_merge_link vlink", "data-toggle" => "modal"

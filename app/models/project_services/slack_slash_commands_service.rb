@@ -2,11 +2,11 @@ class SlackSlashCommandsService < ChatSlashCommandsService
   include TriggersHelper
 
   def title
-    'Slack Command'
+    'Slack 命令'
   end
 
   def description
-    "Perform common operations on GitLab in Slack"
+    "在 GitLab 上实现 Slack 的常见操作"
   end
 
   def to_param

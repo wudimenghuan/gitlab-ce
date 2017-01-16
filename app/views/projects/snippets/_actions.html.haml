@@ -1,29 +1,30 @@
 .hidden-xs
   - if can?(current_user, :update_project_snippet, @snippet)
     = link_to edit_namespace_project_snippet_path(@project.namespace, @project, @snippet), class: "btn btn-grouped" do
-      Edit
+      编辑
   - if can?(current_user, :update_project_snippet, @snippet)
-    = link_to namespace_project_snippet_path(@project.namespace, @project, @snippet), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-grouped btn-inverted btn-remove", title: 'Delete Snippet' do
-      Delete
+    = link_to namespace_project_snippet_path(@project.namespace, @project, @snippet), method: :delete, data: { confirm: "确认删除此代码片段？" }, class: "btn btn-grouped btn-inverted btn-remove", title: 'Delete Snippet' do
+      删除
   - if can?(current_user, :create_project_snippet, @project)
-    = link_to new_namespace_project_snippet_path(@project.namespace, @project), class: 'btn btn-grouped btn-inverted btn-create', title: "New snippet" do
-      New snippet
+    = link_to new_namespace_project_snippet_path(@project.namespace, @project), class: 'btn btn-grouped btn-inverted btn-create', title: "新建代码片段" do
+      新建代码片段
+    = link_to namespace_project_snippet_path(@project.namespace, @project, @snippet), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-grouped btn-danger", title: '删除代码片段' do
 - if can?(current_user, :create_project_snippet, @project) || can?(current_user, :update_project_snippet, @snippet)
   .visible-xs-block.dropdown
     %button.btn.btn-default.btn-block.append-bottom-0.prepend-top-5{ data: { toggle: "dropdown" } }
-      Options
+      选项
       = icon('caret-down')
     .dropdown-menu.dropdown-menu-full-width
       %ul
         - if can?(current_user, :create_project_snippet, @project)
           %li
-            = link_to new_namespace_project_snippet_path(@project.namespace, @project), title: "New snippet" do
-              New snippet
+            = link_to new_namespace_project_snippet_path(@project.namespace, @project), title: "新建代码片段" do
+              新建代码片段
         - if can?(current_user, :update_project_snippet, @snippet)
           %li
-            = link_to namespace_project_snippet_path(@project.namespace, @project, @snippet), method: :delete, data: { confirm: "Are you sure?" }, title: 'Delete Snippet' do
-              Delete
+            = link_to namespace_project_snippet_path(@project.namespace, @project, @snippet), method: :delete, data: { confirm: "确认删除此代码片段？" }, title: '删除代码片段' do
+              删除
         - if can?(current_user, :update_project_snippet, @snippet)
           %li
             = link_to edit_namespace_project_snippet_path(@project.namespace, @project, @snippet) do
-              Edit
+              编辑

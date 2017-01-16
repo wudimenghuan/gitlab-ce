@@ -16,7 +16,7 @@ module ButtonHelper
   # See http://clipboardjs.com/#usage
   def clipboard_button(data = {})
     css_class = data[:class] || 'btn-clipboard btn-transparent'
-    title = data[:title] || 'Copy to clipboard'
+    title = data[:title] || '复制到剪贴板'
     data = { toggle: 'tooltip', placement: 'bottom', container: 'body' }.merge(data)
     content_tag :button,
       icon('clipboard'),
@@ -39,7 +39,7 @@ module ButtonHelper
         html: true,
         placement: placement,
         container: 'body',
-        title: "Set a password on your account<br>to pull or push via #{protocol}"
+        title: "在账户中设置密码<br>然后再使用 #{protocol} 拉取和推送。"
       }
   end
 
@@ -54,7 +54,7 @@ module ButtonHelper
         html: true,
         placement: placement,
         container: 'body',
-        title: 'Add an SSH key to your profile<br>to pull or push via SSH.'
+        title: '在个人资料中增加 SSH 密钥<br>然后再使用 SSH 拉取和推送。'
       }
   end
 end
