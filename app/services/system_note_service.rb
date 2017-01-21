@@ -126,6 +126,57 @@ module SystemNoteService
     end
   end
 
+  # Called when the estimated time of a Noteable is changed
+  #
+  # noteable      - Noteable object
+  # project       - Project owning noteable
+  # author        - User performing the change
+  # time_estimate - Estimated time
+  #
+  # Example Note text:
+  #
+  #   "Changed estimate of this issue to 3d 5h"
+  #
+  # Returns the created Note object
+
+  def change_time_estimate(noteable, project, author)
+    parsed_time = Gitlab::TimeTrackingFormatter.output(noteable.time_estimate)
+    body = if noteable.time_estimate == 0
+             "此 #{noteable.human_class_name} 的预估时间已删除"
+           else
+             "将此 #{noteable.human_class_name} 的预估时间更改为 #{parsed_time}"
+           end
+
+    create_note(noteable: noteable, project: project, author: author, note: body)
+  end
+
+  # Called when the spent time of a Noteable is changed
+  #
+  # noteable   - Noteable object
+  # project    - Project owning noteable
+  # author     - User performing the change
+  # time_spent - Spent time
+  #
+  # Example Note text:
+  #
+  #   "Added 2h 30m of time spent on this issue"
+  #
+  # Returns the created Note object
+
+  def change_time_spent(noteable, project, author)
+    time_spent = noteable.time_spent
+
+    if time_spent == :reset
+      body = "此 #{noteable.human_class_name} 的耗费时间已删除"
+    else
+      parsed_time = Gitlab::TimeTrackingFormatter.output(time_spent.abs)
+      action = time_spent > 0 ? '增加' : '减去'
+      body = "#{action} 此 #{noteable.human_class_name} #{parsed_time} 耗费时间"
+    end
+
+    create_note(noteable: noteable, project: project, author: author, note: body)
+  end
+
   # Called when the status of a Noteable is changed
   #
   # noteable - Noteable object
@@ -182,7 +233,7 @@ module SystemNoteService
   end
 
   def discussion_continued_in_issue(discussion, project, author, issue)
-    body = "Added #{issue.to_reference} to continue this discussion"
+    body = "添加 #{issue.to_reference} 以继续此讨论"
     note_attributes = discussion.reply_attributes.merge(project: project, author: author, note: body)
     note_attributes[:type] = note_attributes.delete(:note_type)
 

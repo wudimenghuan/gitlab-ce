@@ -18,7 +18,8 @@
             或者在 #{link_to Gitlab.config.gravatar.host, "http://" + Gitlab.config.gravatar.host} 修改头像
     .col-lg-9
       .clearfix.avatar-image.append-bottom-default
-        = image_tag avatar_icon(@user, 160), alt: '', class: 'avatar s160'
+        = link_to avatar_icon(@user, 400), target: '_blank' do
+          = image_tag avatar_icon(@user, 160), alt: '', class: 'avatar s160'
       %h5.prepend-top-0
         上传新的头像
       .prepend-top-5.append-bottom-10

@@ -25,8 +25,17 @@ class Projects::CompareController < Projects::ApplicationController
   end
 
   def create
-    redirect_to namespace_project_compare_path(@project.namespace, @project,
+    if params[:from].blank? || params[:to].blank?
+      flash[:alert] = "您必须选择来源及目标分支"
+      from_to_vars = {
+        from: params[:from].presence,
+        to: params[:to].presence
+      }
+      redirect_to namespace_project_compare_index_path(@project.namespace, @project, from_to_vars)
+    else
+      redirect_to namespace_project_compare_path(@project.namespace, @project,
                                                params[:from], params[:to])
+    end
   end
 
   private

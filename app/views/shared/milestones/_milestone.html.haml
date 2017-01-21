@@ -9,7 +9,7 @@
       .pull-right.light #{milestone.percent_complete(current_user)}% 完成
   .row
     .col-sm-6
-      = link_to pluralize(milestone.issues_visible_to_user(current_user).size, '个问题', '个问题'), issues_path
+      = link_to pluralize(milestone.total_issues_count(current_user), '个问题', '个问题'), issues_path
       &middot;
       = link_to pluralize(milestone.merge_requests.size, '个合并请求', '个合并请求'), merge_requests_path
     .col-sm-6= milestone_progress_bar(milestone)
