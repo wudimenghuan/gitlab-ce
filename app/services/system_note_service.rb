@@ -126,6 +126,17 @@ module SystemNoteService
     end
   end
 
+  def noteable_zh(noteable_name)
+	  case noteable_name
+	  when 'issue'
+	    "问题"
+	  when 'merge request'
+	    "合并请求"
+	  else
+	  	noteable_name
+	  end
+  end
+
   # Called when the estimated time of a Noteable is changed
   #
   # noteable      - Noteable object
@@ -142,9 +153,9 @@ module SystemNoteService
   def change_time_estimate(noteable, project, author)
     parsed_time = Gitlab::TimeTrackingFormatter.output(noteable.time_estimate)
     body = if noteable.time_estimate == 0
-             "此 #{noteable.human_class_name} 的预估时间已删除"
+             "删除此#{noteable_zh(noteable.human_class_name)}的预估工时"
            else
-             "将此 #{noteable.human_class_name} 的预估时间更改为 #{parsed_time}"
+             "将此#{noteable_zh(noteable.human_class_name)}的预估工时更改为 #{parsed_time}"
            end
 
     create_note(noteable: noteable, project: project, author: author, note: body)
@@ -167,11 +178,11 @@ module SystemNoteService
     time_spent = noteable.time_spent
 
     if time_spent == :reset
-      body = "此 #{noteable.human_class_name} 的耗费时间已删除"
+      body = "删除此#{noteable_zh(noteable.human_class_name)}的工时"
     else
       parsed_time = Gitlab::TimeTrackingFormatter.output(time_spent.abs)
       action = time_spent > 0 ? '增加' : '减去'
-      body = "#{action} 此 #{noteable.human_class_name} #{parsed_time} 耗费时间"
+      body = "为此#{noteable_zh(noteable.human_class_name)}#{action}#{parsed_time}工时"
     end
 
     create_note(noteable: noteable, project: project, author: author, note: body)

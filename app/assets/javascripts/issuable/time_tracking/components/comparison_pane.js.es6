@@ -21,7 +21,7 @@
         return prettyTime.stringifyTime(this.parsedRemaining);
       },
       timeRemainingTooltip() {
-        const prefix = this.timeRemainingMinutes < 0 ? '结束于' : '剩余时间:';
+        const prefix = this.timeRemainingMinutes < 0 ? '结束于' : '剩余工时:';
         return `${prefix} ${this.timeRemainingHumanReadable}`;
       },
       /* Diff values for comparison meter */
@@ -58,7 +58,7 @@
               <span class='compare-value spent'>{{ timeSpentHumanReadable }}</span>
             </div>
             <div class='compare-display estimated pull-right'>
-              <span class='compare-label'>预计</span>
+              <span class='compare-label'>预估</span>
               <span class='compare-value'>{{ timeEstimateHumanReadable }}</span>
             </div>
           </div>
