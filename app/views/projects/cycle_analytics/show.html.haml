@@ -23,7 +23,7 @@
   .wrapper{ "v-show" => "!isLoading && !hasError" }
     .panel.panel-default
       .panel-heading
-        Pipeline Health
+        流水线健康
       .content-block
         .container-fluid
           .row
@@ -49,16 +49,16 @@
             %ul
               %li.stage-header
                 %span.stage-name
-                  Stage
-                %i.has-tooltip.fa.fa-question-circle{ "data-placement" => "top", title: "The phase of the development lifecycle.", "aria-hidden" => "true" }
+                  阶段
+                %i.has-tooltip.fa.fa-question-circle{ "data-placement" => "top", title: "开发生命周期中的各个阶段。", "aria-hidden" => "true" }
               %li.median-header
                 %span.stage-name
-                  Median
-                %i.has-tooltip.fa.fa-question-circle{ "data-placement" => "top", title: "The value lying at the midpoint of a series of observed values. E.g., between 3, 5, 9, the median is 5. Between 3, 5, 7, 8, the median is (5+7)/2 = 6.", "aria-hidden" => "true" }
+                  平均值
+                %i.has-tooltip.fa.fa-question-circle{ "data-placement" => "top", title: "该值位于一系列观测值的中点。 例如，在3,5,9之间，中值为5.在3,5,7,8之间，中值为（5 + 7）/ 2 = 6。", "aria-hidden" => "true" }
               %li.event-header
                 %span.stage-name
-                  {{ currentStage ? currentStage.legend : 'Related Issues' }}
-                %i.has-tooltip.fa.fa-question-circle{ "data-placement" => "top", title: "The collection of events added to the data gathered for that stage.", "aria-hidden" => "true" }
+                  {{ currentStage ? currentStage.legend : '关联问题' }}
+                %i.has-tooltip.fa.fa-question-circle{ "data-placement" => "top", title: "为收集该阶段数据而添加的事件集合。", "aria-hidden" => "true" }
               %li.total-time-header
                 %span.stage-name
                   总时间
