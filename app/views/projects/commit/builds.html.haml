@@ -1,0 +1,9 @@
+- @no_container = true
+- page_title "构建", "#{@commit.title} (#{@commit.short_id})", "提交"
+= render "projects/commits/head"
+
+%div{ class: container_class }
+  = render "commit_box"
+
+  = render "ci_menu"
+  = render "builds"

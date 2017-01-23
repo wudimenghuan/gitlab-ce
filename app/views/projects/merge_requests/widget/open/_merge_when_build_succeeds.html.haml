@@ -1,3 +1,6 @@
+- content_for :page_specific_javascripts do
+  = page_specific_javascript_tag('merge_request_widget/ci_bundle.js')
+
 %h4
   #{link_to_member(@project, @merge_request.merge_user, avatar: true)} 设置了
   构建成功时自动合并。
