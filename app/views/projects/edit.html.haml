@@ -38,49 +38,49 @@
                 %span.help-block
               .col-md-3.visibility-select-container
                 = render('projects/visibility_select', model_method: :visibility_level, form: f, selected_level: @project.visibility_level)
-          = f.fields_for :project_feature do |feature_fields|
+            = f.fields_for :project_feature do |feature_fields|
               %fieldset.features
-              .row
+                .row
                   .col-md-9.project-feature
                     = feature_fields.label :repository_access_level, "版本库", class: 'label-light'
                     %span.help-block 查看和编辑本项目的文件
-                .col-md-3.js-repo-access-level
-                  = project_feature_access_select(:repository_access_level)
+                  .col-md-3.js-repo-access-level
+                    = project_feature_access_select(:repository_access_level)
 
-                  .row
+                .row
                   .col-md-9.project-feature.nested
-                      = feature_fields.label :merge_requests_access_level, "合并请求", class: 'label-light'
-                      %span.help-block 合并上游修改
-                    .col-md-3
-                      = project_feature_access_select(:merge_requests_access_level)
+                    = feature_fields.label :merge_requests_access_level, "合并请求", class: 'label-light'
+                    %span.help-block 合并上游修改
+                  .col-md-3
+                    = project_feature_access_select(:merge_requests_access_level)
 
-                  .row
+                .row
                   .col-md-9.project-feature.nested
-                      = feature_fields.label :builds_access_level, "构建", class: 'label-light'
-                      %span.help-block 合并前测试和部署变更
-                    .col-md-3
-                      = project_feature_access_select(:builds_access_level)
+                    = feature_fields.label :builds_access_level, "构建", class: 'label-light'
+                    %span.help-block 合并前测试和部署变更
+                  .col-md-3
+                    = project_feature_access_select(:builds_access_level)
 
-              .row
+                .row
                   .col-md-9.project-feature
-                  = feature_fields.label :snippets_access_level, "代码片段", class: 'label-light'
-                  %span.help-block 共享 git 版本仓库外的代码
-                .col-md-3
-                  = project_feature_access_select(:snippets_access_level)
+                    = feature_fields.label :snippets_access_level, "代码片段", class: 'label-light'
+                    %span.help-block 共享 git 版本仓库外的代码
+                  .col-md-3
+                    = project_feature_access_select(:snippets_access_level)
 
-              .row
+                .row
                   .col-md-9.project-feature
-                  = feature_fields.label :issues_access_level, "问题", class: 'label-light'
-                  %span.help-block 轻量级问题跟踪系统
-                .col-md-3
-                  = project_feature_access_select(:issues_access_level)
+                    = feature_fields.label :issues_access_level, "问题", class: 'label-light'
+                    %span.help-block 轻量级问题跟踪系统
+                  .col-md-3
+                    = project_feature_access_select(:issues_access_level)
 
-              .row
+                .row
                   .col-md-9.project-feature
-                  = feature_fields.label :wiki_access_level, "维基", class: 'label-light'
-                  %span.help-block 项目文档页面
-                .col-md-3
-                  = project_feature_access_select(:wiki_access_level)
+                    = feature_fields.label :wiki_access_level, "维基", class: 'label-light'
+                    %span.help-block 项目文档页面
+                  .col-md-3
+                    = project_feature_access_select(:wiki_access_level)
           .form-group
             = render 'shared/allow_request_access', form: f
           - if Gitlab.config.lfs.enabled && current_user.admin?
