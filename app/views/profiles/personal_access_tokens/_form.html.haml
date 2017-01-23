@@ -6,11 +6,11 @@
   = form_errors(personal_access_token)
 
   .form-group
-    = f.label :name, class: 'label-light'
+    = f.label :name, "名称", class: 'label-light'
     = f.text_field :name, class: "form-control", required: true
 
   .form-group
-    = f.label :expires_at, class: 'label-light'
+    = f.label :expires_at, "过期时间", class: 'label-light'
     = f.text_field :expires_at, class: "datepicker form-control"
 
   .form-group
@@ -18,4 +18,4 @@
     = render 'shared/tokens/scopes_form', prefix: 'personal_access_token', token: personal_access_token, scopes: scopes
 
   .prepend-top-default
-    = f.submit 'Create Personal Access Token', class: "btn btn-create"
+    = f.submit '创建个人访问令牌', class: "btn btn-create"

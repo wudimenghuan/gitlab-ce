@@ -8,7 +8,7 @@
 .row.prepend-top-default
   .col-lg-3.profile-settings-sidebar
     %h4.prepend-top-0
-      = incoming_email_token_enabled? ? "Private Tokens" : "Private Token"
+      = incoming_email_token_enabled? ? "私有令牌" : "私有令牌"
     %p
       确保
       = incoming_email_token_enabled? ? "这些令牌" : "这个令牌"
@@ -17,7 +17,7 @@
     .reset-action
       %p.cgray
         - if current_user.private_token
-          = label_tag "private-token", "Private token", class: "label-light"
+          = label_tag "private-token", "私有令牌", class: "label-light"
           = text_field_tag "private-token", current_user.private_token, class: "form-control", readonly: true, onclick: "this.select()"
         - else
           %span 您还没有私有令牌，请点击创建按钮来修复。
