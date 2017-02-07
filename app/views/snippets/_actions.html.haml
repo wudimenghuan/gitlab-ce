@@ -6,8 +6,10 @@
     = link_to snippet_path(@snippet), method: :delete, data: { confirm: "确认删除该代码片段？" }, class: "btn btn-grouped btn-inverted btn-remove", title: '删除代码片段 Snippet' do
       删除
   - if current_user
-    = link_to new_snippet_path, class: "btn btn-grouped btn-inverted btn-create", title: "New snippet" do
+    = link_to new_snippet_path, class: "btn btn-grouped btn-inverted btn-create", title: "新建代码片段" do
       新建代码片段
+  - if @snippet.submittable_as_spam? && current_user.admin?
+    = link_to '提交为垃圾', mark_as_spam_snippet_path(@snippet), method: :post, class: 'btn btn-grouped btn-spam', title: 'Submit as spam'
 - if current_user
   .visible-xs-block.dropdown
     %button.btn.btn-default.btn-block.append-bottom-0.prepend-top-5{ data: { toggle: "dropdown" } }
@@ -26,3 +28,6 @@
           %li
             = link_to edit_snippet_path(@snippet) do
               编辑
+        - if @snippet.submittable_as_spam? && current_user.admin?
+          %li
+            = link_to '提交为垃圾', mark_as_spam_snippet_path(@snippet), method: :post
