@@ -47,10 +47,6 @@
               %li.filter-dropdown-item{ 'data-value' => 'none' }
                 %button.btn.btn-link
                   未指派
-              - if current_user
-                %li.filter-dropdown-item{ 'data-value' => current_user.to_reference }
-                  %button.btn.btn-link
-                    指派给自己
               %li.divider
             %ul.filter-dropdown{ 'data-dynamic' => true, 'data-dropdown' => true }
               %li.filter-dropdown-item
