@@ -1,4 +1,4 @@
-- page_title "Personal Access Tokens"
+- page_title "个人访问令牌"
 = render 'profiles/head'
 
 .row.prepend-top-default
@@ -6,43 +6,43 @@
     %h4.prepend-top-0
       = page_title
     %p
-      You can generate a personal access token for each application you use that needs access to the GitLab API.
+      您可以为需要访问GitLab API的每个应用程序生成个人访问令牌。
     %p
-      You can also use personal access tokens to authenticate against Git over HTTP.
-      They are the only accepted password when you have Two-Factor Authentication (2FA) enabled.
+      您还可以使用个人访问令牌通过HTTP进行Git验证。
+      当您启用两步认证（2FA）时，它们是唯一可接受的密码。
 
   .col-lg-9
 
     - if flash[:personal_access_token]
       .created-personal-access-token-container
         %h5.prepend-top-0
-          Your New Personal Access Token
+          你的新个人访问令牌
         .form-group
           = text_field_tag 'created-personal-access-token', flash[:personal_access_token], readonly: true, class: "form-control", 'aria-describedby' => "created-personal-access-token-help-block"
-          = clipboard_button(clipboard_text: flash[:personal_access_token], title: "Copy personal access token to clipboard", placement: "left")
-          %span#created-personal-access-token-help-block.help-block.text-danger Make sure you save it - you won't be able to access it again.
+          = clipboard_button(clipboard_text: flash[:personal_access_token], title: "复制个人访问令牌带剪贴板", placement: "left")
+          %span#created-personal-access-token-help-block.help-block.text-danger 请确保您已经保存好令牌(该令牌将不再显示)。
 
       %hr
 
     %h5.prepend-top-0
-      Add a Personal Access Token
+      增加新的个人令牌
     %p.profile-settings-content
-      Pick a name for the application, and we'll give you a unique token.
+      为应用程序选择一个名称，我们会为您提供一个唯一的令牌。
 
     = render "form", personal_access_token: @personal_access_token, scopes: @scopes
 
     %hr
 
-    %h5 Active Personal Access Tokens (#{@active_personal_access_tokens.length})
+    %h5 已激活的个人访问令牌 (#{@active_personal_access_tokens.length})
 
     - if @active_personal_access_tokens.present?
       .table-responsive
         %table.table.active-personal-access-tokens
           %thead
             %tr
-              %th Name
-              %th Created
-              %th Expires
+              %th 名称
+              %th 创建时间
+              %th 有效期限
               %th Scopes
               %th
           %tbody
@@ -56,23 +56,23 @@
                   - else
                     %span.personal-access-tokens-never-expires-label Never
                 %td= token.scopes.present? ? token.scopes.join(", ") : "<no scopes selected>"
-                %td= link_to "Revoke", revoke_profile_personal_access_token_path(token), method: :put, class: "btn btn-danger pull-right", data: { confirm: "Are you sure you want to revoke this token? This action cannot be undone." }
+                %td= link_to "撤销", revoke_profile_personal_access_token_path(token), method: :put, class: "btn btn-danger pull-right", data: { confirm: "您确定要撤销此令牌吗？此操作无法撤消。" }
 
     - else
       .settings-message.text-center
-        You don't have any active tokens yet.
+        您还没有任何有效的令牌。
 
     %hr
 
-    %h5 Inactive Personal Access Tokens (#{@inactive_personal_access_tokens.length})
+    %h5 未激活的个人访问令牌 (#{@inactive_personal_access_tokens.length})
 
     - if @inactive_personal_access_tokens.present?
       .table-responsive
         %table.table.inactive-personal-access-tokens
           %thead
             %tr
-              %th Name
-              %th Created
+              %th 名称
+              %th 创建时间
           %tbody
             - @inactive_personal_access_tokens.each do |token|
               %tr
@@ -81,7 +81,7 @@
 
     - else
       .settings-message.text-center
-        There are no inactive tokens.
+        没有未激活的令牌。
 
 
 :javascript

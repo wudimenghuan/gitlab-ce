@@ -3,10 +3,10 @@
 /* global EnvironmentsService */
 /* global Flash */
 
-window.Vue = require('vue');
-window.Vue.use(require('vue-resource'));
-require('../services/environments_service');
-require('./environment_item');
+//= require vue
+//= require vue-resource
+//= require_tree ../services/
+//= require ./environment_item
 
 (() => {
   window.gl = window.gl || {};
@@ -126,14 +126,14 @@ require('./environment_item');
           <ul v-if="!isLoading" class="nav-links">
             <li v-bind:class="{ 'active': scope === undefined }">
               <a :href="projectEnvironmentsPath">
-                Available
+                可用的
                 <span class="badge js-available-environments-count">
                   {{state.availableCounter}}
                 </span>
               </a>
             </li><li v-bind:class="{ 'active' : scope === 'stopped' }">
               <a :href="projectStoppedEnvironmentsPath">
-                Stopped
+                停用的
                 <span class="badge js-stopped-environments-count">
                   {{state.stoppedCounter}}
                 </span>
@@ -142,7 +142,7 @@ require('./environment_item');
           </ul>
           <div v-if="canCreateEnvironmentParsed && !isLoading" class="nav-controls">
             <a :href="newEnvironmentPath" class="btn btn-create">
-              New environment
+              新建运行环境
             </a>
           </div>
         </div>
@@ -155,13 +155,13 @@ require('./environment_item');
           <div class="blank-state blank-state-no-icon"
             v-if="!isLoading && state.environments.length === 0">
             <h2 class="blank-state-title js-blank-state-title">
-              You don't have any environments right now.
+              你现在还没有任何运行环境。
             </h2>
             <p class="blank-state-text">
-              Environments are places where code gets deployed, such as staging or production.
+              运行环境是部署代码的地方, 比如模拟环境或者生产现场
               <br />
               <a :href="helpPagePath">
-                Read more about environments
+                运行环境介绍
               </a>
             </p>
 
@@ -169,7 +169,7 @@ require('./environment_item');
               v-if="canCreateEnvironmentParsed"
               :href="newEnvironmentPath"
               class="btn btn-create js-new-environment-button">
-              New Environment
+              新建运行环境
             </a>
           </div>
 
@@ -178,11 +178,11 @@ require('./environment_item');
             <table class="table ci-table environments">
               <thead>
                 <tr>
-                  <th class="environments-name">Environment</th>
-                  <th class="environments-deploy">Last deployment</th>
-                  <th class="environments-build">Job</th>
-                  <th class="environments-commit">Commit</th>
-                  <th class="environments-date">Updated</th>
+                  <th class="environments-name">运行环境</th>
+                  <th class="environments-deploy">最后部署</th>
+                  <th class="environments-build">构建</th>
+                  <th class="environments-commit">提交</th>
+                  <th class="environments-date">创建于</th>
                   <th class="hidden-xs environments-actions"></th>
                 </tr>
               </thead>

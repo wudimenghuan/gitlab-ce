@@ -5,7 +5,7 @@
         %button.close{ type: "button", data: { dismiss: "modal" }, aria: { label: "close" } }
           %span{ aria: { hidden: "true" } } ×
         %h4#custom-notifications-title.modal-title
-          Custom notification events
+          自定义通知事件
 
       .modal-body
         .container-fluid
@@ -14,11 +14,11 @@
             .row
               .col-lg-4
                 %h4.prepend-top-0
-                  Notification events
+                  通知事件
                 %p
-                  Custom notification levels are the same as participating levels. With custom notification levels you will also receive notifications for select events. To find out more, check out
-                  = succeed "." do
-                    %a{ href: help_page_path('workflow/notifications'), target: "_blank" } notification emails
+                  <strong>自定义</strong>通知级别与<strong>参与</strong>级别相同。使用自定义通知级别，您将只收到您所选定活动的通知。想要了解更多，请点击
+                  = succeed "。" do
+                    %a{ href: help_page_path('workflow/notifications'), target: "_blank" } 通知邮件
               .col-lg-8
                 - NotificationSetting::EMAIL_EVENTS.each_with_index do |event, index|
                   - field_id = "#{notifications_menu_identifier("modal", notification_setting)}_notification_setting[#{event}]"

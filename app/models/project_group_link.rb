@@ -11,7 +11,7 @@ class ProjectGroupLink < ActiveRecord::Base
 
   validates :project_id, presence: true
   validates :group, presence: true
-  validates :group_id, uniqueness: { scope: [:project_id], message: "already shared with this group" }
+  validates :group_id, uniqueness: { scope: [:project_id], message: "已与该群组共享" }
   validates :group_access, presence: true
   validates :group_access, inclusion: { in: Gitlab::Access.values }, presence: true
   validate :different_group
@@ -34,7 +34,7 @@ class ProjectGroupLink < ActiveRecord::Base
 
   def different_group
     if self.group && self.project && self.project.group == self.group
-      errors.add(:base, "Project cannot be shared with the project it is in.")
+      errors.add(:base, "项目无法与其所在的项目共享。")
     end
   end
 

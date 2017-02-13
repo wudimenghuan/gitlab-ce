@@ -17,7 +17,7 @@ class RegistrationsController < Devise::RegistrationsController
     if !Gitlab::Recaptcha.load_configurations! || verify_recaptcha
       super
     else
-      flash[:alert] = 'There was an error with the reCAPTCHA. Please solve the reCAPTCHA again.'
+      flash[:alert] = '验证码错误，请重新输入。'
       flash.delete :recaptcha_error
       render action: 'new'
     end
@@ -29,7 +29,7 @@ class RegistrationsController < Devise::RegistrationsController
     respond_to do |format|
       format.html do
         session.try(:destroy)
-        redirect_to new_user_session_path, notice: "Account successfully removed."
+        redirect_to new_user_session_path, notice: "账号删除成功。"
       end
     end
   end

@@ -50,91 +50,91 @@ module SortingHelper
   end
 
   def sort_title_priority
-    'Priority'
+    '优先级'
   end
 
   def sort_title_oldest_updated
-    'Oldest updated'
+    '最早更新的'
   end
 
   def sort_title_recently_updated
-    'Last updated'
+    '最近更新的'
   end
 
   def sort_title_oldest_created
-    'Oldest created'
+    '最早创建的'
   end
 
   def sort_title_recently_created
-    'Last created'
+    '最近创建的'
   end
 
   def sort_title_milestone_soon
-    'Milestone due soon'
+    '最近的里程碑'
   end
 
   def sort_title_milestone_later
-    'Milestone due later'
+    '最早的里程碑'
   end
 
   def sort_title_due_date_soon
-    'Due soon'
+    '最近的'
   end
 
   def sort_title_due_date_later
-    'Due later'
+    '最早的'
   end
 
   def sort_title_name
-    'Name'
+    '名称'
   end
 
   def sort_title_largest_repo
-    'Largest repository'
+    '最大的仓库'
   end
 
   def sort_title_largest_group
-    'Largest group'
+    '最大的群组'
   end
 
   def sort_title_recently_signin
-    'Recent sign in'
+    '最近登录'
   end
 
   def sort_title_oldest_signin
-    'Oldest sign in'
+    '最早登录'
   end
 
   def sort_title_downvotes
-    'Least popular'
+    '最不受欢迎'
   end
 
   def sort_title_upvotes
-    'Most popular'
+    '最受欢迎'
   end
 
   def sort_title_last_joined
-    'Last joined'
+    '最近加入'
   end
 
   def sort_title_oldest_joined
-    'Oldest joined'
+    '最早加入'
   end
 
   def sort_title_access_level_asc
-    'Access level, ascending'
+    '访问级别, 升序'
   end
 
   def sort_title_access_level_desc
-    'Access level, descending'
+    '访问级别, 降序'
   end
 
   def sort_title_name_asc
-    'Name, ascending'
+    '名称, 升序'
   end
 
   def sort_title_name_desc
-    'Name, descending'
+    '名称, 降序'
   end
 
   def sort_value_last_joined

@@ -1,5 +1,5 @@
 - @no_container = true
-- page_title "Groups"
+- page_title "群组"
 = render "admin/dashboard/head"
 
 %div{ class: container_class }
@@ -10,14 +10,14 @@
         .search-holder
           - project_name = params[:name].present? ? params[:name] : nil
           .search-field-holder
-            = search_field_tag :name, project_name, class: "form-control search-text-input js-search-input", autofocus: true, spellcheck: false, placeholder: 'Search by name'
+            = search_field_tag :name, project_name, class: "form-control search-text-input js-search-input", autofocus: true, spellcheck: false, placeholder: '按名称搜索'
             = icon("search", class: "search-icon")
           .dropdown
             - toggle_text = @sort.present? ? sort_options_hash[@sort] : sort_title_recently_created
             = dropdown_toggle(toggle_text, { toggle: 'dropdown' })
             %ul.dropdown-menu.dropdown-menu-align-right
               %li.dropdown-header
-                Sort by
+                排序方式
               %li
                 = link_to admin_groups_path(sort: sort_value_recently_created, name: project_name) do
                   = sort_title_recently_created
@@ -30,7 +30,7 @@
                 = link_to admin_groups_path(sort: sort_value_largest_group, name: project_name) do
                   = sort_title_largest_group
           = link_to new_admin_group_path, class: "btn btn-new" do
-            New Group
+            新建群组
   %ul.content-list
     = render @groups
 

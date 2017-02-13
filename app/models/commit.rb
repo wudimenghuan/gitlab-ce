@@ -248,9 +248,9 @@ class Commit
 
   def revert_description(user)
     if merged_merge_request?(user)
-      "This reverts merge request #{merged_merge_request(user).to_reference}"
+      "这将还原合并请求 #{merged_merge_request(user).to_reference}"
     else
-      "This reverts commit #{sha}"
+      "这将还原提交 #{sha}"
     end
   end
 
@@ -286,7 +286,7 @@ class Commit
   end
 
   def change_type_title(user)
-    merged_merge_request?(user) ? 'merge request' : 'commit'
+    merged_merge_request?(user) ? '合并请求' : '提交'
   end
 
   # Get the URI type of the given path

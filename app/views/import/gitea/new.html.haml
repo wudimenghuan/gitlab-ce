@@ -1,23 +1,23 @@
-- page_title "Gitea Import"
-- header_title "Projects", root_path
+- page_title "Gitea 导入"
+- header_title "项目", root_path
 
 %h3.page-title
   = custom_icon('go_logo')
-  Import Projects from Gitea
+  从 Gitea 导入项目
 
 %p
-  To get started, please enter your Gitea Host URL and a
-  = succeed '.' do
-    = link_to 'Personal Access Token', 'https://github.com/gogits/go-gogs-client/wiki#access-token'
+  在开始导入项目前，请先输入您的 Gitea 主机 URL 及
+  = succeed '。' do
+    = link_to '个人访问令牌', 'https://github.com/gogits/go-gogs-client/wiki#access-token'
 
 = form_tag personal_access_token_import_gitea_path, class: 'form-horizontal' do
   .form-group
-    = label_tag :gitea_host_url, 'Gitea Host URL', class: 'control-label'
+    = label_tag :gitea_host_url, 'Gitea 主机 URL', class: 'control-label'
     .col-sm-4
       = text_field_tag :gitea_host_url, nil, placeholder: 'https://try.gitea.io', class: 'form-control'
   .form-group
-    = label_tag :personal_access_token, 'Personal Access Token', class: 'control-label'
+    = label_tag :personal_access_token, '个人访问令牌', class: 'control-label'
     .col-sm-4
       = text_field_tag :personal_access_token, nil, class: 'form-control'
   .form-actions
-    = submit_tag 'List Your Gitea Repositories', class: 'btn btn-create'
+    = submit_tag '列出您的 Gitea 版本库', class: 'btn btn-create'

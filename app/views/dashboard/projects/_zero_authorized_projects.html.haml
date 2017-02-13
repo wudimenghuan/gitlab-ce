@@ -1,47 +1,47 @@
 - publicish_project_count = ProjectsFinder.new.execute(current_user).count
 .blank-state.blank-state-welcome
   %h2.blank-state-welcome-title
-    Welcome to GitLab
+    欢迎来到 GitLab！
   %p.blank-state-text
-    Code, test, and deploy together
+    集代码，测试和部署于一体。
 
 - if current_user.can_create_group?
   .blank-state
     .blank-state-icon
       = custom_icon("group", size: 50)
     %h3.blank-state-title
-      You can create a group for several dependent projects.
+      你可以创建一个存放多个相关项目的群组。
     %p.blank-state-text
-      Groups are the best way to manage projects and members.
+      群组是管理项目和成员的最佳方式。
     = link_to new_group_path, class: "btn btn-new" do
-      New group
+      新建群组
 
 .blank-state
   .blank-state-icon
     = custom_icon("project", size: 50)
   %h3.blank-state-title
-    You don't have access to any projects right now
+    你现在不能访问任何项目。
   %p.blank-state-text
     - if current_user.can_create_project?
-      You can create up to
+      你可以最多创建
       %strong= number_with_delimiter(current_user.projects_limit)
       = succeed "." do
         = "project".pluralize(current_user.projects_limit)
     - else
-      If you are added to a project, it will be displayed here.
+      如果你加入了项目，它将会显示在这里。
   - if current_user.can_create_project?
     = link_to new_project_path, class: "btn btn-new" do
-      New project
+      新建项目
 
 - if publicish_project_count > 0
   .blank-state
     .blank-state-icon
       = icon("globe")
     %h3.blank-state-title
-      There are
+      此服务器上有
       = number_with_delimiter(publicish_project_count)
-      public projects on this server.
+      个公开项目。
     %p.blank-state-text
-      Public projects are an easy way to allow everyone to have read-only access.
+      公开项目允许全部人都可以只读访问。
     = link_to trending_explore_projects_path, class: "btn btn-new" do
-      Browse projects
+      浏览公开项目

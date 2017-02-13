@@ -9,17 +9,17 @@ module TodosHelper
 
   def todo_action_name(todo)
     case todo.action
-    when Todo::ASSIGNED then 'assigned you'
-    when Todo::MENTIONED then 'mentioned you on'
-    when Todo::BUILD_FAILED then 'The build failed for'
-    when Todo::MARKED then 'added a todo for'
-    when Todo::APPROVAL_REQUIRED then 'set you as an approver for'
-    when Todo::UNMERGEABLE then 'Could not merge'
+    when Todo::ASSIGNED then '给您指派了'
+    when Todo::MENTIONED then '向您提及了'
+    when Todo::BUILD_FAILED then '你的构建失败了'
+    when Todo::MARKED then '向您标记了'
+    when Todo::APPROVAL_REQUIRED then '请您审批'
+    when Todo::UNMERGEABLE then '无法合并'
     end
   end
 
   def todo_target_link(todo)
-    target = todo.target_type.titleize.downcase
+    target = todo.target_type_zh
     link_to "#{target} #{todo.target_reference}", todo_target_path(todo),
       class: 'has-tooltip',
       title: todo.target.title
@@ -84,9 +84,9 @@ module TodosHelper
 
   def todo_actions_options
     [
-      { id: '', text: 'Any Action' },
-      { id: Todo::ASSIGNED, text: 'Assigned' },
-      { id: Todo::MENTIONED, text: 'Mentioned' }
+      { id: '', text: '任何动作' },
+      { id: Todo::ASSIGNED, text: '被指派' },
+      { id: Todo::MENTIONED, text: '被提及' }
     ]
   end
 
@@ -98,14 +98,14 @@ module TodosHelper
       { id: project.id, text: project.name_with_namespace }
     end
 
-    projects.unshift({ id: '', text: 'Any Project' }).to_json
+    projects.unshift({ id: '', text: '任何项目' }).to_json
   end
 
   def todo_types_options
     [
-      { id: '', text: 'Any Type' },
-      { id: 'Issue', text: 'Issue' },
-      { id: 'MergeRequest', text: 'Merge Request' }
+      { id: '', text: '任何类型' },
+      { id: 'Issue', text: '问题' },
+      { id: 'MergeRequest', text: '合并请求' }
     ]
   end
 
@@ -135,7 +135,7 @@ module TodosHelper
 
     html = "&middot; ".html_safe
     html << content_tag(:span, class: css_class) do
-      "Due #{is_due_today ? "today" : todo.target.due_date.to_s(:medium)}"
+      "截止日期 #{is_due_today ? "今天" : todo.target.due_date.to_s(:medium)}"
     end
   end
 

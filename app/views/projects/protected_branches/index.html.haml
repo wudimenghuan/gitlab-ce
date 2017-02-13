@@ -1,4 +1,4 @@
-- page_title "Protected branches"
+- page_title "保护分支"
 - content_for :page_specific_javascripts do
   = page_specific_javascript_bundle_tag('protected_branches')
 
@@ -6,15 +6,15 @@
   .col-lg-3
     %h4.prepend-top-0
       = page_title
-    %p Keep stable branches secure and force developers to use merge requests.
+    %p 保护稳定分支的安全并强制开发者使用合并请求功能
     %p.prepend-top-20
-      By default, protected branches are designed to:
+      默认情况下，保护分支被设计为：
       %ul
-        %li prevent their creation, if not already created, from everybody except Masters
-        %li prevent pushes from everybody except Masters
-        %li prevent <strong>anyone</strong> from force pushing to the branch
-        %li prevent <strong>anyone</strong> from deleting the branch
-      %p.append-bottom-0 Read more about #{link_to "protected branches", help_page_path("user/project/protected_branches"), class: "underlined-link"} and #{link_to "project permissions", help_page_path("user/permissions"), class: "underlined-link"}.
+        %li 除了主程序员外，禁止其他所有人员创建分支
+        %li 除了主程序员外，禁止其他所有人员推送
+        %li 禁止<strong>任何人</strong> 强制推送此分支
+        %li 禁止<strong>任何人</strong> 删除此分支
+      %p.append-bottom-0 点击 #{link_to "保护分支", help_page_path("user/project/protected_branches"), class: "underlined-link"} 和 #{link_to "项目权限", help_page_path("user/permissions"), class: "underlined-link"}了解更多。
   .col-lg-9
     - if can? current_user, :admin_project, @project
       = render 'create_protected_branch'

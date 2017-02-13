@@ -5,7 +5,7 @@
     props: ['timeEstimateHumanReadable'],
     template: `
       <div class='time-tracking-estimate-only-pane'>
-        <span class='bold'>Estimated:</span>
+        <span class='bold'>预计:</span>
         {{ timeEstimateHumanReadable }}
       </div>
     `,

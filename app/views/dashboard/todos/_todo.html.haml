@@ -10,7 +10,7 @@
           - if todo.author
             = link_to_author(todo)
           - else
-            (removed)
+            (已删除)
 
       %span.action-name
         = todo_action_name(todo)
@@ -19,7 +19,7 @@
         - if todo.target
           = todo_target_link(todo)
         - else
-          (removed)
+          (已删除)
 
       &middot; #{time_ago_with_tooltip(todo.created_at)}
       = todo_due_date(todo)
@@ -32,5 +32,5 @@
   - if todo.pending?
     .todo-actions
       = link_to [:dashboard, todo], method: :delete, class: 'btn btn-loading done-todo' do
-        Done
+        完成
         = icon('spinner spin')

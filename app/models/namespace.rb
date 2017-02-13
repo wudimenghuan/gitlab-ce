@@ -112,7 +112,7 @@ class Namespace < ActiveRecord::Base
 
   def move_dir
     if any_project_has_container_registry_tags?
-      raise Gitlab::UpdatePathError.new('Namespace cannot be moved, because at least one project has tags in container registry')
+      raise Gitlab::UpdatePathError.new('无法移动命名空间，因为至少有一个项目有标签位于容器注册表中')
     end
 
     # Move the namespace directory in all storages paths used by member projects
@@ -125,7 +125,7 @@ class Namespace < ActiveRecord::Base
 
         # if we cannot move namespace directory we should rollback
         # db changes in order to prevent out of sync between db and fs
-        raise Gitlab::UpdatePathError.new('namespace directory cannot be moved')
+        raise Gitlab::UpdatePathError.new('命名空间目录不能移动。')
       end
     end
 
@@ -236,7 +236,7 @@ class Namespace < ActiveRecord::Base
       new_path = "#{path}+#{id}+deleted"
 
       if gitlab_shell.mv_namespace(repository_storage_path, path, new_path)
-        message = "Namespace directory \"#{path}\" moved to \"#{new_path}\""
+        message = "命名空间目录 \"#{path}\" 移动到 \"#{new_path}\""
         Gitlab::AppLogger.info message
 
         # Remove namespace directroy async with delay so

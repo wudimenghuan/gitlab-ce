@@ -1,17 +1,18 @@
 .page-content-header
   .header-main-content
     %strong Commit #{@commit.short_id}
-    = clipboard_button(clipboard_text: @commit.id, title: "Copy commit SHA to clipboard")
-    %span.hidden-xs authored
-    #{time_ago_with_tooltip(@commit.authored_date)}
-    %span by
+    = clipboard_button(clipboard_text: @commit.id, title: "复制提交 SHA 到剪贴板")
+    %span 由
     = author_avatar(@commit, size: 24)
     %strong
       = commit_author_link(@commit, avatar: true, size: 24)
+    %span.hidden-xs 编写于
+    #{time_ago_with_tooltip(@commit.authored_date)}
     - if @commit.different_committer?
-      %span.light Committed by
+      %span.light 由
       %strong
         = commit_committer_link(@commit, avatar: true, size: 24)
+      %span.light 提交于
       #{time_ago_with_tooltip(@commit.committed_date)}
 
   .header-action-buttons
@@ -20,28 +21,28 @@
         = icon('comment')
         = @notes_count
     = link_to namespace_project_tree_path(@project.namespace, @project, @commit), class: "btn btn-default append-right-10 hidden-xs hidden-sm" do
-      Browse Files
+      浏览文件
     .dropdown.inline
       %a.btn.btn-default.dropdown-toggle{ data: { toggle: "dropdown" } }
-        %span Options
+        %span 选项
         = icon('caret-down')
       %ul.dropdown-menu.dropdown-menu-align-right
         %li.visible-xs-block.visible-sm-block
           = link_to namespace_project_tree_path(@project.namespace, @project, @commit) do
-            Browse Files
+            浏览文件
         - unless @commit.has_been_reverted?(current_user)
           %li.clearfix
             = revert_commit_link(@commit, namespace_project_commit_path(@project.namespace, @project, @commit.id), has_tooltip: false)
         %li.clearfix
           = cherry_pick_commit_link(@commit, namespace_project_commit_path(@project.namespace, @project, @commit.id), has_tooltip: false)
         %li.clearfix
-          = link_to "Tag", new_namespace_project_tag_path(@project.namespace, @project, ref: @commit)
+          = link_to "标签", new_namespace_project_tag_path(@project.namespace, @project, ref: @commit)
         %li.divider
         %li.dropdown-header
-          Download
+          下载
         - unless @commit.parents.length > 1
-          %li= link_to "Email Patches", namespace_project_commit_path(@project.namespace, @project, @commit, format: :patch)
-        %li= link_to "Plain Diff",    namespace_project_commit_path(@project.namespace, @project, @commit, format: :diff)
+          %li= link_to "电子邮件补丁", namespace_project_commit_path(@project.namespace, @project, @commit, format: :patch)
+        %li= link_to "差异文件",    namespace_project_commit_path(@project.namespace, @project, @commit, format: :diff)
 
 .commit-box
   %h3.commit-title
@@ -54,7 +55,7 @@
   .well-segment.branch-info
     .icon-container.commit-icon
       = custom_icon("icon_commit")
-    %span.cgray= pluralize(@commit.parents.count, "parent")
+    %span.cgray= pluralize(@commit.parents.count, "个父辈", "个父辈")
     - @commit.parents.each do |parent|
       = link_to parent.short_id, namespace_project_commit_path(@project.namespace, @project, parent), class: "monospace"
     %span.commit-info.branches
@@ -65,13 +66,13 @@
       %div{ class: "icon-container ci-status-icon-#{@commit.status}" }
         = link_to namespace_project_pipeline_path(@project.namespace, @project, @commit.pipelines.last.id) do
           = ci_icon_for_status(@commit.status)
-      Pipeline
-      = link_to "##{@commit.pipelines.last.id}", namespace_project_pipeline_path(@project.namespace, @project, @commit.pipelines.last.id), class: "monospace"
-      for
+      提交
       = link_to @commit.short_id, namespace_project_commit_path(@project.namespace, @project, @commit), class: "monospace"
+      的 流水线
+      = link_to "##{@commit.pipelines.last.id}", namespace_project_pipeline_path(@project.namespace, @project, @commit.pipelines.last.id), class: "monospace"
       %span.ci-status-label
         = ci_label_for_status(@commit.status)
-      in
+      于
       = time_interval_in_words @commit.pipelines.total_duration
 
 :javascript

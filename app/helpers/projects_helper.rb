@@ -22,7 +22,7 @@ module ProjectsHelper
     default_opts = { avatar: true, name: true, size: 16, author_class: 'author', title: ":name", tooltip: false }
     opts = default_opts.merge(opts)
 
-    return "(deleted)" unless author
+    return "(已删除)" unless author
 
     author_html =  ""
 
@@ -70,15 +70,15 @@ module ProjectsHelper
   end
 
   def remove_project_message(project)
-    "You are going to remove #{project.name_with_namespace}.\n Removed project CANNOT be restored!\n Are you ABSOLUTELY sure?"
+    "将要删除 #{project.name_with_namespace}.\n 删除项目后无法恢复！\n 百分之百确定要继续么？"
   end
 
   def transfer_project_message(project)
-    "You are going to transfer #{project.name_with_namespace} to another owner. Are you ABSOLUTELY sure?"
+    "将要转移 #{project.name_with_namespace} 给其他人。百分之百确定要继续么？"
   end
 
   def remove_fork_project_message(project)
-    "You are going to remove the fork relationship to source project #{@project.forked_from_project.name_with_namespace}.  Are you ABSOLUTELY sure?"
+    "将要删除与源项目 #{@project.forked_from_project.name_with_namespace} 的派生关系。百分之百确定要继续么？"
   end
 
   def project_nav_tabs
@@ -134,7 +134,7 @@ module ProjectsHelper
 
     if @project.private?
       level = @project.project_feature.send(field)
-      options.delete('Everyone with access')
+      options.delete('公开访问')
       highest_available_option = options.values.max if level == ProjectFeature::ENABLED
     end
 
@@ -202,11 +202,11 @@ module ProjectsHelper
   def project_lfs_status(project)
     if project.lfs_enabled?
       content_tag(:span, class: 'lfs-enabled') do
-        'Enabled'
+        '启用'
       end
     else
       content_tag(:span, class: 'lfs-disabled') do
-        'Disabled'
+        '禁用'
       end
     end
   end
@@ -252,7 +252,7 @@ module ProjectsHelper
     if project.last_activity_at
       time_ago_with_tooltip(project.last_activity_at, placement: 'bottom', html_class: 'last_activity_time_ago')
     else
-      "Never"
+      "从未"
     end
   end
 
@@ -262,7 +262,7 @@ module ProjectsHelper
       project,
       project.default_branch || 'master',
       file_name:      file_name,
-      commit_message: commit_message || "Add #{file_name.downcase}",
+      commit_message: commit_message || "添加 #{file_name.downcase}",
       target_branch: target_branch,
       context: context
     )
@@ -274,7 +274,7 @@ module ProjectsHelper
       project,
       project.default_branch || 'master',
       file_name:      '.koding.yml',
-      commit_message: "Add Koding stack script",
+      commit_message: "添加 Koding stack 脚本",
       content: <<-CONTENT.strip_heredoc
         provider:
           aws:
@@ -396,9 +396,9 @@ module ProjectsHelper
 
   def project_feature_options
     {
-      'Disabled' => ProjectFeature::DISABLED,
-      'Only team members' => ProjectFeature::PRIVATE,
-      'Everyone with access' => ProjectFeature::ENABLED
+      '禁用' => ProjectFeature::DISABLED,
+      '只有团队成员' => ProjectFeature::PRIVATE,
+      '公开访问' => ProjectFeature::ENABLED
     }
   end
 

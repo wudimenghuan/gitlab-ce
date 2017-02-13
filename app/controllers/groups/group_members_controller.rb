@@ -32,7 +32,7 @@ class Groups::GroupMembersController < Groups::ApplicationController
       expires_at: params[:expires_at]
     )
 
-    redirect_to group_group_members_path(@group), notice: 'Users were successfully added.'
+    redirect_to group_group_members_path(@group), notice: '用户增加成功。'
   end
 
   def update
@@ -47,7 +47,7 @@ class Groups::GroupMembersController < Groups::ApplicationController
     Members::DestroyService.new(@group, current_user, id: params[:id]).execute(:all)
 
     respond_to do |format|
-      format.html { redirect_to group_group_members_path(@group), notice: 'User was successfully removed from group.' }
+      format.html { redirect_to group_group_members_path(@group), notice: '用户从群组删除成功。' }
       format.js { head :ok }
     end
   end
@@ -60,9 +60,9 @@ class Groups::GroupMembersController < Groups::ApplicationController
     if @group_member.invite?
       @group_member.resend_invite
 
-      redirect_to redirect_path, notice: 'The invitation was successfully resent.'
+      redirect_to redirect_path, notice: '邀请重发成功。'
     else
-      redirect_to redirect_path, alert: 'The invitation has already been accepted.'
+      redirect_to redirect_path, alert: '邀请已经被接受。'
     end
   end
 

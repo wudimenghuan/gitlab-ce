@@ -18,10 +18,10 @@ class Key < ActiveRecord::Base
     length: { maximum: 5000 },
     format: { with: /\A(ssh|ecdsa)-.*\Z/ }
   validates :key,
-    format: { without: /\n|\r/, message: 'should be a single line' }
+    format: { without: /\n|\r/, message: '应该是单行' }
   validates :fingerprint,
     uniqueness: true,
-    presence: { message: 'cannot be generated' }
+    presence: { message: '无法生成' }
 
   delegate :name, :email, to: :user, prefix: true
 

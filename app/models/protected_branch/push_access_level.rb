@@ -7,9 +7,9 @@ class ProtectedBranch::PushAccessLevel < ActiveRecord::Base
 
   def self.human_access_levels
     {
-      Gitlab::Access::MASTER => "Masters",
-      Gitlab::Access::DEVELOPER => "Developers + Masters",
-      Gitlab::Access::NO_ACCESS => "No one"
+      Gitlab::Access::MASTER => "主程序员",
+      Gitlab::Access::DEVELOPER => "开发人员 + 主程序员",
+      Gitlab::Access::NO_ACCESS => "禁止任何人推送"
     }.with_indifferent_access
   end
 

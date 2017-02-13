@@ -32,7 +32,7 @@ require('../../../lib/utils/pretty_time');
             <span class='bold'>{{ abbreviateTime(timeSpentHumanReadable) }} / --</span>
           </div>
           <div class='no-tracking' v-if='showNoTimeTrackingState'>
-            <span class='no-value'>None</span>
+            <span class='no-value'>无</span>
           </div>
         </div>
       </div>

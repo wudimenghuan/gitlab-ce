@@ -2,11 +2,11 @@
 - commits, hidden = limited_commits(@commits)
 
 - commits.chunk { |c| c.committed_date.in_time_zone.to_date }.each do |day, commits|
-  %li.commit-header #{day.strftime('%d %b, %Y')} #{pluralize(commits.count, 'commit')}
+  %li.commit-header #{day.strftime('%d %b, %Y')} #{pluralize(commits.count, '次提交', '次提交')}
   %li.commits-row
     %ul.content-list.commit-list.table-list.table-wide
       = render commits, project: project, ref: ref
 
 - if hidden > 0
   %li.alert.alert-warning
-    #{number_with_delimiter(hidden)} additional commits have been omitted to prevent performance issues.
+    #{number_with_delimiter(hidden)} 次更多提交因为性能问题而隐藏。

@@ -4,6 +4,6 @@ module MattermostHelper
       [options['display_name'] || options['name'], id]
     end
 
-    teams_options.compact.unshift(['Select team...', '0'])
+    teams_options.compact.unshift(['选择团队...', '0'])
   end
 end

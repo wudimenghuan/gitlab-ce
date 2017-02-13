@@ -1,16 +1,17 @@
 .page-content-header
   .header-main-content
     = render 'ci/status/badge', status: @pipeline.detailed_status(current_user)
-    %strong Pipeline ##{@commit.pipelines.last.id}
-    triggered #{time_ago_with_tooltip(@commit.authored_date)} by
+    %strong 流水线 ##{@commit.pipelines.last.id}
+    在 #{time_ago_with_tooltip(@commit.authored_date)} 被
     = author_avatar(@commit, size: 24)
     = commit_author_link(@commit)
+    触发
   .header-action-buttons
     - if can?(current_user, :update_pipeline, @pipeline.project)
       - if @pipeline.builds.latest.failed.any?(&:retryable?)
-        = link_to "Retry failed", retry_namespace_project_pipeline_path(@pipeline.project.namespace, @pipeline.project, @pipeline.id), class: 'btn btn-inverted-secondary', method: :post
+        = link_to "失败重试", retry_namespace_project_pipeline_path(@pipeline.project.namespace, @pipeline.project, @pipeline.id), class: 'btn btn-inverted-secondary', method: :post
       - if @pipeline.builds.running_or_pending.any?
-        = link_to "Cancel running", cancel_namespace_project_pipeline_path(@pipeline.project.namespace, @pipeline.project, @pipeline.id), data: { confirm: 'Are you sure?' }, class: 'btn btn-danger', method: :post
+        = link_to "取消运行", cancel_namespace_project_pipeline_path(@pipeline.project.namespace, @pipeline.project, @pipeline.id), data: { confirm: 'Are you sure?' }, class: 'btn btn-danger', method: :post
 
 - if @commit
   .commit-box
@@ -27,13 +28,13 @@
         = icon('clock-o')
       = pluralize @pipeline.statuses.count(:id), "job"
       - if @pipeline.ref
-        from
+        来自
         = link_to @pipeline.ref, namespace_project_commits_path(@project.namespace, @project, @pipeline.ref), class: "monospace"
       - if @pipeline.duration
-        in
+        耗时
         = time_interval_in_words(@pipeline.duration)
       - if @pipeline.queued_duration
-        = "(queued for #{time_interval_in_words(@pipeline.queued_duration)})"
+        = "(排队 #{time_interval_in_words(@pipeline.queued_duration)})"
 
   .well-segment.branch-info
     .icon-container.commit-icon
@@ -44,4 +45,4 @@
         \...
     %span.js-details-content.hide
       = link_to @pipeline.sha, namespace_project_commit_path(@project.namespace, @project, @pipeline.sha), class: "monospace commit-hash-full"
-    = clipboard_button(clipboard_text: @pipeline.sha, title: "Copy commit SHA to clipboard")
+    = clipboard_button(clipboard_text: @pipeline.sha, title: "将提交 SHA 复制到剪贴板")

@@ -1,22 +1,22 @@
-- page_title "Spam Logs"
-%h3.page-title Spam Logs
+- page_title "垃圾日志"
+%h3.page-title 垃圾日志
 %hr
 - if @spam_logs.present?
   .table-holder
     %table.table
       %thead
         %tr
-          %th Date
-          %th User
-          %th Source IP
+          %th 日期
+          %th 用户
+          %th 来源 IP
           %th API?
-          %th Recaptcha verified?
-          %th Type
-          %th Title
-          %th Description
-          %th Primary Action
+          %th 验证码有效?
+          %th 类型
+          %th 标题
+          %th 描述
+          %th 主要操作
           %th
       = render @spam_logs
   = paginate @spam_logs
 - else
-  %h4 There are no Spam Logs
+  %h4 没有垃圾日志

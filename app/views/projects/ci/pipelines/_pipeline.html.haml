@@ -15,7 +15,7 @@
     - else
       %span.api.monospace API
     - if pipeline.latest?
-      %span.label.label-success.has-tooltip{ title: 'Latest job for this branch' } latest
+      %span.label.label-success.has-tooltip{ title: '这个分支最新的 Job' } latest
     - if pipeline.triggered?
       %span.label.label-primary triggered
     - if pipeline.yaml_errors.present?
@@ -85,8 +85,8 @@
       - if can?(current_user, :update_pipeline, pipeline.project)
         .cancel-retry-btns.inline
           - if pipeline.retryable?
-            = link_to retry_namespace_project_pipeline_path(pipeline.project.namespace, pipeline.project, pipeline.id), class: 'btn has-tooltip', title: 'Retry', data: { toggle: 'dropdown', placement: 'top' }, 'aria-label' => 'Retry' , method: :post do
+            = link_to retry_namespace_project_pipeline_path(pipeline.project.namespace, pipeline.project, pipeline.id), class: 'btn has-tooltip', title: '重试', data: { toggle: 'dropdown', placement: 'top' }, 'aria-label' => 'Retry' , method: :post do
               = icon("repeat")
           - if pipeline.cancelable?
-            = link_to cancel_namespace_project_pipeline_path(pipeline.project.namespace, pipeline.project, pipeline.id), class: 'btn btn-remove has-tooltip', title: 'Cancel', data: { toggle: 'dropdown', placement: 'top' }, 'aria-label' => 'Cancel' , method: :post do
+            = link_to cancel_namespace_project_pipeline_path(pipeline.project.namespace, pipeline.project, pipeline.id), class: 'btn btn-remove has-tooltip', title: '取消', data: { toggle: 'dropdown', placement: 'top' }, 'aria-label' => 'Cancel' , method: :post do
               = icon("remove")

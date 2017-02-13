@@ -1,5 +1,5 @@
-- page_title    'New Project'
-- header_title  "Projects", dashboard_projects_path
+- page_title    '新建项目'
+- header_title  "项目", dashboard_projects_path
 
 .project-edit-container
   .project-edit-errors
@@ -7,16 +7,16 @@
   .row.prepend-top-default
     .col-lg-3.profile-settings-sidebar
       %h4.prepend-top-0
-        New project
+        新建项目
       %p
-        Create or Import your project from popular Git services
+        创建或者从其它流行的 Git 服务导入项目
     .col-lg-9
       = form_for @project, html: { class: 'new_project' } do |f|
         %fieldset.append-bottom-0
           .form-group.col-xs-12.col-sm-6
             = f.label :namespace_id, class: 'label-light' do
               %span
-                Project path
+                项目路径
             .form-group
               .input-group
                 - if current_user.can_select_namespace?
@@ -31,18 +31,18 @@
           .form-group.col-xs-12.col-sm-6.project-path
             = f.label :namespace_id, class: 'label-light' do
               %span
-                Project name
+                项目名称
             = f.text_field :path, placeholder: "my-awesome-project", class: "form-control", tabindex: 2, autofocus: true, required: true
         - if current_user.can_create_group?
           .help-block
-            Want to house several dependent projects under the same namespace?
-            = link_to "Create a group", new_group_path
+            希望将几个相关联的项目放置于同一个命名空间下？
+            = link_to "创建群组", new_group_path
 
         - if import_sources_enabled?
           .project-import.js-toggle-container
             .form-group.clearfix
               = f.label :visibility_level, class: 'label-light' do
-                Import project from
+                导入项目
               .col-sm-12.import-buttons
                 %div
                   - if github_import_enabled?
@@ -76,7 +76,7 @@
                 %div
                   - if git_import_enabled?
                     = link_to "#", class: 'btn js-toggle-button import_git' do
-                      = icon('git', text: 'Repo by URL')
+                      = icon('git', text: '其它仓库链接')
                 .import_gitlab_project
                   - if gitlab_project_import_enabled?
                     = link_to new_import_gitlab_project_path, class: 'btn btn_import_gitlab_project project-submit' do
@@ -87,26 +87,26 @@
 
         .form-group
           = f.label :description, class: 'label-light' do
-            Project description
-            %span.light (optional)
-          = f.text_area :description, placeholder: 'Description format',  class: "form-control", rows: 3, maxlength: 250
+            项目描述
+            %span.light (可选)
+          = f.text_area :description, placeholder: '说明格式',  class: "form-control", rows: 3, maxlength: 250
 
         .form-group.project-visibility-level-holder
-          = f.label :visibility_level, class: 'label-light' do
-            Visibility Level
+          = f.label :visibility_level,'可见等级', class: 'label-light' do
+            可见等级
             = link_to "(?)", help_page_path("public_access/public_access")
           = render 'shared/visibility_level', f: f, visibility_level: default_project_visibility, can_change_visibility_level: true, form_model: @project
 
 
-        = f.submit 'Create project', class: "btn btn-create project-submit", tabindex: 4
-        = link_to 'Cancel', dashboard_projects_path, class: 'btn btn-cancel'
+        = f.submit '创建项目', class: "btn btn-create project-submit", tabindex: 4
+        = link_to '取消', dashboard_projects_path, class: 'btn btn-cancel'
 
 .save-project-loader.hide
   .center
     %h2
       %i.fa.fa-spinner.fa-spin
-      Creating project &amp; repository.
-    %p Please wait a moment, this page will automatically refresh when ready.
+      正在创建项目 &amp; 版本库。
+    %p 请稍候，页面会处理完成后自动刷新。
 
 :javascript
   $('.how_to_import_link').bind('click', function (e) {
@@ -124,12 +124,12 @@
   });
 
   $('.btn_import_gitlab_project').attr('disabled',true)
-  $('.import_gitlab_project').attr('title', 'Project path and name required.');
+  $('.import_gitlab_project').attr('title', '需要项目路径和名称。');
 
   $('.import_gitlab_project').click(function( event ) {
     if($('.btn_import_gitlab_project').attr('disabled')) {
       event.preventDefault();
-      new Flash("Please enter path and name for the project to be imported to.");
+      new Flash("请输入要导入的项目的路径和名称。");
     }
   });
 
@@ -145,7 +145,7 @@
       $(".flash-container").html("")
     } else {
       $('.btn_import_gitlab_project').attr('disabled',true);
-      $('.import_gitlab_project').attr('title', 'Project path and name required.');
+      $('.import_gitlab_project').attr('title', '需要项目路径和名称。');
     }
   });
 

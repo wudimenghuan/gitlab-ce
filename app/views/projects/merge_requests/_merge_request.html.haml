@@ -9,11 +9,11 @@
     %ul.controls
       - if merge_request.merged?
         %li
-          MERGED
+          已合并
       - elsif merge_request.closed?
         %li
           = icon('ban')
-          CLOSED
+          已关闭
 
       - if merge_request.head_pipeline
         %li
@@ -21,12 +21,12 @@
 
       - if merge_request.open? && merge_request.broken?
         %li
-          = link_to merge_request_path(merge_request), class: "has-tooltip", title: "Cannot be merged automatically", data: { container: 'body' } do
+          = link_to merge_request_path(merge_request), class: "has-tooltip", title: "无法被自动合并", data: { container: 'body' } do
             = icon('exclamation-triangle')
 
       - if merge_request.assignee
         %li
-          = link_to_member(merge_request.source_project, merge_request.assignee, name: false, title: "Assigned to :name")
+          = link_to_member(merge_request.source_project, merge_request.assignee, name: false, title: "指派给 :name")
 
       - upvotes, downvotes = merge_request.upvotes, merge_request.downvotes
       - if upvotes > 0
@@ -47,8 +47,8 @@
 
   .merge-request-info
     #{issuable_reference(merge_request)} &middot;
-    opened #{time_ago_with_tooltip(merge_request.created_at, placement: 'bottom')}
-    by #{link_to_member(@project, merge_request.author, avatar: false)}
+    在 #{time_ago_with_tooltip(merge_request.created_at, placement: 'bottom')}
+    由 #{link_to_member(@project, merge_request.author, avatar: false)} 打开
     - if merge_request.target_project.default_branch != merge_request.target_branch
       &nbsp;
       = link_to namespace_project_commits_path(merge_request.project.namespace, merge_request.project, merge_request.target_branch) do
@@ -72,4 +72,4 @@
         = merge_request.task_status
 
     .pull-right.hidden-xs
-      %span updated #{time_ago_with_tooltip(merge_request.updated_at, placement: 'bottom', html_class: 'merge_request_updated_ago')}
+      %span #{time_ago_with_tooltip(merge_request.updated_at, placement: 'bottom', html_class: 'merge_request_updated_ago')}更新

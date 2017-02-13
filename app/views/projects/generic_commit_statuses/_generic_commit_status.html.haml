@@ -31,7 +31,7 @@
       = link_to generic_commit_status.short_sha, namespace_project_commit_path(generic_commit_status.project.namespace, generic_commit_status.project, generic_commit_status.sha), class: "commit-id monospace"
 
     - if retried
-      = icon('warning', class: 'text-warning has-tooltip', title: 'Status was retried.')
+      = icon('warning', class: 'text-warning has-tooltip', title: '状态已重试。')
 
     .label-container
       - if generic_commit_status.tags.any?
@@ -59,7 +59,7 @@
       - if generic_commit_status.try(:runner)
         = runner_link(generic_commit_status.runner)
       - else
-        .light none
+        .light 无
 
   - if stage
     %td

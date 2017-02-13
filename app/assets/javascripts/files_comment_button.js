@@ -9,7 +9,7 @@
 
     COMMENT_BUTTON_CLASS = '.add-diff-note';
 
-    COMMENT_BUTTON_TEMPLATE = _.template('<button name="button" type="submit" class="btn <%- COMMENT_BUTTON_CLASS %> js-add-diff-note-button" title="Add a comment to this line"><i class="fa fa-comment-o"></i></button>');
+    COMMENT_BUTTON_TEMPLATE = _.template('<button name="button" type="submit" class="btn <%- COMMENT_BUTTON_CLASS %> js-add-diff-note-button" title="评论这行代码"><i class="fa fa-comment-o"></i></button>');
 
     LINE_HOLDER_CLASS = '.line_holder';
 

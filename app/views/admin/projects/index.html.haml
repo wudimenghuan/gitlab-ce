@@ -1,5 +1,5 @@
 - @no_container = true
-- page_title "Projects"
+- page_title "项目"
 - params[:visibility_level] ||= []
 
 = render "admin/dashboard/head"
@@ -10,7 +10,7 @@
       = form_tag admin_projects_path, method: :get do |f|
         .search-holder
           .search-field-holder
-            = search_field_tag :name, params[:name], class: "form-control search-text-input js-search-input", id: "dashboard_search", autofocus: true, spellcheck: false, placeholder: 'Search by name'
+            = search_field_tag :name, params[:name], class: "form-control search-text-input js-search-input", id: "dashboard_search", autofocus: true, spellcheck: false, placeholder: '按名字搜索'
 
             - if params[:visibility_level].present?
               = hidden_field_tag 'visibility_level', params[:visibility_level]
@@ -27,36 +27,36 @@
             = icon("search", class: "search-icon")
 
           .dropdown
-            - toggle_text = 'Namespace'
+            - toggle_text = '命名空间'
             - if params[:namespace_id].present?
               - namespace = Namespace.find(params[:namespace_id])
               - toggle_text = "#{namespace.kind}: #{namespace.path}"
             = dropdown_toggle(toggle_text, { toggle: 'dropdown' }, { toggle_class: 'js-namespace-select large' })
             .dropdown-menu.dropdown-select.dropdown-menu-align-right
-              = dropdown_title('Namespaces')
-              = dropdown_filter("Search for Namespace")
+              = dropdown_title('命名空间')
+              = dropdown_filter("搜索命名空间")
               = dropdown_content
               = dropdown_loading
           = render 'shared/projects/dropdown'
           = link_to new_project_path, class: 'btn btn-new' do
-            New Project
-          = button_tag "Search", class: "btn btn-primary btn-search hide"
+            新建项目
+          = button_tag "搜索", class: "btn btn-primary btn-search hide"
 
     %ul.nav-links
       - opts = params[:visibility_level].present? ? {} : { page: admin_projects_path }
       = nav_link(opts) do
         = link_to admin_projects_path do
-          All
+          全部
 
       = nav_link(html_options: { class: params[:visibility_level] == Gitlab::VisibilityLevel::PRIVATE.to_s ? 'active' : '' }) do
         = link_to admin_projects_path(visibility_level: Gitlab::VisibilityLevel::PRIVATE) do
-          Private
+          私有
       = nav_link(html_options: { class: params[:visibility_level] == Gitlab::VisibilityLevel::INTERNAL.to_s ? 'active' : '' }) do
         = link_to admin_projects_path(visibility_level: Gitlab::VisibilityLevel::INTERNAL) do
-          Internal
+          内部
       = nav_link(html_options: { class: params[:visibility_level] == Gitlab::VisibilityLevel::PUBLIC.to_s ? 'active' : '' }) do
         = link_to admin_projects_path(visibility_level: Gitlab::VisibilityLevel::PUBLIC) do
-          Public
+          公共
 
   .projects-list-holder
     - if @projects.any?
@@ -65,11 +65,11 @@
           %li.project-row
             .controls
               - if project.archived
-                %span.label.label-warning archived
+                %span.label.label-warning 已归档
               %span.badge
                 = storage_counter(project.statistics.storage_size)
-              = link_to 'Edit', edit_namespace_project_path(project.namespace, project), id: "edit_#{dom_id(project)}", class: "btn"
-              = link_to 'Delete', [project.namespace.becomes(Namespace), project], data: { confirm: remove_project_message(project) }, method: :delete, class: "btn btn-remove"
+              = link_to '编辑', edit_namespace_project_path(project.namespace, project), id: "edit_#{dom_id(project)}", class: "btn"
+              = link_to '删除', [project.namespace.becomes(Namespace), project], data: { confirm: remove_project_message(project) }, method: :delete, class: "btn btn-remove"
             .title
               = link_to [:admin, project.namespace.becomes(Namespace), project] do
                 .dash-project-avatar
@@ -89,4 +89,4 @@
 
       = paginate @projects, theme: 'gitlab'
     - else
-      .nothing-here-block No projects found
+      .nothing-here-block 没有项目

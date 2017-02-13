@@ -1,18 +1,18 @@
 - if @merge_request_diffs.size > 1
   .mr-version-controls
     .mr-version-menus-container.content-block
-      Changes between
+      版本比较
       %span.dropdown.inline.mr-version-dropdown
         %a.dropdown-toggle.btn.btn-default{ data: {toggle: :dropdown} }
           %span
             - if @merge_request_diff.latest?
-              latest version
+              最新版本
             - else
-              version #{version_index(@merge_request_diff)}
+              版本 #{version_index(@merge_request_diff)}
           = icon('caret-down')
         .dropdown-menu.dropdown-select.dropdown-menu-selectable
           .dropdown-title
-            %span Version:
+            %span 版本:
             %button.dropdown-title-button.dropdown-menu-close{ aria: { label: "Close" } }
               = icon('times', class: 'dropdown-menu-close-icon')
           .dropdown-content
@@ -22,27 +22,27 @@
                   = link_to merge_request_version_path(@project, @merge_request, merge_request_diff, @start_sha), class: ('is-active' if merge_request_diff == @merge_request_diff) do
                     %strong
                       - if merge_request_diff.latest?
-                        latest version
+                        最新版本
                       - else
-                        version #{version_index(merge_request_diff)}
+                        版本 #{version_index(merge_request_diff)}
                     .monospace= short_sha(merge_request_diff.head_commit_sha)
                     %small
                       #{number_with_delimiter(merge_request_diff.commits_count)} #{'commit'.pluralize(merge_request_diff.commits_count)},
                       = time_ago_with_tooltip(merge_request_diff.created_at)
 
       - if @merge_request_diff.base_commit_sha
-        and
+        和
         %span.dropdown.inline.mr-version-compare-dropdown
           %a.btn.btn-default.dropdown-toggle{ data: {toggle: :dropdown} }
             %span
               - if @start_sha
-                version #{version_index(@start_version)}
+                版本 #{version_index(@start_version)}
               - else
                 #{@merge_request.target_branch}
             = icon('caret-down')
           .dropdown-menu.dropdown-select.dropdown-menu-selectable
             .dropdown-title
-              %span Compared with:
+              %span 比较版本:
               %button.dropdown-title-button.dropdown-menu-close{ aria: { label: "Close" } }
                 = icon('times', class: 'dropdown-menu-close-icon')
             .dropdown-content
@@ -52,9 +52,9 @@
                     = link_to merge_request_version_path(@project, @merge_request, @merge_request_diff, merge_request_diff.head_commit_sha), class: ('is-active' if merge_request_diff == @start_version) do
                       %strong
                         - if merge_request_diff.latest?
-                          latest version
+                          最新版本
                         - else
-                          version #{version_index(merge_request_diff)}
+                          版本 #{version_index(merge_request_diff)}
                       .monospace= short_sha(merge_request_diff.head_commit_sha)
                       %small
                         = time_ago_with_tooltip(merge_request_diff.created_at)
@@ -67,18 +67,18 @@
     - if different_base?(@start_version, @merge_request_diff)
       .content-block
         = icon('info-circle')
-        Selected versions have different base commits.
-        Changes will include
-        = link_to namespace_project_compare_path(@project.namespace, @project, from: @start_version.base_commit_sha, to: @merge_request_diff.base_commit_sha) do
-          new commits
-        from
+        所选版本具有不同的基础提交(base commits)。
+        变更将包含来自于
         %code= @merge_request.target_branch
+        的
+        = link_to namespace_project_compare_path(@project.namespace, @project, from: @start_version.base_commit_sha, to: @merge_request_diff.base_commit_sha) do
+          新建提交
 
     - unless @merge_request_diff.latest? && !@start_sha
       .comments-disabled-notif.content-block
         = icon('info-circle')
         - if @start_sha
-          Comments are disabled because you're comparing two versions of this merge request.
+          评论被停用，因为您正在比较此合并请求内的两个版本。
         - else
-          Comments are disabled because you're viewing an old version of this merge request.
-        = link_to 'Show latest version', diffs_namespace_project_merge_request_path(@project.namespace, @project, @merge_request), class: 'btn btn-sm'
+          评论被停用，因为您正在查看的是该合并请求的旧版本。
+        = link_to '查看最新版本', diffs_namespace_project_merge_request_path(@project.namespace, @project, @merge_request), class: 'btn btn-sm'

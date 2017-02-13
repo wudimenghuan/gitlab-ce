@@ -9,7 +9,7 @@ module Gitlab
         end
 
         def title
-          'New Issue'
+          '新建问题'
         end
 
         def value

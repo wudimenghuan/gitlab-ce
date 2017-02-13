@@ -76,7 +76,7 @@ module AuthenticatesWithTwoFactor
       sign_in(user)
     else
       user.increment_failed_attempts!
-      flash.now[:alert] = 'Authentication via U2F device failed.'
+      flash.now[:alert] = '通过 U2F 设备验证失败。'
       prompt_for_two_factor(user)
     end
   end

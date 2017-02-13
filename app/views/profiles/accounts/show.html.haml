@@ -1,75 +1,75 @@
-- page_title "Account"
+- page_title "账号"
 = render 'profiles/head'
 
 - if current_user.ldap_user?
   .alert.alert-info
-    Some options are unavailable for LDAP accounts
+    部分设置对于 LDAP 账号无效
 
 .row.prepend-top-default
   .col-lg-3.profile-settings-sidebar
     %h4.prepend-top-0
-      = incoming_email_token_enabled? ? "Private Tokens" : "Private Token"
+      = incoming_email_token_enabled? ? "私有令牌" : "私有令牌"
     %p
-      Keep
-      = incoming_email_token_enabled? ? "these tokens" : "this token"
-      secret, anyone with access to them can interact with GitLab as if they were you.
+      确保
+      = incoming_email_token_enabled? ? "这些令牌" : "这个令牌"
+      的安全， 因为任何人都可以通过他们来访问GitLab。
   .col-lg-9.private-tokens-reset
     .reset-action
       %p.cgray
         - if current_user.private_token
-          = label_tag "private-token", "Private token", class: "label-light"
+          = label_tag "private-token", "私有令牌", class: "label-light"
           = text_field_tag "private-token", current_user.private_token, class: "form-control", readonly: true, onclick: "this.select()"
         - else
-          %span You don't have one yet. Click generate to fix it.
+          %span 您还没有私有令牌，请点击创建按钮来修复。
         %p.help-block
-          Your private token is used to access the API and Atom feeds without username/password authentication.
+          您的私有令牌通常在 RSS 和 API 中用来做免用户名/密码认证。
       .prepend-top-default
         - if current_user.private_token
-          = link_to 'Reset private token', reset_private_token_profile_path, method: :put, data: { confirm: "Are you sure?" }, class: "btn btn-default private-token"
+          = link_to '重置私有令牌', reset_private_token_profile_path, method: :put, data: { confirm: "您确定要重置私有令牌？" }, class: "btn btn-default private-token"
         - else
-          = f.submit 'Generate', class: "btn btn-default"
+          = f.submit '创建', class: "btn btn-default"
     - if incoming_email_token_enabled?
       .reset-action
         %p.cgray
-          = label_tag "incoming-email-token", "Incoming Email Token", class: 'label-light'
+          = label_tag "incoming-email-token", "传入邮件令牌", class: 'label-light'
           = text_field_tag "incoming-email-token", current_user.incoming_email_token, class: "form-control", readonly: true, onclick: "this.select()"
         %p.help-block
-          Your incoming email token is used to create new issues by email, and is included in your project-specific email addresses.
+          您的传入邮件令牌可用于通过邮件创建问题，它将包含在项目指定的邮件地址中。
         .prepend-top-default
-          = link_to 'Reset incoming email token', reset_incoming_email_token_profile_path, method: :put, data: { confirm: "Are you sure?" }, class: "btn btn-default incoming-email-token"
+          = link_to '重置传入邮件令牌', reset_incoming_email_token_profile_path, method: :put, data: { confirm: "您确定要重置传入邮件令牌？" }, class: "btn btn-default incoming-email-token"
 
 %hr
 .row.prepend-top-default
   .col-lg-3.profile-settings-sidebar
     %h4.prepend-top-0
-      Two-Factor Authentication
+      两步验证
     %p
-      Increase your account's security by enabling Two-Factor Authentication (2FA).
+      开启两步验证 (2FA) 增加账户安全性。
   .col-lg-9
     %p
-      Status: #{current_user.two_factor_enabled? ? 'Enabled' : 'Disabled'}
+      状态: #{current_user.two_factor_enabled? ? '启用' : '禁用'}
     - if current_user.two_factor_enabled?
-      = link_to 'Manage Two-Factor Authentication', profile_two_factor_auth_path, class: 'btn btn-info'
-      = link_to 'Disable', profile_two_factor_auth_path,
+      = link_to '管理两步验证', profile_two_factor_auth_path, class: 'btn btn-info'
+      = link_to '禁用', profile_two_factor_auth_path,
                 method: :delete,
-                data: { confirm: "Are you sure? This will invalidate your registered applications and U2F devices." },
+                data: { confirm: "确定要继续么？ 这将禁用你已注册的应用和 U2F 设备。" },
                 class: 'btn btn-danger'
     - else
       .append-bottom-10
-        = link_to 'Enable Two-Factor Authentication', profile_two_factor_auth_path, class: 'btn btn-success'
+        = link_to '启用两步验证', profile_two_factor_auth_path, class: 'btn btn-success'
 
 %hr
 - if button_based_providers.any?
   .row.prepend-top-default
     .col-lg-3.profile-settings-sidebar
       %h4.prepend-top-0
-        Social sign-in
+        社会化登录
       %p
-        Activate signin with one of the following services
+        使用以下服务之一激活登录
     .col-lg-9
       %label.label-light
-        Connected Accounts
-      %p Click on icon to activate signin with one of the following services
+        连接到的账户
+      %p 点击下列服务的图标激活第三方登录
       - button_based_providers.each do |provider|
         .provider-btn-group
           .provider-btn-image
@@ -77,58 +77,58 @@
           - if auth_active?(provider)
             - if provider.to_s == 'saml'
               %a.provider-btn
-                Active
+                激活
             - else
               = link_to unlink_profile_account_path(provider: provider), method: :delete, class: 'provider-btn' do
-                Disconnect
+                断开
           - else
             = link_to omniauth_authorize_path(:user, provider), method: :post, class: 'provider-btn not-active' do
-              Connect
+              连接
   %hr
 - if current_user.can_change_username?
   .row.prepend-top-default
     .col-lg-3.profile-settings-sidebar
       %h4.prepend-top-0.warning-title
-        Change username
+        修改用户名
       %p
-        Changing your username will change path to all personal projects!
+        修改用户名会同时修改全部个人项目的路径！
     .col-lg-9
       = form_for @user, url: update_username_profile_path, method: :put, remote: true, html: {class: "update-username"} do |f|
         .form-group
-          = f.label :username, "Path", class: "label-light"
+          = f.label :username, "路径", class: "label-light"
           .input-group
             .input-group-addon
               = root_url
             = f.text_field :username, required: true, class: 'form-control'
         .help-block
-          Current path:
+          当前路径：
           #{root_url}#{current_user.username}
         .prepend-top-default
           = f.button class: "btn btn-warning", type: "submit" do
             = icon "spinner spin", class: "hidden loading-username"
-            Update username
+            更新用户名
   %hr
 
 - if signup_enabled?
   .row.prepend-top-default
     .col-lg-3.profile-settings-sidebar
       %h4.prepend-top-0.danger-title
-        Remove account
+        删除账号
     .col-lg-9
       - if @user.can_be_removed?
         %p
-          Deleting an account has the following effects:
+          删除账号会有以下影响：
         %ul
-          %li All user content like authored issues, snippets, comments will be removed
+          %li 全部用户内容，比如：问题、代码片段、注释将被删除
           - rp = current_user.personal_projects.count
           - unless rp.zero?
-            %li #{pluralize rp, 'personal project'} will be removed and cannot be restored
-        = link_to 'Delete account', user_registration_path, data: { confirm: "REMOVE #{current_user.name}? Are you sure?" }, method: :delete, class: "btn btn-remove"
+            %li #{pluralize rp, '个个人项目', '个个人项目'} 将被删除且无法恢复
+        = link_to '删除账号', user_registration_path, data: { confirm: "确定要删除 #{current_user.name} ? " }, method: :delete, class: "btn btn-remove"
       - else
         - if @user.solo_owned_groups.present?
           %p
-            Your account is currently an owner in these groups:
+            你的账号当前是下列群组的拥有者：
             %strong= @user.solo_owned_groups.map(&:name).join(', ')
           %p
-            You must transfer ownership or delete these groups before you can delete your account.
+            请在删除账号前转移群组所有权或删除之。
 .append-bottom-default

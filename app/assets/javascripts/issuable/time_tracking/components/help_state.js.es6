@@ -6,17 +6,17 @@
     template: `
       <div class='time-tracking-help-state'>
         <div class='time-tracking-info'>
-          <h4>Track time with slash commands</h4>
-          <p>Slash commands can be used in the issues description and comment boxes.</p>
+          <h4>使用“/”命令跟踪工时</h4>
+          <p>可以在问题描述或者评论中使用“/”命令</p>
           <p>
             <code>/estimate</code>
-            will update the estimated time with the latest command.
+            将更新预估工时
           </p>
           <p>
             <code>/spend</code>
-            will update the sum of the time spent.
+            将更新总耗费工时。
           </p>
-          <a class='btn btn-default learn-more-button' :href='docsUrl'>Learn more</a>
+          <a class='btn btn-default learn-more-button' :href='docsUrl'>了解更多</a>
         </div>
       </div>
     `,

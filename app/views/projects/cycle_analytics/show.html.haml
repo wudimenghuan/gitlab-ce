@@ -1,5 +1,5 @@
 - @no_container = true
-- page_title "Cycle Analytics"
+- page_title "周期分析"
 - content_for :page_specific_javascripts do
   = page_specific_javascript_bundle_tag('cycle_analytics')
 
@@ -14,16 +14,16 @@
           = custom_icon('icon_cycle_analytics_splash')
         .col-sm-8.col-xs-12.inner-content
           %h4
-            Introducing Cycle Analytics
+            周期分析介绍
           %p
-            Cycle Analytics gives an overview of how much time it takes to go from idea to production in your project.
+            周期分析给出了一个项目从概念设计到投入生产需要花费多长时间的概览。
 
-          = link_to "Read more",  help_page_path('user/project/cycle_analytics'), target: '_blank', class: 'btn'
+          = link_to "了解更多",  help_page_path('user/project/cycle_analytics'), target: '_blank', class: 'btn'
   = icon("spinner spin", "v-show" => "isLoading")
   .wrapper{ "v-show" => "!isLoading && !hasError" }
     .panel.panel-default
       .panel-heading
-        Pipeline Health
+        流水线健康
       .content-block
         .container-fluid
           .row
@@ -33,15 +33,15 @@
             .col-sm-3.col-xs-12.column
               .dropdown.inline.js-ca-dropdown
                 %button.dropdown-menu-toggle{ "data-toggle" => "dropdown", :type => "button" }
-                  %span.dropdown-label Last 30 days
+                  %span.dropdown-label 最近 30 天
                   %i.fa.fa-chevron-down
                 %ul.dropdown-menu.dropdown-menu-align-right
                   %li
                     %a{ "href" => "#", "data-value" => "30" }
-                      Last 30 days
+                      最近 30 天
                   %li
                     %a{ "href" => "#", "data-value" => "90" }
-                      Last 90 days
+                      最近 90 天
     .stage-panel-container
       .panel.panel-default.stage-panel
         .panel-heading
@@ -49,20 +49,20 @@
             %ul
               %li.stage-header
                 %span.stage-name
-                  Stage
-                %i.has-tooltip.fa.fa-question-circle{ "data-placement" => "top", title: "The phase of the development lifecycle.", "aria-hidden" => "true" }
+                  阶段
+                %i.has-tooltip.fa.fa-question-circle{ "data-placement" => "top", title: "开发生命周期中的各个阶段。", "aria-hidden" => "true" }
               %li.median-header
                 %span.stage-name
-                  Median
-                %i.has-tooltip.fa.fa-question-circle{ "data-placement" => "top", title: "The value lying at the midpoint of a series of observed values. E.g., between 3, 5, 9, the median is 5. Between 3, 5, 7, 8, the median is (5+7)/2 = 6.", "aria-hidden" => "true" }
+                  平均值
+                %i.has-tooltip.fa.fa-question-circle{ "data-placement" => "top", title: "该值位于一系列观测值的中点。 例如，在3,5,9之间，中值为5.在3,5,7,8之间，中值为（5 + 7）/ 2 = 6。", "aria-hidden" => "true" }
               %li.event-header
                 %span.stage-name
-                  {{ currentStage ? currentStage.legend : 'Related Issues' }}
-                %i.has-tooltip.fa.fa-question-circle{ "data-placement" => "top", title: "The collection of events added to the data gathered for that stage.", "aria-hidden" => "true" }
+                  {{ currentStage ? currentStage.legend : '关联问题' }}
+                %i.has-tooltip.fa.fa-question-circle{ "data-placement" => "top", title: "为收集该阶段数据而添加的事件集合。", "aria-hidden" => "true" }
               %li.total-time-header
                 %span.stage-name
-                  Total Time
-                %i.has-tooltip.fa.fa-question-circle{ "data-placement" => "top", title: "The time taken by each data entry gathered by that stage.", "aria-hidden" => "true" }
+                  总时间
+                %i.has-tooltip.fa.fa-question-circle{ "data-placement" => "top", title: "该步骤收集的每个数据输入所花费的时间。", "aria-hidden" => "true" }
         .stage-panel-body
           %nav.stage-nav
             %ul
@@ -74,10 +74,10 @@
                     %span{ "v-if" => "stage.value" }
                       {{ stage.value }}
                     %span.stage-empty{ "v-else" => true }
-                      Not enough data
+                      数据不足
                   %template{ "v-else" => true }
                     %span.not-available
-                      Not available
+                      不可用
           .section.stage-events
             %template{ "v-if" => "isLoadingStage" }
               = icon("spinner spin")

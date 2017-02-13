@@ -24,7 +24,7 @@
           %span you have no access to.
     = paginate(projects, remote: remote, theme: "gitlab") if projects.respond_to? :total_pages
   - else
-    .nothing-here-block No projects found
+    .nothing-here-block 没有项目
 
 :javascript
   ProjectsList.init();

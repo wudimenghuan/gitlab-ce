@@ -1,7 +1,7 @@
-- page_title "Issues"
+- page_title "问题"
 = content_for :meta_tags do
   - if current_user
-    = auto_discovery_link_tag(:atom, url_for(params.merge(format: :atom, private_token: current_user.private_token)), title: "#{@group.name} issues")
+    = auto_discovery_link_tag(:atom, url_for(params.merge(format: :atom, private_token: current_user.private_token)), title: "#{@group.name} 问题")
 
 - if group_issues(@group).exists?
   .top-area
@@ -11,17 +11,17 @@
         = link_to url_for(params.merge(format: :atom, private_token: current_user.private_token)), class: 'btn' do
           = icon('rss')
           %span.icon-label
-            Subscribe
-        = render 'shared/new_project_item_select', path: 'issues/new', label: "New Issue"
+            订阅
+        = render 'shared/new_project_item_select', path: 'issues/new', label: "新建问题"
 
   = render 'shared/issuable/filter', type: :issues
 
   .row-content-block.second-block
-    Only issues from the
+    只显示来自
     %strong= @group.name
-    group are listed here.
+    群组的问题。
     - if current_user
-      To see all issues you should visit #{link_to 'dashboard', issues_dashboard_path} page.
+      请到 #{link_to '仪表盘', issues_dashboard_path} 页面查看全部问题。
 
   = render 'shared/issues'
 - else

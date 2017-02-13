@@ -82,7 +82,7 @@
         .toggleClass(expandedNavbarClass, this.isExpanded);
 
       const $pinnedToggle = $(pinnedToggleSelector);
-      const tooltipText = this.isPinned ? 'Unpin navigation' : 'Pin navigation';
+      const tooltipText = this.isPinned ? '隐藏导航栏' : '固定导航栏';
       const tooltipState = $pinnedToggle.attr('aria-describedby') && this.isExpanded ? 'show' : 'hide';
       $pinnedToggle.attr('title', tooltipText).tooltip('fixTitle').tooltip(tooltipState);
 

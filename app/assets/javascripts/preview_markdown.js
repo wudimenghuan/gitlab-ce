@@ -29,10 +29,10 @@
       mdText = $form.find('textarea.markdown-area').val();
 
       if (mdText.trim().length === 0) {
-        preview.text('Nothing to preview.');
+        preview.text('没有预览。');
         this.hideReferencedUsers($form);
       } else {
-        preview.addClass('md-preview-loading').text('Loading...');
+        preview.addClass('md-preview-loading').text('载入中...');
         this.fetchMarkdownPreview(mdText, (function (response) {
           preview.removeClass('md-preview-loading').html(response.body);
           preview.renderGFM();
