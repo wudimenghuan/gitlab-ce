@@ -15,7 +15,7 @@
     - else
       %span.api.monospace API
     - if pipeline.latest?
-      %span.label.label-success.has-tooltip{ title: '这个分支最新的 Job' } latest
+      %span.label.label-success.has-tooltip{ title: '这个分支最新的作业' } latest
     - if pipeline.triggered?
       %span.label.label-primary triggered
     - if pipeline.yaml_errors.present?
@@ -61,7 +61,7 @@
         .btn-group.inline
           - if actions.any?
             .btn-group
-              %button.dropdown-toggle.btn.btn-default.has-tooltip.js-pipeline-dropdown-manual-actions{ type: 'button', title: 'Manual job', data: { toggle: 'dropdown', placement: 'top' }, 'aria-label' => 'Manual job' }
+              %button.dropdown-toggle.btn.btn-default.has-tooltip.js-pipeline-dropdown-manual-actions{ type: 'button', title: '手动作业', data: { toggle: 'dropdown', placement: 'top' }, 'aria-label' => 'Manual job' }
                 = custom_icon('icon_play')
                 = icon('caret-down', 'aria-hidden' => 'true')
               %ul.dropdown-menu.dropdown-menu-align-right
@@ -72,7 +72,7 @@
                       %span= build.name
           - if artifacts.present?
             .btn-group
-              %button.dropdown-toggle.btn.btn-default.build-artifacts.has-tooltip.js-pipeline-dropdown-download{ type: 'button', title: 'Artifacts', data: { toggle: 'dropdown', placement: 'top' }, 'aria-label' => 'Artifacts' }
+              %button.dropdown-toggle.btn.btn-default.build-artifacts.has-tooltip.js-pipeline-dropdown-download{ type: 'button', title: '工件', data: { toggle: 'dropdown', placement: 'top' }, 'aria-label' => 'Artifacts' }
                 = icon("download")
                 = icon('caret-down')
               %ul.dropdown-menu.dropdown-menu-align-right
@@ -80,7 +80,7 @@
                   %li
                     = link_to download_namespace_project_build_artifacts_path(pipeline.project.namespace, pipeline.project, build), rel: 'nofollow' do
                       = icon("download")
-                      %span Download '#{build.name}' artifacts
+                      %span 下载 '#{build.name}' 工件
 
       - if can?(current_user, :update_pipeline, pipeline.project)
         .cancel-retry-btns.inline

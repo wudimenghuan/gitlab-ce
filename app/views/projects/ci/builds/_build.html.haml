@@ -32,10 +32,10 @@
       = link_to build.short_sha, namespace_project_commit_path(build.project.namespace, build.project, build.sha), class: "commit-id monospace"
 
     - if build.stuck?
-      = icon('warning', class: 'text-warning has-tooltip', title: 'Job 被卡住。请检查 Runner')
+      = icon('warning', class: 'text-warning has-tooltip', title: '作业被卡住。请检查 Runner')
 
     - if retried
-      = icon('refresh', class: 'text-warning has-tooltip', title: 'Job 已重试')
+      = icon('refresh', class: 'text-warning has-tooltip', title: '作业已重试')
 
     .label-container
       - if build.tags.any?

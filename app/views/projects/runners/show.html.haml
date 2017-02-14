@@ -20,10 +20,10 @@
       %td Active
       %td= @runner.active? ? '是' : '否'
     %tr
-      %td Can run untagged jobs
+      %td 可以运行未标记的作业
       %td= @runner.run_untagged? ? '是' : '否'
     %tr
-      %td Locked to this project
+      %td 锁定到该项目
       %td= @runner.locked? ? '是' : '否'
     %tr
       %td 标签

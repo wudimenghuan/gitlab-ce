@@ -13,7 +13,7 @@
         流水线
         = link_to "##{pipeline.id}", namespace_project_pipeline_path(pipeline.project.namespace, pipeline.project, pipeline.id), class: "monospace"
         包含
-        = pluralize pipeline.statuses.count(:id), '个 Job', '个 Job'
+        = pluralize pipeline.statuses.count(:id), '个作业', '个作业'
         - if pipeline.ref
           来自
           = link_to pipeline.ref, namespace_project_commits_path(pipeline.project.namespace, pipeline.project, pipeline.ref), class: "monospace"
@@ -44,7 +44,7 @@
     %thead
       %tr
         %th 状态
-        %th Job ID
+        %th 作业 ID
         %th 名称
         %th
         - if pipeline.project.build_coverage_enabled?

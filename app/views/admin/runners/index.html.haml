@@ -24,7 +24,7 @@
 
   .bs-callout
     %p
-      一个 'Runner' 就是一个运行工作的进程。
+      一个 'Runner' 就是一个运行作业的进程。
       你可以按照自己的需要设置很多个 Runner。
       %br
       Runners 可以被部署在不同的用户、服务器上，甚至在你本地使用的机器上。
@@ -35,16 +35,16 @@
       %ul
         %li
           %span.label.label-success 共享的
-          \- Runner 运行全部未指派项目的工作
+          \- Runner 运行全部未指派项目的作业
         %li
           %span.label.label-info 指定的
-          \- Runner 运行被指派到该 Runner 的项目的工作
+          \- Runner 运行被指派到该 Runner 的项目的作业
         %li
           %span.label.label-warning 锁定的
           \- Runner 不能被指定到其它项目
         %li
           %span.label.label-danger 暂停的
-          \- Runner 将不再接受任何新工作
+          \- Runner 将不再接受任何新作业
 
   .append-bottom-20.clearfix
     .pull-left
@@ -66,7 +66,7 @@
           %th Runner 授权码
           %th 描述
           %th 项目
-          %th 工作
+          %th 作业
           %th 标签
           %th 最后联系
           %th

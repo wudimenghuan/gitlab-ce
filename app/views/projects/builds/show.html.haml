@@ -1,5 +1,5 @@
 - @no_container = true
-- page_title "#{@build.name} (##{@build.id})", "工作"
+- page_title "#{@build.name} (##{@build.id})", "作业"
 - trace_with_state = @build.trace_with_state
 = render "projects/pipelines/head", build_subnav: true
 
@@ -12,14 +12,14 @@
         .bs-callout.bs-callout-warning
           %p
             - if no_runners_for_project?(@build.project)
-              此工作被卡住，因为没有任何活动runnner指定给该项目。
+              此作业被卡住，因为没有任何活动runnner指定给该项目。
             - elsif @build.tags.any?
-              此工作被卡住，因为没有任何该项目指定标签的 runner 在线。指定的标签如下：
+              此作业被卡住，因为没有任何该项目指定标签的 runner 在线。指定的标签如下：
               - @build.tags.each do |tag|
                 %span.label.label-primary
                   = tag
             - else
-              此工作被卡住，因为没有任何活动的 runner 能运行此构建。
+              此作业被卡住，因为没有任何活动的 runner 能运行此构建。
 
             %br
             转到
@@ -37,14 +37,14 @@
           - environment = environment_for_build(@build.project, @build)
           - if @build.success? && @build.last_deployment.present?
             - if @build.last_deployment.last?
-              这个工作是最新部署到 #{environment_link_for_build(@build.project, @build)} 的。
+              这是最新部署到 #{environment_link_for_build(@build.project, @build)} 的作业。
             - else
-              这个部署到 #{environment_link_for_build(@build.project, @build)} 的工作已经过期。
+              这个部署到 #{environment_link_for_build(@build.project, @build)} 的作业已经过期。
               查看最新的部署 #{deployment_link(environment.last_deployment)} 。
           - elsif @build.complete? && !@build.success?
-            这个工作没有成功部署到 #{environment_link_for_build(@build.project, @build)} 。
+            这个作业没有成功部署到 #{environment_link_for_build(@build.project, @build)} 。
           - else
-            这个工作将会部署到 #{environment_link_for_build(@build.project, @build)}
+            这个作业将会部署到 #{environment_link_for_build(@build.project, @build)}
             - if environment.try(:last_deployment)
               并且将替换掉其 #{deployment_link(environment.last_deployment, text: '最新的部署')}
 
@@ -52,16 +52,16 @@
       - if @build.erased?
         .erased.alert.alert-warning
           - if @build.erased_by_user?
-            工作被 #{link_to(@build.erased_by_name, user_path(@build.erased_by))} 于 #{time_ago_with_tooltip(@build.erased_at)} 删除
+            作业被 #{link_to(@build.erased_by_name, user_path(@build.erased_by))} 于 #{time_ago_with_tooltip(@build.erased_at)} 删除
           - else
-            工作已经于 #{time_ago_with_tooltip(@build.erased_at)} 被删除
+            作业已经于 #{time_ago_with_tooltip(@build.erased_at)} 被删除
       - else
         #js-build-scroll.scroll-controls
           .scroll-step
-            %a.scroll-link.scroll-top{ href: '#up-build-trace', id: 'scroll-top', title: 'Scroll to top' }
+            %a.scroll-link.scroll-top{ href: '#up-build-trace', id: 'scroll-top', title: '滚动到顶部' }
               = custom_icon('scroll_up')
               = custom_icon('scroll_up_hover_active')
-            %a.scroll-link.scroll-bottom{ href: '#down-build-trace', id: 'scroll-bottom', title: 'Scroll to bottom' }
+            %a.scroll-link.scroll-bottom{ href: '#down-build-trace', id: 'scroll-bottom', title: '滚动到底部' }
               = custom_icon('scroll_down')
               = custom_icon('scroll_down_hover_active')
           - if @build.active?

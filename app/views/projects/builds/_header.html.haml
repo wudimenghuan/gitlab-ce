@@ -4,7 +4,7 @@
     流水线
     = link_to pipeline_path(@build.pipeline) do
       %strong ##{@build.pipeline.id}
-    的工作
+    的作业
     %strong.js-build-id ##{@build.id}
     来自
     = link_to namespace_project_commits_path(@project.namespace, @project, @build.ref) do

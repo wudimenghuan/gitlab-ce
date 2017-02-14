@@ -14,7 +14,7 @@
     },
     methods: {
       download(name) {
-        return `Download ${name} artifacts`;
+        return `下载 ${name} 工件`;
       },
     },
     template: `
@@ -26,7 +26,7 @@
                 v-if='actions'
                 class="dropdown-toggle btn btn-default has-tooltip js-pipeline-dropdown-manual-actions"
                 data-toggle="dropdown"
-                title="Manual job"
+                title="手动作业"
                 data-placement="top"
                 aria-label="Manual job"
               >
@@ -50,7 +50,7 @@
               <button
                 v-if='artifacts'
                 class="dropdown-toggle btn btn-default build-artifacts has-tooltip js-pipeline-dropdown-download"
-                title="Artifacts"
+                title="工件"
                 data-placement="top"
                 data-toggle="dropdown"
                 aria-label="Artifacts"
@@ -75,7 +75,7 @@
             <a
               v-if='pipeline.flags.retryable'
               class="btn has-tooltip"
-              title="Retry"
+              title="重试"
               rel="nofollow"
               data-method="post"
               data-placement="top"
@@ -87,7 +87,7 @@
             <a
               v-if='pipeline.flags.cancelable'
               class="btn btn-remove has-tooltip"
-              title="Cancel"
+              title="取消"
               rel="nofollow"
               data-method="post"
               data-placement="top"

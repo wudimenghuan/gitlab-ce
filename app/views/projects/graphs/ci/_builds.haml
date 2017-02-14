@@ -11,19 +11,19 @@
 
 .prepend-top-default
   %p.light
-    上周 Job 图表
+    上周作业图表
     (#{date_from_to(Date.today - 7.days, Date.today)})
   %canvas#weekChart{ height: 200 }
 
 .prepend-top-default
   %p.light
-    上月 Job 图表
+    上月作业图表
     (#{date_from_to(Date.today - 30.days, Date.today)})
   %canvas#monthChart{ height: 200 }
 
 .prepend-top-default
   %p.light
-    去年 Job 图表
+    去年作业图表
   %canvas#yearChart.padded{ height: 250 }
 
 - [:week, :month, :year].each do |scope|

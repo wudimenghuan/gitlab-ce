@@ -12,7 +12,7 @@
         = link_to '全部取消', cancel_all_admin_builds_path, data: { confirm: '确定要全部取消？' }, class: 'btn btn-danger', method: :post
 
   .row-content-block.second-block
-    #{(@scope || 'all').capitalize} jobs
+    #{(@scope || '全部').capitalize} 作业
 
   %ul.content-list.builds-content-list.admin-builds-table
     = render "projects/builds/table", builds: @builds, admin: true

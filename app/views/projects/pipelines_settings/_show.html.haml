@@ -63,7 +63,7 @@
             = f.text_field :build_coverage_regex, class: 'form-control', placeholder: '\(\d+.\d+\%\) covered'
             %span.input-group-addon /
           %p.help-block
-            我们将使用此正则表达式在 Job 信息中查找测试覆盖输出。如果不想使用此功能，请留空
+            我们将使用此正则表达式在作业信息中查找测试覆盖输出。如果不想使用此功能，请留空
             = link_to icon('question-circle'), help_page_path('user/project/pipelines/settings', anchor: 'test-coverage-parsing')
           .bs-callout.bs-callout-info
             %p 下面是现有工具的正则表达式例子：

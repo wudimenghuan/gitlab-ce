@@ -5,7 +5,7 @@
         流水线
     %li.js-builds-tab-link
       = link_to builds_namespace_project_pipeline_path(@project.namespace, @project, @pipeline), data: {target: 'div#js-tab-builds', action: 'builds', toggle: 'tab' }, class: 'builds-tab' do
-        Jobs
+        作业
         %span.badge.js-builds-counter= pipeline.statuses.count
 
 
@@ -33,7 +33,7 @@
         %thead
           %tr
             %th 状态
-            %th Job ID
+            %th 作业 ID
             %th 名称
             %th
             - if pipeline.project.build_coverage_enabled?

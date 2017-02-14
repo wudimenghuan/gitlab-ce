@@ -26,7 +26,7 @@
       .ci_widget{ class: "ci-#{status} ci-status-icon-#{status}", style: "display:none" }
         = ci_icon_for_status(status)
         %span
-          CI job
+          CI 作业
           = ci_label_for_status(status)
         for
         - commit = @merge_request.diff_head_commit

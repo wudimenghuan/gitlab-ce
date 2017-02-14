@@ -63,7 +63,7 @@
           在项目关联的
           %code .gitlab-ci.yml
           文件中, 包含以下代码片段
-          此例子将在依赖项目 Job 结束试触发此项目重新构建。
+          此例子将在依赖项目作业结束试触发此项目重新构建。
 
         %pre
           :plain
@@ -82,7 +82,7 @@
           :plain
              #{builds_trigger_url(@project.id, ref: 'REF_NAME')}?token=TOKEN
         %h5.prepend-top-default
-          传递 Job 变量
+          传递作业变量
 
         %p.light
           增加

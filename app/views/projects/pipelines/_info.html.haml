@@ -26,7 +26,7 @@
     .well-segment.pipeline-info
       .icon-container
         = icon('clock-o')
-      = pluralize @pipeline.statuses.count(:id), "job"
+      = pluralize @pipeline.statuses.count(:id), "个作业", "个作业"
       - if @pipeline.ref
         来自
         = link_to @pipeline.ref, namespace_project_commits_path(@project.namespace, @project, @pipeline.ref), class: "monospace"
