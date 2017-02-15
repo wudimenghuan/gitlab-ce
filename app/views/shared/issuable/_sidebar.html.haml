@@ -103,16 +103,16 @@
               %span.no-value.js-remove-due-date-holder{ class: ("hidden" if issuable.due_date.nil?) }
                 \-
                 %a.js-remove-due-date{ href: "#", role: "button" }
-                  删除到期日
+                  删除截止日期
           - if can?(current_user, :"admin_#{issuable.to_ability_name}", @project)
             .selectbox.hide-collapsed
               = f.hidden_field :due_date, value: issuable.due_date.try(:strftime, 'yy-mm-dd')
               .dropdown
                 %button.dropdown-menu-toggle.js-due-date-select{ type: 'button', data: { toggle: 'dropdown', field_name: "#{issuable.to_ability_name}[due_date]", ability_name: issuable.to_ability_name, issue_update: issuable_json_path(issuable) } }
-                  %span.dropdown-toggle-text Due date
+                  %span.dropdown-toggle-text 截止日期
                   = icon('chevron-down')
                 .dropdown-menu.dropdown-menu-due-date
-                  = dropdown_title('Due date')
+                  = dropdown_title('截止日期')
                   = dropdown_content do
                     .js-due-date-calendar
 
