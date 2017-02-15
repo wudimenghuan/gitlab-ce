@@ -167,6 +167,15 @@ class User < ActiveRecord::Base
       def blocked?
         true
       end
+
+      def active_for_authentication?
+        false
+      end
+
+      def inactive_message
+        "你的账号已经被禁用。如果您认为这是一个错误" \
+          "，请与您的GitLab管理员联系。"
+      end
     end
   end
 

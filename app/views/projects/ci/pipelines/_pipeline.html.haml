@@ -15,7 +15,7 @@
     - else
       %span.api.monospace API
     - if pipeline.latest?
-      %span.label.label-success.has-tooltip{ title: '这个分支最新的作业' } latest
+      %span.label.label-success.has-tooltip{ title: '这个分支最新的流水线' } latest
     - if pipeline.triggered?
       %span.label.label-primary triggered
     - if pipeline.yaml_errors.present?
@@ -61,7 +61,7 @@
         .btn-group.inline
           - if actions.any?
             .btn-group
-              %button.dropdown-toggle.btn.btn-default.has-tooltip.js-pipeline-dropdown-manual-actions{ type: 'button', title: '手动作业', data: { toggle: 'dropdown', placement: 'top' }, 'aria-label' => 'Manual job' }
+              %button.dropdown-toggle.btn.btn-default.has-tooltip.js-pipeline-dropdown-manual-actions{ type: 'button', title: '手动流水线', data: { toggle: 'dropdown', placement: 'top' }, 'aria-label' => 'Manual pipeline' }
                 = custom_icon('icon_play')
                 = icon('caret-down', 'aria-hidden' => 'true')
               %ul.dropdown-menu.dropdown-menu-align-right
