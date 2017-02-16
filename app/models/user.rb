@@ -51,7 +51,12 @@ class User < ActiveRecord::Base
   has_one :namespace, -> { where type: nil }, dependent: :destroy, foreign_key: :owner_id
 
   # Profile
-  has_many :keys, dependent: :destroy
+  has_many :keys, -> do
+    type = Key.arel_table[:type]
+    where(type.not_eq('DeployKey').or(type.eq(nil)))
+  end, dependent: :destroy
+  has_many :deploy_keys, -> { where(type: 'DeployKey') }, dependent: :destroy
+
   has_many :emails, dependent: :destroy
   has_many :personal_access_tokens, dependent: :destroy
   has_many :identities, dependent: :destroy, autosave: true
@@ -83,8 +88,6 @@ class User < ActiveRecord::Base
   has_many :events,                   dependent: :destroy, foreign_key: :author_id
   has_many :subscriptions,            dependent: :destroy
   has_many :recent_events, -> { order "id DESC" }, foreign_key: :author_id,   class_name: "Event"
-  has_many :assigned_issues,          dependent: :destroy, foreign_key: :assignee_id, class_name: "Issue"
-  has_many :assigned_merge_requests,  dependent: :destroy, foreign_key: :assignee_id, class_name: "MergeRequest"
   has_many :oauth_applications, class_name: 'Doorkeeper::Application', as: :owner, dependent: :destroy
   has_one  :abuse_report,             dependent: :destroy
   has_many :spam_logs,                dependent: :destroy
@@ -93,6 +96,9 @@ class User < ActiveRecord::Base
   has_many :todos,                    dependent: :destroy
   has_many :notification_settings,    dependent: :destroy
   has_many :award_emoji,              dependent: :destroy
+
+  has_many :assigned_issues,          dependent: :nullify, foreign_key: :assignee_id, class_name: "Issue"
+  has_many :assigned_merge_requests,  dependent: :nullify, foreign_key: :assignee_id, class_name: "MergeRequest"
 
   #
   # Validations
