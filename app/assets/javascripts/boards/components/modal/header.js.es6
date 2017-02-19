@@ -51,7 +51,7 @@ const modalFilters = require('./filters');
       <div>
         <header class="add-issues-header form-actions">
           <h2>
-            Add issues
+            添加问题
             <button
               type="button"
               class="close"

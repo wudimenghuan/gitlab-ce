@@ -112,7 +112,7 @@ $(() => {
         type="button"
         :disabled="disabled"
         @click="toggleModal(true, false)">
-        Add issues
+        添加问题
       </button>
     `,
   });

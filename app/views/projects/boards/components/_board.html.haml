@@ -14,14 +14,14 @@
               "@click" => "showNewIssueForm",
               "v-if" => 'list.type !== "done"',
               "aria-label" => "Add an issue",
-              "title" => "Add an issue",
+              "title" => "添加一个问题",
               data: { placement: "top", container: "body" } }
               = icon("plus")
         - if can?(current_user, :admin_list, @project)
           %board-delete{ "inline-template" => true,
             ":list" => "list",
             "v-if" => "!list.preset && list.id" }
-            %button.board-delete.has-tooltip.pull-right{ type: "button", title: "Delete list", "aria-label" => "Delete list", data: { placement: "bottom" }, "@click.stop" => "deleteBoard" }
+            %button.board-delete.has-tooltip.pull-right{ type: "button", title: "删除列表", "aria-label" => "Delete list", data: { placement: "bottom" }, "@click.stop" => "deleteBoard" }
               = icon("trash")
     %board-list{ "v-if" => 'list.type !== "blank"',
       ":list" => "list",
