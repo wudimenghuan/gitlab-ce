@@ -12,6 +12,7 @@
             %th.wide 信息
             %th 操作
         = render @abuse_reports
+    = paginate @abuse_reports, theme: 'gitlab'
   - else
     .empty-state
       .text-center
