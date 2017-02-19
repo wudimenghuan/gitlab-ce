@@ -438,9 +438,9 @@
       .col-sm-10
         = f.text_field :plantuml_url, class: 'form-control', placeholder: 'http://gitlab.your-plantuml-instance.com:8080'
         .help-block
-          Allow rendering of
+          允许使用外部的
           = link_to "PlantUML", "http://plantuml.com"
-          diagrams in Asciidoc documents using an external PlantUML service.
+          服务来渲染文本文档中的 PlantUML 图表。
 
   %fieldset
     %legend 用量统计
@@ -470,11 +470,11 @@
         .checkbox
           = f.label :html_emails_enabled do
             = f.check_box :html_emails_enabled
-            Enable HTML emails
+            启用 HTML 邮件
           .help-block
-            By default GitLab sends emails in HTML and plain text formats so mail
-            clients can choose what format to use. Disable this option if you only
-            want to send emails in plain text format.
+            默认情况下，GitLab 同时以 HTML 和纯文本格式发送电子邮件，
+            所以邮件客户端可以选择使用什么格式。
+            如果您只想以纯文本格式发送电子邮件，请禁用此选项。
   %fieldset
     %legend Git 版本库自动维护
     .form-group
@@ -514,14 +514,14 @@
           设定进行 'git gc' 命令的推送次数。
 
   %fieldset
-    %legend Web terminal
+    %legend Web 终端
     .form-group
-      = f.label :terminal_max_session_time, 'Max session time', class: 'control-label col-sm-2'
+      = f.label :terminal_max_session_time, '最大会话时间', class: 'control-label col-sm-2'
       .col-sm-10
         = f.number_field :terminal_max_session_time, class: 'form-control'
         .help-block
-          Maximum time for web terminal websocket connection (in seconds).
-          Set to 0 for unlimited time.
+          Web 终端 WebSocket 连接的最长时间（以秒为单位）。
+          设置为0，无限时间。
 
   .form-actions
     = f.submit '保存', class: 'btn btn-save'
