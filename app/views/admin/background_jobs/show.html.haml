@@ -35,7 +35,7 @@
         .clearfix
           %p
             %i.fa.fa-exclamation-circle
-            如果显示 '[25 of 25 busy]' 请使用 'sudo service gitlab reload' 重新启动 GitLab。
+            如果显示 '[#{@concurrency} of #{@concurrency} busy]' 请使用 'sudo service gitlab reload' 重新启动 GitLab。
           %p
             %i.fa.fa-exclamation-circle
             如果列出超过一个 sidekiq 进程，请停止 GitLab，杀死剩余的 sidekiq 进程 (sudo pkill -u #{Settings.gitlab.user} -f sidekiq)，然后重新启动 GitLab。
