@@ -265,7 +265,7 @@
           showEmailUser = $(select).data('email-user');
           firstUser = $(select).data('first-user');
           return $(select).select2({
-            placeholder: "Search for a user",
+            placeholder: "搜索用户",
             multiple: $(select).hasClass('multiselect'),
             minimumInputLength: 0,
             query: function(query) {

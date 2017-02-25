@@ -45,7 +45,7 @@ module IssuablesHelper
       toggle_class: 'js-issuable-selector',
       title: title,
       filter: true,
-      placeholder: 'Filter',
+      placeholder: '过滤',
       footer_content: true,
       data: {
         data: issuable_templates(issuable),

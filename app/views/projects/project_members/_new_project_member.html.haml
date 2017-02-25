@@ -1,6 +1,6 @@
 = form_for @project_member, as: :project_member, url: namespace_project_project_members_path(@project.namespace, @project), html: { class: 'users-project-form' } do |f|
   .form-group
-    = users_select_tag(:user_ids, multiple: true, class: "input-clamp", scope: :all, email_user: true, placeholder: "Search for members to update or invite")
+    = users_select_tag(:user_ids, multiple: true, class: "input-clamp", scope: :all, email_user: true, placeholder: "搜索要更新或邀请的成员")
     .help-block.append-bottom-10
       搜索已存在的用户或使用邮箱地址邀请新用户，或者通过邮箱邀请新用户。
   .form-group
