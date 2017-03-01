@@ -10,7 +10,7 @@
   - if can?(current_user, :create_project_snippet, @project)
     = link_to new_namespace_project_snippet_path(@project.namespace, @project), class: 'btn btn-grouped btn-inverted btn-create', title: "新建代码片段" do
       新建代码片段
-  - if @snippet.submittable_as_spam? && current_user.admin?
+  - if @snippet.submittable_as_spam_by?(current_user)
     = link_to '提交为垃圾', mark_as_spam_namespace_project_snippet_path(@project.namespace, @project, @snippet), method: :post, class: 'btn btn-grouped btn-spam', title: '提交为垃圾'
 - if can?(current_user, :create_project_snippet, @project) || can?(current_user, :update_project_snippet, @snippet)
   .visible-xs-block.dropdown
@@ -31,6 +31,6 @@
           %li
             = link_to edit_namespace_project_snippet_path(@project.namespace, @project, @snippet) do
               编辑
-        - if @snippet.submittable_as_spam? && current_user.admin?
+        - if @snippet.submittable_as_spam_by?(current_user)
           %li
             = link_to '提交为垃圾', mark_as_spam_namespace_project_snippet_path(@project.namespace, @project, @snippet), method: :post
