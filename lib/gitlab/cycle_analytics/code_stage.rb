@@ -13,6 +13,10 @@ module Gitlab
         :code
       end
 
+      def legend
+        "Related Merge Requests"
+      end
+
       def description
         "第一个合并请求提出的所花费的时间"
       end

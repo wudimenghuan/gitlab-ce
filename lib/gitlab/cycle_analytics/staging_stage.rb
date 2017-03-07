@@ -14,6 +14,10 @@ module Gitlab
         :staging
       end
 
+      def legend
+        "Relative Deployed Builds"
+      end
+
       def description
         "从合并请求被合并到发布所花费的时间"
       end

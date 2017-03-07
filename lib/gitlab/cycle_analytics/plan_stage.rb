@@ -14,6 +14,10 @@ module Gitlab
         :plan
       end
 
+      def legend
+        "Related Commits"
+      end
+
       def description
         "一个问题从提出到开始实现的时间"
       end

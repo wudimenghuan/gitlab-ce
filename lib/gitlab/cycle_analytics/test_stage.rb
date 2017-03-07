@@ -13,6 +13,10 @@ module Gitlab
         :test
       end
 
+      def legend
+        "Relative Builds Trigger by Commits"
+      end
+
       def description
         "所有提交及合并请求测试所花费的时间"
       end

@@ -15,6 +15,10 @@ module Gitlab
         :production
       end
 
+      def legend
+        "Related Issues"
+      end
+
       def description
         "产品从概念提出到生产发布的时间"
       end

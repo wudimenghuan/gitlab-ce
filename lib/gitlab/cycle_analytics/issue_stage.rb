@@ -14,6 +14,10 @@ module Gitlab
         :issue
       end
 
+      def legend
+        "Related Issues"
+      end
+
       def description
         "一个问题从提出到制定计划的时间"
       end

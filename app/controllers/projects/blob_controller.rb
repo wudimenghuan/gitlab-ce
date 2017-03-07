@@ -61,7 +61,7 @@ class Projects::BlobController < Projects::ApplicationController
   end
 
   def destroy
-    create_commit(Files::DestroyService, success_notice: "文件已删除成功。",
+    create_commit(Files::DeleteService, success_notice: "文件已删除成功。",
                                          success_path: -> { namespace_project_tree_path(@project.namespace, @project, @target_branch) },
                                          failure_view: :show,
                                          failure_path: namespace_project_blob_path(@project.namespace, @project, @id))
