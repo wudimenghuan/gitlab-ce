@@ -21,7 +21,7 @@ require('../../../lib/utils/pretty_time');
         return prettyTime.stringifyTime(this.parsedRemaining);
       },
       timeRemainingTooltip() {
-        const prefix = this.timeRemainingMinutes < 0 ? 'Over by' : 'Time remaining:';
+        const prefix = this.timeRemainingMinutes < 0 ? '结束于' : '剩余工时:';
         return `${prefix} ${this.timeRemainingHumanReadable}`;
       },
       /* Diff values for comparison meter */
@@ -54,11 +54,11 @@ require('../../../lib/utils/pretty_time');
           </div>
           <div class='compare-display-container'>
             <div class='compare-display pull-left'>
-              <span class='compare-label'>Spent</span>
+              <span class='compare-label'>耗费</span>
               <span class='compare-value spent'>{{ timeSpentHumanReadable }}</span>
             </div>
             <div class='compare-display estimated pull-right'>
-              <span class='compare-label'>Est</span>
+              <span class='compare-label'>预估</span>
               <span class='compare-value'>{{ timeEstimateHumanReadable }}</span>
             </div>
           </div>

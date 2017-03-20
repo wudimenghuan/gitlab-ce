@@ -11,7 +11,7 @@
           - if todo.author
             = link_to_author(todo)
           - else
-            (removed)
+            (已删除)
 
       .title-item.action-name
         = todo_action_name(todo)
@@ -20,7 +20,7 @@
         - if todo.target
           = todo_target_link(todo)
         - else
-          (removed)
+          (已删除)
 
       .title-item
         &middot;
@@ -37,8 +37,8 @@
   - if todo.pending?
     .todo-actions
       = link_to [:dashboard, todo], method: :delete, class: 'btn btn-loading js-done-todo' do
-        Done
+        完成
         = icon('spinner spin')
       = link_to restore_dashboard_todo_path(todo), method: :patch, class: 'btn btn-loading js-undo-todo hidden'  do
-        Undo
+        撤销
         = icon('spinner spin')

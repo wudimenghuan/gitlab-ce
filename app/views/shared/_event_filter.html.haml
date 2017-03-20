@@ -1,11 +1,11 @@
 %ul.nav-links.event-filter.scrolling-tabs
-  = event_filter_link EventFilter.all, 'All'
+  = event_filter_link EventFilter.all, '全部'
   - if event_filter_visible(:repository)
-    = event_filter_link EventFilter.push, 'Push events'
+    = event_filter_link EventFilter.push, '推送事件'
   - if event_filter_visible(:merge_requests)
-    = event_filter_link EventFilter.merged, 'Merge events'
+    = event_filter_link EventFilter.merged, '合并事件'
   - if event_filter_visible(:issues)
-    = event_filter_link EventFilter.issue, 'Issue events'
+    = event_filter_link EventFilter.issue, '问题事件'
   - if comments_visible?
-    = event_filter_link EventFilter.comments, 'Comments'
-  = event_filter_link EventFilter.team, 'Team'
+    = event_filter_link EventFilter.comments, '评论'
+  = event_filter_link EventFilter.team, '团队'

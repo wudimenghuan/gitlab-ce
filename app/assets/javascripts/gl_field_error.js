@@ -61,7 +61,7 @@
       this.inputElement = $(input);
       this.inputDomElement = this.inputElement.get(0);
       this.form = formErrors;
-      this.errorMessage = this.inputElement.attr('title') || 'This field is required.';
+      this.errorMessage = this.inputElement.attr('title') || '必填项';
       this.fieldErrorElement = $(`<p class='${errorMessageClass} hide'>${this.errorMessage}</p>`);
 
       this.state = {

@@ -12,7 +12,7 @@
           all_available = $(select).data('all-available');
           skip_groups = $(select).data('skip-groups') || [];
           return $(select).select2({
-            placeholder: "Search for a group",
+            placeholder: "搜索群组",
             multiple: $(select).hasClass('multiselect'),
             minimumInputLength: 0,
             query: function(query) {

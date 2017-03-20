@@ -36,6 +36,10 @@ class GroupMember < Member
     access_level
   end
 
+  def real_source_type_zh
+    '群组'
+  end
+
   # Because source_type is `Namespace`...
   def real_source_type
     'Group'

@@ -102,7 +102,7 @@ module CommitsHelper
   def link_to_browse_code(project, commit)
     if @path.blank?
       return link_to(
-        "Browse Files",
+        "浏览文件",
         namespace_project_tree_path(project.namespace, project, commit),
         class: "btn btn-default"
       )
@@ -112,14 +112,14 @@ module CommitsHelper
 
     if @repo.blob_at(commit.id, @path)
       return link_to(
-        "Browse File",
+        "浏览文件",
         namespace_project_blob_path(project.namespace, project,
                                     tree_join(commit.id, @path)),
         class: "btn btn-default"
       )
     elsif @path.present?
       return link_to(
-        "Browse Directory",
+        "浏览目录",
         namespace_project_tree_path(project.namespace, project,
                                     tree_join(commit.id, @path)),
         class: "btn btn-default"
@@ -172,25 +172,36 @@ module CommitsHelper
     end
   end
 
+  def commit_action_name_zh(action)
+    case(action)
+    when 'revert'
+      '撤销'
+    when 'cherry-pick'
+      '挑选(Cherry-Pick)'
+    else
+      action.capitalize
+    end
+  end
+
   def commit_action_link(action, commit, continue_to_path, btn_class: nil, has_tooltip: true)
     return unless current_user
 
-    tooltip = "#{action.capitalize} this #{commit.change_type_title(current_user)} in a new merge request" if has_tooltip
+    tooltip = "#{commit_action_name_zh(action)} 此 #{commit.change_type_title(current_user)} 到一个新的合并请求" if has_tooltip
     btn_class = "btn btn-#{btn_class}" unless btn_class.nil?
 
     if can_collaborate_with_project?
-      link_to action.capitalize, "#modal-#{action}-commit", 'data-toggle' => 'modal', 'data-container' => 'body', title: (tooltip if has_tooltip), class: "#{btn_class} #{'has-tooltip' if has_tooltip}"
+      link_to commit_action_name_zh(action), "#modal-#{action}-commit", 'data-toggle' => 'modal', 'data-container' => 'body', title: (tooltip if has_tooltip), class: "#{btn_class} #{'has-tooltip' if has_tooltip}"
     elsif can?(current_user, :fork_project, @project)
       continue_params = {
         to: continue_to_path,
-        notice: "#{edit_in_new_fork_notice} Try to #{action} this commit again.",
+        notice: "#{edit_in_new_fork_notice} 尝试重新 #{action} 此提交",
         notice_now: edit_in_new_fork_notice_now
       }
       fork_path = namespace_project_forks_path(@project.namespace, @project,
         namespace_key: current_user.namespace.id,
         continue: continue_params)
 
-      link_to action.capitalize, fork_path, class: btn_class, method: :post, 'data-toggle' => 'tooltip', 'data-container' => 'body', title: (tooltip if has_tooltip)
+      link_to commit_action_name_zh(action), fork_path, class: btn_class, method: :post, 'data-toggle' => 'tooltip', 'data-container' => 'body', title: (tooltip if has_tooltip)
     end
   end
 
@@ -200,7 +211,7 @@ module CommitsHelper
                                   tree_join(commit_sha, diff_new_path)),
       class: 'btn view-file js-view-file'
     ) do
-      raw('View file @') + content_tag(:span, commit_sha[0..6],
+      raw('查看文件 @') + content_tag(:span, commit_sha[0..6],
                                        class: 'commit-short-id')
     end
   end

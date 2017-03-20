@@ -3,22 +3,22 @@
     GitLab (job failed)
 
 %h3
-  Project:
+  项目:
   = link_to namespace_project_url(@project.namespace, @project) do
     = @project.name
 
 %p
-  Commit: #{link_to @build.short_sha, namespace_project_commit_url(@build.project.namespace, @build.project, @build.sha)}
+  提交: #{link_to @build.short_sha, namespace_project_commit_url(@build.project.namespace, @build.project, @build.sha)}
 %p
-  Author: #{@build.pipeline.git_author_name}
+  作者: #{@build.pipeline.git_author_name}
 %p
-  Branch: #{@build.ref}
+  分支: #{@build.ref}
 %p
-  Stage: #{@build.stage}
+  阶段: #{@build.stage}
 %p
-  Job: #{@build.name}
+  作业: #{@build.name}
 %p
-  Message: #{@build.pipeline.git_commit_message}
+  消息: #{@build.pipeline.git_commit_message}
 
 %p
-  Job details: #{link_to "Job #{@build.id}", namespace_project_build_url(@build.project.namespace, @build.project, @build)}
+  作业明细: #{link_to "作业 #{@build.id}", namespace_project_build_url(@build.project.namespace, @build.project, @build)}

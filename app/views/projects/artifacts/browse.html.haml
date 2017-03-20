@@ -1,21 +1,21 @@
-- page_title 'Artifacts', "#{@build.name} (##{@build.id})", 'Jobs'
+- page_title '工件', "#{@build.name} (##{@build.id})", '作业'
 
 .top-block.row-content-block.clearfix
   .pull-right
     = link_to download_namespace_project_build_artifacts_path(@project.namespace, @project, @build),
       class: 'btn btn-default download' do
       = icon('download')
-      Download artifacts archive
+      下载工件
 
 .tree-holder
   .tree-content-holder
     %table.table.tree-table
       %thead
         %tr
-          %th Name
-          %th Size
+          %th 名称
+          %th 大小
       = render partial: 'tree_directory', collection: @entry.directories(parent: true), as: :directory
       = render partial: 'tree_file', collection: @entry.files, as: :file
 
 - if @entry.empty?
-  .center Empty
+  .center 空

@@ -20,7 +20,7 @@ module Gitlab
       end
 
       def description
-        "From issue creation until deploy to production"
+        "产品从概念提出到生产发布的时间"
       end
 
       def query

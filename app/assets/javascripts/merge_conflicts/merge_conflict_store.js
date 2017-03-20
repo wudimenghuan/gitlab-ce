@@ -349,8 +349,8 @@
     },
 
     getCommitButtonText() {
-      const initial = 'Commit conflict resolution';
-      const inProgress = 'Committing...';
+      const initial = '提交并解决冲突';
+      const inProgress = '正在提交...';
 
       return this.state ? this.state.isSubmitting ? inProgress : initial : initial;
     },

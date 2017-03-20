@@ -15,8 +15,8 @@
           Issues can be bugs, tasks or ideas to be discussed.
           Also, issues are searchable and filterable.
         - if project_select_button
-          = render 'shared/new_project_item_select', path: 'issues/new', label: 'New issue'
+          = render 'shared/new_project_item_select', path: 'issues/new', label: '新建问题'
         - else
-          = link_to 'New issue', button_path, class: 'btn btn-new', title: 'New issue', id: 'new_issue_link'
+          = link_to '新建问题', button_path, class: 'btn btn-new', title: '新建问题', id: 'new_issue_link'
       - else
-        %h4.text-center There are no issues to show.
+        %h4.text-center 没有问题可以显示。

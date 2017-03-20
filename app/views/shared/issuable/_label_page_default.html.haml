@@ -1,15 +1,15 @@
-- title = local_assigns.fetch(:title, 'Assign labels')
+- title = local_assigns.fetch(:title, '指派标记')
 - show_create = local_assigns.fetch(:show_create, true)
 - show_footer = local_assigns.fetch(:show_footer, true)
-- filter_placeholder = local_assigns.fetch(:filter_placeholder, 'Search')
+- filter_placeholder = local_assigns.fetch(:filter_placeholder, '搜索')
 - show_boards_content = local_assigns.fetch(:show_boards_content, false)
 .dropdown-page-one
   = dropdown_title(title)
   - if show_boards_content
     .issue-board-dropdown-content
       %p
-        Create lists from the labels you use in your project. Issues with that
-        label will automatically be added to the list.
+        从您在项目中使用的标记中创建列表。 被标记的问题
+        将自动添加到列表中。
   = dropdown_filter(filter_placeholder)
   = dropdown_content
   - if @project && show_footer
@@ -18,11 +18,11 @@
         - if can?(current_user, :admin_label, @project)
           %li
             %a.dropdown-toggle-page{ href: "#" }
-              Create new label
+              创建新的标记
         %li
           = link_to namespace_project_labels_path(@project.namespace, @project), :"data-is-link" => true do
             - if show_create && @project && can?(current_user, :admin_label, @project)
-              Manage labels
+              管理标记
             - else
-              View labels
+              查看标记
   = dropdown_loading

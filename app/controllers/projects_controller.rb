@@ -34,7 +34,7 @@ class ProjectsController < Projects::ApplicationController
 
       redirect_to(
         project_path(@project),
-        notice: "Project '#{@project.name}' was successfully created."
+        notice: "项目 '#{@project.name}' 创建成功。"
       )
     else
       render 'new'
@@ -49,7 +49,7 @@ class ProjectsController < Projects::ApplicationController
 
     respond_to do |format|
       if result[:status] == :success
-        flash[:notice] = "Project '#{@project.name}' was successfully updated."
+        flash[:notice] = "项目 '#{@project.name}' 更新成功"
         format.html do
           redirect_to(edit_project_path(@project))
         end
@@ -76,7 +76,7 @@ class ProjectsController < Projects::ApplicationController
     return access_denied! unless can?(current_user, :remove_fork_project, @project)
 
     if ::Projects::UnlinkForkService.new(@project, current_user).execute
-      flash[:notice] = 'The fork relationship has been removed.'
+      flash[:notice] = '派生关系被删除。'
     end
   end
 
@@ -97,7 +97,7 @@ class ProjectsController < Projects::ApplicationController
     end
 
     if @project.pending_delete?
-      flash[:alert] = "Project #{@project.name} queued for deletion."
+      flash[:alert] = "项目 #{@project.name} 正在排队删除。"
     end
 
     respond_to do |format|
@@ -117,7 +117,7 @@ class ProjectsController < Projects::ApplicationController
     return access_denied! unless can?(current_user, :remove_project, @project)
 
     ::Projects::DestroyService.new(@project, current_user, {}).async_execute
-    flash[:alert] = "Project '#{@project.name}' will be deleted."
+    flash[:alert] = "项目 '#{@project.name}' 将被删除。"
 
     redirect_to dashboard_projects_path
   rescue Projects::DestroyService::DestroyError => ex
@@ -156,7 +156,7 @@ class ProjectsController < Projects::ApplicationController
 
     redirect_to(
       project_path(@project),
-      notice: "Housekeeping successfully started"
+      notice: "维护已开启成功"
     )
   rescue ::Projects::HousekeepingService::LeaseTaken => ex
     redirect_to(
@@ -170,7 +170,7 @@ class ProjectsController < Projects::ApplicationController
 
     redirect_to(
       edit_project_path(@project),
-      notice: "Project export started. A download link will be sent by email."
+      notice: "项目开始导出。将通过电子邮件发送下载链接。"
     )
   end
 
@@ -182,16 +182,16 @@ class ProjectsController < Projects::ApplicationController
     else
       redirect_to(
         edit_project_path(@project),
-        alert: "Project export link has expired. Please generate a new export from your project settings."
+        alert: "项目导出链接已过期。 请从您的项目设置中生成新的导出。"
       )
     end
   end
 
   def remove_export
     if @project.remove_exports
-      flash[:notice] = "Project export has been deleted."
+      flash[:notice] = "项目导出已经被删除。"
     else
-      flash[:alert] = "Project export could not be deleted."
+      flash[:alert] = "无法删除项目导出。"
     end
     redirect_to(edit_project_path(@project))
   end
@@ -202,7 +202,7 @@ class ProjectsController < Projects::ApplicationController
     else
       redirect_to(
         edit_project_path(@project),
-        alert: "Project export could not be deleted."
+        alert: "无法删除项目导出。"
       )
     end
   end

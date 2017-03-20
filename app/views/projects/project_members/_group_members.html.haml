@@ -1,11 +1,12 @@
 .panel.panel-default
   .panel-heading
-    Group members with access to
+    有权访问
     %strong= @group.name
+    的成员
     %span.badge= members.size
     - if can?(current_user, :admin_group_member, @group)
       .controls
-        = link_to 'Manage group members',
+        = link_to '编辑群组成员',
                   group_group_members_path(@group),
                   class: 'btn'
   %ul.content-list
@@ -15,4 +16,4 @@
              locals: { show_controls: false }
     - if members.size > 20
       %li
-        and #{members.count - 20} more. For full list visit #{link_to 'group members page', group_group_members_path(@group)}
+        和 #{members.count - 20} 个更多成员。完整列表请访问 #{link_to '群组成员页面', group_group_members_path(@group)}

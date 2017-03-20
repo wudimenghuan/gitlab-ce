@@ -11,8 +11,8 @@
         %ul.dropdown-menu.dropdown-menu-align-right
           - if can_admin_group
             = nav_link(path: 'groups#projects') do
-              = link_to 'Projects', projects_group_path(@group), title: 'Projects'
+              = link_to '项目', projects_group_path(@group), title: '项目'
           - if can_edit && can_admin_group
             %li.divider
             %li
-              = link_to 'Edit Group', edit_group_path(@group)
+              = link_to '编辑群组', edit_group_path(@group)

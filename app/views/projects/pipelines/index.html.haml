@@ -1,5 +1,5 @@
 - @no_container = true
-- page_title "Pipelines"
+- page_title "流水线"
 = render "projects/pipelines/head"
 
 %div{ class: container_class }
@@ -7,7 +7,7 @@
     %ul.nav-links
       %li.js-pipelines-tab-all{ class: active_when(@scope.nil?) }>
         = link_to project_pipelines_path(@project) do
-          All
+          全部
           %span.badge.js-totalbuilds-count
             = number_with_delimiter(@pipelines_count)
 
@@ -19,7 +19,7 @@
 
       %li.js-pipelines-tab-running{ class: active_when(@scope == 'running') }>
         = link_to project_pipelines_path(@project, scope: :running) do
-          Running
+          运行中
           %span.badge.js-running-count
             = number_with_delimiter(@running_count)
 
@@ -31,19 +31,19 @@
 
       %li.js-pipelines-tab-branches{ class: active_when(@scope == 'branches') }>
         = link_to project_pipelines_path(@project, scope: :branches) do
-          Branches
+          分支
 
       %li.js-pipelines-tab-tags{ class: active_when(@scope == 'tags') }>
         = link_to project_pipelines_path(@project, scope: :tags) do
-          Tags
+          标签
 
     .nav-controls
       - if can? current_user, :create_pipeline, @project
         = link_to new_namespace_project_pipeline_path(@project.namespace, @project), class: 'btn btn-create' do
-          Run pipeline
+          运行流水线
 
         - unless @repository.gitlab_ci_yml
-          = link_to 'Get started with Pipelines', help_page_path('ci/quick_start/README'), class: 'btn btn-info'
+          = link_to '开始使用流水线', help_page_path('ci/quick_start/README'), class: 'btn btn-info'
 
         = link_to ci_lint_path, class: 'btn btn-default' do
           %span CI Lint

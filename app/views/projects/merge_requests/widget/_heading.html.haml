@@ -6,7 +6,7 @@
           = link_to namespace_project_pipeline_path(@pipeline.project.namespace, @pipeline.project, @pipeline.id), class: 'icon-link' do
             = ci_icon_for_status(status)
         %span
-          Pipeline
+          流水线
           = link_to "##{@pipeline.id}", namespace_project_pipeline_path(@pipeline.project.namespace, @pipeline.project, @pipeline.id), class: 'pipeline'
           = ci_label_for_status(status)
         - if @pipeline.stages.any?
@@ -17,6 +17,7 @@
           = succeed "." do
             = link_to @pipeline.short_sha, namespace_project_commit_path(@merge_request.source_project.namespace, @merge_request.source_project, @pipeline.sha), class: "monospace js-commit-link"
         %span.ci-coverage
+        = link_to "查看明细", pipelines_namespace_project_merge_request_path(@project.namespace, @project, @merge_request), class: "js-show-tab", data: {action: 'pipelines'}
 
 - elsif @merge_request.has_ci?
   -# Compatibility with old CI integrations (ex jenkins) when you request status from CI server via AJAX
@@ -26,7 +27,7 @@
       .ci_widget{ class: "ci-#{status} ci-status-icon-#{status}", style: "display:none" }
         = ci_icon_for_status(status)
         %span
-          CI job
+          CI 作业
           = ci_label_for_status(status)
           for
         - commit = @merge_request.diff_head_commit
@@ -36,15 +37,15 @@
 
     .ci_widget
       = icon("spinner spin")
-      Checking CI status for #{@merge_request.diff_head_commit.short_id}&hellip;
+      正在检查 #{@merge_request.diff_head_commit.short_id} 的构建状态&hellip;
 
     .ci_widget.ci-not_found{ style: "display:none" }
       = icon("times-circle")
-      Could not find CI status for #{@merge_request.diff_head_commit.short_id}.
+      找不到 #{@merge_request.diff_head_commit.short_id} 的构建状态。
 
     .ci_widget.ci-error{ style: "display:none" }
       = icon("times-circle")
-      Could not connect to the CI server. Please check your settings and try again.
+      无法连接到 CI 服务器。请检查相关设置并重试。
 
 .js-success-icon.hidden
   = ci_icon_for_status('success')

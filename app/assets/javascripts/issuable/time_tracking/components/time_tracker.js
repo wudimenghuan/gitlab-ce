@@ -73,7 +73,7 @@ require('./comparison_pane');
           :time-estimate-human-readable='timeEstimateHumanReadable'>
         </time-tracking-collapsed-state>
         <div class='title hide-collapsed'>
-          Time tracking
+          工时跟踪
           <div class='help-button pull-right'
             v-if='!showHelpState'
             @click='toggleHelpState(true)'>
