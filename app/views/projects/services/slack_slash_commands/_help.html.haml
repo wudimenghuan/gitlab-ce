@@ -13,7 +13,7 @@
   %ul.list-unstyled
     %li
       1.
-      = link_to 'Add a slash command', 'https://my.slack.com/services/new/slash-commands'
+      = link_to 'Add a slash command', 'https://my.slack.com/services/new/slash-commands', target: '_blank', rel: 'noreferrer noopener nofollow'
       in your Slack team with these options:
 
   %hr
@@ -51,7 +51,7 @@
       = label_tag nil, 'Customize icon', class: 'col-sm-2 col-xs-12 control-label'
       .col-sm-10.col-xs-12.text-block
         = image_tag(asset_url('slash-command-logo.png'), width: 36, height: 36)
-        = link_to('Download image', asset_url('gitlab_logo.png'), class: 'btn btn-sm', target: '_blank')
+        = link_to('Download image', asset_url('gitlab_logo.png'), class: 'btn btn-sm', target: '_blank', rel: 'noopener noreferrer')
 
     .form-group
       = label_tag nil, 'Autocomplete', class: 'col-sm-2 col-xs-12 control-label'
