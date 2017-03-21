@@ -91,7 +91,7 @@ module TodosHelper
     [
       { id: '', text: '任何动作' },
       { id: Todo::ASSIGNED, text: '被指派' },
-      { id: Todo::MENTIONED, text: '被提及' }
+      { id: Todo::MENTIONED, text: '被提及' },
       { id: Todo::MARKED, text: '已添加' },
       { id: Todo::BUILD_FAILED, text: '流水线' },
       { id: Todo::DIRECTLY_ADDRESSED, text: 'Directly addressed' }

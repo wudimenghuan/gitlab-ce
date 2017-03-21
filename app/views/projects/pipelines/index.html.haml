@@ -13,7 +13,7 @@
 
       %li.js-pipelines-tab-pending{ class: active_when(@scope == 'pending') }>
         = link_to project_pipelines_path(@project, scope: :pending) do
-          Pending
+          排队中
           %span.badge
             = number_with_delimiter(@pending_count)
 
@@ -25,7 +25,7 @@
 
       %li.js-pipelines-tab-finished{ class: active_when(@scope == 'finished') }>
         = link_to project_pipelines_path(@project, scope: :finished) do
-          Finished
+          已完成
           %span.badge
             = number_with_delimiter(@finished_count)
 

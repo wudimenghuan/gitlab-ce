@@ -17,12 +17,12 @@ const USER_CALLOUT_TEMPLATE = `
       </div>
       <div class="col-sm-8 col-xs-12 inner-content">
         <h4>
-          Customize your experience
+          自定义您的体验
         </h4>
         <p>
-          Change syntax themes, default project pages, and more in preferences.
+          在首选项中更改语法主题，默认项目页面等。
         </p>
-        <a class="btn user-callout-btn" href="/profile/preferences">Check it out</a>
+        <a class="btn user-callout-btn" href="/profile/preferences">去看看</a>
       </div>
   </div>
 </div>`;

@@ -15,7 +15,7 @@
               = text_field_tag :new_wiki_path, nil, placeholder: 'how-to-setup', class: 'form-control', required: true, :'data-wikis-path' => namespace_project_wikis_path(@project.namespace, @project), autofocus: true
               %span.new-wiki-page-slug-tip
                 = icon('lightbulb-o')
-                Tip: You can specify the full path for the new file.
-                We will automatically create any missing directories.
+                提示：您可以指定新文件的完整路径。
+                我们将自动创建缺少的中间目录。
             .form-actions
               = button_tag '创建页面', class: 'build-new-wiki btn btn-create'
