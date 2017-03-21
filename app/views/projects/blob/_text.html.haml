@@ -3,7 +3,7 @@
     .nothing-here-block
       文件太大，你可以
       = succeed '.' do
-        = link_to '查看原始文件', namespace_project_raw_path(@project.namespace, @project, @id), target: '_blank'
+        = link_to '查看原始文件', namespace_project_raw_path(@project.namespace, @project, @id), target: '_blank', rel: 'noopener noreferrer'
 
 - else
   - blob.load_all_data!(@repository)

@@ -8,7 +8,7 @@
   .alert.alert-danger
     有人与您同时编辑了 #{issuable.class.model_name.human.downcase} 这个问题，请检出
     Please check out
-    = link_to "这个问题 #{issuable.class.model_name.human.downcase}", polymorphic_path([@project.namespace.becomes(Namespace), @project, issuable]), target: "_blank"
+    = link_to "这个问题 #{issuable.class.model_name.human.downcase}", polymorphic_path([@project.namespace.becomes(Namespace), @project, issuable]), target: "_blank", rel: 'noopener noreferrer'
     并确保您不会无意中删除了其他人的更改。
 
 .form-group
