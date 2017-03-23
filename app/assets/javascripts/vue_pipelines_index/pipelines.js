@@ -65,7 +65,7 @@ const CommitPipelinesStoreWithTimeAgo = require('../commit/pipelines/pipelines_s
         <div class="blank-state blank-state-no-icon"
           v-if="!pageRequest && pipelines.length === 0">
           <h2 class="blank-state-title js-blank-state-title">
-            No pipelines to show
+            没有流水线可显示
           </h2>
         </div>
 
