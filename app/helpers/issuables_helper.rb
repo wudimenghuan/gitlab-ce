@@ -88,11 +88,14 @@ module IssuablesHelper
   end
 
   def milestone_dropdown_label(milestone_title, default_label = "里程碑")
-    if milestone_title == Milestone::Upcoming.name
-      milestone_title = Milestone::Upcoming.title
+    title =
+      case milestone_title
+      when Milestone::Upcoming.name then Milestone::Upcoming.title
+      when Milestone::Started.name then Milestone::Started.title
+      else milestone_title.presence
     end
 
-    h(milestone_title.presence || default_label)
+    h(title || default_label)
   end
 
   def issuable_meta(issuable, project, text)

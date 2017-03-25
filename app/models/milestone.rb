@@ -5,6 +5,7 @@ class Milestone < ActiveRecord::Base
   None = MilestoneStruct.new('无里程碑', '无里程碑', 0)
   Any = MilestoneStruct.new('任何里程碑', '', -1)
   Upcoming = MilestoneStruct.new('即将到来', '#upcoming', -2)
+  Started = MilestoneStruct.new('已开始', '#started', -3)
 
   include CacheMarkdownField
   include InternalId
