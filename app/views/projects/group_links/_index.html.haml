@@ -5,6 +5,7 @@
       共享项目给其他群组
     %p
       项目只能在一个群组内保存。但可以在这里将其共享给其它群组。
+  .col-lg-9
     %h5.prepend-top-0
       设置要共享的群组
     = form_tag namespace_project_group_links_path(@project.namespace, @project), class: 'js-requires-input', method: :post do
