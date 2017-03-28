@@ -16,7 +16,7 @@ module Gitlab
       end
 
       def legend
-        "Related Issues"
+        "关联问题"
       end
 
       def description
