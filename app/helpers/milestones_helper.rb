@@ -88,7 +88,7 @@ module MilestonesHelper
       content << "剩余 #{'day'.pluralize(days)}"
       content.html_safe
     elsif milestone.upcoming?
-      content_tag(:strong, 'Upcoming')
+      content_tag(:strong, '即将到期')
     elsif milestone.start_date && milestone.start_date.past?
       days    = milestone.elapsed_days
       content = content_tag(:strong, days)
