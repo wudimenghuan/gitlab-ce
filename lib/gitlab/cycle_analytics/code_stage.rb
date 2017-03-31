@@ -18,7 +18,7 @@ module Gitlab
       end
 
       def description
-        "Time until first merge request"
+        "第一个合并请求提出的所花费的时间"
       end
     end
   end

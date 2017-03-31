@@ -1,5 +1,5 @@
 - @no_container = true
-- page_title "Metrics for environment", @environment.name
+- page_title "运行环境指标", @environment.name
 - content_for :page_specific_javascripts do
   = page_specific_javascript_bundle_tag('common_d3')
   = page_specific_javascript_bundle_tag('monitoring')
@@ -19,10 +19,10 @@
   .row
     .col-sm-12
       %h4
-        CPU utilization
+        CPU利用率
       %svg.prometheus-graph{ 'graph-type' => 'cpu_values' }
   .row
     .col-sm-12
       %h4
-        Memory usage
+        内存使用情况
       %svg.prometheus-graph{ 'graph-type' => 'memory_values' }

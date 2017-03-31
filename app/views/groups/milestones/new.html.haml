@@ -1,11 +1,11 @@
-- page_title "Milestones"
-- header_title group_title(@group, "Milestones", group_milestones_path(@group))
+- page_title "里程碑"
+- header_title group_title(@group, "里程碑", group_milestones_path(@group))
 
 %h3.page-title
-  New Milestone
+  新建里程碑
 
 %p.light
-  This will create milestone in every selected project
+  将会给每一个选择的项目创建里程碑
 %hr
 
 = form_for @milestone, url: group_milestones_path(@group), html: { class: 'form-horizontal milestone-form common-note-form js-quick-submit js-requires-input' }  do |f|
@@ -20,18 +20,18 @@
 
     .col-md-6
       .form-group
-        = f.label :title, "Title", class: "control-label"
+        = f.label :title, "标题", class: "control-label"
         .col-sm-10
           = f.text_field :title, maxlength: 255, class: "form-control", required: true, autofocus: true
       .form-group.milestone-description
-        = f.label :description, "Description", class: "control-label"
+        = f.label :description, "描述", class: "control-label"
         .col-sm-10
           = render layout: 'projects/md_preview', locals: { preview_class: "md-preview" } do
-            = render 'projects/zen', f: f, attr: :description, classes: 'note-textarea', placeholder: 'Write milestone description...'
+            = render 'projects/zen', f: f, attr: :description, classes: 'note-textarea', placeholder: '撰写里程碑描述...'
             .clearfix
             .error-alert
       .form-group
-        = f.label :projects, "Projects", class: "control-label"
+        = f.label :projects, "项目", class: "control-label"
         .col-sm-10
           = f.collection_select :project_ids, @group.projects.non_archived, :id, :name,
             { selected: @group.projects.non_archived.pluck(:id) }, required: true, multiple: true, class: 'select2'
@@ -39,5 +39,5 @@
     = render "shared/milestones/form_dates", f: f
 
   .form-actions
-    = f.submit 'Create Milestone', class: "btn-create btn"
-    = link_to "Cancel", group_milestones_path(@group), class: "btn btn-cancel"
+    = f.submit '创建里程碑', class: "btn-create btn"
+    = link_to "取消", group_milestones_path(@group), class: "btn btn-cancel"

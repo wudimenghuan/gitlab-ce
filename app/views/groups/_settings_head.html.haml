@@ -4,11 +4,11 @@
     .nav-links.sub-nav.scrolling-tabs
       %ul{ class: container_class }
         = nav_link(path: 'groups#edit') do
-          = link_to edit_group_path(@group), title: 'General' do
+          = link_to edit_group_path(@group), title: '常规' do
             %span
-              General
+              常规
 
         = nav_link(path: 'groups#projects') do
-          = link_to projects_group_path(@group), title: 'Projects' do
+          = link_to projects_group_path(@group), title: '项目' do
             %span
-              Projects
+              项目

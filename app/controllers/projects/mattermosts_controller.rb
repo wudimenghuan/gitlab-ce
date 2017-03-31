@@ -15,11 +15,11 @@ class Projects::MattermostsController < Projects::ApplicationController
     result, message = @service.configure(current_user, configure_params)
 
     if result
-      flash[:notice] = 'This service is now configured'
+      flash[:notice] = '这个服务已经配置完成'
       redirect_to edit_namespace_project_service_path(
         @project.namespace, @project, service)
     else
-      flash[:alert] = message || 'Failed to configure service'
+      flash[:alert] = message || '服务配置失败'
       redirect_to new_namespace_project_mattermost_path(
         @project.namespace, @project)
     end

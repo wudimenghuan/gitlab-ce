@@ -5,6 +5,33 @@ module CiStatusHelper
   end
 
   # Is used by Commit and Merge Request Widget
+  def ci_status_zh(status)
+    case status
+      when 'pending'
+        '排队'
+      when 'running'
+        '运行'
+      when 'failed'
+        '失败'
+      when 'canceled'
+        '取消'
+      else
+         '未知'
+    end
+  end
+
+  def ci_stage_zh(stage)
+    case stage
+      when 'build'
+        '构建'
+      when 'deploy'
+        '部署'
+      when 'test'
+        '测试'
+      else
+        stage.titleize
+    end
+  end
   def ci_label_for_status(status)
     if detailed_status?(status)
       return status.label
@@ -12,13 +39,13 @@ module CiStatusHelper
 
     case status
     when 'success'
-      'passed'
+      '成功'
     when 'success_with_warnings'
-      'passed with warnings'
+      '成功(有警告)'
     when 'manual'
-      'waiting for manual action'
+      '等待手动操作'
     else
-      status
+      ci_status_zh(status)
     end
   end
 

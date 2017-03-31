@@ -125,7 +125,7 @@ export default Vue.component('environment-component', {
         <ul v-if="!isLoading" class="nav-links">
           <li v-bind:class="{ 'active': scope === null || scope === 'available' }">
             <a :href="projectEnvironmentsPath">
-              Available
+              可用的
               <span class="badge js-available-environments-count">
                 {{state.availableCounter}}
               </span>
@@ -133,7 +133,7 @@ export default Vue.component('environment-component', {
           </li>
           <li v-bind:class="{ 'active' : scope === 'stopped' }">
             <a :href="projectStoppedEnvironmentsPath">
-              Stopped
+              停用的
               <span class="badge js-stopped-environments-count">
                 {{state.stoppedCounter}}
               </span>
@@ -142,7 +142,7 @@ export default Vue.component('environment-component', {
         </ul>
         <div v-if="canCreateEnvironmentParsed && !isLoading" class="nav-controls">
           <a :href="newEnvironmentPath" class="btn btn-create">
-            New environment
+            新建运行环境
           </a>
         </div>
       </div>
@@ -155,20 +155,20 @@ export default Vue.component('environment-component', {
         <div class="blank-state blank-state-no-icon"
           v-if="!isLoading && state.environments.length === 0">
           <h2 class="blank-state-title js-blank-state-title">
-            You don't have any environments right now.
+            你现在还没有任何运行环境。
           </h2>
           <p class="blank-state-text">
-            Environments are places where code gets deployed, such as staging or production.
+            运行环境是部署代码的地方, 比如模拟环境或者生产现场
             <br />
             <a :href="helpPagePath">
-              Read more about environments
+              运行环境介绍
             </a>
           </p>
 
           <a v-if="canCreateEnvironmentParsed"
             :href="newEnvironmentPath"
             class="btn btn-create js-new-environment-button">
-            New Environment
+            新建运行环境
           </a>
         </div>
 

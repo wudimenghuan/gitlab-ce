@@ -18,7 +18,7 @@ module Gitlab
       end
 
       def description
-        "Total test time for all commits/merges"
+        "所有提交及合并请求测试所花费的时间"
       end
 
       def stage_query

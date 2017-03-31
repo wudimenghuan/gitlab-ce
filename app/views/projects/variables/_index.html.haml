@@ -3,14 +3,14 @@
     = render "projects/variables/content"
   .col-lg-9
     %h5.prepend-top-0
-      Add a variable
-    = render "projects/variables/form", btn_text: "Add new variable"
+      增加变量
+    = render "projects/variables/form", btn_text: "增加新的变量"
     %hr
     %h5.prepend-top-0
-      Your variables (#{@project.variables.size})
+      你的变量 (#{@project.variables.size})
     - if @project.variables.empty?
       %p.settings-message.text-center.append-bottom-0
-        No variables found, add one with the form above.
+        没有变量，请使用上面的表单增加。
     - else
       = render "projects/variables/table"
-      %button.btn.btn-info.js-btn-toggle-reveal-values{ "data-status" => 'hidden' } Reveal Values
+      %button.btn.btn-info.js-btn-toggle-reveal-values{ "data-status" => 'hidden' } 显示值

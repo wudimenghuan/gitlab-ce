@@ -18,7 +18,7 @@ module Gitlab
       end
 
       def description
-        "Time between merge request creation and merge/close"
+        "合并请求从提出到合并所花费的时间"
       end
     end
   end

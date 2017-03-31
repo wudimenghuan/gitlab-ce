@@ -1,8 +1,8 @@
 .row-content-block.project-home-empty
   .text-center{ class: container_class }
     %h4
-      Customize your workflow!
+      自定义您的工作流！
     %p
-      Get started with GitLab by enabling features that work best for your project. From issues and wikis, to merge requests and pipelines, GitLab can help manage your workflow from idea to production!
+      通过启用最适合您的项目的功能，开始使用 GitLab。 从问题和维基，到合并请求和流水线，GitLab 可以帮助你管理从概念到生产发布的工作流！
     - if can?(current_user, :admin_project, @project)
-      = link_to "Get started", edit_project_path(@project), class: "btn btn-success"
+      = link_to "开始", edit_project_path(@project), class: "btn btn-success"

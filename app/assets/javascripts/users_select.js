@@ -111,7 +111,7 @@ import Vue from 'vue';
                 };
               } else {
                 user = {
-                  name: 'Unassigned',
+                  name: '未指派',
                   username: '',
                   avatar: ''
                 };
@@ -122,7 +122,7 @@ import Vue from 'vue';
             });
           };
           collapsedAssigneeTemplate = _.template('<% if( avatar ) { %> <a class="author_link" href="/<%- username %>"> <img width="24" class="avatar avatar-inline s24" alt="" src="<%- avatar %>"> </a> <% } else { %> <i class="fa fa-user"></i> <% } %>');
-          assigneeTemplate = _.template('<% if (username) { %> <a class="author_link bold" href="/<%- username %>"> <% if( avatar ) { %> <img width="32" class="avatar avatar-inline s32" alt="" src="<%- avatar %>"> <% } %> <span class="author"><%- name %></span> <span class="username"> @<%- username %> </span> </a> <% } else { %> <span class="no-value assign-yourself"> No assignee - <a href="#" class="js-assign-yourself"> assign yourself </a> </span> <% } %>');
+          assigneeTemplate = _.template('<% if (username) { %> <a class="author_link bold" href="/<%- username %>"> <% if( avatar ) { %> <img width="32" class="avatar avatar-inline s32" alt="" src="<%- avatar %>"> <% } %> <span class="author"><%- name %></span> <span class="username"> @<%- username %> </span> </a> <% } else { %> <span class="no-value assign-yourself"> 没有指派 - <a href="#" class="js-assign-yourself"> 指派给自己 </a> </span> <% } %>');
           return $dropdown.glDropdown({
             showMenuAbove: showMenuAbove,
             data: function(term, callback) {
@@ -147,7 +147,7 @@ import Vue from 'vue';
                     showDivider += 1;
                     users.unshift({
                       beforeDivider: true,
-                      name: 'Unassigned',
+                      name: '未指派',
                       id: 0
                     });
                   }
@@ -155,7 +155,7 @@ import Vue from 'vue';
                     showDivider += 1;
                     name = showAnyUser;
                     if (name === true) {
-                      name = 'Any User';
+                      name = '任何用户';
                     }
                     anyUser = {
                       beforeDivider: true,
@@ -314,7 +314,7 @@ import Vue from 'vue';
                   }
                   if (showNullUser) {
                     nullUser = {
-                      name: 'Unassigned',
+                      name: '未指派',
                       id: 0
                     };
                     data.results.unshift(nullUser);
@@ -322,7 +322,7 @@ import Vue from 'vue';
                   if (showAnyUser) {
                     name = showAnyUser;
                     if (name === true) {
-                      name = 'Any User';
+                      name = '任何用户';
                     }
                     anyUser = {
                       name: name,
@@ -334,7 +334,7 @@ import Vue from 'vue';
                 if (showEmailUser && data.results.length === 0 && query.term.match(/^[^@]+@[^@]+$/)) {
                   var trimmed = query.term.trim();
                   emailUser = {
-                    name: "Invite \"" + query.term + "\"",
+                    name: "邀请 \"" + query.term + "\"",
                     username: trimmed,
                     id: trimmed
                   };
@@ -373,7 +373,7 @@ import Vue from 'vue';
       id = $(element).val();
       if (id === "0") {
         nullUser = {
-          name: 'Unassigned'
+          name: '未指派'
         };
         return callback(nullUser);
       } else if (id !== "") {

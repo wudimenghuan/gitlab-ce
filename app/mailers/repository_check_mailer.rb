@@ -2,14 +2,14 @@ class RepositoryCheckMailer < BaseMailer
   def notify(failed_count)
     @message =
       if failed_count == 1
-        "One project failed its last repository check"
+        "一个项目仓库检查失败"
       else
-        "#{failed_count} projects failed their last repository check"
+        "#{failed_count} 个项目仓库检查失败"
       end
 
     mail(
       to: User.admins.pluck(:email),
-      subject: "GitLab Admin | #{@message}"
+      subject: "GitLab 后台 | #{@message}"
     )
   end
 end

@@ -19,6 +19,17 @@ module Commits
 
     private
 
+    def action_zh(action)
+      case action
+      when :revert
+        "撤销"
+      when :cherry_pick
+        "挑选"
+      else
+        action.to_s.dasherize
+      end
+    end
+
     def commit
       raise NotImplementedError
     end
@@ -38,8 +49,8 @@ module Commits
 
       success
     rescue Repository::CreateTreeError
-      error_msg = "Sorry, we cannot #{action.to_s.dasherize} this #{@commit.change_type_title(current_user)} automatically.
-                     A #{action.to_s.dasherize} may have already been performed with this #{@commit.change_type_title(current_user)}, or a more recent commit may have updated some of its content."
+      error_msg = "很抱歉，我们无法自动 #{action_zh(action)} 此 #{@commit.change_type_title(current_user)} 。
+                     它可能已经被 #{action_zh(action)}, 或者最近的提交已经更新了其中的某些内容。"
       raise ChangeError, error_msg
     end
 
@@ -47,7 +58,7 @@ module Commits
       allowed = ::Gitlab::UserAccess.new(current_user, project: project).can_push_to_branch?(@target_branch)
 
       unless allowed
-        raise ValidationError.new('You are not allowed to push into this branch')
+        raise ValidationError.new('你不允许推送到此分支')
       end
 
       true
@@ -58,7 +69,7 @@ module Commits
         .execute(@target_branch)
 
       if result[:status] == :error
-        raise ChangeError, "There was an error creating the source branch: #{result[:message]}"
+        raise ChangeError, "创建源分支时出错: #{result[:message]}"
       end
     end
 

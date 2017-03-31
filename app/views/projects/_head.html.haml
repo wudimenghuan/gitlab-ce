@@ -4,17 +4,17 @@
     .nav-links.sub-nav.scrolling-tabs
       %ul{ class: container_class }
         = nav_link(path: 'projects#show') do
-          = link_to project_path(@project), title: 'Project home', class: 'shortcuts-project' do
+          = link_to project_path(@project), title: '项目主页', class: 'shortcuts-project' do
             %span
-              Home
+              主页
 
         = nav_link(path: 'projects#activity') do
-          = link_to activity_project_path(@project), title: 'Activity', class: 'shortcuts-project-activity' do
+          = link_to activity_project_path(@project), title: '活动', class: 'shortcuts-project-activity' do
             %span
-              Activity
+              活动
 
         - if can?(current_user, :read_cycle_analytics, @project)
           = nav_link(path: 'cycle_analytics#show') do
-            = link_to project_cycle_analytics_path(@project), title: 'Cycle Analytics', class: 'shortcuts-project-cycle-analytics' do
+            = link_to project_cycle_analytics_path(@project), title: '周期分析', class: 'shortcuts-project-cycle-analytics' do
               %span
-                Cycle Analytics
+                周期分析

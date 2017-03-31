@@ -7,14 +7,14 @@
 
   .form-group
     = f.label :domain, class: 'control-label' do
-      Domain
+      域名
     .col-sm-10
       = f.text_field :domain, required: true, autocomplete: 'off', class: 'form-control'
 
   - if Gitlab.config.pages.external_https
     .form-group
       = f.label :certificate, class: 'control-label' do
-        Certificate (PEM)
+        证书 (PEM)
       .col-sm-10
         = f.text_area :certificate, rows: 5, class: 'form-control'
         %span.help-inline Upload a certificate for your domain with all intermediates
@@ -27,8 +27,8 @@
         %span.help-inline Upload a private key for your certificate
   - else
     .nothing-here-block
-      Support for custom certificates is disabled.
-      Ask your system's administrator to enable it.
+      自定义证书已禁用
+      请联系您的系统管理员启用该功能。
 
   .form-actions
-    = f.submit 'Create New Domain', class: "btn btn-save"
+    = f.submit '创建新域名', class: "btn btn-save"

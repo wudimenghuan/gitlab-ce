@@ -1,13 +1,13 @@
-- page_title "#{@domain.domain}", 'Pages Domains'
+- page_title "#{@domain.domain}", '网页域名'
 
 %h3.page-title
-  Pages Domain
+  网页域名
 
 .table-holder
   %table.table
     %tr
       %td
-        Domain
+        域名
       %td
         = link_to @domain.domain, @domain.url
     %tr
@@ -15,16 +15,16 @@
         DNS
       %td
         %p
-          To access the domain create a new DNS record:
+          要访问域名，请创建新的DNS记录:
         %pre
           #{@domain.domain} CNAME #{@domain.project.pages_subdomain}.#{Settings.pages.host}.
     %tr
       %td
-        Certificate
+        证书
       %td
         - if @domain.certificate_text
           %pre
             = @domain.certificate_text
         - else
           .light
-            missing
+            丢失

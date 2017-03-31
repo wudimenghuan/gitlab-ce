@@ -2,4 +2,4 @@
   = render 'projects/merge_requests/show/versions'
   = render "projects/diffs/diffs", diffs: @diffs, environment: @environment
 - elsif @merge_request_diff.empty?
-  .nothing-here-block Nothing to merge from #{@merge_request.source_branch} into #{@merge_request.target_branch}
+  .nothing-here-block 从 #{@merge_request.source_branch} 到 #{@merge_request.target_branch} 无需合并
