@@ -96,6 +96,8 @@
 
   def notification_event_name(event)
     case event
+    when :failed_pipeline
+      '流水线失败'
     when :success_pipeline
       '流水线成功'
     when :new_note
