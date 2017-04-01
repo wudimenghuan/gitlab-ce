@@ -10,7 +10,7 @@ class PushoverService < Service
   end
 
   def description
-    'Pushover makes it easy to get real-time notifications on your Android device, iPhone, iPad, and Desktop.'
+    'Pushover 可以轻松在Android设备，iPhone，iPad和桌面操作系统上获取实时通知。'
   end
 
   def self.to_param

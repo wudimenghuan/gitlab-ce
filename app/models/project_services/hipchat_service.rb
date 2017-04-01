@@ -24,7 +24,7 @@ class HipchatService < Service
   end
 
   def description
-    'Private group chat and IM'
+    '私人团队聊天和 IM'
   end
 
   def self.to_param

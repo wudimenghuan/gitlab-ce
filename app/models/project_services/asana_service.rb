@@ -9,7 +9,7 @@ class AsanaService < Service
   end
 
   def description
-    'Asana - Teamwork without email'
+    'Asana - 无电子邮件团队协作'
   end
 
   def help
