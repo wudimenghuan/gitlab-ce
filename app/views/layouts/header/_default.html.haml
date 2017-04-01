@@ -35,6 +35,15 @@
               %li
                 = link_to admin_root_path, title: '管理区域', aria: { label: "管理区域" }, data: {toggle: 'tooltip', placement: 'bottom', container: 'body'} do
                   = icon('wrench fw')
+            - if current_user.can_create_project?
+              %li
+                = link_to new_project_path, title: '新建项目', aria: { label: "新建项目" }, data: {toggle: 'tooltip', placement: 'bottom', container: 'body'} do
+                  = icon('plus fw')
+            - if Gitlab::Sherlock.enabled?
+              %li
+                = link_to sherlock_transactions_path, title: 'Sherlock 事务',
+                  data: {toggle: 'tooltip', placement: 'bottom', container: 'body'} do
+                  = icon('tachometer fw')
             %li
               = link_to assigned_issues_dashboard_path, title: '问题', aria: { label: "问题" }, data: {toggle: 'tooltip', placement: 'bottom', container: 'body'} do
                 = icon('hashtag fw')
@@ -50,15 +59,6 @@
                 = icon('check-circle fw')
                 %span.badge.todos-count
                   = todos_count_format(todos_pending_count)
-            - if current_user.can_create_project?
-              %li
-                = link_to new_project_path, title: '新建项目', aria: { label: "新建项目" }, data: {toggle: 'tooltip', placement: 'bottom', container: 'body'} do
-                  = icon('plus fw')
-            - if Gitlab::Sherlock.enabled?
-              %li
-                = link_to sherlock_transactions_path, title: 'Sherlock 事务',
-                  data: {toggle: 'tooltip', placement: 'bottom', container: 'body'} do
-                  = icon('tachometer fw')
             %li.header-user.dropdown
               = link_to current_user, class: "header-user-dropdown-toggle", data: { toggle: "dropdown" } do
                 = image_tag avatar_icon(current_user, 26), width: 26, height: 26, class: "header-user-avatar"

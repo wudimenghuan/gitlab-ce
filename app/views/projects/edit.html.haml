@@ -162,7 +162,7 @@
 
       - if @project.export_project_path
         = link_to '下载导出',  download_export_namespace_project_path(@project.namespace, @project),
-                method: :get, class: "btn btn-default"
+                rel: 'nofollow', download: '', method: :get, class: "btn btn-default"
         = link_to '创建新的导出',  generate_new_export_namespace_project_path(@project.namespace, @project),
                 method: :post, class: "btn btn-default"
       - else
