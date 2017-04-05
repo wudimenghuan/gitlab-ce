@@ -23,16 +23,16 @@ module.exports = Vue.extend({
         :data-labels="labelPath"
         ref="dropdown">
         <span class="dropdown-toggle-text">
-          Label
+          标记
         </span>
         <i class="fa fa-chevron-down"></i>
       </button>
       <div class="dropdown-menu dropdown-select dropdown-menu-paging dropdown-menu-labels dropdown-menu-selectable">
         <div class="dropdown-title">
-          Filter by label
+          按标记过滤
           <button
             class="dropdown-title-button dropdown-menu-close"
-            aria-label="Close"
+            aria-label="关闭"
             type="button">
             <i class="fa fa-times dropdown-menu-close-icon"></i>
           </button>
@@ -41,7 +41,7 @@ module.exports = Vue.extend({
           <input
             type="search"
             class="dropdown-input-field"
-            placeholder="Search"
+            placeholder="搜索"
             autocomplete="off" />
           <i class="fa fa-search dropdown-input-search"></i>
           <i role="button" class="fa fa-times dropdown-input-clear js-dropdown-input-clear"></i>

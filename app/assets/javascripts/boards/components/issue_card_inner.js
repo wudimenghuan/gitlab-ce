@@ -46,7 +46,7 @@
 
         const selectedLabels = Store.state.filters.label_name;
         if (selectedLabels.length === 0) {
-          labelToggleText = 'Label';
+          labelToggleText = '标记';
         } else if (selectedLabels.length > 1) {
           labelToggleText = `${selectedLabels[0]} + ${selectedLabels.length - 1} more`;
         }
@@ -83,7 +83,7 @@
           <a
             class="card-assignee has-tooltip"
             :href="rootPath + issue.assignee.username"
-            :title="'Assigned to ' + issue.assignee.name"
+            :title="'指派给 ' + issue.assignee.name"
             v-if="issue.assignee"
             data-container="body">
             <img

@@ -52,7 +52,7 @@ class Groups::LabelsController < Groups::ApplicationController
 
     respond_to do |format|
       format.html do
-        redirect_to group_labels_path(@group), notice: 'Label was removed'
+        redirect_to group_labels_path(@group), notice: '标记已经删除。'
       end
       format.js
     end

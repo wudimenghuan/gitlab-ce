@@ -13,27 +13,27 @@
                 = icon("chevron-up")
               - else
                 = icon("chevron-down")
-              Toggle discussion
+              切换讨论
           = link_to_member(@project, discussion.author, avatar: false)
 
           .inline.discussion-headline-light
             = discussion.author.to_reference
-            started a discussion on
+            在
 
             - if discussion.for_commit?
               - commit = discussion.noteable
               - if commit
-                commit
+                提交
                 = link_to commit.short_id, namespace_project_commit_path(discussion.project.namespace, discussion.project, discussion.noteable, anchor: discussion.line_code), class: 'monospace'
               - else
-                a deleted commit
+                已删除的提交
             - else
               - if discussion.active?
                 = link_to diffs_namespace_project_merge_request_path(discussion.project.namespace, discussion.project, discussion.noteable, anchor: discussion.line_code) do
-                  the diff
+                  差异
               - else
-                an outdated diff
-
+                已过期的差异
+            上进行讨论
             = time_ago_with_tooltip(discussion.created_at, placement: "bottom", html_class: "note-created-ago")
           = render "discussions/headline", discussion: discussion
 
