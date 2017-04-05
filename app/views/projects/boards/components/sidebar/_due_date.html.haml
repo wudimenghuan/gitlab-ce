@@ -3,7 +3,7 @@
     截止日期
     - if can?(current_user, :admin_issue, @project)
       = icon("spinner spin", class: "block-loading")
-      = link_to "Edit", "#", class: "edit-link pull-right"
+      = link_to "编辑", "#", class: "edit-link pull-right"
   .value
     .value-content
       %span.no-value{ "v-if" => "!issue.dueDate" }
