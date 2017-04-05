@@ -212,7 +212,9 @@ module SystemNoteService
     body << "被 #{source.gfm_reference(project)} " if source
     body << "#{status_zh(status)}"
 
-    create_note(NoteSummary.new(noteable, project, author, body, action: 'status'))
+    action = status == 'reopened' ? 'opened' : status
+
+    create_note(NoteSummary.new(noteable, project, author, body, action: action))
   end
 
   # Called when 'merge when pipeline succeeds' is executed
@@ -302,9 +304,15 @@ module SystemNoteService
   #
   # Returns the created Note object
   def change_issue_confidentiality(issue, project, author)
-    body = issue.confidential ? '将问题设置为保密' : '将问题设置为可见'
+    if issue.confidential
+      body = '将问题设置为保密'
+      action = 'confidential'
+    else
+      body = '将问题设置为所有人可见'
+      action = 'visible'
+    end
 
-    create_note(NoteSummary.new(issue, project, author, body, action: 'confidentiality'))
+    create_note(NoteSummary.new(issue, project, author, body, action: action))
   end
 
   # Called when a branch in Noteable is changed

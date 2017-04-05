@@ -236,7 +236,9 @@
               = f.text_field :path, class: 'form-control'
           %ul
             %li 请小心。重命名项目仓库可能有意想不到的副作用。
-            %li 需要更新本地版本仓库指向新位置。
+            %li 您需要更新本地版本仓库指向新位置。
+            - if @project.deployment_services.any?
+              %li 您的部署服务将会失效， 您需要在重命名项目后手动修复该服务。
         = f.submit '重命名项目', class: "btn btn-warning"
   - if can?(current_user, :change_namespace, @project)
     %hr
