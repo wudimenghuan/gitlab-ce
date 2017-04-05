@@ -45,7 +45,7 @@ const playIconSvg = require('icons/_icon_play.svg');
               <button
                 class="dropdown-toggle btn btn-default has-tooltip js-pipeline-dropdown-manual-actions"
                 data-toggle="dropdown"
-                title="Manual job"
+                title="手动作业"
                 data-placement="top"
                 aria-label="Manual job">
                 <span v-html="playIconSvg" aria-hidden="true"></span>
@@ -67,7 +67,7 @@ const playIconSvg = require('icons/_icon_play.svg');
             <div class="btn-group" v-if="artifacts">
               <button
                 class="dropdown-toggle btn btn-default build-artifacts has-tooltip js-pipeline-dropdown-download"
-                title="Artifacts"
+                title="工件"
                 data-placement="top"
                 data-toggle="dropdown"
                 aria-label="Artifacts">
@@ -88,7 +88,7 @@ const playIconSvg = require('icons/_icon_play.svg');
             <div class="btn-group" v-if="pipeline.flags.retryable">
               <a
                 class="btn btn-default btn-retry has-tooltip"
-                title="Retry"
+                title="重试"
                 rel="nofollow"
                 data-method="post"
                 data-placement="top"
@@ -101,7 +101,7 @@ const playIconSvg = require('icons/_icon_play.svg');
             <div class="btn-group" v-if="pipeline.flags.cancelable">
               <a
                 class="btn btn-remove has-tooltip"
-                title="Cancel"
+                title="取消"
                 rel="nofollow"
                 data-method="post"
                 data-placement="top"
