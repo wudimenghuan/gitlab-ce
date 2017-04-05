@@ -10,11 +10,15 @@
 
 本汉化项目继承自 [@larryli](https://gitlab.com/larryli) 发起的 [GitLab 中文社区版项目](https://gitlab.com/larryli/gitlab) （从 v7 ~ v8.8）。从 v8.9 之后，[@xhang](https://gitlab.com/xhang) 开始继续[本汉化项目](https://gitlab.com/xhang/gitlab)。
 
-## 汉化指南
+## 安装、汉化指南
 
 > 基于 [Larry Li 版汉化指南](https://gitlab.com/larryli/gitlab/wikis/home) 修改
 
 **(以 `9-0-stable-zh` 分支为例)**
+
+### 直接使用[@twang2218](https://gitlab.com/twang2218) 打包好的 [Gitlab 中文版 Docker镜像](https://hub.docker.com/r/twang2218/gitlab-ce-zh/)
+
+---
 
 ### 源码安装汉化
 
@@ -39,13 +43,15 @@ sudo -u git -H bundle install --deployment --without development test postgres a
 
 ### Omnibus 安装汉化
 
-#### 1. 使用 marbleqi 制作的汉化增量补丁包
+#### 1. 使用 marbleqi 制作的[汉化增量补丁包](https://github.com/marbleqi/gitlab-ce-zh)
 
 > 注： 使用该汉化补丁包需要重新配置编译资源文件
 
 ```bash
 sudo gitlab-ctl reconfigure
 ```
+
+---
 
 #### 2. 手动导出汉化补丁包汉化
 
