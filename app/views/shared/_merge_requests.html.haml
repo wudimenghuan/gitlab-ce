@@ -6,4 +6,4 @@
   = paginate @merge_requests, theme: "gitlab"
 
 - else
-  .nothing-here-block 没有合并请求
+  = render 'shared/empty_states/merge_requests'
