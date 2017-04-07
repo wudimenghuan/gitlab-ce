@@ -16,19 +16,19 @@ export default {
     },
   },
 
-    components: {
+  components: {
     'gl-pagination': TablePaginationComponent,
     'pipelines-table-component': PipelinesTableComponent,
     'empty-state': EmptyState,
     'error-state': ErrorState,
     'navigation-tabs': NavigationTabs,
     'navigation-controls': NavigationControls,
-    },
+  },
 
-    data() {
+  data() {
     const pipelinesData = document.querySelector('#pipelines-list-vue').dataset;
 
-      return {
+    return {
       endpoint: pipelinesData.endpoint,
       cssClass: pipelinesData.cssClass,
       helpPagePath: pipelinesData.helpPagePath,
@@ -43,12 +43,12 @@ export default {
       hasCi: pipelinesData.hasCi,
       ciLintPath: pipelinesData.ciLintPath,
       state: this.store.state,
-        apiScope: 'all',
-        pagenum: 1,
+      apiScope: 'all',
+      pagenum: 1,
       isLoading: false,
       hasError: false,
-      };
-    },
+    };
+  },
 
   computed: {
     canCreatePipelineParsed() {
@@ -130,28 +130,28 @@ export default {
     eventHub.$on('refreshPipelines', this.fetchPipelines);
   },
 
-    beforeUpdate() {
+  beforeUpdate() {
     if (this.state.pipelines.length && this.$children) {
       this.store.startTimeAgoLoops.call(this, Vue);
-      }
-    },
+    }
+  },
 
   beforeDestroyed() {
     eventHub.$off('refreshPipelines');
   },
 
-    methods: {
-      /**
-       * Will change the page number and update the URL.
-       *
-       * @param  {Number} pageNumber desired page to go to.
-       */
-      change(pageNumber) {
-        const param = gl.utils.setParamInURL('page', pageNumber);
+  methods: {
+    /**
+     * Will change the page number and update the URL.
+     *
+     * @param  {Number} pageNumber desired page to go to.
+     */
+    change(pageNumber) {
+      const param = gl.utils.setParamInURL('page', pageNumber);
 
-        gl.utils.visitUrl(param);
-        return param;
-      },
+      gl.utils.visitUrl(param);
+      return param;
+    },
 
     fetchPipelines() {
       const pageNumber = gl.utils.getParameterByName('page') || this.pagenum;
@@ -178,7 +178,7 @@ export default {
     },
   },
 
-    template: `
+  template: `
     <div :class="cssClass">
 
       <div
@@ -201,7 +201,7 @@ export default {
           :help-page-path="helpPagePath"
           :ciLintPath="ciLintPath"
           :can-create-pipeline="canCreatePipelineParsed " />
-        </div>
+      </div>
 
       <div class="content-list pipelines">
 
@@ -242,5 +242,5 @@ export default {
           :pageInfo="state.pageInfo"/>
       </div>
     </div>
-    `,
+  `,
 };

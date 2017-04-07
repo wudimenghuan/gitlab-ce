@@ -20,30 +20,30 @@ import '../../vue_shared/vue_resource_interceptor';
  */
 
 export default Vue.component('pipelines-table', {
-    components: {
+  components: {
     'pipelines-table-component': PipelinesTableComponent,
     'error-state': ErrorState,
     'empty-state': EmptyState,
-    },
+  },
 
-    /**
-     * Accesses the DOM to provide the needed data.
-     * Returns the necessary props to render `pipelines-table-component` component.
-     *
-     * @return {Object}
-     */
-    data() {
-      const store = new PipelineStore();
+  /**
+   * Accesses the DOM to provide the needed data.
+   * Returns the necessary props to render `pipelines-table-component` component.
+   *
+   * @return {Object}
+   */
+  data() {
+    const store = new PipelineStore();
 
-      return {
+    return {
       endpoint: null,
       helpPagePath: null,
-        store,
-        state: store.state,
-        isLoading: false,
+      store,
+      state: store.state,
+      isLoading: false,
       hasError: false,
-      };
-    },
+    };
+  },
 
   computed: {
     shouldRenderErrorState() {
@@ -55,15 +55,15 @@ export default Vue.component('pipelines-table', {
     },
   },
 
-    /**
-     * When the component is about to be mounted, tell the service to fetch the data
-     *
-     * A request to fetch the pipelines will be made.
-     * In case of a successfull response we will store the data in the provided
-     * store, in case of a failed response we need to warn the user.
-     *
-     */
-    beforeMount() {
+  /**
+   * When the component is about to be mounted, tell the service to fetch the data
+   *
+   * A request to fetch the pipelines will be made.
+   * In case of a successfull response we will store the data in the provided
+   * store, in case of a failed response we need to warn the user.
+   *
+   */
+  beforeMount() {
     this.endpoint = this.$el.dataset.endpoint;
     this.helpPagePath = this.$el.dataset.helpPagePath;
     this.service = new PipelinesService(this.endpoint);
@@ -99,13 +99,13 @@ export default Vue.component('pipelines-table', {
           this.isLoading = false;
         });
     },
-    },
+  },
 
-    template: `
+  template: `
     <div class="content-list pipelines">
-        <div class="realtime-loading" v-if="isLoading">
-          <i class="fa fa-spinner fa-spin"></i>
-        </div>
+      <div class="realtime-loading" v-if="isLoading">
+        <i class="fa fa-spinner fa-spin"></i>
+      </div>
 
       <empty-state
         v-if="shouldRenderEmptyState"
@@ -114,11 +114,11 @@ export default Vue.component('pipelines-table', {
       <error-state v-if="shouldRenderErrorState" />
 
       <div class="table-holder"
-          v-if="!isLoading && state.pipelines.length > 0">
+        v-if="!isLoading && state.pipelines.length > 0">
         <pipelines-table-component
           :pipelines="state.pipelines"
           :service="service" />
-        </div>
       </div>
-    `,
+    </div>
+  `,
 });
