@@ -31,23 +31,23 @@
             = link_to '新建问题', new_namespace_project_issue_path(@project.namespace, @project), title: '新建问题', id: 'new_issue_link'
           - if can?(current_user, :update_issue, @issue)
             %li
-              = link_to '重新打开问题', issue_path(@issue, issue: { state_event: :reopen }, format: 'json'), data: {no_turbolink: true}, class: "btn-reopen #{issue_button_visibility(@issue, false)}", title: 'Reopen issue'
+              = link_to '重新打开问题', issue_path(@issue, issue: { state_event: :reopen }, format: 'json'), data: {no_turbolink: true}, class: "btn-reopen #{issue_button_visibility(@issue, false)}", title: '重新打开问题'
             %li
-              = link_to '关闭问题', issue_path(@issue, issue: { state_event: :close }, format: 'json'), data: {no_turbolink: true}, class: "btn-close #{issue_button_visibility(@issue, true)}", title: 'Close issue'
+              = link_to '关闭问题', issue_path(@issue, issue: { state_event: :close }, format: 'json'), data: {no_turbolink: true}, class: "btn-close #{issue_button_visibility(@issue, true)}", title: '关闭问题'
             %li
               = link_to '编辑', edit_namespace_project_issue_path(@project.namespace, @project, @issue)
           - if @issue.submittable_as_spam_by?(current_user)
             %li
               = link_to '提交为垃圾', mark_as_spam_namespace_project_issue_path(@project.namespace, @project, @issue), method: :post, class: 'btn-spam', title: '提交为垃圾'
 
-    = link_to new_namespace_project_issue_path(@project.namespace, @project), class: 'hidden-xs hidden-sm btn btn-grouped new-issue-link btn-new btn-inverted', title: 'New issue', id: 'new_issue_link' do
-      New issue
+    = link_to new_namespace_project_issue_path(@project.namespace, @project), class: 'hidden-xs hidden-sm btn btn-grouped new-issue-link btn-new btn-inverted', title: '新建问题', id: 'new_issue_link' do
+      新建问题
     - if can?(current_user, :update_issue, @issue)
-      = link_to 'Reopen issue', issue_path(@issue, issue: { state_event: :reopen }, format: 'json'), data: {no_turbolink: true}, class: "hidden-xs hidden-sm btn btn-grouped btn-reopen #{issue_button_visibility(@issue, false)}", title: 'Reopen issue'
-      = link_to 'Close issue', issue_path(@issue, issue: { state_event: :close }, format: 'json'), data: {no_turbolink: true}, class: "hidden-xs hidden-sm btn btn-grouped btn-close #{issue_button_visibility(@issue, true)}", title: 'Close issue'
+      = link_to '重新打开问题', issue_path(@issue, issue: { state_event: :reopen }, format: 'json'), data: {no_turbolink: true}, class: "hidden-xs hidden-sm btn btn-grouped btn-reopen #{issue_button_visibility(@issue, false)}", title: '重新打开问题'
+      = link_to '关闭问题', issue_path(@issue, issue: { state_event: :close }, format: 'json'), data: {no_turbolink: true}, class: "hidden-xs hidden-sm btn btn-grouped btn-close #{issue_button_visibility(@issue, true)}", title: '关闭问题'
       - if @issue.submittable_as_spam_by?(current_user)
-        = link_to 'Submit as spam', mark_as_spam_namespace_project_issue_path(@project.namespace, @project, @issue), method: :post, class: 'hidden-xs hidden-sm btn btn-grouped btn-spam', title: 'Submit as spam'
-      = link_to 'Edit', edit_namespace_project_issue_path(@project.namespace, @project, @issue), class: 'hidden-xs hidden-sm btn btn-grouped issuable-edit'
+        = link_to '提交为垃圾', mark_as_spam_namespace_project_issue_path(@project.namespace, @project, @issue), method: :post, class: 'hidden-xs hidden-sm btn btn-grouped btn-spam', title: '提交为垃圾'
+      = link_to '编辑', edit_namespace_project_issue_path(@project.namespace, @project, @issue), class: 'hidden-xs hidden-sm btn btn-grouped issuable-edit'
 
 .issue-details.issuable-details
   .detail-page-description.content-block{ class: ('hide-bottom-border' unless @issue.description.present? ) }
