@@ -1,0 +1,26 @@
+- page_title "容器注册表"
+
+%hr
+
+%ul.content-list
+  %li.light.prepend-top-default
+    %p
+      “容器镜像”是容器的快照。
+      你现在可以将容器镜像存放在 GitLab。
+      %br
+      要使用 GitLab 存放的容器镜像需要你先登录：
+      %pre
+        %code
+          docker login #{Gitlab.config.registry.host_port}
+      %br
+      然后你就可以自由的使用 build 和 push 命令创建和上传容器镜像：
+      %pre
+        docker build -t #{escape_once(@project.container_registry_url)}/image .
+        %br
+        docker push #{escape_once(@project.container_registry_url)}/image
+
+  - if @images.blank?
+    .nothing-here-block 此项目的容器注册表没有任何镜像。
+
+  - else
+    = render partial: 'image', collection: @images

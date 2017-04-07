@@ -12,7 +12,7 @@
             - if @project && event.project != @project
               %span 到
               %strong= link_to_project event.project
-            = clipboard_button(clipboard_text: event.ref_name, class: 'btn-clipboard btn-transparent', title: '复制分支到剪贴板')
+            = clipboard_button(text: event.ref_name, class: 'btn-clipboard btn-transparent', title: '复制分支到剪贴板')
 
 
 

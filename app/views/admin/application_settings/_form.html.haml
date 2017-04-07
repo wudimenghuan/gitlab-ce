@@ -149,7 +149,7 @@
             允许登录
     - if omniauth_enabled? && button_based_providers.any?
       .form-group
-        = f.label :enabled_oauth_sign_in_sources, '开启 OAuth 登录来源', class: 'control-label col-sm-2'
+        = f.label :enabled_oauth_sign_in_sources, '开启 OAuth 登录源', class: 'control-label col-sm-2'
         .col-sm-10
           .btn-group{ data: { toggle: 'buttons' } }
             - oauth_providers_checkboxes.each do |source|

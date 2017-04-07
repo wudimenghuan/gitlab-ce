@@ -1,0 +1,28 @@
+- if current_user.admin?
+  .form-group
+    = f.label :lfs_enabled, '大文件存储(LFS)', class: 'control-label'
+    .col-sm-10
+      .checkbox
+        = f.label :lfs_enabled do
+          = f.check_box :lfs_enabled, checked: @group.lfs_enabled?
+          %strong
+            允许群组内的项目使用 Git LFS
+            = link_to icon('question-circle'), help_page_path('workflow/lfs/manage_large_binaries_with_git_lfs')
+          %br/
+          %span.descr 这个设置可以在每个项目中覆盖。
+
+- if can? current_user, :admin_group, @group
+  .form-group
+    = f.label :require_two_factor_authentication, '两步验证', class: 'control-label col-sm-2'
+    .col-sm-10
+      .checkbox
+        = f.label :require_two_factor_authentication do
+          = f.check_box :require_two_factor_authentication
+          %strong
+            要求此群组内的用户均必须配置两步验证。
+            = link_to icon('question-circle'), help_page_path('security/two_factor_authentication', anchor: 'enforcing-2fa-for-all-users-in-a-group')
+  .form-group
+    .col-sm-offset-2.col-sm-10
+      .checkbox
+        = f.text_field :two_factor_grace_period, class: 'form-control'
+        .help-block 允许用户跳过强制配置两步验证的时间（小时）

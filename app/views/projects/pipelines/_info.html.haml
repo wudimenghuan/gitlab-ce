@@ -47,4 +47,4 @@
         \...
     %span.js-details-content.hide
       = link_to @pipeline.sha, namespace_project_commit_path(@project.namespace, @project, @pipeline.sha), class: "monospace commit-hash-full"
-    = clipboard_button(clipboard_text: @pipeline.sha, title: "将提交 SHA 复制到剪贴板")
+    = clipboard_button(text: @pipeline.sha, title: "将提交 SHA 复制到剪贴板")

@@ -47,7 +47,6 @@
         %th 作业 ID
         %th 名称
         %th
-        - if pipeline.project.build_coverage_enabled?
           %th 覆盖率
         %th
     = render partial: "projects/stage/stage", collection: pipeline.stages, as: :stage

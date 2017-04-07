@@ -1,5 +1,5 @@
 class Profiles::TwoFactorAuthsController < Profiles::ApplicationController
-  skip_before_action :check_2fa_requirement
+  skip_before_action :check_two_factor_requirement
 
   def show
     unless current_user.otp_secret
@@ -13,11 +13,24 @@ class Profiles::TwoFactorAuthsController < Profiles::ApplicationController
     current_user.save! if current_user.changed?
 
     if two_factor_authentication_required? && !current_user.two_factor_enabled?
-      if two_factor_grace_period_expired?
-        flash.now[:alert] = '您必须给您的账户启用两步验证。'
-      else
+      two_factor_authentication_reason(
+        global: lambda do
+          flash.now[:alert] =
+            '全局设置要求您必须给您的账户启用两步验证。'
+        end,
+        group: lambda do |groups|
+          group_links = groups.map { |group| view_context.link_to group.full_name, group_path(group) }.to_sentence
+
+          flash.now[:alert] = %{
+            根据群组 #{group_links} 的要求
+            您必须给您的账户启用两步验证。
+          }.html_safe
+        end
+      )
+
+      unless two_factor_grace_period_expired?
         grace_period_deadline = current_user.otp_grace_period_started_at + two_factor_grace_period.hours
-        flash.now[:alert] = "您必须在 #{l(grace_period_deadline)} 之前给您的账户启用两步验证。"
+        flash.now[:alert] << " 你必须在 #{l(grace_period_deadline)} 之前执行该操作。"
       end
     end
 
@@ -71,7 +84,7 @@ class Profiles::TwoFactorAuthsController < Profiles::ApplicationController
     if two_factor_grace_period_expired?
       redirect_to new_profile_two_factor_auth_path, alert: '无法跳过两步验证设置'
     else
-      session[:skip_tfa] = current_user.otp_grace_period_started_at + two_factor_grace_period.hours
+      session[:skip_two_factor] = current_user.otp_grace_period_started_at + two_factor_grace_period.hours
       redirect_to root_path
     end
   end
