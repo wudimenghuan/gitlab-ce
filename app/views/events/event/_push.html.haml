@@ -7,6 +7,7 @@
     = custom_icon("icon_commit")
 
 .event-title
+  %span.author_name= link_to_author event
   %span.pushed #{event.action_name}
   - if event.new_ref?
     = event.ref_type
@@ -40,7 +41,7 @@
       - if event.commits_count > 1
         %li.commits-stat
           - if event.commits_count > 2
-            %span ... 和 #{event.commits_count - 2} 次更多提交。
+            %span ... 和 #{event.commits_count - 2} 次提交。
 
           - if event.md_ref?
             - from = event.commit_from

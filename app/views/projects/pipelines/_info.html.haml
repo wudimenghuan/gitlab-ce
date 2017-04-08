@@ -1,6 +1,6 @@
 .page-content-header
   .header-main-content
-    = render 'ci/status/badge', status: @pipeline.detailed_status(current_user)
+    = render 'ci/status/badge', status: @pipeline.detailed_status(current_user), title: @pipeline.status_title
     %strong 流水线 ##{@pipeline.id}
     在 #{time_ago_with_tooltip(@pipeline.created_at)}
     - if @pipeline.user

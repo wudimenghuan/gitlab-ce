@@ -21,7 +21,7 @@
             流水线的Git策略
           %p
             选择 <code>clone</code> 或者 <code>fetch</code> 方式来获取最新的程序代码
-            = link_to icon('question-circle'), help_page_path('user/project/pipelines/settings', anchor: 'git-strategy')
+            = link_to icon('question-circle'), help_page_path('user/project/pipelines/settings', anchor: 'git-strategy'), target: '_blank'
           .radio
             = f.label :build_allow_git_fetch_false do
               = f.radio_button :build_allow_git_fetch, 'false'
@@ -43,7 +43,7 @@
           = f.number_field :build_timeout_in_minutes, class: 'form-control', min: '0'
           %p.help-block
             每次作业时间的最大分钟数. 如果超过该时间，则标记为失败。
-            = link_to icon('question-circle'), help_page_path('user/project/pipelines/settings', anchor: 'timeout')
+            = link_to icon('question-circle'), help_page_path('user/project/pipelines/settings', anchor: 'timeout'), target: '_blank'
 
         %hr
         .form-group
@@ -53,7 +53,16 @@
               %strong 公共流水线
             .help-block
               允许所有人访问公共和内部项目的流水线。
-              = link_to icon('question-circle'), help_page_path('user/project/pipelines/settings', anchor: 'visibility-of-pipelines')
+              = link_to icon('question-circle'), help_page_path('user/project/pipelines/settings', anchor: 'visibility-of-pipelines'), target: '_blank'
+        %hr
+        .form-group
+          .checkbox
+            = f.label :auto_cancel_pending_pipelines do
+              = f.check_box :auto_cancel_pending_pipelines, {}, 'enabled', 'disabled'
+              %strong 自动取消冗余的待处理流水线
+            .help-block
+              新流水线将取消同一分支上较旧的待处理管道
+              = link_to icon('question-circle'), help_page_path('user/project/pipelines/settings', anchor: 'auto-cancel-pending-pipelines'), target: '_blank'
 
         %hr
         .form-group
@@ -64,7 +73,7 @@
             %span.input-group-addon /
           %p.help-block
             我们将使用此正则表达式在作业信息中查找测试覆盖输出。如果不想使用此功能，请留空
-            = link_to icon('question-circle'), help_page_path('user/project/pipelines/settings', anchor: 'test-coverage-parsing')
+            = link_to icon('question-circle'), help_page_path('user/project/pipelines/settings', anchor: 'test-coverage-parsing'), target: '_blank'
           .bs-callout.bs-callout-info
             %p 下面是现有工具的正则表达式例子：
             %ul

@@ -57,6 +57,11 @@
     .container {
       margin: auto 20px;
     }
+
+    .go-back {
+      display: none;
+    }
+
   </style>
 </head>
 
@@ -71,7 +76,16 @@
     <hr />
     <p>请确认地址是否正确和页面是否被移动。</p>
     <p>如果觉得有问题请联系 GitLab 管理员。</p>
-    <a href="javascript:history.back()">Go back</a>
+    <a href="javascript:history.back()" class="js-go-back go-back">返回</a>
   </div>
+  <script>
+    (function () {
+      var goBack = document.querySelector('.js-go-back');
+
+      if (history.length > 1) {
+        goBack.style.display = 'inline';
+      }
+    })();
+  </script>
 </body>
 </html>

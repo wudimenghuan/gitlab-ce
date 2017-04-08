@@ -57,6 +57,11 @@
     .container {
       margin: auto 20px;
     }
+
+    .go-back {
+      display: none;
+    }
+
   </style>
 </head>
 
@@ -71,7 +76,16 @@
     <hr />
     <p>请尝试刷新页面，或者回退到上一页面再操作。</p>
     <p>如果此问题继续存在请联系 GitLab 管理员。</p>
-    <a href="javascript:history.back()">返回</a>
+    <a href="javascript:history.back()" class="js-go-back go-back">返回</a>
   </div>
+  <script>
+    (function () {
+      var goBack = document.querySelector('.js-go-back');
+
+      if (history.length > 1) {
+        goBack.style.display = 'inline';
+      }
+    })();
+  </script>
 </body>
 </html>

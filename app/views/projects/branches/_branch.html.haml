@@ -15,7 +15,7 @@
       %span.label.label-info.has-tooltip{ title: "已合并到 #{@repository.root_ref}" }
         已合并的
 
-    - if @project.protected_branch? branch.name
+    - if protected_branch?(@project, branch)
       %span.label.label-success
         保护的
     .controls.hidden-xs<
