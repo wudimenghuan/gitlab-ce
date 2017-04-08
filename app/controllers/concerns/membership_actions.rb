@@ -23,7 +23,7 @@ module MembershipActions
       if member.request?
         "您向 #{source_type} 提交的访问请求被撤回。"
       else
-        "你离开了 \"#{@member.source.human_name}\" #{source_type}."
+        "你离开了 \"#{membershipable.human_name}\" #{source_type}."
       end
     redirect_path = member.request? ? member.source : [:dashboard, membershipable.class.to_s.tableize]
 
