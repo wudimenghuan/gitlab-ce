@@ -1,6 +1,6 @@
 /* eslint-disable func-names, space-before-function-paren, no-var, prefer-rest-params, wrap-iife, max-len, one-var, one-var-declaration-per-line, quotes, prefer-template, newline-per-chained-call, comma-dangle, new-cap, no-else-return, consistent-return */
 /* global FilesCommentButton */
-
+/* global notes */
 
 (function() {
   let $commentButtonTemplate;
@@ -38,6 +38,9 @@
     FilesCommentButton.prototype.render = function(e) {
       var $currentTarget, buttonParentElement, lineContentElement, textFileElement, $button;
       $currentTarget = $(e.currentTarget);
+
+      if ($currentTarget.hasClass('js-no-comment-btn')) return;
+
       lineContentElement = this.getLineContent($currentTarget);
       buttonParentElement = this.getButtonParent($currentTarget);
 
