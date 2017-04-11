@@ -158,13 +158,13 @@
                 if (showNo) {
                   extraData.unshift({
                     id: 0,
-                    title: 'No Label'
+                    title: '没有标记'
                   });
                 }
                 if (showAny) {
                   extraData.unshift({
                     isAny: true,
-                    title: 'Any Label'
+                    title: '任何标记'
                   });
                 }
                 if (extraData.length) {
@@ -262,7 +262,7 @@
 
             if (selected.id === 0) {
               this.selected = [];
-              return 'No Label';
+              return '没有标记';
             }
             else if (isSelected) {
               this.selected.push(title);
@@ -439,7 +439,7 @@
       if ($('.selected_issue:checked').length) {
         return;
       }
-      return $('.issues_bulk_update .labels-filter .dropdown-toggle-text').text('Label');
+      return $('.issues_bulk_update .labels-filter .dropdown-toggle-text').text('标记');
     };
 
     LabelsSelect.prototype.enableBulkLabelDropdown = function() {

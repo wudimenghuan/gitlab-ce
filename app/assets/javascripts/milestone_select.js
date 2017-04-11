@@ -76,7 +76,7 @@
                 extraOptions.push({
                   id: -3,
                   name: '#started',
-                  title: 'Started'
+                  title: '已经开始'
                 });
               }
               if (extraOptions.length) {

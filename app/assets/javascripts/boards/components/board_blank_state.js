@@ -12,8 +12,8 @@
     data () {
       return {
         predefinedLabels: [
-          new ListLabel({ title: 'To Do', color: '#F0AD4E' }),
-          new ListLabel({ title: 'Doing', color: '#5CB85C' })
+          new ListLabel({ title: '待办', color: '#F0AD4E' }),
+          new ListLabel({ title: '进行中', color: '#5CB85C' })
         ]
       };
     },

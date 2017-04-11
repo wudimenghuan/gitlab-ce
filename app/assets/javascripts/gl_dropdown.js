@@ -615,7 +615,7 @@
 
     GitLabDropdown.prototype.noResults = function() {
       var html;
-      return html = "<li class='dropdown-menu-empty-link'> <a href='#' class='is-focused'> No matching results. </a> </li>";
+      return html = "<li class='dropdown-menu-empty-link'> <a href='#' class='is-focused'> 没有匹配的结果。 </a> </li>";
     };
 
     GitLabDropdown.prototype.rowClicked = function(el) {
