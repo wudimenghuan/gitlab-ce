@@ -1,0 +1,12 @@
+<%= yield -%>
+
+---
+<%  if @target_url -%>
+<%    if @reply_by_email -%>
+<%=     "直接回复此邮件或在 GitLab 上查看: #{@target_url}" -%>
+<%    else -%>
+<%=     "在 GitLab 上查看: #{@target_url}" -%>
+<%    end -%>
+<%  end -%>
+
+因为您在 <%= Gitlab.config.gitlab.host %> 拥有账号，所以会收到此邮件。

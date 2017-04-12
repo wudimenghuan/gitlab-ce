@@ -37,14 +37,7 @@ import './shortcuts_issuable';
 import './shortcuts_network';
 
 // behaviors
-import './behaviors/autosize';
-import './behaviors/details_behavior';
-import './behaviors/quick_submit';
-import './behaviors/requires_input';
-import './behaviors/toggler_behavior';
-import './behaviors/bind_in_out';
-import { installGlEmojiElement } from './behaviors/gl_emoji';
-installGlEmojiElement();
+import './behaviors/';
 
 // blob
 import './blob/create_branch_dropdown';
@@ -279,7 +272,7 @@ $(function () {
   // Disable form buttons while a form is submitting
   $body.on('ajax:complete, ajax:beforeSend, submit', 'form', function (e) {
     var buttons;
-    buttons = $('[type="submit"]', this);
+    buttons = $('[type="submit"], .js-disable-on-submit', this);
     switch (e.type) {
       case 'ajax:beforeSend':
       case 'submit':

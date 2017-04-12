@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170407140450) do
+ActiveRecord::Schema.define(version: 20170408033905) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -757,7 +757,6 @@ ActiveRecord::Schema.define(version: 20170407140450) do
     t.datetime "resolved_at"
     t.integer "resolved_by_id"
     t.string "discussion_id"
-    t.string "original_discussion_id"
     t.text "note_html"
   end
 
@@ -1055,6 +1054,7 @@ ActiveRecord::Schema.define(version: 20170407140450) do
     t.string "line_code"
     t.string "note_type"
     t.text "position"
+    t.string "in_reply_to_discussion_id"
   end
 
   add_index "sent_notifications", ["reply_key"], name: "index_sent_notifications_on_reply_key", unique: true, using: :btree
@@ -1357,6 +1357,7 @@ ActiveRecord::Schema.define(version: 20170407140450) do
   add_foreign_key "chat_teams", "namespaces", on_delete: :cascade
   add_foreign_key "ci_builds", "ci_pipelines", column: "auto_canceled_by_id", name: "fk_a2141b1522", on_delete: :nullify
   add_foreign_key "ci_pipelines", "ci_pipelines", column: "auto_canceled_by_id", name: "fk_262d4c2d19", on_delete: :nullify
+  add_foreign_key "ci_trigger_requests", "ci_triggers", column: "trigger_id", name: "fk_b8ec8b7245", on_delete: :cascade
   add_foreign_key "ci_trigger_schedules", "ci_triggers", column: "trigger_id", name: "fk_90a406cc94", on_delete: :cascade
   add_foreign_key "ci_triggers", "users", column: "owner_id", name: "fk_e8e10d1964", on_delete: :cascade
   add_foreign_key "container_repositories", "projects"

@@ -25,9 +25,10 @@
           - if @labels_url
             调整你的 #{link_to '标签订阅', @labels_url}.
           - else
-            - if @sent_notification_url
-              或在此主题中
-              = link_to "取消订阅", @sent_notification_url
-            。
+            - if @unsubscribe_url
+              在此主题中
+              = link_to "取消订阅", @unsubscribe_url
+              或者
+            调整您的通知设置。
 
           = email_action @target_url

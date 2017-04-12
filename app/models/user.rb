@@ -555,10 +555,6 @@ class User < ActiveRecord::Base
     authorized_projects(Gitlab::Access::REPORTER).non_archived.with_issues_enabled
   end
 
-  def is_admin?
-    admin
-  end
-
   def require_ssh_key?
     keys.count == 0 && Gitlab::ProtocolAccess.allowed?('ssh')
   end
@@ -589,10 +585,6 @@ class User < ActiveRecord::Base
 
   def first_name
     name.split.first unless name.blank?
-  end
-
-  def cared_merge_requests
-    MergeRequest.cared(self)
   end
 
   def projects_limit_left

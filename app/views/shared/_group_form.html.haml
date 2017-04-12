@@ -1,12 +1,8 @@
+- content_for :page_specific_javascripts do
+  = page_specific_javascript_bundle_tag('group')
 - parent = GroupFinder.new(current_user).execute(id: params[:parent_id] || @group.parent_id)
 - group_path = root_url
 - group_path << parent.full_path + '/' if parent
-- if @group.persisted?
-  .form-group
-    = f.label :name, class: 'control-label' do
-      群组名称
-    .col-sm-10
-      = f.text_field :name, placeholder: 'open-source', class: 'form-control'
 
 .form-group
   = f.label :path, class: 'control-label' do
@@ -32,6 +28,14 @@
           %li 重命名群组路径会重命名全部相关项目的路径
           %li 包括改变群组和群组项目的网页访问链接。
           %li 包括改变群组下版本库的 git 路径。
+
+.form-group.group-name-holder
+  = f.label :name, class: 'control-label' do
+    群组名称
+  .col-sm-10
+    = f.text_field :name, class: 'form-control',
+      required: true,
+      title: '您可以选择一个跟路径不同的描述性名称。'
 
 .form-group.group-description-holder
   = f.label :description, '描述', class: 'control-label'

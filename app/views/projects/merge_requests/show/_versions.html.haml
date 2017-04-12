@@ -74,11 +74,13 @@
         = link_to namespace_project_compare_path(@project.namespace, @project, from: @start_version.base_commit_sha, to: @merge_request_diff.base_commit_sha) do
           新建提交
 
-    - unless @merge_request_diff.latest? && !@start_sha
+    - if @diff_notes_disabled
       .comments-disabled-notif.content-block
         = icon('info-circle')
         - if @start_sha
           评论被停用，因为您正在比较此合并请求内的两个版本。
         - else
-          评论被停用，因为您正在查看的是该合并请求的旧版本。
-        = link_to '查看最新版本', diffs_namespace_project_merge_request_path(@project.namespace, @project, @merge_request), class: 'btn btn-sm'
+          显示这个版本的合并请求的讨论，但是不允许进行评论。
+
+        .pull-right
+          = link_to 'Show latest version', diffs_namespace_project_merge_request_path(@project.namespace, @project, @merge_request), class: 'btn btn-sm'
