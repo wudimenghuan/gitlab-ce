@@ -83,7 +83,7 @@ module MilestonesHelper
     if milestone.expired?
       content_tag(:strong, '已过期')
     elsif milestone.upcoming?
-      content_tag(:strong, 'Upcoming')
+      content_tag(:strong, '即将到期')
     elsif milestone.due_date
       time_ago = time_ago_in_words(milestone.due_date)
       content = time_ago.gsub(/\d+/) { |match| "<strong>#{match}</strong>" }
@@ -92,8 +92,9 @@ module MilestonesHelper
       content.html_safe
     elsif milestone.start_date && milestone.start_date.past?
       days    = milestone.elapsed_days
-      content = content_tag(:strong, days)
-      content << " #{'day'.pluralize(days)} elapsed"
+      content = "已过 "
+      content << content_tag(:strong, days)
+      content << " 天"
       content.html_safe
     end
   end
