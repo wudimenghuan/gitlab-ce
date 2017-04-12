@@ -57,8 +57,8 @@ export default class SketchLoader {
 
     errorMsg.className = 'prepend-top-default append-bottom-default text-center';
     errorMsg.textContent = `
-      Cannot show preview. For previews on sketch files, they must have the file format
-      introduced by Sketch version 43 and above.
+      无法显示预览。 对于sketch文件的预览，它们必须具有
+      由Sketch版本43及以上版本引入的文件格式。
     `;
     this.container.appendChild(errorMsg);
 

@@ -2,18 +2,18 @@
   -# Skip all non non-supported blobs
   - return unless blob.respond_to?(:text?)
   - if diff_file.too_large?
-    .nothing-here-block This diff could not be displayed because it is too large.
+    .nothing-here-block 此文件的差异太大，无法显示。
   - elsif blob.only_display_raw?
-    .nothing-here-block This file is too large to display.
+    .nothing-here-block 此文件太大，无法显示。
   - elsif blob_text_viewable?(blob)
     - if !project.repository.diffable?(blob)
-      .nothing-here-block This diff was suppressed by a .gitattributes entry.
+      .nothing-here-block 由于 .gitattributes 文件的设置，不显示此差异。
     - elsif diff_file.collapsed?
       - url = url_for(params.merge(action: :diff_for_path, old_path: diff_file.old_path, new_path: diff_file.new_path, file_identifier: diff_file.file_identifier))
       .nothing-here-block.diff-collapsed{ data: { diff_for_path: url } }
-        This diff is collapsed.
+        此文件的差异被折叠，
         %a.click-to-expand
-          Click to expand it.
+          点击展开。
     - elsif diff_file.diff_lines.length > 0
       - total_lines = 0
       - if blob.lines.any?
@@ -24,11 +24,11 @@
         = render "projects/diffs/text_file", diff_file: diff_file, total_lines: total_lines
     - else
       - if diff_file.mode_changed?
-        .nothing-here-block File mode changed
+        .nothing-here-block 文件属性发生变化
       - elsif diff_file.renamed_file
-        .nothing-here-block File moved
+        .nothing-here-block 文件被删除
   - elsif blob.image?
     - old_blob = diff_file.old_blob(diff_file.old_content_commit || @base_commit)
     = render "projects/diffs/image", diff_file: diff_file, old_file: old_blob, file: blob
   - else
-    .nothing-here-block No preview for this file type
+    .nothing-here-block 此文件类型无法预览

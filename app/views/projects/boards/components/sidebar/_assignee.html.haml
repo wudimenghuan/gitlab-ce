@@ -1,16 +1,16 @@
 .block.assignee
   .title.hide-collapsed
-    Assignee
+    指派
     - if can?(current_user, :admin_issue, @project)
       = icon("spinner spin", class: "block-loading")
-      = link_to "Edit", "#", class: "edit-link pull-right"
+      = link_to "编辑", "#", class: "edit-link pull-right"
   .value.hide-collapsed
     %span.assign-yourself.no-value{ "v-if" => "!issue.assignee" }
-      No assignee
+      未指派
       - if can?(current_user, :admin_issue, @project)
         \-
         %a.js-assign-yourself{ href: "#" }
-          assign yourself
+          指派给您自己
     %a.author_link.bold{ ":href" => "'#{root_url}' + issue.assignee.username",
       "v-if" => "issue.assignee" }
       %img.avatar.avatar-inline.s32{ ":src" => "issue.assignee.avatar",
@@ -31,10 +31,10 @@
         %button.dropdown-menu-toggle.js-user-search.js-author-search.js-issue-board-sidebar{ type: "button", data: { toggle: "dropdown", field_name: "issue[assignee_id]", first_user: (current_user.username if current_user), current_user: "true", project_id: @project.id, null_user: "true" },
           ":data-issuable-id" => "issue.id",
           ":data-issue-update" => "'#{namespace_project_issues_path(@project.namespace, @project)}/' + issue.id + '.json'" }
-          Select assignee
+          选择指派
           = icon("chevron-down")
         .dropdown-menu.dropdown-menu-user.dropdown-menu-selectable.dropdown-menu-author
-          = dropdown_title("Assign to")
-          = dropdown_filter("Search users")
+          = dropdown_title("指派给")
+          = dropdown_filter("搜索用户")
           = dropdown_content
           = dropdown_loading

@@ -52,8 +52,8 @@ module NotesHelper
 
     data = { discussion_id: discussion.id, line_type: line_type }
 
-    button_tag 'Reply...', class: 'btn btn-text-field js-discussion-reply-button',
-                           data: data, title: 'Add a reply'
+    button_tag '回复...', class: 'btn btn-text-field js-discussion-reply-button',
+                           data: data, title: '增加回复'
   end
 
   def note_max_access_for_user(note)

@@ -68,7 +68,7 @@ require('./lists_dropdown');
             {{ submitText }}
           </button>
           <span class="inline add-issues-footer-to-list">
-            to list
+            到列表
           </span>
           <lists-dropdown></lists-dropdown>
         </div>
@@ -76,7 +76,7 @@ require('./lists_dropdown');
           class="btn btn-default pull-right"
           type="button"
           @click="toggleModal(false)">
-          Cancel
+          取消
         </button>
       </footer>
     `,

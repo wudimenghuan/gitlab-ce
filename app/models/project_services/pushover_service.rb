@@ -10,7 +10,7 @@ class PushoverService < Service
   end
 
   def description
-    'Pushover makes it easy to get real-time notifications on your Android device, iPhone, iPad, and Desktop.'
+    'Pushover 可以轻松在Android设备，iPhone，iPad和桌面操作系统上获取实时通知。'
   end
 
   def self.to_param
@@ -72,15 +72,15 @@ class PushoverService < Service
 
     message =
       if Gitlab::Git.blank_ref?(before)
-        "#{data[:user_name]} pushed new branch \"#{ref}\"."
+        "#{data[:user_name]} 推送了新的分支 \"#{ref}\"."
       elsif Gitlab::Git.blank_ref?(after)
-        "#{data[:user_name]} deleted branch \"#{ref}\"."
+        "#{data[:user_name]} 删除了分支 \"#{ref}\"."
       else
-        "#{data[:user_name]} push to branch \"#{ref}\"."
+        "#{data[:user_name]} 推送了分支 \"#{ref}\"."
       end
 
     if data[:total_commits_count] > 0
-      message << "\nTotal commits count: #{data[:total_commits_count]}"
+      message << "\n合计提交数量： #{data[:total_commits_count]}"
     end
 
     pushover_data = {
@@ -91,7 +91,7 @@ class PushoverService < Service
       title: "#{project.name_with_namespace}",
       message: message,
       url: data[:project][:web_url],
-      url_title: "See project #{project.name_with_namespace}"
+      url_title: "查看项目 #{project.name_with_namespace}"
     }
 
     # Sound parameter MUST NOT be sent to API if not selected

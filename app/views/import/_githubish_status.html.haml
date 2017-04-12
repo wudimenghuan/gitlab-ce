@@ -2,11 +2,11 @@
 - provider_title = Gitlab::ImportSources.title(provider)
 
 %p.light
-  Select projects you want to import.
+  选择要导入的项目。
 %hr
 %p
   = button_tag class: "btn btn-import btn-success js-import-all" do
-    Import all projects
+    导入所有项目
     = icon("spinner spin", class: "loading-icon")
 
 .table-responsive
@@ -16,9 +16,9 @@
     %colgroup.import-jobs-status-col
     %thead
       %tr
-        %th From #{provider_title}
-        %th To GitLab
-        %th Status
+        %th 从 #{provider_title}
+        %th 到 GitLab
+        %th 状态
     %tbody
       - @already_added_projects.each do |project|
         %tr{ id: "project_#{project.id}", class: "#{project_status_css_class(project.import_status)}" }
@@ -30,10 +30,10 @@
             - if project.import_status == 'finished'
               %span
                 %i.fa.fa-check
-                done
+                完成
             - elsif project.import_status == 'started'
               %i.fa.fa-spinner.fa-spin
-              started
+              已开始
             - else
               = project.human_import_status_name
 
@@ -55,7 +55,7 @@
               = text_field_tag :path, repo.name, class: "input-mini form-control", tabindex: 2, autofocus: true, required: true
           %td.import-actions.job-status
             = button_tag class: "btn btn-import js-add-to-import" do
-              Import
+              导入
               = icon("spinner spin", class: "loading-icon")
 
 .js-importer-status{ data: { jobs_import_path: "#{url_for([:jobs, :import, provider])}", import_path: "#{url_for([:import, provider])}" } }

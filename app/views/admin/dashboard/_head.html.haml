@@ -4,25 +4,25 @@
     .nav-links.sub-nav.scrolling-tabs
       %ul{ class: (container_class) }
         = nav_link(controller: :dashboard, html_options: {class: 'home'}) do
-          = link_to admin_root_path, title: 'Overview' do
+          = link_to admin_root_path, title: '概述' do
             %span
-              Overview
+              概述
         = nav_link(controller: [:admin, :projects]) do
-          = link_to admin_projects_path, title: 'Projects' do
+          = link_to admin_projects_path, title: '项目' do
             %span
-              Projects
+              项目
         = nav_link(controller: :users) do
-          = link_to admin_users_path, title: 'Users' do
+          = link_to admin_users_path, title: '用户' do
             %span
-              Users
+              用户
         = nav_link(controller: :groups) do
-          = link_to admin_groups_path, title: 'Groups' do
+          = link_to admin_groups_path, title: '群组' do
             %span
-              Groups
+              群组
         = nav_link path: 'builds#index' do
-          = link_to admin_builds_path, title: 'Jobs' do
+          = link_to admin_builds_path, title: '作业' do
             %span
-              Jobs
+              作业
         = nav_link path: ['runners#index', 'runners#show'] do
           = link_to admin_runners_path, title: 'Runners' do
             %span

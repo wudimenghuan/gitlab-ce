@@ -6,7 +6,7 @@ import Vue from 'vue';
     props: ['timeSpentHumanReadable'],
     template: `
       <div class='time-tracking-spend-only-pane'>
-        <span class='bold'>Spent:</span>
+        <span class='bold'>耗费:</span>
         {{ timeSpentHumanReadable }}
       </div>
     `,

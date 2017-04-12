@@ -29,7 +29,7 @@ module Files
       if result
         success(result: result)
       else
-        error('Something went wrong. Your changes were not committed')
+        error('出错了，您的变更未提交')
       end
     rescue Repository::CommitError, Gitlab::Git::Repository::InvalidBlobName, GitHooksService::PreReceiveError, ValidationError => ex
       error(ex.message)
@@ -55,15 +55,15 @@ module Files
       allowed = ::Gitlab::UserAccess.new(current_user, project: project).can_push_to_branch?(@target_branch)
 
       unless allowed
-        raise_error("You are not allowed to push into this branch")
+        raise_error("您不允许推送到此分支")
       end
 
       if !@start_project.empty_repo? && !@start_project.repository.branch_exists?(@start_branch)
-        raise ValidationError, 'You can only create or edit files when you are on a branch'
+        raise ValidationError, '您只能在分支上创建或编辑文件'
       end
 
       if !project.empty_repo? && different_branch? && repository.branch_exists?(@branch_name)
-        raise ValidationError, "A branch called #{@branch_name} already exists. Switch to that branch in order to make changes"
+        raise ValidationError, "分支 #{@branch_name} 已存在。您需要切换到该分支以进行更改"
       end
     end
 
@@ -72,7 +72,7 @@ module Files
         execute(@target_branch)
 
       if result[:status] == :error
-        raise_error("Something went wrong when we tried to create #{@target_branch} for you: #{result[:message]}")
+        raise_error("为您创建分支 #{@target_branch} 时发生了错误：#{result[:message]}")
       end
     end
   end

@@ -56,14 +56,12 @@ module Taskable
   def task_status(short: false)
     return '' if description.blank?
 
-    prep, completed = if short
-                        ['/', '']
-                      else
-                        [' of ', ' completed']
-                      end
-
     sum = tasks.summary
-    "#{sum.complete_count}#{prep}#{sum.item_count} #{'task'.pluralize(sum.item_count)}#{completed}"
+    if short
+      "#{sum.complete_count} / #{sum.item_count} 任务"
+    else
+      "共计： #{sum.item_count} 个任务（#{sum.complete_count} 个已完成）"
+    end
   end
 
   # Return a short string that describes the current state of this Taskable's

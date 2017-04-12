@@ -32,12 +32,12 @@ module BlobHelper
     common_classes = "btn js-edit-blob #{options[:extra_class]}"
 
     if !on_top_of_branch?(project, ref)
-      button_tag 'Edit', class: "#{common_classes} disabled has-tooltip", title: "You can only edit files when you are on a branch", data: { container: 'body' }
+      button_tag '编辑', class: "#{common_classes} disabled has-tooltip", title: "你只能在分支上修改编辑文件", data: { container: 'body' }
     # This condition applies to anonymous or users who can edit directly
     elsif !current_user || (current_user && can_edit_blob?(blob, project, ref))
-      link_to 'Edit', edit_path(project, ref, path, options), class: "#{common_classes} btn-sm"
+      link_to '编辑', edit_path(project, ref, path, options), class: "#{common_classes} btn-sm"
     elsif current_user && can?(current_user, :fork_project, project)
-      button_tag 'Edit', class: "#{common_classes} js-edit-blob-link-fork-toggler"
+      button_tag '编辑', class: "#{common_classes} js-edit-blob-link-fork-toggler"
     end
   end
 
@@ -49,15 +49,15 @@ module BlobHelper
     return unless blob
 
     if !on_top_of_branch?(project, ref)
-      button_tag label, class: "btn btn-#{btn_class} disabled has-tooltip", title: "You can only #{action} files when you are on a branch", data: { container: 'body' }
+      button_tag label, class: "btn btn-#{btn_class} disabled has-tooltip", title: "你只能在分支上#{action}文件", data: { container: 'body' }
     elsif blob.lfs_pointer?
-      button_tag label, class: "btn btn-#{btn_class} disabled has-tooltip", title: "It is not possible to #{action} files that are stored in LFS using the web interface", data: { container: 'body' }
+      button_tag label, class: "btn btn-#{btn_class} disabled has-tooltip", title: "不能使用网页界面#{action}存储在 LFS 上的文件", data: { container: 'body' }
     elsif can_edit_blob?(blob, project, ref)
       button_tag label, class: "btn btn-#{btn_class}", 'data-target' => "#modal-#{modal_type}-blob", 'data-toggle' => 'modal'
     elsif can?(current_user, :fork_project, project)
       continue_params = {
         to:     request.fullpath,
-        notice: edit_in_new_fork_notice + " Try to #{action} this file again.",
+        notice: edit_in_new_fork_notice + "请重新尝试#{action}此文件。",
         notice_now: edit_in_new_fork_notice_now
       }
       fork_path = namespace_project_forks_path(project.namespace, project, namespace_key: current_user.namespace.id, continue: continue_params)
@@ -71,8 +71,8 @@ module BlobHelper
       project,
       ref,
       path,
-      label:      "Replace",
-      action:     "replace",
+      label:      "替换",
+      action:     "替换",
       btn_class:  "default",
       modal_type: "upload"
     )
@@ -83,8 +83,8 @@ module BlobHelper
       project,
       ref,
       path,
-      label:      "Delete",
-      action:     "delete",
+      label:      "删除",
+      action:     "删除",
       btn_class:  "remove",
       modal_type: "remove"
     )
@@ -95,14 +95,14 @@ module BlobHelper
   end
 
   def leave_edit_message
-    "Leave edit mode?\nAll unsaved changes will be lost."
+    "离开编辑模式？\n所有未保存的修改都会丢失。"
   end
 
   def editing_preview_title(filename)
     if Gitlab::MarkupHelper.previewable?(filename)
-      'Preview'
+      '预览'
     else
-      'Preview changes'
+      '预览修改'
     end
   end
 
@@ -214,13 +214,13 @@ module BlobHelper
   end
 
   def copy_file_path_button(file_path)
-    clipboard_button(text: file_path, gfm: "`#{file_path}`", class: 'btn-clipboard btn-transparent prepend-left-5', title: 'Copy file path to clipboard')
+    clipboard_button(text: file_path, gfm: "`#{file_path}`", class: 'btn-clipboard btn-transparent prepend-left-5', title: '复制文件路径到剪贴板')
   end
 
   def copy_blob_content_button(blob)
     return if markup?(blob.name)
 
-    clipboard_button(target: ".blob-content[data-blob-id='#{blob.id}']", class: "btn btn-sm", title: "Copy content to clipboard")
+    clipboard_button(target: ".blob-content[data-blob-id='#{blob.id}']", class: "btn btn-sm", title: "复制内容到剪贴板")
   end
 
   def open_raw_file_button(path)

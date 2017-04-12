@@ -37,7 +37,7 @@
             var anyNamespace;
             if (showAny) {
               anyNamespace = {
-                text: 'Any namespace',
+                text: '任何命名空间',
                 id: null
               };
               namespaces.unshift(anyNamespace);
