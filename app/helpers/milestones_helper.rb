@@ -91,8 +91,9 @@ module MilestonesHelper
       content_tag(:strong, '即将到期')
     elsif milestone.start_date && milestone.start_date.past?
       days    = milestone.elapsed_days
-      content = content_tag(:strong, days)
-      content << "已过 #{'day'.pluralize(days)}"
+      content = "已过 "
+      content << content_tag(:strong, days)
+      content << " 天"
       content.html_safe
     end
   end
