@@ -92,7 +92,7 @@ module MilestonesHelper
     elsif milestone.start_date && milestone.start_date.past?
       days    = milestone.elapsed_days
       content = content_tag(:strong, days)
-      content << " #{'day'.pluralize(days)} elapsed"
+      content << "已过 #{'day'.pluralize(days)}"
       content.html_safe
     end
   end
