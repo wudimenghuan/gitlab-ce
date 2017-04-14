@@ -1,0 +1,21 @@
+= content_for :sub_nav do
+  .scrolling-tabs-container.sub-nav-scroll
+    = render 'shared/nav_scroll'
+    .nav-links.sub-nav.scrolling-tabs
+      %ul{ class: (container_class) }
+        = nav_link(controller: :merge_requests) do
+          = link_to namespace_project_merge_requests_path(@project.namespace, @project), title: '合并请求' do
+            %span
+              列表
+
+        - if project_nav_tab? :labels
+          = nav_link(controller: :labels) do
+            = link_to namespace_project_labels_path(@project.namespace, @project), title: '标记' do
+              %span
+                标记
+
+        - if project_nav_tab? :milestones
+          = nav_link(controller: :milestones) do
+            = link_to namespace_project_milestones_path(@project.namespace, @project), title: '里程碑' do
+              %span
+                里程碑
