@@ -9,7 +9,7 @@
   - if @conflict
     .alert.alert-danger
       有人与您同时编辑了这个文件，请检出
-      = link_to "这个文件", namespace_project_blob_path(@project.namespace, @project, tree_join(@target_branch, @file_path)), target: "_blank", rel: 'noopener noreferrer'
+      = link_to "这个文件", namespace_project_blob_path(@project.namespace, @project, tree_join(@branch_name, @file_path)), target: "_blank", rel: 'noopener noreferrer'
       并确保您不会无意中删除了其他人的更改。
   .editor-title-row
     %h3.page-title.blob-edit-page-title
