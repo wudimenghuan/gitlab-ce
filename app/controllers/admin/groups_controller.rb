@@ -43,9 +43,13 @@ class Admin::GroupsController < Admin::ApplicationController
   end
 
   def members_update
-    @group.add_users(params[:user_ids].split(','), params[:access_level], current_user: current_user)
+    status = Members::CreateService.new(@group, current_user, params).execute
 
-    redirect_to [:admin, @group], notice: '用户增加成功。'
+    if status
+      redirect_to [:admin, @group], notice: '用户增加成功。'
+    else
+      redirect_to [:admin, @group], alert: '没有指定用户。'
+    end
   end
 
   def destroy

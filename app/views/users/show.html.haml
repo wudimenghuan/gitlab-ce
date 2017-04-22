@@ -84,19 +84,19 @@
       .fade-right= icon('angle-right')
       %ul.nav-links.center.user-profile-nav.scrolling-tabs
         %li.js-activity-tab
-          = link_to user_path, data: {target: 'div#activity', action: 'activity', toggle: 'tab'} do
+          = link_to user_path, data: { target: 'div#activity', action: 'activity', toggle: 'tab' } do
             活动
         %li.js-groups-tab
-          = link_to user_groups_path, data: {target: 'div#groups', action: 'groups', toggle: 'tab'} do
+          = link_to user_groups_path, data: { target: 'div#groups', action: 'groups', toggle: 'tab', endpoint: user_groups_path(format: :json) } do
             群组
         %li.js-contributed-tab
-          = link_to user_contributed_projects_path, data: {target: 'div#contributed', action: 'contributed', toggle: 'tab'} do
+          = link_to user_contributed_projects_path, data: { target: 'div#contributed', action: 'contributed', toggle: 'tab', endpoint: user_contributed_projects_path(format: :json) } do
             贡献项目
         %li.js-projects-tab
-          = link_to user_projects_path, data: {target: 'div#projects', action: 'projects', toggle: 'tab'} do
+          = link_to user_projects_path, data: { target: 'div#projects', action: 'projects', toggle: 'tab', endpoint: user_projects_path(format: :json) } do
             个人项目
         %li.js-snippets-tab
-          = link_to user_snippets_path, data: {target: 'div#snippets', action: 'snippets', toggle: 'tab'} do
+          = link_to user_snippets_path, data: { target: 'div#snippets', action: 'snippets', toggle: 'tab', endpoint: user_snippets_path(format: :json) } do
             代码片段
 
   %div{ class: container_class }

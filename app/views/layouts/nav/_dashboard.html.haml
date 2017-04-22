@@ -44,7 +44,7 @@
           I
       %span
         问题
-      .badge= number_with_delimiter(cached_assigned_issuables_count(current_user, :issues, :opened))
+      .badge= number_with_delimiter(assigned_issuables_count(:issues))
   = nav_link(path: 'dashboard#merge_requests') do
     = link_to assigned_mrs_dashboard_path, title: '合并请求', class: 'dashboard-shortcuts-merge_requests' do
       .shortcut-mappings
@@ -53,7 +53,7 @@
           M
       %span
         合并请求
-      .badge= number_with_delimiter(cached_assigned_issuables_count(current_user, :merge_requests, :opened))
+      .badge= number_with_delimiter(assigned_issuables_count(:merge_requests))
   = nav_link(controller: 'dashboard/snippets') do
     = link_to dashboard_snippets_path, class: 'dashboard-shortcuts-snippets', title: '代码片段' do
       .shortcut-mappings
