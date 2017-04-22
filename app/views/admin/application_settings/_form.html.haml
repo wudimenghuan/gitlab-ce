@@ -474,7 +474,7 @@
           服务来渲染文本文档中的 PlantUML 图表。
 
   %fieldset
-    %legend 用量统计
+    %legend#usage-statistics 用量统计
     .form-group
       .col-sm-offset-2.col-sm-10
         .checkbox
@@ -483,6 +483,19 @@
             开启版本检查
           .help-block
             让GitLab在更新可用时通知您。
+    .form-group
+      .col-sm-offset-2.col-sm-10
+        .checkbox
+          = f.label :usage_ping_enabled do
+            = f.check_box :usage_ping_enabled
+            Usage ping enabled
+            = link_to icon('question-circle'), help_page_path("user/admin_area/settings/usage_statistics", anchor: "usage-data")
+          .help-block
+            Every week GitLab will report license usage back to GitLab, Inc.
+            Disable this option if you do not want this to occur. To see the
+            JSON payload that will be sent, visit the
+            = succeed '.' do
+              = link_to "Cohorts page", admin_cohorts_path(anchor: 'usage-ping')
 
   %fieldset
     %legend 邮箱

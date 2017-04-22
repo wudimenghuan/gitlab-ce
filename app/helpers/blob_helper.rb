@@ -14,15 +14,6 @@ module BlobHelper
                                      options[:link_opts])
   end
 
-  def fork_path(project = @project, ref = @ref, path = @path, options = {})
-    continue_params = {
-      to: edit_path,
-      notice: edit_in_new_fork_notice,
-      notice_now: edit_in_new_fork_notice_now
-    }
-    namespace_project_forks_path(project.namespace, project, namespace_key: current_user.namespace.id, continue: continue_params)
-  end
-
   def edit_blob_link(project = @project, ref = @ref, path = @path, options = {})
     blob = options.delete(:blob)
     blob ||= project.repository.blob_at(ref, path) rescue nil
@@ -37,7 +28,16 @@ module BlobHelper
     elsif !current_user || (current_user && can_edit_blob?(blob, project, ref))
       link_to '编辑', edit_path(project, ref, path, options), class: "#{common_classes} btn-sm"
     elsif current_user && can?(current_user, :fork_project, project)
-      button_tag '编辑', class: "#{common_classes} js-edit-blob-link-fork-toggler"
+      continue_params = {
+        to: edit_path,
+        notice: edit_in_new_fork_notice,
+        notice_now: edit_in_new_fork_notice_now
+      }
+      fork_path = namespace_project_forks_path(project.namespace, project, namespace_key: current_user.namespace.id, continue: continue_params)
+
+      button_tag '编辑',
+        class: "#{common_classes} js-edit-blob-link-fork-toggler",
+        data: { action: 'edit', fork_path: fork_path }
     end
   end
 
@@ -48,21 +48,25 @@ module BlobHelper
 
     return unless blob
 
+    common_classes = "btn btn-#{btn_class}"
+
     if !on_top_of_branch?(project, ref)
-      button_tag label, class: "btn btn-#{btn_class} disabled has-tooltip", title: "你只能在分支上#{action}文件", data: { container: 'body' }
+      button_tag label, class: "#{common_classes} disabled has-tooltip", title: "你只能在分支上 #{action} 文件", data: { container: 'body' }
     elsif blob.lfs_pointer?
-      button_tag label, class: "btn btn-#{btn_class} disabled has-tooltip", title: "不能使用网页界面#{action}存储在 LFS 上的文件", data: { container: 'body' }
+      button_tag label, class: "#{common_classes} disabled has-tooltip", title: "不能使用网页界面 #{action} 存储在 LFS 上的文件", data: { container: 'body' }
     elsif can_edit_blob?(blob, project, ref)
-      button_tag label, class: "btn btn-#{btn_class}", 'data-target' => "#modal-#{modal_type}-blob", 'data-toggle' => 'modal'
+      button_tag label, class: "#{common_classes}", 'data-target' => "#modal-#{modal_type}-blob", 'data-toggle' => 'modal'
     elsif can?(current_user, :fork_project, project)
       continue_params = {
-        to:     request.fullpath,
+        to: request.fullpath,
         notice: edit_in_new_fork_notice + "请重新尝试#{action}此文件。",
         notice_now: edit_in_new_fork_notice_now
       }
       fork_path = namespace_project_forks_path(project.namespace, project, namespace_key: current_user.namespace.id, continue: continue_params)
 
-      link_to label, fork_path, class: "btn btn-#{btn_class}", method: :post
+      button_tag label,
+        class: "#{common_classes} js-edit-blob-link-fork-toggler",
+        data: { action: action, fork_path: fork_path }
     end
   end
 
