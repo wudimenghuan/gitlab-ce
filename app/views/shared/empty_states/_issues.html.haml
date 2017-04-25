@@ -16,7 +16,7 @@
           此外，问题是可搜索、可过滤的。
         - if project_select_button
           = render 'shared/new_project_item_select', path: 'issues/new', label: '新建问题'
-        = link_to 'New issue', button_path, class: 'btn btn-new', title: 'New issue', id: 'new_issue_link'
+        = link_to '新建问题', button_path, class: 'btn btn-new', title: 'New issue', id: 'new_issue_link'
       - else
         .text-center
           %h4 没有问题可以显示。
