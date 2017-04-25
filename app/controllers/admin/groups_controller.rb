@@ -28,7 +28,7 @@ class Admin::GroupsController < Admin::ApplicationController
 
     if @group.save
       @group.add_owner(current_user)
-      redirect_to [:admin, @group], notice: '群组创建成功。'
+      redirect_to [:admin, @group], notice: "群组 '#{@group.name}' 创建成功。"
     else
       render "new"
     end

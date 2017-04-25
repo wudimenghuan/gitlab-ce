@@ -1,0 +1,11 @@
+- if current_user
+  .js-file-fork-suggestion-section.file-fork-suggestion.hidden
+    %span.file-fork-suggestion-note
+      您不能直接
+      %span.js-file-fork-suggestion-section-action
+        编辑
+      这个项目的文件。请派生这个项目，
+      在派生项目上进行修改，并提交合并请求。
+    = link_to '派生', nil, method: :post, class: 'js-fork-suggestion-button btn btn-grouped btn-inverted btn-new'
+    %button.js-cancel-fork-suggestion-button.btn.btn-grouped{ type: 'button' }
+      取消
