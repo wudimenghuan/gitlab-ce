@@ -488,14 +488,14 @@
         .checkbox
           = f.label :usage_ping_enabled do
             = f.check_box :usage_ping_enabled
-            Usage ping enabled
+            启用使用率反馈
             = link_to icon('question-circle'), help_page_path("user/admin_area/settings/usage_statistics", anchor: "usage-data")
           .help-block
-            Every week GitLab will report license usage back to GitLab, Inc.
-            Disable this option if you do not want this to occur. To see the
-            JSON payload that will be sent, visit the
-            = succeed '.' do
-              = link_to "Cohorts page", admin_cohorts_path(anchor: 'usage-ping')
+            每周 GitLab 将向 GitLab，Inc. 报告许可证使用情况。
+            如果您不希望报告使用情况，请禁用此选项。
+            要查看将发送的JSON有效内容，请访问 
+            = succeed '。' do
+              = link_to "Cohorts 页面", admin_cohorts_path(anchor: 'usage-ping')
 
   %fieldset
     %legend 邮箱
@@ -568,18 +568,16 @@
           设置为0，无限时间。
 
   %fieldset
-    %legend Real-time features
+    %legend 实时功能
     .form-group
-      = f.label :polling_interval_multiplier, 'Polling interval multiplier', class: 'control-label col-sm-2'
+      = f.label :polling_interval_multiplier, '轮询间隔倍数', class: 'control-label col-sm-2'
       .col-sm-10
         = f.text_field :polling_interval_multiplier, class: 'form-control'
         .help-block
-          Change this value to influence how frequently the GitLab UI polls for updates.
-          If you set the value to 2 all polling intervals are multiplied
-          by 2, which means that polling happens half as frequently.
-          The multiplier can also have a decimal value.
-          The default value (1) is a reasonable choice for the majority of GitLab
-          installations. Set to 0 to completely disable polling.
+          通过修改该值来调整 GitLab UI 轮询更新的频率。
+          如果将该值设置为2，则所有轮询间隔将乘以2，这意味着轮询频率将降为一半，
+          乘数也可以是任意的一个十进制数值。 默认值（1）是大多数 GitLab 安装的合理选择。
+          设置为0将完全禁用轮询更新功能。
           = link_to icon('question-circle'), help_page_path('administration/polling')
 
   .form-actions
