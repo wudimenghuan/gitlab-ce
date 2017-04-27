@@ -21,7 +21,7 @@
           - if params[:assignee_id].present?
             = hidden_field_tag(:assignee_id, params[:assignee_id])
           = dropdown_tag(user_dropdown_label(params[:assignee_id], "指派"), options: { toggle_class: "js-user-search js-filter-submit js-assignee-search", title: "按指派过滤", filter: true, dropdown_class: "dropdown-menu-user dropdown-menu-selectable dropdown-menu-assignee js-filter-submit",
-            placeholder: "搜索指派", data: { any_user: "任何指派", first_user: current_user.try(:username), null_user: true, current_user: true, project_id: @project.try(:id), selected: params[:assignee_id], field_name: "assignee_id", default_label: "指派" } })
+            placeholder: "搜索指派", data: { any_user: "任何指派", first_user: current_user.try(:username), null_user: true, current_user: true, project_id: @project.try(:id), group_id: @group&.id, selected: params[:assignee_id], field_name: "assignee_id", default_label: "指派" } })
 
         .filter-item.inline.milestone-filter
           = render "shared/issuable/milestone_dropdown", selected: finder.milestones.try(:first), name: :milestone_title, show_any: true, show_upcoming: true, show_started: true
