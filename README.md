@@ -4,6 +4,8 @@
 [![Overall test coverage](https://gitlab.com/gitlab-org/gitlab-ce/badges/master/coverage.svg)](https://gitlab.com/gitlab-org/gitlab-ce/pipelines)
 [![Code Climate](https://codeclimate.com/github/gitlabhq/gitlabhq.svg)](https://codeclimate.com/github/gitlabhq/gitlabhq)
 [![Core Infrastructure Initiative Best Practices](https://bestpractices.coreinfrastructure.org/projects/42/badge)](https://bestpractices.coreinfrastructure.org/projects/42)
+[![Gitter](https://badges.gitter.im/gitlabhq/gitlabhq.svg)](https://gitter.im/gitlabhq/gitlabhq?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+
 ## 历史
 
 本汉化项目继承自 [@larryli](https://gitlab.com/larryli) 发起的 [GitLab 中文社区版项目](https://gitlab.com/larryli/gitlab) （从 v7 ~ v8.8）。从 v8.9 之后，[@xhang](https://gitlab.com/xhang) 开始继续[本汉化项目](https://gitlab.com/xhang/gitlab)。
