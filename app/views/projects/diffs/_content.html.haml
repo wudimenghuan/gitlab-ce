@@ -3,9 +3,9 @@
   - return unless blob.respond_to?(:text?)
   - if diff_file.too_large?
     .nothing-here-block 此文件的差异太大，无法显示。
-  - elsif blob.only_display_raw?
+  - elsif blob.too_large?
     .nothing-here-block 此文件太大，无法显示。
-  - elsif blob_text_viewable?(blob)
+  - elsif blob.readable_text?
     - if !project.repository.diffable?(blob)
       .nothing-here-block 由于 .gitattributes 文件的设置，不显示此差异。
     - elsif diff_file.collapsed?

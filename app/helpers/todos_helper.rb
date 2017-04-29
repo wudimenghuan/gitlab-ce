@@ -13,13 +13,14 @@ module TodosHelper
 
   def todo_action_name(todo)
     case todo.action
-    when Todo::ASSIGNED then '给您指派了'
-    when Todo::MENTIONED then '向您提及了'
-    when Todo::BUILD_FAILED then '你的构建失败了'
-    when Todo::MARKED then '向您标记了'
-    when Todo::APPROVAL_REQUIRED then '请您审批'
+    when Todo::ASSIGNED then todo.self_added? ? '已指派给' : '给你指派了'
+    when Todo::MENTIONED then "向 #{todo_action_subject(todo)} 提及了"
+    when Todo::BUILD_FAILED then '构建失败了'
+    when Todo::MARKED then '标记了'
+    when Todo::APPROVAL_REQUIRED then "请 #{todo_action_subject(todo)} 审批"
     when Todo::UNMERGEABLE then '无法合并'
-    when Todo::DIRECTLY_ADDRESSED then 'directly addressed you on'
+    when Todo::DIRECTLY_ADDRESSED then '直接提到您于'
+    when Todo::DIRECTLY_ADDRESSED then "直接提到 #{todo_action_subject(todo)} 于"
     end
   end
 
@@ -147,6 +148,10 @@ module TodosHelper
   end
 
   private
+
+  def todo_action_subject(todo)
+    todo.self_added? ? '您自己' : '您'
+  end
 
   def show_todo_state?(todo)
     (todo.target.is_a?(MergeRequest) || todo.target.is_a?(Issue)) && %w(closed merged).include?(todo.target.state)

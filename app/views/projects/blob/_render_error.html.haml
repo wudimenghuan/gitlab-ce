@@ -1,0 +1,7 @@
+.file-content.code
+  .nothing-here-block
+    文件 #{viewer.switcher_title} 由于 #{blob_render_error_reason(viewer)} 而无法显示。
+
+    您可以通过
+    = blob_render_error_options(viewer).to_sentence(two_words_connector: ' 或者 ', last_word_connector: ', 或者 ').html_safe
+    来取代。
