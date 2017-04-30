@@ -19,7 +19,6 @@ module TodosHelper
     when Todo::MARKED then '标记了'
     when Todo::APPROVAL_REQUIRED then "请 #{todo_action_subject(todo)} 审批"
     when Todo::UNMERGEABLE then '无法合并'
-    when Todo::DIRECTLY_ADDRESSED then '直接提到您于'
     when Todo::DIRECTLY_ADDRESSED then "直接提到 #{todo_action_subject(todo)} 于"
     end
   end
