@@ -1,0 +1,40 @@
+= form_errors(hook)
+
+.form-group
+  = form.label :url, '链接(URL)', class: 'control-label'
+  .col-sm-10
+    = form.text_field :url, class: 'form-control'
+.form-group
+  = form.label :token, '安全令牌', class: 'control-label'
+  .col-sm-10
+    = form.text_field :token, class: 'form-control'
+    %p.help-block
+      使用此令牌来验证接收信息的有效性
+.form-group
+  = form.label :url, '触发器', class: 'control-label'
+  .col-sm-10.prepend-top-10
+    %div
+      系统钩子将在创建项目和增加 SSH 密钥等事件发生时触发。
+      你可以额外开启推送等事件的触发。
+
+    .prepend-top-default
+      = form.check_box :push_events, class: 'pull-left'
+      .prepend-left-20
+        = form.label :push_events, class: 'list-label' do
+          %strong 推送事件
+        %p.light
+          此链接将在推送到版本仓库时触发
+    %div
+      = form.check_box :tag_push_events, class: 'pull-left'
+      .prepend-left-20
+        = form.label :tag_push_events, class: 'list-label' do
+          %strong 标签推送事件
+        %p.light
+          此链接将在推送新标签到版本仓库时触发
+.form-group
+  = form.label :enable_ssl_verification, 'SSL 证书验证', class: 'control-label checkbox'
+  .col-sm-10
+    .checkbox
+      = form.label :enable_ssl_verification do
+        = form.check_box :enable_ssl_verification
+        %strong 启用 SSL 证书验证
