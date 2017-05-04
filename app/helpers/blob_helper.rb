@@ -52,7 +52,7 @@ module BlobHelper
 
     if !on_top_of_branch?(project, ref)
       button_tag label, class: "#{common_classes} disabled has-tooltip", title: "你只能在分支上#{action}文件", data: { container: 'body' }
-    elsif blob.valid_lfs_pointer?
+    elsif blob.stored_externally?
       button_tag label, class: "#{common_classes} disabled has-tooltip", title: "不能使用网页界面#{action}存储在 LFS 上的文件", data: { container: 'body' }
     elsif can_modify_blob?(blob, project, ref)
       button_tag label, class: "#{common_classes}", 'data-target' => "#modal-#{modal_type}-blob", 'data-toggle' => 'modal'
@@ -95,7 +95,7 @@ module BlobHelper
   end
 
   def can_modify_blob?(blob, project = @project, ref = @ref)
-    !blob.valid_lfs_pointer? && can_edit_tree?(project, ref)
+    !blob.stored_externally? && can_edit_tree?(project, ref)
   end
 
   def leave_edit_message
@@ -223,7 +223,9 @@ module BlobHelper
   end
 
   def open_raw_blob_button(blob)
-    if blob.raw_binary?
+    return if blob.empty?
+    
+    if blob.raw_binary? || blob.stored_externally?
       icon = icon('download')
       title = '下载'
     else
@@ -244,19 +246,26 @@ module BlobHelper
           viewer.max_size
         end
       "文件大小超过 #{number_to_human_size(max_size)}"
-    when :server_side_but_stored_in_lfs
-      "存储于 LFS"
+    when :server_side_but_stored_externally
+      case viewer.blob.external_storage
+      when :lfs
+        '文件存储在 LFS'
+      else
+        '文件存储在外部'
     end
   end
 
   def blob_render_error_options(viewer)
+    error = viewer.render_error
     options = []
 
-    if viewer.render_error == :too_large && viewer.can_override_max_size?
+    if error == :too_large && viewer.can_override_max_size?
       options << link_to('仍然加载', url_for(params.merge(viewer: viewer.type, override_max_size: true, format: nil)))
     end
 
-    if viewer.rich? && viewer.blob.rendered_as_text?
+    # If the error is `:server_side_but_stored_externally`, the simple viewer will show the same error,
+    # so don't bother switching.
+    if viewer.rich? && viewer.blob.rendered_as_text? && error != :server_side_but_stored_externally
       options << link_to('查看源码', '#', class: 'js-blob-viewer-switch-btn', data: { viewer: 'simple' })
     end
 

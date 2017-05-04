@@ -1,13 +1,23 @@
-- page_title '工件', "#{@build.name} (##{@build.id})", '作业'
+- page_title @path.presence, '工件', "#{@build.name} (##{@build.id})", '作业'
+= render "projects/pipelines/head"
 
-.top-block.row-content-block.clearfix
-  .pull-right
-    = link_to download_namespace_project_build_artifacts_path(@project.namespace, @project, @build),
-      rel: 'nofollow', download: '', class: 'btn btn-default download' do
-      = icon('download')
-      下载工件
+= render "projects/builds/header", show_controls: false
 
 .tree-holder
+  .nav-block
+    .tree-controls
+      = link_to download_namespace_project_build_artifacts_path(@project.namespace, @project, @build),
+        rel: 'nofollow', download: '', class: 'btn btn-default download' do
+        = icon('download')
+        下载工件
+
+    %ul.breadcrumb.repo-breadcrumb
+      %li
+        = link_to '工件', browse_namespace_project_build_artifacts_path(@project.namespace, @project, @build)
+      - path_breadcrumbs do |title, path|
+        %li
+          = link_to truncate(title, length: 40), browse_namespace_project_build_artifacts_path(@project.namespace, @project, @build, path)
+
   .tree-content-holder
     %table.table.tree-table
       %thead

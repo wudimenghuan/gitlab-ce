@@ -9,7 +9,7 @@
         .form-group
           = f.label :name, class: 'col-md-2 text-right' do
             标签:
-          .col-md-10
+          .col-md-10.protected-tags-dropdown
             = render partial: "projects/protected_tags/dropdown", locals: { f: f }
             .help-block
               支持 

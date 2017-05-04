@@ -118,16 +118,12 @@
       - if @user.can_be_removed? && can?(current_user, :destroy_user, @user)
         %p
           删除账号会有以下影响：
-        %ul
-          %li 全部用户内容，比如：问题、代码片段、注释将被删除
-          - rp = current_user.personal_projects.count
-          - unless rp.zero?
-            %li #{pluralize rp, '个个人项目', '个个人项目'} 将被删除且无法恢复
-        = link_to '删除账号', user_registration_path, data: { confirm: "确定要删除 #{current_user.name} ? " }, method: :delete, class: "btn btn-remove"
+        = render 'users/deletion_guidance', user: current_user
+        = link_to '删除账号', user_registration_path, data: { confirm: "确定要删除 #{current_user.name} ？" }, method: :delete, class: "btn btn-remove"
       - else
         - if @user.solo_owned_groups.present?
           %p
-            你的账号当前是下列群组的拥有者：
+            您的账号当前是下列群组的拥有者：
             %strong= @user.solo_owned_groups.map(&:name).join(', ')
           %p
             请在删除账号前转移群组所有权或删除之。

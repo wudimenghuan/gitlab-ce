@@ -175,11 +175,7 @@
         .panel-body
           - if @user.can_be_removed? && can?(current_user, :destroy_user, @user)
             %p 删除用户有如下效果：
-            %ul
-              %li 全部用户内容，比如：问题、代码片段、注释都将被删除
-              - rp = @user.personal_projects.count
-              - unless rp.zero?
-                %li #{pluralize rp, '个个人项目', '个个人项目'} 将会被永久删除而且不能恢复
+            = render 'users/deletion_guidance', user: @user
             %br
             = link_to '删除用户', [:admin, @user], data: { confirm: "用户 #{@user.name} 将被删除！确定要继续么？" }, method: :delete, class: "btn btn-remove"
           - else

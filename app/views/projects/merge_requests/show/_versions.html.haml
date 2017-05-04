@@ -35,7 +35,7 @@
         %span.dropdown.inline.mr-version-compare-dropdown
           %a.btn.btn-default.dropdown-toggle{ data: {toggle: :dropdown} }
             %span
-              - if @start_sha
+              - if @start_version
                 版本 #{version_index(@start_version)}
               - else
                 #{@merge_request.target_branch}
@@ -59,7 +59,7 @@
                       %small
                         = time_ago_with_tooltip(merge_request_diff.created_at)
                 %li
-                  = link_to merge_request_version_path(@project, @merge_request, @merge_request_diff), class: ('is-active' unless @start_sha) do
+                  = link_to merge_request_version_path(@project, @merge_request, @merge_request_diff), class: ('is-active' unless @start_version) do
                     %strong
                       #{@merge_request.target_branch} (base)
                     .monospace= short_sha(@merge_request_diff.base_commit_sha)
@@ -74,13 +74,14 @@
         = link_to namespace_project_compare_path(@project.namespace, @project, from: @start_version.base_commit_sha, to: @merge_request_diff.base_commit_sha) do
           新建提交
 
-    - if @diff_notes_disabled
+    - if @start_version || !@merge_request_diff.latest?
       .comments-disabled-notif.content-block
         = icon('info-circle')
-        - if @start_sha
-          评论被停用，因为您正在比较此合并请求内的两个版本。
+        评论没有全部显示，因为您正在
+        - if @start_version
+          比较合并请求的两个版本。
         - else
-          显示这个版本的合并请求的讨论，但是不允许进行评论。
+          查看合并请求的旧版本。
 
         .pull-right
           = link_to 'Show latest version', diffs_namespace_project_merge_request_path(@project.namespace, @project, @merge_request), class: 'btn btn-sm'

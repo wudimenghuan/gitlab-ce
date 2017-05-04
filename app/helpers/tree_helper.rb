@@ -76,7 +76,7 @@ module TreeHelper
     "将在您的派生项目中创建一个新分支，并且将创建一个新的合并请求。"
   end
 
-  def tree_breadcrumbs(tree, max_links = 2)
+  def path_breadcrumbs(max_links = 6)
     if @path.present?
       part_path = ""
       parts = @path.split('/')
@@ -88,7 +88,7 @@ module TreeHelper
         part_path = part if part_path.empty?
 
         next if parts.count > max_links && !parts.last(2).include?(part)
-        yield(part, tree_join(@ref, part_path))
+        yield(part, part_path)
       end
     end
   end
