@@ -10,25 +10,4 @@
     = render @deploy_keys.form_partial_path
   .col-lg-9.col-lg-offset-3
     %hr
-  .col-lg-9.col-lg-offset-3.append-bottom-default.deploy-keys
-    %h5.prepend-top-0
-      当前项目启用的部署密钥 (#{@deploy_keys.enabled_keys_size})
-    - if @deploy_keys.any_keys_enabled?
-      %ul.well-list
-        = render partial: 'projects/deploy_keys/deploy_key', collection: @deploy_keys.enabled_keys, as: :deploy_key
-    - else
-      .settings-message.text-center
-        当前项目没有部署密钥。请使用上面的表单创建一个新的或增加一个已存在的密钥。
-    %h5.prepend-top-default
-      其他项目的部署密钥 (#{@deploy_keys.available_project_keys_size})
-    - if @deploy_keys.any_available_project_keys_enabled?
-      %ul.well-list
-        = render partial: 'projects/deploy_keys/deploy_key', collection: @deploy_keys.available_project_keys, as: :deploy_key
-    - else
-      .settings-message.text-center
-        没有其他项目的部署密钥。请使用上面的表单创建一个新的或增加一个已存在的密钥。
-    - if @deploy_keys.any_available_public_keys_enabled?
-      %h5.prepend-top-default
-        全部项目可用的公共部署密钥 (#{@deploy_keys.available_public_keys_size})
-      %ul.well-list
-        = render partial: 'projects/deploy_keys/deploy_key', collection: @deploy_keys.available_public_keys, as: :deploy_key
+  #js-deploy-keys{ data: { endpoint: namespace_project_deploy_keys_path } }

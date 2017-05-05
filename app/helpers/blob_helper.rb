@@ -119,7 +119,9 @@ module BlobHelper
   end
 
   def blob_raw_url
-    if @snippet
+    if @build && @entry
+      raw_namespace_project_build_artifacts_path(@project.namespace, @project, @build, path: @entry.path)
+    elsif @snippet
       if @snippet.project_id
         raw_namespace_project_snippet_path(@project.namespace, @project, @snippet)
       else
@@ -250,6 +252,8 @@ module BlobHelper
       case viewer.blob.external_storage
       when :lfs
         '文件存储在 LFS'
+      when :build_artifact
+        'it is stored as a job artifact'
       else
         '文件存储在外部'
     end

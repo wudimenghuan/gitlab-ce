@@ -27,7 +27,8 @@
               = link_to namespace_project_settings_ci_cd_path(@project.namespace, @project), title: 'CI/CD 流水线' do
                 %span
                   CI/CD 流水线
-          = nav_link(controller: :pages) do
-            = link_to namespace_project_pages_path(@project.namespace, @project), title: '页面' do
-              %span
-                页面
+          - if Gitlab.config.pages.enabled
+            = nav_link(controller: :pages) do
+              = link_to namespace_project_pages_path(@project.namespace, @project), title: '页面' do
+                %span
+                  页面
