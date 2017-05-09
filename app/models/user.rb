@@ -23,6 +23,7 @@ class User < ActiveRecord::Base
   default_value_for :hide_no_password, false
   default_value_for :project_view, :files
   default_value_for :notified_of_own_activity, false
+  default_value_for :preferred_language, I18n.default_locale
 
   attr_encrypted :otp_secret,
     key:       Gitlab::Application.secrets.otp_key_base,
@@ -98,6 +99,10 @@ class User < ActiveRecord::Base
   has_many :notification_settings,    dependent: :destroy
   has_many :award_emoji,              dependent: :destroy
   has_many :triggers,                 dependent: :destroy, class_name: 'Ci::Trigger', foreign_key: :owner_id
+
+  has_many :issue_assignees
+  has_many :assigned_issues, class_name: "Issue", through: :issue_assignees, source: :issue
+  has_many :assigned_merge_requests,  dependent: :nullify, foreign_key: :assignee_id, class_name: "MergeRequest"
 
   # Issues that a user owns are expected to be moved to the "ghost" user before
   # the user is destroyed. If the user owns any issues during deletion, this

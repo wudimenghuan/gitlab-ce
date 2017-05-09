@@ -2,9 +2,9 @@
   %p.details
     #{link_to @issue.author_name, user_url(@issue.author)} 创建问题:
 
-- if @issue.assignee_id.present?
+- if @issue.assignees.any?
   %p
-    指派给: #{@issue.assignee_name}
+    指派给： #{@issue.assignee_list}
 
 - if @issue.description
   %div

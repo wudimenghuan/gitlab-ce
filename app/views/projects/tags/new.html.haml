@@ -28,9 +28,9 @@
   .form-group
     = label_tag :release_description, '发布备注', class: 'control-label'
     .col-sm-10
-      = render layout: 'projects/md_preview', locals: { preview_class: "md-preview", referenced_users: true } do
+      = render layout: 'projects/md_preview', locals: { url: preview_markdown_path(@project), referenced_users: true } do
         = render 'projects/zen', attr: :release_description, classes: 'note-textarea', placeholder: "撰写发布备注或拖放文件到此处..."
-        = render 'projects/notes/hints'
+        = render 'shared/notes/hints'
       .help-block 可选，可以给标签增加发布备注。备注会储存在 GitLab 数据库并显示在标签页。
   .form-actions
     = button_tag '创建标签', class: 'btn btn-create', tabindex: 3

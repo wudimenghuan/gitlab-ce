@@ -13,12 +13,16 @@ module Gitlab
         :test
       end
 
+      def title
+        s_('CycleAnalyticsStage|Test')
+      end
+
       def legend
-        "Related Jobs"
+        _("Related Jobs")
       end
 
       def description
-        "所有提交及合并请求测试所花费的时间"
+        _("所有提交及合并请求测试所花费的时间")
       end
 
       def stage_query

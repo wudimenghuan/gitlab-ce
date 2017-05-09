@@ -1,6 +1,0 @@
-重新指派 <%= issuable.class.model_name.human.titleize %> <%= issuable.iid %>
-
-<%= url_for([issuable.project.namespace.becomes(Namespace), issuable.project, issuable, { only_path: false }]) %>
-
-改变指派 <%= "from #{@previous_assignee.name}" if @previous_assignee -%>
- 到 <%= "#{issuable.assignee_id ? issuable.assignee_name : '未指派'}" %>

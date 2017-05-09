@@ -41,6 +41,9 @@ module Gitlab
     config.i18n.default_locale = :zh
     config.i18n.locale = :zh
 
+    # Translation for AR attrs is not working well for POROs like WikiPage
+    config.gettext_i18n_rails.use_for_active_record_attributes = false
+
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
 

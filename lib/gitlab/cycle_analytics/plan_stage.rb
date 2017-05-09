@@ -14,12 +14,16 @@ module Gitlab
         :plan
       end
 
+      def title
+        s_('CycleAnalyticsStage|Plan')
+      end
+
       def legend
-        "Related Commits"
+        _("Related Commits")
       end
 
       def description
-        "一个问题从提出到开始实现的时间"
+        _("一个问题从提出到开始实现的时间")
       end
     end
   end

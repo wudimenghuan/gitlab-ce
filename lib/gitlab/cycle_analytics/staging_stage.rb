@@ -14,12 +14,16 @@ module Gitlab
         :staging
       end
 
+      def title
+        s_('CycleAnalyticsStage|Staging')
+      end
+
       def legend
-        "Related Deployed Jobs"
+        _("Related Deployed Jobs")
       end
 
       def description
-        "从合并请求被合并到发布所花费的时间"
+        _("从合并请求被合并到发布所花费的时间")
       end
     end
   end

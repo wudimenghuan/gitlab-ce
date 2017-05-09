@@ -15,12 +15,16 @@ module Gitlab
         :production
       end
 
+      def title
+        s_('CycleAnalyticsStage|Production')
+      end
+
       def legend
-        "关联问题"
+        _("关联问题")
       end
 
       def description
-        "产品从概念提出到生产发布的时间"
+        _("产品从概念提出到生产发布的时间")
       end
 
       def query

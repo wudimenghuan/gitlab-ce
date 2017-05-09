@@ -390,8 +390,6 @@
 
   %fieldset
     %legend 错误报告和日志
-    %p
-      这些设置需要重启才能生效。
     .form-group
       .col-sm-offset-2.col-sm-10
         .checkbox
@@ -399,6 +397,7 @@
             = f.check_box :sentry_enabled
             开启 Sentry
           .help-block
+            %p 这些设置需要重启才能生效。
             Sentry 是一个错误报告和日志记录工具。GitLab 当前并未自带此工具，需要在下面的网址下载并安装：
             %a{ href: 'https://getsentry.com', target: '_blank', rel: 'noopener noreferrer' } https://getsentry.com
 
@@ -406,6 +405,21 @@
       = f.label :sentry_dsn, 'Sentry DSN', class: 'control-label col-sm-2'
       .col-sm-10
         = f.text_field :sentry_dsn, class: 'form-control'
+
+    .form-group
+      .col-sm-offset-2.col-sm-10
+        .checkbox
+          = f.label :clientside_sentry_enabled do
+            = f.check_box :clientside_sentry_enabled
+            启用客户端的 Sentry
+          .help-block
+            Sentry 也可以用于客户端的错误报告和记录。
+            %a{ href: 'https://sentry.io/for/javascript/', target: '_blank', rel: 'noopener noreferrer' } https://sentry.io/for/javascript/
+
+    .form-group
+      = f.label :clientside_sentry_dsn, '客户端 Sentry DSN', class: 'control-label col-sm-2'
+      .col-sm-10
+        = f.text_field :clientside_sentry_dsn, class: 'form-control'
 
   %fieldset
     %legend 版本库存储

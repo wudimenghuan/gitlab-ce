@@ -13,12 +13,16 @@ module Gitlab
         :code
       end
 
+      def title
+        s_('CycleAnalyticsStage|Code')
+      end
+
       def legend
-        "Related Merge Requests"
+        _("关联合并请求")
       end
 
       def description
-        "第一个合并请求提出的所花费的时间"
+        _("第一个合并请求提出的所花费的时间")
       end
     end
   end

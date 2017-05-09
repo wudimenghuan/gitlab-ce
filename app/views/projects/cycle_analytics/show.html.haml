@@ -2,29 +2,30 @@
 - page_title "周期分析"
 - content_for :page_specific_javascripts do
   = page_specific_javascript_bundle_tag('common_vue')
+  = page_specific_javascript_bundle_tag('locale')
   = page_specific_javascript_bundle_tag('cycle_analytics')
 
 = render "projects/head"
 
 #cycle-analytics{ class: container_class, "v-cloak" => "true", data: { request_path: project_cycle_analytics_path(@project) } }
   - if @cycle_analytics_no_data
-    .bordered-box.landing.content-block{ "v-if" => "!isOverviewDialogDismissed" }
-      = icon("times", class: "dismiss-icon", "@click" => "dismissOverviewDialog()")
-      .row
-        .col-sm-3.col-xs-12.svg-container
-          = custom_icon('icon_cycle_analytics_splash')
-        .col-sm-8.col-xs-12.inner-content
-          %h4
-            周期分析介绍
-          %p
-            周期分析给出了一个项目从概念设计到投入生产需要花费多长时间的概览。
-
-          = link_to "了解更多",  help_page_path('user/project/cycle_analytics'), target: '_blank', class: 'btn'
+    .landing.content-block{ "v-if" => "!isOverviewDialogDismissed" }
+      %button.dismiss-button{ type: 'button', 'aria-label': 'Dismiss Cycle Analytics introduction box' }
+        = icon("times", "@click" => "dismissOverviewDialog()")
+      .svg-container
+        = custom_icon('icon_cycle_analytics_splash')
+      .inner-content
+        %h4
+          {{ __('周期分析介绍') }}
+        %p
+          {{ __('周期分析给出了一个项目从概念设计到投入生产需要花费多长时间的概览。') }}
+        %p
+          = link_to _('Read more'), help_page_path('user/project/cycle_analytics'), target: '_blank', class: 'btn'
   = icon("spinner spin", "v-show" => "isLoading")
   .wrapper{ "v-show" => "!isLoading && !hasError" }
     .panel.panel-default
       .panel-heading
-        流水线健康状态
+        {{ __('流水线健康状态') }}
       .content-block
         .container-fluid
           .row
@@ -34,15 +35,15 @@
             .col-sm-3.col-xs-12.column
               .dropdown.inline.js-ca-dropdown
                 %button.dropdown-menu-toggle{ "data-toggle" => "dropdown", :type => "button" }
-                  %span.dropdown-label 最近 30 天
+                  %span.dropdown-label {{ n__('最近 %d 天', '最近 %d 天', 30) }}
                   %i.fa.fa-chevron-down
                 %ul.dropdown-menu.dropdown-menu-align-right
                   %li
                     %a{ "href" => "#", "data-value" => "30" }
-                      最近 30 天
+                      {{ n__('最近 %d 天', '最近 %d 天', 30) }}
                   %li
                     %a{ "href" => "#", "data-value" => "90" }
-                      最近 90 天
+                      {{ n__('最近 %d 天', '最近 %d 天', 90) }}
     .stage-panel-container
       .panel.panel-default.stage-panel
         .panel-heading
@@ -50,20 +51,21 @@
             %ul
               %li.stage-header
                 %span.stage-name
-                  阶段
-                %i.has-tooltip.fa.fa-question-circle{ "data-placement" => "top", title: "开发生命周期中的各个阶段。", "aria-hidden" => "true" }
+                  {{ __('项目生命周期|阶段') }}
+                %i.has-tooltip.fa.fa-question-circle{ "data-placement" => "top", title: _("开发生命周期中的各个阶段。"), "aria-hidden" => "true" }
               %li.median-header
                 %span.stage-name
                   平均值
-                %i.has-tooltip.fa.fa-question-circle{ "data-placement" => "top", title: "该值位于一系列观测值的中点。 例如，在3,5,9之间，中值为5.在3,5,7,8之间，中值为（5 + 7）/ 2 = 6。", "aria-hidden" => "true" }
+                  {{ __('Median') }}
+                %i.has-tooltip.fa.fa-question-circle{ "data-placement" => "top", title: _("该值位于一系列观测值的中点。 例如，在3,5,9之间，中值为5.在3,5,7,8之间，中值为（5 + 7）/ 2 = 6。"), "aria-hidden" => "true" }
               %li.event-header
                 %span.stage-name
-                  {{ currentStage ? currentStage.legend : '关联问题' }}
-                %i.has-tooltip.fa.fa-question-circle{ "data-placement" => "top", title: "为收集该阶段数据而添加的事件集合。", "aria-hidden" => "true" }
+                  {{ currentStage ? __(currentStage.legend) : __('关联问题') }}
+                %i.has-tooltip.fa.fa-question-circle{ "data-placement" => "top", title: _("为收集该阶段数据而添加的事件集合。"), "aria-hidden" => "true" }
               %li.total-time-header
                 %span.stage-name
-                  总时间
-                %i.has-tooltip.fa.fa-question-circle{ "data-placement" => "top", title: "该步骤收集的每个数据输入所花费的时间。", "aria-hidden" => "true" }
+                  {{ __('总时间') }}
+                %i.has-tooltip.fa.fa-question-circle{ "data-placement" => "top", title: _("该步骤收集的每个数据输入所花费的时间。"), "aria-hidden" => "true" }
         .stage-panel-body
           %nav.stage-nav
             %ul
@@ -75,10 +77,10 @@
                     %span{ "v-if" => "stage.value" }
                       {{ stage.value }}
                     %span.stage-empty{ "v-else" => true }
-                      数据不足
+                      {{ __('数据不足') }}
                   %template{ "v-else" => true }
                     %span.not-available
-                      不可用
+                      {{ __('不可用') }}
           .section.stage-events
             %template{ "v-if" => "isLoadingStage" }
               = icon("spinner spin")

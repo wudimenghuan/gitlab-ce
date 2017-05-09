@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170503004425) do
+ActiveRecord::Schema.define(version: 20170504102911) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -121,6 +121,8 @@ ActiveRecord::Schema.define(version: 20170503004425) do
     t.integer "cached_markdown_version"
     t.boolean "usage_ping_enabled", default: true, null: false
     t.string "uuid"
+    t.boolean "clientside_sentry_enabled", default: false, null: false
+    t.string "clientside_sentry_dsn"
   end
 
   create_table "audit_events", force: :cascade do |t|
@@ -452,6 +454,14 @@ ActiveRecord::Schema.define(version: 20170503004425) do
 
   add_index "identities", ["user_id"], name: "index_identities_on_user_id", using: :btree
 
+  create_table "issue_assignees", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "issue_id", null: false
+  end
+
+  add_index "issue_assignees", ["issue_id", "user_id"], name: "index_issue_assignees_on_issue_id_and_user_id", unique: true, using: :btree
+  add_index "issue_assignees", ["user_id"], name: "index_issue_assignees_on_user_id", using: :btree
+
   create_table "issue_metrics", force: :cascade do |t|
     t.integer "issue_id", null: false
     t.datetime "first_mentioned_in_commit_at"
@@ -488,6 +498,8 @@ ActiveRecord::Schema.define(version: 20170503004425) do
     t.integer "relative_position"
     t.datetime "closed_at"
     t.integer "cached_markdown_version"
+    t.datetime "last_edited_at"
+    t.integer "last_edited_by_id"
   end
 
   add_index "issues", ["assignee_id"], name: "index_issues_on_assignee_id", using: :btree
@@ -674,6 +686,8 @@ ActiveRecord::Schema.define(version: 20170503004425) do
     t.text "description_html"
     t.integer "time_estimate"
     t.integer "cached_markdown_version"
+    t.datetime "last_edited_at"
+    t.integer "last_edited_by_id"
   end
 
   add_index "merge_requests", ["assignee_id"], name: "index_merge_requests_on_assignee_id", using: :btree
@@ -1328,6 +1342,7 @@ ActiveRecord::Schema.define(version: 20170503004425) do
     t.boolean "notified_of_own_activity"
     t.boolean "require_two_factor_authentication_from_group", default: false, null: false
     t.integer "two_factor_grace_period", default: 48, null: false
+    t.string "preferred_language"
   end
 
   add_index "users", ["admin"], name: "index_users_on_admin", using: :btree
@@ -1385,6 +1400,8 @@ ActiveRecord::Schema.define(version: 20170503004425) do
   add_foreign_key "ci_trigger_requests", "ci_triggers", column: "trigger_id", name: "fk_b8ec8b7245", on_delete: :cascade
   add_foreign_key "ci_trigger_schedules", "ci_triggers", column: "trigger_id", name: "fk_90a406cc94", on_delete: :cascade
   add_foreign_key "ci_triggers", "users", column: "owner_id", name: "fk_e8e10d1964", on_delete: :cascade
+  add_foreign_key "issue_assignees", "issues", on_delete: :cascade
+  add_foreign_key "issue_assignees", "users", on_delete: :cascade
   add_foreign_key "container_repositories", "projects"
   add_foreign_key "issue_metrics", "issues", on_delete: :cascade
   add_foreign_key "label_priorities", "labels", on_delete: :cascade

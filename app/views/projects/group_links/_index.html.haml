@@ -6,11 +6,9 @@
     %p
       项目只能在一个群组内保存。但可以在这里将其共享给其它群组。
   .col-lg-9
-    %h5.prepend-top-0
-      设置要共享的群组
     = form_tag namespace_project_group_links_path(@project.namespace, @project), class: 'js-requires-input', method: :post do
       .form-group
-        = label_tag :link_group_id, "群组", class: "label-light"
+        = label_tag :link_group_id, "设置要共享的群组", class: "label-light"
         = groups_select_tag(:link_group_id, data: { skip_groups: @skip_groups }, required: true)
       .form-group
         = label_tag :link_group_access, "最大访问等级", class: "label-light"

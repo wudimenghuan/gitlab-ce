@@ -874,6 +874,17 @@ describe User, models: true do
     end
   end
 
+  describe '#avatar_url' do
+    let(:user) { create(:user, :with_avatar) }
+    subject { user.avatar_url }
+
+    context 'when avatar file is uploaded' do
+      let(:avatar_path) { "/uploads/user/avatar/#{user.id}/dk.png" }
+
+      it { should eq "http://#{Gitlab.config.gitlab.host}#{avatar_path}" }
+    end
+  end
+
   describe '#requires_ldap_check?' do
     let(:user) { User.new }
 
@@ -1661,6 +1672,14 @@ describe User, models: true do
 
     it 'only counts active and non internal users' do
       expect(User.active.count).to eq(1)
+    end
+  end
+
+  describe 'preferred language' do
+    it 'is English by default' do
+      user = create(:user)
+
+      expect(user.preferred_language).to eq('en')
     end
   end
 end
