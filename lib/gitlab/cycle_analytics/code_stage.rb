@@ -18,11 +18,11 @@ module Gitlab
       end
 
       def legend
-        _("关联合并请求")
+        _("Related Merge Requests")
       end
 
       def description
-        _("第一个合并请求提出的所花费的时间")
+        _("Time until first merge request")
       end
     end
   end

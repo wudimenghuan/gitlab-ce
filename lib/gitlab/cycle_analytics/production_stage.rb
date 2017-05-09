@@ -20,11 +20,11 @@ module Gitlab
       end
 
       def legend
-        _("关联问题")
+        _("Related Issues")
       end
 
       def description
-        _("产品从概念提出到生产发布的时间")
+        _("From issue creation until deploy to production")
       end
 
       def query

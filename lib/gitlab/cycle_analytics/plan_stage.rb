@@ -23,7 +23,7 @@ module Gitlab
       end
 
       def description
-        _("一个问题从提出到开始实现的时间")
+        _("Time before an issue starts implementation")
       end
     end
   end

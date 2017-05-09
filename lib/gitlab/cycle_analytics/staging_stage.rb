@@ -23,7 +23,7 @@ module Gitlab
       end
 
       def description
-        _("从合并请求被合并到发布所花费的时间")
+        _("From merge request merge until deploy to production")
       end
     end
   end
