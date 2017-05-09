@@ -57,6 +57,9 @@ sudo gitlab-ctl reconfigure
 
 ```bash
 sudo cat /opt/gitlab/embedded/service/gitlab-rails/VERSION
+
+#获取当前版本
+gitlab_version=$(sudo cat /opt/gitlab/embedded/service/gitlab-rails/VERSION)
 ```
 
 假设当前版本为 `v9.0.0`，并确认汉化版本库是否包含该版本的汉化标签(`-zh`结尾)，也就是是否包含 `v9.0.0-zh`。
@@ -74,7 +77,9 @@ git fetch
 
 ```bash
 # 导出9.0.0 版本的汉化补丁
-git diff v9.0.0 v9.0.0-zh > ../9.0.0-zh.diff
+#git diff v9.0.0 v9.0.0-zh > ../9.0.0-zh.diff
+#导出当前版本
+git diff v${gitlab_version} v${gitlab_version}-zh > ../${gitlab_version}-zh.diff
 ```
 
 然后上传 `9.0.0-zh.diff` 文件到服务器。
@@ -82,7 +87,7 @@ git diff v9.0.0 v9.0.0-zh > ../9.0.0-zh.diff
 ```
 # 停止 gitlab
 sudo gitlab-ctl stop
-sudo patch -d /opt/gitlab/embedded/service/gitlab-rails -p1 < 9.0.0-zh.diff
+sudo patch -d /opt/gitlab/embedded/service/gitlab-rails -p1 < ${gitlab_version}-zh.diff
 ```
 
 确定没有 `.rej` 文件，重启 GitLab 即可。
