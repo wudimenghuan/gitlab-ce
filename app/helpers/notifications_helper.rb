@@ -1,4 +1,4 @@
-﻿module NotificationsHelper
+module NotificationsHelper
   include IconsHelper
 
   def notification_icon_class(level)
