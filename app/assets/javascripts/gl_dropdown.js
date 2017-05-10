@@ -580,8 +580,10 @@
         // Create the list item & the link
         var link = document.createElement('a');
 
+        if (text) { text = text.replace(/&#x27;/g, "'"); }
+
         link.href = url;
-        link.innerHTML = text;
+        link.textContent = text;
 
         if (selected) {
           link.className = 'is-active';
