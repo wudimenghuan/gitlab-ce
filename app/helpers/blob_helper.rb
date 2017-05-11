@@ -256,6 +256,7 @@ module BlobHelper
         'it is stored as a job artifact'
       else
         '文件存储在外部'
+      end
     end
   end
 
