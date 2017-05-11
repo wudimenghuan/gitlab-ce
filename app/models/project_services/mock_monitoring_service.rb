@@ -1,10 +1,10 @@
 class MockMonitoringService < MonitoringService
   def title
-    'Mock monitoring'
+    'Mock 监控'
   end
 
   def description
-    'Mock monitoring service'
+    'Mock 监控服务'
   end
 
   def self.to_param

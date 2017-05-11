@@ -18,13 +18,13 @@
               toggle_class: "filtered-search-history-dropdown-toggle-button",
               dropdown_class: "filtered-search-history-dropdown",
               content_class: "filtered-search-history-dropdown-content",
-              title: "Recent searches" }) do
+              title: "历史搜索" }) do
               .js-filtered-search-history-dropdown
           .filtered-search-box-input-container
             .scroll-container
               %ul.tokens-container.list-unstyled
                 %li.input-token
-                  %input.form-control.filtered-search{ id: "filtered-search-#{type.to_s}", placeholder: 'Search or filter results...', data: { 'project-id' => @project.id, 'username-params' => @users.to_json(only: [:id, :username]), 'base-endpoint' => namespace_project_path(@project.namespace, @project) } }
+                  %input.form-control.filtered-search{ id: "filtered-search-#{type.to_s}", placeholder: '搜索或者过滤结果...', data: { 'project-id' => @project.id, 'username-params' => @users.to_json(only: [:id, :username]), 'base-endpoint' => namespace_project_path(@project.namespace, @project) } }
               = icon('filter')
               %button.clear-search.hidden{ type: 'button' }
                 = icon('times')
@@ -34,7 +34,7 @@
                   %button.btn.btn-link
                     = icon('search')
                     %span
-                      Press Enter or click to search
+                      继续输入，然后按回车键
               %ul.filter-dropdown{ data: { dynamic: true, dropdown: true } }
                 %li.filter-dropdown-item
                   %button.btn.btn-link
@@ -59,7 +59,7 @@
               %ul{ data: { dropdown: true } }
                 %li.filter-dropdown-item{ data: { value: 'none' } }
                   %button.btn.btn-link
-                    No Assignee
+                    未指派
                 %li.divider
               %ul.filter-dropdown{ data: { dynamic: true, dropdown: true } }
                 %li.filter-dropdown-item
@@ -74,13 +74,13 @@
               %ul{ data: { dropdown: true } }
                 %li.filter-dropdown-item{ data: { value: 'none' } }
                   %button.btn.btn-link
-                    No Milestone
+                    无里程碑
                 %li.filter-dropdown-item{ data: { value: 'upcoming' } }
                   %button.btn.btn-link
-                    Upcoming
+                    即将到期
                 %li.filter-dropdown-item{ 'data-value' => 'started' }
                   %button.btn.btn-link
-                    Started
+                    已经开始
                 %li.divider
               %ul.filter-dropdown{ data: { dynamic: true, dropdown: true } }
                 %li.filter-dropdown-item
@@ -90,7 +90,7 @@
               %ul{ data: { dropdown: true } }
                 %li.filter-dropdown-item{ data: { value: 'none' } }
                   %button.btn.btn-link
-                    No Label
+                    无标记
                 %li.divider
               %ul.filter-dropdown{ data: { dynamic: true, dropdown: true } }
                 %li.filter-dropdown-item
@@ -103,9 +103,9 @@
             - if can?(current_user, :admin_list, @project)
               .dropdown.prepend-left-10#js-add-list
                 %button.btn.btn-create.btn-inverted.js-new-board-list{ type: "button", data: { toggle: "dropdown", labels: labels_filter_path, namespace_path: @project.try(:namespace).try(:path), project_path: @project.try(:path) } }
-                  Add list
+                  添加列表
                 .dropdown-menu.dropdown-menu-paging.dropdown-menu-align-right.dropdown-menu-issues-board-new.dropdown-menu-selectable
-                  = render partial: "shared/issuable/label_page_default", locals: { show_footer: true, show_create: true, show_boards_content: true, title: "Add list" }
+                  = render partial: "shared/issuable/label_page_default", locals: { show_footer: true, show_create: true, show_boards_content: true, title: "添加列表" }
                   - if can?(current_user, :admin_label, @project)
                     = render partial: "shared/issuable/label_page_create"
                   = dropdown_loading
@@ -117,36 +117,39 @@
       .issues_bulk_update.hide
         = form_tag [:bulk_update, @project.namespace.becomes(Namespace), @project, type], method: :post, class: 'bulk-update'  do
           .filter-item.inline
-            = dropdown_tag("Status", options: { toggle_class: "js-issue-status", title: "Change status", dropdown_class: "dropdown-menu-status dropdown-menu-selectable", data: { field_name: "update[state_event]", default_label: "Status" } } ) do
+            = dropdown_tag("状态", options: { toggle_class: "js-issue-status", title: "更改状态", dropdown_class: "dropdown-menu-status dropdown-menu-selectable", data: { field_name: "update[state_event]", default_label: "Status" } } ) do
               %ul
                 %li
-                  %a{ href: "#", data: { id: "reopen" } } Open
+                  %a{ href: "#", data: { id: "reopen" } } 未关闭
                 %li
-                  %a{ href: "#", data: { id: "close" } } Closed
+                  %a{ href: "#", data: { id: "close" } } 已关闭
           .filter-item.inline
             - if type == :issues
               - field_name = "update[assignee_ids][]"
             - else
               - field_name = "update[assignee_id]"
 
-            = dropdown_tag("Assignee", options: { toggle_class: "js-user-search js-update-assignee js-filter-submit js-filter-bulk-update", title: "Assign to", filter: true, dropdown_class: "dropdown-menu-user dropdown-menu-selectable",
-              placeholder: "Search authors", data: { first_user: (current_user.username if current_user), null_user: true, current_user: true, project_id: @project.id, field_name: field_name } })
+            = dropdown_tag("指派", options: { toggle_class: "js-user-search js-update-assignee js-filter-submit js-filter-bulk-update", title: "指派给", filter: true, dropdown_class: "dropdown-menu-user dropdown-menu-selectable",
+              placeholder: "搜索作者", data: { first_user: (current_user.username if current_user), null_user: true, current_user: true, project_id: @project.id, field_name: field_name } })
           .filter-item.inline
-            = dropdown_tag("Milestone", options: { title: "Assign milestone", toggle_class: 'js-milestone-select js-extra-options js-filter-submit js-filter-bulk-update', filter: true, dropdown_class: "dropdown-menu-selectable dropdown-menu-milestone", placeholder: "Search milestones", data: { show_no: true, field_name: "update[milestone_id]", project_id: @project.id, milestones: namespace_project_milestones_path(@project.namespace, @project, :json), use_id: true, default_label: "Milestone" } })
+            = dropdown_tag("里程碑", options: { title: "指派里程碑", toggle_class: 'js-milestone-select js-extra-options js-filter-submit js-filter-bulk-update', filter: true, dropdown_class: "dropdown-menu-selectable dropdown-menu-milestone", placeholder: "搜索里程碑", data: { show_no: true, field_name: "update[milestone_id]", project_id: @project.id, milestones: namespace_project_milestones_path(@project.namespace, @project, :json), use_id: true, default_label: "里程碑" } })
           .filter-item.inline.labels-filter
-            = render "shared/issuable/label_dropdown", classes: ['js-filter-bulk-update', 'js-multiselect'], dropdown_title: 'Apply a label', show_create: false, show_footer: false, extra_options: false, filter_submit: false, data_options: { persist_when_hide: "true", field_name: "update[label_ids][]", show_no: false, show_any: false, use_id: true, default_label: "Labels" }
+            = render "shared/issuable/label_dropdown", classes: ['js-filter-bulk-update', 'js-multiselect'], dropdown_title: 'Apply a label', show_create: false, show_footer: false, extra_options: false, filter_submit: false, data_options: { persist_when_hide: "true", field_name: "update[label_ids][]", show_no: false, show_any: false, use_id: true, default_label: "标记" }
           .filter-item.inline
-            = dropdown_tag("Subscription", options: { toggle_class: "js-subscription-event", title: "Change subscription", dropdown_class: "dropdown-menu-selectable", data: { field_name: "update[subscription_event]", default_label: "Subscription" } } ) do
+            = dropdown_tag("订阅", options: { toggle_class: "js-subscription-event", title: "更改订阅", dropdown_class: "dropdown-menu-selectable", data: { field_name: "update[subscription_event]", default_label: "Subscription" } } ) do
               %ul
                 %li
-                  %a{ href: "#", data: { id: "subscribe" } } Subscribe
+                  %a{ href: "#", data: { id: "subscribe" } } 订阅
                 %li
-                  %a{ href: "#", data: { id: "unsubscribe" } } Unsubscribe
+                  %a{ href: "#", data: { id: "unsubscribe" } } 取消订阅
 
           = hidden_field_tag 'update[issuable_ids]', []
           = hidden_field_tag :state_event, params[:state_event]
           .filter-item.inline.update-issues-btn
-            = button_tag "Update #{type.to_s.humanize(capitalize: false)}", class: "btn update_selected_issues btn-save"
+            - if defined?(type) && type == :merge_requests
+              = button_tag "更新合并请求", class: "btn update_selected_issues btn-save"
+            - else
+              = button_tag "更新问题", class: "btn update_selected_issues btn-save"
 
 - unless type === :boards_modal
   :javascript

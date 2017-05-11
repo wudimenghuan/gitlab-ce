@@ -3,49 +3,49 @@
     = form_errors(@user)
 
     %fieldset
-      %legend Account
+      %legend 账号
       .form-group
-        = f.label :name, class: 'control-label'
+        = f.label :name, "姓名", class: 'control-label'
         .col-sm-10
           = f.text_field :name, required: true, autocomplete: 'off', class: 'form-control'
-          %span.help-inline * required
+          %span.help-inline * 必须填写
       .form-group
-        = f.label :username, class: 'control-label'
+        = f.label :username, "用户名", class: 'control-label'
         .col-sm-10
           = f.text_field :username, required: true, autocomplete: 'off', autocorrect: 'off', autocapitalize: 'off', spellcheck: false, class: 'form-control'
-          %span.help-inline * required
+          %span.help-inline * 必须填写
       .form-group
-        = f.label :email, class: 'control-label'
+        = f.label :email, "电子邮箱", class: 'control-label'
         .col-sm-10
           = f.text_field :email, required: true, autocomplete: 'off', class: 'form-control'
-          %span.help-inline * required
+          %span.help-inline * 必须填写
 
     - if @user.new_record?
       %fieldset
-        %legend Password
+        %legend 密码
         .form-group
-          = f.label :password, class: 'control-label'
+          = f.label :password, "密码", class: 'control-label'
           .col-sm-10
             %strong
-              Reset link will be generated and sent to the user.
+              重置链接将自动生成临时密码发送给用户。
               %br
-              User will be forced to set the password on first sign in.
+              用户在第一次登录后需要强制修改密码。
     - else
       %fieldset
-        %legend Password
+        %legend 密码
         .form-group
-          = f.label :password, class: 'control-label'
+          = f.label :password, "密码", class: 'control-label'
           .col-sm-10= f.password_field :password, disabled: f.object.force_random_password, class: 'form-control'
         .form-group
-          = f.label :password_confirmation, class: 'control-label'
+          = f.label :password_confirmation, "确认密码", class: 'control-label'
           .col-sm-10= f.password_field :password_confirmation, disabled: f.object.force_random_password, class: 'form-control'
 
     = render partial: 'access_levels', locals: { f: f }
 
     %fieldset
-      %legend Profile
+      %legend 个人资料
       .form-group
-        = f.label :avatar, class: 'control-label'
+        = f.label :avatar, "头像", class: 'control-label'
         .col-sm-10
           = f.file_field :avatar
 
@@ -53,19 +53,19 @@
         = f.label :skype, class: 'control-label'
         .col-sm-10= f.text_field :skype, class: 'form-control'
       .form-group
-        = f.label :linkedin, class: 'control-label'
+        = f.label :linkedin, "领英", class: 'control-label'
         .col-sm-10= f.text_field :linkedin, class: 'form-control'
       .form-group
-        = f.label :twitter, class: 'control-label'
+        = f.label :twitter, "推特", class: 'control-label'
         .col-sm-10= f.text_field :twitter, class: 'form-control'
       .form-group
-        = f.label :website_url, 'Website', class: 'control-label'
+        = f.label :website_url, "网址", class: 'control-label'
         .col-sm-10= f.text_field :website_url, class: 'form-control'
 
     .form-actions
       - if @user.new_record?
-        = f.submit 'Create user', class: "btn btn-create"
-        = link_to 'Cancel', admin_users_path, class: "btn btn-cancel"
+        = f.submit '创建用户', class: "btn btn-create"
+        = link_to '取消', admin_users_path, class: "btn btn-cancel"
       - else
-        = f.submit 'Save changes', class: "btn btn-save"
-        = link_to 'Cancel', admin_user_path(@user), class: "btn btn-cancel"
+        = f.submit '保存修改', class: "btn btn-save"
+        = link_to '取消', admin_user_path(@user), class: "btn btn-cancel"

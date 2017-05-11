@@ -1,43 +1,43 @@
-- commit_message = @page.persisted? ? "Update #{@page.title}" : "Create #{@page.title}"
+- commit_message = @page.persisted? ? "更新 #{@page.title}" : "创建 #{@page.title}"
 
 = form_for [@project.namespace.becomes(Namespace), @project, @page], method: @page.persisted? ? :put : :post, html: { class: 'form-horizontal wiki-form common-note-form prepend-top-default js-quick-submit' } do |f|
   = form_errors(@page)
 
   = f.hidden_field :title, value: @page.title
   .form-group
-    = f.label :format, class: 'control-label'
+    = f.label :format, '格式', class: 'control-label'
     .col-sm-10
       = f.select :format, options_for_select(ProjectWiki::MARKUPS, {selected: @page.format}), {}, class: "form-control"
 
   .form-group
-    = f.label :content, class: 'control-label'
+    = f.label :content, '内容', class: 'control-label'
     .col-sm-10
       = render layout: 'projects/md_preview', locals: { url: namespace_project_wiki_preview_markdown_path(@project.namespace, @project, @page.slug) } do
-        = render 'projects/zen', f: f, attr: :content, classes: 'note-textarea', placeholder: 'Write your content or drag files here...'
+        = render 'projects/zen', f: f, attr: :content, classes: 'note-textarea', placeholder: '撰写内容或拖放文件到此处...'
         = render 'shared/notes/hints'
 
       .clearfix
       .error-alert
 
       .help-block
-        = succeed '.' do
-          To link to a (new) page, simply type
-          %code [Link Title](page-slug)
+        = succeed '。' do
+          链接到（新）页面只需要输入
+          %code [链接标题](page-slug)
 
-        = succeed '.' do
-          More examples are in the
-          = link_to 'documentation', help_page_path("user/markdown", anchor: "wiki-specific-markdown")
+        = succeed '。' do
+          更多示例位于
+          = link_to 'Markdown 文档', help_page_path("user/markdown", anchor: "wiki-specific-markdown")
 
   .form-group
-    = f.label :commit_message, class: 'control-label'
+    = f.label :commit_message, '提交信息', class: 'control-label'
     .col-sm-10= f.text_field :message, class: 'form-control', rows: 18, value: commit_message
 
   .form-actions
     - if @page && @page.persisted?
-      = f.submit 'Save changes', class: "btn-save btn"
+      = f.submit '保存修改', class: "btn-save btn"
       .pull-right
-        = link_to "Cancel", namespace_project_wiki_path(@project.namespace, @project, @page), class: "btn btn-cancel btn-grouped"
+        = link_to "取消", namespace_project_wiki_path(@project.namespace, @project, @page), class: "btn btn-cancel btn-grouped"
     - else
-      = f.submit 'Create page', class: "btn-create btn"
+      = f.submit '创建页面', class: "btn-create btn"
       .pull-right
-        = link_to "Cancel", namespace_project_wiki_path(@project.namespace, @project, :home), class: "btn btn-cancel"
+        = link_to "取消", namespace_project_wiki_path(@project.namespace, @project, :home), class: "btn btn-cancel"

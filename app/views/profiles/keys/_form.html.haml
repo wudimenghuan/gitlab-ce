@@ -3,11 +3,11 @@
     = form_errors(@key)
 
     .form-group
-      = f.label :key, class: 'label-light'
-      = f.text_area :key, class: "form-control", rows: 8, required: true, placeholder: "Don't paste the private part of the SSH key. Paste the public part, which is usually contained in the file '~/.ssh/id_rsa.pub' and begins with 'ssh-rsa'."
+      = f.label :key, "密钥", class: 'label-light'
+      = f.text_area :key, class: "form-control", rows: 8, required: true, placeholder: "不要粘贴SSH密钥的私钥。 粘贴公钥，通常包含在文件'~/.ssh/id_rsa.pub'中，以'ssh-rsa'开头。"
     .form-group
-      = f.label :title, class: 'label-light'
+      = f.label :title, "标题", class: 'label-light'
       = f.text_field :title, class: "form-control", required: true
 
     .prepend-top-default
-      = f.submit 'Add key', class: "btn btn-create"
+      = f.submit '增加密钥', class: "btn btn-create"

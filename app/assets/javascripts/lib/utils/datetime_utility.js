@@ -49,20 +49,20 @@ window.dateFormat = require('vendor/date.format');
       if (!timeagoInstance) {
         locale = function(number, index) {
           return [
-            ['less than a minute ago', 'a while'],
-            ['less than a minute ago', 'in %s seconds'],
-            ['about a minute ago', 'in 1 minute'],
-            ['%s minutes ago', 'in %s minutes'],
-            ['about an hour ago', 'in 1 hour'],
-            ['about %s hours ago', 'in %s hours'],
-            ['a day ago', 'in 1 day'],
-            ['%s days ago', 'in %s days'],
-            ['a week ago', 'in 1 week'],
-            ['%s weeks ago', 'in %s weeks'],
-            ['a month ago', 'in 1 month'],
-            ['%s months ago', 'in %s months'],
-            ['a year ago', 'in 1 year'],
-            ['%s years ago', 'in %s years']
+            ['不到 1 分钟之前', '一会儿'],
+            ['不到 1 分钟之前', '在 %s 秒'],
+            ['大约 1 分钟之前', '在 1 分钟'],
+            ['%s 分钟之前', '在 %s 分钟'],
+            ['大约 1 小时之前', '在 1 小时'],
+            ['大约 %s 小时之前', '在 %s 小时'],
+            ['1 天之前', '在 1 天'],
+            ['%s 天之前', '在 %s 天'],
+            ['1 周之前', '在 1 周'],
+            ['%s 周之前', '在 %s 周'],
+            ['1 个月之前', '在 1 月'],
+            ['%s 个月之前', '在 %s 月'],
+            ['1 年之前', '在 1 年'],
+            ['%s 年之前', '在 %s 年']
           ][index];
         };
 

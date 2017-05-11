@@ -9,7 +9,7 @@ export default {
         Merge
       </button>
       <span class="bold">
-        Checking ability to merge automatically.
+        正在进行自动合并检查
         <i
           class="fa fa-spinner fa-spin"
           aria-hidden="true" />

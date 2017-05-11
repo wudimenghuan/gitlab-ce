@@ -2,16 +2,16 @@
 
 .project-action-button.inline
   - if can?(current_user, :"destroy_#{model_name}_member", source.members.find_by(user_id: current_user.id))
-    = link_to "Leave #{model_name}", polymorphic_path([:leave, source, :members]),
+    = link_to "离开 #{model_name}", polymorphic_path([:leave, source, :members]),
               method: :delete,
               data: { confirm: leave_confirmation_message(source) },
               class: 'btn'
   - elsif requester = source.requesters.find_by(user_id: current_user.id)
-    = link_to 'Withdraw Access Request', polymorphic_path([:leave, source, :members]),
+    = link_to '撤销访问请求', polymorphic_path([:leave, source, :members]),
               method: :delete,
               data: { confirm: remove_member_message(requester) },
               class: 'btn'
   - elsif source.request_access_enabled && can?(current_user, :request_access, source)
-    = link_to 'Request Access', polymorphic_path([:request_access, source, :members]),
+    = link_to '请求访问权限', polymorphic_path([:request_access, source, :members]),
               method: :post,
               class: 'btn'

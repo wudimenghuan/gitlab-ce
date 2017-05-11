@@ -4,20 +4,20 @@
       %button.btn.btn-grouped{ type: 'button', disabled: 'disabled' }
         = icon('spinner', class: 'fa-spin')
         %span.text
-          Checking branch availability…
+          检查分支有效性…
     .btn-group.available.hide
-      %input.btn.js-create-merge-request.btn-inverted.btn-success{ type: 'button', value: 'Create a merge request', data: { action: 'create-mr' } }
+      %input.btn.js-create-merge-request.btn-inverted.btn-success{ type: 'button', value: '创建合并请求', data: { action: 'create-mr' } }
       %button.btn.btn-inverted.dropdown-toggle.btn-inverted.btn-success.js-dropdown-toggle{ type: 'button', data: { 'dropdown-trigger' => '#create-merge-request-dropdown' } }
         = icon('caret-down')
       %ul#create-merge-request-dropdown.dropdown-menu.dropdown-menu-align-right{ data: { dropdown: true } }
-        %li.droplab-item-selected{ role: 'button', data: { value: 'create-mr', 'text' => 'Create a merge request' } }
+        %li.droplab-item-selected{ role: 'button', data: { value: 'create-mr', 'text' => '创建合并请求' } }
           .menu-item
             .icon-container
               = icon('check')
             .description
-              %strong Create a merge request
+              %strong 创建合并请求
               %span
-                Creates a branch named after this issue and a merge request. The source branch is '#{@project.default_branch}' by default.
+                创建一个以此问题命名的分支和合并请求。默认情况下，源分支为 '#{@project.default_branch}' 。
         %li.divider.droplab-item-ignore
         %li{ role: 'button', data: {  value: 'create-branch', 'text' => 'Create a branch' } }
           .menu-item
@@ -26,4 +26,4 @@
             .description
               %strong Create a branch
               %span
-                Creates a branch named after this issue. The source branch is '#{@project.default_branch}' by default.
+                创建一个以此问题命名的分支。 默认情况下，源分支为 '#{@project.default_branch}' 。

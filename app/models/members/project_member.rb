@@ -83,6 +83,10 @@ class ProjectMember < Member
     access_level
   end
 
+  def real_source_type_zh
+    '项目'
+  end
+
   def project
     source
   end

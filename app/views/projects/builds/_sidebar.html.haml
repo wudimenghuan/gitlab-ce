@@ -2,14 +2,14 @@
 
 %aside.right-sidebar.right-sidebar-expanded.build-sidebar.js-build-sidebar.js-right-sidebar{ data: { "offset-top" => "153", "spy" => "affix" } }
   .block.build-sidebar-header.visible-xs-block.visible-sm-block.append-bottom-default
-    Job
+    作业
     %strong ##{@build.id}
     %a.gutter-toggle.pull-right.js-sidebar-build-toggle{ href: "#" }
       = icon('angle-double-right')
   - if @build.coverage
     .block.coverage
       .title
-        Test coverage
+        测试覆盖率
       %p.build-detail-row
         #{@build.coverage}%
 
@@ -17,49 +17,50 @@
     - if can?(current_user, :read_build, @project) && (@build.artifacts? || @build.artifacts_expired?)
       .block{ class: ("block-first" if !@build.coverage) }
         .title
-          Job artifacts
+          作业工件
         - if @build.artifacts_expired?
           %p.build-detail-row
-            The artifacts were removed
+            工件已被删除
             #{time_ago_with_tooltip(@build.artifacts_expire_at)}
         - elsif @build.has_expiring_artifacts?
           %p.build-detail-row
-            The artifacts will be removed in
+            工件将于
             %span.js-artifacts-remove= @build.artifacts_expire_at
+            删除
 
         - if @build.artifacts?
           .btn-group.btn-group-justified{ role: :group }
             - if @build.has_expiring_artifacts? && can?(current_user, :update_build, @build)
               = link_to keep_namespace_project_build_artifacts_path(@project.namespace, @project, @build), class: 'btn btn-sm btn-default', method: :post do
-                Keep
+                保留
 
             = link_to download_namespace_project_build_artifacts_path(@project.namespace, @project, @build), rel: 'nofollow', download: '', class: 'btn btn-sm btn-default' do
-              Download
+              下载
 
             - if @build.artifacts_metadata?
               = link_to browse_namespace_project_build_artifacts_path(@project.namespace, @project, @build), class: 'btn btn-sm btn-default' do
-                Browse
+                浏览
 
     .block{ class: ("block-first" if !@build.coverage && !(can?(current_user, :read_build, @project) && (@build.artifacts? || @build.artifacts_expired?))) }
       .title
-        Job details
+        作业明细
         - if can?(current_user, :update_build, @build) && @build.retryable?
-          = link_to "Retry job", retry_namespace_project_build_path(@project.namespace, @project, @build), class: 'pull-right retry-link', method: :post
+          = link_to "重试", retry_namespace_project_build_path(@project.namespace, @project, @build), class: 'pull-right retry-link', method: :post
       - if @build.merge_request
         %p.build-detail-row
           %span.build-light-text Merge Request:
           = link_to "#{@build.merge_request.to_reference}", merge_request_path(@build.merge_request), class: 'bold'
       - if @build.duration
         %p.build-detail-row
-          %span.build-light-text Duration:
+          %span.build-light-text 持续时间:
           = time_interval_in_words(@build.duration)
       - if @build.finished_at
         %p.build-detail-row
-          %span.build-light-text Finished:
+          %span.build-light-text 完成时间:
           #{time_ago_with_tooltip(@build.finished_at)}
       - if @build.erased_at
         %p.build-detail-row
-          %span.build-light-text Erased:
+          %span.build-light-text 删除时间:
           #{time_ago_with_tooltip(@build.erased_at)}
       %p.build-detail-row
         %span.build-light-text Runner:
@@ -69,27 +70,27 @@
           \##{@build.runner.id}
       .btn-group.btn-group-justified{ role: :group }
         - if @build.has_trace?
-          = link_to 'Raw', raw_namespace_project_build_path(@project.namespace, @project, @build), class: 'btn btn-sm btn-default'
+          = link_to '原始数据', raw_namespace_project_build_path(@project.namespace, @project, @build), class: 'btn btn-sm btn-default'
         - if @build.active?
-          = link_to "Cancel", cancel_namespace_project_build_path(@project.namespace, @project, @build), class: 'btn btn-sm btn-default', method: :post
+          = link_to "取消", cancel_namespace_project_build_path(@project.namespace, @project, @build), class: 'btn btn-sm btn-default', method: :post
         - if can?(current_user, :update_build, @project) && @build.erasable?
           = link_to erase_namespace_project_build_path(@project.namespace, @project, @build),
                     class: "btn btn-sm btn-default", method: :post,
-                    data: { confirm: "Are you sure you want to erase this build?" } do
-            Erase
+                    data: { confirm: "确定要删除此构建？" } do
+            删除
 
     - if @build.trigger_request
       .build-widget
         %h4.title
-          Trigger
+          触发器
 
         %p
-          %span.build-light-text Token:
+          %span.build-light-text 令牌:
           #{@build.trigger_request.trigger.short_token}
 
         - if @build.trigger_request.variables
           %p
-            %button.btn.group.btn-group-justified.reveal-variables Reveal Variables
+            %button.btn.group.btn-group-justified.reveal-variables 显示变量
 
 
           - @build.trigger_request.variables.each do |key, value|
@@ -99,23 +100,23 @@
 
     .block
       .title
-        Commit title
+        提交标题
       %p.build-light-text.append-bottom-0
         #{@build.pipeline.git_commit_title}
 
     - if @build.tags.any?
       .block
         .title
-          Tags
+          标记
         - @build.tag_list.each do |tag|
           %span.label.label-primary
             = tag
 
     - if @build.pipeline.stages_count > 1
       .dropdown.build-dropdown
-        .title Stage
+        .title 步骤
         %button.dropdown-menu-toggle{ type: 'button', 'data-toggle' => 'dropdown' }
-          %span.stage-selection More
+          %span.stage-selection 更多
           = icon('chevron-down')
         %ul.dropdown-menu
           - @build.pipeline.stages.each do |stage|
@@ -136,7 +137,7 @@
               - else
                 = build.id
             - if build.retried?
-              %i.fa.fa-spinner.has-tooltip{ data: { container: 'body', placement: 'bottom' }, title: 'Job was retried' }
+              %i.fa.fa-spinner.has-tooltip{ data: { container: 'body', placement: 'bottom' }, title: '作业已重试。' }
 
 :javascript
   new Sidebar();

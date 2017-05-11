@@ -34,14 +34,14 @@ export default {
         type="button"
         class="btn btn-success btn-small"
         disabled="true">
-        Merge</button>
+        合并</button>
       <span class="bold">
-        This merge request is currently Work In Progress and therefore unable to merge
+        此合并请求当前正在进行中，因此无法合并
       </span>
       <template v-if="mr.removeWIPPath">
         <i
           class="fa fa-question-circle has-tooltip"
-          title="When this merge request is ready, remove the WIP: prefix from the title to allow it to be merged." />
+          title="当此合并请求准备就绪时，从标题中删除 WIP: 前缀以允许其合并。" />
         <button
           @click="removeWIP"
           :disabled="isMakingRequest"
@@ -51,7 +51,7 @@ export default {
             v-if="isMakingRequest"
             class="fa fa-spinner fa-spin"
             aria-hidden="true" />
-            Resolve WIP status
+            解决 WIP 状态
         </button>
       </template>
     </div>

@@ -9,7 +9,7 @@ export default {
         Merge
       </button>
       <span class="bold">
-        This project is archived, write access has been disabled.
+        这个项目已归档，写入权限被禁用。
       </span>
     </div>
   `,

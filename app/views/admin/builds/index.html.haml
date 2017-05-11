@@ -9,10 +9,19 @@
 
     .nav-controls
       - if @all_builds.running_or_pending.any?
-        = link_to 'Cancel all', cancel_all_admin_builds_path, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger', method: :post
+        = link_to '全部取消', cancel_all_admin_builds_path, data: { confirm: '确定要全部取消？' }, class: 'btn btn-danger', method: :post
 
   .row-content-block.second-block
-    #{(@scope || 'all').capitalize} jobs
+    - if @scope.nil?
+      所有的作业
+    - elsif @scope.capitalize == 'Pending'
+      正在排队的作业
+    - elsif @scope.capitalize == 'Running'
+      正在运行的作业
+    - elsif @scope.capitalize == 'Finished'
+      已结束的作业
+    - else
+      #{@scope.capitalize} 的作业
 
   %ul.content-list.builds-content-list.admin-builds-table
     = render "projects/builds/table", builds: @builds, admin: true

@@ -4,15 +4,18 @@
       %div{ class: container_class }
         .event-last-push
           .event-last-push-text
-            %span You pushed to
+            您在
+            #{time_ago_with_tooltip(event.created_at)}
+            %span 推送了
             = link_to namespace_project_commits_path(event.project.namespace, event.project, event.ref_name) do
               %strong= event.ref_name
             - if @project && event.project != @project
-              %span at
+              %span 到
               %strong= link_to_project event.project
-            = clipboard_button(text: event.ref_name, class: 'btn-clipboard btn-transparent', title: 'Copy branch to clipboard')
-            #{time_ago_with_tooltip(event.created_at)}
+            = clipboard_button(text: event.ref_name, class: 'btn-clipboard btn-transparent', title: '复制分支到剪贴板')
+
+
 
           .pull-right
-            = link_to new_mr_path_from_push_event(event), title: "New merge request", class: "btn btn-info btn-sm" do
-              Create merge request
+            = link_to new_mr_path_from_push_event(event), title: "新建合并请求", class: "btn btn-info btn-sm" do
+              新建合并请求

@@ -13,15 +13,15 @@
             %button.btn.btn-small.btn-default.pull-right.has-tooltip{ type: "button",
               "@click" => "showNewIssueForm",
               "v-if" => 'list.type !== "closed"',
-              "aria-label" => "New issue",
-              "title" => "New issue",
+              "aria-label" => "新建问题",
+              "title" => "新建问题",
               data: { placement: "top", container: "body" } }
               = icon("plus")
         - if can?(current_user, :admin_list, @project)
           %board-delete{ "inline-template" => true,
             ":list" => "list",
             "v-if" => "!list.preset && list.id" }
-            %button.board-delete.has-tooltip.pull-right{ type: "button", title: "Delete list", "aria-label" => "Delete list", data: { placement: "bottom" }, "@click.stop" => "deleteBoard" }
+            %button.board-delete.has-tooltip.pull-right{ type: "button", title: "删除列表", "aria-label" => "Delete list", data: { placement: "bottom" }, "@click.stop" => "deleteBoard" }
               = icon("trash")
     %board-list{ "v-if" => 'list.type !== "blank"',
       ":list" => "list",

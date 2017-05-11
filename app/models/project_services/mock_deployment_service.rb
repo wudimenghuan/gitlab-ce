@@ -1,10 +1,10 @@
 class MockDeploymentService < DeploymentService
   def title
-    'Mock deployment'
+    'Mock 部署'
   end
 
   def description
-    'Mock deployment service'
+    'Mock 部署服务'
   end
 
   def self.to_param

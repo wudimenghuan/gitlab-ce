@@ -98,7 +98,7 @@ class Projects::BuildsController < Projects::ApplicationController
   def erase
     if @build.erase(erased_by: current_user)
       redirect_to namespace_project_build_path(project.namespace, project, @build),
-                notice: "Build has been successfully erased!"
+                notice: "构建已删除成功！"
     else
       respond_422
     end

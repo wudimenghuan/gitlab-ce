@@ -216,7 +216,7 @@ export default {
             class="fa fa-caret-down"
             aria-hidden="true" />
           <span class="sr-only">
-            Select merge moment
+            选择合并时刻
           </span>
         </button>
         <ul
@@ -232,7 +232,7 @@ export default {
                 v-html="successSvg"
                 class="merge-opt-icon"
                 aria-hidden="true"></span>
-              <span class="merge-opt-title">Merge when pipeline succeeds</span>
+              <span class="merge-opt-title">当流水线成功时合并</span>
             </a>
           </li>
           <li>
@@ -244,7 +244,7 @@ export default {
                 v-html="warningSvg"
                 class="merge-opt-icon"
                 aria-hidden="true"></span>
-              <span class="merge-opt-title">Merge immediately</span>
+              <span class="merge-opt-title">立刻合并</span>
             </a>
           </li>
         </ul>
@@ -254,7 +254,7 @@ export default {
           <input
             v-model="removeSourceBranch"
             :disabled="isMergeButtonDisabled"
-            type="checkbox"/> Remove source branch
+            type="checkbox"/> 删除源分支
         </label>
 
         <!-- Placeholder for EE extension of this component -->
@@ -268,7 +268,7 @@ export default {
           :disabled="isMergeButtonDisabled"
           class="btn btn-default btn-xs"
           type="button">
-          Modify commit message
+          修改提交信息
         </button>
         <div
           v-if="showCommitMessageEditor"
@@ -277,7 +277,7 @@ export default {
             <label
               class="control-label"
               for="commit-message">
-              Commit message
+              提交信息
             </label>
             <div class="col-sm-10">
               <div class="commit-message-container">
@@ -287,9 +287,9 @@ export default {
                   class="form-control js-commit-message"
                   required="required"
                   rows="14"
-                  name="Commit message"></textarea>
+                  name="提交信息"></textarea>
               </div>
-              <p class="hint">Try to keep the first line under 52 characters and the others under 72.</p>
+              <p class="hint">尝试保持第一行不超过52个字符，其它行不超过72个字符。</p>
               <div class="hint">
                 <a
                   @click.prevent="updateCommitMessage"
@@ -301,7 +301,7 @@ export default {
       </template>
       <template v-else>
         <span class="bold">
-          The pipeline for this merge request failed. Please retry the job or push a new commit to fix the failure.
+          此合并请求的流水线已失败。 请重试该作业或推送一个新的提交来修复失败。
         </span>
       </template>
     </div>

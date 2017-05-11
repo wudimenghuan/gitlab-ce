@@ -66,7 +66,7 @@ module TimeTrackable
     @original_total_time_spent ||= total_time_spent
 
     if time_spent < 0 && (time_spent.abs > @original_total_time_spent)
-      errors.add(:time_spent, 'Time to subtract exceeds the total time spent')
+      errors.add(:time_spent, '减去工时超过已耗费的总工时')
     end
   end
 end

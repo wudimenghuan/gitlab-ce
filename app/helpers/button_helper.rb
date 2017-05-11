@@ -19,7 +19,7 @@ module ButtonHelper
   # See http://clipboardjs.com/#usage
   def clipboard_button(data = {})
     css_class = data[:class] || 'btn-clipboard btn-transparent'
-    title = data[:title] || 'Copy to clipboard'
+    title = data[:title] || '复制到剪贴板'
 
     # This supports code in app/assets/javascripts/copy_to_clipboard.js that
     # works around ClipboardJS limitations to allow the context-specific copy/pasting of plain text or GFM.
@@ -58,7 +58,7 @@ module ButtonHelper
         html: true,
         placement: placement,
         container: 'body',
-        title: "Set a password on your account<br>to pull or push via #{protocol}"
+        title: "在账户中设置密码<br>然后再使用 #{protocol} 拉取和推送。"
       }
   end
 
@@ -73,7 +73,7 @@ module ButtonHelper
         html: true,
         placement: placement,
         container: 'body',
-        title: 'Add an SSH key to your profile<br>to pull or push via SSH.'
+        title: '在个人资料中增加 SSH 密钥<br>然后再使用 SSH 拉取和推送。'
       }
   end
 end

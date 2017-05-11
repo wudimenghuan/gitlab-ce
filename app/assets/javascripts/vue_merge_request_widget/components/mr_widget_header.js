@@ -27,7 +27,7 @@ export default {
           href="#modal_merge_info"
           data-toggle="modal"
           class="btn inline btn-grouped btn-sm">
-          Check out branch
+          检出分支
         </a>
         <span class="dropdown inline prepend-left-5">
           <a
@@ -47,14 +47,14 @@ export default {
               <a
                 :href="mr.emailPatchesPath"
                 download>
-                Email patches
+                电子邮件补丁
               </a>
             </li>
             <li>
               <a
                 :href="mr.plainDiffPath"
                 download>
-                Plain diff
+                差异文件
               </a>
             </li>
           </ul>
@@ -70,7 +70,7 @@ export default {
           v-html="mr.sourceBranchLink"></span>
         <button
           class="btn btn-transparent btn-clipboard has-tooltip"
-          data-title="Copy branch name to clipboard"
+          data-title="复制分支名称到剪贴板"
           :data-clipboard-text="mr.sourceBranch">
           <i
             aria-hidden="true"

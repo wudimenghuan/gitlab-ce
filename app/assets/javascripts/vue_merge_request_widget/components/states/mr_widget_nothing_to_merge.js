@@ -6,11 +6,11 @@ export default {
         type="button"
         class="btn btn-success btn-small"
         disabled="true">
-        Merge
+        合并
       </button>
       <span class="bold">
-        There is nothing to merge from source branch into target branch.
-        Please push new commits or use a different branch.
+        没有什么需要从源分支合并到目标分支。
+        请推送新的提交或者选择另一个源分支。
       </span>
     </div>
   `,

@@ -1,67 +1,67 @@
 %ul
   = nav_link(path: ['root#index', 'projects#trending', 'projects#starred', 'dashboard/projects#index'], html_options: {class: "#{project_tab_class} home"}) do
-    = link_to dashboard_projects_path, title: 'Projects', class: 'dashboard-shortcuts-projects' do
+    = link_to dashboard_projects_path, title: '项目', class: 'dashboard-shortcuts-projects' do
       .shortcut-mappings
         .key
           = icon('arrow-up', 'aria-label' => 'hidden')
           P
       %span
-        Projects
+        项目
   = nav_link(path: 'dashboard#activity') do
-    = link_to activity_dashboard_path, class: 'dashboard-shortcuts-activity', title: 'Activity' do
+    = link_to activity_dashboard_path, class: 'dashboard-shortcuts-activity', title: '活动' do
       .shortcut-mappings
         .key
           = icon('arrow-up', 'aria-label' => 'hidden')
           A
       %span
-        Activity
+        活动
   - if koding_enabled?
     = nav_link(controller: :koding) do
       = link_to koding_path, title: 'Koding' do
         %span
           Koding
   = nav_link(controller: [:groups, 'groups/milestones', 'groups/group_members']) do
-    = link_to dashboard_groups_path, class: 'dashboard-shortcuts-groups', title: 'Groups' do
+    = link_to dashboard_groups_path, class: 'dashboard-shortcuts-groups', title: '群组ps' do
       .shortcut-mappings
         .key
           = icon('arrow-up', 'aria-label' => 'hidden')
           G
       %span
-        Groups
+        群组
   = nav_link(controller: 'dashboard/milestones') do
-    = link_to dashboard_milestones_path, class: 'dashboard-shortcuts-milestones', title: 'Milestones' do
+    = link_to dashboard_milestones_path, class: 'dashboard-shortcuts-milestones', title: '里程碑' do
       .shortcut-mappings
         .key
           = icon('arrow-up', 'aria-label' => 'hidden')
           L
       %span
-        Milestones
+        里程碑
   = nav_link(path: 'dashboard#issues') do
-    = link_to assigned_issues_dashboard_path, title: 'Issues', class: 'dashboard-shortcuts-issues' do
+    = link_to assigned_issues_dashboard_path, title: '问题', class: 'dashboard-shortcuts-issues' do
       .shortcut-mappings
         .key
           = icon('arrow-up', 'aria-label' => 'hidden')
           I
       %span
-        Issues
+        问题
       .badge= number_with_delimiter(assigned_issuables_count(:issues))
   = nav_link(path: 'dashboard#merge_requests') do
-    = link_to assigned_mrs_dashboard_path, title: 'Merge Requests', class: 'dashboard-shortcuts-merge_requests' do
+    = link_to assigned_mrs_dashboard_path, title: '合并请求', class: 'dashboard-shortcuts-merge_requests' do
       .shortcut-mappings
         .key
           = icon('arrow-up', 'aria-label' => 'hidden')
           M
       %span
-        Merge Requests
+        合并请求
       .badge= number_with_delimiter(assigned_issuables_count(:merge_requests))
   = nav_link(controller: 'dashboard/snippets') do
-    = link_to dashboard_snippets_path, class: 'dashboard-shortcuts-snippets', title: 'Snippets' do
+    = link_to dashboard_snippets_path, class: 'dashboard-shortcuts-snippets', title: '代码片段' do
       .shortcut-mappings
         .key
           = icon('arrow-up', 'aria-label' => 'hidden')
           S
       %span
-        Snippets
+        代码片段
   %li.divider
   %li
-    = link_to "Help", help_path, title: 'About GitLab CE', class: 'about-gitlab'
+    = link_to "帮助", help_path, title: '关于 GitLab CE', class: 'about-gitlab'

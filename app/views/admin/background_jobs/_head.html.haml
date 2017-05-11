@@ -4,22 +4,22 @@
     .nav-links.sub-nav.scrolling-tabs
       %ul{ class: (container_class) }
         = nav_link(controller: :system_info) do
-          = link_to admin_system_info_path, title: 'System Info' do
+          = link_to admin_system_info_path, title: '系统信息' do
             %span
-              System Info
+              系统信息
         = nav_link(controller: :background_jobs) do
-          = link_to admin_background_jobs_path, title: 'Background Jobs' do
+          = link_to admin_background_jobs_path, title: '后台作业' do
             %span
-              Background Jobs
+              后台作业
         = nav_link(controller: :logs) do
-          = link_to admin_logs_path, title: 'Logs' do
+          = link_to admin_logs_path, title: '日志' do
             %span
-              Logs
+              日志
         = nav_link(controller: :health_check) do
-          = link_to admin_health_check_path, title: 'Health Check' do
+          = link_to admin_health_check_path, title: '健康检查' do
             %span
-              Health Check
+              健康检查
         = nav_link(controller: :requests_profiles) do
-          = link_to admin_requests_profiles_path, title: 'Requests Profiles' do
+          = link_to admin_requests_profiles_path, title: '请求配置' do
             %span
-              Requests Profiles
+              请求配置

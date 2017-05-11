@@ -1,10 +1,10 @@
 class MattermostService < ChatNotificationService
   def title
-    'Mattermost notifications'
+    'Mattermost 通知'
   end
 
   def description
-    'Receive event notifications in Mattermost'
+    '在 Mattermost 接收事件通知'
   end
 
   def self.to_param

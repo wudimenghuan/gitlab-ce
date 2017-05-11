@@ -1,29 +1,29 @@
-%h3 Specific Runners
+%h3 特定的 Runners
 
 .bs-callout.help-callout
-  %h4 How to setup a specific Runner for a new project
+  %h4 如何设置一个新项目的特定 Runner
 
   %ol
     %li
-      Install a Runner compatible with GitLab CI
-      (checkout the #{link_to 'GitLab Runner section', 'https://about.gitlab.com/gitlab-ci/#gitlab-runner', target: '_blank'} for information on how to install it).
+      安装 GitLab Runner 软件。
+      请参阅 #{link_to 'GitLab Runner 章节', 'https://about.gitlab.com/gitlab-ci/#gitlab-runner', target: '_blank'} 来安装
     %li
-      Specify the following URL during the Runner setup:
+      在 Runner 安装时使用下面的链接：
       %code= ci_root_url(only_path: false)
     %li
-      Use the following registration token during setup:
+      在设置时使用下面的注册授权码：
       %code= @project.runners_token
     %li
-      Start the Runner!
+      启动 runner！
 
 
 - if @project_runners.any?
-  %h4.underlined-title Runners activated for this project
+  %h4.underlined-title 当前项目有效可用的 runner
   %ul.bordered-list.activated-specific-runners
     = render partial: 'projects/runners/runner', collection: @project_runners, as: :runner
 
 - if @assignable_runners.any?
-  %h4.underlined-title Available specific runners
+  %h4.underlined-title 可用的特定 runner
   %ul.bordered-list.available-specific-runners
     = render partial: 'projects/runners/runner', collection: @assignable_runners, as: :runner
   = paginate @assignable_runners, theme: "gitlab"

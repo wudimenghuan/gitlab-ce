@@ -28,7 +28,7 @@ class Admin::GroupsController < Admin::ApplicationController
 
     if @group.save
       @group.add_owner(current_user)
-      redirect_to [:admin, @group], notice: "Group '#{@group.name}' was successfully created."
+      redirect_to [:admin, @group], notice: "群组 '#{@group.name}' 创建成功。"
     else
       render "new"
     end
@@ -36,7 +36,7 @@ class Admin::GroupsController < Admin::ApplicationController
 
   def update
     if @group.update_attributes(group_params)
-      redirect_to [:admin, @group], notice: 'Group was successfully updated.'
+      redirect_to [:admin, @group], notice: '群组更新成功。'
     else
       render "edit"
     end
@@ -46,16 +46,16 @@ class Admin::GroupsController < Admin::ApplicationController
     status = Members::CreateService.new(@group, current_user, params).execute
 
     if status
-      redirect_to [:admin, @group], notice: 'Users were successfully added.'
+      redirect_to [:admin, @group], notice: '用户增加成功。'
     else
-      redirect_to [:admin, @group], alert: 'No users specified.'
+      redirect_to [:admin, @group], alert: '没有指定用户。'
     end
   end
 
   def destroy
     Groups::DestroyService.new(@group, current_user).async_execute
 
-    redirect_to admin_groups_path, alert: "Group '#{@group.name}' was scheduled for deletion."
+    redirect_to admin_groups_path, alert: "群组 '#{@group.name}' 删除成功。"
   end
 
   private
