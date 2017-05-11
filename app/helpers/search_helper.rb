@@ -39,10 +39,10 @@ module SearchHelper
   # Autocomplete results for various settings pages
   def default_autocomplete
     [
-      { category: "设置", label: "个人资料",    url: profile_path },
-      { category: "设置", label: "SSH 密钥",    url: profile_keys_path },
-      { category: "设置", label: "仪表板",      url: root_path },
-      { category: "设置", label: "管理后台",    url: admin_root_path },
+      { category: "设置", label: "个人设置",    url: profile_path },
+      { category: "设置", label: "SSH 密钥",         url: profile_keys_path },
+      { category: "设置", label: "仪表板",        url: root_path },
+      { category: "设置", label: "后台管理",    url: admin_root_path }
     ]
   end
 
@@ -56,8 +56,8 @@ module SearchHelper
       { category: "帮助", label: "Rake 任务帮助",    url: help_page_path("raketasks/README") },
       { category: "帮助", label: "SSH 密钥帮助",      url: help_page_path("ssh/README") },
       { category: "帮助", label: "系统钩子帮助",  url: help_page_path("system_hooks/system_hooks") },
-      { category: "帮助", label: "Webhooks 钩子帮助",      url: help_page_path("user/project/integrations/webhooks") },
-      { category: "帮助", label: "工作流帮助",      url: help_page_path("workflow/README") },
+      { category: "帮助", label: "Webhooks 帮助",      url: help_page_path("user/project/integrations/webhooks") },
+      { category: "帮助", label: "工作流帮助",      url: help_page_path("workflow/README") }
     ]
   end
 

@@ -41,7 +41,7 @@ module EventsHelper
     link_opts = {
       class: "event-filter-link",
       id:    "#{key}_event_filter",
-      title: "#{tooltip.downcase}过滤",
+      title: "#{tooltip.downcase} 过滤"
     }
 
     content_tag :li, class: active do

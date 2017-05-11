@@ -111,14 +111,9 @@ module Ci
     end
 
     def play(current_user)
-      # Try to queue a current build
-      if self.enqueue
-        self.update(user: current_user)
-        self
-      else
-        # Otherwise we need to create a duplicate
-        Ci::Build.retry(self, current_user)
-      end
+      Ci::PlayBuildService
+        .new(project, current_user)
+        .execute(self)
     end
 
     def cancelable?
@@ -129,8 +124,8 @@ module Ci
       success? || failed? || canceled?
     end
 
-    def retried?
-      !self.pipeline.statuses.latest.include?(self)
+    def latest?
+      !retried?
     end
 
     def expanded_environment_name

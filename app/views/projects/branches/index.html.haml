@@ -38,3 +38,5 @@
     = paginate @branches, theme: 'gitlab'
   - else
     .nothing-here-block 没有分支可以显示
+
+= render 'projects/branches/delete_protected_modal'

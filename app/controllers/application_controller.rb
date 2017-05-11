@@ -58,7 +58,7 @@ class ApplicationController < ActionController::Base
     if current_user
       not_found
     else
-      redirect_to new_user_session_path
+      authenticate_user!
     end
   end
 
@@ -100,7 +100,10 @@ class ApplicationController < ActionController::Base
   end
 
   def access_denied!
-    render "errors/access_denied", layout: "errors", status: 404
+    respond_to do |format|
+      format.json { head :not_found }
+      format.any { render "errors/access_denied", layout: "errors", status: 404 }
+    end
   end
 
   def git_not_found!

@@ -8,6 +8,8 @@ class Projects::PipelinesController < Projects::ApplicationController
 
   wrap_parameters Ci::Pipeline
 
+  POLLING_INTERVAL = 10_000
+
   def index
     @scope = params[:scope]
     @pipelines = PipelinesFinder
@@ -31,18 +33,18 @@ class Projects::PipelinesController < Projects::ApplicationController
     respond_to do |format|
       format.html
       format.json do
-        Gitlab::PollingInterval.set_header(response, interval: 10_000)
+        Gitlab::PollingInterval.set_header(response, interval: POLLING_INTERVAL)
 
         render json: {
           pipelines: PipelineSerializer
-            .new(project: @project, user: @current_user)
+            .new(project: @project, current_user: @current_user)
             .with_pagination(request, response)
             .represent(@pipelines),
           count: {
             all: @pipelines_count,
             running: @running_count,
             pending: @pending_count,
-            finished: @finished_count,
+            finished: @finished_count
           }
         }
       end
@@ -57,15 +59,25 @@ class Projects::PipelinesController < Projects::ApplicationController
     @pipeline = Ci::CreatePipelineService
       .new(project, current_user, create_params)
       .execute(ignore_skip_ci: true, save_on_errors: false)
-    unless @pipeline.persisted?
-      render 'new'
-      return
-    end
 
-    redirect_to namespace_project_pipeline_path(project.namespace, project, @pipeline)
+    if @pipeline.persisted?
+      redirect_to namespace_project_pipeline_path(project.namespace, project, @pipeline)
+    else
+      render 'new'
+    end
   end
 
   def show
+    respond_to do |format|
+      format.html
+      format.json do
+        Gitlab::PollingInterval.set_header(response, interval: POLLING_INTERVAL)
+
+        render json: PipelineSerializer
+          .new(project: @project, current_user: @current_user)
+          .represent(@pipeline, grouped: true)
+      end
+    end
   end
 
   def builds
@@ -82,7 +94,7 @@ class Projects::PipelinesController < Projects::ApplicationController
 
   def status
     render json: PipelineSerializer
-      .new(project: @project, user: @current_user)
+      .new(project: @project, current_user: @current_user)
       .represent_status(@pipeline)
   end
 

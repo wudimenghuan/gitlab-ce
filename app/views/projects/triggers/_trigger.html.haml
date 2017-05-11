@@ -29,12 +29,6 @@
     - else
       从未
 
-  %td
-    - if trigger.trigger_schedule&.active?
-      = trigger.trigger_schedule.real_next_run
-    - else
-      Never
-
   %td.text-right.trigger-actions
     - take_ownership_confirmation = "通过取得所有权会将此触发器绑定到您的用户帐户。如此一来此触发器将会像您一样访问到您的项目。是否确定？"
     - revoke_trigger_confirmation = "撤销触发器将会中断该触发器的所有过程。是否确定？"

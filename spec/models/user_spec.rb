@@ -344,6 +344,35 @@ describe User, models: true do
     end
   end
 
+  describe '#update_tracked_fields!', :redis do
+    let(:request) { OpenStruct.new(remote_ip: "127.0.0.1") }
+    let(:user) { create(:user) }
+
+    it 'writes trackable attributes' do
+      expect do
+        user.update_tracked_fields!(request)
+      end.to change { user.reload.current_sign_in_at }
+    end
+
+    it 'does not write trackable attributes when called a second time within the hour' do
+      user.update_tracked_fields!(request)
+
+      expect do
+        user.update_tracked_fields!(request)
+      end.not_to change { user.reload.current_sign_in_at }
+    end
+
+    it 'writes trackable attributes for a different user' do
+      user2 = create(:user)
+
+      user.update_tracked_fields!(request)
+
+      expect do
+        user2.update_tracked_fields!(request)
+      end.to change { user2.reload.current_sign_in_at }
+    end
+  end
+
   shared_context 'user keys' do
     let(:user) { create(:user) }
     let!(:key) { create(:key, user: user) }
@@ -647,7 +676,7 @@ describe User, models: true do
       protocol_and_expectation = {
         'http' => false,
         'ssh' => true,
-        '' => true,
+        '' => true
       }
 
       protocol_and_expectation.each do |protocol, expected|
@@ -849,6 +878,65 @@ describe User, models: true do
     end
   end
 
+  describe '.find_by_full_path' do
+    let!(:user) { create(:user) }
+
+    context 'with a route matching the given path' do
+      let!(:route) { user.namespace.route }
+
+      it 'returns the user' do
+        expect(User.find_by_full_path(route.path)).to eq(user)
+      end
+
+      it 'is case-insensitive' do
+        expect(User.find_by_full_path(route.path.upcase)).to eq(user)
+        expect(User.find_by_full_path(route.path.downcase)).to eq(user)
+      end
+    end
+
+    context 'with a redirect route matching the given path' do
+      let!(:redirect_route) { user.namespace.redirect_routes.create(path: 'foo') }
+
+      context 'without the follow_redirects option' do
+        it 'returns nil' do
+          expect(User.find_by_full_path(redirect_route.path)).to eq(nil)
+        end
+      end
+
+      context 'with the follow_redirects option set to true' do
+        it 'returns the user' do
+          expect(User.find_by_full_path(redirect_route.path, follow_redirects: true)).to eq(user)
+        end
+
+        it 'is case-insensitive' do
+          expect(User.find_by_full_path(redirect_route.path.upcase, follow_redirects: true)).to eq(user)
+          expect(User.find_by_full_path(redirect_route.path.downcase, follow_redirects: true)).to eq(user)
+        end
+      end
+    end
+
+    context 'without a route or a redirect route matching the given path' do
+      context 'without the follow_redirects option' do
+        it 'returns nil' do
+          expect(User.find_by_full_path('unknown')).to eq(nil)
+        end
+      end
+      context 'with the follow_redirects option set to true' do
+        it 'returns nil' do
+          expect(User.find_by_full_path('unknown', follow_redirects: true)).to eq(nil)
+        end
+      end
+    end
+
+    context 'with a group route matching the given path' do
+      let!(:group) { create(:group, path: 'group_path') }
+
+      it 'returns nil' do
+        expect(User.find_by_full_path('group_path')).to eq(nil)
+      end
+    end
+  end
+
   describe 'all_ssh_keys' do
     it { is_expected.to have_many(:keys).dependent(:destroy) }
 
@@ -876,12 +964,19 @@ describe User, models: true do
 
   describe '#avatar_url' do
     let(:user) { create(:user, :with_avatar) }
-    subject { user.avatar_url }
 
     context 'when avatar file is uploaded' do
+      let(:gitlab_host) { "http://#{Gitlab.config.gitlab.host}" }
       let(:avatar_path) { "/uploads/user/avatar/#{user.id}/dk.png" }
 
-      it { should eq "http://#{Gitlab.config.gitlab.host}#{avatar_path}" }
+      it 'shows correct avatar url' do
+        expect(user.avatar_url).to eq(avatar_path)
+        expect(user.avatar_url(only_path: false)).to eq([gitlab_host, avatar_path].join)
+
+        allow(ActionController::Base).to receive(:asset_host).and_return(gitlab_host)
+
+        expect(user.avatar_url).to eq([gitlab_host, avatar_path].join)
+      end
     end
   end
 
