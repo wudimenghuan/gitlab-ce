@@ -84,11 +84,22 @@ git diff v${gitlab_version} v${gitlab_version}-zh > ../${gitlab_version}-zh.diff
 
 然后上传 `9.0.0-zh.diff` 文件到服务器。
 
+
+**注意：**
+如果是老版本已汉化升级新版本后，重复汉化会100%失败。建议在升级后，先执行下面命令，删除汉化文件，然后再次汉化
+
+```bash
+sudo rm -rf /opt/gitlab/embedded/service/gitlab-rails/config/locales/*zh*
+```
+
 ```
 # 停止 gitlab
 sudo gitlab-ctl stop
-sudo patch -d /opt/gitlab/embedded/service/gitlab-rails -p1 < ${gitlab_version}-zh.diff
+# 如果gitlab_version变量不存在，则默认取服务器gitlab当前版本
+sudo patch -d /opt/gitlab/embedded/service/gitlab-rails -p1 < ${gitlab_version:=cat /opt/gitlab/embedded/service/gitlab-rails/VERSION}-zh.diff
+
 ```
+
 
 确定没有 `.rej` 文件，重启 GitLab 即可。
 
