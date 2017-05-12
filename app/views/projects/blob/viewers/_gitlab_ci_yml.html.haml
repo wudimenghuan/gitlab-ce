@@ -1,0 +1,9 @@
+- if viewer.valid?
+  = icon('check fw')
+  这个 GitLab CI 配置是有效的。
+- else
+  = icon('warning fw')
+  这个 GitLab CI 配置是无效的：
+  = viewer.validation_message
+
+= link_to '了解更多', help_page_path('ci/yaml/README')
