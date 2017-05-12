@@ -246,7 +246,7 @@ export default {
             :service="service"
             :endpoint="pipeline.retry_path"
             css-class="js-pipelines-retry-button btn-default btn-retry"
-            title="Retry"
+            title="重试"
             icon="repeat" />
 
           <async-button-component
@@ -254,9 +254,9 @@ export default {
             :service="service"
             :endpoint="pipeline.cancel_path"
             css-class="js-pipelines-cancel-button btn-remove"
-            title="Cancel"
+            title="取消"
             icon="remove"
-            confirm-action-message="Are you sure you want to cancel this pipeline?" />
+            confirm-action-message="你确定要取消这个流水线吗？" />
         </div>
       </td>
     </tr>
