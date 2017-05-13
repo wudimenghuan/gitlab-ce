@@ -7,7 +7,7 @@
             您在
             #{time_ago_with_tooltip(event.created_at)}
             %span 推送了
-            = link_to namespace_project_commits_path(event.project.namespace, event.project, event.ref_name) do
+            = link_to namespace_project_commits_path(event.project.namespace, event.project, event.ref_name, class: 'commit-sha') do
               %strong= event.ref_name
             - if @project && event.project != @project
               %span 到

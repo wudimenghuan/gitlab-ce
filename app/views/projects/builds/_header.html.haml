@@ -5,20 +5,18 @@
   .header-content
     = render 'ci/status/badge', status: @build.detailed_status(current_user), link: false, title: @build.status_title
     流水线
-    = link_to pipeline_path(pipeline) do
-      %strong ##{pipeline.id}
+    %strong
+      = link_to "##{pipeline.id}", pipeline_path(pipeline)
     的
     %strong
       作业
-      = link_to namespace_project_build_path(@project.namespace, @project, @build), class: 'js-build-id' do
-        \##{@build.id}
+      = link_to "##{@build.id}", namespace_project_build_path(@project.namespace, @project, @build), class: 'js-build-id'
     来自
-    = link_to namespace_project_commits_path(@project.namespace, @project, @build.ref) do
-      %code
-        = @build.ref
+    %strong
+      = link_to @build.ref, project_ref_path(@project, @build.ref), class: 'ref-name'
     的提交
-    = link_to namespace_project_commit_path(@project.namespace, @project, pipeline.sha) do
-      %strong= pipeline.short_sha
+    %strong
+      = link_to pipeline.short_sha, namespace_project_commit_path(@project.namespace, @project, pipeline.sha), class: 'commit-sha'
 
     = render "projects/builds/user" if @build.user
     于

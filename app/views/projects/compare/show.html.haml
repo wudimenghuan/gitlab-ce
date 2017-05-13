@@ -16,9 +16,9 @@
           没有内容需要比较。
         %p.slead
           - if params[:to] == params[:from]
-            %span.label-branch= params[:from]
+            %span.ref-name= params[:from]
             与
-            %span.label-branch= params[:to]
+            %span.ref-name= params[:to]
             内容一致。
           - else
             需要选择不同的分支用于比较。

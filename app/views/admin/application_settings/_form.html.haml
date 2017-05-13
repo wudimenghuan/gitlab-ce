@@ -499,17 +499,24 @@
             让GitLab在更新可用时通知您。
     .form-group
       .col-sm-offset-2.col-sm-10
+        - can_be_configured = @application_setting.usage_ping_can_be_configured?
         .checkbox
           = f.label :usage_ping_enabled do
-            = f.check_box :usage_ping_enabled
+            = f.check_box :usage_ping_enabled, disabled: !can_be_configured
             启用使用率反馈
-            = link_to icon('question-circle'), help_page_path("user/admin_area/settings/usage_statistics", anchor: "usage-data")
+            = link_to icon('question-circle'), help_page_path("user/admin_area/settings/usage_statistics", anchor: "usage-ping")
           .help-block
-            每周 GitLab 将向 GitLab，Inc. 报告许可证使用情况。
-            如果您不希望报告使用情况，请禁用此选项。
-            要查看将发送的JSON有效内容，请访问 
-            = succeed '。' do
-              = link_to "Cohorts 页面", admin_cohorts_path(anchor: 'usage-ping')
+            - if can_be_configured
+              每周 GitLab 将向 GitLab，Inc. 报告许可证使用情况。
+              如果您不希望报告使用情况，请禁用此选项。
+              要查看将发送的JSON有效内容，请访问
+              = succeed '.' do
+                = link_to "活跃度页面", admin_cohorts_path(anchor: 'usage-ping')
+            - else
+              使用率反馈已被禁用，不能通过这个表单进行配置。
+              请通过这个文档了解更多信息：
+              = succeed '。' do
+                = link_to '禁用使用率反馈', help_page_path('user/admin_area/settings/usage_statistics', anchor: 'deactivate-the-usage-ping')
 
   %fieldset
     %legend 邮箱

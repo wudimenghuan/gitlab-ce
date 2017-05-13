@@ -61,7 +61,7 @@ module ChatMessage
     end
 
     def removed_branch_message
-      "#{user_name} 删除了 #{project_link} 的 #{ref_type} #{ref}"
+      "#{user_name} 删除了 #{project_link} 的 #{ref_type} `#{ref}`"
     end
 
     def push_message
@@ -102,7 +102,7 @@ module ChatMessage
     end
 
     def branch_link
-      "[#{ref}](#{branch_url})"
+      "`[#{ref}](#{branch_url})`"
     end
 
     def project_link

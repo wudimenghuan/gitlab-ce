@@ -16,7 +16,7 @@ export default {
           变更将被合并到
           <span class="label-branch">
             <a :href="mr.targetBranchPath">{{mr.targetBranch}}</a>
-          </span>
+          </span>.
         </p>
       </section>
     </div>
