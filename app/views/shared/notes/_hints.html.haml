@@ -6,6 +6,27 @@
       及
       = link_to 'slash commands', help_page_path('user/project/slash_commands'), target: '_blank', tabindex: -1
     格式
-  %button.toolbar-button.markdown-selector{ type: 'button', tabindex: '-1' }
-    = icon('file-image-o', class: 'toolbar-button-icon')
-    附加文件
+
+  %span.uploading-container
+    %span.uploading-progress-container.hide
+      = icon('file-image-o', class: 'toolbar-button-icon')
+      %span.attaching-file-message
+        -# Populated by app/assets/javascripts/dropzone_input.js
+      %span.uploading-progress 0%
+      %span.uploading-spinner
+        = icon('spinner spin', class: 'toolbar-button-icon')
+
+    %span.uploading-error-container.hide
+      %span.uploading-error-icon
+        = icon('file-image-o', class: 'toolbar-button-icon')
+      %span.uploading-error-message
+        -# Populated by app/assets/javascripts/dropzone_input.js
+      %button.retry-uploading-link{ type: 'button' } 重试
+      或
+      %button.attach-new-file.markdown-selector{ type: 'button' } 添加新文件
+
+    %button.markdown-selector.button-attach-file{ type: 'button', tabindex: '-1' }
+      = icon('file-image-o', class: 'toolbar-button-icon')
+      添加附件
+
+    %button.btn.btn-default.btn-xs.hide.button-cancel-uploading-files{ type: 'button' } 取消

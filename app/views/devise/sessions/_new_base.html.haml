@@ -1,6 +1,6 @@
 = form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'new_user gl-show-field-errors', 'aria-live' => 'assertive'}) do |f|
   .form-group
-    = f.label "用户名或邮箱", for: :login
+    = f.label "用户名或邮箱", for: "user_login"
     = f.text_field :login, class: "form-control top", autofocus: "autofocus", autocapitalize: "off", autocorrect: "off", required: true, title: "必填项"
   .form-group
     = f.label "密码", for: :password
