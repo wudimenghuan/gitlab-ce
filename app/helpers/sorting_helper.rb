@@ -95,11 +95,11 @@ module SortingHelper
   end
 
   def sort_title_oldest_activity
-    'Oldest updated'
+    '最早更新的'
   end
 
   def sort_title_latest_activity
-    'Last updated'
+    '最近更新的'
   end
 
   def sort_title_oldest_created
@@ -127,11 +127,11 @@ module SortingHelper
   end
 
   def sort_title_start_date_soon
-    'Start soon'
+    '马上开始'
   end
 
   def sort_title_start_date_later
-    'Start later'
+    '稍后开始'
   end
 
   def sort_title_name
