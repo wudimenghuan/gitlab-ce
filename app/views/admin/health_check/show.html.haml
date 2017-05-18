@@ -16,24 +16,16 @@
       = icon('spinner')
       重置健康检查访问授权码
   %p.light
-    健康信息可以使用下面的方法检索为纯文本、JSON 或 XML 格式：
+    健康信息可以从以下终端检索。点击
+    = link_to '这里', help_page_path('user/admin_area/monitoring/health_check')
+    了解更多。
     %ul
       %li
-        %code= health_check_url(token: current_application_settings.health_check_access_token)
+        %code= readiness_url(token: current_application_settings.health_check_access_token)
       %li
-        %code= health_check_url(token: current_application_settings.health_check_access_token, format: :json)
+        %code= liveness_url(token: current_application_settings.health_check_access_token)
       %li
-        %code= health_check_url(token: current_application_settings.health_check_access_token, format: :xml)
-
-  %p.light
-    你也可以直接查询指定服务的状态：
-    %ul
-      %li
-        %code= health_check_url(token: current_application_settings.health_check_access_token, checks: :cache)
-      %li
-        %code= health_check_url(token: current_application_settings.health_check_access_token, checks: :database)
-      %li
-        %code= health_check_url(token: current_application_settings.health_check_access_token, checks: :migrations)
+        %code= metrics_url(token: current_application_settings.health_check_access_token)
 
   %hr
   .panel.panel-default
