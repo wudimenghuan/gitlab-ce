@@ -112,7 +112,7 @@ export default {
       >
         <i
           v-if="hasNoUsers"
-          aria-label="No Assignee"
+          aria-label="未指派"
           class="fa fa-user"
         />
         <button
@@ -154,7 +154,7 @@ export default {
                 class="btn-link"
                 @click="assignSelf"
               >
-                assign yourself
+                指派给您自己
               </button>
             </template>
           </span>
