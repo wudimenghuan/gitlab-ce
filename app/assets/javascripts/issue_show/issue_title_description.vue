@@ -3,6 +3,7 @@ import Visibility from 'visibilityjs';
 import Poll from './../lib/utils/poll';
 import Service from './services/index';
 import tasks from './actions/tasks';
+import edited from './components/edited.vue';
 
 export default {
   props: {
@@ -13,6 +14,19 @@ export default {
     canUpdateTasksClass: {
       required: true,
       type: String,
+    },
+    isEdited: {
+      type: Boolean,
+      default: false,
+      required: false,
+    },
+    initialTitle: {
+      type: String,
+      required: true,
+    },
+    initialDescription: {
+      type: String,
+      required: true,
     },
   },
   data() {
@@ -33,22 +47,25 @@ export default {
       poll,
       apiData: {},
       tasks: '0 of 0',
-      title: null,
+      title: this.initialTitle,
       titleText: '',
       titleFlag: {
-        pre: true,
+        pre: false,
         pulse: false,
       },
-      description: null,
+      description: this.initialDescription,
       descriptionText: '',
       descriptionChange: false,
       descriptionFlag: {
-        pre: true,
+        pre: false,
         pulse: false,
       },
-      timeAgoEl: $('.issue_edited_ago'),
       titleEl: document.querySelector('title'),
+      hasBeenEdited: this.isEdited,
     };
+  },
+  components: {
+    edited,
   },
   methods: {
     updateFlag(key, toggle) {
@@ -57,6 +74,9 @@ export default {
     },
     renderResponse(res) {
       this.apiData = res.json();
+
+      if (this.apiData.updated_at) this.hasBeenEdited = true;
+
       this.triggerAnimation();
     },
     updateTaskHTML() {
@@ -110,11 +130,6 @@ export default {
       this.elementsToVisualize(noTitleChange, noDescriptionChange);
       this.animate(title, description);
     },
-    updateEditedTimeAgo() {
-      const toolTipTime = gl.utils.formatDate(this.apiData.updated_at);
-      this.timeAgoEl.attr('datetime', this.apiData.updated_at);
-      this.timeAgoEl.attr('title', toolTipTime).tooltip('fixTitle');
-    },
   },
   created() {
     if (!Visibility.hidden()) {
@@ -132,8 +147,6 @@ export default {
   updated() {
     // if new html is injected (description changed) - bind TaskList and call renderGFM
     if (this.descriptionChange) {
-      this.updateEditedTimeAgo();
-
       $(this.$refs['issue-content-container-gfm-entry']).renderGFM();
 
       const tl = new gl.TaskList({
@@ -176,5 +189,11 @@ export default {
         v-if="descriptionText"
       >{{descriptionText}}</textarea>
     </div>
+    <edited
+      v-if="hasBeenEdited"
+      :updated-at="apiData.updated_at"
+      :updated-by-name="apiData.updated_by_name"
+      :updated-by-path="apiData.updated_by_path"
+    />
   </div>
 </template>
