@@ -21,9 +21,9 @@
       .col-sm-10
         = f.label :can_push do
           = f.check_box :can_push
-          %strong Write access allowed
+          %strong 具有写权限
         %p.light.append-bottom-0
-          Allow this key to push to repository as well? (Default only allows pull access.)
+          允许这个密钥也可以推送到版本库？（默认只允许拉取。）
 
     .form-actions
       = f.submit '创建', class: "btn-create btn"

@@ -342,7 +342,7 @@ class PrometheusGraph {
       cpu_values: {
         area_fill_color: '#edf3fc',
         line_color: '#5b99f7',
-        graph_legend_title: 'CPU Usage (Cores)',
+        graph_legend_title: 'CPU使用率 (内核)',
         data: [],
         xScale: {},
         yScale: {},
@@ -350,7 +350,7 @@ class PrometheusGraph {
       memory_values: {
         area_fill_color: '#fca326',
         line_color: '#fc6d26',
-        graph_legend_title: 'Memory Usage (MB)',
+        graph_legend_title: '内存使用率 (MB)',
         data: [],
         xScale: {},
         yScale: {},
