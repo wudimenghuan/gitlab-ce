@@ -9,7 +9,7 @@
       请参阅 #{link_to 'GitLab Runner 章节', 'https://about.gitlab.com/gitlab-ci/#gitlab-runner', target: '_blank'} 来安装
     %li
       在 Runner 安装时使用下面的链接：
-      %code= ci_root_url(only_path: false)
+      %code= root_url(only_path: false)
     %li
       在设置时使用下面的注册授权码：
       %code= @project.runners_token
