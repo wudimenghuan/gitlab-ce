@@ -87,7 +87,7 @@ export default {
             :href="mr.targetBranchPath"
             class="label-branch">
             {{mr.targetBranch}}
-          </a>
+          </a>.
         </p>
         <p v-if="mr.shouldRemoveSourceBranch">
           源分支将会被删除。

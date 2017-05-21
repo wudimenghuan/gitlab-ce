@@ -1,4 +1,4 @@
-- page_title "æ–°å»ºåˆ†æ”¯"
+- page_title "ĞÂ½¨·ÖÖ§"
 - default_ref = params[:ref] || @project.default_branch
 
 - if @error
@@ -6,26 +6,28 @@
     %button.close{ type: "button", "data-dismiss" => "alert" } &times;
     = @error
 %h3.page-title
-  æ–°å»ºåˆ†æ”¯
+  ĞÂ½¨·ÖÖ§
 %hr
 
 = form_tag namespace_project_branches_path, method: :post, id: "new-branch-form", class: "form-horizontal js-create-branch-form js-requires-input" do
   .form-group
-    = label_tag :branch_name, 'åˆ†æ”¯åç§°', class: 'control-label'
+    = label_tag :branch_name, '·ÖÖ§Ãû³Æ', class: 'control-label'
     .col-sm-10
       = text_field_tag :branch_name, params[:branch_name], required: true, autofocus: true, class: 'form-control js-branch-name'
       .help-block.text-danger.js-branch-name-error
   .form-group
-    = label_tag :ref, 'åˆ›å»ºè‡ª', class: 'control-label'
-    .col-sm-10.dropdown.create-from
-      = hidden_field_tag :ref, default_ref
-      = button_tag type: 'button', title: default_ref, class: 'dropdown-toggle form-control js-branch-select', required: true, data: { toggle: 'dropdown', selected: default_ref, field_name: 'ref' } do
-        .text-left.dropdown-toggle-text= default_ref
-      = render 'shared/ref_dropdown', dropdown_class: 'wide'
-      .help-block å·²å­˜åœ¨çš„åˆ†æ”¯åã€æ ‡ç­¾æˆ–æäº¤ SHA
+    = label_tag :ref, '´´½¨×Ô', class: 'control-label'
+    .col-sm-10.create-from
+      .dropdown
+        = hidden_field_tag :ref, default_ref
+        = button_tag type: 'button', title: default_ref, class: 'dropdown-menu-toggle wide form-control js-branch-select', required: true, data: { toggle: 'dropdown', selected: default_ref, field_name: 'ref' } do
+          .text-left.dropdown-toggle-text= default_ref
+          = icon('chevron-down')
+        = render 'shared/ref_dropdown', dropdown_class: 'wide'
+      .help-block ÒÑ´æÔÚµÄ·ÖÖ§Ãû¡¢±êÇ©»òÌá½» SHA
   .form-actions
-    = button_tag 'åˆ›å»ºåˆ†æ”¯', class: 'btn btn-create', tabindex: 3
-    = link_to 'å–æ¶ˆ', namespace_project_branches_path(@project.namespace, @project), class: 'btn btn-cancel'
+    = button_tag '´´½¨·ÖÖ§', class: 'btn btn-create', tabindex: 3
+    = link_to 'È¡Ïû', namespace_project_branches_path(@project.namespace, @project), class: 'btn btn-cancel'
 
 :javascript
   var availableRefs = #{@project.repository.ref_names.to_json};

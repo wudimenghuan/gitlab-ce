@@ -20,7 +20,7 @@ export default {
         <p>
           变更无法合并到
           <a
-            :href="mr.targetBranchCommitsPath"
+            :href="mr.targetBranchPath"
             class="label-branch">
             {{mr.targetBranch}}</a>.
         </p>

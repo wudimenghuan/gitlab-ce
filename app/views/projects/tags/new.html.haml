@@ -1,4 +1,5 @@
-- page_title "æ–°å»ºæ ‡ç­¾"
+- page_title "ĞÂ½¨±êÇ©"
+- default_ref = params[:ref] || @project.default_branch
 
 - if @error
   .alert.alert-danger
@@ -6,40 +7,40 @@
     = @error
 
 %h3.page-title
-  æ–°å»ºæ ‡ç­¾
+  ĞÂ½¨±êÇ©
 %hr
 
 = form_tag namespace_project_tags_path, method: :post, id: "new-tag-form", class: "form-horizontal common-note-form tag-form js-quick-submit js-requires-input" do
   .form-group
-    = label_tag :tag_name, 'æ ‡ç­¾åç§°', class: 'control-label'
+    = label_tag :tag_name, '±êÇ©Ãû³Æ', class: 'control-label'
     .col-sm-10
       = text_field_tag :tag_name, params[:tag_name], required: true, tabindex: 1, autofocus: true, class: 'form-control'
   .form-group
-    = label_tag :ref, 'åˆ›å»ºè‡ª', class: 'control-label'
-    .col-sm-10
-      = text_field_tag :ref, params[:ref] || @project.default_branch, required: true, tabindex: 2, class: 'form-control'
-      .help-block  åˆ†æ”¯åç§°æˆ–æäº¤ SHA
+    = label_tag :ref, '´´½¨×Ô', class: 'control-label'
+    .col-sm-10.create-from
+      .dropdown
+        = hidden_field_tag :ref, default_ref
+        = button_tag type: 'button', title: default_ref, class: 'dropdown-menu-toggle wide form-control js-branch-select', required: true, data: { toggle: 'dropdown', selected: default_ref, field_name: 'ref' } do
+          .text-left.dropdown-toggle-text= default_ref
+        = render 'shared/ref_dropdown', dropdown_class: 'wide'
+      .help-block ÒÑ´æÔÚ·ÖÖ§Ãû¡¢±êÇ©»òÕßÌá½» SHA
   .form-group
-    = label_tag :message, 'ä¿¡æ¯', class: 'control-label'
+    = label_tag :message, 'ĞÅÏ¢', class: 'control-label'
     .col-sm-10
       = text_area_tag :message, nil, required: false, tabindex: 3, class: 'form-control', rows: 5
-      .help-block å¯é€‰ï¼Œè¾“å…¥åˆ›å»ºæ ‡ç­¾çš„ä¿¡æ¯ã€‚
+      .help-block ¿ÉÑ¡£¬ÊäÈë´´½¨±êÇ©µÄĞÅÏ¢¡£
   %hr
   .form-group
-    = label_tag :release_description, 'å‘å¸ƒå¤‡æ³¨', class: 'control-label'
+    = label_tag :release_description, '·¢²¼±¸×¢', class: 'control-label'
     .col-sm-10
       = render layout: 'projects/md_preview', locals: { url: preview_markdown_path(@project), referenced_users: true } do
-        = render 'projects/zen', attr: :release_description, classes: 'note-textarea', placeholder: "æ’°å†™å‘å¸ƒå¤‡æ³¨æˆ–æ‹–æ”¾æ–‡ä»¶åˆ°æ­¤å¤„..."
+        = render 'projects/zen', attr: :release_description, classes: 'note-textarea', placeholder: "×«Ğ´·¢²¼±¸×¢»òÍÏ·ÅÎÄ¼şµ½´Ë´¦..."
         = render 'shared/notes/hints'
-      .help-block å¯é€‰ï¼Œå¯ä»¥ç»™æ ‡ç­¾å¢åŠ å‘å¸ƒå¤‡æ³¨ã€‚å¤‡æ³¨ä¼šå‚¨å­˜åœ¨ GitLab æ•°æ®åº“å¹¶æ˜¾ç¤ºåœ¨æ ‡ç­¾é¡µã€‚
+      .help-block ¿ÉÑ¡£¬¿ÉÒÔ¸ø±êÇ©Ôö¼Ó·¢²¼±¸×¢¡£±¸×¢»á´¢´æÔÚ GitLab Êı¾İ¿â²¢ÏÔÊ¾ÔÚ±êÇ©Ò³¡£
   .form-actions
-    = button_tag 'åˆ›å»ºæ ‡ç­¾', class: 'btn btn-create', tabindex: 3
-    = link_to 'å–æ¶ˆ', namespace_project_tags_path(@project.namespace, @project), class: 'btn btn-cancel'
+    = button_tag '´´½¨±êÇ©', class: 'btn btn-create', tabindex: 3
+    = link_to 'È¡Ïû', namespace_project_tags_path(@project.namespace, @project), class: 'btn btn-cancel'
 
 :javascript
-  var availableRefs = #{@project.repository.ref_names.to_json};
-
-  $("#ref").autocomplete({
-    source: availableRefs,
-    minLength: 1
-  });
+  window.gl = window.gl || { };
+  window.gl.availableRefs = #{@project.repository.ref_names.to_json};

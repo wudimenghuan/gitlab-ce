@@ -11,42 +11,25 @@
   %div{ class: (has_due_date ? "col-lg-6" : "col-sm-12") }
     .form-group.issue-assignee
       - if issuable.is_a?(Issue)
-        = form.label :assignee_ids, "æŒ‡æ´¾", class: "control-label #{"col-lg-4" if has_due_date}"
-        .col-sm-10{ class: ("col-lg-8" if has_due_date) }
-          .issuable-form-select-holder.selectbox
-            - issuable.assignees.each do |assignee|
-              = hidden_field_tag "#{issuable.to_ability_name}[assignee_ids][]", assignee.id, id: nil, data: { meta: assignee.name }
-
-            - if issuable.assignees.length === 0
-              = hidden_field_tag "#{issuable.to_ability_name}[assignee_ids][]", 0, id: nil, data: { meta: '' }
-
-            = dropdown_tag(users_dropdown_label(issuable.assignees), options: issue_dropdown_options(issuable,false))
-          = link_to 'æŒ‡æ´¾ç»™è‡ªå·±', '#', class: "assign-to-me-link #{'hide' if issuable.assignees.include?(current_user)}"
+        = render "shared/issuable/form/metadata_issue_assignee", issuable: issuable, form: form, has_due_date: has_due_date
       - else
-        = form.label :assignee_id, "æŒ‡æ´¾", class: "control-label #{"col-lg-4" if has_due_date}"
-        .col-sm-10{ class: ("col-lg-8" if has_due_date) }
-          .issuable-form-select-holder
-            = form.hidden_field :assignee_id
-
-            = dropdown_tag(user_dropdown_label(issuable.assignee_id, "æŒ‡æ´¾"), options: { toggle_class: "js-dropdown-keep-input js-user-search js-issuable-form-dropdown js-assignee-search", title: "é€‰æ‹©æŒ‡æ´¾", filter: true, dropdown_class: "dropdown-menu-user dropdown-menu-selectable dropdown-menu-assignee js-filter-submit",
-              placeholder: "Search assignee", data: { first_user: current_user.try(:username), null_user: true, current_user: true, project_id: issuable.project.try(:id), selected: issuable.assignee_id, field_name: "#{issuable.class.model_name.param_key}[assignee_id]", default_label: "æŒ‡æ´¾"} })
-          = link_to 'æŒ‡æ´¾ç»™è‡ªå·±', '#', class: "assign-to-me-link #{'hide' if issuable.assignee_id == current_user.id}"
+        = render "shared/issuable/form/metadata_merge_request_assignee", issuable: issuable, form: form, has_due_date: has_due_date
     .form-group.issue-milestone
-      = form.label :milestone_id, "é‡Œç¨‹ç¢‘", class: "control-label #{"col-lg-4" if has_due_date}"
+      = form.label :milestone_id, "Àï³Ì±®", class: "control-label #{"col-lg-4" if has_due_date}"
       .col-sm-10{ class: ("col-lg-8" if has_due_date) }
         .issuable-form-select-holder
-          = render "shared/issuable/milestone_dropdown", selected: issuable.milestone, name: "#{issuable.class.model_name.param_key}[milestone_id]", show_any: false, show_upcoming: false, show_started: false, extra_class: "js-issuable-form-dropdown js-dropdown-keep-input", dropdown_title: "é€‰æ‹©é‡Œç¨‹ç¢‘"
+          = render "shared/issuable/milestone_dropdown", selected: issuable.milestone, name: "#{issuable.class.model_name.param_key}[milestone_id]", show_any: false, show_upcoming: false, show_started: false, extra_class: "js-issuable-form-dropdown js-dropdown-keep-input", dropdown_title: "Ñ¡ÔñÀï³Ì±®"
     .form-group
       - has_labels = @labels && @labels.any?
-      = form.label :label_ids, "æ ‡è®°", class: "control-label #{"col-lg-4" if has_due_date}"
+      = form.label :label_ids, "±ê¼Ç", class: "control-label #{"col-lg-4" if has_due_date}"
       = form.hidden_field :label_ids, multiple: true, value: ''
       .col-sm-10{ class: "#{"col-lg-8" if has_due_date} #{'issuable-form-padding-top' if !has_labels}" }
         .issuable-form-select-holder
-          = render "shared/issuable/label_dropdown", classes: ["js-issuable-form-dropdown"], selected: issuable.labels, data_options: { field_name: "#{issuable.class.model_name.param_key}[label_ids][]", show_any: false}, dropdown_title: "é€‰æ‹©æ ‡è®°"
+          = render "shared/issuable/label_dropdown", classes: ["js-issuable-form-dropdown"], selected: issuable.labels, data_options: { field_name: "#{issuable.class.model_name.param_key}[label_ids][]", show_any: false}, dropdown_title: "Ñ¡Ôñ±ê¼Ç"
   - if has_due_date
     .col-lg-6
       .form-group
-        = form.label :due_date, "æˆªæ­¢æ—¥æœŸ", class: "control-label"
+        = form.label :due_date, "½ØÖ¹ÈÕÆÚ", class: "control-label"
         .col-sm-10
           .issuable-form-select-holder
-            = form.text_field :due_date, id: "issuable-due-date", class: "datepicker form-control", placeholder: "é€‰æ‹©æˆªæ­¢æ—¥æœŸ"
+            = form.text_field :due_date, id: "issuable-due-date", class: "datepicker form-control", placeholder: "Ñ¡Ôñ½ØÖ¹ÈÕÆÚ"

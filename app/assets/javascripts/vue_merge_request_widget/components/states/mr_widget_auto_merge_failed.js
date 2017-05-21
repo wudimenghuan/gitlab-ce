@@ -1,7 +1,22 @@
+import eventHub from '../../event_hub';
+
 export default {
   name: 'MRWidgetAutoMergeFailed',
   props: {
     mr: { type: Object, required: true },
+  },
+  data() {
+    return {
+      isRefreshing: false,
+    };
+  },
+  methods: {
+    refreshWidget() {
+      this.isRefreshing = true;
+      eventHub.$emit('MRWidgetUpdateRequested', () => {
+        this.isRefreshing = false;
+      });
+    },
   },
   template: `
     <div class="mr-widget-body">
@@ -9,12 +24,23 @@ export default {
         class="btn btn-success btn-small"
         disabled="true"
         type="button">
-        åˆå¹¶
+        ºÏ²¢
       </button>
       <span class="bold danger">
-        è¿™ä¸ªåˆå¹¶è¯·æ±‚æ— æ³•è‡ªåŠ¨åˆå¹¶ã€‚
+        Õâ¸öºÏ²¢ÇëÇóÎŞ·¨×Ô¶¯ºÏ²¢¡£
+        <button
+          @click="refreshWidget"
+          :class="{ disabled: isRefreshing }"
+          type="button"
+          class="btn btn-xs btn-default">
+          <i
+            v-if="isRefreshing"
+            class="fa fa-spinner fa-spin"
+            aria-hidden="true" />
+          Refresh
+        </button>
       </span>
-      <div class="merge-error-text">
+      <div class="merge-error-text danger bold">
         {{mr.mergeError}}
       </div>
     </div>

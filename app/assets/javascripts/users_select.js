@@ -1,7 +1,9 @@
 /* eslint-disable func-names, space-before-function-paren, one-var, no-var, prefer-rest-params, wrap-iife, quotes, max-len, one-var-declaration-per-line, vars-on-top, prefer-arrow-callback, consistent-return, comma-dangle, object-shorthand, no-shadow, no-unused-vars, no-else-return, no-self-compare, prefer-template, no-unused-expressions, no-lonely-if, yoda, prefer-spread, no-void, camelcase, no-param-reassign */
 /* global Issuable */
+/* global emitSidebarEvent */
 
-import eventHub from './sidebar/event_hub';
+// TODO: remove eventHub hack after code splitting refactor
+window.emitSidebarEvent = window.emitSidebarEvent || $.noop;
 
 (function() {
   var bind = function(fn, me) { return function() { return fn.apply(me, arguments); }; },
@@ -53,7 +55,11 @@ import eventHub from './sidebar/event_hub';
           $collapsedSidebar = $block.find('.sidebar-collapsed-user');
           $loading = $block.find('.block-loading').fadeOut();
           selectedIdDefault = (defaultNullUser && showNullUser) ? 0 : null;
-          selectedId = $dropdown.data('selected') || selectedIdDefault;
+          selectedId = $dropdown.data('selected');
+
+          if (selectedId === undefined) {
+            selectedId = selectedIdDefault;
+          }
 
           const assignYourself = function () {
             const unassignedSelected = $dropdown.closest('.selectbox')
@@ -110,7 +116,7 @@ import eventHub from './sidebar/event_hub';
                   .find(`input[name='${$dropdown.data('field-name')}'][value=${firstSelectedId}]`);
 
                 firstSelected.remove();
-                eventHub.$emit('sidebar.removeAssignee', {
+                emitSidebarEvent('sidebar.removeAssignee', {
                   id: firstSelectedId,
                 });
               }
@@ -330,7 +336,7 @@ import eventHub from './sidebar/event_hub';
             defaultLabel: defaultLabel,
             hidden: function(e) {
               if ($dropdown.hasClass('js-multiselect')) {
-                eventHub.$emit('sidebar.saveAssignees');
+                emitSidebarEvent('sidebar.saveAssignees');
               }
 
               if (!$dropdown.data('always-show-selectbox')) {
@@ -364,10 +370,10 @@ import eventHub from './sidebar/event_hub';
                     const id = parseInt(element.value, 10);
                     element.remove();
                   });
-                  eventHub.$emit('sidebar.removeAllAssignees');
+                  emitSidebarEvent('sidebar.removeAllAssignees');
                 } else if (isActive) {
                   // user selected
-                  eventHub.$emit('sidebar.addAssignee', user);
+                  emitSidebarEvent('sidebar.addAssignee', user);
 
                   // Remove unassigned selection (if it was previously selected)
                   const unassignedSelected = $dropdown.closest('.selectbox')
@@ -383,7 +389,7 @@ import eventHub from './sidebar/event_hub';
                   }
 
                   // User unselected
-                  eventHub.$emit('sidebar.removeAssignee', user);
+                  emitSidebarEvent('sidebar.removeAssignee', user);
                 }
 
                 if (getSelected().find(u => u === gon.current_user_id)) {
@@ -420,14 +426,24 @@ import eventHub from './sidebar/event_hub';
                 selected = $dropdown.closest('.selectbox').find("input[name='" + ($dropdown.data('field-name')) + "']").val();
                 return assignTo(selected);
               }
+
+              // Automatically close dropdown after assignee is selected
+              // since CE has no multiple assignees
+              // EE does not have a max-select
+              if ($dropdown.data('max-select') &&
+                  getSelected().length === $dropdown.data('max-select')) {
+                // Close the dropdown
+                $dropdown.dropdown('toggle');
+              }
             },
             id: function (user) {
               return user.id;
             },
             opened: function(e) {
               const $el = $(e.currentTarget);
-              if ($dropdown.hasClass('js-issue-board-sidebar')) {
-                selectedId = parseInt($dropdown[0].dataset.selected, 10) || selectedIdDefault;
+              const selected = getSelected();
+              if ($dropdown.hasClass('js-issue-board-sidebar') && selected.length === 0) {
+                this.addInput($dropdown.data('field-name'), 0, {});
               }
               $el.find('.is-active').removeClass('is-active');
 
@@ -435,8 +451,10 @@ import eventHub from './sidebar/event_hub';
                 $el.find(`li[data-user-id="${id}"] .dropdown-menu-user-link`).addClass('is-active');
               }
 
-              if ($selectbox[0]) {
+              if (selected.length > 0) {
                 getSelected().forEach(selectedId => highlightSelected(selectedId));
+              } else if ($dropdown.hasClass('js-issue-board-sidebar')) {
+                highlightSelected(0);
               } else {
                 highlightSelected(selectedId);
               }
@@ -447,15 +465,19 @@ import eventHub from './sidebar/event_hub';
               username = user.username ? "@" + user.username : "";
               avatar = user.avatar_url ? user.avatar_url : false;
 
-              let selected = user.id === parseInt(selectedId, 10);
+              let selected = false;
 
               if (this.multiSelect) {
+                selected = getSelected().find(u => user.id === u);
+
                 const fieldName = this.fieldName;
                 const field = $dropdown.closest('.selectbox').find("input[name='" + fieldName + "'][value='" + user.id + "']");
 
                 if (field.length) {
                   selected = true;
                 }
+              } else {
+                selected = user.id === selectedId;
               }
 
               img = "";

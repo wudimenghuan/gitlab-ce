@@ -12,6 +12,15 @@ export default {
     commitsText() {
       return gl.text.pluralize('commit', this.mr.divergedCommitsCount);
     },
+    branchNameClipboardData() {
+      // This supports code in app/assets/javascripts/copy_to_clipboard.js that
+      // works around ClipboardJS limitations to allow the context-specific
+      // copy/pasting of plain text or GFM.
+      return JSON.stringify({
+        text: this.mr.sourceBranch,
+        gfm: `\`${this.mr.sourceBranch}\``,
+      });
+    },
   },
   methods: {
     isBranchTitleLong(branchTitle) {
@@ -27,7 +36,7 @@ export default {
           href="#modal_merge_info"
           data-toggle="modal"
           class="btn inline btn-grouped btn-sm">
-          æ£€å‡ºåˆ†æ”¯
+          ¼ì³ö·ÖÖ§
         </a>
         <span class="dropdown inline prepend-left-5">
           <a
@@ -47,46 +56,45 @@ export default {
               <a
                 :href="mr.emailPatchesPath"
                 download>
-                ç”µå­é‚®ä»¶è¡¥ä¸
+                µç×ÓÓÊ¼ş²¹¶¡
               </a>
             </li>
             <li>
               <a
                 :href="mr.plainDiffPath"
                 download>
-                å·®å¼‚æ–‡ä»¶
+                ²îÒìÎÄ¼ş
               </a>
             </li>
           </ul>
         </span>
       </div>
       <div class="normal">
-        <b>Request to merge</b>
-        <span
-          class="label-branch"
-          :class="{'label-truncated has-tooltip': isBranchTitleLong(mr.sourceBranch)}"
-          :title="isBranchTitleLong(mr.sourceBranch) ? mr.sourceBranch : ''"
-          data-placement="bottom"
-          v-html="mr.sourceBranchLink"></span>
-        <button
-          class="btn btn-transparent btn-clipboard has-tooltip"
-          data-title="å¤åˆ¶åˆ†æ”¯åç§°åˆ°å‰ªè´´æ¿"
-          :data-clipboard-text="mr.sourceBranch">
-          <i
-            aria-hidden="true"
-            class="fa fa-clipboard"></i>
-        </button>
-        <b>into</b>
-        <span
-          class="label-branch"
-          :class="{'label-truncated has-tooltip': isBranchTitleLong(mr.targetBranch)}"
-          :title="isBranchTitleLong(mr.targetBranch) ? mr.targetBranch : ''"
-          data-placement="bottom">
-          <a
-            :href="mr.targetBranchCommitsPath">
-            {{mr.targetBranch}}
-          </a>
-        </span>
+        <strong>
+          ÇëÇóºÏ²¢
+          <span
+            class="label-branch"
+            :class="{'label-truncated has-tooltip': isBranchTitleLong(mr.sourceBranch)}"
+            :title="isBranchTitleLong(mr.sourceBranch) ? mr.sourceBranch : ''"
+            data-placement="bottom"
+            v-html="mr.sourceBranchLink"></span>
+          <button
+            class="btn btn-transparent btn-clipboard has-tooltip"
+            data-title="Copy branch name to clipboard"
+            :data-clipboard-text="branchNameClipboardData">
+            <i
+              aria-hidden="true"
+              class="fa fa-clipboard"></i>
+          </button>
+          µ½
+          <span
+            class="label-branch"
+            :class="{'label-truncated has-tooltip': isBranchTitleLong(mr.targetBranch)}"
+            :title="isBranchTitleLong(mr.targetBranch) ? mr.targetBranch : ''"
+            data-placement="bottom">
+            <a :href="mr.targetBranchPath">{{mr.targetBranch}}</a>
+          </span>
+        </strong>
         <span
           v-if="shouldShowCommitsBehindText"
           class="diverged-commits-count">
