@@ -74,14 +74,14 @@ module SystemNoteService
         added_users = issue.assignees.to_a - old_assignees
 
         text_parts = []
-        text_parts << "assigned to #{added_users.map(&:to_reference).to_sentence}" if added_users.any?
-        text_parts << "unassigned #{unassigned_users.map(&:to_reference).to_sentence}" if unassigned_users.any?
+        text_parts << "指派给 #{added_users.map(&:to_reference).to_sentence}" if added_users.any?
+        text_parts << "取消指派给 #{unassigned_users.map(&:to_reference).to_sentence}" if unassigned_users.any?
 
         text_parts.join(' and ')
       elsif old_assignees.any?
-        "removed assignee"
+        "已删除的指派"
       elsif issue.assignees.any?
-        "assigned to #{issue.assignees.map(&:to_reference).to_sentence}"
+        "指派给 #{issue.assignees.map(&:to_reference).to_sentence}"
       end
 
     create_note(NoteSummary.new(issue, project, author, body, action: 'assignee'))

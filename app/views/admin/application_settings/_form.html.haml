@@ -507,16 +507,16 @@
             = link_to icon('question-circle'), help_page_path("user/admin_area/settings/usage_statistics", anchor: "usage-ping")
           .help-block
             - if can_be_configured
-              Every week GitLab will report license usage back to GitLab, Inc.
-              Disable this option if you do not want this to occur. To see the
-              JSON payload that will be sent, visit the
-              = succeed '.' do
-                = link_to "Cohorts page", admin_cohorts_path(anchor: 'usage-ping')
+              每周 GitLab 将向 GitLab，Inc. 报告许可证使用情况。
+              如果您不希望报告使用情况，请禁用此选项。
+              要查看将发送的JSON有效内容，请访问
+              = succeed '。' do
+                = link_to "活跃度页面", admin_cohorts_path(anchor: 'usage-ping')
             - else
-              The usage ping is disabled, and cannot be configured through this
-              form. For more information, see the documentation on
-              = succeed '.' do
-                = link_to 'deactivating the usage ping', help_page_path('user/admin_area/settings/usage_statistics', anchor: 'deactivate-the-usage-ping')
+              使用率反馈已被禁用，不能通过这个表单进行配置。
+              请通过这个文档了解更多信息：
+              = succeed '。' do
+                = link_to '禁用使用率反馈', help_page_path('user/admin_area/settings/usage_statistics', anchor: 'deactivate-the-usage-ping')
 
   %fieldset
     %legend 邮箱
