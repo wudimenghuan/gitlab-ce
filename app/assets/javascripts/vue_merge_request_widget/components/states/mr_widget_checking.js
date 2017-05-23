@@ -6,7 +6,7 @@ export default {
         type="button"
         class="btn btn-success btn-small"
         disabled="true">
-        Merge
+        合并
       </button>
       <span class="bold">
         正在进行自动合并检查

@@ -64,7 +64,7 @@ export default {
       <section class="mr-info-list">
         <div class="legend"></div>
         <p>
-          The changes were merged into
+          变更已经合并到
           <span class="label-branch">
             <a :href="mr.targetBranchPath">{{mr.targetBranch}}</a>
           </span>

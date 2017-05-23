@@ -52,12 +52,12 @@ export default {
     },
     mergeButtonText() {
       if (this.isMergingImmediately) {
-        return 'Merge in progress';
+        return '合并进行中';
       } else if (this.mr.isPipelineActive) {
-        return 'Merge when pipeline succeeds';
+        return '当流水线成功后合并';
       }
 
-      return 'Merge';
+      return '合并';
     },
     shouldShowMergeOptionsDropdown() {
       return this.mr.isPipelineActive && !this.mr.onlyAllowMergeIfPipelineSucceeds;

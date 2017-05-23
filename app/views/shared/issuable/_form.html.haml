@@ -77,9 +77,9 @@
 
   %span.append-right-10
     - if issuable.new_record?
-      = form.submit "Submit #{issuable.class.model_name.human.downcase}", class: 'btn btn-create'
+      = form.submit "提交 #{issuable.zh_name}", class: 'btn btn-create'
     - else
-      = form.submit 'Save changes', class: 'btn btn-save'
+      = form.submit '保存修改', class: 'btn btn-save'
 
   - if !issuable.persisted? && !issuable.project.empty_repo? && (guide_url = contribution_guide_path(issuable.project))
     .inline.prepend-top-10
