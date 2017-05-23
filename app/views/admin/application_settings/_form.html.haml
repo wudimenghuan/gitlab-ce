@@ -2,341 +2,341 @@
   = form_errors(@application_setting)
 
   %fieldset
-    %legend ¿É¼ûĞÔÓë·ÃÎÊ¿ØÖÆ
+    %legend å¯è§æ€§ä¸è®¿é—®æ§åˆ¶
     .form-group
-      = f.label :default_branch_protection, 'Ä¬ÈÏ±£»¤·ÖÖ§', class: 'control-label col-sm-2'
+      = f.label :default_branch_protection, 'é»˜è®¤ä¿æŠ¤åˆ†æ”¯', class: 'control-label col-sm-2'
       .col-sm-10
         = f.select :default_branch_protection, options_for_select(Gitlab::Access.protection_options, @application_setting.default_branch_protection), {}, class: 'form-control'
     .form-group.project-visibility-level-holder
-      = f.label :default_project_visibility, 'Ä¬ÈÏÏîÄ¿¿É¼û¶È', class: 'control-label col-sm-2'
+      = f.label :default_project_visibility, 'é»˜è®¤é¡¹ç›®å¯è§åº¦', class: 'control-label col-sm-2'
       .col-sm-10
         = render('shared/visibility_radios', model_method: :default_project_visibility, form: f, selected_level: @application_setting.default_project_visibility, form_model: Project.new)
     .form-group.project-visibility-level-holder
-      = f.label :default_snippet_visibility, 'Ä¬ÈÏ´úÂëÆ¬¶Î¿É¼û¶È', class: 'control-label col-sm-2'
+      = f.label :default_snippet_visibility, 'é»˜è®¤ä»£ç ç‰‡æ®µå¯è§åº¦', class: 'control-label col-sm-2'
       .col-sm-10
         = render('shared/visibility_radios', model_method: :default_snippet_visibility, form: f, selected_level: @application_setting.default_snippet_visibility, form_model: ProjectSnippet.new)
     .form-group.project-visibility-level-holder
-      = f.label :default_group_visibility, 'Ä¬ÈÏÈº×é¿É¼û¶È', class: 'control-label col-sm-2'
+      = f.label :default_group_visibility, 'é»˜è®¤ç¾¤ç»„å¯è§åº¦', class: 'control-label col-sm-2'
       .col-sm-10
         = render('shared/visibility_radios', model_method: :default_group_visibility, form: f, selected_level: @application_setting.default_group_visibility, form_model: Group.new)
     .form-group
-      = f.label :restricted_visibility_levels, '¿É¼û¶ÈÏŞÖÆ', class: 'control-label col-sm-2'
+      = f.label :restricted_visibility_levels, 'å¯è§åº¦é™åˆ¶', class: 'control-label col-sm-2'
       .col-sm-10
         - restricted_level_checkboxes('restricted-visibility-help').each do |level|
           .checkbox
             = level
         %span.help-block#restricted-visibility-help
-          Ñ¡ÔñµÄµÈ¼¶½«ÎŞ·¨ÓÃÓÚ·Ç¹ÜÀíÓÃ»§µÄÏîÄ¿ºÍ´úÂëÆ¬¶Î¡£
-          Èç¹û¹«¿ªµÈ¼¶±»ÏŞÖÆ£¬ÓÃ»§¸öÈË×ÊÁÏÖ»¶ÔÒÑµÇÂ¼ÓÃ»§¿É¼û¡£
+          é€‰æ‹©çš„ç­‰çº§å°†æ— æ³•ç”¨äºéç®¡ç†ç”¨æˆ·çš„é¡¹ç›®å’Œä»£ç ç‰‡æ®µã€‚
+          å¦‚æœå…¬å¼€ç­‰çº§è¢«é™åˆ¶ï¼Œç”¨æˆ·ä¸ªäººèµ„æ–™åªå¯¹å·²ç™»å½•ç”¨æˆ·å¯è§ã€‚
     .form-group
-      = f.label :import_sources, 'µ¼ÈëÀ´Ô´', class: 'control-label col-sm-2'
+      = f.label :import_sources, 'å¯¼å…¥æ¥æº', class: 'control-label col-sm-2'
       .col-sm-10
         - import_sources_checkboxes('import-sources-help').each do |source|
           .checkbox= source
         %span.help-block#import-sources-help
-          ÏîÄ¿´´½¨Ê±¿ÉÓÃµÄ´úÂëµ¼ÈëÀ´Ô´¡£GitHub
+          é¡¹ç›®åˆ›å»ºæ—¶å¯ç”¨çš„ä»£ç å¯¼å…¥æ¥æºã€‚GitHub
           = link_to "(?)", help_page_path("integration/github")
           , Bitbucket
           = link_to "(?)", help_page_path("integration/bitbucket")
-          ºÍ GitLab.com
+          å’Œ GitLab.com
           = link_to "(?)", help_page_path("integration/gitlab")
-          ±ØĞëÏÈÅäÖÃºÃ OmniAuth¡£
+          å¿…é¡»å…ˆé…ç½®å¥½ OmniAuthã€‚
     .form-group
-      %label.control-label.col-sm-2 ÆôÓÃµÄ Git ·ÃÎÊĞ­Òé
+      %label.control-label.col-sm-2 å¯ç”¨çš„ Git è®¿é—®åè®®
       .col-sm-10
-        = select(:application_setting, :enabled_git_access_protocol, [['SSH ºÍ HTTP(S)', nil], ['Ö»ÓĞ SSH', 'ssh'], ['Ö»ÓĞ HTTP(S)', 'http']], {}, class: 'form-control')
+        = select(:application_setting, :enabled_git_access_protocol, [['SSH å’Œ HTTP(S)', nil], ['åªæœ‰ SSH', 'ssh'], ['åªæœ‰ HTTP(S)', 'http']], {}, class: 'form-control')
         %span.help-block#clone-protocol-help
-          ½öÔÊĞíÍ¨¹ıËùÑ¡Ğ­Òé½øĞĞGit·ÃÎÊ¡£
+          ä»…å…è®¸é€šè¿‡æ‰€é€‰åè®®è¿›è¡ŒGitè®¿é—®ã€‚
 
   %fieldset
-    %legend ÕË»§ÓëÏŞÖÆÉèÖÃ
+    %legend è´¦æˆ·ä¸é™åˆ¶è®¾ç½®
     .form-group
       .col-sm-offset-2.col-sm-10
         .checkbox
           = f.label :gravatar_enabled do
             = f.check_box :gravatar_enabled
-            ¿ªÆô Gravatar Í·Ïñ
+            å¼€å¯ Gravatar å¤´åƒ
     .form-group
-      = f.label :default_projects_limit, 'Ä¬ÈÏÏîÄ¿ÏŞÖÆ', class: 'control-label col-sm-2'
+      = f.label :default_projects_limit, 'é»˜è®¤é¡¹ç›®é™åˆ¶', class: 'control-label col-sm-2'
       .col-sm-10
         = f.number_field :default_projects_limit, class: 'form-control'
     .form-group
-      = f.label :max_attachment_size, '×î´ó¸½¼ş´óĞ¡ (MB)', class: 'control-label col-sm-2'
+      = f.label :max_attachment_size, 'æœ€å¤§é™„ä»¶å¤§å° (MB)', class: 'control-label col-sm-2'
       .col-sm-10
         = f.number_field :max_attachment_size, class: 'form-control'
     .form-group
-      = f.label :session_expire_delay, '»á»°±£ÁôÊ±¼ä (·ÖÖÓ)', class: 'control-label col-sm-2'
+      = f.label :session_expire_delay, 'ä¼šè¯ä¿ç•™æ—¶é—´ (åˆ†é’Ÿ)', class: 'control-label col-sm-2'
       .col-sm-10
         = f.number_field :session_expire_delay, class: 'form-control'
-        %span.help-block#session_expire_delay_help_block ÒªÓ¦ÓÃ´Ë±ä¸üĞèÒªÖØÆô GitLab
+        %span.help-block#session_expire_delay_help_block è¦åº”ç”¨æ­¤å˜æ›´éœ€è¦é‡å¯ GitLab
     .form-group
-      = f.label :user_oauth_applications, 'ÓÃ»§ OAuth Ó¦ÓÃ', class: 'control-label col-sm-2'
+      = f.label :user_oauth_applications, 'ç”¨æˆ· OAuth åº”ç”¨', class: 'control-label col-sm-2'
       .col-sm-10
         .checkbox
           = f.label :user_oauth_applications do
             = f.check_box :user_oauth_applications
-            ÔÊĞíÓÃ»§×¢²áÊ¹ÓÃ GitLab Îª OAuth Ìá¹©ÕßµÄÓ¦ÓÃ
+            å…è®¸ç”¨æˆ·æ³¨å†Œä½¿ç”¨ GitLab ä¸º OAuth æä¾›è€…çš„åº”ç”¨
     .form-group
-      = f.label :user_default_external, '½«ĞÂ×¢²áÓÃ»§ÉèÖÃÎªÍâ²¿ÓÃ»§', class: 'control-label col-sm-2'
+      = f.label :user_default_external, 'å°†æ–°æ³¨å†Œç”¨æˆ·è®¾ç½®ä¸ºå¤–éƒ¨ç”¨æˆ·', class: 'control-label col-sm-2'
       .col-sm-10
         .checkbox
           = f.label :user_default_external do
             = f.check_box :user_default_external
-            ĞÂ×¢²áÓÃ»§Ä¬ÈÏÎªÍâ²¿ÓÃ»§
+            æ–°æ³¨å†Œç”¨æˆ·é»˜è®¤ä¸ºå¤–éƒ¨ç”¨æˆ·
 
   %fieldset
-    %legend ×¢²áÏŞÖÆ
+    %legend æ³¨å†Œé™åˆ¶
     .form-group
       .col-sm-offset-2.col-sm-10
         .checkbox
           = f.label :signup_enabled do
             = f.check_box :signup_enabled
-            ¿ªÆô×¢²á
+            å¼€å¯æ³¨å†Œ
     .form-group
       .col-sm-offset-2.col-sm-10
         .checkbox
           = f.label :send_user_confirmation_email do
             = f.check_box :send_user_confirmation_email
-            ×¢²áÊ±·¢ËÍÈ·ÈÏÓÊ¼ş
+            æ³¨å†Œæ—¶å‘é€ç¡®è®¤é‚®ä»¶
     .form-group
-      = f.label :domain_whitelist, '×¢²áÓòÃû°×Ãûµ¥', class: 'control-label col-sm-2'
+      = f.label :domain_whitelist, 'æ³¨å†ŒåŸŸåç™½åå•', class: 'control-label col-sm-2'
       .col-sm-10
         = f.text_area :domain_whitelist_raw, placeholder: 'domain.com', class: 'form-control', rows: 8
-        .help-block ÓÃ»§Ê¹ÓÃµÄÓÊÏäµØÖ·ºó×º±ØĞëÆ¥ÅäÕâĞ©ÓòÃû²ÅÄÜ×¢²á¡£·ºÓòÃû¿ÉÓÃ¡£Ê¹ÓÃÓ¢ÎÄ¶ººÅ·Ö¸ô¶à¸öÓòÃû¡£±ÈÈç£ºdomain.com, *.domain.com
+        .help-block ç”¨æˆ·ä½¿ç”¨çš„é‚®ç®±åœ°å€åç¼€å¿…é¡»åŒ¹é…è¿™äº›åŸŸåæ‰èƒ½æ³¨å†Œã€‚æ³›åŸŸåå¯ç”¨ã€‚ä½¿ç”¨è‹±æ–‡é€—å·åˆ†éš”å¤šä¸ªåŸŸåã€‚æ¯”å¦‚ï¼šdomain.com, *.domain.com
     .form-group
-      = f.label :domain_blacklist_enabled, 'ÓòÃûºÚÃûµ¥', class: 'control-label col-sm-2'
+      = f.label :domain_blacklist_enabled, 'åŸŸåé»‘åå•', class: 'control-label col-sm-2'
       .col-sm-10
         .checkbox
           = f.label :domain_blacklist_enabled do
             = f.check_box :domain_blacklist_enabled
-            ÆôÓÃ×¢²áÓòÃûºÚÃûµ¥
+            å¯ç”¨æ³¨å†ŒåŸŸåé»‘åå•
     .form-group
       .col-sm-offset-2.col-sm-10
         .radio
           = label_tag :blacklist_type_file do
             = radio_button_tag :blacklist_type, :file
             .option-title
-              ÉÏ´«ºÚÃûµ¥ÎÄ¼ş
+              ä¸Šä¼ é»‘åå•æ–‡ä»¶
         .radio
           = label_tag :blacklist_type_raw do
             = radio_button_tag :blacklist_type, :raw, @application_setting.domain_blacklist.present? || @application_setting.domain_blacklist.blank?
             .option-title
-              ÊÖ¶¯ÊäÈëºÚÃûµ¥
+              æ‰‹åŠ¨è¾“å…¥é»‘åå•
     .form-group.blacklist-file
-      = f.label :domain_blacklist_file, 'ºÚÃûµ¥ÎÄ¼ş', class: 'control-label col-sm-2'
+      = f.label :domain_blacklist_file, 'é»‘åå•æ–‡ä»¶', class: 'control-label col-sm-2'
       .col-sm-10
         = f.file_field :domain_blacklist_file, class: 'form-control', accept: '.txt,.conf'
-        .help-block ²»ÔÊĞíÓÃ»§Ê¹ÓÃÕâ¸öÎÄ¼şÖĞµÄÓòÃûºó×ºµÄÓÊÏä×¢²á¡£·ºÓòÃû¿ÉÓÃ¡£Ê¹ÓÃÓ¢ÎÄ¶ººÅ·Ö¸ô¶à¸öÓòÃû¡£
+        .help-block ä¸å…è®¸ç”¨æˆ·ä½¿ç”¨è¿™ä¸ªæ–‡ä»¶ä¸­çš„åŸŸååç¼€çš„é‚®ç®±æ³¨å†Œã€‚æ³›åŸŸåå¯ç”¨ã€‚ä½¿ç”¨è‹±æ–‡é€—å·åˆ†éš”å¤šä¸ªåŸŸåã€‚
     .form-group.blacklist-raw
-      = f.label :domain_blacklist, '×¢²áÓòÃûºÚÃûµ¥', class: 'control-label col-sm-2'
+      = f.label :domain_blacklist, 'æ³¨å†ŒåŸŸåé»‘åå•', class: 'control-label col-sm-2'
       .col-sm-10
         = f.text_area :domain_blacklist_raw, placeholder: 'domain.com', class: 'form-control', rows: 8
-        .help-block ²»ÔÊĞíÓÃ»§Ê¹ÓÃÕâĞ©ÓòÃûºó×ºµÄÓÊÏä×¢²á¡£·ºÓòÃû¿ÉÓÃ¡£Ê¹ÓÃÓ¢ÎÄ¶ººÅ·Ö¸ô¶à¸öÓòÃû¡£±ÈÈç£ºdomain.com, *.domain.com
+        .help-block ä¸å…è®¸ç”¨æˆ·ä½¿ç”¨è¿™äº›åŸŸååç¼€çš„é‚®ç®±æ³¨å†Œã€‚æ³›åŸŸåå¯ç”¨ã€‚ä½¿ç”¨è‹±æ–‡é€—å·åˆ†éš”å¤šä¸ªåŸŸåã€‚æ¯”å¦‚ï¼šdomain.com, *.domain.com
 
     .form-group
-      = f.label :after_sign_up_text, '×¢²á³É¹¦ÌáÊ¾', class: 'control-label col-sm-2'
+      = f.label :after_sign_up_text, 'æ³¨å†ŒæˆåŠŸæç¤º', class: 'control-label col-sm-2'
       .col-sm-10
         = f.text_area :after_sign_up_text, class: 'form-control', rows: 4
-        .help-block ÔÊĞíÊ¹ÓÃ Markdown ¸ñÊ½
+        .help-block å…è®¸ä½¿ç”¨ Markdown æ ¼å¼
 
   %fieldset
-    %legend µÇÂ¼ÏŞÖÆ
+    %legend ç™»å½•é™åˆ¶
     .form-group
       .col-sm-offset-2.col-sm-10
         .checkbox
           = f.label :signin_enabled do
             = f.check_box :signin_enabled
-            ÔÊĞíµÇÂ¼
+            å…è®¸ç™»å½•
     - if omniauth_enabled? && button_based_providers.any?
       .form-group
-        = f.label :enabled_oauth_sign_in_sources, '¿ªÆô OAuth µÇÂ¼Ô´', class: 'control-label col-sm-2'
+        = f.label :enabled_oauth_sign_in_sources, 'å¼€å¯ OAuth ç™»å½•æº', class: 'control-label col-sm-2'
         .col-sm-10
           .btn-group{ data: { toggle: 'buttons' } }
             - oauth_providers_checkboxes.each do |source|
               = source
     .form-group
-      = f.label :two_factor_authentication, 'Á½²½ÑéÖ¤', class: 'control-label col-sm-2'
+      = f.label :two_factor_authentication, 'ä¸¤æ­¥éªŒè¯', class: 'control-label col-sm-2'
       .col-sm-10
         .checkbox
           = f.label :require_two_factor_authentication do
             = f.check_box :require_two_factor_authentication
-            Ç¿ÖÆÈ«²¿ÓÃ»§ÉèÖÃÁ½²½ÑéÖ¤
+            å¼ºåˆ¶å…¨éƒ¨ç”¨æˆ·è®¾ç½®ä¸¤æ­¥éªŒè¯
     .form-group
-      = f.label :two_factor_authentication, 'Á½²½ÑéÖ¤¿íÏŞÆÚ (Ğ¡Ê±)', class: 'control-label col-sm-2'
+      = f.label :two_factor_authentication, 'ä¸¤æ­¥éªŒè¯å®½é™æœŸ (å°æ—¶)', class: 'control-label col-sm-2'
       .col-sm-10
         = f.number_field :two_factor_grace_period, min: 0, class: 'form-control', placeholder: '0'
-        .help-block ÔÊĞíÓÃ»§Ìø¹ıÇ¿ÖÆÁ½²½ÑéÖ¤ÅäÖÃµÄÊ±¼ä·¶Î§£¨Ğ¡Ê±£©
+        .help-block å…è®¸ç”¨æˆ·è·³è¿‡å¼ºåˆ¶ä¸¤æ­¥éªŒè¯é…ç½®çš„æ—¶é—´èŒƒå›´ï¼ˆå°æ—¶ï¼‰
     .form-group
-      = f.label :home_page_url, 'Ö÷Ò³Á´½Ó', class: 'control-label col-sm-2'
+      = f.label :home_page_url, 'ä¸»é¡µé“¾æ¥', class: 'control-label col-sm-2'
       .col-sm-10
         = f.text_field :home_page_url, class: 'form-control', placeholder: 'http://company.example.com', :'aria-describedby' => 'home_help_block'
-        %span.help-block#home_help_block Î´µÇÂ¼ÓÃ»§½«»áÖØ¶¨Ïòµ½´ËÒ³Ãæ
+        %span.help-block#home_help_block æœªç™»å½•ç”¨æˆ·å°†ä¼šé‡å®šå‘åˆ°æ­¤é¡µé¢
     .form-group
-      = f.label :after_sign_out_path, 'ÍË³öºóÂ·¾¶', class: 'control-label col-sm-2'
+      = f.label :after_sign_out_path, 'é€€å‡ºåè·¯å¾„', class: 'control-label col-sm-2'
       .col-sm-10
         = f.text_field :after_sign_out_path, class: 'form-control', placeholder: 'http://company.example.com', :'aria-describedby' => 'after_sign_out_path_help_block'
-        %span.help-block#after_sign_out_path_help_block ÓÃ»§ÍË³öºó½«»áÖØ¶¨Ïòµ½´ËÒ³Ãæ
+        %span.help-block#after_sign_out_path_help_block ç”¨æˆ·é€€å‡ºåå°†ä¼šé‡å®šå‘åˆ°æ­¤é¡µé¢
     .form-group
-      = f.label :sign_in_text, 'µÇÂ¼Ò³ÃæÎÄ×Ö', class: 'control-label col-sm-2'
+      = f.label :sign_in_text, 'ç™»å½•é¡µé¢æ–‡å­—', class: 'control-label col-sm-2'
       .col-sm-10
         = f.text_area :sign_in_text, class: 'form-control', rows: 4
-        .help-block ÔÊĞíÊ¹ÓÃ Markdown ¸ñÊ½
+        .help-block å…è®¸ä½¿ç”¨ Markdown æ ¼å¼
     .form-group
-      = f.label :help_page_text, '°ïÖúÒ³ÃæÎÄ×Ö', class: 'control-label col-sm-2'
+      = f.label :help_page_text, 'å¸®åŠ©é¡µé¢æ–‡å­—', class: 'control-label col-sm-2'
       .col-sm-10
         = f.text_area :help_page_text, class: 'form-control', rows: 4
-        .help-block ÔÊĞíÊ¹ÓÃ Markdown ¸ñÊ½
+        .help-block å…è®¸ä½¿ç”¨ Markdown æ ¼å¼
 
   %fieldset
-    %legend Ò³Ãæ
+    %legend é¡µé¢
     .form-group
-      = f.label :max_pages_size, 'Ò³Ãæ´óĞ¡ÏŞÖÆ (MB)', class: 'control-label col-sm-2'
+      = f.label :max_pages_size, 'é¡µé¢å¤§å°é™åˆ¶ (MB)', class: 'control-label col-sm-2'
       .col-sm-10
         = f.number_field :max_pages_size, class: 'form-control'
-        .help-block ÉèÎª0Ôò²»ÏŞÖÆ´óĞ¡
+        .help-block è®¾ä¸º0åˆ™ä¸é™åˆ¶å¤§å°
 
   %fieldset
-    %legend ³ÖĞø¼¯³É(CI)
+    %legend æŒç»­é›†æˆ(CI)
     .form-group
       .col-sm-offset-2.col-sm-10
         .checkbox
           = f.label :shared_runners_enabled do
             = f.check_box :shared_runners_enabled
-            ÎªĞÂÏîÄ¿Ä¬ÈÏ¿ªÆô¹²Ïí runner
+            ä¸ºæ–°é¡¹ç›®é»˜è®¤å¼€å¯å…±äº« runner
     .form-group
-      = f.label :shared_runners_text, '¹²Ïí runner ÎÄ±¾', class: 'control-label col-sm-2'
+      = f.label :shared_runners_text, 'å…±äº« runner æ–‡æœ¬', class: 'control-label col-sm-2'
       .col-sm-10
         = f.text_area :shared_runners_text, class: 'form-control', rows: 4
-        .help-block ÔÊĞíÊ¹ÓÃ Markdown ¸ñÊ½
+        .help-block å…è®¸ä½¿ç”¨ Markdown æ ¼å¼
     .form-group
-      = f.label :max_artifacts_size, '×î´ó¹¤¼ş´óĞ¡ (MB)', class: 'control-label col-sm-2'
+      = f.label :max_artifacts_size, 'æœ€å¤§å·¥ä»¶å¤§å° (MB)', class: 'control-label col-sm-2'
       .col-sm-10
         = f.number_field :max_artifacts_size, class: 'form-control'
         .help-block
-          ÉèÖÃÃ¿¸ö¹¹½¨µÄ¹¤¼şµÄ×î´óÎÄ¼ş´óĞ¡
+          è®¾ç½®æ¯ä¸ªæ„å»ºçš„å·¥ä»¶çš„æœ€å¤§æ–‡ä»¶å¤§å°
           = link_to icon('question-circle'), help_page_path('user/admin_area/settings/continuous_integration', anchor: 'maximum-artifacts-size')
     .form-group
-      = f.label :default_artifacts_expire_in, '¹¤¼şÄ¬ÈÏ³¬Ê±Ê±¼ä', class: 'control-label col-sm-2'
+      = f.label :default_artifacts_expire_in, 'å·¥ä»¶é»˜è®¤è¶…æ—¶æ—¶é—´', class: 'control-label col-sm-2'
       .col-sm-10
         = f.text_field :default_artifacts_expire_in, class: 'form-control'
         .help-block
-          ÉèÖÃ¹¤¼şµÄÄ¬ÈÏ³¬Ê±Ê±¼ä¡£
-          ÉèÎª0Ôò²»ÏŞÖÆ¡£
+          è®¾ç½®å·¥ä»¶çš„é»˜è®¤è¶…æ—¶æ—¶é—´ã€‚
+          è®¾ä¸º0åˆ™ä¸é™åˆ¶ã€‚
           = link_to icon('question-circle'), help_page_path('user/admin_area/settings/continuous_integration', anchor: 'default-artifacts-expiration')
 
   - if Gitlab.config.registry.enabled
     %fieldset
-      %legend ÈİÆ÷×¢²á±í
+      %legend å®¹å™¨æ³¨å†Œè¡¨
       .form-group
-        = f.label :container_registry_token_expire_delay, 'ÊÚÈ¨ÁîÅÆ³ÖĞøÊ±¼ä £¨·ÖÖÓ£©', class: 'control-label col-sm-2'
+        = f.label :container_registry_token_expire_delay, 'æˆæƒä»¤ç‰ŒæŒç»­æ—¶é—´ ï¼ˆåˆ†é’Ÿï¼‰', class: 'control-label col-sm-2'
         .col-sm-10
           = f.number_field :container_registry_token_expire_delay, class: 'form-control'
 
   %fieldset
-    %legend ¶ÈÁ¿
+    %legend åº¦é‡
     %p
-      ÉèÖÃInfluxDBÀ´²âÁ¿¸÷ÖÖÍ³¼ÆĞÅÏ¢£¬ÀıÈçÔËĞĞSQL²éÑ¯Ëù»¨·ÑµÄÊ±¼ä¡£ ÕâĞ©ÉèÖÃĞèÒª
-      = link_to 'ÖØĞÂÆô¶¯', help_page_path('administration/restart_gitlab')
-      ºó²ÅÄÜÉúĞ§¡£
+      è®¾ç½®InfluxDBæ¥æµ‹é‡å„ç§ç»Ÿè®¡ä¿¡æ¯ï¼Œä¾‹å¦‚è¿è¡ŒSQLæŸ¥è¯¢æ‰€èŠ±è´¹çš„æ—¶é—´ã€‚ è¿™äº›è®¾ç½®éœ€è¦
+      = link_to 'é‡æ–°å¯åŠ¨', help_page_path('administration/restart_gitlab')
+      åæ‰èƒ½ç”Ÿæ•ˆã€‚
       = link_to icon('question-circle'), help_page_path('administration/monitoring/performance/introduction')
     .form-group
       .col-sm-offset-2.col-sm-10
         .checkbox
           = f.label :metrics_enabled do
             = f.check_box :metrics_enabled
-            ¿ªÆô InfluxDB ¶ÈÁ¿
+            å¼€å¯ InfluxDB åº¦é‡
     .form-group
-      = f.label :metrics_host, 'InfluxDB Ö÷»ú', class: 'control-label col-sm-2'
+      = f.label :metrics_host, 'InfluxDB ä¸»æœº', class: 'control-label col-sm-2'
       .col-sm-10
         = f.text_field :metrics_host, class: 'form-control', placeholder: 'influxdb.example.com'
     .form-group
-      = f.label :metrics_port, 'InfluxDB ¶Ë¿Ú', class: 'control-label col-sm-2'
+      = f.label :metrics_port, 'InfluxDB ç«¯å£', class: 'control-label col-sm-2'
       .col-sm-10
         = f.text_field :metrics_port, class: 'form-control', placeholder: '8089'
         .help-block
-          ÓÃÓÚÁ¬½Óµ½ InfluxDB µÄ UDP ¶Ë¿Ú¡£
-          InfluxDB ĞèÒªÄúµÄ·şÎñÆ÷ÅäÖÃÊı¾İ¿âÓÃÓÚ´æ´¢·¢ËÍµ½´Ë¶Ë¿ÚµÄÏûÏ¢£¬
-          Èç¹ûÃ»ÓĞÅäÖÃ£¬¶ÈÁ¿Êı¾İ½«²»»á±£´æ¡£
+          ç”¨äºè¿æ¥åˆ° InfluxDB çš„ UDP ç«¯å£ã€‚
+          InfluxDB éœ€è¦æ‚¨çš„æœåŠ¡å™¨é…ç½®æ•°æ®åº“ç”¨äºå­˜å‚¨å‘é€åˆ°æ­¤ç«¯å£çš„æ¶ˆæ¯ï¼Œ
+          å¦‚æœæ²¡æœ‰é…ç½®ï¼Œåº¦é‡æ•°æ®å°†ä¸ä¼šä¿å­˜ã€‚
     .form-group
-      = f.label :metrics_pool_size, 'Á¬½Ó³Ø´óĞ¡', class: 'control-label col-sm-2'
+      = f.label :metrics_pool_size, 'è¿æ¥æ± å¤§å°', class: 'control-label col-sm-2'
       .col-sm-10
         = f.number_field :metrics_pool_size, class: 'form-control'
         .help-block
-          ¿ÉÓÃµÄ InfluxDB Á¬½ÓÊı¡£
-          Á¬½ÓÊÇÑÓ³Ù¼ÓÔØµÄ£¬¼´Ö»ÓĞĞèÒªµÄÊ±ºò²Å»á´ò¿ª¡£
-          Ê¹ÓÃ¶àÏß³ÌÓ¦ÓÃ·şÎñÆ÷µÄÓÃ»§Ó¦È·±£ÓĞ×ã¹»µÄÁ¬½Ó¿ÉÓÃ
-          £¨¿ÉÓÃÊıÖÁÉÙÊÇÓ¦ÓÃ·şÎñÆ÷Ïß³ÌµÄÊıÁ¿£©¡£
+          å¯ç”¨çš„ InfluxDB è¿æ¥æ•°ã€‚
+          è¿æ¥æ˜¯å»¶è¿ŸåŠ è½½çš„ï¼Œå³åªæœ‰éœ€è¦çš„æ—¶å€™æ‰ä¼šæ‰“å¼€ã€‚
+          ä½¿ç”¨å¤šçº¿ç¨‹åº”ç”¨æœåŠ¡å™¨çš„ç”¨æˆ·åº”ç¡®ä¿æœ‰è¶³å¤Ÿçš„è¿æ¥å¯ç”¨
+          ï¼ˆå¯ç”¨æ•°è‡³å°‘æ˜¯åº”ç”¨æœåŠ¡å™¨çº¿ç¨‹çš„æ•°é‡ï¼‰ã€‚
     .form-group
-      = f.label :metrics_timeout, 'Á¬½Ó³¬Ê±', class: 'control-label col-sm-2'
+      = f.label :metrics_timeout, 'è¿æ¥è¶…æ—¶', class: 'control-label col-sm-2'
       .col-sm-10
         = f.number_field :metrics_timeout, class: 'form-control'
         .help-block
-          Á¬½Ó³¬Ê±Ê±¼ä£¬µ¥Î»Ãë¡£
+          è¿æ¥è¶…æ—¶æ—¶é—´ï¼Œå•ä½ç§’ã€‚
     .form-group
-      = f.label :metrics_method_call_threshold, '·½·¨µ÷ÓÃãĞÖµ (ºÁÃë)', class: 'control-label col-sm-2'
+      = f.label :metrics_method_call_threshold, 'æ–¹æ³•è°ƒç”¨é˜ˆå€¼ (æ¯«ç§’)', class: 'control-label col-sm-2'
       .col-sm-10
         = f.number_field :metrics_method_call_threshold, class: 'form-control'
         .help-block
-          Ö»ÓĞ³¬¹ı´Ë¸ø¶¨µÄºÁÃë·§ÖµºóÍê³ÉµÄ·½·¨µ÷ÓÃ²Å»á±»¸ú×Ù¡£
+          åªæœ‰è¶…è¿‡æ­¤ç»™å®šçš„æ¯«ç§’é˜€å€¼åå®Œæˆçš„æ–¹æ³•è°ƒç”¨æ‰ä¼šè¢«è·Ÿè¸ªã€‚
     .form-group
-      = f.label :metrics_sample_interval, '²ÉÑù¼ä¸ô (Ãë)', class: 'control-label col-sm-2'
+      = f.label :metrics_sample_interval, 'é‡‡æ ·é—´éš” (ç§’)', class: 'control-label col-sm-2'
       .col-sm-10
         = f.number_field :metrics_sample_interval, class: 'form-control'
         .help-block
-          ÒÔÃëÎªµ¥Î»µÄ²ÉÑù¼ä¸ô¡£
-          ²ÉÑùÊı¾İ°üÀ¨ÄÚ´æÊ¹ÓÃ¡¢±£ÁôµÄ Ruby ¶ÔÏó¡¢ÎÄ¼şÃèÊö·ûµÈ¡£
+          ä»¥ç§’ä¸ºå•ä½çš„é‡‡æ ·é—´éš”ã€‚
+          é‡‡æ ·æ•°æ®åŒ…æ‹¬å†…å­˜ä½¿ç”¨ã€ä¿ç•™çš„ Ruby å¯¹è±¡ã€æ–‡ä»¶æè¿°ç¬¦ç­‰ã€‚
     .form-group
-      = f.label :metrics_packet_size, '¶ÈÁ¿°ü´óĞ¡', class: 'control-label col-sm-2'
+      = f.label :metrics_packet_size, 'åº¦é‡åŒ…å¤§å°', class: 'control-label col-sm-2'
       .col-sm-10
         = f.number_field :metrics_packet_size, class: 'form-control'
         .help-block
-          ´æ´¢ÔÚµ¥¸öUDPÊı¾İ°üÖĞµÄµãÊı¡£ Ôö¼ÓµãÊı¿ÉÒÔ¼õÉÙ·¢ËÍ´ÎÊı£¬µ«»áÔö¼ÓÃ¿¸öUDPÊı¾İ°üµÄ´óĞ¡¡£
+          å­˜å‚¨åœ¨å•ä¸ªUDPæ•°æ®åŒ…ä¸­çš„ç‚¹æ•°ã€‚ å¢åŠ ç‚¹æ•°å¯ä»¥å‡å°‘å‘é€æ¬¡æ•°ï¼Œä½†ä¼šå¢åŠ æ¯ä¸ªUDPæ•°æ®åŒ…çš„å¤§å°ã€‚
 
   %fieldset
-    %legend ºóÌ¨×÷Òµ
+    %legend åå°ä½œä¸š
     %p
-      ÕâĞ©ÉèÖÃĞèÒªÖØÆô²ÅÄÜÉúĞ§¡£
+      è¿™äº›è®¾ç½®éœ€è¦é‡å¯æ‰èƒ½ç”Ÿæ•ˆã€‚
     .form-group
       .col-sm-offset-2.col-sm-10
         .checkbox
           = f.label :sidekiq_throttling_enabled do
             = f.check_box :sidekiq_throttling_enabled
-            ÆôÓÃ Sidekiq ×÷Òµµ÷½Ú
+            å¯ç”¨ Sidekiq ä½œä¸šè°ƒèŠ‚
           .help-block
-            ÏŞÖÆ·ÖÅä»ºÂıÔËĞĞµÄ×÷ÒµµÄ×ÊÔ´Á¿¡£
+            é™åˆ¶åˆ†é…ç¼“æ…¢è¿è¡Œçš„ä½œä¸šçš„èµ„æºé‡ã€‚
     .form-group
-      = f.label :sidekiq_throttling_queues, 'µ÷½Ú Sidekiq ¶ÓÁĞ', class: 'control-label col-sm-2'
+      = f.label :sidekiq_throttling_queues, 'è°ƒèŠ‚ Sidekiq é˜Ÿåˆ—', class: 'control-label col-sm-2'
       .col-sm-10
         = f.select :sidekiq_throttling_queues, sidekiq_queue_options_for_select, { include_hidden: false }, multiple: true, class: 'select2 select-wide', data: { field: 'sidekiq_throttling_queues' }
         .help-block
-          Ñ¡ÔñĞèÒªµ÷½ÚµÄ¶ÓÁĞ¡£
+          é€‰æ‹©éœ€è¦è°ƒèŠ‚çš„é˜Ÿåˆ—ã€‚
     .form-group
-      = f.label :sidekiq_throttling_factor, 'µ÷½ÚÏµÊı', class: 'control-label col-sm-2'
+      = f.label :sidekiq_throttling_factor, 'è°ƒèŠ‚ç³»æ•°', class: 'control-label col-sm-2'
       .col-sm-10
         = f.number_field :sidekiq_throttling_factor, class: 'form-control', min: '0.01', max: '0.99', step: '0.01'
         .help-block
-          ¶ÓÁĞµ÷ÕûÏµÊı£¬½éÓÚ 0.0 µ½ 1.0Ö®¼ä¡£
+          é˜Ÿåˆ—è°ƒæ•´ç³»æ•°ï¼Œä»‹äº 0.0 åˆ° 1.0ä¹‹é—´ã€‚
 
   %fieldset
-    %legend À¬»øÓë·À»úÆ÷ÈË±£»¤
+    %legend åƒåœ¾ä¸é˜²æœºå™¨äººä¿æŠ¤
     .form-group
       .col-sm-offset-2.col-sm-10
         .checkbox
           = f.label :recaptcha_enabled do
             = f.check_box :recaptcha_enabled
-            ¿ªÆô reCAPTCHA
-          %span.help-block#recaptcha_help_block ÓĞÖúÓÚ·ÀÖ¹»úÆ÷ÈË´´½¨ÕÊ»§
+            å¼€å¯ reCAPTCHA
+          %span.help-block#recaptcha_help_block æœ‰åŠ©äºé˜²æ­¢æœºå™¨äººåˆ›å»ºå¸æˆ·
 
     .form-group
-      = f.label :recaptcha_site_key, 'reCAPTCHA ÍøÕ¾ÃÜÔ¿', class: 'control-label col-sm-2'
+      = f.label :recaptcha_site_key, 'reCAPTCHA ç½‘ç«™å¯†é’¥', class: 'control-label col-sm-2'
       .col-sm-10
         = f.text_field :recaptcha_site_key, class: 'form-control'
         .help-block
-          ÔÚÏÂÃæµÄÍøÖ·Éú³ÉÍøÕ¾ÃÜÔ¿ (Site Key) ºÍË½Ô¿ (Private Key)£º
+          åœ¨ä¸‹é¢çš„ç½‘å€ç”Ÿæˆç½‘ç«™å¯†é’¥ (Site Key) å’Œç§é’¥ (Private Key)ï¼š
           %a{ href: 'http://www.google.com/recaptcha', target: 'blank' } http://www.google.com/recaptcha
 
     .form-group
-      = f.label :recaptcha_private_key, 'reCAPTCHA Ë½Ô¿', class: 'control-label col-sm-2'
+      = f.label :recaptcha_private_key, 'reCAPTCHA ç§é’¥', class: 'control-label col-sm-2'
       .col-sm-10
         = f.text_field :recaptcha_private_key, class: 'form-control'
 
@@ -345,15 +345,15 @@
         .checkbox
           = f.label :akismet_enabled do
             = f.check_box :akismet_enabled
-            ¿ªÆô Akismet
-          %span.help-block#akismet_help_block ÓÃ»§×èÖ¹»úÆ÷ÈË´´½¨ÎÊÌâ
+            å¼€å¯ Akismet
+          %span.help-block#akismet_help_block ç”¨æˆ·é˜»æ­¢æœºå™¨äººåˆ›å»ºé—®é¢˜
 
     .form-group
       = f.label :akismet_api_key, 'Akismet API Key', class: 'control-label col-sm-2'
       .col-sm-10
         = f.text_field :akismet_api_key, class: 'form-control'
         .help-block
-          ÔÚÏÂÃæµÄÍøÖ·Éú³É API ÃÜÔ¿£¨API Key£©£º
+          åœ¨ä¸‹é¢çš„ç½‘å€ç”Ÿæˆ API å¯†é’¥ï¼ˆAPI Keyï¼‰ï¼š
           %a{ href: 'http://www.akismet.com', target: 'blank' } http://www.akismet.com
 
     .form-group
@@ -361,44 +361,44 @@
         .checkbox
           = f.label :unique_ips_limit_enabled do
             = f.check_box :unique_ips_limit_enabled
-            ÏŞÖÆ´Ó¶à¸ö IP µÇÂ¼
+            é™åˆ¶ä»å¤šä¸ª IP ç™»å½•
           %span.help-block#unique_ip_help_block
-            °ïÖú·ÀÖ¹¶ñÒâÓÃ»§Òş²ØËûÃÇµÄ»î¶¯
+            å¸®åŠ©é˜²æ­¢æ¶æ„ç”¨æˆ·éšè—ä»–ä»¬çš„æ´»åŠ¨
 
     .form-group
-      = f.label :unique_ips_limit_per_user, 'Ã¿ÓÃ»§IPÊı', class: 'control-label col-sm-2'
+      = f.label :unique_ips_limit_per_user, 'æ¯ç”¨æˆ·IPæ•°', class: 'control-label col-sm-2'
       .col-sm-10
         = f.number_field :unique_ips_limit_per_user, class: 'form-control'
         .help-block
-          Ã¿¸öÓÃ»§µÄÎ¨Ò» IP ×î´óÊıÄ¿
+          æ¯ä¸ªç”¨æˆ·çš„å”¯ä¸€ IP æœ€å¤§æ•°ç›®
 
     .form-group
-      = f.label :unique_ips_limit_time_window, 'IP ¹ıÆÚÊ±¼ä', class: 'control-label col-sm-2'
+      = f.label :unique_ips_limit_time_window, 'IP è¿‡æœŸæ—¶é—´', class: 'control-label col-sm-2'
       .col-sm-10
         = f.number_field :unique_ips_limit_time_window, class: 'form-control'
         .help-block
-          Ò»¸ö IP »á±»´¥·¢ÏŞÖÆ¼ÆÊıµÄÃëÊı
+          ä¸€ä¸ª IP ä¼šè¢«è§¦å‘é™åˆ¶è®¡æ•°çš„ç§’æ•°
 
   %fieldset
-    %legend ÀÄÓÃ±¨¸æ
+    %legend æ»¥ç”¨æŠ¥å‘Š
     .form-group
-      = f.label :admin_notification_email, 'ÀÄÓÃ±¨¸æÍ¨ÖªÓÊÏä', class: 'control-label col-sm-2'
+      = f.label :admin_notification_email, 'æ»¥ç”¨æŠ¥å‘Šé€šçŸ¥é‚®ç®±', class: 'control-label col-sm-2'
       .col-sm-10
         = f.text_field :admin_notification_email, class: 'form-control'
         .help-block
-          ÀÄÓÃ±¨¸æ½«»á·¢ËÍÖÁ´ËÓÊÏä. ÀÄÓÃ±¨¸æ¿ÉËæÊ±ÔÚ¹ÜÀíºóÌ¨²é¿´¡£
+          æ»¥ç”¨æŠ¥å‘Šå°†ä¼šå‘é€è‡³æ­¤é‚®ç®±. æ»¥ç”¨æŠ¥å‘Šå¯éšæ—¶åœ¨ç®¡ç†åå°æŸ¥çœ‹ã€‚
 
   %fieldset
-    %legend ´íÎó±¨¸æºÍÈÕÖ¾
+    %legend é”™è¯¯æŠ¥å‘Šå’Œæ—¥å¿—
     .form-group
       .col-sm-offset-2.col-sm-10
         .checkbox
           = f.label :sentry_enabled do
             = f.check_box :sentry_enabled
-            ¿ªÆô Sentry
+            å¼€å¯ Sentry
           .help-block
-            %p ÕâĞ©ÉèÖÃĞèÒªÖØÆô²ÅÄÜÉúĞ§¡£
-            Sentry ÊÇÒ»¸ö´íÎó±¨¸æºÍÈÕÖ¾¼ÇÂ¼¹¤¾ß¡£GitLab µ±Ç°²¢Î´×Ô´ø´Ë¹¤¾ß£¬ĞèÒªÔÚÏÂÃæµÄÍøÖ·ÏÂÔØ²¢°²×°£º
+            %p è¿™äº›è®¾ç½®éœ€è¦é‡å¯æ‰èƒ½ç”Ÿæ•ˆã€‚
+            Sentry æ˜¯ä¸€ä¸ªé”™è¯¯æŠ¥å‘Šå’Œæ—¥å¿—è®°å½•å·¥å…·ã€‚GitLab å½“å‰å¹¶æœªè‡ªå¸¦æ­¤å·¥å…·ï¼Œéœ€è¦åœ¨ä¸‹é¢çš„ç½‘å€ä¸‹è½½å¹¶å®‰è£…ï¼š
             %a{ href: 'https://getsentry.com', target: '_blank', rel: 'noopener noreferrer' } https://getsentry.com
 
     .form-group
@@ -411,45 +411,45 @@
         .checkbox
           = f.label :clientside_sentry_enabled do
             = f.check_box :clientside_sentry_enabled
-            ÆôÓÃ¿Í»§¶ËµÄ Sentry
+            å¯ç”¨å®¢æˆ·ç«¯çš„ Sentry
           .help-block
-            Sentry Ò²¿ÉÒÔÓÃÓÚ¿Í»§¶ËµÄ´íÎó±¨¸æºÍ¼ÇÂ¼¡£
+            Sentry ä¹Ÿå¯ä»¥ç”¨äºå®¢æˆ·ç«¯çš„é”™è¯¯æŠ¥å‘Šå’Œè®°å½•ã€‚
             %a{ href: 'https://sentry.io/for/javascript/', target: '_blank', rel: 'noopener noreferrer' } https://sentry.io/for/javascript/
 
     .form-group
-      = f.label :clientside_sentry_dsn, '¿Í»§¶Ë Sentry DSN', class: 'control-label col-sm-2'
+      = f.label :clientside_sentry_dsn, 'å®¢æˆ·ç«¯ Sentry DSN', class: 'control-label col-sm-2'
       .col-sm-10
         = f.text_field :clientside_sentry_dsn, class: 'form-control'
 
   %fieldset
-    %legend °æ±¾¿â´æ´¢
+    %legend ç‰ˆæœ¬åº“å­˜å‚¨
     .form-group
-      = f.label :repository_storages, 'ĞÂÏîÄ¿µÄ´æ´¢µÄÂ·¾¶', class: 'control-label col-sm-2'
+      = f.label :repository_storages, 'æ–°é¡¹ç›®çš„å­˜å‚¨çš„è·¯å¾„', class: 'control-label col-sm-2'
       .col-sm-10
         = f.select :repository_storages, repository_storages_options_for_select, {include_hidden: false}, multiple: true, class: 'form-control'
         .help-block
-          ÔÚ
+          åœ¨
           = succeed "." do
-            = link_to "°æ±¾¿â´æ´¢ÎÄµµ", help_page_path("administration/repository_storages")
-          ÁË½âÈçºÎ¹ÜÀí°æ±¾¿â´æ´¢Â·¾¶¡£
+            = link_to "ç‰ˆæœ¬åº“å­˜å‚¨æ–‡æ¡£", help_page_path("administration/repository_storages")
+          äº†è§£å¦‚ä½•ç®¡ç†ç‰ˆæœ¬åº“å­˜å‚¨è·¯å¾„ã€‚
 
   %fieldset
-    %legend °æ±¾¿â¼ì²é
+    %legend ç‰ˆæœ¬åº“æ£€æŸ¥
     .form-group
       .col-sm-offset-2.col-sm-10
         .checkbox
           = f.label :repository_checks_enabled do
             = f.check_box :repository_checks_enabled
-            ¿ªÆô°æ±¾²Ö¿â¼ì²é
+            å¼€å¯ç‰ˆæœ¬ä»“åº“æ£€æŸ¥
           .help-block
-            GitLab ½«¶¨ÆÚ¸øËùÓĞÏîÄ¿ºÍÎ¬»ù°æ±¾²Ö¿âÔËĞĞ
+            GitLab å°†å®šæœŸç»™æ‰€æœ‰é¡¹ç›®å’Œç»´åŸºç‰ˆæœ¬ä»“åº“è¿è¡Œ
             %a{ href: 'https://www.kernel.org/pub/software/scm/git/docs/git-fsck.html', target: 'blank' } 'git fsck'
-            ÃüÁîÀ´Ñ°ÕÒÎŞ¼ÇÔØµÄ´ÅÅÌËğ»µÎÊÌâ¡£
+            å‘½ä»¤æ¥å¯»æ‰¾æ— è®°è½½çš„ç£ç›˜æŸåé—®é¢˜ã€‚
     .form-group
       .col-sm-offset-2.col-sm-10
-        = link_to 'Çå³ıËùÓĞ°æ±¾²Ö¿â¼ì²é', clear_repository_check_states_admin_application_settings_path, data: { confirm: '½«Çå³ıÊı¾İ¿âÄÚËùÓĞÏîÄ¿µÄ°æ±¾²Ö¿â¼ì²é×´Ì¬¡£´Ë²Ù×÷ÎŞ·¨±»³·Ïú¡£È·¶¨Òª¼ÌĞøÃ´£¿' }, method: :put, class: "btn btn-sm btn-remove"
+        = link_to 'æ¸…é™¤æ‰€æœ‰ç‰ˆæœ¬ä»“åº“æ£€æŸ¥', clear_repository_check_states_admin_application_settings_path, data: { confirm: 'å°†æ¸…é™¤æ•°æ®åº“å†…æ‰€æœ‰é¡¹ç›®çš„ç‰ˆæœ¬ä»“åº“æ£€æŸ¥çŠ¶æ€ã€‚æ­¤æ“ä½œæ— æ³•è¢«æ’¤é”€ã€‚ç¡®å®šè¦ç»§ç»­ä¹ˆï¼Ÿ' }, method: :put, class: "btn btn-sm btn-remove"
         .help-block
-          Èç¹ûÔÚ°æ±¾²Ö¿â¼ì²éÖĞµÃµ½ºÜ¶à¼Ù¾¯±¨£¬Äã¿ÉÒÔÑ¡ÔñÇå³ıÊı¾İ¿âÖĞµÄËùÓĞ°æ±¾²Ö¿â¼ì²éĞÅÏ¢¡£
+          å¦‚æœåœ¨ç‰ˆæœ¬ä»“åº“æ£€æŸ¥ä¸­å¾—åˆ°å¾ˆå¤šå‡è­¦æŠ¥ï¼Œä½ å¯ä»¥é€‰æ‹©æ¸…é™¤æ•°æ®åº“ä¸­çš„æ‰€æœ‰ç‰ˆæœ¬ä»“åº“æ£€æŸ¥ä¿¡æ¯ã€‚
 
   %fieldset
     %legend Koding
@@ -458,17 +458,17 @@
         .checkbox
           = f.label :koding_enabled do
             = f.check_box :koding_enabled
-            ¿ªÆô Koding
+            å¼€å¯ Koding
     .form-group
       = f.label :koding_url, 'Koding URL', class: 'control-label col-sm-2'
       .col-sm-10
         = f.text_field :koding_url, class: 'form-control', placeholder: 'http://gitlab.your-koding-instance.com:8090'
         .help-block
-          KodingÒÑ¾­Îª
+          Kodingå·²ç»ä¸º
           %strong Gitlab
-          ¼¯³ÉÌá¹©ÁËÖ§³Ö£¬ÄúĞèÒªÔÚÕâÀïÌá¹©KodingÍÅ¶ÓµÄURL¡£µã»÷
-          = link_to "Koding ¹ÜÀíÎÄµµ", help_page_path("administration/integration/koding")
-          ÁË½â¸ü¶àµÄĞÅÏ¢¡£
+          é›†æˆæä¾›äº†æ”¯æŒï¼Œæ‚¨éœ€è¦åœ¨è¿™é‡Œæä¾›Kodingå›¢é˜Ÿçš„URLã€‚ç‚¹å‡»
+          = link_to "Koding ç®¡ç†æ–‡æ¡£", help_page_path("administration/integration/koding")
+          äº†è§£æ›´å¤šçš„ä¿¡æ¯ã€‚
 
   %fieldset
     %legend PlantUML
@@ -477,129 +477,129 @@
         .checkbox
           = f.label :plantuml_enabled do
             = f.check_box :plantuml_enabled
-            ¿ªÆô PlantUML
+            å¼€å¯ PlantUML
     .form-group
       = f.label :plantuml_url, 'PlantUML URL', class: 'control-label col-sm-2'
       .col-sm-10
         = f.text_field :plantuml_url, class: 'form-control', placeholder: 'http://gitlab.your-plantuml-instance.com:8080'
         .help-block
-          ÔÊĞíÊ¹ÓÃÍâ²¿µÄ
+          å…è®¸ä½¿ç”¨å¤–éƒ¨çš„
           = link_to "PlantUML", "http://plantuml.com"
-          ·şÎñÀ´äÖÈ¾ÎÄ±¾ÎÄµµÖĞµÄ PlantUML Í¼±í¡£
+          æœåŠ¡æ¥æ¸²æŸ“æ–‡æœ¬æ–‡æ¡£ä¸­çš„ PlantUML å›¾è¡¨ã€‚
 
   %fieldset
-    %legend#usage-statistics ÓÃÁ¿Í³¼Æ
+    %legend#usage-statistics ç”¨é‡ç»Ÿè®¡
     .form-group
       .col-sm-offset-2.col-sm-10
         .checkbox
           = f.label :version_check_enabled do
             = f.check_box :version_check_enabled
-            ¿ªÆô°æ±¾¼ì²é
+            å¼€å¯ç‰ˆæœ¬æ£€æŸ¥
           .help-block
-            ÈÃGitLabÔÚ¸üĞÂ¿ÉÓÃÊ±Í¨ÖªÄú¡£
+            è®©GitLabåœ¨æ›´æ–°å¯ç”¨æ—¶é€šçŸ¥æ‚¨ã€‚
     .form-group
       .col-sm-offset-2.col-sm-10
         - can_be_configured = @application_setting.usage_ping_can_be_configured?
         .checkbox
           = f.label :usage_ping_enabled do
             = f.check_box :usage_ping_enabled, disabled: !can_be_configured
-            ÆôÓÃÊ¹ÓÃÂÊ·´À¡
+            å¯ç”¨ä½¿ç”¨ç‡åé¦ˆ
             = link_to icon('question-circle'), help_page_path("user/admin_area/settings/usage_statistics", anchor: "usage-ping")
           .help-block
             - if can_be_configured
-              Ã¿ÖÜ GitLab ½«Ïò GitLab£¬Inc. ±¨¸æĞí¿ÉÖ¤Ê¹ÓÃÇé¿ö¡£
-              Èç¹ûÄú²»Ï£Íû±¨¸æÊ¹ÓÃÇé¿ö£¬Çë½ûÓÃ´ËÑ¡Ïî¡£
-              Òª²é¿´½«·¢ËÍµÄJSONÓĞĞ§ÄÚÈİ£¬Çë·ÃÎÊ
-              = succeed '¡£' do
-                = link_to "»îÔ¾¶ÈÒ³Ãæ", admin_cohorts_path(anchor: 'usage-ping')
+              æ¯å‘¨ GitLab å°†å‘ GitLabï¼ŒInc. æŠ¥å‘Šè®¸å¯è¯ä½¿ç”¨æƒ…å†µã€‚
+              å¦‚æœæ‚¨ä¸å¸Œæœ›æŠ¥å‘Šä½¿ç”¨æƒ…å†µï¼Œè¯·ç¦ç”¨æ­¤é€‰é¡¹ã€‚
+              è¦æŸ¥çœ‹å°†å‘é€çš„JSONæœ‰æ•ˆå†…å®¹ï¼Œè¯·è®¿é—®
+              = succeed 'ã€‚' do
+                = link_to "æ´»è·ƒåº¦é¡µé¢", admin_cohorts_path(anchor: 'usage-ping')
             - else
-              Ê¹ÓÃÂÊ·´À¡ÒÑ±»½ûÓÃ£¬²»ÄÜÍ¨¹ıÕâ¸ö±íµ¥½øĞĞÅäÖÃ¡£
-              ÇëÍ¨¹ıÕâ¸öÎÄµµÁË½â¸ü¶àĞÅÏ¢£º
-              = succeed '¡£' do
-                = link_to '½ûÓÃÊ¹ÓÃÂÊ·´À¡', help_page_path('user/admin_area/settings/usage_statistics', anchor: 'deactivate-the-usage-ping')
+              ä½¿ç”¨ç‡åé¦ˆå·²è¢«ç¦ç”¨ï¼Œä¸èƒ½é€šè¿‡è¿™ä¸ªè¡¨å•è¿›è¡Œé…ç½®ã€‚
+              è¯·é€šè¿‡è¿™ä¸ªæ–‡æ¡£äº†è§£æ›´å¤šä¿¡æ¯ï¼š
+              = succeed 'ã€‚' do
+                = link_to 'ç¦ç”¨ä½¿ç”¨ç‡åé¦ˆ', help_page_path('user/admin_area/settings/usage_statistics', anchor: 'deactivate-the-usage-ping')
 
   %fieldset
-    %legend ÓÊÏä
+    %legend é‚®ç®±
     .form-group
       .col-sm-offset-2.col-sm-10
         .checkbox
           = f.label :email_author_in_body do
             = f.check_box :email_author_in_body
-            ÔÚÍ¨ÖªÓÊ¼şÕıÎÄ°üº¬×÷ÕßÃû³Æ
+            åœ¨é€šçŸ¥é‚®ä»¶æ­£æ–‡åŒ…å«ä½œè€…åç§°
           .help-block
-            ÓĞĞ©ÓÊ¼ş·şÎñÆ÷²»Ö§³ÖÖØĞ´ÓÊ¼ş·¢ËÍÈËÃû³Æ¹¦ÄÜ¡£
-            ¿ªÆô´ËÑ¡Ïî½«ÔÚÓÊ¼şÕıÎÄÖĞÌá¹©ÎÊÌâ¡¢ºÏ²¢ÇëÇóºÍÆÀÂÛ×÷ÕßµÄÃû³Æ£¬
-            ·ñÔòÖ»ÊÔÍ¼ÖØĞ´ÓÊ¼ş·¢ËÍÈËÎª×÷Õß¡£
+            æœ‰äº›é‚®ä»¶æœåŠ¡å™¨ä¸æ”¯æŒé‡å†™é‚®ä»¶å‘é€äººåç§°åŠŸèƒ½ã€‚
+            å¼€å¯æ­¤é€‰é¡¹å°†åœ¨é‚®ä»¶æ­£æ–‡ä¸­æä¾›é—®é¢˜ã€åˆå¹¶è¯·æ±‚å’Œè¯„è®ºä½œè€…çš„åç§°ï¼Œ
+            å¦åˆ™åªè¯•å›¾é‡å†™é‚®ä»¶å‘é€äººä¸ºä½œè€…ã€‚
     .form-group
       .col-sm-offset-2.col-sm-10
         .checkbox
           = f.label :html_emails_enabled do
             = f.check_box :html_emails_enabled
-            ÆôÓÃ HTML ÓÊ¼ş
+            å¯ç”¨ HTML é‚®ä»¶
           .help-block
-            Ä¬ÈÏÇé¿öÏÂ£¬GitLab Í¬Ê±ÒÔ HTML ºÍ´¿ÎÄ±¾¸ñÊ½·¢ËÍµç×ÓÓÊ¼ş£¬
-            ËùÒÔÓÊ¼ş¿Í»§¶Ë¿ÉÒÔÑ¡ÔñÊ¹ÓÃÊ²Ã´¸ñÊ½¡£
-            Èç¹ûÄúÖ»ÏëÒÔ´¿ÎÄ±¾¸ñÊ½·¢ËÍµç×ÓÓÊ¼ş£¬Çë½ûÓÃ´ËÑ¡Ïî¡£
+            é»˜è®¤æƒ…å†µä¸‹ï¼ŒGitLab åŒæ—¶ä»¥ HTML å’Œçº¯æ–‡æœ¬æ ¼å¼å‘é€ç”µå­é‚®ä»¶ï¼Œ
+            æ‰€ä»¥é‚®ä»¶å®¢æˆ·ç«¯å¯ä»¥é€‰æ‹©ä½¿ç”¨ä»€ä¹ˆæ ¼å¼ã€‚
+            å¦‚æœæ‚¨åªæƒ³ä»¥çº¯æ–‡æœ¬æ ¼å¼å‘é€ç”µå­é‚®ä»¶ï¼Œè¯·ç¦ç”¨æ­¤é€‰é¡¹ã€‚
   %fieldset
-    %legend Git °æ±¾¿â×Ô¶¯Î¬»¤
+    %legend Git ç‰ˆæœ¬åº“è‡ªåŠ¨ç»´æŠ¤
     .form-group
       .col-sm-offset-2.col-sm-10
         .checkbox
           = f.label :housekeeping_enabled do
             = f.check_box :housekeeping_enabled
-            ¿ªÆô°æ±¾¿â×Ô¶¯Î¬»¤ (git repack, git gc)
+            å¼€å¯ç‰ˆæœ¬åº“è‡ªåŠ¨ç»´æŠ¤ (git repack, git gc)
           .help-block
-            Èç¹û³¤Ê±¼ä½ûÓÃ GitLab ·şÎñÆ÷°æ±¾¿âµÄ×Ô¶¯Î¬»¤¹¦ÄÜ£¬½«»áµ¼ÖÂ
-            ·şÎñÆ÷ÏìÓ¦±äÂı£¬²¢ÇÒÕ¼ÓÃ¸ü¶àµÄ´æ´¢¿Õ¼ä£¬ÎÒÃÇ½¨ÒéÄúÊ¼ÖÕ±£³ÖÎª
-            ¿ªÆô×´Ì¬¡£
+            å¦‚æœé•¿æ—¶é—´ç¦ç”¨ GitLab æœåŠ¡å™¨ç‰ˆæœ¬åº“çš„è‡ªåŠ¨ç»´æŠ¤åŠŸèƒ½ï¼Œå°†ä¼šå¯¼è‡´
+            æœåŠ¡å™¨å“åº”å˜æ…¢ï¼Œå¹¶ä¸”å ç”¨æ›´å¤šçš„å­˜å‚¨ç©ºé—´ï¼Œæˆ‘ä»¬å»ºè®®æ‚¨å§‹ç»ˆä¿æŒä¸º
+            å¼€å¯çŠ¶æ€ã€‚
         .checkbox
           = f.label :housekeeping_bitmaps_enabled do
             = f.check_box :housekeeping_bitmaps_enabled
-            ÔÊĞí´´½¨Git°üÎÄ¼şBitmapË÷Òı
+            å…è®¸åˆ›å»ºGitåŒ…æ–‡ä»¶Bitmapç´¢å¼•
           .help-block
-            ´´½¨ Git °üÎÄ¼şµÄBitmapË÷Òı»áÔö¼Ó°æ±¾¿âÎ¬»¤Ê±¼ä
-            µ« BitmapË÷ÒıÄÜÌá¸ß 'git clone' ÃüÁîµÄĞÔÄÜ¡£
+            åˆ›å»º Git åŒ…æ–‡ä»¶çš„Bitmapç´¢å¼•ä¼šå¢åŠ ç‰ˆæœ¬åº“ç»´æŠ¤æ—¶é—´
+            ä½† Bitmapç´¢å¼•èƒ½æé«˜ 'git clone' å‘½ä»¤çš„æ€§èƒ½ã€‚
     .form-group
-      = f.label :housekeeping_incremental_repack_period, 'ÔöÁ¿Ê½ÖØ´ò°ü(Repack)ÖÜÆÚ', class: 'control-label col-sm-2'
+      = f.label :housekeeping_incremental_repack_period, 'å¢é‡å¼é‡æ‰“åŒ…(Repack)å‘¨æœŸ', class: 'control-label col-sm-2'
       .col-sm-10
         = f.number_field :housekeeping_incremental_repack_period, class: 'form-control'
         .help-block
-          Éè¶¨½øĞĞÔöÁ¿Ê½ 'git repack' ÃüÁîµÄÍÆËÍ´ÎÊı¡£
+          è®¾å®šè¿›è¡Œå¢é‡å¼ 'git repack' å‘½ä»¤çš„æ¨é€æ¬¡æ•°ã€‚
     .form-group
-      = f.label :housekeeping_full_repack_period, 'ÍêÕûÖØ´ò°ü(Repack)ÖÜÆÚ', class: 'control-label col-sm-2'
+      = f.label :housekeeping_full_repack_period, 'å®Œæ•´é‡æ‰“åŒ…(Repack)å‘¨æœŸ', class: 'control-label col-sm-2'
       .col-sm-10
         = f.number_field :housekeeping_full_repack_period, class: 'form-control'
         .help-block
-          Éè¶¨½øĞĞÍêÕûµÄ 'git repack' ÃüÁîµÄÍÆËÍ´ÎÊı¡£
+          è®¾å®šè¿›è¡Œå®Œæ•´çš„ 'git repack' å‘½ä»¤çš„æ¨é€æ¬¡æ•°ã€‚
     .form-group
-      = f.label :housekeeping_gc_period, 'Git À¬»øÊÕ¼¯(GC)ÖÜÆÚ', class: 'control-label col-sm-2'
+      = f.label :housekeeping_gc_period, 'Git åƒåœ¾æ”¶é›†(GC)å‘¨æœŸ', class: 'control-label col-sm-2'
       .col-sm-10
         = f.number_field :housekeeping_gc_period, class: 'form-control'
         .help-block
-          Éè¶¨½øĞĞ 'git gc' ÃüÁîµÄÍÆËÍ´ÎÊı¡£
+          è®¾å®šè¿›è¡Œ 'git gc' å‘½ä»¤çš„æ¨é€æ¬¡æ•°ã€‚
 
   %fieldset
-    %legend Web ÖÕ¶Ë
+    %legend Web ç»ˆç«¯
     .form-group
-      = f.label :terminal_max_session_time, '×î´ó»á»°Ê±¼ä', class: 'control-label col-sm-2'
+      = f.label :terminal_max_session_time, 'æœ€å¤§ä¼šè¯æ—¶é—´', class: 'control-label col-sm-2'
       .col-sm-10
         = f.number_field :terminal_max_session_time, class: 'form-control'
         .help-block
-          Web ÖÕ¶Ë WebSocket Á¬½ÓµÄ×î³¤Ê±¼ä£¨ÒÔÃëÎªµ¥Î»£©¡£
-          ÉèÖÃÎª0£¬ÎŞÏŞÊ±¼ä¡£
+          Web ç»ˆç«¯ WebSocket è¿æ¥çš„æœ€é•¿æ—¶é—´ï¼ˆä»¥ç§’ä¸ºå•ä½ï¼‰ã€‚
+          è®¾ç½®ä¸º0ï¼Œæ— é™æ—¶é—´ã€‚
 
   %fieldset
-    %legend ÊµÊ±¹¦ÄÜ
+    %legend å®æ—¶åŠŸèƒ½
     .form-group
-      = f.label :polling_interval_multiplier, 'ÂÖÑ¯¼ä¸ô±¶Êı', class: 'control-label col-sm-2'
+      = f.label :polling_interval_multiplier, 'è½®è¯¢é—´éš”å€æ•°', class: 'control-label col-sm-2'
       .col-sm-10
         = f.text_field :polling_interval_multiplier, class: 'form-control'
         .help-block
-          Í¨¹ıĞŞ¸Ä¸ÃÖµÀ´µ÷Õû GitLab UI ÂÖÑ¯¸üĞÂµÄÆµÂÊ¡£
-          Èç¹û½«¸ÃÖµÉèÖÃÎª2£¬ÔòËùÓĞÂÖÑ¯¼ä¸ô½«³ËÒÔ2£¬ÕâÒâÎ¶×ÅÂÖÑ¯ÆµÂÊ½«½µÎªÒ»°ë£¬
-          ³ËÊıÒ²¿ÉÒÔÊÇÈÎÒâµÄÒ»¸öÊ®½øÖÆÊıÖµ¡£ Ä¬ÈÏÖµ£¨1£©ÊÇ´ó¶àÊı GitLab °²×°µÄºÏÀíÑ¡Ôñ¡£
-          ÉèÖÃÎª0½«ÍêÈ«½ûÓÃÂÖÑ¯¸üĞÂ¹¦ÄÜ¡£
+          é€šè¿‡ä¿®æ”¹è¯¥å€¼æ¥è°ƒæ•´ GitLab UI è½®è¯¢æ›´æ–°çš„é¢‘ç‡ã€‚
+          å¦‚æœå°†è¯¥å€¼è®¾ç½®ä¸º2ï¼Œåˆ™æ‰€æœ‰è½®è¯¢é—´éš”å°†ä¹˜ä»¥2ï¼Œè¿™æ„å‘³ç€è½®è¯¢é¢‘ç‡å°†é™ä¸ºä¸€åŠï¼Œ
+          ä¹˜æ•°ä¹Ÿå¯ä»¥æ˜¯ä»»æ„çš„ä¸€ä¸ªåè¿›åˆ¶æ•°å€¼ã€‚ é»˜è®¤å€¼ï¼ˆ1ï¼‰æ˜¯å¤§å¤šæ•° GitLab å®‰è£…çš„åˆç†é€‰æ‹©ã€‚
+          è®¾ç½®ä¸º0å°†å®Œå…¨ç¦ç”¨è½®è¯¢æ›´æ–°åŠŸèƒ½ã€‚
           = link_to icon('question-circle'), help_page_path('administration/polling')
 
   .form-actions
-    = f.submit '±£´æ', class: 'btn btn-save'
+    = f.submit 'ä¿å­˜', class: 'btn btn-save'

@@ -36,7 +36,7 @@ export default {
           href="#modal_merge_info"
           data-toggle="modal"
           class="btn inline btn-grouped btn-sm">
-          ¼ì³ö·ÖÖ§
+          æ£€å‡ºåˆ†æ”¯
         </a>
         <span class="dropdown inline prepend-left-5">
           <a
@@ -56,14 +56,14 @@ export default {
               <a
                 :href="mr.emailPatchesPath"
                 download>
-                µç×ÓÓÊ¼þ²¹¶¡
+                ç”µå­é‚®ä»¶è¡¥ä¸
               </a>
             </li>
             <li>
               <a
                 :href="mr.plainDiffPath"
                 download>
-                ²îÒìÎÄ¼þ
+                å·®å¼‚æ–‡ä»¶
               </a>
             </li>
           </ul>
@@ -71,7 +71,7 @@ export default {
       </div>
       <div class="normal">
         <strong>
-          ÇëÇóºÏ²¢
+          è¯·æ±‚åˆå¹¶
           <span
             class="label-branch"
             :class="{'label-truncated has-tooltip': isBranchTitleLong(mr.sourceBranch)}"
@@ -86,7 +86,7 @@ export default {
               aria-hidden="true"
               class="fa fa-clipboard"></i>
           </button>
-          µ½
+          åˆ°
           <span
             class="label-branch"
             :class="{'label-truncated has-tooltip': isBranchTitleLong(mr.targetBranch)}"

@@ -6,28 +6,28 @@
   = form_errors(@schedule)
   .form-group
     .col-md-9
-      = f.label :description, 'ÃèÊö', class: 'label-light'
-      = f.text_field :description, class: 'form-control', required: true, autofocus: true, placeholder: 'Ìá¹©Ò»¸ö¶Ô¸ÃÁ÷Ë®ÏßµÄ¼òµ¥ÃèÊö'
+      = f.label :description, 'æè¿°', class: 'label-light'
+      = f.text_field :description, class: 'form-control', required: true, autofocus: true, placeholder: 'æä¾›ä¸€ä¸ªå¯¹è¯¥æµæ°´çº¿çš„ç®€å•æè¿°'
   .form-group
     .col-md-9
-      = f.label :cron, '¼ä¸ôÄ£Ê½', class: 'label-light'
+      = f.label :cron, 'é—´éš”æ¨¡å¼', class: 'label-light'
       #interval-pattern-input{ data: { initial_interval: @schedule.cron } }
   .form-group
     .col-md-9
-      = f.label :cron_timezone, 'Cron Ê±Çø', class: 'label-light'
-      = dropdown_tag("Ñ¡ÔñÊ±Çø", options: { toggle_class: 'btn js-timezone-dropdown', title: "Ñ¡ÔñÊ±Çø", filter: true, placeholder: "¹ıÂË", data: { data: timezone_data } } )
+      = f.label :cron_timezone, 'Cron æ—¶åŒº', class: 'label-light'
+      = dropdown_tag("é€‰æ‹©æ—¶åŒº", options: { toggle_class: 'btn js-timezone-dropdown', title: "é€‰æ‹©æ—¶åŒº", filter: true, placeholder: "è¿‡æ»¤", data: { data: timezone_data } } )
       = f.text_field :cron_timezone, value: @schedule.cron_timezone, id: 'schedule_cron_timezone', class: 'hidden', name: 'schedule[cron_timezone]', required: true
   .form-group
     .col-md-9
-      = f.label :ref, 'Ä¿±ê·ÖÖ§', class: 'label-light'
-      = dropdown_tag("Select target branch", options: { toggle_class: 'btn js-target-branch-dropdown git-revision-dropdown-toggle', dropdown_class: 'git-revision-dropdown', title: "Ñ¡ÔñÄ¿±ê·ÖÇø", filter: true, placeholder: "¹ıÂË", data: { data: @project.repository.branch_names, default_branch: @project.default_branch } } )
+      = f.label :ref, 'ç›®æ ‡åˆ†æ”¯', class: 'label-light'
+      = dropdown_tag("Select target branch", options: { toggle_class: 'btn js-target-branch-dropdown git-revision-dropdown-toggle', dropdown_class: 'git-revision-dropdown', title: "é€‰æ‹©ç›®æ ‡åˆ†åŒº", filter: true, placeholder: "è¿‡æ»¤", data: { data: @project.repository.branch_names, default_branch: @project.default_branch } } )
       = f.text_field :ref, value: @schedule.ref, id: 'schedule_ref', class: 'hidden', name: 'schedule[ref]', required: true
   .form-group
     .col-md-9
-      = f.label  :active, 'ÒÑ¼¤»î', class: 'label-light'
+      = f.label  :active, 'å·²æ¿€æ´»', class: 'label-light'
       %div
         = f.check_box :active, required: false, value: @schedule.active?
-        ¼¤»î
+        æ¿€æ´»
   .footer-block.row-content-block
-    = f.submit '±£´æÁ÷Ë®Ïß¼Æ»®', class: 'btn btn-create', tabindex: 3
-    = link_to 'Á÷Ë®Ïß', pipeline_schedules_path(@project), class: 'btn btn-cancel'
+    = f.submit 'ä¿å­˜æµæ°´çº¿è®¡åˆ’', class: 'btn btn-create', tabindex: 3
+    = link_to 'æµæ°´çº¿', pipeline_schedules_path(@project), class: 'btn btn-cancel'

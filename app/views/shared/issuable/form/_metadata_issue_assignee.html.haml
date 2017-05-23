@@ -1,4 +1,4 @@
-= form.label :assignee_ids, "Ö¸ÅÉ", class: "control-label #{"col-lg-4" if has_due_date}"
+= form.label :assignee_ids, "æŒ‡æ´¾", class: "control-label #{"col-lg-4" if has_due_date}"
 .col-sm-10{ class: ("col-lg-8" if has_due_date) }
   .issuable-form-select-holder.selectbox
     - issuable.assignees.each do |assignee|
@@ -8,4 +8,4 @@
       = hidden_field_tag "#{issuable.to_ability_name}[assignee_ids][]", 0, id: nil, data: { meta: '' }
 
     = dropdown_tag(users_dropdown_label(issuable.assignees), options: issue_dropdown_options(issuable,false))
-  = link_to 'Ö¸ÅÉ¸ø×Ô¼º', '#', class: "assign-to-me-link #{'hide' if issuable.assignees.include?(current_user)}"
+  = link_to 'æŒ‡æ´¾ç»™è‡ªå·±', '#', class: "assign-to-me-link #{'hide' if issuable.assignees.include?(current_user)}"

@@ -7,33 +7,33 @@
     - else
       = icon('user', 'aria-hidden': 'true')
   .title.hide-collapsed
-    Ö¸ÅÉ
+    æŒ‡æ´¾
     = icon('spinner spin', class: 'hidden block-loading', 'aria-hidden': 'true')
     - if can_edit_issuable
-      = link_to '±à¼­', '#', class: 'edit-link pull-right'
+      = link_to 'ç¼–è¾‘', '#', class: 'edit-link pull-right'
   .value.hide-collapsed
     - if issuable.assignee
       = link_to_member(@project, issuable.assignee, size: 32, extra_class: 'bold') do
         - if !issuable.can_be_merged_by?(issuable.assignee)
-          %span.pull-right.cannot-be-merged{ data: { toggle: 'tooltip', placement: 'left' }, title: '²»ÔÊĞíºÏ²¢' }
+          %span.pull-right.cannot-be-merged{ data: { toggle: 'tooltip', placement: 'left' }, title: 'ä¸å…è®¸åˆå¹¶' }
             = icon('exclamation-triangle', 'aria-hidden': 'true')
         %span.username
           = issuable.assignee.to_reference
     - else
       %span.assign-yourself.no-value
-        Î´Ö¸ÅÉ
+        æœªæŒ‡æ´¾
         - if can_edit_issuable
           \-
           %a.js-assign-yourself{ href: '#' }
-            Ö¸ÅÉ¸øÄú×Ô¼º
+            æŒ‡æ´¾ç»™æ‚¨è‡ªå·±
 
 .selectbox.hide-collapsed
   - issuable.assignees.each do |assignee|
     = hidden_field_tag "#{issuable.to_ability_name}[assignee_ids][]", assignee.id, id: nil
 
-  - options = { toggle_class: 'js-user-search js-author-search', title: 'Ö¸ÅÉ¸ø', filter: true, dropdown_class: 'dropdown-menu-user dropdown-menu-selectable dropdown-menu-author', placeholder: 'ËÑË÷ÓÃ»§', data: { first_user: (current_user.username if current_user), current_user: true, project_id: (@project.id if @project), author_id: issuable.author_id, field_name: "#{issuable.to_ability_name}[assignee_ids][]", issue_update: issuable_json_path(issuable), ability_name: issuable.to_ability_name, null_user: true } }
+  - options = { toggle_class: 'js-user-search js-author-search', title: 'æŒ‡æ´¾ç»™', filter: true, dropdown_class: 'dropdown-menu-user dropdown-menu-selectable dropdown-menu-author', placeholder: 'æœç´¢ç”¨æˆ·', data: { first_user: (current_user.username if current_user), current_user: true, project_id: (@project.id if @project), author_id: issuable.author_id, field_name: "#{issuable.to_ability_name}[assignee_ids][]", issue_update: issuable_json_path(issuable), ability_name: issuable.to_ability_name, null_user: true } }
 
-  - title = 'Ñ¡ÔñÖ¸ÅÉ'
+  - title = 'é€‰æ‹©æŒ‡æ´¾'
 
   - if issuable.is_a?(Issue)
     - unless issuable.assignees.any?
@@ -42,7 +42,7 @@
     - data = { field_name: "#{issuable.to_ability_name}[assignee_ids][]" }
     - data[:multi_select] = true
     - data['dropdown-title'] = title
-    - data['dropdown-header'] = 'Ö¸ÅÉ'
+    - data['dropdown-header'] = 'æŒ‡æ´¾'
     - data['max-select'] = 1
     - options[:data].merge!(data)
 

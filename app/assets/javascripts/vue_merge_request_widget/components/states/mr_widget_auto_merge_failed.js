@@ -24,10 +24,10 @@ export default {
         class="btn btn-success btn-small"
         disabled="true"
         type="button">
-        �ϲ�
+        合并
       </button>
       <span class="bold danger">
-        ����ϲ������޷��Զ��ϲ���
+        这个合并请求无法自动合并。
         <button
           @click="refreshWidget"
           :class="{ disabled: isRefreshing }"
