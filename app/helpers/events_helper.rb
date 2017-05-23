@@ -14,7 +14,7 @@ module EventsHelper
     author = event.author
 
     if author
-      name = self_added ? 'You' : author.name
+      name = self_added ? '您' : author.name
       link_to name, user_path(author.username), title: name
     else
       event.author_name

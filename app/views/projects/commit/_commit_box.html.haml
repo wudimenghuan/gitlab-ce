@@ -1,6 +1,6 @@
 .page-content-header
   .header-main-content
-    %strong Commit #{@commit.short_id}
+    %strong 提交 #{@commit.short_id}
     = clipboard_button(text: @commit.id, title: "复制提交 SHA 到剪贴板")
     %span 由
     = author_avatar(@commit, size: 24)

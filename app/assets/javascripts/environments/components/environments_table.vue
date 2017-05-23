@@ -47,19 +47,19 @@ export default {
     <thead>
       <tr>
         <th class="environments-name">
-          Environment
+          运行环境
         </th>
         <th class="environments-deploy">
-          Last deployment
+          最后部署
         </th>
         <th class="environments-build">
-          Job
+          作业
         </th>
         <th class="environments-commit">
-          Commit
+          提交
         </th>
         <th class="environments-date">
-          Updated
+          更新于
         </th>
         <th class="environments-actions"></th>
       </tr>
@@ -100,7 +100,7 @@ export default {
                 <a
                   :href="folderUrl(model)"
                   class="btn btn-default">
-                  Show all
+                  全部显示
                 </a>
               </td>
             </tr>

@@ -141,7 +141,7 @@ export default {
             eventHub.$emit('MRWidgetUpdateRequested');
             eventHub.$emit('FetchActionsContent');
             if (window.mergeRequest) {
-              window.mergeRequest.updateStatusText('status-box-open', 'status-box-merged', 'Merged');
+              window.mergeRequest.updateStatusText('status-box-open', 'status-box-merged', '已合并');
               window.mergeRequest.decreaseCounter();
             }
             stopPolling();

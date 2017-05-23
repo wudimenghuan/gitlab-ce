@@ -146,7 +146,7 @@ export default {
       <div class="value hide-collapsed">
         <template v-if="hasNoUsers">
           <span class="assign-yourself no-value">
-            No assignee
+            未指派
             <template v-if="editable">
              -
               <button
