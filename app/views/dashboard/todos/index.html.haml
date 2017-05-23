@@ -39,7 +39,7 @@
           - if params[:author_id].present?
             = hidden_field_tag(:author_id, params[:author_id])
           = dropdown_tag(user_dropdown_label(params[:author_id], '作者'), options: { toggle_class: 'js-user-search js-filter-submit js-author-search', title: '按作者过滤', filter: true, filterInput: 'input#author-search', dropdown_class: 'dropdown-menu-user dropdown-menu-selectable dropdown-menu-author js-filter-submit',
-            placeholder: 'Search authors', data: { any_user: '任何作者', first_user: (current_user.username if current_user), project_id: (@project.id if @project), selected: params[:author_id], field_name: 'author_id', default_label: 'Author', todo_filter: true, todo_state_filter: params[:state] || 'pending' } })
+            placeholder: '搜索作者', data: { any_user: '任何作者', first_user: (current_user.username if current_user), project_id: (@project.id if @project), selected: params[:author_id], field_name: 'author_id', default_label: 'Author', todo_filter: true, todo_state_filter: params[:state] || 'pending' } })
         .filter-item.inline
           - if params[:type].present?
             = hidden_field_tag(:type, params[:type])

@@ -185,6 +185,16 @@ class Issue < ActiveRecord::Base
     project
   end
 
+  def state_human_name
+    if reopened?
+      "重新打开"
+    elsif closed?
+      "已关闭"
+    else
+      "未关闭"
+    end
+  end
+
   def zh_name
     '问题'
   end

@@ -13,7 +13,7 @@ module TodosHelper
 
   def todo_action_name(todo)
     case todo.action
-    when Todo::ASSIGNED then todo.self_added? ? '已指派给' : '给你指派了'
+    when Todo::ASSIGNED then todo.self_added? ? '已指派' : '给你指派了'
     when Todo::MENTIONED then "向 #{todo_action_subject(todo)} 提及了"
     when Todo::BUILD_FAILED then '构建失败了'
     when Todo::MARKED then '标记了'
@@ -52,7 +52,7 @@ module TodosHelper
 
     content_tag(:span, nil, class: 'target-status') do
       content_tag(:span, nil, class: "status-box status-box-#{todo.target.state.dasherize}") do
-        todo.target.state.capitalize
+        todo.target.state_human_name
       end
     end
   end
