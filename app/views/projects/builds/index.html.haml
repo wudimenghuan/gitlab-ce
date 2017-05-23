@@ -14,7 +14,7 @@
             data: { confirm: '确定要取消运行？' }, class: 'btn btn-danger', method: :post
 
         - unless @repository.gitlab_ci_yml
-          = link_to '开始使用 CI/CD 流水线', help_page_path('ci/quick_start/README'), class: 'btn btn-info'
+          = link_to '开始使用流水线', help_page_path('ci/quick_start/README'), class: 'btn btn-info'
 
         = link_to ci_lint_path, class: 'btn btn-default' do
           %span CI lint
