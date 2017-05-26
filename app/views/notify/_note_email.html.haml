@@ -6,20 +6,20 @@
 
       - if discussion.diff_discussion?
         - if discussion.new_discussion?
-          started a new discussion
+          开始新的讨论
         - else
-          commented on a discussion
+          评论了讨论
 
-        on #{link_to discussion.file_path, @target_url}
+        于 #{link_to discussion.file_path, @target_url}
       - else
         - if discussion.new_discussion?
-          started a new discussion
+          开始新的讨论
         - else
-          commented on a #{link_to 'discussion', @target_url}
+          评论了 #{link_to 'discussion', @target_url}
 
 - elsif current_application_settings.email_author_in_body
   %p.details
-    #{link_to @note.author_name, user_url(@note.author)} commented:
+    #{link_to @note.author_name, user_url(@note.author)} 评论了:
 
 - if discussion&.diff_discussion?
   = content_for :head do

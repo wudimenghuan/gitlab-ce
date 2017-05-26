@@ -1,6 +1,6 @@
 - is_collapsed = local_assigns.fetch(:is_collapsed, false)
-- mark_content = is_collapsed ? icon('check-square', class: 'todo-undone') : '添加待办'
-- todo_content = is_collapsed ? icon('plus-square') : '已完成'
+- mark_content = is_collapsed ? icon('check-square', class: 'todo-undone') : '已完成'
+- todo_content = is_collapsed ? icon('plus-square') : '添加待办'
 
 %button.issuable-todo-btn.js-issuable-todo{ type: 'button',
   class: (is_collapsed ? 'btn-blank sidebar-collapsed-icon dont-change-state has-tooltip' : 'btn btn-default issuable-header-btn pull-right'),
