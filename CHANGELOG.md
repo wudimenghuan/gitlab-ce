@@ -2,8 +2,16 @@
 documentation](doc/development/changelog.md) for instructions on adding your own
 entry.
 
+## 9.1.5 (2017-05-31)
+
+- Move uploads from 'public/uploads' to 'public/uploads/system'.
+- Restrict API X-Frame-Options to same origin.
+- Allow users autocomplete by author_id only for authenticated users.
+
 ## 9.1.4 (2017-05-12)
 
+- No changes.
+- No changes.
 - No changes.
 - Fix error on CI/CD Settings page related to invalid pipeline trigger. !10948 (dosuken123)
 - Sort the network graph both by commit date and topographically. !11057
