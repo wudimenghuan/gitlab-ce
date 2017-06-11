@@ -8,23 +8,24 @@
       = icon('caret-down', class: 'toggle-icon')
 
     %ul#resolvable-comment-menu.dropdown-menu{ data: { dropdown: true } }
-      %li#comment.droplab-item-selected{ data: { value: '', 'submit-text' => 'Comment', 'close-text' => "Comment & close #{noteable_name}", 'reopen-text' => "Comment & reopen #{noteable_name}" } }
+      %li#comment.droplab-item-selected{ data: { value: '', 'submit-text' => '评论', 'close-text' => "评论 & 关闭 #{noteable_name}", 'reopen-text' => "评论 & 重新打开 #{noteable_name}" } }
         %a{ href: '#' }
           = icon('check')
           .description
-            %strong Comment
+            %strong 评论
             %p
-              Add a general comment to this #{noteable_name}.
+              向 #{noteable_name} 添加一般评论。
 
       %li.divider.droplab-item-ignore
 
-      %li#discussion{ data: { value: 'DiscussionNote', 'submit-text' => 'Start discussion', 'close-text' => "Start discussion & close #{noteable_name}", 'reopen-text' => "Start discussion & reopen #{noteable_name}" } }
+      %li#discussion{ data: { value: 'DiscussionNote', 'submit-text' => '开始讨论', 'close-text' => "开始讨论 & 关闭 #{noteable_name}", 'reopen-text' => "开始讨论 & 重新打开 #{noteable_name}" } }
         %a{ href: '#' }
           = icon('check')
           .description
-            %strong Start discussion
+            %strong 开始讨论
             %p
               = succeed '.' do
-                Discuss a specific suggestion or question
+                讨论一个
                 - if @note.noteable.supports_resolvable_notes?
-                  that needs to be resolved
+                  需要解决的
+                具体的建议或问题。

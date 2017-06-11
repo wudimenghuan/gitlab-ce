@@ -5,15 +5,15 @@
       %ul{ class: (container_class) }
         - if project_nav_tab? :pipelines
           = nav_link(path: ['pipelines#index', 'pipelines#show']) do
-            = link_to project_pipelines_path(@project), title: 'Pipelines', class: 'shortcuts-pipelines' do
+            = link_to project_pipelines_path(@project), title: '流水线', class: 'shortcuts-pipelines' do
               %span
-                Pipelines
+                流水线
 
         - if project_nav_tab? :builds
           = nav_link(controller: [:builds, :artifacts]) do
-            = link_to project_jobs_path(@project), title: 'Jobs', class: 'shortcuts-builds' do
+            = link_to project_jobs_path(@project), title: '作业', class: 'shortcuts-builds' do
               %span
-                Jobs
+                作业
 
         - if project_nav_tab? :pipelines
           = nav_link(controller: :pipeline_schedules) do
@@ -23,12 +23,12 @@
 
         - if project_nav_tab? :environments
           = nav_link(controller: :environments) do
-            = link_to project_environments_path(@project), title: 'Environments', class: 'shortcuts-environments' do
+            = link_to project_environments_path(@project), title: '运行环境', class: 'shortcuts-environments' do
               %span
-                Environments
+                运行环境
 
         - if @project.feature_available?(:builds, current_user) && !@project.empty_repo?
           = nav_link(path: 'pipelines#charts') do
-            = link_to charts_namespace_project_pipelines_path(@project.namespace, @project), title: 'Charts', class: 'shortcuts-pipelines-charts' do
+            = link_to charts_namespace_project_pipelines_path(@project.namespace, @project), title: '图表', class: 'shortcuts-pipelines-charts' do
               %span
-                Charts
+                图表

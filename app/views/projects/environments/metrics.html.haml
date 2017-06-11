@@ -1,5 +1,5 @@
 - @no_container = true
-- page_title "Metrics for environment", @environment.name
+- page_title "运行环境指标", @environment.name
 - content_for :page_specific_javascripts do
   = page_specific_javascript_bundle_tag('common_d3')
   = page_specific_javascript_bundle_tag('monitoring')
@@ -15,23 +15,23 @@
 
   .prometheus-state
     .js-getting-started.hidden
-      .row
+    .row
         .col-md-4.col-md-offset-4.state-svg
           = render "shared/empty_states/monitoring/getting_started.svg"
       .row
         .col-md-6.col-md-offset-3
           %h4.text-center.state-title
-            Get started with performance monitoring
+            开始使用性能监控
       .row
         .col-md-6.col-md-offset-3
           .description-text.text-center.state-description
-            Stay updated about the performance and health of your environment by configuring Prometheus to monitor your deployments.
+            通过配置 Prometheus 来监控您的部署，保持对您的环境的性能和运行状况的更新。
             = link_to help_page_path('administration/monitoring/prometheus/index.md') do
-              Learn more about performance monitoring
+              了解有关性能监控的更多信息
       .row.state-button-section
         .col-md-4.col-md-offset-4.text-center.state-button
           = link_to edit_namespace_project_service_path(@project.namespace, @project, 'prometheus'), class: 'btn btn-success' do
-            Configure Prometheus
+            配置 Prometheus
     .js-loading.hidden
       .row
         .col-md-4.col-md-offset-4.state-svg
@@ -39,15 +39,15 @@
       .row
         .col-md-6.col-md-offset-3
           %h4.text-center.state-title
-            Waiting for performance data
+            等待性能数据
       .row
         .col-md-6.col-md-offset-3
           .description-text.text-center.state-description
-            Creating graphs uses the data from the Prometheus server. If this takes a long time, ensure that data is available.
+            使用来自 Prometheus 服务器的数据创建图表。 如果该操作耗时很长，请确保数据是有效的。
       .row.state-button-section
         .col-md-4.col-md-offset-4.text-center.state-button
           = link_to help_page_path('administration/monitoring/prometheus/index.md'), class: 'btn btn-success' do
-            View documentation
+            查看文档
     .js-unable-to-connect.hidden
       .row
         .col-md-4.col-md-offset-4.state-svg
@@ -55,26 +55,26 @@
       .row
         .col-md-6.col-md-offset-3
           %h4.text-center.state-title
-            Unable to connect to Prometheus server
+            无法连接到 Prometheus 服务器
       .row
         .col-md-6.col-md-offset-3
           .description-text.text-center.state-description
-            Ensure connectivity is available from the GitLab server to the
+            确保从 GitLab 服务器到
             = link_to edit_namespace_project_service_path(@project.namespace, @project, 'prometheus') do
-              Prometheus server
+              Prometheus 服务器的连接的有效性。
       .row.state-button-section
         .col-md-4.col-md-offset-4.text-center.state-button
           = link_to help_page_path('administration/monitoring/prometheus/index.md'), class:'btn btn-success' do
-            View documentation
+            查看文档
 
   .prometheus-graphs
     .row
-      .col-sm-12
-        %h4
-          CPU utilization
-        %svg.prometheus-graph{ 'graph-type' => 'cpu_values' }
-    .row
-      .col-sm-12
-        %h4
-          Memory usage
-        %svg.prometheus-graph{ 'graph-type' => 'memory_values' }
+    .col-sm-12
+      %h4
+        CPU利用率
+      %svg.prometheus-graph{ 'graph-type' => 'cpu_values' }
+  .row
+    .col-sm-12
+      %h4
+        内存使用情况
+      %svg.prometheus-graph{ 'graph-type' => 'memory_values' }

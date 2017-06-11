@@ -38,7 +38,7 @@ export default {
                 aria-hidden="true"></span>
             </span>
           </div>
-          <span>Could not connect to the CI server. Please check your settings and try again.</span>
+          <span>无法连接到 CI 服务器。请检查相关设置并重试。</span>
         </template>
         <template v-else>
           <div>
@@ -49,7 +49,7 @@ export default {
             </a>
           </div>
           <span>
-            Pipeline
+            流水线
             <a
               :href="mr.pipeline.path"
               class="pipeline-id">#{{mr.pipeline.id}}</a>
@@ -79,7 +79,7 @@ export default {
           <span
             v-if="mr.pipeline.coverage"
             class="js-mr-coverage">
-            Coverage {{mr.pipeline.coverage}}%.
+            覆盖率 {{mr.pipeline.coverage}}%.
           </span>
         </template>
       </div>

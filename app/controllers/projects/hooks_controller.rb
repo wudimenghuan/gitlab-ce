@@ -38,7 +38,7 @@ class Projects::HooksController < Projects::ApplicationController
 
       set_hook_execution_notice(status, message)
     else
-      flash[:alert] = 'Hook execution failed. Ensure the project has commits.'
+      flash[:alert] = '钩子执行失败。确保项目已提交。'
     end
 
     redirect_back_or_default(default: { action: 'index' })

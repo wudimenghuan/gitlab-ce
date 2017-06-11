@@ -18,7 +18,7 @@
 
     // Minimum number of users referenced before triggering a warning
     MarkdownPreview.prototype.referenceThreshold = 10;
-    MarkdownPreview.prototype.emptyMessage = 'Nothing to preview.';
+    MarkdownPreview.prototype.emptyMessage = '没有预览。';
 
     MarkdownPreview.prototype.ajaxCache = {};
 
@@ -35,7 +35,7 @@
         preview.text(this.emptyMessage);
         this.hideReferencedUsers($form);
       } else {
-        preview.addClass('md-preview-loading').text('Loading...');
+        preview.addClass('md-preview-loading').text('载入中...');
         this.fetchMarkdownPreview(mdText, url, (function (response) {
           var body;
           if (response.body.length > 0) {

@@ -137,7 +137,7 @@ window.FilesCommentButton = (function() {
 })();
 
 $.fn.filesCommentButton = function() {
-  $commentButtonTemplate = $('<button name="button" type="submit" class="add-diff-note js-add-diff-note-button" title="Add a comment to this line"><i class="fa fa-comment-o"></i></button>');
+  $commentButtonTemplate = $('<button name="button" type="submit" class="add-diff-note js-add-diff-note-button" title="评论这行代码"><i class="fa fa-comment-o"></i></button>');
 
   if (!(this && (this.parent().data('can-create-note') != null))) {
     return;

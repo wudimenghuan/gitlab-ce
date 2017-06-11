@@ -14,7 +14,7 @@ module EventsHelper
     author = event.author
 
     if author
-      name = self_added ? 'You' : author.name
+      name = self_added ? '您' : author.name
       link_to name, user_path(author.username), title: name
     else
       event.author_name
@@ -29,7 +29,7 @@ module EventsHelper
                   event.target_type.titleize.downcase
                 end
               else
-                'project'
+                '项目'
               end
 
     [event.action_name, target].join(" ")
@@ -41,7 +41,7 @@ module EventsHelper
     link_opts = {
       class: "event-filter-link",
       id:    "#{key}_event_filter",
-      title: "Filter by #{tooltip.downcase}"
+      title: "#{tooltip.downcase} 过滤"
     }
 
     content_tag :li, class: active do
@@ -64,11 +64,7 @@ module EventsHelper
   end
 
   def event_preposition(event)
-    if event.push? || event.commented? || event.target
-      "at"
-    elsif event.milestone?
-      "in"
-    end
+    "的"
   end
 
   def event_feed_title(event)
@@ -77,22 +73,20 @@ module EventsHelper
     words << event_action_name(event)
 
     if event.push?
+      words << "的"
       words << event.ref_type
       words << event.ref_name
-      words << "at"
     elsif event.commented?
+      words << "的"
       words << event.note_target_reference
-      words << "at"
     elsif event.milestone?
+      words << "的"
       words << "##{event.target_iid}" if event.target_iid
-      words << "in"
     elsif event.target
-      words << "##{event.target_iid}:"
+      words << "的"
+      words << "##{event.target_iid}："
       words << event.target.title if event.target.respond_to?(:title)
-      words << "at"
     end
-
-    words << event.project_name
 
     words.join(" ")
   end
@@ -173,7 +167,7 @@ module EventsHelper
 
       link_to(text, event_note_target_path(event), title: event.target_title, class: 'has-tooltip')
     else
-      content_tag(:strong, '(deleted)')
+      content_tag(:strong, '(已删除)')
     end
   end
 

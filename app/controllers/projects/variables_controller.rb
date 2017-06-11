@@ -15,7 +15,7 @@ class Projects::VariablesController < Projects::ApplicationController
     @variable = @project.variables.find(params[:id])
 
     if @variable.update_attributes(project_params)
-      redirect_to namespace_project_variables_path(project.namespace, project), notice: 'Variable was successfully updated.'
+      redirect_to namespace_project_variables_path(project.namespace, project), notice: '变量更新成功。'
     else
       render action: "show"
     end
@@ -25,7 +25,7 @@ class Projects::VariablesController < Projects::ApplicationController
     @variable = Ci::Variable.new(project_params)
 
     if @variable.valid? && @project.variables << @variable
-      flash[:notice] = 'Variables were successfully updated.'
+      flash[:notice] = '变量更新成功。'
       redirect_to namespace_project_settings_ci_cd_path(project.namespace, project)
     else
       render "show"
@@ -38,7 +38,7 @@ class Projects::VariablesController < Projects::ApplicationController
 
     redirect_to namespace_project_settings_ci_cd_path(project.namespace, project),
                 status: 302,
-                notice: 'Variable was successfully removed.'
+                notice: '变量删除成功。'
   end
 
   private

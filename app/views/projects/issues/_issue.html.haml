@@ -11,7 +11,7 @@
         %ul.controls
           - if issue.closed?
             %li
-              CLOSED
+              已关闭
 
           - if issue.assignees.any?
             %li
@@ -43,4 +43,4 @@
             = issue.task_status
 
         .pull-right.issue-updated-at
-          %span updated #{time_ago_with_tooltip(issue.updated_at, placement: 'bottom', html_class: 'issue_update_ago')}
+          %span 更新于 #{time_ago_with_tooltip(issue.updated_at, placement: 'bottom', html_class: 'issue_update_ago')}

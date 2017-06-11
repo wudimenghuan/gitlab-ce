@@ -387,7 +387,7 @@ AwardsHandler.prototype.removeYouFromUserList = function removeYouFromUserList($
   const awardBlock = $emojiButton;
   const originalTitle = this.getAwardTooltip(awardBlock);
   const authors = originalTitle.split(FROM_SENTENCE_REGEX);
-  authors.splice(authors.indexOf('You'), 1);
+  authors.splice(authors.indexOf('您'), 1);
   return awardBlock
     .closest('.js-emoji-btn')
     .removeData('title')
@@ -404,7 +404,7 @@ AwardsHandler.prototype.addYouToUserList = function addYouToUserList(votesBlock,
   if (origTitle) {
     users = origTitle.trim().split(FROM_SENTENCE_REGEX);
   }
-  users.unshift('You');
+  users.unshift('您');
   return awardBlock
     .attr('title', this.toSentence(users))
     .tooltip('fixTitle');
@@ -414,7 +414,7 @@ AwardsHandler
   .prototype
   .createAwardButtonForVotesBlock = function createAwardButtonForVotesBlock(votesBlock, emojiName) {
     const buttonHtml = `
-      <button class="btn award-control js-emoji-btn has-tooltip active" title="You" data-placement="bottom">
+      <button class="btn award-control js-emoji-btn has-tooltip active" title="您" data-placement="bottom">
         ${glEmojiTag(emojiName)}
         <span class="award-control-text js-counter">1</span>
       </button>
@@ -464,7 +464,7 @@ AwardsHandler.prototype.findEmojiIcon = function findEmojiIcon(votesBlock, emoji
 
 AwardsHandler.prototype.userAuthored = function userAuthored($emojiButton) {
   const oldTitle = this.getAwardTooltip($emojiButton);
-  const newTitle = 'You cannot vote on your own issue, MR and note';
+  const newTitle = '您不能给自己的问题、MR和注释投票';
   gl.utils.updateTooltipTitle($emojiButton, newTitle).tooltip('show');
   // Restore tooltip back to award list
   return setTimeout(() => {

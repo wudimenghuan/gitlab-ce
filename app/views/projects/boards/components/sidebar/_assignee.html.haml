@@ -19,13 +19,13 @@
         ":data-name" => "assignee.name",
         ":data-username" => "assignee.username" }
       .dropdown
-        %button.dropdown-menu-toggle.js-user-search.js-author-search.js-multiselect.js-save-user-data.js-issue-board-sidebar{ type: "button", ref: "assigneeDropdown", data: { toggle: "dropdown", field_name: "issue[assignee_ids][]", first_user: (current_user.username if current_user), current_user: "true", project_id: @project.id, null_user: "true", multi_select: "true", 'max-select' => 1, dropdown: { header: 'Assignee' } },
+        %button.dropdown-menu-toggle.js-user-search.js-author-search.js-multiselect.js-save-user-data.js-issue-board-sidebar{ type: "button", ref: "assigneeDropdown", data: { toggle: "dropdown", field_name: "issue[assignee_ids][]", first_user: (current_user.username if current_user), current_user: "true", project_id: @project.id, null_user: "true", multi_select: "true", 'max-select' => 1, dropdown: { header: '指派给' } },
           ":data-issuable-id" => "issue.id",
           ":data-issue-update" => "'#{namespace_project_issues_path(@project.namespace, @project)}/' + issue.id + '.json'" }
-          Select assignee
+          选择指派
           = icon("chevron-down")
         .dropdown-menu.dropdown-select.dropdown-menu-user.dropdown-menu-selectable.dropdown-menu-author
-          = dropdown_title("Assign to")
-          = dropdown_filter("Search users")
+          = dropdown_title("指派给")
+          = dropdown_filter("搜索用户")
           = dropdown_content
           = dropdown_loading

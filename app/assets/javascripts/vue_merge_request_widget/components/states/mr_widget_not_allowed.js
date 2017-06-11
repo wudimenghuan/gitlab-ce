@@ -6,11 +6,11 @@ export default {
         type="button"
         class="btn btn-success btn-small"
         disabled="true">
-        Merge
+        合并
       </button>
       <span class="bold">
-        Ready to be merged automatically.
-        Ask someone with write access to this repository to merge this request.
+        已准备好自动合并。
+        请询问具有此仓库写权限的成员来合并此请求。
       </span>
     </div>
   `,

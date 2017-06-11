@@ -13,7 +13,7 @@ module IssuablesHelper
     if current_labels && current_labels.any?
       title = current_labels.first.try(:title)
       if current_labels.size > 1
-        "#{title} +#{current_labels.size - 1} more"
+        "超前 #{title} +#{current_labels.size - 1}"
       else
         title
       end
@@ -45,12 +45,12 @@ module IssuablesHelper
   end
 
   def template_dropdown_tag(issuable, &block)
-    title = selected_template(issuable) || "Choose a template"
+    title = selected_template(issuable) || "选择模板"
     options = {
       toggle_class: 'js-issuable-selector',
       title: title,
       filter: true,
-      placeholder: 'Filter',
+      placeholder: '过滤器',
       footer_content: true,
       data: {
         data: issuable_templates(issuable),
@@ -69,7 +69,7 @@ module IssuablesHelper
   def users_dropdown_label(selected_users)
     case selected_users.length
     when 0
-      "Unassigned"
+      "未指派"
     when 1
       selected_users[0].name
     else
@@ -79,7 +79,7 @@ module IssuablesHelper
 
   def user_dropdown_label(user_id, default_label)
     return default_label if user_id.nil?
-    return "Unassigned" if user_id == "0"
+    return "未指派" if user_id == "0"
 
     user = User.find_by(id: user_id)
 
@@ -92,7 +92,7 @@ module IssuablesHelper
 
   def project_dropdown_label(project_id, default_label)
     return default_label if project_id.nil?
-    return "Any project" if project_id == "0"
+    return "任何项目" if project_id == "0"
 
     project = Project.find_by(id: project_id)
 
@@ -103,7 +103,7 @@ module IssuablesHelper
     end
   end
 
-  def milestone_dropdown_label(milestone_title, default_label = "Milestone")
+  def milestone_dropdown_label(milestone_title, default_label = "里程碑")
     title =
       case milestone_title
       when Milestone::Upcoming.name then Milestone::Upcoming.title
@@ -131,7 +131,7 @@ module IssuablesHelper
       concat(to_url_reference(issuable))
     end
 
-    output << " opened #{time_ago_with_tooltip(issuable.created_at)} by ".html_safe
+    output << " 在 #{time_ago_with_tooltip(issuable.created_at)} 由 ".html_safe
     output << content_tag(:strong) do
       author_output = link_to_member(project, issuable.author, size: 24, mobile_classes: "hidden-xs", tooltip: true)
       author_output << link_to_member(project, issuable.author, size: 24, by_username: true, avatar: false, mobile_classes: "hidden-sm hidden-md hidden-lg")
@@ -161,7 +161,10 @@ module IssuablesHelper
 
   def issuables_state_counter_text(issuable_type, state)
     titles = {
-      opened: "Open"
+      opened: "未关闭",
+      closed: "已关闭",
+      merged: "已合并",
+      all: "所有"
     }
 
     state_title = titles[state] || state.to_s.humanize
@@ -280,7 +283,7 @@ module IssuablesHelper
       when MergeRequest
         merge_request_template_names
       else
-        raise 'Unknown issuable type!'
+        raise '未知的问题类型!'
       end
   end
 
@@ -298,8 +301,8 @@ module IssuablesHelper
 
   def issuable_todo_button_data(issuable, todo, is_collapsed)
     {
-      todo_text: "Add todo",
-      mark_text: "Mark done",
+      todo_text: "添加待办",
+      mark_text: "已完成",
       todo_icon: (is_collapsed ? icon('plus-square') : nil),
       mark_icon: (is_collapsed ? icon('check-square', class: 'todo-undone') : nil),
       issuable_id: issuable.id,

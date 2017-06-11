@@ -17,13 +17,13 @@
               toggle_class: "filtered-search-history-dropdown-toggle-button",
               dropdown_class: "filtered-search-history-dropdown",
               content_class: "filtered-search-history-dropdown-content",
-              title: "Recent searches" }) do
+              title: "历史搜索" }) do
               .js-filtered-search-history-dropdown{ data: { project_full_path: @project.full_path } }
           .filtered-search-box-input-container
             .scroll-container
               %ul.tokens-container.list-unstyled
                 %li.input-token
-                  %input.form-control.filtered-search{ id: "filtered-search-#{type.to_s}", placeholder: 'Search or filter results...', data: { 'project-id' => @project.id, 'username-params' => @users.to_json(only: [:id, :username]), 'base-endpoint' => namespace_project_path(@project.namespace, @project) } }
+                  %input.form-control.filtered-search{ id: "filtered-search-#{type.to_s}", placeholder: '搜索或者过滤结果...', data: { 'project-id' => @project.id, 'username-params' => @users.to_json(only: [:id, :username]), 'base-endpoint' => namespace_project_path(@project.namespace, @project) } }
               = icon('filter')
             #js-dropdown-hint.filtered-search-input-dropdown-menu.dropdown-menu.hint-dropdown
               %ul{ data: { dropdown: true } }
@@ -31,7 +31,7 @@
                   %button.btn.btn-link
                     = icon('search')
                     %span
-                      Press Enter or click to search
+                      继续输入，然后按回车键
               %ul.filter-dropdown{ data: { dynamic: true, dropdown: true } }
                 %li.filter-dropdown-item
                   %button.btn.btn-link
@@ -55,7 +55,7 @@
               %ul{ data: { dropdown: true } }
                 %li.filter-dropdown-item{ data: { value: 'none' } }
                   %button.btn.btn-link
-                    No Assignee
+                    未指派
                 %li.divider
                 - if current_user
                   = render 'shared/issuable/user_dropdown_item',
@@ -68,13 +68,13 @@
               %ul{ data: { dropdown: true } }
                 %li.filter-dropdown-item{ data: { value: 'none' } }
                   %button.btn.btn-link
-                    No Milestone
+                    无里程碑
                 %li.filter-dropdown-item{ data: { value: 'upcoming' } }
                   %button.btn.btn-link
-                    Upcoming
+                    即将到期
                 %li.filter-dropdown-item{ 'data-value' => 'started' }
                   %button.btn.btn-link
-                    Started
+                    已经开始
                 %li.divider
               %ul.filter-dropdown{ data: { dynamic: true, dropdown: true } }
                 %li.filter-dropdown-item
@@ -84,7 +84,7 @@
               %ul{ data: { dropdown: true } }
                 %li.filter-dropdown-item{ data: { value: 'none' } }
                   %button.btn.btn-link
-                    No Label
+                    无标记
                 %li.divider
               %ul.filter-dropdown{ data: { dynamic: true, dropdown: true } }
                 %li.filter-dropdown-item
@@ -99,9 +99,9 @@
             - if can?(current_user, :admin_list, @project)
               .dropdown.prepend-left-10#js-add-list
                 %button.btn.btn-create.btn-inverted.js-new-board-list{ type: "button", data: { toggle: "dropdown", labels: labels_filter_path, namespace_path: @project.try(:namespace).try(:path), project_path: @project.try(:path) } }
-                  Add list
+                  添加列表
                 .dropdown-menu.dropdown-menu-paging.dropdown-menu-align-right.dropdown-menu-issues-board-new.dropdown-menu-selectable
-                  = render partial: "shared/issuable/label_page_default", locals: { show_footer: true, show_create: true, show_boards_content: true, title: "Add list" }
+                  = render partial: "shared/issuable/label_page_default", locals: { show_footer: true, show_create: true, show_boards_content: true, title: "添加列表" }
                   - if can?(current_user, :admin_label, @project)
                     = render partial: "shared/issuable/label_page_create"
                   = dropdown_loading

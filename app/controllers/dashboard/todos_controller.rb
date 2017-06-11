@@ -18,7 +18,7 @@ class Dashboard::TodosController < Dashboard::ApplicationController
       format.html do
         redirect_to dashboard_todos_path,
                     status: 302,
-                    notice: 'Todo was successfully marked as done.'
+                    notice: '待办事项已完成。'
       end
       format.js { head :ok }
       format.json { render json: todos_counts }
@@ -29,7 +29,7 @@ class Dashboard::TodosController < Dashboard::ApplicationController
     updated_ids = TodoService.new.mark_todos_as_done(@todos, current_user)
 
     respond_to do |format|
-      format.html { redirect_to dashboard_todos_path, status: 302, notice: 'All todos were marked as done.' }
+      format.html { redirect_to dashboard_todos_path, status: 302, notice: '所有待办事项都已完成。' }
       format.js { head :ok }
       format.json { render json: todos_counts.merge(updated_ids: updated_ids) }
     end

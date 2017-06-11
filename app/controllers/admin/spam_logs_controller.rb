@@ -10,7 +10,7 @@ class Admin::SpamLogsController < Admin::ApplicationController
       spam_log.remove_user(deleted_by: current_user)
       redirect_to admin_spam_logs_path,
                   status: 302,
-                  notice: "User #{spam_log.user.username} was successfully removed."
+                  notice: "用户 #{spam_log.user.username} 删除成功。"
     else
       spam_log.destroy
       head :ok

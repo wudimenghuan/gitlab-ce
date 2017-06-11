@@ -2,8 +2,8 @@ module FormHelper
   def form_errors(model)
     return unless model.errors.any?
 
-    pluralized = 'error'.pluralize(model.errors.count)
-    headline   = "The form contains the following #{pluralized}:"
+    pluralized = '错误'.pluralize(model.errors.count)
+    headline   = "表单包含以下 #{pluralized}:"
 
     content_tag(:div, class: 'alert alert-danger', id: 'error_explanation') do
       content_tag(:h4, headline) <<
@@ -19,19 +19,19 @@ module FormHelper
   def issue_dropdown_options(issuable, has_multiple_assignees = true)
     options = {
       toggle_class: 'js-user-search js-assignee-search js-multiselect js-save-user-data',
-      title: 'Select assignee',
+      title: '选择指派',
       filter: true,
       dropdown_class: 'dropdown-menu-user dropdown-menu-selectable dropdown-menu-assignee',
-      placeholder: 'Search users',
+      placeholder: '搜索用户',
       data: {
         first_user: current_user&.username,
         null_user: true,
         current_user: true,
         project_id: issuable.project.try(:id),
         field_name: "#{issuable.class.model_name.param_key}[assignee_ids][]",
-        default_label: 'Assignee',
+        default_label: '指派给',
         'max-select': 1,
-        'dropdown-header': 'Assignee',
+        'dropdown-header': '指派给',
         multi_select: true,
         'input-meta': 'name',
         'always-show-selectbox': true,
@@ -40,8 +40,8 @@ module FormHelper
     }
 
     if has_multiple_assignees
-      options[:title] = 'Select assignee(s)'
-      options[:data][:'dropdown-header'] = 'Assignee(s)'
+      options[:title] = '选择指派'
+      options[:data][:'dropdown-header'] = '指派给'
       options[:data].delete(:'max-select')
     end
 

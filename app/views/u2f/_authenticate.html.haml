@@ -1,20 +1,20 @@
 #js-authenticate-u2f
-%a.btn.btn-block.btn-info#js-login-2fa-device{ href: '#' } Sign in via 2FA code
+%a.btn.btn-block.btn-info#js-login-2fa-device{ href: '#' } 通过两步验证码(2FA Code)登录
 
 %script#js-authenticate-u2f-not-supported{ type: "text/template" }
-  %p Your browser doesn't support U2F. Please use Google Chrome desktop (version 41 or newer).
+  %p 你的浏览器不支持 U2F。 请使用 Google Chrome 桌面版 (版本 41 及以上).
 
 %script#js-authenticate-u2f-in-progress{ type: "text/template" }
-  %p Trying to communicate with your device. Plug it in (if you haven't already) and press the button on the device now.
+  %p 正在尝试与您的设备通信。 请插入设备（如果您还没有）并点击上面的按钮进行确认。
 
 %script#js-authenticate-u2f-error{ type: "text/template" }
   %div
     %p <%= error_message %> (error code: <%= error_code %>)
-    %a.btn.btn-block.btn-warning#js-u2f-try-again Try again?
+    %a.btn.btn-block.btn-warning#js-u2f-try-again 重试？
 
 %script#js-authenticate-u2f-authenticated{ type: "text/template" }
   %div
-    %p We heard back from your U2F device. You have been authenticated.
+    %p 我们已收到您的设备的回复，单击此按钮与 GitLab 服务器进行身份验证。
     = form_tag(new_user_session_path, method: :post, id: 'js-login-u2f-form') do |f|
       - resource_params = params[resource_name].presence || params
       = hidden_field_tag 'user[remember_me]', resource_params.fetch(:remember_me, 0)

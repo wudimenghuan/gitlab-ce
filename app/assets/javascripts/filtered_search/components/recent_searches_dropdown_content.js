@@ -94,7 +94,7 @@ export default {
       <div
         v-else
         class="dropdown-info-note">
-        You don't have any recent searches
+        您最近没有任何搜索
       </div>
     </div>
   `,

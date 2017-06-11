@@ -26,7 +26,7 @@ export default {
       class="mr-info-list mr-links">
       <div class="legend"></div>
       <p v-if="relatedLinks.closing">
-        Closes {{issueLabel('closing')}}
+        关闭 {{issueLabel('closing')}}
         <span v-html="relatedLinks.closing"></span>.
       </p>
       <p v-if="relatedLinks.mentioned">
