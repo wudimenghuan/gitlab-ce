@@ -4,6 +4,7 @@ import Poll from './../lib/utils/poll';
 import Service from './services/index';
 import tasks from './actions/tasks';
 import edited from './components/edited.vue';
+import normalizeNewlines from '../lib/utils/normalize_newlines';
 
 export default {
   props: {
@@ -105,7 +106,7 @@ export default {
       this.title = title;
       this.description = description;
 
-      this.$nextTick(() => {
+      setTimeout(() => {
         this.updateFlag('titleFlag', false);
         this.updateFlag('descriptionFlag', false);
       });
@@ -119,7 +120,8 @@ export default {
       this.titleText = this.apiData.title_text;
 
       const noTitleChange = this.title === title;
-      const noDescriptionChange = this.description === description;
+      const noDescriptionChange =
+        normalizeNewlines(this.description) === normalizeNewlines(description);
 
       /**
       * since opacity is changed, even if there is no diff for Vue to update
