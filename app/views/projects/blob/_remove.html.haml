@@ -6,7 +6,7 @@
         %h3.page-title 删除 #{@blob.name}
 
       .modal-body
-        = form_tag namespace_project_blob_path(@project.namespace, @project, @id), method: :delete, class: 'form-horizontal js-replace-blob-form js-quick-submit js-requires-input' do
+        = form_tag namespace_project_blob_path(@project.namespace, @project, @id), method: :delete, class: 'form-horizontal js-delete-blob-form js-quick-submit js-requires-input' do
           = render 'shared/new_commit_form', placeholder: "删除 #{@blob.name}"
 
           .form-group
@@ -15,4 +15,4 @@
               = link_to "取消", '#', class: "btn btn-cancel", "data-dismiss" => "modal"
 
 :javascript
-  new NewCommitForm($('.js-replace-blob-form'))
+  new NewCommitForm($('.js-delete-blob-form'))
