@@ -13,12 +13,12 @@
       确保这些令牌的安全，
       因为任何人都可以通过他们来访问GitLab。
   .col-lg-9.private-tokens-reset
-    = render partial: 'reset_token', locals: { label: '私有令牌', button_label: '重置私有令牌', help_text: '您的私有令牌可在 ATOM 和 API 中用来做免用户名/密码认证。' }
+    = render partial: 'reset_token', locals: { label: 'Private token', button_label: '重置私有令牌', help_text: '您的私有令牌可在 ATOM 和 API 中用来做免用户名/密码认证。' }
 
-    = render partial: 'reset_token', locals: { label: 'RSS 令牌', button_label: '重置 RSS 令牌', help_text: '您的 RSS 令牌可用于创建个性化 RSS 源的 URL。' }
+    = render partial: 'reset_token', locals: { label: 'RSS token', button_label: '重置 RSS 令牌', help_text: '您的 RSS 令牌可用于创建个性化 RSS 源的 URL。' }
 
     - if incoming_email_token_enabled?
-      = render partial: 'reset_token', locals: { label: '传入邮件令牌', button_label: 'Reset incoming email token', help_text: '您的传入邮件令牌可用于通过邮件创建问题，它将包含在项目指定的邮件地址中。' }
+      = render partial: 'reset_token', locals: { label: 'Incoming email token', button_label: 'Reset incoming email token', help_text: '您的传入邮件令牌可用于通过邮件创建问题，它将包含在项目指定的邮件地址中。' }
 
 %hr
 .row.prepend-top-default
