@@ -48,11 +48,11 @@
         %span.help-block 输入你的名字，让其他人认识你。
 
       .form-group
-        = f.label :email, "邮箱", class: "label-light"
+        = f.label :email, "电子邮箱", class: "label-light"
         - if @user.external_email?
           = f.text_field :email, class: "form-control", required: true, readonly: true
           %span.help-block.light
-            Your email address was automatically set based on your #{email_provider_label} account.
+            您的电子邮箱已基于您的 #{email_provider_label} 账号自动设置。
         - else
           - if @user.temp_oauth_email?
             = f.text_field :email, class: "form-control", required: true, value: nil
@@ -73,10 +73,10 @@
         = f.select :public_email, options_for_select(@user.all_emails, selected: @user.public_email), { include_blank: '不在个人资料中显示' }, class: "select2"
         %span.help-block 此邮箱将显示在公开的个人资料上。
       .form-group
-        = f.label :preferred_language, class: "label-light"
+        = f.label :preferred_language, '首选语言', class: "label-light"
         = f.select :preferred_language, Gitlab::I18n::AVAILABLE_LANGUAGES.map { |value, label| [label, value] },
           {}, class: "select2"
-        %span.help-block This feature is experimental and translations are not complete yet.
+        %span.help-block 这是一个实验性的功能（翻译尚未完成）。
       .form-group
         = f.label :skype, class: "label-light"
         = f.text_field :skype, class: "form-control"
