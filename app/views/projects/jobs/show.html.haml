@@ -47,46 +47,45 @@
             - if environment.try(:last_deployment)
               并且将替换掉其 #{deployment_link(environment.last_deployment, text: '最新的部署')}
 
-    .prepend-top-default.js-build-erased
-      - if @build.erased?
+    - if @build.erased?
+      .prepend-top-default.js-build-erased
         .erased.alert.alert-warning
           - if @build.erased_by_user?
             作业被 #{link_to(@build.erased_by_name, user_path(@build.erased_by))} 于 #{time_ago_with_tooltip(@build.erased_at)} 删除
           - else
             作业已经于 #{time_ago_with_tooltip(@build.erased_at)} 被删除
 
-    .prepend-top-default
-      .build-trace-container#build-trace
-        .top-bar.sticky
-          .js-truncated-info.truncated-info.hidden<
-            Showing last
-            %span.js-truncated-info-size.truncated-info-size><
-            KiB of log -
-            %a.js-raw-link.raw-link{ href: raw_namespace_project_job_path(@project.namespace, @project, @build) }>< Complete Raw
-          .controllers
-            - if @build.has_trace?
-              = link_to raw_namespace_project_job_path(@project.namespace, @project, @build),
-                      title: 'Show complete raw',
-                      data: { placement: 'top', container: 'body' },
-                      class: 'js-raw-link-controller has-tooltip controllers-buttons' do
-                = icon('file-text-o')
+    .build-trace-container#build-trace
+      .top-bar.sticky
+        .js-truncated-info.truncated-info.hidden<
+          Showing last
+          %span.js-truncated-info-size.truncated-info-size><
+          KiB of log -
+          %a.js-raw-link.raw-link{ href: raw_namespace_project_job_path(@project.namespace, @project, @build) }>< Complete Raw
+        .controllers
+          - if @build.has_trace?
+            = link_to raw_namespace_project_job_path(@project.namespace, @project, @build),
+                    title: '显示全部原始数据',
+                    data: { placement: 'top', container: 'body' },
+                    class: 'js-raw-link-controller has-tooltip controllers-buttons' do
+              = icon('file-text-o')
 
-            - if can?(current_user, :update_build, @project) && @build.erasable?
-              = link_to erase_namespace_project_job_path(@project.namespace, @project, @build),
-                        method: :post,
-                        data: { confirm: 'Are you sure you want to erase this build?', placement: 'top', container: 'body' },
-                        title: '擦除作业日志',
-                        class: 'has-tooltip js-erase-link controllers-buttons' do
-                = icon('trash')
-            .has-tooltip.controllers-buttons{ title: '滚动到顶部', data: { placement: 'top', container: 'body'} }
-              %button.js-scroll-up.btn-scroll.btn-transparent.btn-blank{ type: 'button', disabled: true }
-                = custom_icon('scroll_up')
-            .has-tooltip.controllers-buttons{ title: '滚动到底部', data: { placement: 'top', container: 'body'} }
-              %button.js-scroll-down.btn-scroll.btn-transparent.btn-blank{ type: 'button', disabled: true }
-                = custom_icon('scroll_down')
-        .bash.sticky.js-scroll-container
-          %code.js-build-output
-          .build-loader-animation.js-build-refresh
+          - if can?(current_user, :update_build, @project) && @build.erasable?
+            = link_to erase_namespace_project_job_path(@project.namespace, @project, @build),
+                      method: :post,
+                      data: { confirm: 'Are you sure you want to erase this build?', placement: 'top', container: 'body' },
+                      title: '擦除作业日志',
+                      class: 'has-tooltip js-erase-link controllers-buttons' do
+              = icon('trash')
+          .has-tooltip.controllers-buttons{ title: '滚动到顶部', data: { placement: 'top', container: 'body'} }
+            %button.js-scroll-up.btn-scroll.btn-transparent.btn-blank{ type: 'button', disabled: true }
+              = custom_icon('scroll_up')
+          .has-tooltip.controllers-buttons{ title: '滚动到底部', data: { placement: 'top', container: 'body'} }
+            %button.js-scroll-down.btn-scroll.btn-transparent.btn-blank{ type: 'button', disabled: true }
+              = custom_icon('scroll_down')
+      .bash.sticky.js-scroll-container
+        %code.js-build-output
+        .build-loader-animation.js-build-refresh
 
   = render "sidebar"
 
