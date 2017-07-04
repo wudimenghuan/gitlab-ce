@@ -61,7 +61,7 @@
                     ":class" => "{ 'is-active': resolvedDiscussionCount === discussionCount }" }
                   = render "shared/icons/icon_status_success.svg"
                 %span.line-resolve-text
-                  {{ resolvedDiscussionCount }}/{{ discussionCount }} {{ resolvedCountText }} resolved
+                  {{ resolvedDiscussionCount }}/{{ discussionCount }} {{ resolvedCountText }} 已解决
               = render "discussions/new_issue_for_all_discussions", merge_request: @merge_request
               = render "discussions/jump_to_next"
 

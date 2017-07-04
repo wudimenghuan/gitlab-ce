@@ -19,7 +19,7 @@
       = render 'shared/issuable/nav', type: :merge_requests
       .nav-controls
         - if @can_bulk_update
-          = button_tag "Edit Merge Requests", class: "btn js-bulk-update-toggle"
+          = button_tag "编辑合并请求", class: "btn js-bulk-update-toggle"
         - merge_project = can?(current_user, :create_merge_request, @project) ? @project : (current_user && current_user.fork_of(@project))
         - if merge_project
           = link_to new_namespace_project_merge_request_path(merge_project.namespace, merge_project), class: "btn btn-new", title: "新建合并请求" do
