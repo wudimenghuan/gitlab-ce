@@ -45,7 +45,7 @@
           href="#md-write-holder"
           tabindex="-1"
           @click.prevent="toggleMarkdownPreview($event)">
-          Write
+          编写
         </a>
       </li>
       <li :class="{ active: previewMarkdown }">
@@ -53,7 +53,7 @@
           href="#md-preview-holder"
           tabindex="-1"
           @click.prevent="toggleMarkdownPreview($event)">
-          Preview
+          预览
         </a>
       </li>
       <li class="pull-right">

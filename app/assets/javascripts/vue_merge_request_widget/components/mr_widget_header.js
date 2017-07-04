@@ -71,7 +71,7 @@ export default {
       </div>
       <div class="normal">
         <strong>
-          Request to merge
+          请求合并
           <span
             class="label-branch"
             :class="{'label-truncated has-tooltip': isBranchTitleLong(mr.sourceBranch)}"
@@ -86,7 +86,7 @@ export default {
               aria-hidden="true"
               class="fa fa-clipboard"></i>
           </button>
-          into
+          到
           <span
             class="label-branch"
             :class="{'label-truncated has-tooltip': isBranchTitleLong(mr.targetBranch)}"
