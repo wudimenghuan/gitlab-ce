@@ -1,5 +1,5 @@
 - @no_container = true
-- page_title "System Info"
+- page_title "系统信息"
 = render 'admin/monitoring/head'
 
 %div{ class: container_class }
@@ -13,19 +13,19 @@
             %h1 #{@cpus.length} cores
           - else
             = icon('warning', class: 'text-warning')
-            Unable to collect CPU info
+            无法收集 CPU 信息
     .col-sm-4
       .light-well
-        %h4 Memory
+        %h4 内存
         .data
           - if @memory
             %h1 #{number_to_human_size(@memory.active_bytes)} / #{number_to_human_size(@memory.total_bytes)}
           - else
             = icon('warning', class: 'text-warning')
-            Unable to collect memory info
+            无法收集内存信息
     .col-sm-4
       .light-well
-        %h4 Disks
+        %h4 磁盘
         .data
           - @disks.each do |disk|
             %h1 #{number_to_human_size(disk[:bytes_used])} / #{number_to_human_size(disk[:bytes_total])}

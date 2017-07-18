@@ -26,10 +26,10 @@ gl.issueBoards.ModalHeader = Vue.extend({
   computed: {
     selectAllText() {
       if (ModalStore.selectedCount() !== this.issues.length || this.issues.length === 0) {
-        return 'Select all';
+        return '全选';
       }
 
-      return 'Deselect all';
+      return '取消全选';
     },
     showSearch() {
       return this.activeTab === 'all' && !this.loading && this.issuesCount > 0;
@@ -50,12 +50,12 @@ gl.issueBoards.ModalHeader = Vue.extend({
     <div>
       <header class="add-issues-header form-actions">
         <h2>
-          Add issues
+          添加问题
           <button
             type="button"
             class="close"
             data-dismiss="modal"
-            aria-label="Close"
+            aria-label="关闭"
             @click="toggleModal(false)">
             <span aria-hidden="true">×</span>
           </button>

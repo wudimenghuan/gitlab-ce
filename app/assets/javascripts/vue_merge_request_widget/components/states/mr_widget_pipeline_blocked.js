@@ -6,10 +6,10 @@ export default {
         type="button"
         class="btn btn-success btn-small"
         disabled="true">
-        Merge
+        合并
       </button>
       <span class="bold">
-        Pipeline blocked. The pipeline for this merge request requires a manual action to proceed.
+        流水线被停用。 此合并请求的流水线需要手动操作才能继续。
       </span>
     </div>
   `,

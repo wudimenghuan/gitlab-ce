@@ -70,11 +70,11 @@ export default class CreateMergeRequestDropdown {
     if (isLoading) {
       this.unavailableButtonArrow.classList.add('fa-spinner', 'fa-spin');
       this.unavailableButtonArrow.classList.remove('fa-exclamation-triangle');
-      this.unavailableButtonText.textContent = 'Checking branch availability…';
+      this.unavailableButtonText.textContent = '检查分支有效性…';
     } else {
       this.unavailableButtonArrow.classList.remove('fa-spinner', 'fa-spin');
       this.unavailableButtonArrow.classList.add('fa-exclamation-triangle');
-      this.unavailableButtonText.textContent = 'New branch unavailable';
+      this.unavailableButtonText.textContent = '新分支不可用';
     }
   }
 
@@ -103,7 +103,7 @@ export default class CreateMergeRequestDropdown {
     }).fail(() => {
       this.unavailable();
       this.disable();
-      new Flash('Failed to check if a new branch can be created.');
+      new Flash('无法检查是否可以创建新的分支。');
     });
   }
 
@@ -174,7 +174,7 @@ export default class CreateMergeRequestDropdown {
       this.mergeRequestCreated = true;
       window.location.href = data.url;
     })
-    .fail(() => new Flash('Failed to create Merge Request. Please try again.'));
+    .fail(() => new Flash('创建合并请求失败，请稍后重试。'));
   }
 
   createBranch() {
@@ -188,6 +188,6 @@ export default class CreateMergeRequestDropdown {
       this.branchCreated = true;
       window.location.href = data.url;
     })
-    .fail(() => new Flash('Failed to create a branch for this issue. Please try again.'));
+    .fail(() => new Flash('为此问题创建分支失败，请稍后重试。'));
   }
 }

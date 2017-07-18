@@ -14,7 +14,7 @@ class Projects::VariablesController < Projects::ApplicationController
   def update
     if variable.update(variable_params)
       redirect_to project_variables_path(project),
-                  notice: 'Variable was successfully updated.'
+                  notice: '变量更新成功。'
     else
       render "show"
     end
@@ -26,7 +26,7 @@ class Projects::VariablesController < Projects::ApplicationController
 
     if @variable.persisted?
       redirect_to project_settings_ci_cd_path(project),
-                  notice: 'Variable was successfully created.'
+                  notice: '变量创建成功。'
     else
       render "show"
     end
@@ -36,11 +36,11 @@ class Projects::VariablesController < Projects::ApplicationController
     if variable.destroy
       redirect_to project_settings_ci_cd_path(project),
                   status: 302,
-                  notice: 'Variable was successfully removed.'
+                  notice: '变量删除成功。'
     else
       redirect_to project_settings_ci_cd_path(project),
                   status: 302,
-                  notice: 'Failed to remove the variable.'
+                  notice: '变量删除失败。'
     end
   end
 

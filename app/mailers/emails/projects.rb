@@ -6,20 +6,20 @@ module Emails
       @target_url = project_url(@project)
       @old_path_with_namespace = old_path_with_namespace
       mail(to: @user.notification_email,
-           subject: subject("Project was moved"))
+           subject: subject("项目被移动"))
     end
 
     def project_was_exported_email(current_user, project)
       @project = project
       mail(to: current_user.notification_email,
-           subject: subject("Project was exported"))
+           subject: subject("项目被导出"))
     end
 
     def project_was_not_exported_email(current_user, project, errors)
       @project = project
       @errors = errors
       mail(to: current_user.notification_email,
-           subject: subject("Project export error"))
+           subject: subject("项目导出错误"))
     end
 
     def repository_push_email(project_id, opts = {})

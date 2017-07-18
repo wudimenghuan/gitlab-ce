@@ -18,7 +18,7 @@ export default {
       />
       <section>
         <p>
-          The changes were not merged into
+          变更无法合并到
           <a
             :href="mr.targetBranchPath"
             class="label-branch">

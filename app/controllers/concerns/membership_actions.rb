@@ -32,7 +32,7 @@ module MembershipActions
     membershipable.request_access(current_user)
 
     redirect_to polymorphic_path(membershipable),
-                notice: 'Your request for access has been queued for review.'
+                notice: '您的访问请求正在等待审核。'
   end
 
   def approve_access_request
@@ -47,9 +47,9 @@ module MembershipActions
 
     notice =
       if member.request?
-        "Your access request to the #{source_type} has been withdrawn."
+        "您向 #{source_type} 提交的访问请求被撤回。"
       else
-        "You left the \"#{membershipable.human_name}\" #{source_type}."
+        "你离开了 \"#{membershipable.human_name}\" #{source_type}."
       end
 
     respond_to do |format|

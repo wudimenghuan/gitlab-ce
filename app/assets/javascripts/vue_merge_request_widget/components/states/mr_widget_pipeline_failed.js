@@ -6,10 +6,10 @@ export default {
         class="btn btn-success btn-small"
         disabled="true"
         type="button">
-        Merge
+        合并
       </button>
       <span class="bold">
-        The pipeline for this merge request failed. Please retry the job or push a new commit to fix the failure.
+        此合并请求的流水线已失败。 请重试该作业或推送一个新的提交来修复失败。
       </span>
     </div>
   `,

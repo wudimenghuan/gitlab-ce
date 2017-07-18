@@ -19,13 +19,13 @@ export default {
         type="button"
         class="btn btn-success btn-small"
         disabled="true">
-        Merge
+        合并
       </button>
       <span class="bold js-branch-text">
         <span class="capitalize">
           {{missingBranchName}}
-        </span> branch does not exist.
-        Please restore the {{missingBranchName}} branch or use a different {{missingBranchName}} branch.
+        </span> 分支不存在。
+        请恢复 {{missingBranchName}} 分支 或者使用另一个 {{missingBranchName}} 分支。
       </span>
       <mr-widget-merge-help
         :missing-branch="missingBranchName" />

@@ -44,7 +44,7 @@ export default {
         class="btn btn-success btn-small"
         disabled="true"
         type="button">
-        Merge
+        合并
       </button>
       <span
         v-if="!isRefreshing"
@@ -54,22 +54,22 @@ export default {
           v-if="mr.mergeError">
           {{mr.mergeError}}
         </span>
-        <span v-else>Merge failed.</span>
+        <span v-else>合并失败。</span>
         <span
           :class="{ 'has-custom-error': mr.mergeError }">
-          Refreshing in {{timerText}} to show the updated status...
+          将在 {{timerText}} 后刷新显示最新状态...
         </span>
         <button
           @click="refresh"
           class="btn btn-default btn-xs js-refresh-button"
           type="button">
-          Refresh now
+          立刻刷新
         </button>
       </span>
       <span
         v-if="isRefreshing"
         class="bold js-refresh-label">
-        Refreshing now...
+        正在刷新...
       </span>
     </div>
   `,

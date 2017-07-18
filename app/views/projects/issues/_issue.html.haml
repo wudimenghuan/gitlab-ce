@@ -41,7 +41,7 @@
         %ul.controls
           - if issue.closed?
             %li.issuable-status
-              CLOSED
+              已关闭
           - if issue.assignees.any?
             %li
               = render 'shared/issuable/assignees', project: @project, issue: issue
@@ -49,4 +49,4 @@
           = render 'shared/issuable_meta_data', issuable: issue
 
         .pull-right.issuable-updated-at.hidden-xs
-          %span updated #{time_ago_with_tooltip(issue.updated_at, placement: 'bottom', html_class: 'issue_update_ago')}
+          %span 更新于 #{time_ago_with_tooltip(issue.updated_at, placement: 'bottom', html_class: 'issue_update_ago')}

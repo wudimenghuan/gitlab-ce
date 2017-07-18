@@ -33,7 +33,7 @@ class TeamcityService < CiService
   end
 
   def description
-    'A continuous integration and build server'
+    '持续集成和构建服务器'
   end
 
   def help

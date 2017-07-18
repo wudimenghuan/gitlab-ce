@@ -1,11 +1,11 @@
 - if current_user
   .js-file-fork-suggestion-section.file-fork-suggestion.hidden
     %span.file-fork-suggestion-note
-      You're not allowed to
+      您不能直接
       %span.js-file-fork-suggestion-section-action
-        edit
-      files in this project directly. Please fork this project,
-      make your changes there, and submit a merge request.
-    = link_to 'Fork', nil, method: :post, class: 'js-fork-suggestion-button btn btn-grouped btn-inverted btn-new'
+        编辑
+      这个项目的文件。请派生这个项目，
+      在派生项目上进行修改，并提交合并请求。
+    = link_to '派生', nil, method: :post, class: 'js-fork-suggestion-button btn btn-grouped btn-inverted btn-new'
     %button.js-cancel-fork-suggestion-button.btn.btn-grouped{ type: 'button' }
-      Cancel
+      取消

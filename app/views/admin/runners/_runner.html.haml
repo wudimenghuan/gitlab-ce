@@ -1,13 +1,13 @@
 %tr{ id: dom_id(runner) }
   %td
     - if runner.shared?
-      %span.label.label-success shared
+      %span.label.label-success 共享的
     - else
-      %span.label.label-info specific
+      %span.label.label-info 特定的
     - if runner.locked?
-      %span.label.label-warning locked
+      %span.label.label-warning 锁定的
     - unless runner.active?
-      %span.label.label-danger paused
+      %span.label.label-danger 暂停的
 
   %td
     = link_to admin_runner_path(runner) do
@@ -29,19 +29,19 @@
         = tag
   %td
     - if runner.contacted_at
-      #{time_ago_in_words(runner.contacted_at)} ago
+      #{time_ago_in_words(runner.contacted_at)}之前
     - else
-      Never
+      从未
   %td.admin-runner-btn-group-cell
     .pull-right.btn-group
-      = link_to admin_runner_path(runner), class: 'btn btn-sm btn-default has-tooltip', title: 'Edit', ref: 'tooltip', aria: { label: 'Edit' }, data: { placement: 'top', container: 'body'} do
+      = link_to admin_runner_path(runner), class: 'btn btn-sm btn-default has-tooltip', title: '编辑', ref: 'tooltip', aria: { label: '编辑' }, data: { placement: 'top', container: 'body'} do
         = icon('pencil')
       &nbsp;
       - if runner.active?
-        = link_to [:pause, :admin, runner], method: :get, class: 'btn btn-sm btn-default has-tooltip', title: 'Pause', ref: 'tooltip', aria: { label: 'Pause' }, data: { placement: 'top', container: 'body', confirm: "Are you sure?" } do
+        = link_to [:pause, :admin, runner], method: :get, class: 'btn btn-sm btn-default has-tooltip', title: '暂停', ref: 'tooltip', aria: { label: '暂停' }, data: { placement: 'top', container: 'body', confirm: "确定要继续么？" } do
           = icon('pause')
       - else
-        = link_to [:resume, :admin, runner], method: :get, class: 'btn btn-default btn-sm has-tooltip', title: 'Resume', ref: 'tooltip', aria: { label: 'Resume' }, data: { placement: 'top', container: 'body'} do
+        = link_to [:resume, :admin, runner], method: :get, class: 'btn btn-default btn-sm has-tooltip', title: '继续', ref: 'tooltip', aria: { label: '继续' }, data: { placement: 'top', container: 'body'} do
           = icon('play')
-      = link_to [:admin, runner], method: :delete, class: 'btn btn-danger btn-sm has-tooltip', title: 'Remove', ref: 'tooltip', aria: { label: 'Remove' }, data: { placement: 'top', container: 'body', confirm: "Are you sure?" } do
+      = link_to [:admin, runner], method: :delete, class: 'btn btn-danger btn-sm has-tooltip', title: '删除', ref: 'tooltip', aria: { label: '删除' }, data: { placement: 'top', container: 'body', confirm: "确定要继续么？" } do
         = icon('remove')

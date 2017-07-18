@@ -1,18 +1,18 @@
 - @content_class = "limit-container-width limit-container-width-sm" unless fluid_layout
-- page_title "Git Access", "Wiki"
+- page_title "Git 访问", "维基"
 
 .wiki-page-header.has-sidebar-toggle
   %button.btn.btn-default.visible-xs.visible-sm.pull-right.sidebar-toggle.js-sidebar-wiki-toggle{ role: "button", type: "button" }
     = icon('angle-double-left')
 
   .git-access-header
-    Clone repository
+    克隆版本库
     %strong= @project_wiki.path_with_namespace
 
   = render "shared/clone_panel", project: @project_wiki
 
 .wiki-git-access
-  %h3 Install Gollum
+  %h3 安装 Gollum
   %pre.dark
     :preserve
       gem install gollum
@@ -24,13 +24,13 @@
     :preserve
       gem install github-markdown
 
-  %h3 Clone your wiki
+  %h3 克隆您的维基版本库
   %pre.dark
     :preserve
       git clone #{ content_tag(:span, h(default_url_to_repo(@project_wiki)), class: 'clone')}
       cd #{h @project_wiki.path}
 
-  %h3 Start Gollum and edit locally
+  %h3 运行 Gollum 并在本地编辑
   %pre.dark
     :preserve
       gollum

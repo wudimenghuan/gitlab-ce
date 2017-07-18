@@ -84,7 +84,7 @@ class DroneCiService < CiService
   end
 
   def description
-    'Drone is a Continuous Integration platform built on Docker, written in Go'
+    'Drone 是一个基于Docker的持续集成平台，由Go编写'
   end
 
   def self.to_param

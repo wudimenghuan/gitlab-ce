@@ -587,7 +587,7 @@ function UsersSelect(currentUser, els) {
             if (showEmailUser && data.results.length === 0 && query.term.match(/^[^@]+@[^@]+$/)) {
               var trimmed = query.term.trim();
               emailUser = {
-                name: "Invite \"" + query.term + "\"",
+                name: "邀请 \"" + query.term + "\"",
                 username: trimmed,
                 id: trimmed
               };
@@ -626,7 +626,7 @@ UsersSelect.prototype.initSelection = function(element, callback) {
   id = $(element).val();
   if (id === "0") {
     nullUser = {
-      name: 'Unassigned'
+      name: '未指派'
     };
     return callback(nullUser);
   } else if (id !== "") {
