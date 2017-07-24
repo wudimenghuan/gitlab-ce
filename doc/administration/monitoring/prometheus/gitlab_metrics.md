@@ -1,10 +1,8 @@
 # GitLab Prometheus metrics
 
 >**Note:**
-Available since [Omnibus GitLab 9.3][29118]. Currently experimental. For installations from source
-you'll have to configure it yourself.
-
-GitLab monitors its own internal service metrics, and makes them available at the `/-/metrics` endpoint. Unlike other [Prometheus] exporters, this endpoint requires authentication as it is available on the same URL and port as user traffic.
+Available since [Omnibus GitLab 9.3][29118]. Currently experimental. For
+installations from source you'll have to configure it yourself.
 
 To enable the GitLab Prometheus metrics:
 
@@ -15,9 +13,14 @@ To enable the GitLab Prometheus metrics:
 
 ## Collecting the metrics
 
-Since the metrics endpoint is available on the same host and port as other traffic, it requires authentication. The token and URL to access is displayed on the [Health Check][health-check] page.
+GitLab monitors its own internal service metrics, and makes them available at the
+`/-/metrics` endpoint. Unlike other [Prometheus] exporters, in order to access
+it, the client IP needs to be [included in a whitelist][whitelist].
 
-Currently the embedded Prometheus server is not automatically configured to collect metrics from this endpoint. We recommend setting up another Prometheus server, because the embedded server configuration is overwritten one every reconfigure of GitLab. In the future this will not be required.
+Currently the embedded Prometheus server is not automatically configured to
+collect metrics from this endpoint. We recommend setting up another Prometheus
+server, because the embedded server configuration is overwritten once every
+[reconfigure of GitLab][reconfigure]. In the future this will not be required.
 
 ## Metrics available
 
@@ -39,9 +42,24 @@ In this experimental phase, only a few metrics are available:
 | filesystem_readable | gauge | Whether or not the filesystem is readable |
 | user_sessions_logins | Counter | Counter of how many users have logged in | 
 
+## Metrics shared directory
+
+GitLab's Prometheus client requires a directory to store metrics data shared between multi-process services.
+Those files are shared among all instances running under Unicorn server.
+The directory needs to be accessible to all running Unicorn's processes otherwise
+metrics will not function correctly.
+
+For best performance its advisable that this directory will be located in `tmpfs`.
+
+Its location is configured using environment variable `prometheus_multiproc_dir`.
+
+If GitLab is installed using Omnibus and `tmpfs` is available then metrics
+directory will be automatically configured.
+
 [← Back to the main Prometheus page](index.md)
 
 [29118]: https://gitlab.com/gitlab-org/gitlab-ce/issues/29118
 [Prometheus]: https://prometheus.io
 [restart]: ../../restart_gitlab.md#omnibus-gitlab-restart
-[health-check]: ../../../user/admin_area/monitoring/health_check.md
+[whitelist]: ../ip_whitelist.md
+[reconfigure]: ../../restart_gitlab.md#omnibus-gitlab-reconfigure

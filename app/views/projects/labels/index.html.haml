@@ -1,6 +1,11 @@
 - @no_container = true
 - page_title "标记"
 - hide_class = ''
+
+- if show_new_nav? && can?(current_user, :admin_label, @project)
+  - content_for :breadcrumbs_extra do
+    = link_to "New label", new_namespace_project_label_path(@project.namespace, @project), class: "btn btn-new"
+
 = render "shared/mr_head"
 
 - if @labels.exists? || @prioritized_labels.exists?
@@ -9,7 +14,7 @@
       .nav-text
         标记可应用于问题和合并请求。为标签加注星标，使其成为优先标记。 通过拖动来排列优先标记以更改其相对优先级。
 
-      .nav-controls
+      .nav-controls{ class: ("visible-xs" if show_new_nav?) }
         - if can?(current_user, :admin_label, @project)
           = link_to new_project_label_path(@project), class: "btn btn-new" do
             新建标记

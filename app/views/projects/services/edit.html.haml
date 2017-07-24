@@ -1,3 +1,8 @@
+- breadcrumb_title "集成"
 - page_title @service.title, "服务"
+
+- if show_new_nav?
+  - add_to_breadcrumbs("Settings", edit_project_path(@project))
+
 = render "projects/settings/head"
 = render 'form'

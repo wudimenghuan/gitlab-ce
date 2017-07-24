@@ -1,14 +1,18 @@
 - page_title '标记'
+- if show_new_nav? && can?(current_user, :admin_label, @group)
+  - content_for :breadcrumbs_extra do
+    = link_to "新建标记", new_group_label_path(@group), class: "btn btn-new"
+
 = render "groups/head_issues"
+
 
 .top-area.adjust
   .nav-text
     标记可应用于问题和合并请求。群组标记适用于群组内的所有项目。
 
-  .nav-controls
+  .nav-controls{ class: ("visible-xs" if show_new_nav?) }
     - if can?(current_user, :admin_label, @group)
-      = link_to new_group_label_path(@group), class: "btn btn-new" do
-        新建标记
+      = link_to "新建标记", new_group_label_path(@group), class: "btn btn-new"
 
 .labels
   .other-labels

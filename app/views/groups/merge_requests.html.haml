@@ -1,12 +1,16 @@
 - page_title "合并请求"
 
+- if show_new_nav? && current_user
+  - content_for :breadcrumbs_extra do
+    = render 'shared/new_project_item_select', path: 'merge_requests/new', label: "新建合并请求"
+
 - if @group_merge_requests.empty?
   = render 'shared/empty_states/merge_requests', project_select_button: true
 - else
   .top-area
     = render 'shared/issuable/nav', type: :merge_requests
     - if current_user
-      .nav-controls
+      .nav-controls{ class: ("visible-xs" if show_new_nav?) }
         = render 'shared/new_project_item_select', path: 'merge_requests/new', label: "新建合并请求"
 
   = render 'shared/issuable/filter', type: :merge_requests

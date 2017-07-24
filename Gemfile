@@ -163,6 +163,9 @@ gem 'rainbow', '~> 2.2'
 # GitLab settings
 gem 'settingslogic', '~> 2.0.9'
 
+# Linear-time regex library for untrusted regular expressions
+gem 're2', '~> 1.0.0'
+
 # Misc
 
 gem 'version_sorter', '~> 2.1.0'
@@ -283,7 +286,7 @@ group :metrics do
   gem 'influxdb', '~> 0.2', require: false
 
   # Prometheus
-  gem 'prometheus-client-mmap', '~>0.7.0.beta5'
+  gem 'prometheus-client-mmap', '~>0.7.0.beta9'
   gem 'raindrops', '~> 0.18'
 end
 
