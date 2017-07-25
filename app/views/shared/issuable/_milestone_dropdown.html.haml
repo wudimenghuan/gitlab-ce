@@ -11,8 +11,7 @@
     %ul.dropdown-footer-list
       - if can? current_user, :admin_milestone, project
         %li
-          = link_to new_namespace_project_milestone_path(project.namespace, project), title: "新建里程碑" do
-          = link_to new_project_milestone_path(project), title: "New Milestone" do
+          = link_to new_project_milestone_path(project), title: "新建里程碑" do
             创建新的
       %li
         = link_to project_milestones_path(project) do
