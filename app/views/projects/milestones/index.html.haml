@@ -1,7 +1,7 @@
 - @no_container = true
 - page_title '里程碑'
 
-- if show_new_nav?
+- if show_new_nav? && can?(current_user, :admin_milestone, @project)
   - content_for :breadcrumbs_extra do
     = link_to "新建里程碑", new_namespace_project_milestone_path(@project.namespace, @project), class: 'btn btn-new', title: '新建里程碑'
 
@@ -11,10 +11,10 @@
   .top-area
     = render 'shared/milestones_filter', counts: milestone_counts(@project.milestones)
 
-    .nav-controls
+    .nav-controls{ class: ("nav-controls-new-nav" if show_new_nav?) }
       = render 'shared/milestones_sort_dropdown'
       - if can?(current_user, :admin_milestone, @project)
-        = link_to new_project_milestone_path(@project), class: 'btn btn-new', title: '新建里程碑' do
+        = link_to new_project_milestone_path(@project), class: "btn btn-new #{("visible-xs" if show_new_nav?)}", title: '新建里程碑' do
           新建里程碑
 
   .milestones
