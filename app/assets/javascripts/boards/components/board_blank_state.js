@@ -8,7 +8,7 @@ export default {
   template: `
     <div class="board-blank-state">
       <p>
-       只需点击一下，即可将以下默认列表添加到问题看板：
+        只需点击一下，即可将以下默认列表添加到问题看板：
       </p>
       <ul class="board-blank-state-list">
         <li v-for="label in predefinedLabels">

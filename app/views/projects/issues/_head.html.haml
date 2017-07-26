@@ -10,8 +10,7 @@
                 列表
 
           = nav_link(controller: :boards) do
-            = link_to namespace_project_boards_path(@project.namespace, @project), title: '看板' do
-            = link_to project_boards_path(@project), title: 'Board' do
+            = link_to project_boards_path(@project), title: '看板' do
               %span
                 看板
 

@@ -12,7 +12,7 @@ export default {
       <template v-else>
         您
       </template>
-      您可以通过
+      可以通过
       <a
         data-toggle="modal"
         href="#modal_merge_info">
