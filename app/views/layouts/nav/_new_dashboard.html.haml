@@ -1,33 +1,33 @@
 %ul.list-unstyled.navbar-sub-nav
   = nav_link(path: ['root#index', 'projects#trending', 'projects#starred', 'dashboard/projects#index'], html_options: {class: "home"}) do
-    = link_to dashboard_projects_path, title: 'Projects', class: 'dashboard-shortcuts-projects' do
-      Projects
+    = link_to dashboard_projects_path, title: '项目', class: 'dashboard-shortcuts-projects' do
+      项目
 
   = nav_link(controller: ['dashboard/groups', 'explore/groups']) do
-    = link_to dashboard_groups_path, class: 'dashboard-shortcuts-groups', title: 'Groups' do
-      Groups
+    = link_to dashboard_groups_path, class: 'dashboard-shortcuts-groups', title: '群组' do
+      群组
 
   = nav_link(path: 'dashboard#activity', html_options: { class: "hidden-xs hidden-sm" }) do
-    = link_to activity_dashboard_path, class: 'dashboard-shortcuts-activity', title: 'Activity' do
-      Activity
+    = link_to activity_dashboard_path, class: 'dashboard-shortcuts-activity', title: '活动' do
+      活动
 
   %li.dropdown
     %a{ href: "#", data: { toggle: "dropdown" } }
-      More
+      更多
       = icon("chevron-down", class: "dropdown-chevron")
     .dropdown-menu
       %ul
         = nav_link(path: 'dashboard#activity', html_options: { class: "visible-xs visible-sm" }) do
-          = link_to activity_dashboard_path, title: 'Activity' do
-            Activity
+          = link_to activity_dashboard_path, title: '活动' do
+            活动
 
         = nav_link(controller: 'dashboard/milestones') do
-          = link_to dashboard_milestones_path, class: 'dashboard-shortcuts-milestones', title: 'Milestones' do
-            Milestones
+          = link_to dashboard_milestones_path, class: 'dashboard-shortcuts-milestones', title: '里程碑' do
+            里程碑
 
         = nav_link(controller: 'dashboard/snippets') do
-          = link_to dashboard_snippets_path, class: 'dashboard-shortcuts-snippets', title: 'Snippets' do
-            Snippets
+          = link_to dashboard_snippets_path, class: 'dashboard-shortcuts-snippets', title: '代码片段' do
+            代码片段
         %li.divider
         %li
-          = link_to "Help", help_path, title: 'About GitLab CE'
+          = link_to "帮助", help_path, title: '关于 GitLab CE'
