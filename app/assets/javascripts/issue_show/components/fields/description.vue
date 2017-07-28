@@ -33,7 +33,7 @@
     <label
       class="sr-only"
       for="issue-description">
-      Description
+      描述
     </label>
     <markdown-field
       :markdown-preview-url="markdownPreviewUrl"
@@ -42,7 +42,7 @@
         id="issue-description"
         class="note-textarea js-gfm-input js-autosize markdown-area"
         data-supports-quick-actionss="false"
-        aria-label="Description"
+        aria-label="描述"
         v-model="formState.description"
         ref="textarea"
         slot="textarea"

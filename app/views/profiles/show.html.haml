@@ -1,4 +1,4 @@
-- breadcrumb_title "Profile"
+- breadcrumb_title "个人资料"
 - @content_class = "limit-container-width" unless fluid_layout
 = render 'profiles/head'
 
@@ -13,11 +13,11 @@
         - if @user.avatar?
           在这里修改头像
           - if gravatar_enabled?
-            或者删除当前头像使用 #{link_to Gitlab.config.gravatar.host, 'http://' + Gitlab.config.gravatar.host} 头像
+            或者删除当前头像使用 #{link_to Gitlab.config.gravatar.host, 'http://' + Gitlab.config.gravatar.host} 上的头像
         - else
           在这里上传头像
           - if gravatar_enabled?
-            or change it at #{link_to Gitlab.config.gravatar.host, 'http://' + Gitlab.config.gravatar.host}
+            或者在 #{link_to Gitlab.config.gravatar.host, 'http://' + Gitlab.config.gravatar.host} 修改头像。
     .col-lg-8
       .clearfix.avatar-image.append-bottom-default
         = link_to avatar_icon(@user, 400), target: '_blank', rel: 'noopener noreferrer' do
@@ -50,12 +50,12 @@
         = f.text_field :id, readonly: true, label: '用户 ID', wrapper: { class: 'col-md-3' }
 
       - if @user.external_email?
-        = f.text_field :email, required: true, readonly: true, help: "您的电子邮箱已基于您的 #{email_provider_label} 账号自动设置。"
+        = f.text_field :email, required: true, readonly: true, label: '电子邮箱', help: "您的电子邮箱已基于您的 #{email_provider_label} 账号自动设置。"
       - else
-        = f.text_field :email, required: true, value: (@user.email unless @user.temp_oauth_email?),
+        = f.text_field :email, required: true, label: '电子邮箱', value: (@user.email unless @user.temp_oauth_email?),
           help: user_email_help_text(@user)
       = f.select :public_email, options_for_select(@user.all_emails, selected: @user.public_email),
-        { help: '此邮箱将显示在公开的个人资料上。', include_blank: 'Do not show on profile' },
+        { help: '此邮箱将显示在公开的个人资料上。', include_blank: '不要在个人资料上显示' },
         control_class: 'select2'
       = f.select :preferred_language, Gitlab::I18n::AVAILABLE_LANGUAGES.map { |value, label| [label, value] },
         { help: '这是一个实验性的功能（翻译尚未完成）。' },
@@ -63,7 +63,7 @@
       = f.text_field :skype
       = f.text_field :linkedin
       = f.text_field :twitter
-      = f.text_field :website_url, label: 'Website'
+      = f.text_field :website_url, label: '个人主页'
       = f.text_field :location
       = f.text_field :organization
       = f.text_area :bio, rows: 4, maxlength: 250, help: '自我介绍(少于 250 字)。'

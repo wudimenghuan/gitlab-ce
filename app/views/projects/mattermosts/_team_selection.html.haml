@@ -9,7 +9,7 @@
     where the slash commands will be used in
   - selected_id = @teams.one? ? @teams.first['id'] : nil
   - options = options_for_select(mattermost_teams_options(@teams), selected_id)
-  = f.select(:team_id, options, { include_blank: 'Select team...'}, { class: 'form-control', disabled: @teams.one?, selected: selected_id, required: true })
+  = f.select(:team_id, options, { include_blank: '选择团队...'}, { class: 'form-control', disabled: @teams.one?, selected: selected_id, required: true })
   = f.hidden_field(:team_id, value: selected_id, required: true) if @teams.one?
   .help-block
     - if @teams.one?

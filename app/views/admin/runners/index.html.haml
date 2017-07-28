@@ -61,18 +61,18 @@
       %table.table
         %thead
           %tr
-            %th Type
-            %th Runner token
-            %th Description
-            %th Version
-            %th Projects
-            %th Jobs
-            %th Tags
-            %th Last contact
+            %th 类型
+            %th Runner 令牌
+            %th 描述
+            %th 版本
+            %th 项目
+            %th 作业
+            %th 标签
+            %th 最后联系
             %th
 
         - @runners.each do |runner|
           = render "admin/runners/runner", runner: runner
     = paginate @runners, theme: "gitlab"
   - else
-    .nothing-here-block No runners found
+    .nothing-here-block 没有找到 Runner

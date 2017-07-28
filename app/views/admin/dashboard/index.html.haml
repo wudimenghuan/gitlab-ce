@@ -132,7 +132,7 @@
           .well-segment.well-centered
             = link_to admin_projects_path do
               %h3.text-center
-                Projects:
+                项目：
                 = number_with_delimiter(Project.cached_count)
             %hr
             = link_to('新建项目', new_project_path, class: "btn btn-new")
@@ -141,7 +141,7 @@
           .well-segment.well-centered
             = link_to admin_users_path do
               %h3.text-center
-                Users:
+                用户：
                 = number_with_delimiter(User.count)
             %hr
             = link_to '新建用户', new_admin_user_path, class: "btn btn-new"
@@ -150,7 +150,7 @@
           .well-segment.well-centered
             = link_to admin_groups_path do
               %h3.text-center
-                Groups
+                群组：
                 = number_with_delimiter(Group.count)
             %hr
             = link_to '新建群组', new_admin_group_path, class: "btn btn-new"

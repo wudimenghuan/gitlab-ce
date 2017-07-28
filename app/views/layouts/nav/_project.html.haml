@@ -59,9 +59,9 @@
 
     - if project_nav_tab? :project_members
       = nav_link(controller: :project_members) do
-        = link_to project_project_members_path(@project), title: 'Members', class: 'shortcuts-members' do
+        = link_to project_project_members_path(@project), title: '成员', class: 'shortcuts-members' do
           %span
-            Members
+            成员
 
     - if project_nav_tab? :settings
       = nav_link(path: %w[projects#edit members#show integrations#show services#edit repository#show ci_cd#show pages#show]) do

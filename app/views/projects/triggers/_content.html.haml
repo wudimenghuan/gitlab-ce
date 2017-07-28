@@ -1,14 +1,14 @@
 %h4.prepend-top-0
-  Triggers
+  触发器
 %p.prepend-top-20
-  Triggers can force a specific branch or tag to get rebuilt with an API call.  These tokens will
-  impersonate their associated user including their access to projects and their project
-  permissions.
+  触发器被 API 调用用于强制重新构建指定的分支或标签。
+  这些令牌将模拟他们的关联用户，包括他们访问项目和他们的项目权限。
 %p.prepend-top-20
-  Triggers with the
+  包含
   %span.label.label-primary legacy
-  label do not have an associated user and only have access to the current project.
+  标记的触发器没有关联用户，只能访问当前项目。
 %p.append-bottom-0
   = succeed '.' do
-    Learn more in the
-    = link_to 'triggers documentation', help_page_path('ci/triggers/README'), target: '_blank'
+    点击
+    = link_to '触发器文档', help_page_path('ci/triggers/README'), target: '_blank'
+    了解更多
