@@ -16,7 +16,7 @@
       %p
         你可以点击下面的按钮重置 runner 的注册授权码。
       .prepend-top-10
-        = button_to "Reset runners registration token", reset_runners_token_admin_application_settings_path,
+        = button_to "重置 Runner 的注册授权码", reset_runners_token_admin_application_settings_path,
           method: :put, class: 'btn btn-default',
           data: { confirm: '确定要继续重置注册授权码么？' }
 

@@ -185,7 +185,7 @@
         .help-block 允许使用 Markdown 格式
 
   %fieldset
-    %legend Help Page
+    %legend 帮助页面
     .form-group
       = f.label :help_page_text, '帮助页面文字', class: 'control-label col-sm-2'
       .col-sm-10
@@ -196,12 +196,12 @@
         .checkbox
           = f.label :help_page_hide_commercial_content do
             = f.check_box :help_page_hide_commercial_content
-            Hide marketing-related entries from help
+            从帮助中隐藏营销相关的条目
     .form-group
-      = f.label :help_page_support_url, 'Support page URL', class: 'control-label col-sm-2'
+      = f.label :help_page_support_url, '支持页面 URL', class: 'control-label col-sm-2'
       .col-sm-10
         = f.text_field :help_page_support_url, class: 'form-control', placeholder: 'http://company.example.com/getting-help', :'aria-describedby' => 'support_help_block'
-        %span.help-block#support_help_block Alternate support URL for help page
+        %span.help-block#support_help_block 替代支持页面 URL
 
   %fieldset
     %legend 页面
@@ -249,7 +249,7 @@
           = f.number_field :container_registry_token_expire_delay, class: 'form-control'
 
   %fieldset
-    %legend Metrics - Influx
+    %legend 指标 - Influx
     %p
       设置InfluxDB来测量各种统计信息，例如运行SQL查询所花费的时间。 这些设置需要
       = link_to '重新启动', help_page_path('administration/restart_gitlab')
@@ -260,7 +260,7 @@
         .checkbox
           = f.label :metrics_enabled do
             = f.check_box :metrics_enabled
-            开启 InfluxDB 度量
+            启用 InfluxDB 指标
     .form-group
       = f.label :metrics_host, 'InfluxDB 主机', class: 'control-label col-sm-2'
       .col-sm-10
@@ -272,7 +272,7 @@
         .help-block
           用于连接到 InfluxDB 的 UDP 端口。
           InfluxDB 需要您的服务器配置数据库用于存储发送到此端口的消息，
-          如果没有配置，度量数据将不会保存。
+          如果没有配置，指标数据将不会保存。
     .form-group
       = f.label :metrics_pool_size, '连接池大小', class: 'control-label col-sm-2'
       .col-sm-10
@@ -302,35 +302,35 @@
           以秒为单位的采样间隔。
           采样数据包括内存使用、保留的 Ruby 对象、文件描述符等。
     .form-group
-      = f.label :metrics_packet_size, '度量包大小', class: 'control-label col-sm-2'
+      = f.label :metrics_packet_size, '指标数据包大小', class: 'control-label col-sm-2'
       .col-sm-10
         = f.number_field :metrics_packet_size, class: 'form-control'
         .help-block
           存储在单个UDP数据包中的点数。 增加点数可以减少发送次数，但会增加每个UDP数据包的大小。
 
   %fieldset
-    %legend Metrics - Prometheus
+    %legend 指标 - Prometheus
     %p
-      Enable a Prometheus metrics endpoint at
+      在
       %code= metrics_path
-      to expose a variety of statistics on the health and performance of GitLab. Additional information on authenticating and connecting to the metrics endpoint is available
-      = link_to 'here', admin_health_check_path
-      \. This setting requires a
-      = link_to 'restart', help_page_path('administration/restart_gitlab')
-      to take effect.
+      上启用 Prometheus 指标终端，以显示关于 GitLab 的健康和性能的各种统计信息。请参阅
+      = link_to '此处', admin_health_check_path
+      \。 此设置需要
+      = link_to '重新启动', help_page_path('administration/restart_gitlab')
+      才能生效。
       = link_to icon('question-circle'), help_page_path('administration/monitoring/performance/introduction')
     .form-group
       .col-sm-offset-2.col-sm-10
         .checkbox
           = f.label :prometheus_metrics_enabled do
             = f.check_box :prometheus_metrics_enabled
-            Enable Prometheus Metrics
+            启用 Prometheus 指标
           - unless Gitlab::Metrics.metrics_folder_present?
             .help-block
-              %strong.cred WARNING:
-              Environment variable
+              %strong.cred 警告:
+              环境变量
               %code prometheus_multiproc_dir
-              does not exist or is not pointing to a valid directory.
+              不存在或者是一个无效的目录。
               = link_to icon('question-circle'), help_page_path('administration/monitoring/prometheus/gitlab_metrics', anchor: 'metrics-shared-directory')
 
   %fieldset
