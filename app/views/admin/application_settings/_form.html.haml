@@ -437,13 +437,13 @@
           一个 IP 会被触发限制计数的秒数
 
   %fieldset
-    %legend 滥用报告
+    %legend 违规报告
     .form-group
-      = f.label :admin_notification_email, '滥用报告通知邮箱', class: 'control-label col-sm-2'
+      = f.label :admin_notification_email, '违规报告通知邮箱', class: 'control-label col-sm-2'
       .col-sm-10
         = f.text_field :admin_notification_email, class: 'form-control'
         .help-block
-          滥用报告将会发送至此邮箱. 滥用报告可随时在管理后台查看。
+          违规报告将会发送至此邮箱. 违规报告可随时在管理后台查看。
 
   %fieldset
     %legend 错误报告和日志

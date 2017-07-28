@@ -24,7 +24,7 @@
             = icon('exclamation-circle')
         - else
           = link_to new_abuse_report_path(user_id: @user.id, ref_url: request.referrer), class: 'btn btn-gray',
-            title: '举报滥用', data: { toggle: 'tooltip', placement: 'bottom', container: 'body' } do
+            title: '违规举报', data: { toggle: 'tooltip', placement: 'bottom', container: 'body' } do
             = icon('exclamation-circle')
       = link_to user_path(@user, rss_url_options), class: 'btn btn-gray has-tooltip', title: '订阅', 'aria-label': '订阅' do
         = icon('rss')

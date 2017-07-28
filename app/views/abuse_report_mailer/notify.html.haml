@@ -2,7 +2,7 @@
   #{link_to @abuse_report.user.name, user_url(@abuse_report.user)}
   (@#{@abuse_report.user.username}) 被
   #{link_to @abuse_report.reporter.name, user_url(@abuse_report.reporter)}
-  (@#{@abuse_report.reporter.username}) 举报为滥用行为。
+  (@#{@abuse_report.reporter.username}) 举报为违规行为。
 
 %blockquote
   = @abuse_report.message

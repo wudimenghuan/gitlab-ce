@@ -15,11 +15,11 @@
   %table.table
     %thead
       %tr
-        %th Page version
-        %th Author
-        %th Commit Message
-        %th Last updated
-        %th Format
+        %th 页面版本
+        %th 作者
+        %th 提交信息
+        %th 最后更新
+        %th 格式
     %tbody
       - @page.versions.each_with_index do |version, index|
         - commit = version

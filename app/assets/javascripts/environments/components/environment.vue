@@ -198,7 +198,7 @@ export default {
         class="nav-links">
         <li :class="{ active: scope === null || scope === 'available' }">
           <a :href="projectEnvironmentsPath">
-            可用的
+            可用
             <span class="badge js-available-environments-count">
               {{state.availableCounter}}
             </span>
@@ -206,7 +206,7 @@ export default {
         </li>
         <li :class="{ active : scope === 'stopped' }">
           <a :href="projectStoppedEnvironmentsPath">
-            Stopped
+            已停用
             <span class="badge js-stopped-environments-count">
               {{state.stoppedCounter}}
             </span>
@@ -219,14 +219,14 @@ export default {
         <a
           :href="newEnvironmentPath"
           class="btn btn-create">
-          New environment
+          新建运行环境
         </a>
       </div>
     </div>
 
     <div class="environments-container">
       <loading-icon
-        label="Loading environments"
+        label="正在载入运行环境"
         size="3"
         v-if="isLoading"
         />

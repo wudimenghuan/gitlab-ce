@@ -17,19 +17,18 @@
     = custom_icon("add_new_project", size: 50)
   .blank-state-body
     %h3.blank-state-title
-      Create a project
+      创建一个项目
     %p.blank-state-text
       - if current_user.can_create_project?
-        You don't have access to any projects right now.
-        You can create up to
+        你现在不能访问任何项目。
+        你可以最多创建
         %strong= number_with_delimiter(current_user.projects_limit)
-        = succeed "." do
-          = "project".pluralize(current_user.projects_limit)
+        个项目。
       - else
-        If you are added to a project, it will be displayed here.
+        如果您加入了项目，它将会显示在这里。
     - if current_user.can_create_project?
       = link_to new_project_path, class: "btn btn-new" do
-        New project
+        新建项目
 
 - if public_project_count > 0
   .blank-state
@@ -37,12 +36,11 @@
       = custom_icon("globe", size: 50)
     .blank-state-body
       %h3.blank-state-title
-        Explore public projects
+        浏览公共项目
       %p.blank-state-text
-        There are
+        此服务器上有
         = number_with_delimiter(public_project_count)
-        public projects on this server.
-        Public projects are an easy way to allow
-        everyone to have read-only access.
+        个公开项目。
+        公开项目允许全部人都可以只读访问。
       = link_to trending_explore_projects_path, class: "btn btn-new" do
-        Browse projects
+        浏览项目

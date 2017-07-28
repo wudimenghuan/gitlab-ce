@@ -28,9 +28,9 @@
           应用
 
     = nav_link(controller: :abuse_reports) do
-      = link_to admin_abuse_reports_path, title: "滥用举报" do
+      = link_to admin_abuse_reports_path, title: "违规举报" do
         %span
-          滥用举报
+          违规举报
           %span.badge.count= number_with_delimiter(AbuseReport.count(:all))
 
     - if akismet_enabled?

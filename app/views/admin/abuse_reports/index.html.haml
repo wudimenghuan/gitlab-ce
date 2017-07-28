@@ -1,5 +1,5 @@
-- page_title '滥用举报'
-%h3.page-title 滥用举报
+- page_title '违规举报'
+%h3.page-title 违规举报
 %hr
 .abuse-reports
   - if @abuse_reports.present?
@@ -16,4 +16,4 @@
   - else
     .empty-state
       .text-center
-        %h4 没有滥用举报！ #{emoji_icon('tada')}
+        %h4 没有违规举报！ #{emoji_icon('tada')}
