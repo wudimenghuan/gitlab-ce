@@ -74,13 +74,13 @@
               = container_reg
               %span.light.pull-right
                 = boolean_to_icon Gitlab.config.registry.enabled
-            - gitlab_pages = 'GitLab Pages'
+            - gitlab_pages = 'GitLab 页面'
             - gitlab_pages_enabled = Gitlab.config.pages.enabled
             %p{ "aria-label" => "#{gitlab_pages}: status " + (gitlab_pages_enabled ? "on" : "off") }
               = gitlab_pages
               %span.light.pull-right
                 = boolean_to_icon gitlab_pages_enabled
-            - gitlab_shared_runners = 'Shared Runners'
+            - gitlab_shared_runners = '共享 Runners'
             - gitlab_shared_runners_enabled = Gitlab.config.gitlab_ci.shared_runners_enabled
             %p{ "aria-label" => "#{gitlab_shared_runners}: status " + (gitlab_shared_runners_enabled ? "on" : "off") }
               = gitlab_shared_runners

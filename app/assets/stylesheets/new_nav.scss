@@ -21,6 +21,11 @@ header.navbar-gitlab-new {
       padding-right: 0;
       color: currentColor;
 
+      img {
+        height: 28px;
+        margin-right: 10px;
+      }
+
       > a {
         display: flex;
         align-items: center;
@@ -310,6 +315,7 @@ header.navbar-gitlab-new {
   display: flex;
   width: 100%;
   position: relative;
+  align-items: center;
 
   .dropdown-menu-projects {
     margin-top: -$gl-padding;
