@@ -17,9 +17,9 @@
 
         - if project_nav_tab? :pipelines
           = nav_link(controller: :pipeline_schedules) do
-            = link_to pipeline_schedules_path(@project), title: 'Schedules', class: 'shortcuts-builds' do
+            = link_to pipeline_schedules_path(@project), title: '日程表', class: 'shortcuts-builds' do
               %span
-                Schedules
+                日程表
 
         - if project_nav_tab? :environments
           = nav_link(controller: :environments) do

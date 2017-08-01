@@ -57,10 +57,10 @@
     .build-trace-container.prepend-top-default
       .top-bar.js-top-bar
         .js-truncated-info.truncated-info.hidden<
-          Showing last
+          显示最后的
           %span.js-truncated-info-size.truncated-info-size><
-          KiB of log -
-          %a.js-raw-link.raw-link{ href: raw_project_job_path(@project, @build) }>< Complete Raw
+          KiB 日志 -
+          %a.js-raw-link.raw-link{ href: raw_project_job_path(@project, @build) }>< 全部显示
 
         .controllers
           - if @build.has_trace?
