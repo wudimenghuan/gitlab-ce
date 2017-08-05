@@ -4,7 +4,7 @@
   %input.btn.btn-nr.btn-create.comment-btn.js-comment-button.js-comment-submit-button{ type: 'submit', value: '评论' }
 
   - if @note.can_be_discussion_note?
-    = button_tag type: 'button', class: 'btn btn-nr dropdown-toggle comment-btn js-note-new-discussion js-disable-on-submit', data: { 'dropdown-trigger' => '#resolvable-comment-menu' }, 'aria-label' => 'Open comment type dropdown' do
+    = button_tag type: 'button', class: 'btn btn-nr dropdown-toggle comment-btn js-note-new-discussion js-disable-on-submit', data: { 'dropdown-trigger' => '#resolvable-comment-menu' }, 'aria-label' => '打开评论类型下拉列表' do
       = icon('caret-down', class: 'toggle-icon')
 
     %ul#resolvable-comment-menu.dropdown-menu{ data: { dropdown: true } }

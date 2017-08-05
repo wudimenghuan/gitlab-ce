@@ -292,7 +292,7 @@ module IssuablesHelper
   end
 
   def issuable_display_type(issuable)
-    issuable.model_name.human.downcase
+    issuable.zh_name
   end
 
   private
