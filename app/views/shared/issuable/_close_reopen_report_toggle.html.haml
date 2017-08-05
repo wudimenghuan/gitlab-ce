@@ -1,6 +1,6 @@
 - display_issuable_type = issuable_display_type(issuable)
 - button_action = issuable.closed? ? 'reopen' : 'close'
-- display_button_action = button_action.capitalize
+- display_button_action = issuable.closed? ? '重新打开' : '关闭'
 - button_responsive_class = 'hidden-xs hidden-sm'
 - button_class = "#{button_responsive_class} btn btn-grouped js-issuable-close-button issuable-close-button"
 - toggle_class = "#{button_responsive_class} btn btn-nr dropdown-toggle js-issuable-close-toggle"
@@ -44,6 +44,6 @@
           .description
             %strong.title 举报违规
             %p.text
-              举报
-              = display_issuable_type.pluralize
-              that are abusive, inappropriate or spam.
+              举报这个
+              = display_issuable_type
+              是滥用、不当或者垃圾内容。
