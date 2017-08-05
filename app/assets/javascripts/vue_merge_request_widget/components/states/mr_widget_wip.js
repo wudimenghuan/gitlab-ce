@@ -24,7 +24,7 @@ export default {
         })
         .catch(() => {
           this.isMakingRequest = false;
-          new Flash('Something went wrong. Please try again.'); // eslint-disable-line
+          new Flash('出现了错误，请重试。'); // eslint-disable-line
         });
     },
   },

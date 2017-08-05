@@ -127,7 +127,7 @@ export default {
         })
         .catch(() => {
           this.isMakingRequest = false;
-          new Flash('Something went wrong. Please try again.'); // eslint-disable-line
+          new Flash('出现了错误。请重试。'); // eslint-disable-line
         });
     },
     initiateMergePolling() {
@@ -163,7 +163,7 @@ export default {
           }
         })
         .catch(() => {
-          new Flash('Something went wrong while merging this merge request. Please try again.'); // eslint-disable-line
+          new Flash('合并出现了错误。请重试。'); // eslint-disable-line
         });
     },
     initiateRemoveSourceBranchPolling() {
@@ -191,7 +191,7 @@ export default {
           }
         })
         .catch(() => {
-          new Flash('Something went wrong while removing the source branch. Please try again.'); // eslint-disable-line
+          new Flash('删除源分支出现了错误，请重试。'); // eslint-disable-line
         });
     },
   },

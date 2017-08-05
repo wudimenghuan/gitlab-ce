@@ -413,7 +413,7 @@ class AwardsHandler {
         if (data.ok) {
           callback();
         }
-      }).fail(() => new Flash('Something went wrong on our end.'));
+      }).fail(() => new Flash('服务器端出现了错误。'));
     }
   }
 
