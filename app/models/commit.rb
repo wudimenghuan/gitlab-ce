@@ -195,6 +195,10 @@ class Commit
     @parent ||= project.commit(self.parent_id) if self.parent_id
   end
 
+  def zh_name
+    '提交'
+  end
+
   def notes
     project.notes.for_commit_id(self.id)
   end
