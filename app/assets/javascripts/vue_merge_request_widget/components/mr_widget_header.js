@@ -80,7 +80,7 @@ export default {
             v-html="mr.sourceBranchLink"></span>
           <button
             class="btn btn-transparent btn-clipboard has-tooltip"
-            data-title="Copy branch name to clipboard"
+            data-title="复制分支名称到剪贴板"
             :data-clipboard-text="branchNameClipboardData">
             <i
               aria-hidden="true"

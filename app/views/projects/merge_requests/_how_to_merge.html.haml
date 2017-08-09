@@ -8,7 +8,7 @@
         %p
           %strong Step 1.
           获取并检出此合并请求的分支
-        = clipboard_button(target: "pre#merge-info-1", title: "Copy commands to clipboard")
+        = clipboard_button(target: "pre#merge-info-1", title: "复制命令到剪贴板")
         %pre.dark#merge-info-1
           - if @merge_request.for_fork?
             :preserve
@@ -25,7 +25,7 @@
         %p
           %strong Step 3.
           合并分支并修复出现的任何冲突
-        = clipboard_button(target: "pre#merge-info-3", title: "Copy commands to clipboard")
+        = clipboard_button(target: "pre#merge-info-3", title: "复制命令到剪贴板")
         %pre.dark#merge-info-3
           - if @merge_request.for_fork?
             :preserve
@@ -38,7 +38,7 @@
         %p
           %strong Step 4.
           推送合并的结果到 GitLab
-        = clipboard_button(target: "pre#merge-info-4", title: "Copy commands to clipboard")
+        = clipboard_button(target: "pre#merge-info-4", title: "复制命令到剪贴板")
         %pre.dark#merge-info-4
           :preserve
             git push origin #{h @merge_request.target_branch}

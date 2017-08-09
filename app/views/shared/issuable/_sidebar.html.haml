@@ -130,13 +130,13 @@
       - project_ref = cross_project_reference(@project, issuable)
       .block.project-reference
         .sidebar-collapsed-icon.dont-change-state
-          = clipboard_button(text: project_ref, title: "Copy reference to clipboard", placement: "left")
+          = clipboard_button(text: project_ref, title: "复制引用到剪贴板", placement: "left")
         .cross-project-reference.hide-collapsed
           %span
             参考：
             %cite{ title: project_ref }
               = project_ref
-          = clipboard_button(text: project_ref, title: "Copy reference to clipboard", placement: "left")
+          = clipboard_button(text: project_ref, title: "复制引用到剪贴板", placement: "left")
 
     :javascript
       gl.sidebarOptions = {
