@@ -10,7 +10,7 @@ import ZenMode from './zen_mode';
 
 (function() {
   this.IssuableForm = (function() {
-    IssuableForm.prototype.issueMoveConfirmMsg = 'Are you sure you want to move this issue to another project?';
+    IssuableForm.prototype.issueMoveConfirmMsg = '您确定要将这个问题移动到另一个项目？';
 
     IssuableForm.prototype.wipRegex = /^\s*(\[WIP\]\s*|WIP:\s*|WIP\s+)+\s*/i;
 

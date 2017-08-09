@@ -5,7 +5,7 @@
     = link_to edit_project_snippet_path(@project, @snippet), class: "btn btn-grouped" do
       编辑
   - if can?(current_user, :update_project_snippet, @snippet)
-    = link_to project_snippet_path(@project, @snippet), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-grouped btn-inverted btn-remove", title: '确认删除此代码片段？' do
+    = link_to project_snippet_path(@project, @snippet), method: :delete, data: { confirm: "您确定要删除这个代码片段？" }, class: "btn btn-grouped btn-inverted btn-remove", title: '确认删除此代码片段？' do
       删除
   - if can?(current_user, :create_project_snippet, @project)
     = link_to new_project_snippet_path(@project), class: 'btn btn-grouped btn-inverted btn-create', title: "新建代码片段" do

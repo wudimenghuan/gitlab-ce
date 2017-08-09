@@ -132,7 +132,7 @@ function UsersSelect(currentUser, els) {
           .get(0);
 
         if (selectedUsers.length === 0) {
-          return 'Unassigned';
+          return '未指派';
         } else if (selectedUsers.length === 1) {
           return firstUser.name;
         } else if (isSelected) {

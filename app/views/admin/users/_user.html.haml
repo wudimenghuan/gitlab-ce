@@ -38,8 +38,8 @@
             %li.divider
             - if user.can_be_removed?
               %li
-                = link_to 'Remove user', admin_user_path(user),
-                    data: { confirm: "USER #{user.name} WILL BE REMOVED! Are you sure?" },
+                = link_to '删除用户', admin_user_path(user),
+                    data: { confirm: "用户 #{user.name} 将被删除！ 您确定继续？" },
                     method: :delete
             %li
               = link_to '删除用户和贡献', admin_user_path(user, hard_delete: true),

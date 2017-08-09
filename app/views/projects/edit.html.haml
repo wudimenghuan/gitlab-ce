@@ -134,7 +134,7 @@
             .help-block 文件大小限制为 200KB。
             - if @project.avatar?
               %hr
-              = link_to '删除图标', project_avatar_path(@project), data: { confirm: "Project avatar will be removed. Are you sure?"}, method: :delete, class: "btn btn-remove btn-sm remove-avatar"
+              = link_to '删除图标', project_avatar_path(@project), data: { confirm: "您确定要删除项目图标？"}, method: :delete, class: "btn btn-remove btn-sm remove-avatar"
         = f.submit '保存修改', class: "btn btn-save"
 
   .row.prepend-top-default

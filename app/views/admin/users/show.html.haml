@@ -191,19 +191,17 @@
 
       .panel.panel-danger
         .panel-heading
-          Remove user and contributions
+          删除用户和贡献
         .panel-body
           - if can?(current_user, :destroy_user, @user)
             %p
-              This option deletes the user and any contributions that
-              would usually be moved to the
-              = succeed "." do
-                = link_to "system ghost user", help_page_path("user/profile/account/delete_account")
-              As well as the user's personal projects, groups owned solely by
-              the user, and projects in them, will also be removed. Commits
-              to other projects are unaffected.
+              这个选项将删除用户账户并将其贡献移动到
+              = succeed "。" do
+                = link_to "系统幽灵账户", help_page_path("user/profile/account/delete_account")
+              用户的个人项目、所拥有的群组及其中的项目都将被删除，不过用户对其它
+              项目的提交将不会受到影响。
             %br
-            = link_to 'Remove user and contributions', admin_user_path(@user, hard_delete: true), data: { confirm: "USER #{@user.name} WILL BE REMOVED! Are you sure?" }, method: :delete, class: "btn btn-remove"
+            = link_to '删除用户和贡献', admin_user_path(@user, hard_delete: true), data: { confirm: "用户 #{@user.name} 将被删除！ 您确定继续？" }, method: :delete, class: "btn btn-remove"
           - else
             %p
-              You don't have access to delete this user.
+              您没有删除此用户的权限。

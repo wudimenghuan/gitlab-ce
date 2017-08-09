@@ -10,8 +10,8 @@
       .controls.hidden-xs.pull-right
         = link_to project_container_registry_path(@project, image),
                   class: 'btn btn-remove has-tooltip',
-                  title: 'Remove repository',
-                  data: { confirm: 'Are you sure?' },
+                  title: '删除版本库',
+                  data: { confirm: '您确定要删除版本库？' },
                   method: :delete do
           = icon('trash cred', 'aria-hidden': 'true')
 
@@ -21,12 +21,12 @@
         %table.table.tags
           %thead
             %tr
-              %th Tag
-              %th Tag ID
-              %th Size
-              %th Created
+              %th 标签
+              %th 标签 ID
+              %th 大小
+              %th 创建于
               - if can?(current_user, :update_container_image, @project)
                 %th
           = render partial: 'tag', collection: image.tags
     - else
-      .nothing-here-block No tags in Container Registry for this container image.
+      .nothing-here-block 容器注册表中没有此容器镜像的标签。

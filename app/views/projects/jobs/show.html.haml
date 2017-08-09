@@ -73,7 +73,7 @@
           - if can?(current_user, :update_build, @project) && @build.erasable?
             = link_to erase_project_job_path(@project, @build),
                       method: :post,
-                      data: { confirm: 'Are you sure you want to erase this build?', placement: 'top', container: 'body' },
+                      data: { confirm: '您确定要擦除这个构建？', placement: 'top', container: 'body' },
                       title: '擦除作业日志',
                       class: 'has-tooltip js-erase-link controllers-buttons' do
               = icon('trash')

@@ -30,7 +30,7 @@
         = link_to edit_project_milestone_path(@project, @milestone), class: "btn btn-grouped btn-nr" do
           编辑
 
-        = link_to project_milestone_path(@project, @milestone), data: { confirm: 'Are you sure?' }, method: :delete, class: "btn btn-grouped btn-danger" do
+        = link_to project_milestone_path(@project, @milestone), data: { confirm: '您确定要删除里程碑？' }, method: :delete, class: "btn btn-grouped btn-danger" do
           删除
 
       %a.btn.btn-default.btn-grouped.pull-right.visible-xs-block.js-sidebar-toggle{ href: "#" }

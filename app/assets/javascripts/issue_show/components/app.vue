@@ -152,7 +152,7 @@ export default {
     },
     updateIssuable() {
       const canPostUpdate = this.store.formState.move_to_project_id !== 0 ?
-        confirm('Are you sure you want to move this issue to another project?') : true; // eslint-disable-line no-alert
+        confirm('您确定要将这个问题移动到另一个项目？') : true; // eslint-disable-line no-alert
 
       if (!canPostUpdate) {
         this.store.setFormState({

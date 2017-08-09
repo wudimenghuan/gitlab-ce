@@ -24,7 +24,7 @@
           .controls
             = link_to '测试钩子', test_admin_hook_path(hook), class: 'btn btn-sm'
             = link_to '编辑', edit_admin_hook_path(hook), class: 'btn btn-sm'
-            = link_to '移除', admin_hook_path(hook), data: { confirm: 'Are you sure?' }, method: :delete, class: 'btn btn-remove btn-sm'
+            = link_to '删除', admin_hook_path(hook), data: { confirm: '您确定要删除这个钩子？' }, method: :delete, class: 'btn btn-remove btn-sm'
           .monospace= hook.url
           %div
             - %w(repository_update_events push_events tag_push_events issues_events note_events merge_requests_events job_events).each do |trigger|

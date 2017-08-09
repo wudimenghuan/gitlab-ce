@@ -35,7 +35,7 @@ export default {
       e.preventDefault();
 
       // eslint-disable-next-line no-alert
-      if (confirm(`Are you sure you want to leave the "${this.group.fullName}" group?`)) {
+      if (confirm(`您确定您要离开 "${this.group.fullName}" 群组？`)) {
         this.leaveGroup();
       }
     },

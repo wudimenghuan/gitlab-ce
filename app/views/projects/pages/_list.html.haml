@@ -7,7 +7,7 @@
         %li
           .pull-right
             = link_to '详细信息', project_pages_domain_path(@project, domain), class: "btn btn-sm btn-grouped"
-            = link_to '删除', project_pages_domain_path(@project, domain), data: { confirm: 'Are you sure?'}, method: :delete, class: "btn btn-remove btn-sm btn-grouped"
+            = link_to '删除', project_pages_domain_path(@project, domain), data: { confirm: '您确定要删除这个域名？'}, method: :delete, class: "btn btn-remove btn-sm btn-grouped"
           .clearfix
             %span= link_to domain.domain, domain.url
           %p
