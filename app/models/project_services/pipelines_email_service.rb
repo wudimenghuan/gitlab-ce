@@ -12,7 +12,7 @@ class PipelinesEmailService < Service
   end
 
   def description
-    'Email the pipelines status to a list of recipients.'
+    '将流水线状态发送到收件人列表。'
   end
 
   def self.to_param

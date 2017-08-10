@@ -37,7 +37,7 @@ export default {
         })
         .catch(() => {
           this.isCancellingAutoMerge = false;
-          new Flash('Something went wrong. Please try again.'); // eslint-disable-line
+          new Flash('出现错误，请稍后重试。'); // eslint-disable-line
         });
     },
     removeSourceBranch() {
@@ -57,7 +57,7 @@ export default {
         })
         .catch(() => {
           this.isRemovingSourceBranch = false;
-          new Flash('Something went wrong. Please try again.'); // eslint-disable-line
+          new Flash('出现错误，请稍后重试。'); // eslint-disable-line
         });
     },
   },
@@ -66,9 +66,9 @@ export default {
       <status-icon status="success" />
       <div class="media-body">
         <h4>
-          Set by
+          设置为
           <mr-widget-author :author="mr.setToMWPSBy" />
-          to be merged automatically when the pipeline succeeds
+          当流水线成功后自动合并。
           <a
             v-if="mr.canCancelAutomaticMerge"
             @click.prevent="cancelAutomaticMerge"
@@ -80,11 +80,11 @@ export default {
               v-if="isCancellingAutoMerge"
               class="fa fa-spinner fa-spin"
               aria-hidden="true" />
-              Cancel automatic merge
+              取消自动合并
           </a>
         </h4>
         <section class="mr-info-list">
-          <p>The changes will be merged into
+          <p>变更将会合并到
             <a
               :href="mr.targetBranchPath"
               class="label-branch">
@@ -92,10 +92,10 @@ export default {
             </a>
           </p>
           <p v-if="mr.shouldRemoveSourceBranch">
-            The source branch will be removed
+            源分支将被删除
           </p>
           <p v-else>
-            The source branch will not be removed
+            源分支将不会被删除。
             <a
               v-if="canRemoveSourceBranch"
               :disabled="isRemovingSourceBranch"
@@ -107,7 +107,7 @@ export default {
               v-if="isRemovingSourceBranch"
               class="fa fa-spinner fa-spin"
               aria-hidden="true" />
-              Remove source branch
+              删除源分支
             </a>
           </p>
         </section>

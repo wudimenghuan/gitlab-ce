@@ -1,8 +1,8 @@
-- page_title "Issues"
+- page_title "问题"
 - group_issues_exists = group_issues(@group).exists?
 = render "head_issues"
 = content_for :meta_tags do
-  = auto_discovery_link_tag(:atom, params.merge(rss_url_options), title: "#{@group.name} issues")
+  = auto_discovery_link_tag(:atom, params.merge(rss_url_options), title: "#{@group.name} 问题")
 
 - content_for :page_specific_javascripts do
   = webpack_bundle_tag 'common_vue'
@@ -12,7 +12,7 @@
   - content_for :breadcrumbs_extra do
     = link_to params.merge(rss_url_options), class: 'btn btn-default append-right-10' do
       = icon('rss')
-    = render 'shared/new_project_item_select', path: 'issues/new', label: "New issue"
+    = render 'shared/new_project_item_select', path: 'issues/new', label: "新建问题"
 
 - if group_issues_exists
   .top-area
@@ -21,17 +21,17 @@
       = link_to params.merge(rss_url_options), class: 'btn' do
         = icon('rss')
         %span.icon-label
-          Subscribe
-      = render 'shared/new_project_item_select', path: 'issues/new', label: "New issue"
+          订阅
+      = render 'shared/new_project_item_select', path: 'issues/new', label: "新建问题"
 
   = render 'shared/issuable/search_bar', type: :issues
 
   .row-content-block.second-block
-    Only issues from the
+    只显示来自
     %strong= @group.name
-    group are listed here.
+    群组的问题。
     - if current_user
-      To see all issues you should visit #{link_to 'dashboard', issues_dashboard_path} page.
+      请到 #{link_to '仪表盘', issues_dashboard_path} 页面查看全部问题。
 
   = render 'shared/issues'
 - else

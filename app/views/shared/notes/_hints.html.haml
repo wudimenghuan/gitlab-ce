@@ -3,12 +3,9 @@
   .toolbar-text
     = link_to 'Markdown', help_page_path('user/markdown'), target: '_blank', tabindex: -1
     - if supports_quick_actions
-      and
+      及
       = link_to 'quick actions', help_page_path('user/project/quick_actions'), target: '_blank', tabindex: -1
-      are
-    - else
-      is
-    supported
+    格式
 
   %span.uploading-container
     %span.uploading-progress-container.hide
@@ -24,12 +21,12 @@
         = icon('file-image-o', class: 'toolbar-button-icon')
       %span.uploading-error-message
         -# Populated by app/assets/javascripts/dropzone_input.js
-      %button.retry-uploading-link{ type: 'button' } Try again
-      or
-      %button.attach-new-file.markdown-selector{ type: 'button' } attach a new file
+      %button.retry-uploading-link{ type: 'button' } 重试
+      或
+      %button.attach-new-file.markdown-selector{ type: 'button' } 添加新文件
 
     %button.markdown-selector.button-attach-file{ type: 'button', tabindex: '-1' }
       = icon('file-image-o', class: 'toolbar-button-icon')
-      Attach a file
+      添加附件
 
-    %button.btn.btn-default.btn-xs.hide.button-cancel-uploading-files{ type: 'button' } Cancel
+    %button.btn.btn-default.btn-xs.hide.button-cancel-uploading-files{ type: 'button' } 取消

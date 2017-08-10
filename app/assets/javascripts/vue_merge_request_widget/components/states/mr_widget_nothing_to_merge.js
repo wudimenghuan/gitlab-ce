@@ -19,22 +19,22 @@ export default {
         </div>
         <div class="text col-sm-7 col-sm-pull-5 col-xs-12">
           <span>
-            Merge requests are a place to propose changes you have made to a project
-            and discuss those changes with others.
+            合并请求是一个可以让您提出对项目所做的变更，
+            并与其他人讨论这些变更的地方。
           </span>
           <p>
-            Interested parties can even contribute by pushing commits if they want to.
+            有兴趣者甚至可以通过推送提交做出贡献。
           </p>
           <p>
-            Currently there are no changes in this merge request's source branch.
-            Please push new commits or use a different branch.
+            没有什么需要从源分支合并到目标分支。
+            请推送新的提交或者选择另一个源分支。
           </p>
           <div>
             <a
               v-if="mr.newBlobPath"
               :href="mr.newBlobPath"
               class="btn btn-inverted btn-save">
-              Create file
+              创建文件
             </a>
           </div>
         </div>

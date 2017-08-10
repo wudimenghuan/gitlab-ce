@@ -6,25 +6,25 @@
         - can_edit = can?(current_user, :admin_project, @project)
         - if can_edit
           = nav_link(controller: :projects) do
-            = link_to edit_project_path(@project), title: 'General' do
+            = link_to edit_project_path(@project), title: '常规' do
               %span
-                General
+                常规
         - if can_edit
           = nav_link(controller: [:integrations, :services, :hooks, :hook_logs]) do
-            = link_to project_settings_integrations_path(@project), title: 'Integrations' do
+            = link_to project_settings_integrations_path(@project), title: '集成' do
               %span
-                Integrations
+                集成
           = nav_link(controller: :repository) do
-            = link_to project_settings_repository_path(@project), title: 'Repository' do
+            = link_to project_settings_repository_path(@project), title: '版本库' do
               %span
-                Repository
+                版本库
           - if @project.feature_available?(:builds, current_user)
             = nav_link(controller: :ci_cd) do
-              = link_to project_settings_ci_cd_path(@project), title: 'Pipelines' do
+              = link_to project_settings_ci_cd_path(@project), title: '流水线' do
                 %span
-                  Pipelines
+                  流水线
           - if Gitlab.config.pages.enabled
             = nav_link(controller: :pages) do
-              = link_to project_pages_path(@project), title: 'Pages' do
+              = link_to project_pages_path(@project), title: '页面' do
                 %span
-                  Pages
+                  页面

@@ -173,7 +173,7 @@ $(() => {
         :title="tooltipTitle"
         :aria-disabled="disabled"
         @click="openModal">
-        Add issues
+        添加问题
       </button>
     `,
   });

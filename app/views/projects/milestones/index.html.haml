@@ -1,9 +1,9 @@
 - @no_container = true
-- page_title 'Milestones'
+- page_title '里程碑'
 
 - if show_new_nav? && can?(current_user, :admin_milestone, @project)
   - content_for :breadcrumbs_extra do
-    = link_to "New milestone", new_namespace_project_milestone_path(@project.namespace, @project), class: 'btn btn-new', title: 'New milestone'
+    = link_to "新建里程碑", new_namespace_project_milestone_path(@project.namespace, @project), class: 'btn btn-new', title: '新建里程碑'
 
 = render "shared/mr_head"
 
@@ -14,8 +14,8 @@
     .nav-controls{ class: ("nav-controls-new-nav" if show_new_nav?) }
       = render 'shared/milestones_sort_dropdown'
       - if can?(current_user, :admin_milestone, @project)
-        = link_to new_project_milestone_path(@project), class: "btn btn-new #{("visible-xs" if show_new_nav?)}", title: 'New milestone' do
-          New milestone
+        = link_to new_project_milestone_path(@project), class: "btn btn-new #{("visible-xs" if show_new_nav?)}", title: '新建里程碑' do
+          新建里程碑
 
   .milestones
     %ul.content-list
@@ -23,6 +23,6 @@
 
       - if @milestones.blank?
         %li
-          .nothing-here-block No milestones to show
+          .nothing-here-block 没有里程碑
 
     = paginate @milestones, theme: 'gitlab'

@@ -54,7 +54,7 @@ module NotesHelper
       class: 'add-diff-note js-add-diff-note-button',
       type: 'submit', name: 'button',
       data: diff_view_line_data(line_code, position, line_type),
-      title: 'Add a comment to this line' do
+      title: '评论这行' do
       icon('comment-o')
     end
   end
@@ -68,8 +68,8 @@ module NotesHelper
       line_type: line_type
     }
 
-    button_tag 'Reply...', class: 'btn btn-text-field js-discussion-reply-button',
-                           data: data, title: 'Add a reply'
+    button_tag '回复...', class: 'btn btn-text-field js-discussion-reply-button',
+                           data: data, title: '增加回复'
   end
 
   def note_max_access_for_user(note)

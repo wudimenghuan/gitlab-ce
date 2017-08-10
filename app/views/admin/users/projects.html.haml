@@ -1,20 +1,20 @@
-- page_title "Groups and projects", @user.name, "Users"
+- page_title "群组和项目", @user.name, "用户"
 = render 'admin/users/head'
 
 - if @user.groups.any?
   .panel.panel-default
-    .panel-heading Group projects
+    .panel-heading 群组项目
     %ul.well-list
       - @user.group_members.includes(:source).each do |group_member|
         - group = group_member.group
         %li.group_member
           %strong= link_to group.name, admin_group_path(group)
-          &ndash; access to
-          #{pluralize(group.projects.count, 'project')}
+          &ndash; 访问
+          #{pluralize(group.projects.count, '个项目', '个项目')}
           .pull-right
             %span.light.vertical-align-middle= group_member.human_access
             - unless group_member.owner?
-              = link_to group_group_member_path(group, group_member), data: { confirm: remove_member_message(group_member) }, method: :delete, remote: true, class: "btn-xs btn btn-remove prepend-left-10", title: 'Remove user from group' do
+              = link_to group_group_member_path(group, group_member), data: { confirm: remove_member_message(group_member) }, method: :delete, remote: true, class: "btn-xs btn btn-remove prepend-left-10", title: '从群组中删除用户' do
                 %i.fa.fa-times.fa-inverse
 
 .row
@@ -22,12 +22,12 @@
     - if @personal_projects.present?
       = render 'admin/users/projects', projects: @personal_projects
     - else
-      .nothing-here-block This user has no personal projects.
+      .nothing-here-block 此用户没有个人项目。
 
 
   .col-md-6
     .panel.panel-default
-      .panel-heading Joined projects (#{@joined_projects.count})
+      .panel-heading 加入的项目 (#{@joined_projects.count})
       %ul.well-list
         - @joined_projects.sort_by(&:name_with_namespace).each do |project|
           - member = project.team.find_member(@user.id)
@@ -39,10 +39,10 @@
             - if member
               .pull-right
                 - if member.owner?
-                  %span.light Owner
+                  %span.light 拥有者
                 - else
                   %span.light.vertical-align-middle= member.human_access
 
                   - if member.respond_to? :project
-                    = link_to project_project_member_path(project, member), data: { confirm: remove_member_message(member) }, remote: true, method: :delete, class: "btn-xs btn btn-remove prepend-left-10", title: 'Remove user from project' do
+                    = link_to project_project_member_path(project, member), data: { confirm: remove_member_message(member) }, remote: true, method: :delete, class: "btn-xs btn btn-remove prepend-left-10", title: '从项目中删除用户' do
                       %i.fa.fa-times

@@ -1,9 +1,9 @@
 - breadcrumb_title "Labels"
-- page_title 'New Label'
-- header_title group_title(@group, 'Labels', group_labels_path(@group))
+- page_title '新建标记'
+- header_title group_title(@group, '标记', group_labels_path(@group))
 
 %h3.page-title
-  New Label
+  新建标记
 %hr
 
 = render 'shared/labels/form', url: group_labels_path, back_path: @previous_labels_path

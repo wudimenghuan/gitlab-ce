@@ -125,22 +125,22 @@ export default {
         class="usage-info js-usage-info usage-info-loading">
         <i
           class="fa fa-spinner fa-spin usage-info-load-spinner"
-          aria-hidden="true" />Loading deployment statistics
+          aria-hidden="true" />正在载入部署统计信息。
       </p>
       <p
         v-if="shouldShowMemoryGraph"
         class="usage-info js-usage-info">
-        <a :href="metricsMonitoringUrl">Memory</a> usage <b>{{memoryChangeType}}</b> from {{memoryFrom}}MB to {{memoryTo}}MB
+        <a :href="metricsMonitoringUrl">内存</a> 使用率 <b>{{memoryChangeType}}</b> 从 {{memoryFrom}}MB 到 {{memoryTo}}MB
       </p>
       <p
         v-if="shouldShowLoadFailure"
         class="usage-info js-usage-info usage-info-failed">
-        Failed to load deployment statistics
+        载入部署统计信息失败。
       </p>
       <p
         v-if="shouldShowMetricsUnavailable"
         class="usage-info js-usage-info usage-info-unavailable">
-        Deployment statistics are not available currently
+        部署统计信息目前还不可用。
       </p>
       <mr-memory-graph
         v-if="shouldShowMemoryGraph"

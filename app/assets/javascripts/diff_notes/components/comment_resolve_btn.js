@@ -27,15 +27,15 @@ const CommentAndResolveBtn = Vue.extend({
     buttonText: function () {
       if (this.isDiscussionResolved) {
         if (this.textareaIsEmpty) {
-          return "Unresolve discussion";
+          return "未解决讨论";
         } else {
-          return "Comment & unresolve discussion";
+          return "评论 & 未解决讨论";
         }
       } else {
         if (this.textareaIsEmpty) {
-          return "Resolve discussion";
+          return "解决讨论";
         } else {
-          return "Comment & resolve discussion";
+          return "评论 & 解决讨论";
         }
       }
     }

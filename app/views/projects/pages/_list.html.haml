@@ -1,17 +1,17 @@
 - if can?(current_user, :update_pages, @project) && @domains.any?
   .panel.panel-default
     .panel-heading
-      Domains (#{@domains.count})
+      域名 (#{@domains.count})
     %ul.well-list
       - @domains.each do |domain|
         %li
           .pull-right
-            = link_to 'Details', project_pages_domain_path(@project, domain), class: "btn btn-sm btn-grouped"
-            = link_to 'Remove', project_pages_domain_path(@project, domain), data: { confirm: 'Are you sure?'}, method: :delete, class: "btn btn-remove btn-sm btn-grouped"
+            = link_to '详细信息', project_pages_domain_path(@project, domain), class: "btn btn-sm btn-grouped"
+            = link_to '删除', project_pages_domain_path(@project, domain), data: { confirm: '您确定要删除这个域名？'}, method: :delete, class: "btn btn-remove btn-sm btn-grouped"
           .clearfix
             %span= link_to domain.domain, domain.url
           %p
             - if domain.subject
-              %span.label.label-gray Certificate: #{domain.subject}
+              %span.label.label-gray 证书: #{domain.subject}
             - if domain.expired?
-              %span.label.label-danger Expired
+              %span.label.label-danger 已过期

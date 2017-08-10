@@ -7,7 +7,7 @@ module Gitlab
         end
 
         def status_text(issuable)
-          issuable.open? ? 'Open' : 'Closed'
+          issuable.open? ? '未关闭' : '已关闭'
         end
 
         def project

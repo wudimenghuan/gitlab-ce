@@ -30,7 +30,7 @@
       },
       deleteIssuable() {
         // eslint-disable-next-line no-alert
-        if (confirm('Issue will be removed! Are you sure?')) {
+        if (confirm('您确定要删除这个问题？')) {
           this.deleteLoading = true;
 
           eventHub.$emit('delete.issuable');

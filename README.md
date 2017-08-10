@@ -1,10 +1,105 @@
-# GitLab
+# GitLab 中文社区版
 
 [![Build status](https://gitlab.com/gitlab-org/gitlab-ce/badges/master/build.svg)](https://gitlab.com/gitlab-org/gitlab-ce/commits/master)
 [![Overall test coverage](https://gitlab.com/gitlab-org/gitlab-ce/badges/master/coverage.svg)](https://gitlab.com/gitlab-org/gitlab-ce/pipelines)
 [![Code Climate](https://codeclimate.com/github/gitlabhq/gitlabhq.svg)](https://codeclimate.com/github/gitlabhq/gitlabhq)
 [![Core Infrastructure Initiative Best Practices](https://bestpractices.coreinfrastructure.org/projects/42/badge)](https://bestpractices.coreinfrastructure.org/projects/42)
 [![Gitter](https://badges.gitter.im/gitlabhq/gitlabhq.svg)](https://gitter.im/gitlabhq/gitlabhq?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+
+## 历史
+
+本汉化项目继承自 [@larryli](https://gitlab.com/larryli) 发起的 [GitLab 中文社区版项目](https://gitlab.com/larryli/gitlab) （从 v7 ~ v8.8）。从 v8.9 之后，[@xhang](https://gitlab.com/xhang) 开始继续[本汉化项目](https://gitlab.com/xhang/gitlab)。
+
+## 安装、汉化指南
+
+> 基于 [Larry Li 版汉化指南](https://gitlab.com/larryli/gitlab/wikis/home) 修改
+
+**(以 `9-0-stable-zh` 分支为例)**
+
+### 直接使用[@twang2218](https://gitlab.com/twang2218) 打包好的 [Gitlab 中文版 Docker镜像](https://hub.docker.com/r/twang2218/gitlab-ce-zh/)
+
+---
+
+### 源码安装汉化
+
+推荐按照 [gitlab-ce](https://gitlab.com/gitlab-org/gitlab-ce) 源代码中 [doc/install/installation.md](https://gitlab.com/gitlab-org/gitlab-ce/blob/master/doc/install/installation.md) 的内容手工安装 GitLab 中文版本。
+
+相关修改只需要在 **Clone the Source** 步骤中使用 `https://gitlab.com/xhang/gitlab.git` 仓库和当前版本的后缀增加 `-zh` 即可。
+
+另外也可以在 **Install Gems** 步骤中使用 `https://gems.ruby-china.org` 镜像加快 `gems` 安装。具体步骤如下：
+
+```bash
+cd /home/git/gitlab
+sudo -u git -H bundle config mirror.https://rubygems.org https://gems.ruby-china.org
+
+# 如果使用的是 PostgreSQL (注意，选项中包含 "without ... mysql")
+sudo -u git -H bundle install --deployment --without development test mysql aws kerberos
+
+# 或者如果你用的是 MySQL (注意，选项中包含 "without ... postgres")
+sudo -u git -H bundle install --deployment --without development test postgres aws kerberos
+```
+
+对于升级操作也可以按照相应的 [update.md](https://gitlab.com/gitlab-org/gitlab-ce/blob/master/doc/update/README.md) 类似处理即可。
+
+### Omnibus 安装汉化
+
+#### 1. 使用 marbleqi 制作的[汉化增量补丁包](https://github.com/marbleqi/gitlab-ce-zh)
+
+> 注： 使用该汉化补丁包需要重新配置编译资源文件
+
+```bash
+sudo gitlab-ctl reconfigure
+```
+
+---
+
+#### 2. 手动导出汉化补丁包汉化
+
+请先使用官方包安装或升级完成，确认当前版本。
+
+```bash
+sudo cat /opt/gitlab/embedded/service/gitlab-rails/VERSION
+```
+
+假设当前版本为 `v9.0.0`，并确认汉化版本库是否包含该版本的汉化标签(`-zh`结尾)，也就是是否包含 `v9.0.0-zh`。
+
+如果版本相同，首先在本地 `clone` 仓库。
+
+```bash
+# 克隆汉化版本库
+git clone https://gitlab.com/xhang/gitlab.git
+# 如果已经克隆过，则进行更新
+git fetch
+```
+
+然后比较汉化标签和原标签，导出 patch 用的 diff 文件。
+
+```bash
+# 导出9.0.0 版本的汉化补丁
+git diff v9.0.0 v9.0.0-zh > ../9.0.0-zh.diff
+```
+
+然后上传 `9.0.0-zh.diff` 文件到服务器。
+
+```
+# 停止 gitlab
+sudo gitlab-ctl stop
+sudo patch -d /opt/gitlab/embedded/service/gitlab-rails -p1 < 9.0.0-zh.diff
+```
+
+确定没有 `.rej` 文件，重启 GitLab 即可。
+
+```bash
+sudo gitlab-ctl start
+```
+
+执行重新配置命令
+
+```bash
+sudo gitlab-ctl reconfigure
+```
+
+如果汉化中出现问题，请重新安装 GitLab（注意备份数据）。
 
 ## Test coverage
 
