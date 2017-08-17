@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170807160457) do
+ActiveRecord::Schema.define(version: 20170809134534) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -163,15 +163,17 @@ ActiveRecord::Schema.define(version: 20170807160457) do
 
   create_table "broadcast_messages", force: :cascade do |t|
     t.text "message", null: false
-    t.datetime "starts_at"
-    t.datetime "ends_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "starts_at", null: false
+    t.datetime "ends_at", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "color"
     t.string "font"
-    t.text "message_html"
+    t.text "message_html", null: false
     t.integer "cached_markdown_version"
   end
+
+  add_index "broadcast_messages", ["starts_at", "ends_at", "id"], name: "index_broadcast_messages_on_starts_at_and_ends_at_and_id", using: :btree
 
   create_table "chat_names", force: :cascade do |t|
     t.integer "user_id", null: false
