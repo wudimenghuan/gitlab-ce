@@ -29,22 +29,14 @@ describe('RepoTabs', () => {
     expect(tabs[2].classList.contains('tabs-divider')).toBeTruthy();
   });
 
-  it('does not render a tabs list if not isMini', () => {
-    RepoStore.openedFiles = [];
-
-    const vm = createComponent();
-
-    expect(vm.$el.innerHTML).toBeFalsy();
-  });
-
   describe('methods', () => {
-    describe('xClicked', () => {
+    describe('tabClosed', () => {
       it('calls removeFromOpenedFiles with file obj', () => {
         const file = {};
 
         spyOn(RepoStore, 'removeFromOpenedFiles');
 
-        repoTabs.methods.xClicked(file);
+        repoTabs.methods.tabClosed(file);
 
         expect(RepoStore.removeFromOpenedFiles).toHaveBeenCalledWith(file);
       });
