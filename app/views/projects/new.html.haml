@@ -25,7 +25,7 @@
               .form-group
                 = f.label :template_project, class: 'label-light' do
                   从模板创建
-                  = link_to icon('question-circle'), help_page_path("public_access/public_access"), aria: { label: "模板包含了什么？" }, title: "模板包含了什么？", class: 'has-tooltip', data: { placement: 'top'}
+                  = link_to icon('question-circle'), help_page_path("gitlab-basics/create-project"), target: '_blank', aria: { label: "模板包含了什么？" }, title: "模板包含了什么？", class: 'has-tooltip', data: { placement: 'top'}
                 %div
                   = render 'project_templates', f: f
           .second-column
