@@ -352,7 +352,9 @@
   %fieldset
     %legend 后台作业
     %p
-      这些设置需要重启才能生效。
+      这些设置需要
+      = link_to '重启', help_page_path('administration/restart_gitlab')
+      才能生效。
     .form-group
       .col-sm-offset-2.col-sm-10
         .checkbox

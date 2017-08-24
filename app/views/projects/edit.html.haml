@@ -237,8 +237,6 @@
       .sub-section.rename-respository
         %h4.warning-title
           重命名版本库
-        %p
-          将此项目及其所有相关数据导出并移动到新的 GitLab 实例。导出完成后，您可以在“新建项目”页面导入文项目文件。
         = render 'projects/errors'
         = form_for([@project.namespace.becomes(Namespace), @project]) do |f|
           .form-group.project_name_holder
