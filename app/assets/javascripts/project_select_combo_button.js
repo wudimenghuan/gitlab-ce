@@ -60,7 +60,7 @@ export default class ProjectSelectComboButton {
       this.newItemBtn.text(`${this.newItemBtnBaseText} in ${project.name}`);
       this.newItemBtn.enable();
     } else {
-      this.newItemBtn.text(`Select project to create ${this.itemType}`);
+      this.newItemBtn.text(`选择一个项目来创建 ${this.itemType}`);
       this.newItemBtn.disable();
     }
   }
