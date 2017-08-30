@@ -5,6 +5,7 @@
     %i
       在
       = event.created_at.to_s(:short)
+  - unless event.rm_ref?
   %blockquote= markdown(escape_once(event.commit_title), pipeline: :atom, project: event.project, author: event.author)
   - if event.commits_count > 1
     %p

@@ -4,7 +4,7 @@
       = link_to admin_root_path, title: '管理区域' do
         .avatar-container.s40.settings-avatar
           = icon('wrench')
-        .project-title 管理区域
+        .sidebar-context-title 管理区域
     %ul.sidebar-top-level-items
       = nav_link(controller: %w(dashboard admin projects users groups jobs runners cohorts), html_options: {class: 'home'}) do
         = link_to admin_root_path, title: '概述', class: 'shortcuts-tree' do
