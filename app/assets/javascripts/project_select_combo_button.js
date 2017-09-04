@@ -57,10 +57,10 @@ export default class ProjectSelectComboButton {
   setNewItemBtnAttributes(project) {
     if (project) {
       this.newItemBtn.attr('href', project.url);
-      this.newItemBtn.text(`${this.newItemBtnBaseText} in ${project.name}`);
+      this.newItemBtn.text(`New ${this.deriveItemTypeFromLabel()} in ${project.name}`);
       this.newItemBtn.enable();
     } else {
-      this.newItemBtn.text(`选择一个项目来创建 ${this.itemType}`);
+      this.newItemBtn.text(`选择一个项目来创建 ${this.deriveItemTypeFromLabel()}`);
       this.newItemBtn.disable();
     }
   }
