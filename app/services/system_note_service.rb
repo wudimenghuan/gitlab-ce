@@ -19,7 +19,7 @@ module SystemNoteService
   # Returns the created Note object
   def add_commits(noteable, project, author, new_commits, existing_commits = [], oldrev = nil)
     total_count  = new_commits.length + existing_commits.length
-    commits_text = "#{total_count}".pluralize(total_count, '次提交', '次提交')
+    commits_text = "#{total_count} 次提交"
 
     body = "增加了 #{commits_text}:\n\n"
     body << existing_commit_summary(noteable, existing_commits, oldrev)
