@@ -192,9 +192,7 @@ class Issue < ActiveRecord::Base
   end
 
   def state_human_name
-    if reopened?
-      "重新打开"
-    elsif closed?
+    if closed?
       "已关闭"
     else
       "未关闭"
