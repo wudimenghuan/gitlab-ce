@@ -115,11 +115,11 @@ export default {
   },
 
   methods: {
-    toggleFolder(folder, folderUrl) {
+    toggleFolder(folder) {
       this.store.toggleFolder(folder);
 
       if (!folder.isOpen) {
-        this.fetchChildEnvironments(folder, folderUrl);
+        this.fetchChildEnvironments(folder);
       }
     },
 
@@ -147,10 +147,8 @@ export default {
         .catch(this.errorCallback);
     },
 
-    fetchChildEnvironments(folder, folderUrl) {
-      this.isLoadingFolderContent = true;
-
-      this.service.getFolderContent(folderUrl)
+    fetchChildEnvironments(folder) {
+      this.service.getFolderContent(folder.folder_path)
         .then(resp => resp.json())
         .then((response) => {
           this.store.setfolderContent(folder, response.environments);
@@ -176,15 +174,10 @@ export default {
     successCallback(resp) {
       this.saveData(resp);
 
-      // If folders are open while polling we need to open them again
-      if (this.openFolders.length) {
-        this.openFolders.map((folder) => {
-          // TODO - Move this to the backend
-          const folderUrl = `${window.location.pathname}/folders/${folder.folderName}`;
-
-          this.store.updateFolder(folder, 'isOpen', true);
-          return this.fetchChildEnvironments(folder, folderUrl);
-        });
+      // We need to verify if any folder is open to also update it
+      const openFolders = this.store.getOpenFolders();
+      if (openFolders.length) {
+        openFolders.forEach(folder => this.fetchChildEnvironments(folder));
       }
     },
 
