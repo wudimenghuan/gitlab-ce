@@ -165,7 +165,7 @@ class Project < ActiveRecord::Base
   has_many :notification_settings, as: :source, dependent: :delete_all # rubocop:disable Cop/ActiveRecordDependent
 
   has_one :import_data, class_name: 'ProjectImportData', inverse_of: :project, autosave: true
-  has_one :project_feature
+  has_one :project_feature, inverse_of: :project
   has_one :statistics, class_name: 'ProjectStatistics'
 
   # Container repositories need to remove data from the container registry,
@@ -192,7 +192,7 @@ class Project < ActiveRecord::Base
   has_many :active_runners, -> { active }, through: :runner_projects, source: :runner, class_name: 'Ci::Runner'
 
   accepts_nested_attributes_for :variables, allow_destroy: true
-  accepts_nested_attributes_for :project_feature
+  accepts_nested_attributes_for :project_feature, update_only: true
   accepts_nested_attributes_for :import_data
 
   delegate :name, to: :owner, allow_nil: true, prefix: true
@@ -1061,13 +1061,16 @@ class Project < ActiveRecord::Base
   end
 
   def change_head(branch)
-    repository.before_change_head
-    repository.rugged.references.create('HEAD',
-                                        "refs/heads/#{branch}",
-                                        force: true)
-    repository.copy_gitattributes(branch)
-    repository.after_change_head
-    reload_default_branch
+    if repository.branch_exists?(branch)
+      repository.before_change_head
+      repository.write_ref('HEAD', "refs/heads/#{branch}")
+      repository.copy_gitattributes(branch)
+      repository.after_change_head
+      reload_default_branch
+    else
+      errors.add(:base, "Could not change HEAD: branch '#{branch}' does not exist")
+      false
+    end
   end
 
   def forked_from?(project)
