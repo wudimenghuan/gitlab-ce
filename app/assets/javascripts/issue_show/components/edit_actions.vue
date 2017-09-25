@@ -48,7 +48,7 @@
       type="submit"
       :disabled="formState.updateLoading || !isSubmitEnabled"
       @click.prevent="updateIssuable">
-      Save changes
+      保存修改
       <i
         class="fa fa-spinner fa-spin"
         aria-hidden="true"
@@ -59,7 +59,7 @@
       class="btn btn-default pull-right"
       type="button"
       @click="closeForm">
-      Cancel
+      取消
     </button>
     <button
       v-if="canDestroy"
@@ -68,7 +68,7 @@
       type="button"
       :disabled="deleteLoading"
       @click="deleteIssuable">
-      Delete
+      删除
       <i
         class="fa fa-spinner fa-spin"
         aria-hidden="true"

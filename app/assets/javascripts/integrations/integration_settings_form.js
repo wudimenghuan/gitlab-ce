@@ -63,10 +63,10 @@ export default class IntegrationSettingsForm {
    * Toggle Submit button label based on Integration status and ability to test service
    */
   toggleSubmitBtnLabel(serviceActive) {
-    let btnLabel = 'Save changes';
+    let btnLabel = '保存修改';
 
     if (serviceActive && this.canTestService) {
-      btnLabel = 'Test settings and save changes';
+      btnLabel = '测试设置并保存修改';
     }
 
     this.$submitBtnLabel.text(btnLabel);

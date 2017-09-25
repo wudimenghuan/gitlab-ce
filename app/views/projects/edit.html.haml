@@ -68,21 +68,21 @@
       %h4
         权限
       %button.btn.js-settings-toggle
-        = expanded ? 'Collapse' : 'Expand'
+        = expanded ? '收起' : '展开'
       %p
         启用或禁用某些项目功能并选择访问级别。
     .settings-content.no-animate{ class: ('expanded' if expanded) }
       = form_for [@project.namespace.becomes(Namespace), @project], remote: true, html: { multipart: true, class: "sharing-permissions-form" }, authenticity_token: true do |f|
         %script.js-project-permissions-form-data{ type: "application/json" }= project_permissions_panel_data(@project)
         .js-project-permissions-form
-        = f.submit 'Save changes', class: "btn btn-save"
+        = f.submit '保存修改', class: "btn btn-save"
 
   %section.settings.merge-requests-feature{ class: ("hidden" if @project.project_feature.send(:merge_requests_access_level) == 0) }
     .settings-header
       %h4
         合并请求设置
       %button.btn.js-settings-toggle
-        = expanded ? 'Collapse' : 'Expand'
+        = expanded ? '收起' : '展开'
       %p
         自定义您的合并请求限制。
     .settings-content.no-animate{ class: ('expanded' if expanded) }

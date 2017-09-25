@@ -341,6 +341,21 @@ class Event < ActiveRecord::Base
     end.downcase
   end
 
+  def target_type_zh
+    case target_type
+    when "Milestone"
+      "里程碑"
+    when "Commit"
+      "提交"
+    when "Issue"
+      "问题"
+    when "MergeRequest"
+      "合并请求"
+    else
+      target_type
+    end
+  end
+
   def body?
     if push?
       push_with_commits?

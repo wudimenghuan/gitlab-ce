@@ -6,8 +6,9 @@
   .top-area.adjust
     - if can?(current_user, :admin_project, @project)
       .nav-text
-        Protected branches can be managed in
-        = link_to 'project settings', project_protected_branches_path(@project)
+        保护分支可在
+        = link_to '项目设置', project_protected_branches_path(@project)
+        管理
 
     .nav-controls
       = form_tag(filter_branches_path, method: :get) do
@@ -20,7 +21,7 @@
           = icon('chevron-down')
         %ul.dropdown-menu.dropdown-menu-align-right.dropdown-menu-selectable
           %li.dropdown-header
-            Sort by
+            排序
           - branches_sort_options_hash.each do |value, title|
             %li
               = link_to title, filter_branches_path(sort: value), class: ("is-active" if @sort == value)
