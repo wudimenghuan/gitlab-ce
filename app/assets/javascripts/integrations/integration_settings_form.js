@@ -114,7 +114,7 @@ export default class IntegrationSettingsForm {
       }
     })
     .fail(() => {
-      new Flash('Something went wrong on our end.');
+      new Flash('服务器端出现了错误。');
     })
     .always(() => {
       this.toggleSubmitBtnState(false);

@@ -14,7 +14,7 @@ class SentNotificationsController < ApplicationController
     noteable = @sent_notification.noteable
     noteable.unsubscribe(@sent_notification.recipient, @sent_notification.project)
 
-    flash[:notice] = "You have been unsubscribed from this thread."
+    flash[:notice] = "您已取消订阅此主题。"
 
     if current_user
       case noteable

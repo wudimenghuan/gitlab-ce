@@ -7,17 +7,18 @@ export default {
     <section class="mr-widget-help">
       <template
         v-if="missingBranch">
-        If the {{missingBranch}} branch exists in your local repository, you
+        如果分支 {{missingBranch}} 在您本地的版本库，您
       </template>
       <template v-else>
-        You
+        您
       </template>
-      can merge this merge request manually using the
+      可以通过
       <a
         data-toggle="modal"
         href="#modal_merge_info">
-        command line
+        命令行
       </a>
+      在本地合并这个合并请求。
     </section>
   `,
 };

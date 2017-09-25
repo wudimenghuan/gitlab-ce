@@ -2,9 +2,9 @@
 
 .bs-callout.clearfix
   %p
-    User cohorts are shown because the usage ping is enabled. The data sent with
-    this is shown below. To disable this, visit
-    = succeed '.' do
-      = link_to 'application settings', admin_application_settings_path(anchor: 'usage-statistics')
+    用户活跃度能被显示是因为启用了使用率反馈。
+    发送的数据如下所示，如果要禁用此功能，请访问
+    = succeed '。' do
+      = link_to '系统设置', admin_application_settings_path(anchor: 'usage-statistics')
 
 %pre.usage-data.js-syntax-highlight.code.highlight{ data: { endpoint: usage_data_admin_application_settings_path(format: :html) } }

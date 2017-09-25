@@ -23,15 +23,15 @@
 
   .snippet-info
     #{snippet.to_reference} &middot;
-    authored #{time_ago_with_tooltip(snippet.created_at, placement: 'bottom', html_class: 'snippet-created-ago')}
-    by
+    由
     = link_to user_snippets_path(snippet.author) do
       = snippet.author_name
+    在 #{time_ago_with_tooltip(snippet.created_at, placement: 'bottom', html_class: 'snippet-created-ago')} 编写
     - if link_project && snippet.project_id?
       %span.hidden-xs
-        in
+        位于
         = link_to project_path(snippet.project) do
           = snippet.project.name_with_namespace
 
     .pull-right.snippet-updated-at
-      %span updated #{time_ago_with_tooltip(snippet.updated_at, placement: 'bottom')}
+      %span 更新于 #{time_ago_with_tooltip(snippet.updated_at, placement: 'bottom')}

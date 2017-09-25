@@ -1,12 +1,12 @@
 .block.milestone
   .title
-    Milestone
+    里程碑
     - if can_admin_issue?
       = icon("spinner spin", class: "block-loading")
-      = link_to "Edit", "#", class: "js-sidebar-dropdown-toggle edit-link pull-right"
+      = link_to "编辑", "#", class: "js-sidebar-dropdown-toggle edit-link pull-right"
   .value
     %span.no-value{ "v-if" => "!issue.milestone" }
-      None
+      无
     %span.bold.has-tooltip{ "v-if" => "issue.milestone" }
       {{ issue.milestone.title }}
   - if can_admin_issue?
@@ -20,10 +20,10 @@
           ":data-selected" => "milestoneTitle",
           ":data-issuable-id" => "issue.iid",
           ":data-issue-update" => "'#{build_issue_link_base}/' + issue.iid + '.json'" }
-          Milestone
+          里程碑
           = icon("chevron-down")
         .dropdown-menu.dropdown-select.dropdown-menu-selectable
-          = dropdown_title("Assign milestone")
-          = dropdown_filter("Search milestones")
+          = dropdown_title("指派里程碑")
+          = dropdown_filter("搜索里程碑")
           = dropdown_content
           = dropdown_loading

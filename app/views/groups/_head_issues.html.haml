@@ -4,16 +4,16 @@
     .nav-links.sub-nav.scrolling-tabs
       %ul{ class: container_class }
         = nav_link(path: 'groups#issues', html_options: { class: 'home' }) do
-          = link_to issues_group_path(@group), title: 'List' do
+          = link_to issues_group_path(@group), title: '列表' do
             %span
-              List
+              列表
 
         = nav_link(path: 'labels#index') do
-          = link_to group_labels_path(@group), title: 'Labels' do
+          = link_to group_labels_path(@group), title: '标记' do
             %span
-              Labels
+              标记
 
         = nav_link(path: 'milestones#index') do
-          = link_to group_milestones_path(@group), title: 'Milestones' do
+          = link_to group_milestones_path(@group), title: '里程碑' do
             %span
-              Milestones
+              里程碑

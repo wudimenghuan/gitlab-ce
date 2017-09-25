@@ -11,6 +11,33 @@ module CiStatusHelper
     project_pipeline_path(project, pipeline)
   end
 
+  def ci_status_zh(status)
+    case status
+      when 'pending'
+        '排队'
+      when 'running'
+        '运行'
+      when 'failed'
+        '失败'
+      when 'canceled'
+        '取消'
+      else
+         '未知'
+    end
+  end
+
+  def ci_stage_zh(stage)
+    case stage
+      when 'build'
+        '构建'
+      when 'deploy'
+        '部署'
+      when 'test'
+        '测试'
+      else
+        stage.titleize
+    end
+  end
   def ci_label_for_status(status)
     if detailed_status?(status)
       return status.label

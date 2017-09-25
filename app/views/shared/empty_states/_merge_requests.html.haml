@@ -10,13 +10,13 @@
     .text-content
       - if has_button
         %h4
-          Merge requests are a place to propose changes you've made to a project and discuss those changes with others.
+          合并请求是一个可以让您提交对项目的修改并与其他人讨论的地方。
         %p
-          Interested parties can even contribute by pushing commits if they want to.
+          有兴趣者甚至可以通过推送提交做出贡献。
         - if project_select_button
-          = render 'shared/new_project_item_select', path: 'merge_requests/new', label: 'New merge request', type: :merge_requests
+          = render 'shared/new_project_item_select', path: 'merge_requests/new', label: '新建合并请求', type: :merge_requests
         - else
-          = link_to 'New merge request', button_path, class: 'btn btn-new', title: 'New merge request', id: 'new_merge_request_link'
+          = link_to '新建合并请求', button_path, class: 'btn btn-new', title: '新建合并请求', id: 'new_merge_request_link'
       - else
         %h4.text-center
-          There are no merge requests to show.
+          没有合并请求

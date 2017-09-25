@@ -20,18 +20,18 @@ gl.issueBoards.ModalEmptyState = Vue.extend({
   computed: {
     contents() {
       const obj = {
-        title: 'You haven\'t added any issues to your project yet',
+        title: '您的项目还没有添加任何的问题。',
         content: `
-          An issue can be a bug, a todo or a feature request that needs to be
-          discussed in a project. Besides, issues are searchable and filterable.
+          问题可以是要讨论的Bug，任务或概念。
+          此外，问题是可搜索、可过滤的。
         `,
       };
 
       if (this.activeTab === 'selected') {
-        obj.title = 'You haven\'t selected any issues yet';
+        obj.title = '您还没有选择一个问题';
         obj.content = `
-          Go back to <strong>Open issues</strong> and select some issues
-          to add to your board.
+          返回 <strong>未关闭问题</strong> 并选择一些问题
+          来增加到看板。
         `;
       }
 
@@ -52,14 +52,14 @@ gl.issueBoards.ModalEmptyState = Vue.extend({
               :href="newIssuePath"
               class="btn btn-success btn-inverted"
               v-if="activeTab === 'all'">
-              New issue
+              新建问题
             </a>
             <button
               type="button"
               class="btn btn-default"
               @click="changeTab('all')"
               v-if="activeTab === 'selected'">
-              Open issues
+              未关闭问题
             </button>
           </div>
         </div>

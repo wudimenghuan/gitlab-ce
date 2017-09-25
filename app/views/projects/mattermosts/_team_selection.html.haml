@@ -3,44 +3,44 @@
   %strong= link_to Gitlab.config.mattermost.host, Gitlab.config.mattermost.host
 %hr
 = form_for(:mattermost, method: :post, url: project_mattermost_path(@project), html: { class: 'js-requires-input'} ) do |f|
-  %h4 Team
+  %h4 团队
   %p
-    = @teams.one? ? 'The team' : 'Select the team'
+    = @teams.one? ? '团队' : '选择团队'
     where the slash commands will be used in
   - selected_id = @teams.one? ? @teams.first['id'] : nil
   - options = options_for_select(mattermost_teams_options(@teams), selected_id)
-  = f.select(:team_id, options, { include_blank: 'Select team...'}, { class: 'form-control', disabled: @teams.one?, selected: selected_id, required: true })
+  = f.select(:team_id, options, { include_blank: '选择团队...'}, { class: 'form-control', disabled: @teams.one?, selected: selected_id, required: true })
   = f.hidden_field(:team_id, value: selected_id, required: true) if @teams.one?
   .help-block
     - if @teams.one?
-      This is the only available team.
+      这是唯一可用的团队
     - else
-      The list shows all available teams.
+      显示所有可用的团队
     To create a team,
     = link_to "#{Gitlab.config.mattermost.host}/create_team" do
-      use Mattermost's interface
+      使用 Mattermost's 接口
       = icon('external-link')
-    or ask your Mattermost system administrator.
+    或者询问您的 Mattermost 系统管理员。
   %hr
-  %h4 Command trigger word
-  %p Choose the word that will trigger commands
+  %h4 命令触发词
+  %p 选择用来触发命令的词组
   = f.text_field(:trigger, value: @project.path, class: 'form-control', required: true)
   .help-block
     %p
       Trigger word must be unique, and can't begin with a slash or contain any spaces.
       Use the word that works best for your team.
     %p
-      Suggestions:
+      建议:
       %code= 'gitlab'
       %code= @project.path # Path contains no spaces, but dashes
       %code= @project.full_path
     %p
-      Reserved:
+      保留:
       = link_to 'https://docs.mattermost.com/help/messaging/executing-commands.html#built-in-commands', target: '__blank' do
-        see list of built-in slash commands
+        查看内建的 slash 命令
         = icon('external-link')
   %hr
   .clearfix
     .pull-right
-      = link_to 'Cancel', edit_project_service_path(@project, @service), class: 'btn btn-lg'
-      = f.submit 'Install', class: 'btn btn-save btn-lg'
+      = link_to '取消', edit_project_service_path(@project, @service), class: 'btn btn-lg'
+      = f.submit '安装', class: 'btn btn-save btn-lg'

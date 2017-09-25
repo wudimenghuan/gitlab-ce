@@ -53,7 +53,7 @@ module DropdownsHelper
       title_output = ""
 
       if options.fetch(:back, false)
-        title_output << content_tag(:button, class: "dropdown-title-button dropdown-menu-back", aria: { label: "Go back" }, type: "button") do
+        title_output << content_tag(:button, class: "dropdown-title-button dropdown-menu-back", aria: { label: "后退" }, type: "button") do
           icon('arrow-left')
         end
       end
@@ -61,7 +61,7 @@ module DropdownsHelper
       title_output << content_tag(:span, title)
 
       if options.fetch(:close, true)
-        title_output << content_tag(:button, class: "dropdown-title-button dropdown-menu-close", aria: { label: "Close" }, type: "button") do
+        title_output << content_tag(:button, class: "dropdown-title-button dropdown-menu-close", aria: { label: "关闭" }, type: "button") do
           icon('times', class: 'dropdown-menu-close-icon')
         end
       end

@@ -162,16 +162,16 @@
         {
           header: "" + name
         }, {
-          text: 'Issues assigned to me',
+          text: '指派给我的问题',
           url: issuesPath + "/?assignee_username=" + userName
         }, {
-          text: "Issues I've created",
+          text: "我创建的问题",
           url: issuesPath + "/?author_username=" + userName
         }, 'separator', {
-          text: 'Merge requests assigned to me',
+          text: '指派给我的合并请求',
           url: mrPath + "/?assignee_username=" + userName
         }, {
-          text: "Merge requests I've created",
+          text: "我创建的合并请求",
           url: mrPath + "/?author_username=" + userName
         }
       ];
@@ -374,13 +374,13 @@
           if (item.category === 'Projects') {
             this.projectInputEl.val(item.id);
             this.addLocationBadge({
-              value: 'This project'
+              value: '这个项目'
             });
           }
           if (item.category === 'Groups') {
             this.groupInputEl.val(item.id);
             this.addLocationBadge({
-              value: 'This group'
+              value: '这个群组'
             });
           }
         }

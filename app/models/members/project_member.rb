@@ -79,6 +79,10 @@ class ProjectMember < Member
     end
   end
 
+  def real_source_type_zh
+    '项目'
+  end
+
   def project
     source
   end

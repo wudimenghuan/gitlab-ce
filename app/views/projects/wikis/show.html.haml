@@ -11,9 +11,10 @@
   .nav-text
     %h2.wiki-page-title= @page.title.capitalize
     %span.wiki-last-edit-by
-      Last edited by
+      由
       %strong
         #{@page.commit.author.name}
+      最后编辑于
       #{time_ago_with_tooltip(@page.commit.authored_date)}
 
   .nav-controls
@@ -21,8 +22,8 @@
 
 - if @page.historical?
   .warning_message
-    This is an old version of this page.
-    You can view the #{link_to "most recent version", project_wiki_path(@project, @page)} or browse the #{link_to "history", project_wiki_history_path(@project, @page)}.
+    这是本页面的旧版本。
+    你可以查看 #{link_to "最近修改版本", project_wiki_path(@project, @page)} 或浏览 #{link_to "历史记录", project_wiki_history_path(@project, @page)}.
 
 .wiki-holder.prepend-top-default.append-bottom-default
   .wiki

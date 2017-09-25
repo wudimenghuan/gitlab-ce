@@ -1,19 +1,19 @@
 - if @merge_request_diffs.size > 1
   .mr-version-controls
     .mr-version-menus-container.content-block
-      Changes between
+      版本比较
       %span.dropdown.inline.mr-version-dropdown
         %a.dropdown-toggle.btn.btn-default{ data: {toggle: :dropdown} }
           %span
             - if @merge_request_diff.latest?
-              latest version
+              最新版本
             - else
-              version #{version_index(@merge_request_diff)}
+              版本 #{version_index(@merge_request_diff)}
           = icon('caret-down')
         .dropdown-menu.dropdown-select.dropdown-menu-selectable
           .dropdown-title
-            %span Version:
-            %button.dropdown-title-button.dropdown-menu-close{ aria: { label: "Close" } }
+            %span 版本:
+            %button.dropdown-title-button.dropdown-menu-close{ aria: { label: "关闭" } }
               = icon('times', class: 'dropdown-menu-close-icon')
           .dropdown-content
             %ul
@@ -23,9 +23,9 @@
                     %div
                       %strong
                         - if merge_request_diff.latest?
-                          latest version
+                          最新版本
                         - else
-                          version #{version_index(merge_request_diff)}
+                          版本 #{version_index(merge_request_diff)}
                     %div
                       %small.commit-sha= short_sha(merge_request_diff.head_commit_sha)
                     %div
@@ -34,18 +34,18 @@
                         = time_ago_with_tooltip(merge_request_diff.created_at)
 
       - if @merge_request_diff.base_commit_sha
-        and
+        和
         %span.dropdown.inline.mr-version-compare-dropdown
           %a.btn.btn-default.dropdown-toggle{ data: {toggle: :dropdown} }
             - if @start_version
-              version #{version_index(@start_version)}
+              版本 #{version_index(@start_version)}
             - else
               %span.ref-name= @merge_request.target_branch
             = icon('caret-down')
           .dropdown-menu.dropdown-select.dropdown-menu-selectable
             .dropdown-title
-              %span Compared with:
-              %button.dropdown-title-button.dropdown-menu-close{ aria: { label: "Close" } }
+              %span 比较版本:
+              %button.dropdown-title-button.dropdown-menu-close{ aria: { label: "关闭" } }
                 = icon('times', class: 'dropdown-menu-close-icon')
             .dropdown-content
               %ul
@@ -55,9 +55,9 @@
                       %div
                         %strong
                           - if merge_request_diff.latest?
-                            latest version
+                            最新版本
                           - else
-                            version #{version_index(merge_request_diff)}
+                            版本 #{version_index(merge_request_diff)}
                       %div
                         %small.commit-sha= short_sha(merge_request_diff.head_commit_sha)
                       %div
@@ -75,23 +75,21 @@
     - if different_base?(@start_version, @merge_request_diff)
       .content-block
         = icon('info-circle')
-        Selected versions have different base commits.
-        Changes will include
+        所选版本具有不同的基础提交(base commits)。
+        变更将包含来自于
+        %code= @merge_request.target_branch
+        的
         = link_to project_compare_path(@project, from: @start_version.base_commit_sha, to: @merge_request_diff.base_commit_sha) do
-          new commits
-        from
-        = succeed '.' do
-          %code= @merge_request.target_branch
+          新建提交
 
     - if @start_version || !@merge_request_diff.latest?
       .comments-disabled-notif.content-block
         = icon('info-circle')
-        Not all comments are displayed because you're
+        评论没有全部显示，因为您正在
         - if @start_version
-          comparing two versions
+          比较差异的两个版本。
         - else
-          viewing an old version
-        of the diff.
+          查看差异的旧版本。
 
         .pull-right
-          = link_to 'Show latest version', diffs_project_merge_request_path(@project, @merge_request), class: 'btn btn-sm'
+          = link_to '显示最新版本', diffs_project_merge_request_path(@project, @merge_request), class: 'btn btn-sm'

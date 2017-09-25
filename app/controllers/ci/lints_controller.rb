@@ -17,7 +17,7 @@ module Ci
         @jobs = @config_processor.jobs
       end
     rescue
-      @error = 'Undefined error'
+      @error = '未定义错误'
       @status = false
     ensure
       render :show

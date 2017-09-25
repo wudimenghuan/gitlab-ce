@@ -15,14 +15,14 @@ export default {
       <status-icon status="failed" />
       <div class="media-body">
         <mr-widget-author-and-time
-          actionText="Closed by"
+          actionText="关闭者"
           :author="mr.closedBy"
           :dateTitle="mr.updatedAt"
           :dateReadable="mr.closedAt"
         />
         <section class="mr-info-list">
           <p>
-            The changes were not merged into
+            变更无法合并到
             <a
               :href="mr.targetBranchPath"
               class="label-branch">

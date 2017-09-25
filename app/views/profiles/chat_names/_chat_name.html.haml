@@ -21,7 +21,7 @@
     - if chat_name.last_used_at
       = time_ago_with_tooltip(chat_name.last_used_at)
     - else
-      Never
+      永不
 
   %td
-    = link_to 'Remove', profile_chat_name_path(chat_name), method: :delete, class: 'btn btn-danger pull-right', data: { confirm: 'Are you sure you want to revoke this nickname?' }
+    = link_to '删除', profile_chat_name_path(chat_name), method: :delete, class: 'btn btn-danger pull-right', data: { confirm: '你确定要撤销这个昵称？' }

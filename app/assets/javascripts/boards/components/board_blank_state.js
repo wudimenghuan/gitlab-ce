@@ -9,7 +9,7 @@ export default {
   template: `
     <div class="board-blank-state">
       <p>
-        Add the following default lists to your Issue Board with one click:
+        只需点击一下，即可将以下默认列表添加到问题看板：
       </p>
       <ul class="board-blank-state-list">
         <li v-for="label in predefinedLabels">
@@ -21,19 +21,19 @@ export default {
         </li>
       </ul>
       <p>
-        Starting out with the default set of lists will get you right on the way to making the most of your board.
+        使用默认列表将让您能正确并充分地利用您的的问题看板。
       </p>
       <button
         class="btn btn-create btn-inverted btn-block"
         type="button"
         @click.stop="addDefaultLists">
-        Add default lists
+        添加默认列表
       </button>
       <button
         class="btn btn-default btn-block"
         type="button"
         @click.stop="clearBlankState">
-        Nevermind, I'll use my own
+        没关系，我将自己创建列表
       </button>
     </div>
   `,

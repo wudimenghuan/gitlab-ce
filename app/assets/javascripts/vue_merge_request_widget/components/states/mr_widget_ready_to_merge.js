@@ -58,12 +58,12 @@ export default {
     },
     mergeButtonText() {
       if (this.isMergingImmediately) {
-        return 'Merge in progress';
+        return '合并进行中';
       } else if (this.shouldShowMergeWhenPipelineSucceedsText) {
-        return 'Merge when pipeline succeeds';
+        return '当流水线成功后合并';
       }
 
-      return 'Merge';
+      return '合并';
     },
     shouldShowMergeOptionsDropdown() {
       return this.mr.isPipelineActive && !this.mr.onlyAllowMergeIfPipelineSucceeds;
@@ -138,7 +138,7 @@ export default {
         })
         .catch(() => {
           this.isMakingRequest = false;
-          new Flash('Something went wrong. Please try again.'); // eslint-disable-line
+          new Flash('出现了错误。请重试。'); // eslint-disable-line
         });
     },
     initiateMergePolling() {
@@ -155,7 +155,7 @@ export default {
             eventHub.$emit('MRWidgetUpdateRequested');
             eventHub.$emit('FetchActionsContent');
             if (window.mergeRequest) {
-              window.mergeRequest.updateStatusText('status-box-open', 'status-box-merged', 'Merged');
+              window.mergeRequest.updateStatusText('status-box-open', 'status-box-merged', '已合并');
               window.mergeRequest.decreaseCounter();
             }
             stopPolling();
@@ -174,7 +174,7 @@ export default {
           }
         })
         .catch(() => {
-          new Flash('Something went wrong while merging this merge request. Please try again.'); // eslint-disable-line
+          new Flash('合并出现了错误。请重试。'); // eslint-disable-line
         });
     },
     initiateRemoveSourceBranchPolling() {
@@ -202,7 +202,7 @@ export default {
           }
         })
         .catch(() => {
-          new Flash('Something went wrong while removing the source branch. Please try again.'); // eslint-disable-line
+          new Flash('删除源分支出现了错误，请重试。'); // eslint-disable-line
         });
     },
   },
@@ -229,7 +229,7 @@ export default {
               type="button"
               class="btn btn-small btn-info dropdown-toggle js-merge-moment"
               data-toggle="dropdown"
-              aria-label="Select merge moment">
+              aria-label="选择合并时刻">
               <i
                 class="fa fa-chevron-down"
                 aria-hidden="true" />
@@ -248,7 +248,7 @@ export default {
                       v-html="successSvg"
                       class="merge-opt-icon"
                       aria-hidden="true"></span>
-                    <span class="media-body merge-opt-title">Merge when pipeline succeeds</span>
+                    <span class="media-body merge-opt-title">当流水线成功时合并</span>
                   </span>
                 </a>
               </li>
@@ -262,7 +262,7 @@ export default {
                       v-html="warningSvg"
                       class="merge-opt-icon"
                       aria-hidden="true"></span>
-                    <span class="media-body merge-opt-title">Merge immediately</span>
+                    <span class="media-body merge-opt-title">立刻合并</span>
                   </span>
                 </a>
               </li>
@@ -275,7 +275,7 @@ export default {
                   id="remove-source-branch-input"
                   v-model="removeSourceBranch"
                   :disabled="isRemoveSourceBranchButtonDisabled"
-                  type="checkbox"/> Remove source branch
+                  type="checkbox"/> 删除源分支
               </label>
 
               <!-- Placeholder for EE extension of this component -->
@@ -289,12 +289,12 @@ export default {
                 :disabled="isMergeButtonDisabled"
                 class="btn btn-default btn-xs"
                 type="button">
-                Modify commit message
+                修改提交信息
               </button>
             </template>
             <template v-else>
               <span class="bold">
-                The pipeline for this merge request has not succeeded yet
+                此合并请求的流水线已失败
               </span>
             </template>
           </div>
@@ -306,7 +306,7 @@ export default {
             <label
               class="control-label"
               for="commit-message">
-              Commit message
+              提交信息
             </label>
             <div class="col-sm-10">
               <div class="commit-message-container">
@@ -316,9 +316,9 @@ export default {
                   class="form-control js-commit-message"
                   required="required"
                   rows="14"
-                  name="Commit message"></textarea>
+                  name="提交信息"></textarea>
               </div>
-              <p class="hint">Try to keep the first line under 52 characters and the others under 72</p>
+              <p class="hint">尝试保持第一行不超过52个字符，其它行不超过72个字符。</p>
               <div class="hint">
                 <a
                   @click.prevent="updateCommitMessage"

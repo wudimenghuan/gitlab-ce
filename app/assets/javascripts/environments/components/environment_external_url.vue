@@ -18,7 +18,7 @@ export default {
 
   computed: {
     title() {
-      return 'Open';
+      return '打开';
     },
   },
 };

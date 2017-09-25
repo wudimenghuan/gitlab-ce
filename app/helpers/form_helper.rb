@@ -2,8 +2,7 @@ module FormHelper
   def form_errors(model, type: 'form')
     return unless model.errors.any?
 
-    pluralized = 'error'.pluralize(model.errors.count)
-    headline   = "The #{type} contains the following #{pluralized}:"
+    headline   = "该 #{type} 包含了以下错误:"
 
     content_tag(:div, class: 'alert alert-danger', id: 'error_explanation') do
       content_tag(:h4, headline) <<
@@ -19,19 +18,19 @@ module FormHelper
   def issue_assignees_dropdown_options
     {
       toggle_class: 'js-user-search js-assignee-search js-multiselect js-save-user-data',
-      title: 'Select assignee',
+      title: '选择指派',
       filter: true,
       dropdown_class: 'dropdown-menu-user dropdown-menu-selectable dropdown-menu-assignee',
-      placeholder: 'Search users',
+      placeholder: '搜索用户',
       data: {
         first_user: current_user&.username,
         null_user: true,
         current_user: true,
         project_id: @project.id,
         field_name: 'issue[assignee_ids][]',
-        default_label: 'Unassigned',
+        default_label: '未指派',
         'max-select': 1,
-        'dropdown-header': 'Assignee',
+        'dropdown-header': '指派给',
         multi_select: true,
         'input-meta': 'name',
         'always-show-selectbox': true,

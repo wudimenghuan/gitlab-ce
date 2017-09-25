@@ -4,7 +4,7 @@ class SlackService < ChatNotificationService
   end
 
   def description
-    'Receive event notifications in Slack'
+    '在 Slack 接收事件通知'
   end
 
   def self.to_param

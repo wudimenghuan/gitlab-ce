@@ -1,8 +1,8 @@
 .row.prepend-top-default.append-bottom-default
   .col-lg-4
     %h4.prepend-top-0
-      Project services
-    %p Project services allow you to integrate GitLab with other applications
+      项目服务
+    %p 项目服务用于集成其他应用
   .col-lg-8
     %table.table
       %colgroup
@@ -13,9 +13,9 @@
       %thead
         %tr
           %th
-          %th Service
-          %th.hidden-xs Description
-          %th Last edit
+          %th 服务
+          %th.hidden-xs 描述
+          %th 最后编辑
       - @services.sort_by(&:title).each do |service|
         %tr
           %td{ "aria-label" => "#{service.title}: status " + (service.activated? ? "on" : "off") }
@@ -28,4 +28,4 @@
           %td.light
             - if service.updated_at.present?
               = time_ago_in_words service.updated_at
-              ago
+              之前

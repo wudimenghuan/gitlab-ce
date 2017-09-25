@@ -29,8 +29,8 @@ export default {
         <span class="bold js-branch-text">
           <span class="capitalize">
             {{missingBranchName}}
-          </span> branch does not exist.
-          Please restore it or use a different {{missingBranchName}} branch
+          </span> 分支不存在。
+          请恢复 {{missingBranchName}} 分支 或者使用另一个 {{missingBranchName}} 分支。
           <i
             v-tooltip
             class="fa fa-question-circle"

@@ -3,7 +3,7 @@ export default {
   template: `
     <div class="time-tracking-no-tracking-pane">
       <span class="no-value">
-        No estimate or time spent
+        没有预估或者已耗费工时
       </span>
     </div>
   `,
