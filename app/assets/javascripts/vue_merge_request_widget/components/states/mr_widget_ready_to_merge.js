@@ -29,6 +29,9 @@ export default {
     statusIcon,
   },
   computed: {
+    shouldShowMergeWhenPipelineSucceedsText() {
+      return this.mr.isPipelineActive;
+    },
     commitMessageLinkTitle() {
       const withDesc = 'Include description in commit message';
       const withoutDesc = "Don't include description in commit message";
@@ -56,7 +59,7 @@ export default {
     mergeButtonText() {
       if (this.isMergingImmediately) {
         return '合并进行中';
-      } else if (this.mr.isPipelineActive) {
+      } else if (this.shouldShowMergeWhenPipelineSucceedsText) {
         return '当流水线成功后合并';
       }
 
@@ -68,7 +71,7 @@ export default {
     isMergeButtonDisabled() {
       const { commitMessage } = this;
       return Boolean(!commitMessage.length
-        || !this.isMergeAllowed()
+        || !this.shouldShowMergeControls()
         || this.isMakingRequest
         || this.mr.preventMerge);
     },
@@ -82,7 +85,12 @@ export default {
   },
   methods: {
     isMergeAllowed() {
-      return !(this.mr.onlyAllowMergeIfPipelineSucceeds && this.mr.isPipelineFailed);
+      return !this.mr.onlyAllowMergeIfPipelineSucceeds ||
+        this.mr.isPipelinePassing ||
+        this.mr.isPipelineSkipped;
+    },
+    shouldShowMergeControls() {
+      return this.isMergeAllowed() || this.shouldShowMergeWhenPipelineSucceedsText;
     },
     updateCommitMessage() {
       const cmwd = this.mr.commitMessageWithDescription;
@@ -202,8 +210,8 @@ export default {
     <div class="mr-widget-body media">
       <status-icon status="success" />
       <div class="media-body">
-        <div class="media space-children">
-          <span class="btn-group">
+        <div class="mr-widget-body-controls media space-children">
+          <span class="btn-group append-bottom-5">
             <button
               @click="handleMergeButtonClick()"
               :disabled="isMergeButtonDisabled"
@@ -260,8 +268,8 @@ export default {
               </li>
             </ul>
           </span>
-          <div class="media-body space-children">
-            <template v-if="isMergeAllowed()">
+          <div class="media-body-wrap space-children">
+            <template v-if="shouldShowMergeControls()">
               <label>
                 <input
                   id="remove-source-branch-input"
@@ -286,7 +294,7 @@ export default {
             </template>
             <template v-else>
               <span class="bold">
-                此合并请求的流水线已失败。 请重试该作业或推送一个新的提交来修复失败。
+                此合并请求的流水线尚未成功
               </span>
             </template>
           </div>

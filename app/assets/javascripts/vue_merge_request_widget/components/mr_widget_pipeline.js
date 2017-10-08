@@ -12,6 +12,9 @@ export default {
     ciIcon,
   },
   computed: {
+    hasPipeline() {
+      return this.mr.pipeline && Object.keys(this.mr.pipeline).length > 0;
+    },
     hasCIError() {
       const { hasCI, ciStatus } = this.mr;
 
@@ -28,7 +31,9 @@ export default {
     },
   },
   template: `
-    <div class="mr-widget-heading">
+    <div
+      v-if="hasPipeline || hasCIError"
+      class="mr-widget-heading">
       <div class="ci-widget media">
         <template v-if="hasCIError">
           <div class="ci-status-icon ci-status-icon-failed ci-error js-ci-error append-right-10">
@@ -40,7 +45,7 @@ export default {
             无法连接到 CI 服务器。请检查相关设置并重试。
           </div>
         </template>
-        <template v-else>
+        <template v-else-if="hasPipeline">
           <div class="ci-status-icon append-right-10">
             <a
               class="icon-link"
