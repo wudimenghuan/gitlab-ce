@@ -52,14 +52,14 @@ export default {
       <i class="fa" :class="faEye" aria-hidden="true"></i>
     </div>
     <div class="title hide-collapsed">
-      Confidentiality
+      保密性
       <a
         v-if="isEditable"
         class="pull-right confidential-edit"
         href="#"
         @click.prevent="toggleForm"
       >
-        Edit
+        编辑
       </a>
     </div>
     <div class="value sidebar-item-value hide-collapsed">
@@ -71,11 +71,11 @@ export default {
       />
       <div v-if="!isConfidential" class="no-value sidebar-item-value">
         <i class="fa fa-eye sidebar-item-icon"></i>
-        Not confidential
+        非机密
       </div>
       <div v-else class="value sidebar-item-value hide-collapsed">
         <i aria-hidden="true" class="fa fa-eye-slash sidebar-item-icon is-active"></i>
-        This issue is confidential
+        这是一个保密问题
       </div>
     </div>
   </div>

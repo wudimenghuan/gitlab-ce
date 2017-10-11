@@ -11,7 +11,7 @@ class Profiles::PasswordsController < Profiles::ApplicationController
 
   def create
     unless @user.password_automatically_set || @user.valid_password?(user_params[:current_password])
-      redirect_to new_profile_password_path, alert: 'You must provide a valid current password'
+      redirect_to new_profile_password_path, alert: '必须提供一个有效的当前密码'
       return
     end
 
@@ -26,7 +26,7 @@ class Profiles::PasswordsController < Profiles::ApplicationController
     if result[:status] == :success
       Users::UpdateService.new(current_user, user: @user, password_expires_at: nil).execute
 
-      redirect_to root_path, notice: 'Password successfully changed'
+      redirect_to root_path, notice: '密码修改成功'
     else
       render :new
     end
@@ -42,14 +42,14 @@ class Profiles::PasswordsController < Profiles::ApplicationController
     password_attributes[:password_automatically_set] = false
 
     unless @user.password_automatically_set || @user.valid_password?(user_params[:current_password])
-      redirect_to edit_profile_password_path, alert: 'You must provide a valid current password'
+      redirect_to edit_profile_password_path, alert: '必须提供一个有效的当前密码'
       return
     end
 
     result = Users::UpdateService.new(current_user, password_attributes.merge(user: @user)).execute
 
     if result[:status] == :success
-      flash[:notice] = "Password was successfully updated. Please login with it"
+      flash[:notice] = "密码已成功更新。请使用新密码重新登录"
       redirect_to new_user_session_path
     else
       @user.reload
@@ -59,7 +59,7 @@ class Profiles::PasswordsController < Profiles::ApplicationController
 
   def reset
     current_user.send_reset_password_instructions
-    redirect_to edit_profile_password_path, notice: 'We sent you an email with reset password instructions'
+    redirect_to edit_profile_password_path, notice: '已发送重置密码操作的邮件'
   end
 
   private

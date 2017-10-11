@@ -21,7 +21,7 @@ window.ResolveCount = Vue.extend({
       return this.resolvedDiscussionCount === this.discussionCount;
     },
     resolvedCountText() {
-      return this.discussionCount === 1 ? 'discussion' : 'discussions';
+      return this.discussionCount === 1 ? '讨论' : '讨论';
     }
   }
 });

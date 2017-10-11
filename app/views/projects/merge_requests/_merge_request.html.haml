@@ -41,23 +41,23 @@
       %ul.controls
         - if merge_request.merged?
           %li.issuable-status.hidden-xs
-            MERGED
+            已合并
         - elsif merge_request.closed?
           %li.issuable-status.hidden-xs
             = icon('ban')
-            CLOSED
+            已关闭
         - if merge_request.head_pipeline
           %li.issuable-pipeline-status.hidden-xs
             = render_pipeline_status(merge_request.head_pipeline)
         - if merge_request.open? && merge_request.broken?
           %li.issuable-pipeline-broken.hidden-xs
-            = link_to merge_request_path(merge_request), class: "has-tooltip", title: "Cannot be merged automatically", data: { container: 'body' } do
+            = link_to merge_request_path(merge_request), class: "has-tooltip", title: "无法被自动合并", data: { container: 'body' } do
               = icon('exclamation-triangle')
         - if merge_request.assignee
           %li
-            = link_to_member(merge_request.source_project, merge_request.assignee, name: false, title: "Assigned to :name")
+            = link_to_member(merge_request.source_project, merge_request.assignee, name: false, title: "指派给 :name")
 
         = render 'shared/issuable_meta_data', issuable: merge_request
 
       .pull-right.issuable-updated-at.hidden-xs
-        %span updated #{time_ago_with_tooltip(merge_request.updated_at, placement: 'bottom', html_class: 'merge_request_updated_ago')}
+        %span 更新于 #{time_ago_with_tooltip(merge_request.updated_at, placement: 'bottom', html_class: 'merge_request_updated_ago')}

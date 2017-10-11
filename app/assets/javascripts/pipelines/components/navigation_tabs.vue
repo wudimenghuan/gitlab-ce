@@ -32,7 +32,7 @@
       class="js-pipelines-tab-all"
       :class="{ active: scope === 'all'}">
       <a :href="paths.allPath">
-        All
+        全部
         <span
           v-if="shouldRenderBadge(count.all)"
           class="badge js-totalbuilds-count">
@@ -44,7 +44,7 @@
       class="js-pipelines-tab-pending"
       :class="{ active: scope === 'pending'}">
       <a :href="paths.pendingPath">
-        Pending
+        排队中
         <span
           v-if="shouldRenderBadge(count.pending)"
           class="badge">
@@ -56,7 +56,7 @@
       class="js-pipelines-tab-running"
       :class="{ active: scope === 'running'}">
       <a :href="paths.runningPath">
-        Running
+        运行中
         <span
           v-if="shouldRenderBadge(count.running)"
           class="badge">
@@ -68,7 +68,7 @@
       class="js-pipelines-tab-finished"
       :class="{ active: scope === 'finished'}">
       <a :href="paths.finishedPath">
-        Finished
+        已完成
         <span
           v-if="shouldRenderBadge(count.finished)"
           class="badge">
@@ -79,12 +79,12 @@
     <li
       class="js-pipelines-tab-branches"
       :class="{ active: scope === 'branches'}">
-      <a :href="paths.branchesPath">Branches</a>
+      <a :href="paths.branchesPath">分支</a>
     </li>
     <li
       class="js-pipelines-tab-tags"
       :class="{ active: scope === 'tags'}">
-      <a :href="paths.tagsPath">Tags</a>
+      <a :href="paths.tagsPath">标签</a>
     </li>
   </ul>
 </template>

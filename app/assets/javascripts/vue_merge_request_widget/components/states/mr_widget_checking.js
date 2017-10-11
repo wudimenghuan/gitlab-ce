@@ -10,7 +10,7 @@ export default {
       <status-icon status="loading" :show-disabled-button="true" />
       <div class="media-body space-children">
         <span class="bold">
-          Checking ability to merge automatically
+          正在进行自动合并检查
         </span>
       </div>
     </div>

@@ -25,7 +25,7 @@ import TemplateSelector from '../blob/template_selector';
       $('.no-template', this.dropdown.parent()).on('click', () => {
         this.currentTemplate.content = '';
         this.setInputValueToTemplateContent();
-        $('.dropdown-toggle-text', this.dropdown).text('Choose a template');
+        $('.dropdown-toggle-text', this.dropdown).text('选择模板');
       });
     }
 

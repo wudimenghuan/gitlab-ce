@@ -179,7 +179,7 @@ export default {
           <a
             :href="availablePath"
             class="js-available-environments-folder-tab">
-            Available
+            可用
             <span class="badge js-available-environments-count">
               {{state.availableCounter}}
             </span>
@@ -189,7 +189,7 @@ export default {
           <a
             :href="stoppedPath"
             class="js-stopped-environments-folder-tab">
-            Stopped
+            已停用
             <span class="badge js-stopped-environments-count">
               {{state.stoppedCounter}}
             </span>
@@ -201,7 +201,7 @@ export default {
     <div class="environments-container">
 
       <loading-icon
-        label="Loading environments"
+        label="正在载入运行环境"
         v-if="isLoading"
         size="3"
         />

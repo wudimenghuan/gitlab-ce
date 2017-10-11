@@ -1,5 +1,5 @@
 - @no_container = true
-- page_title "Labels"
+- page_title "标记"
 - hide_class = ''
 - can_admin_label = can?(current_user, :admin_label, @project)
 
@@ -7,21 +7,21 @@
   %div{ class: container_class }
     .top-area.adjust
       .nav-text
-        Labels can be applied to issues and merge requests.
+        标记可应用于问题和合并请求。
         - if can_admin_label
-          Star a label to make it a priority label. Order the prioritized labels to change their relative priority, by dragging.
+          为标签加注星标，使其成为优先标记。 通过拖动来排列优先标记以更改其相对优先级。
 
       - if can_admin_label
         .nav-controls
           = link_to new_project_label_path(@project), class: "btn btn-new" do
-            New label
+            新建标记
 
     .labels
       - if can_admin_label
         -# Only show it in the first page
         - hide = @available_labels.empty? || (params[:page].present? && params[:page] != '1')
         .prioritized-labels{ class: ('hide' if hide) }
-          %h5 Prioritized Labels
+          %h5 优先标记
           %ul.content-list.manage-labels-list.js-prioritized-labels{ "data-url" => set_priorities_project_labels_path(@project) }
             #js-priority-labels-empty-state{ class: "#{'hidden' unless @prioritized_labels.empty?}" }
               = render 'shared/empty_states/priority_labels'
@@ -31,7 +31,7 @@
       - if @labels.present?
         .other-labels
           - if can_admin_label
-            %h5{ class: ('hide' if hide) } Other Labels
+            %h5{ class: ('hide' if hide) } 其它标记
           %ul.content-list.manage-labels-list.js-other-labels
             = render partial: 'shared/label', subject: @project, collection: @labels, as: :label
             = paginate @labels, theme: 'gitlab'

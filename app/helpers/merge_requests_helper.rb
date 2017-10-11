@@ -40,9 +40,9 @@ module MergeRequestsHelper
 
   def merge_path_description(merge_request, separator)
     if merge_request.for_fork?
-      "Project:Branches: #{@merge_request.source_project_path}:#{@merge_request.source_branch} #{separator} #{@merge_request.target_project.full_path}:#{@merge_request.target_branch}"
+      "项目:分支: #{@merge_request.source_project_path}:#{@merge_request.source_branch} #{separator} #{@merge_request.target_project.full_path}:#{@merge_request.target_branch}"
     else
-      "Branches: #{@merge_request.source_branch} #{separator} #{@merge_request.target_branch}"
+      "分支: #{@merge_request.source_branch} #{separator} #{@merge_request.target_branch}"
     end
   end
 

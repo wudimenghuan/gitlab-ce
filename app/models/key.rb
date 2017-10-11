@@ -19,7 +19,7 @@ class Key < ActiveRecord::Base
 
   validates :fingerprint,
     uniqueness: true,
-    presence: { message: 'cannot be generated' }
+    presence: { message: '无法生成' }
 
   validate :key_meets_restrictions
 

@@ -3,12 +3,12 @@
     %strong= event.author_name
     = link_to "(#{truncate_sha(event.commit_id)})", project_commit_path(event.project, event.commit_id)
     %i
-      at
+      在
       = event.created_at.to_s(:short)
   - unless event.rm_ref?
-    %blockquote= markdown(escape_once(event.commit_title), pipeline: :atom, project: event.project, author: event.author)
-    - if event.commits_count > 1
-      %p
-        %i
-          \... and
-          = pluralize(event.commits_count - 1, "more commit")
+  %blockquote= markdown(escape_once(event.commit_title), pipeline: :atom, project: event.project, author: event.author)
+  - if event.commits_count > 1
+    %p
+      %i
+        \... 和
+        = pluralize(event.commits_count - 1, "more commit")

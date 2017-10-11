@@ -1,44 +1,44 @@
 = form_for runner, url: runner_form_url, html: { class: 'form-horizontal' } do |f|
   = form_errors(runner)
   .form-group
-    = label :active, "Active", class: 'control-label'
+    = label :active, "激活", class: 'control-label'
     .col-sm-10
       .checkbox
         = f.check_box :active
-        %span.light Paused Runners don't accept new jobs
+        %span.light Runners 暂停后将不能接受新 jobs
   .form-group
-    = label :protected, "Protected", class: 'control-label'
+    = label :protected, "被保护", class: 'control-label'
     .col-sm-10
       .checkbox
         = f.check_box :access_level, {}, 'ref_protected', 'not_protected'
-        %span.light This runner will only run on pipelines triggered on protected branches
+        %span.light 这个 runner 只能运行被保护分支上触发的的流水线
   .form-group
-    = label :run_untagged, 'Run untagged jobs', class: 'control-label'
+    = label :run_untagged, '运行没有标签的作业', class: 'control-label'
     .col-sm-10
       .checkbox
         = f.check_box :run_untagged
-        %span.light Indicates whether this runner can pick jobs without tags
+        %span.light 表示此 Runner 可以运行没有任何标签的作业
   .form-group
-    = label :locked, 'Lock to current projects', class: 'control-label'
+    = label :locked, '锁定到当前项目', class: 'control-label'
     .col-sm-10
       .checkbox
         = f.check_box :locked
-        %span.light When a runner is locked, it cannot be assigned to other projects
+        %span.light Runner 一旦被锁定，将不能被指派给其它的项目
   .form-group
     = label_tag :token, class: 'control-label' do
-      Token
+      授权码
     .col-sm-10
       = f.text_field :token, class: 'form-control', readonly: true
   .form-group
     = label_tag :description, class: 'control-label' do
-      Description
+      描述
     .col-sm-10
       = f.text_field :description, class: 'form-control'
   .form-group
     = label_tag :tag_list, class: 'control-label' do
-      Tags
+      标签
     .col-sm-10
       = f.text_field :tag_list, value: runner.tag_list.sort.join(', '), class: 'form-control'
-      .help-block You can setup jobs to only use Runners with specific tags. Separate tags with commas.
+      .help-block 可以设置只使用指定标签的 Runner 进行构建,标签用逗号分隔。
   .form-actions
-    = f.submit 'Save changes', class: 'btn btn-save'
+    = f.submit '保存修改', class: 'btn btn-save'

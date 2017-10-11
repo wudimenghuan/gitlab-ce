@@ -1,30 +1,30 @@
 - @no_container = true
-- page_title "Background Jobs"
+- page_title "后台作业"
 
 %div{ class: container_class }
-  %h3.page-title Background Jobs
-  %p.light GitLab uses #{link_to "sidekiq", "http://sidekiq.org/"} library for async job processing
+  %h3.page-title 后台作业
+  %p.light GitLab 使用 #{link_to "sidekiq", "http://sidekiq.org/"} 库同步作业处理
 
   %hr
 
   .panel.panel-default
-    .panel-heading Sidekiq running processes
+    .panel-heading Sidekiq 运行进程
     .panel-body
       - if @sidekiq_processes.empty?
         %h4.cred
           %i.fa.fa-exclamation-triangle
-          There are no running sidekiq processes. Please restart GitLab
+          没有运行的 sidekiq 进程，请重新启动 GitLab
       - else
         .table-holder
           %table.table
             %thead
-              %th USER
+              %th 用户
               %th PID
               %th CPU
-              %th MEM
-              %th STATE
-              %th START
-              %th COMMAND
+              %th 内存
+              %th 状态
+              %th 启动时间
+              %th 命令行
             %tbody
               - @sidekiq_processes.each do |process|
                 %tr
@@ -34,10 +34,10 @@
         .clearfix
           %p
             %i.fa.fa-exclamation-circle
-            If '[#{@concurrency} of #{@concurrency} busy]' is shown, restart GitLab with 'sudo service gitlab reload'.
+            如果显示 '[#{@concurrency} of #{@concurrency} busy]' 请使用 'sudo service gitlab reload' 重新启动 GitLab。
           %p
             %i.fa.fa-exclamation-circle
-            If more than one sidekiq process is listed, stop GitLab, kill the remaining sidekiq processes (sudo pkill -u #{gitlab_config.user} -f sidekiq) and restart GitLab.
+            如果列出超过一个 sidekiq 进程，请停止 GitLab，杀死剩余的 sidekiq 进程 (sudo pkill -u #{Settings.gitlab.user} -f sidekiq)，然后重新启动 GitLab。
 
 
 

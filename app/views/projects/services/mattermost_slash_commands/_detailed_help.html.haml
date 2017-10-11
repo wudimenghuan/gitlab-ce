@@ -25,18 +25,18 @@
         = clipboard_button(target: '#display_name')
 
   .form-group
-    = label_tag :description, 'Description', class: 'col-sm-2 col-xs-12 control-label'
+    = label_tag :description, '描述', class: 'col-sm-2 col-xs-12 control-label'
     .col-sm-10.col-xs-12.input-group
       = text_field_tag :description, run_actions_text, class: 'form-control input-sm', readonly: 'readonly'
       .input-group-btn
         = clipboard_button(target: '#description')
 
   .form-group
-    = label_tag nil, 'Command trigger word', class: 'col-sm-2 col-xs-12 control-label'
+    = label_tag nil, '命令触发词', class: 'col-sm-2 col-xs-12 control-label'
     .col-sm-10.col-xs-12.text-block
       %p Fill in the word that works best for your team.
       %p
-        Suggestions:
+        建议:
         %code= 'gitlab'
         %code= @project.path # Path contains no spaces, but dashes
         %code= @project.full_path
@@ -92,8 +92,8 @@
     %strong Token
     into the field below
   %li
-    4. Select the
-    %strong Active
-    checkbox, press
-    %strong Save changes
-    and start using GitLab inside Mattermost!
+    4. 选择
+    %strong 激活
+    复选框, 点击
+    %strong 保存修改
+    开始使用嵌入 GitLab 的 Mattermost!

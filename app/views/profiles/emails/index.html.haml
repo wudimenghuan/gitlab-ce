@@ -1,4 +1,4 @@
-- page_title "Emails"
+- page_title "电子邮箱"
 - @content_class = "limit-container-width" unless fluid_layout
 = render 'profiles/head'
 
@@ -7,50 +7,50 @@
     %h4.prepend-top-0
       = page_title
     %p
-      Control emails linked to your account
+      管理您的账号连接的邮箱
   .col-lg-8
     %h4.prepend-top-0
-      Add email address
+      增加电子邮箱地址
     = form_for 'email', url: profile_emails_path do |f|
       .form-group
-        = f.label :email, class: 'label-light'
+        = f.label :email, '电子邮箱', class: 'label-light'
         = f.text_field :email, class: 'form-control'
       .prepend-top-default
-        = f.submit 'Add email address', class: 'btn btn-create'
+        = f.submit '增加电子邮箱地址', class: 'btn btn-create'
     %hr
     %h4.prepend-top-0
-      Linked emails (#{@emails.count + 1})
+      已连接的电子邮箱 (#{@emails.count + 1})
     .account-well.append-bottom-default
       %ul
         %li
-          Your Primary Email will be used for avatar detection and web based operations, such as edits and merges.
+          你的主要邮箱将用于头像显示和在网站操作，比如：编辑和合并操作。
         %li
-          Your Notification Email will be used for account notifications.
+          你的通知邮箱将用于账号通知。
         %li
-          Your Public Email will be displayed on your public profile.
+          你的公开邮箱将显示在公开的个人资料上。
         %li
-          All email addresses will be used to identify your commits.
+          所有邮箱地址都将用于识别提交作者。
     %ul.well-list
       %li
         = render partial: 'shared/email_with_badge', locals: { email: @primary_email, verified: current_user.confirmed? }
         %span.pull-right
-          %span.label.label-success Primary email
+          %span.label.label-success 主要邮箱
           - if @primary_email === current_user.public_email
-            %span.label.label-info Public email
+            %span.label.label-info 公开邮箱
           - if @primary_email === current_user.notification_email
-            %span.label.label-info Notification email
+            %span.label.label-info 通知邮箱
       - @emails.each do |email|
         %li
           = render partial: 'shared/email_with_badge', locals: { email: email.email, verified: email.confirmed? }
           %span.pull-right
             - if email.email === current_user.public_email
-              %span.label.label-info Public email
+              %span.label.label-info 公开邮箱
             - if email.email === current_user.notification_email
-              %span.label.label-info Notification email
+              %span.label.label-info 通知邮箱
             - unless email.confirmed?
-              - confirm_title = "#{email.confirmation_sent_at ? 'Resend' : 'Send'} confirmation email"
+              - confirm_title = "#{email.confirmation_sent_at ? '重新发送' : '发送'} 确认邮件"
               = link_to confirm_title, resend_confirmation_instructions_profile_email_path(email), method: :put, class: 'btn btn-sm btn-warning prepend-left-10'
 
-            = link_to profile_email_path(email), data: { confirm: 'Are you sure?'}, method: :delete, class: 'btn btn-sm btn-danger prepend-left-10' do
-              %span.sr-only Remove
+            = link_to profile_email_path(email), data: { confirm: '确定删除该邮箱？'}, method: :delete, class: 'btn btn-sm btn-danger prepend-left-10' do
+              %span.sr-only 删除
               = icon('trash')

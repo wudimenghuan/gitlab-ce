@@ -1,23 +1,23 @@
 .light.prepend-top-default
   %p
-    A 'Runner' is a process which runs a job.
-    You can setup as many Runners as you need.
+    一个 'Runner' 就是一个运行构建的进程。
+    你可以按照自己的需要设置很多个 Runner。
     %br
-    Runners can be placed on separate users, servers, and even on your local machine.
+    Runners 可以被部署在不同的用户、服务器上，甚至在你本地使用的机器上。
 
-  %p Each Runner can be in one of the following states:
+  %p 每个 Runner 可以是下列状态之一：
   %div
     %ul
       %li
-        %span.label.label-success active
-        \- Runner is active and can process any new jobs
+        %span.label.label-success 活动
+        \- Runner 是活动的，可以处理任何新作业。
       %li
-        %span.label.label-danger paused
-        \- Runner is paused and will not receive any new jobs
+        %span.label.label-danger 暂停
+        \- Runner 已暂停，不接受任何新作业
 
 %hr
 
-%p.lead To start serving your jobs you can either add specific Runners to your project or use shared Runners
+%p.lead 要开始接受你的作业，需要你给你的项目增加特定的 Runner 或者使用共享的 Runner
 .row
   .col-sm-6
     = render 'projects/runners/specific_runners'

@@ -4,48 +4,46 @@
     .panel.panel-default
       .panel-heading
         %h4.panel-title
-          Manage your project's triggers
+          管理项目的触发器
       .panel-body
-        = render "projects/triggers/form", btn_text: "Add trigger"
+        = render "projects/triggers/form", btn_text: "增加触发器"
         %hr
         - if @triggers.any?
           .table-responsive.triggers-list
             %table.table
               %thead
                 %th
-                  %strong Token
+                  %strong 令牌
                 %th
-                  %strong Description
+                  %strong 描述
                 %th
-                  %strong Owner
+                  %strong 拥有者
                 %th
-                  %strong Last used
+                  %strong 最后使用
                 %th
               = render partial: 'projects/triggers/trigger', collection: @triggers, as: :trigger
         - else
           %p.settings-message.text-center.append-bottom-default
-            No triggers have been created yet. Add one using the form above.
+            没有触发器，请使用上面的按钮增加。
 
       .panel-footer
 
         %p
-          In the following examples, you can see the exact API call you need to
-          make in order to rebuild a specific
+          在以下的示例中，你将看到如何使用触发器令牌调用外部API来重新构建一个特定的
           %code ref
-          (branch or tag) with a trigger token.
+          (分支或者标签) 。
         %p
-          All you need to do is replace the
+          你只需要将
           %code TOKEN
-          and
+          和
           %code REF_NAME
-          with the trigger token and the branch or tag name respectively.
+          分别替换为触发器的令牌及分支（标签）名称。
 
         %h5.prepend-top-default
-          Use cURL
+          使用 cURL
 
         %p.light
-          Copy one of the tokens above, set your branch or tag name, and that
-          reference will be rebuilt.
+          复制授权码到下面并设置你的分支或标签名。此例子是将触发重新构建。
 
         %pre
           :plain
@@ -54,13 +52,13 @@
                  -F ref=REF_NAME \
                  #{builds_trigger_url(@project.id)}
         %h5.prepend-top-default
-          Use .gitlab-ci.yml
+          使用 .gitlab-ci.yml
 
         %p.light
-          In the
+          在项目关联的
           %code .gitlab-ci.yml
-          of another project, include the following snippet.
-          The project will be rebuilt at the end of the pipeline.
+          文件中, 包含以下代码片段
+          此例子将在依赖项目流水线结束试触发此项目重新构建。
 
         %pre
           :plain
@@ -69,24 +67,24 @@
               script:
                 - "curl -X POST -F token=TOKEN -F ref=REF_NAME #{builds_trigger_url(@project.id)}"
         %h5.prepend-top-default
-          Use webhook
+          使用 Web 钩子
 
         %p.light
-          Add the following webhook to another project for Push and Tag push events.
-          The project will be rebuilt at the corresponding event.
+          将下列 Web 钩子添加到另一个项目中，用于推送 PUSH 和 TAG 事件。
+          该项目将在相应的事件触发时进行重新构建。
 
         %pre
           :plain
              #{builds_trigger_url(@project.id, ref: 'REF_NAME')}?token=TOKEN
         %h5.prepend-top-default
-          Pass job variables
+          传递作业变量
 
         %p.light
-          Add
+          增加
           %code variables[VARIABLE]=VALUE
-          to an API request. Variable values can be used to distinguish between triggered pipelines and normal pipelines.
+          到 API 请求中。变量的值可以被用来区分触发流水线和常规流水线。
 
-          With cURL:
+          通过 cURL:
 
         %pre
           :plain
@@ -96,7 +94,7 @@
                  -F "variables[RUN_NIGHTLY_BUILD]=true" \
                  #{builds_trigger_url(@project.id)}
         %p.light
-          With webhook:
+          通过 Web 钩子:
 
         %pre.append-bottom-0
           :plain

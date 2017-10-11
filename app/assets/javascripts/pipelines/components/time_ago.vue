@@ -61,7 +61,7 @@
     <div
       class="table-mobile-header"
       role="rowheader">
-      Duration
+      持续时间
     </div>
     <div class="table-mobile-content">
       <p

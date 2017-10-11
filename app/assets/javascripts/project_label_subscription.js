@@ -27,9 +27,9 @@
         let newStatus, newAction;
 
         if (oldStatus === 'unsubscribed') {
-          [newStatus, newAction] = ['subscribed', 'Unsubscribe'];
+          [newStatus, newAction] = ['subscribed', '取消订阅'];
         } else {
-          [newStatus, newAction] = ['unsubscribed', 'Subscribe'];
+          [newStatus, newAction] = ['unsubscribed', '订阅'];
         }
 
         $span.toggleClass('hidden');

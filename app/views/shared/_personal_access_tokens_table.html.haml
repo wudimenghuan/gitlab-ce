@@ -1,22 +1,22 @@
-- type = impersonation ? "Impersonation" : "Personal Access"
+- type = impersonation ? "扮演" : "个人访问"
 %hr
 
-%h5 Active #{type} Tokens (#{active_tokens.length})
+%h5 活动的 #{type} 令牌 (#{active_tokens.length})
 - if impersonation
   %p.profile-settings-content
-    To see all the user's personal access tokens you must impersonate them first.
+    要查看所有用户的个人访问令牌，您必须首先扮演成他们。
 
 - if active_tokens.present?
   .table-responsive
     %table.table.active-tokens
       %thead
         %tr
-          %th Name
-          %th Created
-          %th Expires
-          %th Scopes
+          %th 名称
+          %th 创建于
+          %th 过期于
+          %th 范围
           - if impersonation
-            %th Token
+            %th 令牌
           %th
       %tbody
         - active_tokens.each do |token|
@@ -26,16 +26,16 @@
             %td
               - if token.expires?
                 %span{ class: ('text-warning' if token.expires_soon?) }
-                  In #{distance_of_time_in_words_to_now(token.expires_at)}
+                  于 #{distance_of_time_in_words_to_now(token.expires_at)}
               - else
-                %span.token-never-expires-label Never
+                %span.token-never-expires-label 永不
             %td= token.scopes.present? ? token.scopes.join(", ") : "<no scopes selected>"
             - if impersonation
               %td.token-token-container
                 = text_field_tag 'impersonation-token-token', token.token, readonly: true, class: "form-control"
                 = clipboard_button(text: token.token)
             - path = impersonation ? revoke_admin_user_impersonation_token_path(token.user, token) : revoke_profile_personal_access_token_path(token)
-            %td= link_to "Revoke", path, method: :put, class: "btn btn-danger pull-right", data: { confirm: "Are you sure you want to revoke this #{type} Token? This action cannot be undone." }
+            %td= link_to "撤销", path, method: :put, class: "btn btn-danger pull-right", data: { confirm: "您确定要撤销这个 #{type} 令牌? 该操作无无法恢复。" }
 - else
   .settings-message.text-center
-    This user has no active #{type} Tokens.
+    该用户没有活动的 #{type} 令牌。

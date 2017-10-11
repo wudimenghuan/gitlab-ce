@@ -133,7 +133,7 @@ function UsersSelect(currentUser, els) {
           .get(0);
 
         if (selectedUsers.length === 0) {
-          return 'Unassigned';
+          return '未指派';
         } else if (selectedUsers.length === 1) {
           return firstUser.name;
         } else if (isSelected) {
@@ -588,7 +588,7 @@ function UsersSelect(currentUser, els) {
             if (showEmailUser && data.results.length === 0 && query.term.match(/^[^@]+@[^@]+$/)) {
               var trimmed = query.term.trim();
               emailUser = {
-                name: "Invite \"" + query.term + "\" by email",
+                name: "邀请 \"" + query.term + "\" by email",
                 username: trimmed,
                 id: trimmed,
                 invite: true
@@ -628,7 +628,7 @@ UsersSelect.prototype.initSelection = function(element, callback) {
   id = $(element).val();
   if (id === "0") {
     nullUser = {
-      name: 'Unassigned'
+      name: '未指派'
     };
     return callback(nullUser);
   } else if (id !== "") {

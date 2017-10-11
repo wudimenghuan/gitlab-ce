@@ -155,13 +155,13 @@ import CreateLabelDropdown from './create_label';
                 if (showNo) {
                   extraData.unshift({
                     id: 0,
-                    title: 'No Label'
+                    title: '没有标记'
                   });
                 }
                 if (showAny) {
                   extraData.unshift({
                     isAny: true,
-                    title: 'Any Label'
+                    title: '任何标记'
                   });
                 }
                 if (extraData.length) {

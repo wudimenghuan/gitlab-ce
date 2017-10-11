@@ -82,11 +82,11 @@ export default {
         {{itemName}} #{{itemId}}
       </strong>
 
-      triggered
+      触发时间
 
       <timeago-tooltip :time="time" />
 
-      by
+      作者
 
       <template v-if="user">
         <a

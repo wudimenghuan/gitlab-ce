@@ -1,14 +1,14 @@
-- title = local_assigns.fetch(:title, 'Assign labels')
+- title = local_assigns.fetch(:title, '指派标记')
 - show_create = local_assigns.fetch(:show_create, true)
 - show_footer = local_assigns.fetch(:show_footer, true)
-- filter_placeholder = local_assigns.fetch(:filter_placeholder, 'Search')
+- filter_placeholder = local_assigns.fetch(:filter_placeholder, '搜索')
 - show_boards_content = local_assigns.fetch(:show_boards_content, false)
 .dropdown-page-one
   = dropdown_title(title)
   - if show_boards_content
     .issue-board-dropdown-content
       %p
-        Create lists from labels. Issues with that label appear in that list.
+        从标记中创建列表. 被标记的问题将会自动添加到列表中。
   = dropdown_filter(filter_placeholder)
   = dropdown_content
   - if current_board_parent && show_footer
@@ -17,11 +17,11 @@
         - if can?(current_user, :admin_label, current_board_parent)
           %li
             %a.dropdown-toggle-page{ href: "#" }
-              Create new label
+              创建新的标记
         %li
           = link_to labels_path, :"data-is-link" => true do
             - if show_create && can?(current_user, :admin_label, current_board_parent)
-              Manage labels
+              管理标记
             - else
-              View labels
+              查看标记
   = dropdown_loading

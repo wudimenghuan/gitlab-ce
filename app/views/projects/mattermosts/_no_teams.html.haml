@@ -3,14 +3,15 @@
     .alert.alert-danger= @teams_error_message
 
 %p
-  You aren’t a member of any team on the Mattermost instance at
+  您不是位于
   %strong= Gitlab.config.mattermost.host
+  的 Mattermost 实例的团队成员
 %p
-  To install this service,
+  要安装这个服务，请
   = link_to "#{Gitlab.config.mattermost.host}/select_team", target: '__blank' do
-    join a team
+    加入团队
     = icon('external-link')
-  and try again.
+  后再重试。
 %hr
 .clearfix
   = link_to 'Go back', edit_project_service_path(@project, @service), class: 'btn btn-lg pull-right'

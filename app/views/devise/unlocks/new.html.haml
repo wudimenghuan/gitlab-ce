@@ -1,14 +1,14 @@
-= render 'devise/shared/tab_single', tab_title: 'Resend unlock instructions'
+= render 'devise/shared/tab_single', tab_title: '重新发送解锁指令
 .login-box
   .login-body
     = form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post, class: 'gl-show-field-errors' }) do |f|
       .devise-errors
         = devise_error_messages!
       .form-group.append-bottom-20
-        = f.label :email
-        = f.email_field :email, class: 'form-control', autofocus: 'autofocus', autocapitalize: 'off', autocorrect: 'off', title: 'Please provide a valid email address.'
+        = f.label :email, "邮箱"
+        = f.email_field :email, class: 'form-control', autofocus: 'autofocus', autocapitalize: 'off', autocorrect: 'off', title: '请提供一个有效的邮箱地址。'
       .clearfix
-        = f.submit 'Resend unlock instructions', class: 'btn btn-success'
+        = f.submit '重新发送解锁指令', class: 'btn btn-success'
 
 .clearfix.prepend-top-20
   = render 'devise/shared/sign_in_link'

@@ -13,12 +13,12 @@ export default {
           type="button"
           class="btn btn-success btn-sm"
           disabled="true">
-          Merge
+          合并
         </button>
       </div>
       <div class="media-body">
         <span class="bold">
-          This project is archived, write access has been disabled
+          这个项目已归档，写入权限被禁用。
         </span>
       </div>
     </div>

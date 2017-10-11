@@ -46,7 +46,7 @@ class Projects::WikisController < Projects::ApplicationController
     if @page.valid?
       redirect_to(
         project_wiki_path(@project, @page),
-        notice: 'Wiki was successfully updated.'
+        notice: '维基更新成功。'
       )
     else
       render 'edit'
@@ -62,7 +62,7 @@ class Projects::WikisController < Projects::ApplicationController
     if @page.persisted?
       redirect_to(
         project_wiki_path(@project, @page),
-        notice: 'Wiki was successfully updated.'
+        notice: '维基更新成功。'
       )
     else
       render action: "edit"
@@ -75,7 +75,7 @@ class Projects::WikisController < Projects::ApplicationController
     unless @page
       redirect_to(
         project_wiki_path(@project, :home),
-        notice: "Page not found"
+        notice: "页面不存在"
       )
     end
   end
@@ -86,7 +86,7 @@ class Projects::WikisController < Projects::ApplicationController
 
     redirect_to project_wiki_path(@project, :home),
                 status: 302,
-                notice: "Page was successfully deleted"
+                notice: "维基页面删除成功"
   end
 
   def git_access
@@ -112,7 +112,7 @@ class Projects::WikisController < Projects::ApplicationController
     @project_wiki.wiki
     @sidebar_wiki_entries = WikiPage.group_by_directory(@project_wiki.pages.first(15))
   rescue ProjectWiki::CouldNotCreateWikiError
-    flash[:notice] = "Could not create Wiki Repository at this time. Please try again later."
+    flash[:notice] = "现在不能创建维基版本仓库。请稍后重试。"
     redirect_to project_path(@project)
     return false
   end

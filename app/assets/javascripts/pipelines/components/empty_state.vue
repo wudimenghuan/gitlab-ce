@@ -23,13 +23,13 @@ export default {
 
     <div class="col-xs-12 text-center">
       <div class="text-content">
-        <h4>Build with confidence</h4>
+        <h4>可信赖的构建</h4>
         <p>
-          Continous Integration can help catch bugs by running your tests automatically,
-          while Continuous Deployment can help you deliver code to your product environment.
+          持续集成可以通过自动运行测试用例来帮助捕获 Bug，
+          而持续部署可以帮助您将代码发布到生产环境。
         </p>
         <a :href="helpPagePath" class="btn btn-info">
-          Get started with Pipelines
+          开始使用流水线
         </a>
       </div>
     </div>

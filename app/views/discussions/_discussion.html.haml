@@ -13,28 +13,28 @@
                 = icon("chevron-up")
               - else
                 = icon("chevron-down")
-              Toggle discussion
+              切换讨论
           = link_to_member(@project, discussion.author, avatar: false)
 
           .inline.discussion-headline-light
             = discussion.author.to_reference
-            started a discussion
+            开始一个讨论
 
             - url = discussion_path(discussion)
             - if discussion.for_commit? && @noteable != discussion.noteable
-              on
+              于
               - commit = discussion.noteable
               - if commit
-                commit
+                提交
                 = link_to commit.short_id, url, class: 'commit-sha'
               - else
-                a deleted commit
+                一个已删除提交
             - elsif discussion.diff_discussion?
-              on
+              于
               = conditional_link_to url.present?, url do
                 - unless discussion.active?
-                  an old version of
-                the diff
+                  一个过时的差异
+                差异
 
             = time_ago_with_tooltip(discussion.created_at, placement: "bottom", html_class: "note-created-ago")
           = render "discussions/headline", discussion: discussion
