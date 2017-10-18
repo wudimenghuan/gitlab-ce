@@ -123,6 +123,8 @@ class Namespace < ActiveRecord::Base
       raise Gitlab::UpdatePathError.new('无法移动命名空间，因为至少有一个项目有标签位于容器注册表中')
     end
 
+    expires_full_path_cache
+
     # Move the namespace directory in all storages paths used by member projects
     repository_storage_paths.each do |repository_storage_path|
       # Ensure old directory exists before moving it
