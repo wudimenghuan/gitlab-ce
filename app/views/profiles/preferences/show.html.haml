@@ -5,8 +5,8 @@
 = form_for @user, url: profile_preferences_path, remote: true, method: :put, html: { class: 'row prepend-top-default js-preferences-form' } do |f|
   .col-lg-4.application-theme
     %h4.prepend-top-0
-      GitLab navigation theme
-    %p Customize the appearance of the application header and navigation sidebar.
+      GitLab 导航主题
+    %p 自定义应用程序标题和导航边栏的外观。
   .col-lg-8.application-theme
     - Gitlab::Themes.each do |theme|
       = label_tag do
