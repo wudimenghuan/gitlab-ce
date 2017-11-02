@@ -286,6 +286,7 @@ export default {
                 <input
                   id="remove-source-branch-input"
                   v-model="removeSourceBranch"
+                  class="js-remove-source-branch-checkbox"
                   :disabled="isRemoveSourceBranchButtonDisabled"
                   type="checkbox"/> 删除源分支
               </label>
@@ -311,8 +312,8 @@ export default {
               </button>
             </template>
             <template v-else>
-              <span class="bold">
-                此合并请求的流水线已失败
+              <span class="bold js-resolve-mr-widget-items-message">
+                您只能在以上冲突都解决后才能合并
               </span>
             </template>
           </div>
