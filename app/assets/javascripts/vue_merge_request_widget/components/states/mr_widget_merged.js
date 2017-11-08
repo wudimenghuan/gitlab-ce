@@ -69,9 +69,9 @@ export default {
         <div class="space-children">
           <mr-widget-author-and-time
             actionText="合并者"
-            :author="mr.mergedBy"
-            :dateTitle="mr.updatedAt"
-            :dateReadable="mr.mergedAt" />
+            :author="mr.mergedEvent.author"
+            :date-title="mr.mergedEvent.updatedAt"
+            :date-readable="mr.mergedEvent.formattedUpdatedAt" />
           <a
             v-if="mr.canRevertInCurrentMR"
             v-tooltip

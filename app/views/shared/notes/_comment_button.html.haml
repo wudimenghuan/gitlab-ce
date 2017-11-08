@@ -7,7 +7,7 @@
     = button_tag type: 'button', class: 'btn btn-nr dropdown-toggle comment-btn js-note-new-discussion js-disable-on-submit', data: { 'dropdown-trigger' => '#resolvable-comment-menu' }, 'aria-label' => '打开评论类型下拉列表' do
       = icon('caret-down', class: 'toggle-icon')
 
-    %ul#resolvable-comment-menu.dropdown-menu{ data: { dropdown: true } }
+    %ul#resolvable-comment-menu.dropdown-menu.dropdown-open-top{ data: { dropdown: true } }
       %li#comment.droplab-item-selected{ data: { value: '', 'submit-text' => '评论', 'close-text' => "评论 & 关闭 #{noteable_name}", 'reopen-text' => "评论 & 重新打开 #{noteable_name}" } }
         %button.btn.btn-transparent
           = icon('check', class: 'icon')
