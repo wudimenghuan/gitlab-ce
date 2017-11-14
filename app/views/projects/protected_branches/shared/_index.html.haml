@@ -1,6 +1,6 @@
 - expanded = Rails.env.test?
 
-%section.settings
+%section.settings.no-animate{ class: ('expanded' if expanded) }
   .settings-header
     %h4
       保护分支
@@ -8,7 +8,7 @@
       = expanded ? '收起' : '展开'
     %p
       保护稳定分支的安全并强制开发者使用合并请求功能
-  .settings-content.no-animate{ class: ('expanded' if expanded) }
+  .settings-content
     %p
       默认情况下，保护分支被设计为：
       %ul

@@ -1,5 +1,7 @@
+- auth_app_owner = @pre_auth.client.application.owner
+
 %main{ :role => "main" }
-  .modal-no-backdrop
+  .modal-no-backdrop.modal-doorkeepr-auth
     .modal-content
       .modal-header
         %h3.page-title
@@ -16,14 +18,21 @@
               %strong= @pre_auth.client.name
               也一样能以 GitLab 管理员身份进行操作。请谨慎操作。
         %p
-          You are about to authorize
+          一个名为
           = link_to @pre_auth.client.name, @pre_auth.redirect_uri, target: '_blank', rel: 'noopener noreferrer'
-          to use your account.
-          - if @pre_auth.scopes
+          的应用请求访问您的Gitlab账号，这个应用的创建者为
+          = succeed "." do
+            = link_to auth_app_owner.name, user_path(auth_app_owner)
+          请注意这个应用并不是由 GitLab 提供的，请您在允许其访问前对其有效性
+          进行验证。
+        - if @pre_auth.scopes
+          %p
             此应用将用于:
             %ul
               - @pre_auth.scopes.each do |scope|
-                %li= t scope, scope: [:doorkeeper, :scopes]
+                %li
+                  %strong= t scope, scope: [:doorkeeper, :scopes]
+                  .scope-description= t scope, scope: [:doorkeeper, :scope_desc]
         .form-actions.text-right
           = form_tag oauth_authorization_path, method: :delete, class: 'inline'  do
             = hidden_field_tag :client_id, @pre_auth.client.uid

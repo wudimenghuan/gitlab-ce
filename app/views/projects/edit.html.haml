@@ -4,7 +4,7 @@
 - expanded = Rails.env.test?
 
 .project-edit-container
-  %section.settings.general-settings
+  %section.settings.general-settings.no-animate{ class: ('expanded' if expanded) }
     .settings-header
       %h4
         常规项目设置
@@ -12,7 +12,7 @@
         = expanded ? 'Collapse' : 'Expand'
       %p
         更新您的项目名称、描述、图标和其他常规设置。
-    .settings-content.no-animate{ class: ('expanded' if expanded) }
+    .settings-content
       .project-edit-errors
       = form_for [@project.namespace.becomes(Namespace), @project], remote: true, html: { multipart: true, class: "edit-project" }, authenticity_token: true do |f|
         %fieldset
@@ -61,7 +61,7 @@
               = link_to '删除图标', project_avatar_path(@project), data: { confirm: "您确定要删除项目图标？"}, method: :delete, class: "btn btn-remove btn-sm remove-avatar"
         = f.submit '保存修改', class: "btn btn-save"
 
-  %section.settings.sharing-permissions
+  %section.settings.sharing-permissions.no-animate{ class: ('expanded' if expanded) }
     .settings-header
       %h4
         权限
@@ -69,13 +69,13 @@
         = expanded ? '收起' : '展开'
       %p
         启用或禁用某些项目功能并选择访问级别。
-    .settings-content.no-animate{ class: ('expanded' if expanded) }
+    .settings-content
       = form_for [@project.namespace.becomes(Namespace), @project], remote: true, html: { multipart: true, class: "sharing-permissions-form" }, authenticity_token: true do |f|
         %script.js-project-permissions-form-data{ type: "application/json" }= project_permissions_panel_data(@project)
         .js-project-permissions-form
         = f.submit '保存修改', class: "btn btn-save"
 
-  %section.settings.merge-requests-feature{ class: ("hidden" if @project.project_feature.send(:merge_requests_access_level) == 0) }
+  %section.settings.merge-requests-feature.no-animate{ class: [('expanded' if expanded), ('hidden' if @project.project_feature.send(:merge_requests_access_level) == 0)] }
     .settings-header
       %h4
         合并请求设置
@@ -83,14 +83,14 @@
         = expanded ? '收起' : '展开'
       %p
         自定义您的合并请求限制。
-    .settings-content.no-animate{ class: ('expanded' if expanded) }
+    .settings-content
       = form_for [@project.namespace.becomes(Namespace), @project], remote: true, html: { multipart: true, class: "merge-request-settings-form" }, authenticity_token: true do |f|
         = render 'merge_request_settings', form: f
         = f.submit '保存修改', class: "btn btn-save"
 
   = render 'export', project: @project
 
-  %section.settings.advanced-settings
+  %section.settings.advanced-settings.no-animate{ class: ('expanded' if expanded) }
     .settings-header
       %h4
         高级设置
@@ -98,7 +98,7 @@
         = expanded ? 'Collapse' : 'Expand'
       %p
         执行高级选项，如管理、归档、重命名、转移或删除项目。
-    .settings-content.no-animate{ class: ('expanded' if expanded) }
+    .settings-content
       .sub-section
         %h4 维护
         %p
@@ -172,7 +172,10 @@
             删除派生关系
           %p
             将删除与源项目
-            = link_to @project.forked_from_project.name_with_namespace, project_path(@project.forked_from_project)
+            - if @project.fork_source
+              = link_to(fork_source_name(@project), project_path(@project.fork_source))
+            - else
+              = fork_source_name(@project)
             的派生关系。
           = form_for([@project.namespace.becomes(Namespace), @project], url: remove_fork_project_path(@project), method: :delete, remote: true, html: { class: 'transfer-project' }) do |f|
             %p

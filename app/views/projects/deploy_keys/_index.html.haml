@@ -1,5 +1,5 @@
 - expanded = Rails.env.test?
-%section.settings
+%section.settings.no-animate{ class: ('expanded' if expanded) }
   .settings-header
     %h4
       部署密钥
@@ -7,7 +7,7 @@
       = expanded ? '收起' : '展开'
     %p
       使用部署密钥只读访问存储库。 部署密钥可用于 CI 集成，预发布或生产服务器获取版本仓库的代码。 您可以创建部署密钥或添加现有部署密钥。
-  .settings-content.no-animate{ class: ('expanded' if expanded) }
+  .settings-content
     %h5.prepend-top-0
       给当前项目创建一个新的部署密钥
     = render @deploy_keys.form_partial_path
