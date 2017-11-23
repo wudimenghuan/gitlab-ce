@@ -1,9 +1,9 @@
 .container.convdev-empty
   .col-sm-6.col-sm-push-3.text-center
     = custom_icon('convdev_no_index')
-    %h4 Usage ping is not enabled
+    %h4 使用率反馈未启用
     %p
-      ConvDev is only shown when the
-      = link_to 'usage ping', help_page_path('user/admin_area/settings/usage_statistics'), target: '_blank'
-      is enabled. Enable usage ping to get an overview of how you are using GitLab from a feature perspective
-    = link_to 'Enable usage ping', admin_application_settings_path(anchor: 'usage-statistics'), class: 'btn btn-primary'
+      只有启用了
+      = link_to '使用率反馈', help_page_path('user/admin_area/settings/usage_statistics'), target: '_blank'
+      后才会显示 ConvDev. 启用使用率反馈以从功能特性的角度概述您的 GitLab 使用情况。
+    = link_to '启用使用率', admin_application_settings_path(anchor: 'usage-statistics'), class: 'btn btn-primary'

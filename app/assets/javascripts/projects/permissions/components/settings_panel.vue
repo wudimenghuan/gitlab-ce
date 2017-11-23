@@ -173,7 +173,7 @@ export default {
   <div>
     <div class="project-visibility-setting">
       <project-setting-row
-        label="Project visibility"
+        label="项目可见性"
         :help-path="visibilityHelpPath"
       >
         <div class="project-feature-controls">
@@ -188,19 +188,19 @@ export default {
                 :value="visibilityOptions.PRIVATE"
                 :disabled="!visibilityAllowed(visibilityOptions.PRIVATE)"
               >
-                Private
+                私有
               </option>
               <option
                 :value="visibilityOptions.INTERNAL"
                 :disabled="!visibilityAllowed(visibilityOptions.INTERNAL)"
               >
-                Internal
+                内部
               </option>
               <option
                 :value="visibilityOptions.PUBLIC"
                 :disabled="!visibilityAllowed(visibilityOptions.PUBLIC)"
               >
-                Public
+                公共
               </option>
             </select>
             <i aria-hidden="true" data-hidden="true" class="fa fa-chevron-down"></i>
@@ -214,14 +214,14 @@ export default {
             :value="requestAccessEnabled"
           />
           <input type="checkbox" v-model="requestAccessEnabled" />
-          Allow users to request access
+          允许用户请求访问
         </label>
       </project-setting-row>
     </div>
     <div class="project-feature-settings" :class="{ 'highlight-changes': highlightChangesClass }">
       <project-setting-row
-        label="Issues"
-        help-text="Lightweight issue tracking system for this project"
+        label="问题"
+        help-text="轻量级问题跟踪系统"
       >
         <project-feature-setting
           name="project[project_feature_attributes][issues_access_level]"
@@ -230,8 +230,8 @@ export default {
         />
       </project-setting-row>
       <project-setting-row
-        label="Repository"
-        help-text="View and edit files in this project"
+        label="版本库"
+        help-text="查看和编辑本项目的文件"
       >
         <project-feature-setting
           name="project[project_feature_attributes][repository_access_level]"
@@ -241,8 +241,8 @@ export default {
       </project-setting-row>
       <div class="project-feature-setting-group">
         <project-setting-row
-          label="Merge requests"
-          help-text="Submit changes to be merged upstream"
+          label="合并请求"
+          help-text="提交更改以在上游合并"
         >
           <project-feature-setting
             name="project[project_feature_attributes][merge_requests_access_level]"
@@ -252,8 +252,8 @@ export default {
           />
         </project-setting-row>
         <project-setting-row
-          label="Pipelines"
-          help-text="Build, test, and deploy your changes"
+          label="流水线"
+          help-text="构建、测试并部署您的变更"
         >
           <project-feature-setting
             name="project[project_feature_attributes][builds_access_level]"
@@ -264,9 +264,9 @@ export default {
         </project-setting-row>
         <project-setting-row
           v-if="registryAvailable"
-          label="Container registry"
+          label="容器注册表"
           :help-path="registryHelpPath"
-          help-text="Every project can have its own space to store its Docker images"
+          help-text="每个项目都可以有自己的空间来存储其 Docker 镜像"
         >
           <project-feature-toggle
             name="project[container_registry_enabled]"
@@ -276,9 +276,9 @@ export default {
         </project-setting-row>
         <project-setting-row
           v-if="lfsAvailable"
-          label="Git Large File Storage"
+          label="Git 大文件存储(LFS)"
           :help-path="lfsHelpPath"
-          help-text="Manages large files such as audio, video, and graphics files"
+          help-text="管理大型文件，如音频，视频和图形文件。"
         >
           <project-feature-toggle
             name="project[lfs_enabled]"
@@ -288,8 +288,8 @@ export default {
         </project-setting-row>
       </div>
       <project-setting-row
-        label="Wiki"
-        help-text="Pages for project documentation"
+        label="维基"
+        help-text="项目文档页面"
       >
         <project-feature-setting
           name="project[project_feature_attributes][wiki_access_level]"
@@ -298,8 +298,8 @@ export default {
         />
       </project-setting-row>
       <project-setting-row
-        label="Snippets"
-        help-text="Share code pastes with others out of Git repository"
+        label="代码片段"
+        help-text="共享 git 版本仓库外的代码"
       >
         <project-feature-setting
           name="project[project_feature_attributes][snippets_access_level]"

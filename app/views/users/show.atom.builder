@@ -1,4 +1,4 @@
-xml.title   "#{@user.name} activity"
+xml.title   "#{@user.name} 活动"
 xml.link    href: user_url(@user, :atom), rel: "self", type: "application/atom+xml"
 xml.link    href: user_url(@user), rel: "alternate", type: "text/html"
 xml.id      user_url(@user)

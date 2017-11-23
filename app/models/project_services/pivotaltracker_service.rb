@@ -11,7 +11,7 @@ class PivotaltrackerService < Service
   end
 
   def description
-    'Project Management Software (Source Commits Endpoint)'
+    '项目管理软件 (代码提交终端)'
   end
 
   def self.to_param

@@ -1,5 +1,5 @@
-- page_title 'Abuse Reports'
-%h3.page-title Abuse Reports
+- page_title '违规举报'
+%h3.page-title 违规举报
 %hr
 .abuse-reports
   - if @abuse_reports.present?
@@ -7,13 +7,13 @@
       %table.table.responsive-table
         %thead.hidden-sm.hidden-xs
           %tr
-            %th User
-            %th Reported by
-            %th.wide Message
-            %th Action
+            %th 被举报用户
+            %th 举报人
+            %th.wide 信息
+            %th 操作
         = render @abuse_reports
     = paginate @abuse_reports, theme: 'gitlab'
   - else
     .empty-state
       .text-center
-        %h4 There are no abuse reports! #{emoji_icon('tada')}
+        %h4 没有违规举报！ #{emoji_icon('tada')}

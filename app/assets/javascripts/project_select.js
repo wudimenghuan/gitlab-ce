@@ -15,9 +15,9 @@ import ProjectSelectComboButton from './project_select_combo_button';
         this.withIssuesEnabled = $(select).data('with-issues-enabled');
         this.withMergeRequestsEnabled = $(select).data('with-merge-requests-enabled');
 
-        placeholder = "Search for project";
+        placeholder = "搜索项目";
         if (this.includeGroups) {
-          placeholder += " or group";
+          placeholder += "或群组";
         }
 
         $(select).select2({

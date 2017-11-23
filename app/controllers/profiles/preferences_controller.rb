@@ -9,13 +9,13 @@ class Profiles::PreferencesController < Profiles::ApplicationController
       result = Users::UpdateService.new(current_user, preferences_params.merge(user: user)).execute
 
       if result[:status] == :success
-        flash[:notice] = 'Preferences saved.'
+        flash[:notice] = '偏好设置已保存。'
       else
-        flash[:alert] = 'Failed to save preferences.'
+        flash[:alert] = '保存偏好设置失败。'
       end
     rescue ArgumentError => e
       # Raised when `dashboard` is given an invalid value.
-      flash[:alert] = "Failed to save preferences (#{e.message})."
+      flash[:alert] = "保存偏好设置失败(#{e.message})。"
     end
 
     respond_to do |format|

@@ -214,8 +214,8 @@ class User < ActiveRecord::Base
       end
 
       def inactive_message
-        "Your account has been blocked. Please contact your GitLab " \
-          "administrator if you think this is an error."
+        "你的账号已经被禁用。如果您认为这是一个错误" \
+          "，请与您的GitLab管理员联系。"
       end
     end
   end

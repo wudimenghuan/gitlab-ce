@@ -1,30 +1,31 @@
-- noteable_name = @note.noteable.human_class_name
+- noteable_name = @note.noteable.zh_name
 
 .pull-left.btn-group.append-right-10.droplab-dropdown.comment-type-dropdown.js-comment-type-dropdown
-  %input.btn.btn-nr.btn-create.comment-btn.js-comment-button.js-comment-submit-button{ type: 'submit', value: 'Comment' }
+  %input.btn.btn-nr.btn-create.comment-btn.js-comment-button.js-comment-submit-button{ type: 'submit', value: '评论' }
 
   - if @note.can_be_discussion_note?
-    = button_tag type: 'button', class: 'btn btn-nr dropdown-toggle comment-btn js-note-new-discussion js-disable-on-submit', data: { 'dropdown-trigger' => '#resolvable-comment-menu' }, 'aria-label' => 'Open comment type dropdown' do
+    = button_tag type: 'button', class: 'btn btn-nr dropdown-toggle comment-btn js-note-new-discussion js-disable-on-submit', data: { 'dropdown-trigger' => '#resolvable-comment-menu' }, 'aria-label' => '打开评论类型下拉列表' do
       = icon('caret-down', class: 'toggle-icon')
 
     %ul#resolvable-comment-menu.dropdown-menu.dropdown-open-top{ data: { dropdown: true } }
-      %li#comment.droplab-item-selected{ data: { value: '', 'submit-text' => 'Comment', 'close-text' => "Comment & close #{noteable_name}", 'reopen-text' => "Comment & reopen #{noteable_name}" } }
+      %li#comment.droplab-item-selected{ data: { value: '', 'submit-text' => '评论', 'close-text' => "评论 & 关闭 #{noteable_name}", 'reopen-text' => "评论 & 重新打开 #{noteable_name}" } }
         %button.btn.btn-transparent
           = icon('check', class: 'icon')
           .description
-            %strong Comment
+            %strong 评论
             %p
-              Add a general comment to this #{noteable_name}.
+              向 #{noteable_name} 添加评论。
 
       %li.divider.droplab-item-ignore
 
-      %li#discussion{ data: { value: 'DiscussionNote', 'submit-text' => 'Start discussion', 'close-text' => "Start discussion & close #{noteable_name}", 'reopen-text' => "Start discussion & reopen #{noteable_name}" } }
+      %li#discussion{ data: { value: 'DiscussionNote', 'submit-text' => '开始讨论', 'close-text' => "开始讨论 & 关闭 #{noteable_name}", 'reopen-text' => "开始讨论 & 重新打开 #{noteable_name}" } }
         %button.btn.btn-transparent
           = icon('check', class: 'icon')
           .description
-            %strong Start discussion
+            %strong 开始讨论
             %p
-              = succeed '.' do
-                Discuss a specific suggestion or question
+              = succeed '。' do
+                讨论一个
                 - if @note.noteable.supports_resolvable_notes?
-                  that needs to be resolved
+                  需要解决的
+                具体的建议或问题

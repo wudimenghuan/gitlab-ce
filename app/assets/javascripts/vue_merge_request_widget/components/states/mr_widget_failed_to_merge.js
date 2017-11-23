@@ -47,7 +47,7 @@ export default {
       <template v-if="isRefreshing">
         <status-icon status="loading" />
         <span class="media-body bold js-refresh-label">
-          Refreshing now
+          正在刷新
         </span>
       </template>
       <template v-else>
@@ -59,17 +59,17 @@ export default {
               v-if="mr.mergeError">
               {{mr.mergeError}}.
             </span>
-            <span v-else>Merge failed.</span>
+            <span v-else>合并失败。</span>
             <span
               :class="{ 'has-custom-error': mr.mergeError }">
-              Refreshing in {{timerText}} to show the updated status...
+              将在 {{timerText}} 后刷新显示最新状态...
             </span>
           </span>
           <button
             @click="refresh"
             class="btn btn-default btn-xs js-refresh-button"
             type="button">
-            Refresh now
+            立刻刷新
           </button>
         </div>
       </template>

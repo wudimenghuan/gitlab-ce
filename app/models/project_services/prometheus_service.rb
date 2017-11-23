@@ -25,7 +25,7 @@ class PrometheusService < MonitoringService
   end
 
   def description
-    'Prometheus monitoring'
+    'Prometheus 监控'
   end
 
   def self.to_param

@@ -228,9 +228,9 @@ $(function () {
   $(document).ajaxError(function (e, xhrObj) {
     var ref = xhrObj.status;
     if (xhrObj.status === 401) {
-      return new Flash('You need to be logged in.', 'alert');
+      return new Flash('您需要登录。', 'alert');
     } else if (ref === 404 || ref === 500) {
-      return new Flash('Something went wrong on our end.', 'alert');
+      return new Flash('服务器端出现了错误。', 'alert');
     }
   });
   $('.account-box').hover(function () {

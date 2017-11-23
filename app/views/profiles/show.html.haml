@@ -1,4 +1,4 @@
-- breadcrumb_title "Edit Profile"
+- breadcrumb_title "编辑个人资料"
 - @content_class = "limit-container-width" unless fluid_layout
 = render 'profiles/head'
 
@@ -8,74 +8,74 @@
   .row
     .col-lg-4.profile-settings-sidebar
       %h4.prepend-top-0
-        Public Avatar
+        公开头像
       %p
         - if @user.avatar?
-          You can change your avatar here
+          在这里修改头像
           - if gravatar_enabled?
-            or remove the current avatar to revert to #{link_to Gitlab.config.gravatar.host, 'http://' + Gitlab.config.gravatar.host}
+            或者删除当前头像使用 #{link_to Gitlab.config.gravatar.host, 'http://' + Gitlab.config.gravatar.host} 上的头像
         - else
-          You can upload an avatar here
+          在这里上传头像
           - if gravatar_enabled?
-            or change it at #{link_to Gitlab.config.gravatar.host, 'http://' + Gitlab.config.gravatar.host}
+            或者在 #{link_to Gitlab.config.gravatar.host, 'http://' + Gitlab.config.gravatar.host} 修改头像。
     .col-lg-8
       .clearfix.avatar-image.append-bottom-default
         = link_to avatar_icon(@user, 400), target: '_blank', rel: 'noopener noreferrer' do
           = image_tag avatar_icon(@user, 160), alt: '', class: 'avatar s160'
       %h5.prepend-top-0
-        Upload new avatar
+        上传新的头像
       .prepend-top-5.append-bottom-10
         %a.btn.js-choose-user-avatar-button
-          Browse file...
-        %span.avatar-file-name.prepend-left-default.js-avatar-filename No file chosen
+          浏览文件...
+        %span.avatar-file-name.prepend-left-default.js-avatar-filename 没有选择文件
         = f.file_field_without_bootstrap :avatar, class: 'js-user-avatar-input hidden', accept: 'image/*'
       .help-block
-        The maximum file size allowed is 200KB.
+        允许的最大文件大小 200KB。
       - if @user.avatar?
         %hr
-        = link_to 'Remove avatar', profile_avatar_path, data: { confirm: 'Avatar will be removed. Are you sure?' }, method: :delete, class: 'btn btn-gray'
+        = link_to '删除头像', profile_avatar_path, data: { confirm: '确定要删除头像么？' }, method: :delete, class: 'btn btn-gray'
   %hr
   .row
     .col-lg-4.profile-settings-sidebar
       %h4.prepend-top-0
-        Main settings
+        主要设置
       %p
-        This information will appear on your profile.
+        此信息会显示在个人资料页面上。
         - if current_user.ldap_user?
-          Some options are unavailable for LDAP accounts
+          部分设置对于 LDAP 账号无效
     .col-lg-8
       .row
         - if @user.read_only_attribute?(:name)
           = f.text_field :name, required: true, readonly: true, wrapper: { class: 'col-md-9' },
-          help: "Your name was automatically set based on your #{ attribute_provider_label(:name) } account, so people you know can recognize you."
+          help: "您的姓名将基于您的 #{ attribute_provider_label(:name) } 账号自动设置, 使得其他可以认识你。"
         - else
-          = f.text_field :name, required: true, wrapper: { class: 'col-md-9' }, help: "Enter your name, so people you know can recognize you."
-        = f.text_field :id, readonly: true, label: 'User ID', wrapper: { class: 'col-md-3' }
+          = f.text_field :name, required: true, wrapper: { class: 'col-md-9' }, help: "输入你的名字，让其他人认识你。"
+        = f.text_field :id, readonly: true, label: '用户 ID', wrapper: { class: 'col-md-3' }
 
       - if @user.read_only_attribute?(:email)
-        = f.text_field :email, required: true, readonly: true, help: "Your email address was automatically set based on your #{ attribute_provider_label(:email) } account."
+        = f.text_field :email, required: true, readonly: true, help: "您的电子邮箱已基于您的 #{ attribute_provider_label(:email) } 账号自动设置。"
       - else
-        = f.text_field :email, required: true, value: (@user.email unless @user.temp_oauth_email?),
+        = f.text_field :email, required: true, label: '电子邮箱', value: (@user.email unless @user.temp_oauth_email?),
           help: user_email_help_text(@user)
       = f.select :public_email, options_for_select(@user.all_emails, selected: @user.public_email),
-        { help: 'This email will be displayed on your public profile.', include_blank: 'Do not show on profile' },
+        { help: '此邮箱将显示在公开的个人资料上。', include_blank: '不要在个人资料上显示' },
         control_class: 'select2'
       = f.select :preferred_language, Gitlab::I18n::AVAILABLE_LANGUAGES.map { |value, label| [label, value] },
-        { help: 'This feature is experimental and translations are not complete yet.' },
+        { help: '这是一个实验性的功能（翻译尚未完成）。' },
         control_class: 'select2'
       = f.text_field :skype
       = f.text_field :linkedin
       = f.text_field :twitter
-      = f.text_field :website_url, label: 'Website'
+      = f.text_field :website_url, label: '个人主页'
       - if @user.read_only_attribute?(:location)
         = f.text_field :location, readonly: true, help: "Your location was automatically set based on your #{ attribute_provider_label(:location) } account."
       - else
         = f.text_field :location
       = f.text_field :organization
-      = f.text_area :bio, rows: 4, maxlength: 250, help: 'Tell us about yourself in fewer than 250 characters.'
+      = f.text_area :bio, rows: 4, maxlength: 250, help: '自我介绍(少于 250 字)。'
       .prepend-top-default.append-bottom-default
-        = f.submit 'Update profile settings', class: 'btn btn-success'
-        = link_to 'Cancel', user_path(current_user), class: 'btn btn-cancel'
+        = f.submit '更新个人资料', class: 'btn btn-success'
+        = link_to '取消', user_path(current_user), class: 'btn btn-cancel'
 
 .modal.modal-profile-crop
   .modal-dialog
@@ -85,7 +85,7 @@
           %span
             &times;
         %h4.modal-title
-          Position and size your new avatar
+          调整新头像的位置和大小
       .modal-body
         .profile-crop-image-container
           %img.modal-profile-crop-image{ alt: 'Avatar cropper' }
@@ -97,4 +97,4 @@
               %span.fa.fa-search-minus
       .modal-footer
         %button.btn.btn-primary.js-upload-user-avatar{ type: 'button' }
-          Set new profile picture
+          设置新的个人资料图片

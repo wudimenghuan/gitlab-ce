@@ -193,7 +193,7 @@ export default {
         class="nav-links">
         <li :class="{ active: scope === null || scope === 'available' }">
           <a :href="projectEnvironmentsPath">
-            Available
+            可用
             <span class="badge js-available-environments-count">
               {{state.availableCounter}}
             </span>
@@ -201,7 +201,7 @@ export default {
         </li>
         <li :class="{ active : scope === 'stopped' }">
           <a :href="projectStoppedEnvironmentsPath">
-            Stopped
+            已停用
             <span class="badge js-stopped-environments-count">
               {{state.stoppedCounter}}
             </span>
@@ -214,14 +214,14 @@ export default {
         <a
           :href="newEnvironmentPath"
           class="btn btn-create">
-          New environment
+          新建运行环境
         </a>
       </div>
     </div>
 
     <div class="environments-container">
       <loading-icon
-        label="Loading environments"
+        label="正在载入运行环境"
         size="3"
         v-if="isLoading"
         />
@@ -230,13 +230,13 @@ export default {
         class="blank-state blank-state-no-icon"
         v-if="!isLoading && state.environments.length === 0">
         <h2 class="blank-state-title js-blank-state-title">
-          You don't have any environments right now.
+          你现在还没有任何运行环境。
         </h2>
         <p class="blank-state-text">
-          Environments are places where code gets deployed, such as staging or production.
+          运行环境是部署代码的地方, 比如模拟环境或者生产现场
           <br />
           <a :href="helpPagePath">
-            Read more about environments
+            运行环境介绍
           </a>
         </p>
 
@@ -244,7 +244,7 @@ export default {
           v-if="canCreateEnvironmentParsed"
           :href="newEnvironmentPath"
           class="btn btn-create js-new-environment-button">
-          New environment
+          新建运行环境
         </a>
       </div>
 

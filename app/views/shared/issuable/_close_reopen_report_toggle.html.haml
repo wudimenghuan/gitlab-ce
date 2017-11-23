@@ -1,6 +1,6 @@
 - display_issuable_type = issuable_display_type(issuable)
 - button_action = issuable.closed? ? 'reopen' : 'close'
-- display_button_action = button_action.capitalize
+- display_button_action = issuable.closed? ? '重新打开' : '关闭'
 - button_responsive_class = 'hidden-xs hidden-sm'
 - button_class = "#{button_responsive_class} btn btn-grouped js-issuable-close-button js-btn-issue-action issuable-close-button"
 - toggle_class = "#{button_responsive_class} btn btn-nr dropdown-toggle js-issuable-close-toggle"
@@ -11,39 +11,39 @@
             method: button_method, class: "#{button_class} btn-#{button_action}", title: "#{display_button_action} #{display_issuable_type}"
 
   = button_tag type: 'button', class: "#{toggle_class} btn-#{button_action}-color",
-               data: { 'dropdown-trigger' => '#issuable-close-menu' }, 'aria-label' => 'Toggle dropdown' do
+               data: { 'dropdown-trigger' => '#issuable-close-menu' }, 'aria-label' => '切换下拉列表显示' do
     = icon('caret-down', class: 'toggle-icon icon')
 
   %ul#issuable-close-menu.js-issuable-close-menu.dropdown-menu{ class: button_responsive_class, data: { dropdown: true } }
     %li.close-item{ class: "#{issuable_button_visibility(issuable, true) || 'droplab-item-selected'}",
-                    data: { text: "Close #{display_issuable_type}", url: close_issuable_path(issuable),
+                    data: { text: "关闭 #{display_issuable_type}", url: close_issuable_path(issuable),
                     button_class: "#{button_class} btn-close", toggle_class: "#{toggle_class} btn-close-color", method: button_method } }
       %button.btn.btn-transparent
         = icon('check', class: 'icon')
         .description
           %strong.title
-            Close
+            关闭
             = display_issuable_type
 
     %li.reopen-item{ class: "#{issuable_button_visibility(issuable, false) || 'droplab-item-selected'}",
-                     data: { text: "Reopen #{display_issuable_type}", url: reopen_issuable_path(issuable),
+                     data: { text: "重新打开 #{display_issuable_type}", url: reopen_issuable_path(issuable),
                      button_class: "#{button_class} btn-reopen", toggle_class: "#{toggle_class} btn-reopen-color", method: button_method } }
       %button.btn.btn-transparent
         = icon('check', class: 'icon')
         .description
           %strong.title
-            Reopen
+            重新打开
             = display_issuable_type
 
       %li.divider.droplab-item-ignore
 
-      %li.report-item{ data: { text: 'Report abuse', url: new_abuse_report_path(user_id: issuable.author.id, ref_url: issuable_url(issuable)),
+      %li.report-item{ data: { text: '举报违规', url: new_abuse_report_path(user_id: issuable.author.id, ref_url: issuable_url(issuable)),
                        button_class: "#{button_class} btn-close-color", toggle_class: "#{toggle_class} btn-close-color", method: '' } }
         %button.btn.btn-transparent
           = icon('check', class: 'icon')
           .description
-            %strong.title Report abuse
+            %strong.title 举报违规
             %p.text
-              Report
+              举报这个
               = display_issuable_type.pluralize
-              that are abusive, inappropriate or spam.
+              是滥用、不当或者垃圾内容。

@@ -83,7 +83,7 @@ export default {
           this.closeDropdown();
           this.isLoading = false;
 
-          const flash = new Flash('Something went wrong on our end.');
+          const flash = new Flash('服务器端出现了错误。');
           return flash;
         });
     },

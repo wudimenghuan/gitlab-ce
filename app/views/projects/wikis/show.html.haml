@@ -12,6 +12,7 @@
     %h2.wiki-page-title= @page.title.capitalize
     %span.wiki-last-edit-by
       = (_("Last edited by %{name}") % { name: "<strong>#{@page.commit.author_name}</strong>" }).html_safe
+      最后编辑于
       #{time_ago_with_tooltip(@page.commit.authored_date)}
 
   .nav-controls

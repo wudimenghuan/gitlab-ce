@@ -2,18 +2,18 @@
   = form_errors(@variable)
 
   .form-group
-    = f.label :key, "Key", class: "label-light"
+    = f.label :key, "键", class: "label-light"
     = f.text_field :key, class: "form-control", placeholder: @variable.placeholder, required: true
   .form-group
-    = f.label :value, "Value", class: "label-light"
+    = f.label :value, "值", class: "label-light"
     = f.text_area :value, class: "form-control", placeholder: @variable.placeholder
   .form-group
     .checkbox
       = f.label :protected do
         = f.check_box :protected
-        %strong Protected
+        %strong 保护
       .help-block
-        This variable will be passed only to pipelines running on protected branches and tags
+        这个变量只能被传递到运行保护分支或标签的流水线。
         = link_to icon('question-circle'), help_page_path('ci/variables/README', anchor: 'protected-secret-variables'), target: '_blank'
 
   = f.submit btn_text, class: "btn btn-save"

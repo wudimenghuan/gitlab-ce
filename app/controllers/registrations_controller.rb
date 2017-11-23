@@ -16,7 +16,7 @@ class RegistrationsController < Devise::RegistrationsController
     if !Gitlab::Recaptcha.load_configurations! || verify_recaptcha
       super
     else
-      flash[:alert] = 'There was an error with the reCAPTCHA. Please solve the reCAPTCHA again.'
+      flash[:alert] = '验证码错误，请重新输入。'
       flash.delete :recaptcha_error
       render action: 'new'
     end
@@ -26,13 +26,13 @@ class RegistrationsController < Devise::RegistrationsController
 
   def destroy
     if destroy_confirmation_valid?
-      current_user.delete_async(deleted_by: current_user)
-      session.try(:destroy)
+    current_user.delete_async(deleted_by: current_user)
+        session.try(:destroy)
       redirect_to new_user_session_path, status: 303, notice: s_('Profiles|Account scheduled for removal.')
     else
       redirect_to profile_account_path, status: 303, alert: destroy_confirmation_failure_message
+      end
     end
-  end
 
   protected
 

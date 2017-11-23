@@ -1,24 +1,24 @@
 - @no_container = true
-- breadcrumb_title "Compare Revisions"
-- page_title "Compare"
+- breadcrumb_title "比较修订"
+- page_title "比较"
 
 %div{ class: container_class }
   .sub-header-block
-    Compare Git revisions.
+    比较 Git 修订。
     %br
-    Choose a branch/tag (e.g.
+    选择一个分支或标记 (e.g.
     = succeed ')' do
       %code.ref-name master
-    or enter a commit SHA (e.g.
+    或者输入一个提交 SHA (e.g.
     = succeed ')' do
       %code.ref-name 4eedf23
-    to see what's changed or to create a merge request.
+    来查看变更或者创建合并请求。
     %br
-    Changes are shown as if the
-    %b source
-    revision was being merged into the
-    %b target
-    revision.
+    显示
+    %b 源
+    修订被合并到
+    %b 目标
+    修订后的变更。
 
   .prepend-top-20
     = render "form"

@@ -8,7 +8,7 @@
       %button.btn.btn-grouped{ type: 'button', disabled: 'disabled' }
         = icon('spinner', class: 'fa-spin')
         %span.text
-          Checking branch availability…
+          检查分支有效性…
     .btn-group.available.hide
       %input.btn.js-create-merge-request.btn-inverted.btn-success{ type: 'button', value: value, data: { action: data_action } }
       %button.btn.btn-inverted.dropdown-toggle.btn-inverted.btn-success.js-dropdown-toggle{ type: 'button', data: { 'dropdown-trigger' => '#create-merge-request-dropdown' } }
@@ -20,7 +20,7 @@
               .icon-container
                 = icon('check')
               .description
-                %strong Create a merge request
+                %strong 创建合并请求
                 %span
                   Creates a merge request named after this issue, with source branch created from '#{@project.default_branch}'.
           %li.divider.droplab-item-ignore
@@ -31,4 +31,4 @@
             .description
               %strong Create a branch
               %span
-                Creates a branch named after this issue, from '#{@project.default_branch}'.
+                创建一个以此问题命名的分支，源分支为 '#{@project.default_branch}' 。

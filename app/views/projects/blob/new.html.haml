@@ -1,16 +1,16 @@
-- breadcrumb_title "Repository"
-- page_title "New File", @path.presence, @ref
+- breadcrumb_title "版本库"
+- page_title "新建文件", @path.presence, @ref
 - content_for :page_specific_javascripts do
   = page_specific_javascript_tag('lib/ace.js')
   = page_specific_javascript_bundle_tag('blob')
 .editor-title-row
   %h3.page-title.blob-new-page-title
-    New file
+    新建文件
   = render 'template_selectors'
 .file-editor
   = form_tag(project_create_blob_path(@project, @id), method: :post, class: 'form-horizontal js-edit-blob-form js-new-blob-form js-quick-submit js-requires-input', data: blob_editor_paths) do
     = render 'projects/blob/editor', ref: @ref
-    = render 'shared/new_commit_form', placeholder: "Add new file"
+    = render 'shared/new_commit_form', placeholder: "增加新文件"
 
     = hidden_field_tag 'content', '', id: 'file-content'
     = render 'projects/commit_button', ref: @ref,

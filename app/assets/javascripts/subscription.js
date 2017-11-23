@@ -31,7 +31,7 @@ class Subscription {
           !gl.issueBoards.BoardsStore.detail.issue.subscribed,
         );
       } else {
-        buttonSpan.innerHTML = isSubscribed ? 'Subscribe' : 'Unsubscribe';
+        buttonSpan.innerHTML = isSubscribed ? '订阅' : '取消订阅';
       }
     });
   }

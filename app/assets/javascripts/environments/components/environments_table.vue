@@ -42,19 +42,19 @@ export default {
   <div class="ci-table" role="grid">
     <div class="gl-responsive-table-row table-row-header" role="row">
       <div class="table-section section-10 environments-name" role="columnheader">
-        Environment
+        运行环境
       </div>
       <div class="table-section section-10 environments-deploy" role="columnheader">
-        Deployment
+        部署
       </div>
       <div class="table-section section-15 environments-build" role="columnheader">
-        Job
+        作业
       </div>
       <div class="table-section section-25 environments-commit" role="columnheader">
-        Commit
+        提交
       </div>
       <div class="table-section section-10 environments-date" role="columnheader">
-        Updated
+        更新于
       </div>
     </div>
     <template
@@ -86,7 +86,7 @@ export default {
               <a
                 :href="folderUrl(model)"
                 class="btn btn-default">
-                Show all
+                全部显示
               </a>
             </div>
           </div>
