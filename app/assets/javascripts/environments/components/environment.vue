@@ -227,25 +227,27 @@ export default {
         />
 
       <div
-        class="blank-state blank-state-no-icon"
+        class="blank-state-row"
         v-if="!isLoading && state.environments.length === 0">
-        <h2 class="blank-state-title js-blank-state-title">
-          你现在还没有任何运行环境。
-        </h2>
-        <p class="blank-state-text">
-          运行环境是部署代码的地方, 比如模拟环境或者生产现场
-          <br />
-          <a :href="helpPagePath">
-            运行环境介绍
-          </a>
-        </p>
+        <div class="blank-state-center">
+          <h2 class="blank-state-title js-blank-state-title">
+            You don't have any environments right now.
+          </h2>
+          <p class="blank-state-text">
+            运行环境是部署代码的地方, 比如模拟环境或者生产现场
+            <br />
+            <a :href="helpPagePath">
+              运行环境介绍
+            </a>
+          </p>
 
-        <a
-          v-if="canCreateEnvironmentParsed"
-          :href="newEnvironmentPath"
-          class="btn btn-create js-new-environment-button">
-          新建运行环境
-        </a>
+          <a
+            v-if="canCreateEnvironmentParsed"
+            :href="newEnvironmentPath"
+            class="btn btn-create js-new-environment-button">
+            新建运行环境
+          </a>
+        </div>
       </div>
 
       <div

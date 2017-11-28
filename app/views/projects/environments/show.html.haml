@@ -19,16 +19,17 @@
 
   .environments-container
     - if @deployments.blank?
-      .blank-state.blank-state-no-icon
-        %h2.blank-state-title
-          你现在还没有任何部署。
-        %p.blank-state-text
-          在
-          %code .gitlab-ci.yml
-          中定义运行环境来跟踪部署情况。
-        点击
-        = link_to "这里", help_page_path("ci/environments"), class: "btn btn-success"
-        了解更多。
+      .blank-state-row
+        .blank-state-center
+          %h2.blank-state-title
+            你现在还没有任何部署。
+          %p.blank-state-text
+            在
+            %code .gitlab-ci.yml
+            中定义运行环境来跟踪部署情况。
+          点击
+          = link_to "这里", help_page_path("ci/environments"), class: "btn btn-success"
+          了解更多。
     - else
       .table-holder
         .ci-table.environments{ role: 'grid' }
