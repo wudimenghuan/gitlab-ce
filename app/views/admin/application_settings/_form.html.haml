@@ -226,7 +226,7 @@
         .help-block 设为0则不限制大小
 
   %fieldset
-    %legend Continuous Integration and Deployment
+    %legend 持续集成和部署
     .form-group
       .col-sm-offset-2.col-sm-10
         .checkbox
@@ -234,7 +234,7 @@
             = f.check_box :auto_devops_enabled
             项目默认启用 Auto DevOps (Beta)
         .help-block
-          It will automatically build, test, and deploy applications based on a predefined CI/CD configuration
+          将根据预先定义的 CI/CD 配置自动构建、测试并部署应用
           = link_to icon('question-circle'), help_page_path('topics/autodevops/index.md')
 
     .form-group
@@ -517,7 +517,7 @@
             repositories from having to be moved or renamed when the Project URL changes and may improve disk I/O performance.
             %em (EXPERIMENTAL)
     .form-group
-      = f.label :repository_storages, 'Storage paths for new projects', class: 'control-label col-sm-2'
+      = f.label :repository_storages, '新项目存储路径', class: 'control-label col-sm-2'
       .col-sm-10
         = f.select :repository_storages, repository_storages_options_for_select, {include_hidden: false}, multiple: true, class: 'form-control'
         .help-block
@@ -527,7 +527,7 @@
           了解如何管理版本库存储路径。
 
   %fieldset
-    %legend Git Storage Circuitbreaker settings
+    %legend Git 存储熔断设置
     .form-group
       = f.label :circuitbreaker_access_retries, _('Number of access attempts'), class: 'control-label col-sm-2'
       .col-sm-10
