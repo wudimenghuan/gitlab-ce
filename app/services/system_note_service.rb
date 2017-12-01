@@ -270,14 +270,10 @@ module SystemNoteService
     create_note(NoteSummary.new(noteable, project, author, body, action: 'merge'))
   end
 
-  def remove_merge_request_wip(noteable, project, author)
-    body = '将合并请求重新标记为 **进行中(WIP)**'
+  def handle_merge_request_wip(noteable, project, author)
+    prefix = noteable.work_in_progress? ? "marked" : "unmarked"
 
-    create_note(NoteSummary.new(noteable, project, author, body, action: 'title'))
-  end
-
-  def add_merge_request_wip(noteable, project, author)
-    body = '将合并请求标记为 **进行中(WIP)**'
+    body = "#{prefix} as a **Work In Progress**"
 
     create_note(NoteSummary.new(noteable, project, author, body, action: 'title'))
   end
