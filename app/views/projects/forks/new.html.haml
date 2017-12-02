@@ -9,12 +9,12 @@
       %br
       派生的仓库允许你在不影响原有项目的情况下修改新内容。
   .col-lg-9
-      - if @namespaces.present?
+    - if @namespaces.present?
       .fork-thumbnail-container.js-fork-content
         %h5.prepend-top-0.append-bottom-0.prepend-left-default.append-right-default
           点击派生项目
         - @namespaces.each do |namespace|
-                - avatar = namespace_icon(namespace, 100)
+          - avatar = namespace_icon(namespace, 100)
           - can_create_project = current_user.can?(:create_projects, namespace)
           - forked_project = namespace.find_fork_of(@project)
           - fork_path = forked_project ? project_path(forked_project) : project_forks_path(@project, namespace_key: namespace.id)
@@ -23,18 +23,18 @@
                 method: "POST",
                 class: [("js-fork-thumbnail" unless forked_project), ("disabled has-tooltip" unless can_create_project)],
                 title: (_('You have reached your project limit') unless can_create_project) do
-                      - if /no_((\w*)_)*avatar/.match(avatar)
+              - if /no_((\w*)_)*avatar/.match(avatar)
                 = project_identicon(namespace, class: "avatar s100 identicon")
-                      - else
+              - else
                 .avatar-container.s100
                   = image_tag(avatar, class: "avatar s100")
               %h5.prepend-top-default
-                        = namespace.human_name
-                - else
+                = namespace.human_name
+    - else
       %strong
-            没有可用的命名空间来派生项目
+        没有可用的命名空间来派生项目
       %p.prepend-top-default
-              在派生之前，你必须拥有在命名空间中创建项目的权限。
+        在派生之前，你必须拥有在命名空间中创建项目的权限。
 
     .save-project-loader.hide.js-fork-content
       %h2.text-center
