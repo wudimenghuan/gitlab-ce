@@ -686,7 +686,7 @@ module SystemNoteService
                    end
                  end
 
-    commits_text = "#{count} ".pluralize(count,'次提交','次提交')
+    commits_text = "#{count} 次提交"
 
     branch = noteable.target_branch
     branch = "#{noteable.target_project_namespace}:#{branch}" if noteable.for_fork?
