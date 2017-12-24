@@ -73,7 +73,7 @@ export default {
           href="#modal_merge_info"
           data-toggle="modal"
           class="btn btn-sm inline">
-          Check out branch
+          检出分支
         </a>
         <span class="dropdown prepend-left-10">
           <a
@@ -95,14 +95,14 @@ export default {
               <a
                 :href="mr.emailPatchesPath"
                 download>
-                Email patches
+                电子邮件补丁
               </a>
             </li>
             <li>
               <a
                 :href="mr.plainDiffPath"
                 download>
-                Plain diff
+                差异文件
               </a>
             </li>
           </ul>

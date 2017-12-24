@@ -72,7 +72,7 @@ class JiraService < IssueTrackerService
     if self.properties && self.properties['description'].present?
       self.properties['description']
     else
-      'Jira issue tracker'
+      'Jira 问题跟踪系统'
     end
   end
 

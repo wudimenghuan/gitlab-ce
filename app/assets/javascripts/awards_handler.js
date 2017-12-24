@@ -370,9 +370,9 @@ class AwardsHandler {
   toSentence(list) {
     let sentence;
     if (list.length <= 2) {
-      sentence = list.join(' and ');
+      sentence = list.join(' 和 ');
     } else {
-      sentence = `${list.slice(0, -1).join(', ')}, and ${list[list.length - 1]}`;
+      sentence = `${list.slice(0, -1).join(', ')}, 和 ${list[list.length - 1]}`;
     }
 
     return sentence;
@@ -382,7 +382,7 @@ class AwardsHandler {
     const awardBlock = $emojiButton;
     const originalTitle = this.getAwardTooltip(awardBlock);
     const authors = originalTitle.split(FROM_SENTENCE_REGEX);
-    authors.splice(authors.indexOf('You'), 1);
+    authors.splice(authors.indexOf('您'), 1);
     return awardBlock
       .closest('.js-emoji-btn')
       .removeData('title')
@@ -407,7 +407,7 @@ class AwardsHandler {
 
   createAwardButtonForVotesBlock(votesBlock, emojiName) {
     const buttonHtml = `
-      <button class="btn award-control js-emoji-btn has-tooltip active" title="You" data-placement="bottom">
+      <button class="btn award-control js-emoji-btn has-tooltip active" title="您" data-placement="bottom">
         ${this.emoji.glEmojiTag(emojiName)}
         <span class="award-control-text js-counter">1</span>
       </button>
@@ -447,7 +447,7 @@ class AwardsHandler {
         if (data.ok) {
           callback();
         }
-      }).fail(() => new Flash('Something went wrong on our end.'));
+      }).fail(() => new Flash('服务器端出现了错误。'));
     }
   }
 
@@ -457,7 +457,7 @@ class AwardsHandler {
 
   userAuthored($emojiButton) {
     const oldTitle = this.getAwardTooltip($emojiButton);
-    const newTitle = 'You cannot vote on your own issue, MR and note';
+    const newTitle = '您不能给自己的问题、MR和注释投票';
     updateTooltipTitle($emojiButton, newTitle).tooltip('show');
     // Restore tooltip back to award list
     return setTimeout(() => {

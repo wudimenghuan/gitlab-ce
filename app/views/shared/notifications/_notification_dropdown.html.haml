@@ -7,6 +7,6 @@
 
   %li.divider
   %li
-    %a.update-notification{ href: "#", role: "button", class: ("is-active" if notification_setting.custom?), data: { toggle: "modal", target: "#" + notifications_menu_identifier("modal", notification_setting), notification_level: "custom", notification_title: "Custom" } }
-      %strong.dropdown-menu-inner-title Custom
+    %a.update-notification{ href: "#", role: "button", class: ("is-active" if notification_setting.custom?), data: { toggle: "modal", target: "#" + notifications_menu_identifier("modal", notification_setting), notification_level: "custom", notification_title: "自定义" } }
+      %strong.dropdown-menu-inner-title 自定义
       %span.dropdown-menu-inner-content= notification_description("custom")

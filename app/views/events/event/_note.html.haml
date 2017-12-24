@@ -3,9 +3,10 @@
 .event-title
   %span.author_name= link_to_author event
   = event.action_name
+  = render "events/event_scope", event: event
+
   = event_note_title_html(event)
 
-  = render "events/event_scope", event: event
 
 .event-body
   .event-note

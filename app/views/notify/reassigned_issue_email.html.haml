@@ -1,10 +1,10 @@
 %p
-  Assignee changed
+  指派变更
   - if @previous_assignees.any?
-    from
+    从
     %strong= @previous_assignees.map(&:name).to_sentence
-  to
+  变更为
   - if @issue.assignees.any?
     %strong= @issue.assignee_list
   - else
-    %strong Unassigned
+    %strong 未指派

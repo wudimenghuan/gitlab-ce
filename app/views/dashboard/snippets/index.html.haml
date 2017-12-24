@@ -1,13 +1,13 @@
 - @hide_top_links = true
-- page_title    "Snippets"
-- header_title  "Snippets", dashboard_snippets_path
+- page_title    "代码片段"
+- header_title  "代码片段", dashboard_snippets_path
 
 = render 'dashboard/snippets_head'
 = render partial: 'snippets/snippets_scope_menu', locals: { include_private: true }
 
 .visible-xs
   &nbsp;
-  = link_to new_snippet_path, class: "btn btn-new btn-block", title: "New snippet" do
-    New snippet
+  = link_to new_snippet_path, class: "btn btn-new btn-block", title: "新建代码片段" do
+    新建代码片段
 
 = render partial: 'snippets/snippets', locals: { link_project: true }

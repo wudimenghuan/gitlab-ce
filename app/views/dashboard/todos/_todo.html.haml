@@ -11,7 +11,7 @@
           - if todo.author
             = link_to_author(todo, self_added: todo.self_added?)
           - else
-            (removed)
+            (已删除)
 
       .title-item.action-name
         = todo_action_name(todo)
@@ -20,11 +20,11 @@
         - if todo.target
           = todo_target_link(todo)
         - else
-          (removed)
+          (已删除)
 
       - if todo.self_assigned?
         .title-item.action-name
-          to yourself
+          您自己
 
       .title-item
         &middot;
@@ -41,13 +41,13 @@
   - if todo.pending?
     .todo-actions
       = link_to dashboard_todo_path(todo), method: :delete, class: 'btn btn-loading js-done-todo', data: { href: dashboard_todo_path(todo) } do
-        Done
+        完成
         = icon('spinner spin')
       = link_to restore_dashboard_todo_path(todo), method: :patch, class: 'btn btn-loading js-undo-todo hidden', data: { href: restore_dashboard_todo_path(todo) } do
-        Undo
+        撤销
         = icon('spinner spin')
   - else
     .todo-actions
       = link_to restore_dashboard_todo_path(todo), method: :patch, class: 'btn btn-loading js-add-todo', data: { href: restore_dashboard_todo_path(todo) } do
-        Add todo
+        添加待办事项
         = icon('spinner spin')

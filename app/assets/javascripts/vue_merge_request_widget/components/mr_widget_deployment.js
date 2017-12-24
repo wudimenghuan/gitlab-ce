@@ -28,7 +28,7 @@ export default {
       return deployment.url && deployment.name;
     },
     stopEnvironment(deployment) {
-      const msg = 'Are you sure you want to stop this environment?';
+      const msg = '您确定要停用该运行环境？';
       const isConfirmed = confirm(msg); // eslint-disable-line
 
       if (isConfirmed) {
@@ -40,7 +40,7 @@ export default {
             }
           })
           .catch(() => {
-            new Flash('Something went wrong while stopping this environment. Please try again.'); // eslint-disable-line
+            new Flash('停用运行环境时出现错误，请稍后重试。'); // eslint-disable-line
           });
       }
     },
@@ -58,7 +58,7 @@ export default {
             <span>
               <span
                 v-if="hasDeploymentMeta(deployment)">
-                Deployed to
+                已部署到
               </span>
               <a
                 v-if="hasDeploymentMeta(deployment)"
@@ -70,7 +70,7 @@ export default {
               </a>
               <span
                 v-if="hasExternalUrls(deployment)">
-                on
+                于
               </span>
               <a
                 v-if="hasExternalUrls(deployment)"
@@ -97,7 +97,7 @@ export default {
               v-if="deployment.stop_url"
               @click="stopEnvironment(deployment)"
               class="btn btn-default btn-xs">
-              Stop environment
+              停用运行环境
             </button>
             <mr-widget-memory-usage
               v-if="deployment.metrics_url"

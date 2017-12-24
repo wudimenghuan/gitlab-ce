@@ -16,14 +16,14 @@
           %button.btn.btn-save{ type: 'submit' }
             = icon('spinner spin', class: 'hidden js-btn-spinner')
             %span.js-btn-label
-              Save changes
+              保存修改
           &nbsp;
           - if @service.valid? && @service.activated?
             - unless @service.can_test?
               - disabled_class = 'disabled'
               - disabled_title = @service.disabled_title
 
-          = link_to 'Cancel', project_settings_integrations_path(@project), class: 'btn btn-cancel'
+        = link_to '取消', project_settings_integrations_path(@project), class: 'btn btn-cancel'
 
 - if lookup_context.template_exists?('show', "projects/services/#{@service.to_param}", true)
   %hr

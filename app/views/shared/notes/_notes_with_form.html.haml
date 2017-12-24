@@ -19,11 +19,11 @@
           = render "shared/notes/form", view: diff_view, supports_autocomplete: autocomplete
 - elsif !current_user
   .disabled-comment.text-center.prepend-top-default
-    Please
-    = link_to "register", new_session_path(:user, redirect_to_referer: 'yes', anchor: 'register-pane'), class: 'js-register-link'
-    or
-    = link_to "sign in", new_session_path(:user, redirect_to_referer: 'yes'), class: 'js-sign-in-link'
-    to comment
+    请
+    = link_to "注册", new_session_path(:user, redirect_to_referer: 'yes', anchor: 'register-pane'), class: 'js-register-link'
+    或者
+    = link_to "登录", new_session_path(:user, redirect_to_referer: 'yes'), class: 'js-sign-in-link'
+    后发表评论
 - elsif discussion_locked
   .disabled-comment.text-center.prepend-top-default
     %span.issuable-note-warning

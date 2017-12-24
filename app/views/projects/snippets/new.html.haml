@@ -1,8 +1,8 @@
-- add_to_breadcrumbs "Snippets", project_snippets_path(@project)
-- breadcrumb_title "New"
-- page_title "New Snippets"
+- add_to_breadcrumbs "代码片段", project_snippets_path(@project)
+- breadcrumb_title "新建"
+- page_title "新建代码片段"
 
 %h3.page-title
-  New Snippet
+  新建代码片段
 %hr
 = render "shared/snippets/form", url: project_snippets_path(@project, @snippet)

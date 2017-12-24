@@ -1,37 +1,36 @@
-- page_title "Invitation"
-%h3.page-title Invitation
+- page_title "邀请"
+%h3.page-title 邀请
 
 %p
-  You have been invited
+  你被
   - if inviter = @member.created_by
-    by
     = link_to inviter.name, user_url(inviter)
-  to join
+  邀请加入
   - case @member.source
   - when Project
     - project = @member.source
-    project
+    项目
     %strong
       = link_to project.name_with_namespace, project_url(project)
   - when Group
     - group = @member.source
-    group
+    群组
     %strong
       = link_to group.name, group_url(group)
-  as #{@member.human_access}.
+  ，身份是 #{@member.human_access}。
 
 - is_member = @member.source.users.include?(current_user)
 
 - if is_member
   %p
-    However, you are already a member of this #{@member.source.is_a?(Group) ? "group" : "project"}.
-    Sign in using a different account to accept the invitation.
+    注意，你已经是该#{@member.source.is_a?(Group) ? "群组" : "项目"}的成员。
+    请使用另一个账号登录再接受邀请。
 
 - if @member.invite_email != current_user.email
   %p
-    Note that this invitation was sent to #{mail_to @member.invite_email}, but you are signed in as #{link_to current_user.to_reference, user_url(current_user)} with email #{mail_to current_user.email}.
+    注意，这个邀请已经发送给 #{mail_to @member.invite_email}, 但是您是通过邮箱 #{mail_to current_user.email} 登录当前账号 #{link_to current_user.to_reference, user_url(current_user)} 。
 
 - unless is_member
   .actions
-    = link_to "Accept invitation", accept_invite_url(@token), method: :post, class: "btn btn-success"
-    = link_to "Decline", decline_invite_url(@token), method: :post, class: "btn btn-danger prepend-left-10"
+    = link_to "接受邀请", accept_invite_url(@token), method: :post, class: "btn btn-success"
+    = link_to "拒绝", decline_invite_url(@token), method: :post, class: "btn btn-danger prepend-left-10"

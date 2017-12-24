@@ -1,7 +1,7 @@
-New Issue was created.
+新问题已创建。
 
-Issue <%= @issue.iid %>: <%= url_for(project_issue_url(@issue.project, @issue)) %>
-Author:    <%= @issue.author_name %>
-Assignee:  <%= @issue.assignee_list %>
+问题 <%= @issue.iid %>: <%= url_for(project_issue_url(@issue.project, @issue)) %>
+作者:    <%= @issue.author_name %>
+指派给:  <%= @issue.assignee_list %>
 
 <%= @issue.description %>

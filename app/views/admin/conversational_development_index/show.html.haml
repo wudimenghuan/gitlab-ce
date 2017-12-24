@@ -1,5 +1,5 @@
 - @no_container = true
-- page_title 'ConvDev Index'
+- page_title 'ConvDev 指数'
 
 .container
   - if show_callout?('convdev_intro_callout_dismissed')
@@ -16,9 +16,9 @@
         %h2.convdev-header-title{ class: "convdev-#{score_level(@metric.average_percentage_score)}-score" }
           = number_to_percentage(@metric.average_percentage_score, precision: 1)
         .convdev-header-subtitle
-          index
+          指数
           %br
-          score
+          分数
           = link_to icon('question-circle', 'aria-hidden' => 'true'), help_page_path('user/admin_area/monitoring/convdev')
 
       .convdev-cards.card-container

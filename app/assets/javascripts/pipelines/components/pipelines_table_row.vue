@@ -309,7 +309,7 @@ export default {
           css-class="js-pipelines-cancel-button btn-remove"
           title="Cancel"
           icon="remove"
-          confirm-action-message="Are you sure you want to cancel this pipeline?"
+          confirm-action-message="您确定要取消这个流水线？"
           />
       </div>
     </div>

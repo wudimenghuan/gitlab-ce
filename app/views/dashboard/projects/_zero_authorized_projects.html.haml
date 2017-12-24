@@ -4,9 +4,9 @@
       .row
         .blank-state-welcome
           %h2.blank-state-welcome-title
-            Welcome to GitLab
+            欢迎来到 GitLab
           %p.blank-state-text
-            Code, test, and deploy together
+            集代码，测试和部署于一体。
         - if current_user.admin?
           = render "blank_state_admin_welcome"
         - else

@@ -3,21 +3,21 @@
     %h4.prepend-top-0
       = page_title
     %p
-      #{link_to 'Webhooks', help_page_path('user/project/integrations/webhooks')} can be
-      used for binding events when something is happening within the project.
+      #{link_to 'Web 钩子', help_page_path('user/project/integrations/webhooks')} 可以
+      绑定项目发生的事件。
 
   .col-lg-8.append-bottom-default
     = form_for @hook, as: :hook, url: polymorphic_path([@project.namespace.becomes(Namespace), @project, :hooks]) do |f|
       = render partial: 'shared/web_hooks/form', locals: { form: f, hook: @hook }
-      = f.submit 'Add webhook', class: 'btn btn-create'
+      = f.submit '增加 Web 钩子', class: 'btn btn-create'
 
     %hr
     %h5.prepend-top-default
-      Webhooks (#{@hooks.count})
+      Web 钩子 (#{@hooks.count})
     - if @hooks.any?
       %ul.well-list
         - @hooks.each do |hook|
           = render 'project_hook', hook: hook
     - else
       %p.settings-message.text-center.append-bottom-0
-        No webhooks found, add one in the form above.
+        没有 Web 钩子，请在上面的表单增加。

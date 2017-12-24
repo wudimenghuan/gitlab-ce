@@ -48,10 +48,10 @@ export default () => {
           class="text-center"
           v-if="error">
           <span v-if="loadError">
-            An error occurred whilst loading the file. Please try again later.
+            加载文件时发生错误。 请稍后再试。
           </span>
           <span v-else>
-            An error occurred whilst decoding the file.
+            解码文件时发生错误。
           </span>
         </p>
       </div>

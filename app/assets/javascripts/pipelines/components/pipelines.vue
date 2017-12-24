@@ -228,7 +228,7 @@
     <div class="content-list pipelines">
 
       <loading-icon
-        label="Loading Pipelines"
+        label="正在载入流水线"
         size="3"
         v-if="isLoading"
         class="prepend-top-20"
@@ -249,7 +249,7 @@
         class="blank-state-row"
         v-if="shouldRenderNoPipelinesMessage">
         <div class="blank-state-center">
-          <h2 class="blank-state-title js-blank-state-title">No pipelines to show.</h2>
+          <h2 class="blank-state-title js-blank-state-title">没有流水线可显示。</h2>
         </div>
       </div>
 

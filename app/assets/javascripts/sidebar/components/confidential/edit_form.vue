@@ -28,14 +28,14 @@ export default {
     <div class="dropdown-menu sidebar-item-warning-message">
       <div>
         <p v-if="!isConfidential">
-          You are going to turn on the confidentiality. This means that only team members with
-          <strong>at least Reporter access</strong>
-          are able to see and leave comments on the issue.
+          您打算启用保密。这意味着只有
+          <strong>至少具备“报告者”权限的团队成员</strong>
+          才能够查看并发表有关该问题的评论。
         </p>
         <p v-else>
-          You are going to turn off the confidentiality. This means
-          <strong>everyone</strong>
-          will be able to see and leave a comment on this issue.
+          您打算禁用保密。这意味着
+          <strong>所有人</strong>
+          都能够查看并发表有关该问题的评论。
         </p>
         <edit-form-buttons
           :is-confidential="isConfidential"

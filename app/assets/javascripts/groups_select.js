@@ -9,7 +9,7 @@ export default function groupsSelect() {
     const allAvailable = $select.data('all-available');
     const skipGroups = $select.data('skip-groups') || [];
     $select.select2({
-      placeholder: 'Search for a group',
+      placeholder: '搜索群组',
       multiple: $select.hasClass('multiselect'),
       minimumInputLength: 0,
       ajax: {

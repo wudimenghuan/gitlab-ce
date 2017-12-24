@@ -1,7 +1,7 @@
 = content_for :meta_tags do
-  = auto_discovery_link_tag(:atom, group_url(@group, rss_url_options), title: "#{@group.name} activity")
+  = auto_discovery_link_tag(:atom, group_url(@group, rss_url_options), title: "#{@group.name} 活动")
 
-- page_title "Activity"
+- page_title "活动"
 
 %section.activities
   = render 'activities'

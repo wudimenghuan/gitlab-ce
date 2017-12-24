@@ -1,7 +1,7 @@
 - if milestone.expired? and not milestone.closed?
-  %span.cred (Expired)
+  %span.cred (已过期)
 - if milestone.upcoming?
-  %span.clgray (Upcoming)
+  %span.clgray (近期)
 - if milestone.due_date || milestone.start_date
   %span
     = milestone_date_range(milestone)

@@ -3,7 +3,7 @@
 - merge_project = can?(current_user, :create_merge_request, @project) ? @project : (current_user && current_user.fork_of(@project))
 - new_merge_request_path = project_new_merge_request_path(merge_project) if merge_project
 
-- page_title "Merge Requests"
+- page_title "合并请求"
 - new_merge_request_email = @project.new_issuable_address(current_user, 'merge_request')
 
 - content_for :page_specific_javascripts do

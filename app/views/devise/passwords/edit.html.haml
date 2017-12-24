@@ -1,4 +1,4 @@
-= render 'devise/shared/tab_single', tab_title:'Change your password'
+= render 'devise/shared/tab_single', tab_title:'修改密码'
 .login-box
   .login-body
     = form_for(resource, as: resource_name, url: password_path(:user), html: { method: :put, class: 'gl-show-field-errors' }) do |f|
@@ -6,16 +6,16 @@
         = devise_error_messages!
       = f.hidden_field :reset_password_token
       .form-group
-        = f.label 'New password', for: "user_password"
-        = f.password_field :password, class: "form-control top",  required: true, title: 'This field is required'
+        = f.label '新密码', for: "user_password"
+        = f.password_field :password, class: "form-control top",  required: true, title: '必填项'
       .form-group
-        = f.label 'Confirm new password', for: "user_password_confirmation"
-        = f.password_field :password_confirmation, class: "form-control bottom", title: 'This field is required', required: true
+        = f.label '确认新密码', for: "user_password_confirmation"
+        = f.password_field :password_confirmation, class: "form-control bottom", title: '必填项', required: true
       .clearfix
-        = f.submit "Change your password", class: "btn btn-primary"
+        = f.submit "修改密码", class: "btn btn-primary"
 
 .clearfix.prepend-top-20
   %p
-    %span.light Didn't receive a confirmation email?
-    = link_to "Request a new one", new_confirmation_path(:user)
+    %span.light 没有收到确认邮件？
+    = link_to "重新发送", new_confirmation_path(:user)
 = render 'devise/shared/sign_in_link'
