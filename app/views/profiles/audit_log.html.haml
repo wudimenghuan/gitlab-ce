@@ -1,4 +1,4 @@
-- page_title "Authentication log"
+- page_title "认证日志"
 - @content_class = "limit-container-width" unless fluid_layout
 = render 'profiles/head'
 
@@ -7,6 +7,6 @@
     %h4.prepend-top-0
       = page_title
     %p
-      This is a security log of important events involving your account.
+      这是涉及您的帐户安全的重要事件日志。
   .col-lg-8
     = render 'event_table', events: @events

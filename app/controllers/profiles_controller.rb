@@ -13,7 +13,7 @@ class ProfilesController < Profiles::ApplicationController
       result = Users::UpdateService.new(current_user, user_params.merge(user: @user)).execute
 
       if result[:status] == :success
-        message = "Profile was successfully updated"
+        message = "个人资料已成功更新"
 
         format.html { redirect_back_or_default(default: { action: 'show' }, options: { notice: message }) }
         format.json { render json: { message: message } }

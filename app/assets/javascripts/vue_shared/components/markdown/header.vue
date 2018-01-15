@@ -58,7 +58,7 @@
           href="#md-write-holder"
           tabindex="-1"
           @click.prevent="writeMarkdownTab($event)">
-          Write
+          编写
         </a>
       </li>
       <li
@@ -69,7 +69,7 @@
           href="#md-preview-holder"
           tabindex="-1"
           @click.prevent="previewMarkdownTab($event)">
-          Preview
+          预览
         </a>
       </li>
       <li

@@ -1,17 +1,17 @@
 .template-selectors-menu
   .templates-selectors-label
-    Template
+    模板
   .template-selector-dropdowns-wrap
     .template-type-selector.js-template-type-selector-wrap.hidden
-      = dropdown_tag("Choose type", options: { toggle_class: 'js-template-type-selector', title: "Choose a template type" } )
+      = dropdown_tag("选择类型", options: { toggle_class: 'js-template-type-selector', title: "选择一个模板类型" } )
     .license-selector.js-license-selector-wrap.js-template-selector-wrap.hidden
-      = dropdown_tag("Apply a license template", options: { toggle_class: 'js-license-selector', title: "Apply a license", filter: true, placeholder: "Filter", data: { data: licenses_for_select, project: @project.name, fullname: @project.namespace.human_name } } )
+      = dropdown_tag("选择一个许可证(License)模板", options: { toggle_class: 'js-license-selector', title: "应用许可证", filter: true, placeholder: "过滤器", data: { data: licenses_for_select, project: @project.name, fullname: @project.namespace.human_name } } )
     .gitignore-selector.js-gitignore-selector-wrap.js-template-selector-wrap.hidden
-      = dropdown_tag("Apply a .gitignore template", options: { toggle_class: 'js-gitignore-selector', title: "Apply a template", filter: true, placeholder: "Filter", data: { data: gitignore_names } } )
+      = dropdown_tag("选择一个 .gitignore 模板", options: { toggle_class: 'js-gitignore-selector', title: "应用模板", filter: true, placeholder: "过滤器", data: { data: gitignore_names } } )
     .gitlab-ci-yml-selector.js-gitlab-ci-yml-selector-wrap.js-template-selector-wrap.hidden
-      = dropdown_tag("Apply a GitLab CI Yaml template", options: { toggle_class: 'js-gitlab-ci-yml-selector', title: "Apply a template", filter: true, placeholder: "Filter", data: { data: gitlab_ci_ymls } } )
+      = dropdown_tag("选择一个 GitLab CI Yaml 模板", options: { toggle_class: 'js-gitlab-ci-yml-selector', title: "应用模板", filter: true, placeholder: "Filter", data: { data: gitlab_ci_ymls } } )
     .dockerfile-selector.js-dockerfile-selector-wrap.js-template-selector-wrap.hidden
-      = dropdown_tag("Apply a Dockerfile template", options: { toggle_class: 'js-dockerfile-selector', title: "Apply a template", filter: true, placeholder: "Filter", data: { data: dockerfile_names } } )
+      = dropdown_tag("选择一个 Dockerfile 模板", options: { toggle_class: 'js-dockerfile-selector', title: "应用模板", filter: true, placeholder: "过滤器", data: { data: dockerfile_names } } )
   .template-selectors-undo-menu.hidden
-    %span.text-info Template applied
-    %button.btn.btn-sm.btn-info Undo
+    %span.text-info 模板已应用
+    %button.btn.btn-sm.btn-info 撤销

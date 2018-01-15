@@ -1,14 +1,14 @@
 .row.prepend-top-default.append-bottom-default
   .col-lg-12
     %h5.prepend-top-0
-      Add a variable
-    = render "ci/variables/form", btn_text: "Add new variable"
+      增加变量
+    = render "ci/variables/form", btn_text: "增加新的变量"
     %hr
     %h5.prepend-top-0
-      Your variables (#{@variables.size})
+      您的变量 (#{@variables.size})
     - if @variables.empty?
       %p.settings-message.text-center.append-bottom-0
-        No variables found, add one with the form above.
+        没有变量，请使用上面的表单增加。
     - else
       .js-secret-variable-table
         = render "ci/variables/table"

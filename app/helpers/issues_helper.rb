@@ -10,7 +10,7 @@ module IssuesHelper
   # to allow filtering issues by an unassigned User or Milestone
   def unassigned_filter
     # Milestone uses :title, Issue uses :name
-    OpenStruct.new(id: 0, title: 'None (backlog)', name: 'Unassigned')
+    OpenStruct.new(id: 0, title: '无 (积压)', name: '未指派')
   end
 
   def url_for_issue(issue_iid, project = @project, options = {})
@@ -61,7 +61,7 @@ module IssuesHelper
       current_user.can?(ability, project)
     end
 
-    no_project = OpenStruct.new(id: 0, name_with_namespace: 'No project')
+    no_project = OpenStruct.new(id: 0, name_with_namespace: '没有项目')
     projects.unshift(no_project)
     projects.delete(issuable.project)
 
@@ -92,10 +92,10 @@ module IssuesHelper
 
   def award_user_list(awards, current_user, limit: 10)
     names = awards.map do |award|
-      award.user == current_user ? 'You' : award.user.name
+      award.user == current_user ? '您' : award.user.name
     end
 
-    current_user_name = names.delete('You')
+    current_user_name = names.delete('您')
     names = names.insert(0, current_user_name).compact.first(limit)
 
     names << "#{awards.size - names.size} more." if awards.size > names.size

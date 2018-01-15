@@ -22,7 +22,7 @@ gl.issueBoards.ModalFooter = Vue.extend({
     submitText() {
       const count = ModalStore.selectedCount();
 
-      return `Add ${count > 0 ? count : ''} ${pluralize('issue', count)}`;
+      return `添加 ${count > 0 ? count : ''} ${pluralize('问题', count)}`;
     },
   },
   methods: {
@@ -36,7 +36,7 @@ gl.issueBoards.ModalFooter = Vue.extend({
       gl.boardService.bulkUpdate(issueIds, {
         add_label_ids: [list.label.id],
       }).catch(() => {
-        new Flash('Failed to update issues, please try again.', 'alert');
+        new Flash('问题更新失败，请重试。', 'alert');
 
         selectedIssues.forEach((issue) => {
           list.removeIssue(issue);
@@ -68,7 +68,7 @@ gl.issueBoards.ModalFooter = Vue.extend({
           {{ submitText }}
         </button>
         <span class="inline add-issues-footer-to-list">
-          to list
+          到列表
         </span>
         <lists-dropdown></lists-dropdown>
       </div>
@@ -76,7 +76,7 @@ gl.issueBoards.ModalFooter = Vue.extend({
         class="btn btn-default pull-right"
         type="button"
         @click="toggleModal(false)">
-        Cancel
+        取消
       </button>
     </footer>
   `,

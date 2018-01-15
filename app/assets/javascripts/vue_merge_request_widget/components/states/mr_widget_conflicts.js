@@ -17,29 +17,29 @@ export default {
         <span
           v-if="mr.shouldBeRebased"
           class="bold">
-          Fast-forward merge is not possible.
-          To merge this request, first rebase locally.
+          无法进行快进式合并。
+          要合并此请求，请先在本地变基(rebase)。
         </span>
         <template v-else>
-          <span class="bold">
-            There are merge conflicts<span v-if="!mr.canMerge">.</span>
-            <span v-if="!mr.canMerge">
-              Resolve these conflicts or ask someone with write access to this repository to merge it locally
-            </span>
+        <span class="bold">
+          合并请求包含有合并冲突<span v-if="!mr.canMerge">。</span>
+          <span v-if="!mr.canMerge">
+            请解决这些冲突或者请求具有推送权限的成员在本地合并。
           </span>
-          <a
-            v-if="mr.canMerge && mr.conflictResolutionPath"
-            :href="mr.conflictResolutionPath"
+        </span>
+        <a
+          v-if="mr.canMerge && mr.conflictResolutionPath"
+          :href="mr.conflictResolutionPath"
             class="js-resolve-conflicts-button btn btn-default btn-xs">
-            Resolve conflicts
-          </a>
-          <a
-            v-if="mr.canMerge"
+          解决冲突
+        </a>
+        <a
+          v-if="mr.canMerge"
             class="js-merge-locally-button btn btn-default btn-xs"
-            data-toggle="modal"
-            href="#modal_merge_info">
-            Merge locally
-          </a>
+          data-toggle="modal"
+          href="#modal_merge_info">
+          本地合并
+        </a>
         </template>
       </div>
     </div>

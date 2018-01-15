@@ -14,11 +14,11 @@
         %span.cgray= user.to_reference
 
         - if user == current_user
-          %span.label.label-success.prepend-left-5 It's you
+          %span.label.label-success.prepend-left-5 自己
 
         - if user.blocked?
           %label.label.label-danger
-            %strong Blocked
+            %strong 被禁用
 
         - if source.instance_of?(Group) && source != @group
           &middot;
@@ -26,23 +26,23 @@
 
         .cgray
           - if member.request?
-            Requested
+            请求时间
             = time_ago_with_tooltip(member.requested_at)
           - else
-            Joined #{time_ago_with_tooltip(member.created_at)}
+            加入时间 #{time_ago_with_tooltip(member.created_at)}
           - if member.expires?
             ·
             %span{ class: "#{"text-warning" if member.expires_soon?} has-tooltip", title: member.expires_at.to_time.in_time_zone.to_s(:medium) }
-              Expires in #{distance_of_time_in_words_to_now(member.expires_at)}
+              将于 #{distance_of_time_in_words_to_now(member.expires_at)} 到期
 
     - else
       = image_tag avatar_icon(member.invite_email, 40), class: "avatar s40", alt: ''
       .user-info
         .member= member.invite_email
         .cgray
-          Invited
+          邀请时间
           - if member.created_by
-            by
+            由
             = link_to member.created_by.name, user_path(member.created_by)
           = time_ago_with_tooltip(member.created_at)
   - if show_roles
@@ -66,7 +66,7 @@
                   = member.human_access
                 = icon("chevron-down")
               .dropdown-menu.dropdown-select.dropdown-menu-align-right.dropdown-menu-selectable
-                = dropdown_title("Change permissions")
+                = dropdown_title("修改权限")
                 .dropdown-content
                   %ul
                     - member.access_level_roles.each do |role, role_id|
@@ -77,7 +77,7 @@
             .prepend-left-5.clearable-input.member-form-control
               = f.text_field :expires_at,
                 class: 'form-control js-access-expiration-date js-member-update-control',
-                placeholder: 'Expiration date',
+                placeholder: '到期日期',
                 id: "member_expires_at_#{member.id}",
                 data: { el_id: dom_id(member) }
               %i.clear-icon.js-clear-input
@@ -90,13 +90,13 @@
                     class: 'btn btn-success prepend-left-10',
                     title: 'Grant access' do
             %span{ class: ('visible-xs-block' unless force_mobile_view) }
-              Grant access
+              授予访问权限
             - unless force_mobile_view
               = icon('check inverse', class: 'hidden-xs')
 
         - if member.can_remove?
           - if current_user == user
-            = link_to icon('sign-out', text: 'Leave'), polymorphic_path([:leave, member.source, :members]),
+            = link_to icon('sign-out', text: '离开'), polymorphic_path([:leave, member.source, :members]),
                       method: :delete,
                       data: { confirm: leave_confirmation_message(member.source) },
                       class: 'btn btn-remove prepend-left-10'
@@ -107,7 +107,7 @@
                       class: 'btn btn-remove prepend-left-10',
                       title: remove_member_title(member) do
               %span{ class: ('visible-xs-block' unless force_mobile_view) }
-                Delete
+                删除
               - unless force_mobile_view
                 = icon('trash', class: 'hidden-xs')
       - else

@@ -28,6 +28,6 @@
         = link_to project_registry_repository_tag_path(@project, tag.repository, tag.name),
                   method: :delete,
                   class: 'btn btn-remove has-tooltip',
-                  title: 'Remove tag',
-                  data: { confirm: 'Are you sure you want to delete this tag?' } do
+                  title: '移除标签',
+                  data: { confirm: '您确定要删除这个标签？' } do
           = icon('trash cred')

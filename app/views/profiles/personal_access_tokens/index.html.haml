@@ -1,5 +1,5 @@
-- breadcrumb_title "Access Tokens"
-- page_title "Personal Access Tokens"
+- breadcrumb_title "访问令牌"
+- page_title "个人访问令牌"
 - @content_class = "limit-container-width" unless fluid_layout
 
 = render 'profiles/head'
@@ -9,20 +9,20 @@
     %h4.prepend-top-0
       = page_title
     %p
-      You can generate a personal access token for each application you use that needs access to the GitLab API.
+      您可以为需要访问GitLab API的每个应用程序生成个人访问令牌。
     %p
-      You can also use personal access tokens to authenticate against Git over HTTP.
-      They are the only accepted password when you have Two-Factor Authentication (2FA) enabled.
+      您还可以使用个人访问令牌通过HTTP进行Git验证。
+      当您启用两步认证（2FA）时，它们是唯一可接受的密码。
 
   .col-lg-8
     - if @new_personal_access_token
       .created-personal-access-token-container
         %h5.prepend-top-0
-          Your New Personal Access Token
+          你的新个人访问令牌
         .form-group
           = text_field_tag 'created-personal-access-token', @new_personal_access_token, readonly: true, class: "form-control js-select-on-focus", 'aria-describedby' => "created-personal-access-token-help-block"
-          = clipboard_button(text: @new_personal_access_token, title: "Copy personal access token to clipboard", placement: "left")
-          %span#created-personal-access-token-help-block.help-block.text-danger Make sure you save it - you won't be able to access it again.
+          = clipboard_button(text: @new_personal_access_token, title: "复制个人访问令牌到剪贴板", placement: "left")
+          %span#created-personal-access-token-help-block.help-block.text-danger 请确保您已经保存好令牌(该令牌将不再显示)。
 
       %hr
 

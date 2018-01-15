@@ -9,7 +9,7 @@ class GemnasiumService < Service
   end
 
   def description
-    'Gemnasium monitors your project dependencies and alerts you about updates and security vulnerabilities.'
+    'Gemnasium 监视项目依赖关系，并提醒您有关更新和安全漏洞。'
   end
 
   def self.to_param

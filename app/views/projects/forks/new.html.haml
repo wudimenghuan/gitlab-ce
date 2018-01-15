@@ -1,29 +1,29 @@
-- page_title "Fork project"
+- page_title "派生项目"
 
 .row.prepend-top-default
   .col-lg-3
     %h4.prepend-top-0
-      Fork project
+      派生项目
     %p
-      A fork is a copy of a project.
+      派生是创建项目仓库的副本。
       %br
-      Forking a repository allows you to make changes without affecting the original project.
+      派生的仓库允许你在不影响原有项目的情况下修改新内容。
   .col-lg-9
     - if @namespaces.present?
       .fork-thumbnail-container.js-fork-content
         %h5.prepend-top-0.append-bottom-0.prepend-left-default.append-right-default
-          Click to fork the project
+          点击派生项目
         - @namespaces.each do |namespace|
           = render 'fork_button', namespace: namespace
     - else
       %strong
-        No available namespaces to fork the project.
+        没有可用的命名空间来派生项目
       %p.prepend-top-default
-        You must have permission to create a project in a namespace before forking.
+        在派生之前，你必须拥有在命名空间中创建项目的权限。
 
     .save-project-loader.hide.js-fork-content
       %h2.text-center
         = icon('spinner spin')
-        Forking repository
+        正在派生仓库
       %p.text-center
-        Please wait a moment, this page will automatically refresh when ready.
+        请稍侯，本页面将在准备好后自动刷新。

@@ -26,7 +26,7 @@ export default class NamespaceSelect {
         return Api.namespaces(term, function(namespaces) {
           if (isFilter) {
             const anyNamespace = {
-              text: 'Any namespace',
+              text: '任何命名空间',
               id: null
             };
             namespaces.unshift(anyNamespace);

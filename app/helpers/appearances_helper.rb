@@ -1,6 +1,6 @@
 module AppearancesHelper
   def brand_title
-    brand_item&.title.presence || 'GitLab Community Edition'
+    brand_item&.title.presence || 'GitLab 中文社区版'
   end
 
   def brand_image

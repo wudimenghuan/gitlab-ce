@@ -11,7 +11,7 @@
 
 .form-group
   - if type == "password" && value.present?
-    = form.label name, "Enter new #{title.downcase}", class: "control-label"
+    = form.label name, "输入新 #{title.downcase}", class: "control-label"
   - else
     = form.label name, title, class: "control-label"
   .col-sm-10

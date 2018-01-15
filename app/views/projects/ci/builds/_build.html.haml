@@ -33,10 +33,10 @@
       = link_to job.short_sha, project_commit_path(job.project, job.sha), class: "commit-sha"
 
     - if job.stuck?
-      = icon('warning', class: 'text-warning has-tooltip', title: 'Job is stuck. Check runners.')
+      = icon('warning', class: 'text-warning has-tooltip', title: '作业被卡住。请检查 Runner')
 
     - if retried
-      = icon('refresh', class: 'text-warning has-tooltip', title: 'Job was retried')
+      = icon('refresh', class: 'text-warning has-tooltip', title: '作业已重试')
 
     .label-container
       - if job.tags.any?
@@ -95,16 +95,16 @@
   %td
     .pull-right
       - if can?(current_user, :read_build, job) && job.artifacts?
-        = link_to download_project_job_artifacts_path(job.project, job), rel: 'nofollow', download: '', title: 'Download artifacts', class: 'btn btn-build' do
+        = link_to download_project_job_artifacts_path(job.project, job), rel: 'nofollow', download: '', title: '下载', class: 'btn btn-build' do
           = sprite_icon('download')
       - if can?(current_user, :update_build, job)
         - if job.active?
-          = link_to cancel_project_job_path(job.project, job, return_to: request.original_url), method: :post, title: 'Cancel', class: 'btn btn-build' do
+          = link_to cancel_project_job_path(job.project, job, return_to: request.original_url), method: :post, title: '取消', class: 'btn btn-build' do
             = icon('remove', class: 'cred')
         - elsif allow_retry
           - if job.playable? && !admin && can?(current_user, :update_build, job)
-            = link_to play_project_job_path(job.project, job, return_to: request.original_url), method: :post, title: 'Play', class: 'btn btn-build' do
+            = link_to play_project_job_path(job.project, job, return_to: request.original_url), method: :post, title: '播放', class: 'btn btn-build' do
               = custom_icon('icon_play')
           - elsif job.retryable?
-            = link_to retry_project_job_path(job.project, job, return_to: request.original_url), method: :post, title: 'Retry', class: 'btn btn-build' do
+            = link_to retry_project_job_path(job.project, job, return_to: request.original_url), method: :post, title: '重试', class: 'btn btn-build' do
               = icon('repeat')

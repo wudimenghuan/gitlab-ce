@@ -1,12 +1,12 @@
-- page_title 'Labels'
+- page_title '标记'
 
 .top-area.adjust
   .nav-text
-    Labels can be applied to issues and merge requests. Group labels are available for any project within the group.
+    标记可应用于问题和合并请求。群组标记适用于群组内的所有项目。
 
   .nav-controls
     - if can?(current_user, :admin_label, @group)
-      = link_to "New label", new_group_label_path(@group), class: "btn btn-new"
+      = link_to "新建标记", new_group_label_path(@group), class: "btn btn-new"
 
 .labels
   .other-labels
@@ -16,4 +16,4 @@
         = paginate @labels, theme: 'gitlab'
     - else
       .nothing-here-block
-        No labels created yet.
+        还没有创建标记。

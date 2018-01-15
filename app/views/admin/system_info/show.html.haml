@@ -1,5 +1,5 @@
 - @no_container = true
-- page_title "System Info"
+- page_title "系统信息"
 
 %div{ class: container_class }
   .prepend-top-default
@@ -12,19 +12,19 @@
             %h1 #{@cpus.length} cores
           - else
             = icon('warning', class: 'text-warning')
-            Unable to collect CPU info
+            无法收集 CPU 信息
     .col-sm-4
       .light-well
-        %h4 Memory Usage
+        %h4 内存使用率
         .data
           - if @memory
             %h1 #{number_to_human_size(@memory.active_bytes)} / #{number_to_human_size(@memory.total_bytes)}
           - else
             = icon('warning', class: 'text-warning')
-            Unable to collect memory info
+            无法收集内存信息
     .col-sm-4
       .light-well
-        %h4 Disk Usage
+        %h4 磁盘使用率
         .data
           - @disks.each do |disk|
             %h1 #{number_to_human_size(disk[:bytes_used])} / #{number_to_human_size(disk[:bytes_total])}
@@ -32,6 +32,6 @@
             %p= disk[:mount_path]
     .col-sm-4
       .light-well
-        %h4 Uptime
+        %h4 运行时间
         .data
           %h1= distance_of_time_in_words_to_now(Rails.application.config.booted_at)

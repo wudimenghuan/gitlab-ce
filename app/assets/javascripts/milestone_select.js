@@ -66,22 +66,22 @@ export default class MilestoneSelect {
           if (showNo) {
             extraOptions.push({
               id: -1,
-              name: 'No Milestone',
-              title: 'No Milestone'
+              name: '无里程碑',
+              title: '无里程碑'
             });
           }
           if (showUpcoming) {
             extraOptions.push({
               id: -2,
               name: '#upcoming',
-              title: 'Upcoming'
+              title: '即将到来'
             });
           }
           if (showStarted) {
             extraOptions.push({
               id: -3,
               name: '#started',
-              title: 'Started'
+              title: '已开始'
             });
           }
           if (extraOptions.length) {

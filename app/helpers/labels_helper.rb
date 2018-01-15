@@ -163,13 +163,13 @@ module LabelsHelper
   end
 
   def label_subscription_toggle_button_text(label, project = nil)
-    label.subscribed?(current_user, project) ? 'Unsubscribe' : 'Subscribe'
+    label.subscribed?(current_user, project) ? '取消订阅' : '订阅'
   end
 
   def label_deletion_confirm_text(label)
     case label
-    when GroupLabel then 'Remove this label? This will affect all projects within the group. Are you sure?'
-    when ProjectLabel then 'Remove this label? Are you sure?'
+    when GroupLabel then '确定要删除此标记？这将影响到群组内的所有项目。'
+    when ProjectLabel then '确定要删除此标记？'
     end
   end
 

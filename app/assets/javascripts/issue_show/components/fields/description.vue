@@ -42,7 +42,7 @@
     <label
       class="sr-only"
       for="issue-description">
-      Description
+      描述
     </label>
     <markdown-field
       :markdown-preview-path="markdownPreviewPath"
@@ -54,11 +54,11 @@
         id="issue-description"
         class="note-textarea js-gfm-input js-autosize markdown-area"
         data-supports-quick-actions="false"
-        aria-label="Description"
+        aria-label="描述"
         v-model="formState.description"
         ref="textarea"
         slot="textarea"
-        placeholder="Write a comment or drag your files here..."
+        placeholder="撰写评论或拖放文件到此处..."
         @keydown.meta.enter="updateIssuable"
         @keydown.ctrl.enter="updateIssuable">
       </textarea>

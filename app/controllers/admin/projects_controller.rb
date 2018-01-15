@@ -44,7 +44,7 @@ class Admin::ProjectsController < Admin::ApplicationController
 
     redirect_to(
       admin_project_path(@project),
-      notice: 'Repository check was triggered.'
+      notice: '版本仓库检查已触发。'
     )
   end
 

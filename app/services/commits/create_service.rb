@@ -47,7 +47,7 @@ module Commits
       allowed = ::Gitlab::UserAccess.new(current_user, project: project).can_push_to_branch?(@branch_name)
 
       unless allowed
-        raise_error("You are not allowed to push into this branch")
+        raise_error("你不允许推送到此分支")
       end
     end
 
@@ -59,7 +59,7 @@ module Commits
 
     def validate_branch_existance!
       if !project.empty_repo? && different_branch? && repository.branch_exists?(@branch_name)
-        raise_error("A branch called '#{@branch_name}' already exists. Switch to that branch in order to make changes")
+        raise_error("分支 '#{@branch_name}' 已经存在。 切换到该分支进行修改。")
       end
     end
 
@@ -67,7 +67,7 @@ module Commits
       result = ValidateNewBranchService.new(project, current_user).execute(@branch_name)
 
       if result[:status] == :error
-        raise_error("Something went wrong when we tried to create '#{@branch_name}' for you: #{result[:message]}")
+        raise_error("为你创建分支 '#{@branch_name}' 时出现错误: #{result[:message]}")
       end
     end
   end

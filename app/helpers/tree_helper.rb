@@ -72,17 +72,17 @@ module TreeHelper
   end
 
   def edit_in_new_fork_notice_now
-    "You're not allowed to make changes to this project directly." +
-      " A fork of this project is being created that you can make changes in, so you can submit a merge request."
+    "您不能直接对此项目进行更改。" +
+      " 正在派生此项目，您可以在派生项目上进行更改，然后提交合并请求。"
   end
 
   def edit_in_new_fork_notice
-    "You're not allowed to make changes to this project directly." +
-      " A fork of this project has been created that you can make changes in, so you can submit a merge request."
+    "您不能直接对此项目进行更改。" +
+      " 您已经派生了此项目，请在派生项目上进行更改，然后提交合并请求。"
   end
 
   def commit_in_fork_help
-    "A new branch will be created in your fork and a new merge request will be started."
+    "将在您的派生项目中创建一个新分支，并且将创建一个新的合并请求。"
   end
 
   def path_breadcrumbs(max_links = 6)

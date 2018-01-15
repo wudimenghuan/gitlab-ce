@@ -12,7 +12,7 @@ class MattermostSlashCommandsService < SlashCommandsService
   end
 
   def description
-    "Perform common operations in Mattermost"
+    "在 Mattermost 执行常见操作"
   end
 
   def self.to_param

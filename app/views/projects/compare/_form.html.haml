@@ -2,7 +2,7 @@
   .clearfix
     - if params[:to] && params[:from]
       .compare-switch-container
-        = link_to icon('exchange'), { from: params[:to], to: params[:from] }, class: 'commits-compare-switch has-tooltip btn btn-white', title: 'Swap revisions'
+        = link_to icon('exchange'), { from: params[:to], to: params[:from] }, class: 'commits-compare-switch has-tooltip btn btn-white', title: '切换修订'
     .form-group.dropdown.compare-form-group.to.js-compare-to-dropdown
       .input-group.inline-input-group
         %span.input-group-addon

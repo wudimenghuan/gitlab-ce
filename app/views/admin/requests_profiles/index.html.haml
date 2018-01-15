@@ -1,14 +1,14 @@
 - @no_container = true
-- page_title 'Requests Profiles'
+- page_title '请求配置'
 
 %div{ class: container_class }
   %h3.page-title
     = page_title
 
   .bs-callout.clearfix
-    Pass the header
+    通过传输HTTP头字段
     %code X-Profile-Token: #{@profile_token}
-    to profile the request
+    来配置请求
 
   - if @profiles.present?
     .prepend-top-default
@@ -22,4 +22,4 @@
                 = link_to profile.time.to_s(:long), admin_requests_profile_path(profile)
   - else
     %p
-      No profiles found
+      没找到请求配置。

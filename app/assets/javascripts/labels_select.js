@@ -155,7 +155,7 @@ export default class LabelsSelect {
               if (showNo) {
                 extraData.unshift({
                   id: 0,
-                  title: 'No Label'
+                  title: '没有标记'
                 });
               }
               if (showAny) {

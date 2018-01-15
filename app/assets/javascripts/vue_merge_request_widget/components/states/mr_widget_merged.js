@@ -57,7 +57,7 @@ export default {
         })
         .catch(() => {
           this.isMakingRequest = false;
-          new Flash('Something went wrong. Please try again.'); // eslint-disable-line
+          new Flash('出现错误，请稍后重试。'); // eslint-disable-line
         });
     },
   },
@@ -67,7 +67,7 @@ export default {
       <div class="media-body">
         <div class="space-children">
           <mr-widget-author-and-time
-            actionText="Merged by"
+            actionText="合并者"
             :author="mr.metrics.mergedBy"
             :date-title="mr.metrics.mergedAt"
             :date-readable="mr.metrics.readableMergedAt" />
@@ -78,8 +78,8 @@ export default {
             href="#modal-revert-commit"
             data-toggle="modal"
             data-container="body"
-            title="Revert this merge request in a new merge request">
-            Revert
+            title="撤销这个合并请求到一个新的合并请求">
+            撤销
           </a>
           <a
             v-else-if="mr.revertInForkPath"
@@ -87,8 +87,8 @@ export default {
             class="btn btn-close btn-xs"
             data-method="post"
             :href="mr.revertInForkPath"
-            title="Revert this merge request in a new merge request">
-            Revert
+            title="撤销这个合并请求到一个新的合并请求">
+            撤销
           </a>
           <a
             v-if="mr.canCherryPickInCurrentMR"
@@ -97,8 +97,8 @@ export default {
             href="#modal-cherry-pick-commit"
             data-toggle="modal"
             data-container="body"
-            title="Cherry-pick this merge request in a new merge request">
-            Cherry-pick
+            title="摘取(Cherry-Pick)这个合并请求到一个新的合并请求">
+            摘取(Cherry-Pick)
           </a>
           <a
             v-else-if="mr.cherryPickInForkPath"
@@ -106,8 +106,8 @@ export default {
             class="btn btn-default btn-xs"
             data-method="post"
             :href="mr.cherryPickInForkPath"
-            title="Cherry-pick this merge request in a new merge request">
-            Cherry-pick
+            title="摘取(Cherry-Pick)这个合并请求到一个新的合并请求">
+            摘取(Cherry-Pick)
           </a>
         </div>
         <section class="mr-info-list">
@@ -117,20 +117,20 @@ export default {
               <a :href="mr.targetBranchPath">{{mr.targetBranch}}</a>
             </span>
           </p>
-          <p v-if="mr.sourceBranchRemoved">The source branch has been removed</p>
+          <p v-if="mr.sourceBranchRemoved">源分支已经被删除。</p>
           <p v-if="shouldShowRemoveSourceBranch" class="space-children">
-            <span>You can remove source branch now</span>
+            <span>您现在可以删除源分支。</span>
             <button
               @click="removeSourceBranch"
               :disabled="isMakingRequest"
               type="button"
               class="btn btn-xs btn-default js-remove-branch-button">
-              Remove Source Branch
+              删除源分支。
             </button>
           </p>
           <p v-if="shouldShowSourceBranchRemoving">
             <loading-icon inline />
-            <span>The source branch is being removed</span>
+            <span>正在删除源分支。</span>
           </p>
         </section>
       </div>

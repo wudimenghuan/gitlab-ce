@@ -28,7 +28,7 @@ export default {
       <div class="media-body space-children">
         <span class="bold">
           <template v-if="mr.mergeError">{{mr.mergeError}}.</template>
-          This merge request failed to be merged automatically
+          这个合并请求无法自动合并。
         </span>
         <button
           @click="refreshWidget"
