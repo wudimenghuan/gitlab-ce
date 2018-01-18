@@ -1,22 +1,23 @@
 = form_for [@project.namespace.becomes(Namespace), @project, @deploy_keys.new_key], url: namespace_project_deploy_keys_path, html: { class: "js-requires-input" } do |f|
   = form_errors(@deploy_keys.new_key)
   .form-group
-    = f.label :title, "æ ‡é¢˜", class: "label-light"
+    = f.label :title, "±êÌâ", class: "label-light"
     = f.text_field :title, class: 'form-control', required: true
   .form-group
-    = f.label :key, "å¯†é’¥", class: "label-light"
+    = f.label :key, "ÃÜÔ¿", class: "label-light"
     = f.text_area :key, class: "form-control", rows: 5, required: true
   .form-group
     %p.light.append-bottom-0
-      åœ¨è¿™é‡Œç²˜è´´æœºå™¨å…¬é’¥ã€‚å¦‚ä½•ç”Ÿæˆå¯†é’¥è¯·ç‚¹å‡»
-      = link_to "è¿™é‡Œ", help_page_path("ssh/README")
-  .form-group
-    .checkbox
-      = f.label :can_push do
-        = f.check_box :can_push
-        %strong å…è®¸æ¨é€
-  .form-group
-    %p.light.append-bottom-0
-      å…è®¸è¯¥å¯†é’¥æ¨é€ç‰ˆæœ¬åº“? (é»˜è®¤æƒé™ä¸ºæ‹‰å–ã€‚)
+      ÔÚÕâÀïÕ³Ìù»úÆ÷¹«Ô¿¡£ÈçºÎÉú³ÉÃÜÔ¿Çëµã»÷
+      = link_to "ÕâÀï", help_page_path("ssh/README")
+  = f.fields_for :deploy_keys_projects do |deploy_keys_project_form|
+    .form-group
+      .checkbox
+        = deploy_keys_project_form.label :can_push do
+          = deploy_keys_project_form.check_box :can_push
+          %strong ÔÊĞíĞ´ÈëÈ¨ÏŞ
+    .form-group
+      %p.light.append-bottom-0
+        ÔÊĞí¸ÃÃÜÔ¿ÍÆËÍ°æ±¾¿â? (Ä¬ÈÏÈ¨ÏŞÎªÀ­È¡¡£)
 
-  = f.submit "æ·»åŠ å¯†é’¥", class: "btn-create btn"
+  = f.submit "Ìí¼ÓÃÜÔ¿", class: "btn-create btn"
