@@ -9,7 +9,7 @@ class DeployKeysProject < ActiveRecord::Base
   accepts_nested_attributes_for :deploy_key
 
   validates :deploy_key, presence: true
-  validates :deploy_key_id, uniqueness: { scope: [:project_id], message: "ÒÑ¾­´æÔÚÓÚÏîÄ¿" }
+  validates :deploy_key_id, uniqueness: { scope: [:project_id], message: "å·²ç»å­˜åœ¨äºŽé¡¹ç›®" }
   validates :project_id, presence: true
 
   after_destroy :destroy_orphaned_deploy_key
