@@ -1,3 +1,5 @@
+= webpack_bundle_tag 'docs'
+
 %div
 - if current_application_settings.help_page_text.present?
   = markdown_field(current_application_settings, :help_page_text)
@@ -40,8 +42,12 @@
         快速帮助
       %ul.well-list
         %li= link_to '查看我们的网站获取帮助', support_url
-        %li= link_to '使用页面顶部的搜索功能', '#', onclick: 'Shortcuts.focusSearch(event)'
-        %li= link_to '键盘快捷键', '#', onclick: 'Shortcuts.toggleHelp()'
+        %li
+          %button.btn-blank.btn-link.js-trigger-search-bar{ type: 'button' }
+            使用页面顶部的搜索功能
+        %li
+          %button.btn-blank.btn-link.js-trigger-shortcut{ type: 'button' }
+            键盘快捷键
         - unless current_application_settings.help_page_hide_commercial_content?
           %li= link_to '获取技术支持订阅', 'https://about.gitlab.com/pricing/'
           %li= link_to '比较 GitLab 版本', 'https://about.gitlab.com/features/#compare'
