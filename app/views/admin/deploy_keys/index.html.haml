@@ -1,19 +1,19 @@
-- page_title "²¿ÊğÃÜÔ¿"
+- page_title "éƒ¨ç½²å¯†é’¥"
 
 %h3.page-title.deploy-keys-title
-  ¹«¿ªµÄ²¿ÊğÃÜÔ¿ (#{@deploy_keys.count})
+  å…¬å¼€çš„éƒ¨ç½²å¯†é’¥ (#{@deploy_keys.count})
   .pull-right
-    = link_to 'ĞÂ½¨²¿ÊğÃÜÔ¿', new_admin_deploy_key_path, class: 'btn btn-new btn-sm btn-inverted'
+    = link_to 'æ–°å»ºéƒ¨ç½²å¯†é’¥', new_admin_deploy_key_path, class: 'btn btn-new btn-sm btn-inverted'
 
 - if @deploy_keys.any?
   .table-holder.deploy-keys-list
     %table.table
       %thead
         %tr
-          %th.col-sm-2 ±êÌâ
-          %th.col-sm-4 Ö¸ÎÆ
-          %th.col-sm-2 ÏîÄ¿¾ßÓĞĞ´È¨ÏŞ
-          %th.col-sm-2 ´´½¨Ê±¼ä
+          %th.col-sm-2 æ ‡é¢˜
+          %th.col-sm-4 æŒ‡çº¹
+          %th.col-sm-2 é¡¹ç›®å…·æœ‰å†™æƒé™
+          %th.col-sm-2 åˆ›å»ºæ—¶é—´
           %th.col-sm-2
       %tbody
         - @deploy_keys.each do |deploy_key|
@@ -27,8 +27,8 @@
                 = link_to project.full_name, admin_project_path(project), class: 'label deploy-project-label'
             %td
               %span.cgray
-                ´´½¨ÓÚ #{time_ago_with_tooltip(deploy_key.created_at)}
+                åˆ›å»ºäº #{time_ago_with_tooltip(deploy_key.created_at)}
             %td
               .pull-right
-                = link_to '±à¼­', edit_admin_deploy_key_path(deploy_key), class: 'btn btn-sm'
-                = link_to 'É¾³ı', admin_deploy_key_path(deploy_key), data: { confirm: 'È·¶¨ÒªÉ¾³ı¸Ã²¿ÊğÃÜÔ¿£¿'}, method: :delete, class: 'btn btn-sm btn-remove delete-key'
+                = link_to 'ç¼–è¾‘', edit_admin_deploy_key_path(deploy_key), class: 'btn btn-sm'
+                = link_to 'åˆ é™¤', admin_deploy_key_path(deploy_key), data: { confirm: 'ç¡®å®šè¦åˆ é™¤è¯¥éƒ¨ç½²å¯†é’¥ï¼Ÿ'}, method: :delete, class: 'btn btn-sm btn-remove delete-key'
