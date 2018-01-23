@@ -1,0 +1,84 @@
+zh_CN:
+  activerecord:
+    errors:
+      models:
+        application:
+          attributes:
+            redirect_uri:
+              fragment_present: '不能包含片段'
+              invalid_uri: '必须是有效的 URL 格式'
+              relative_uri: '必须是绝对的 URL 地址'
+  mongoid:
+    errors:
+      models:
+        application:
+          attributes:
+            redirect_uri:
+              fragment_present: '不能包含片段'
+              invalid_uri: '必须是有效的 URL 格式'
+              relative_uri: '必须是绝对的 URL 地址'
+  mongo_mapper:
+    errors:
+      models:
+        application:
+          attributes:
+            redirect_uri:
+              fragment_present: '不能包含片段'
+              invalid_uri: '必须是有效的 URL 格式'
+              relative_uri: '必须是绝对的 URL 地址'
+  doorkeeper:
+    errors:
+      messages:
+        # Common error messages
+        invalid_request: '这个请求缺少必要的参数，或者参数值、格式不正确'
+        invalid_redirect_uri: '无效的登录回调地址'
+        unauthorized_client: '未授权的应用，请求无法执行'
+        access_denied: '用户或服务器拒绝了请求'
+        invalid_scope: '请求范围无效、未知或格式不正确'
+        server_error: '服务器异常，无法处理请求'
+        temporarily_unavailable: '服务器维护中，无法处理请求'
+
+        #configuration error messages
+        credential_flow_not_configured: '由于 Doorkeeper.configure.resource_owner_from_credentials，资源所有者密码凭证流失败'
+        resource_owner_authenticator_not_configured: '由于 Doorkeeper.configure.resource_owner_from_credentials，资源所有者查询失败'
+
+        # Access grant errors
+        unsupported_response_type: '服务器不支持这种响应类型'
+
+        # Access token errors
+        invalid_client: '由于未知、不支持或没有客户端认证，认证失败'
+        invalid_grant: '授权方式无效，或者登录回调地址无效、过期或已被撤销，或签发给其它客户端'
+        unsupported_grant_type: '服务器不支持此类型的授权方式'
+
+        # Password Access token errors
+        invalid_resource_owner: '资源所有者认证无效或没有所有者'
+
+        invalid_token:
+          revoked: "访问令牌已被注销"
+          expired: "访问令牌已过期"
+          unknown: "访问令牌无效"
+    scopes:
+      api: 访问已认证用户的 API
+      read_user: 读取已认证用户的个人信息
+      openid: 使用 OpenID Connect 进行认证
+      sudo: 以系统中的任意用户身份执行 API（如果认证用户为管理员）
+    scope_desc:
+      api:
+        给予该用户 GitLab 完全访问授权，包括读、写所有他的组、项目。
+      read_user:
+        只读访问该用户的个人信息，包括用户名、公开邮件地址以及全名。
+      openid:
+        允许使用 GitLab 进行认证的能力，并且只读访问用户的个人信息。
+      sudo:
+        允许使用 Sudo 功能，来以系统内任意用户身份执行 API（只对管理员有效）
+    flash:
+      applications:
+        create:
+          notice: '应用创建成功'
+        destroy:
+          notice: '应用删除成功'
+        update:
+          notice: '应用修改成功'
+      authorized_applications:
+        destroy:
+          notice: '已成功注销了应用的认证信息'
