@@ -3,11 +3,10 @@
 .radio
   = label_tag :project_merge_method_rebase_merge do
     = form.radio_button :merge_method, :rebase_merge, class: "js-merge-method-radio"
-    %strong Merge commit with semi-linear history
+    %strong 带半线性历史的合并请求
     %br
     %span.descr
-      A merge commit is created for every merge, but merging is only allowed if fast-forward merge is possible.
-      This way you could make sure that if this merge request would build, after merging to target branch it would also build.
+      为每一个合并创建一个合并请求，但是只有可以快进合并时才允许合并。这样你可以确保如果这个合并请求可以构建，那么合并到目标分支后依旧能够构建。
     %br
     %span.descr
-      When fast-forward merge is not possible, the user is given the option to rebase.
+      当无法快进合并时，用户可以选择 rebase。

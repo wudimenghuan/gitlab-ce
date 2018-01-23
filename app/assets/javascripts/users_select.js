@@ -194,7 +194,7 @@ function UsersSelect(currentUser, els, options = {}) {
             };
           } else {
             user = {
-              name: 'Unassigned',
+              name: '未指派',
               username: '',
               avatar: ''
             };
@@ -270,7 +270,7 @@ function UsersSelect(currentUser, els, options = {}) {
               showDivider += 1;
               users.unshift({
                 beforeDivider: true,
-                name: 'Unassigned',
+                name: '未指派',
                 id: 0
               });
             }
@@ -390,7 +390,7 @@ function UsersSelect(currentUser, els, options = {}) {
             // Automatically removes the first on the list if more users are selected
             checkMaxSelect();
 
-            if (user.beforeDivider && user.name.toLowerCase() === 'unassigned') {
+            if (user.beforeDivider && user.name.toLowerCase() === '未指派') {
               // Unassigned selected
               previouslySelected.each((index, element) => {
                 const id = parseInt(element.value, 10);
@@ -572,7 +572,7 @@ function UsersSelect(currentUser, els, options = {}) {
               }
               if (showNullUser) {
                 nullUser = {
-                  name: 'Unassigned',
+                  name: '未指派',
                   id: 0
                 };
                 data.results.unshift(nullUser);

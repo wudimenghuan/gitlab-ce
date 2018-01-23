@@ -170,12 +170,12 @@
         .checkbox
           = f.label :password_authentication_enabled_for_git do
             = f.check_box :password_authentication_enabled_for_git
-            Password authentication enabled for Git over HTTP(S)
+            对于使用 HTTP(S) 的 Git 启用密码认证
             .help-block
-              When disabled, a Personal Access Token
+              当禁用时，必须使用个人访问令牌
               - if Gitlab::LDAP::Config.enabled?
-                or LDAP password
-              must be used to authenticate.
+                或 LDAP 密码
+              来进行认证。
     - if omniauth_enabled? && button_based_providers.any?
       .form-group
         = f.label :enabled_oauth_sign_in_sources, '开启 OAuth 登录源', class: 'control-label col-sm-2'
@@ -524,11 +524,10 @@
         .checkbox
           = f.label :hashed_storage_enabled do
             = f.check_box :hashed_storage_enabled
-            使用混淆后的存储路径创建项目
+            使用哈希的存储路径创建项目
           .help-block
-            Enable immutable, hash-based paths and repository names to store repositories on disk. This prevents
-            repositories from having to be moved or renamed when the Project URL changes and may improve disk I/O performance.
-            %em (EXPERIMENTAL)
+            启用不可变的、基于哈希的路径和版本库名称在硬盘上保存版本库。这将避免项目链接改变时引发版本库在磁盘上被移动或者改名，由此可能会提高磁盘 I/O 的性能。
+            %em (实验性的)
     .form-group
       = f.label :repository_storages, '新项目存储路径', class: 'control-label col-sm-2'
       .col-sm-10
@@ -727,22 +726,20 @@
       .col-sm-10
         = f.number_field :gitaly_timeout_default, class: 'form-control'
         .help-block
-          Timeout for Gitaly calls from the GitLab application (in seconds). This timeout is not enforced
-          for git fetch/push operations or Sidekiq jobs.
+          从 GitLab 应用调用 Gitaly 的超时设置（秒）。该超时并不强制 git fetch/push 操作或者 Sidekiq 任务。
     .form-group
       = f.label :gitaly_timeout_fast, '短超时周期', class: 'control-label col-sm-2'
       .col-sm-10
         = f.number_field :gitaly_timeout_fast, class: 'form-control'
         .help-block
-          Fast operation timeout (in seconds). Some Gitaly operations are expected to be fast.
-          If they exceed this threshold, there may be a problem with a storage shard and 'failing fast'
-          can help maintain the stability of the GitLab instance.
+          短操作的超时时间（秒）。有些 Gitaly 操作应当是比较快的。如果它们调用超过了这个阈值，可能分片存储出了问题。
+          “尽早失败”可以帮助维护 GitLab 服务器的稳定性。
     .form-group
-      = f.label :gitaly_timeout_medium, '长超时周期', class: 'control-label col-sm-2'
+      = f.label :gitaly_timeout_medium, '中超时周期', class: 'control-label col-sm-2'
       .col-sm-10
         = f.number_field :gitaly_timeout_medium, class: 'form-control'
         .help-block
-          Medium operation timeout (in seconds). This should be a value between the Fast and the Default timeout.
+          中等操作的超时时间（秒）。这个数值应该介于短超时和默认超时之间。
 
   %fieldset
     %legend Web 终端
@@ -768,13 +765,13 @@
           = link_to icon('question-circle'), help_page_path('administration/polling')
 
   %fieldset
-    %legend Performance optimization
+    %legend 性能优化
     .form-group
       .col-sm-offset-2.col-sm-10
         .checkbox
           = f.label :authorized_keys_enabled do
             = f.check_box :authorized_keys_enabled
-            Write to "authorized_keys" file
+            写入"authorized_keys" 文件
           .help-block
             By default, we write to the "authorized_keys" file to support Git
             over SSH without additional configuration. GitLab can be optimized
@@ -784,21 +781,21 @@
             = link_to icon('question-circle'), help_page_path('administration/operations/fast_ssh_key_lookup')
 
   %fieldset
-    %legend User and IP Rate Limits
+    %legend 用户以及 IP 访问限制
     .form-group
       .col-sm-offset-2.col-sm-10
         .checkbox
           = f.label :throttle_unauthenticated_enabled do
             = f.check_box :throttle_unauthenticated_enabled
-            Enable unauthenticated request rate limit
+            启用未认证的请求速率限制
           %span.help-block
-            Helps reduce request volume (e.g. from crawlers or abusive bots)
+            可以帮助降低请求量（比如来自爬虫或者恶意机器人）
     .form-group
-      = f.label :throttle_unauthenticated_requests_per_period, 'Max requests per period per IP', class: 'control-label col-sm-2'
+      = f.label :throttle_unauthenticated_requests_per_period, '每个 IP 每段时间的最大请求数量', class: 'control-label col-sm-2'
       .col-sm-10
         = f.number_field :throttle_unauthenticated_requests_per_period, class: 'form-control'
     .form-group
-      = f.label :throttle_unauthenticated_period_in_seconds, 'Rate limit period in seconds', class: 'control-label col-sm-2'
+      = f.label :throttle_unauthenticated_period_in_seconds, '时间区间（秒）', class: 'control-label col-sm-2'
       .col-sm-10
         = f.number_field :throttle_unauthenticated_period_in_seconds, class: 'form-control'
     .form-group
@@ -806,15 +803,15 @@
         .checkbox
           = f.label :throttle_authenticated_api_enabled do
             = f.check_box :throttle_authenticated_api_enabled
-            Enable authenticated API request rate limit
+            启用已认证的 API 请求速率限制
           %span.help-block
-            Helps reduce request volume (e.g. from crawlers or abusive bots)
+            可以帮助降低请求量（比如来自爬虫或者恶意机器人）
     .form-group
-      = f.label :throttle_authenticated_api_requests_per_period, 'Max requests per period per user', class: 'control-label col-sm-2'
+      = f.label :throttle_authenticated_api_requests_per_period, '每个用户每段时间内最大请求数量', class: 'control-label col-sm-2'
       .col-sm-10
         = f.number_field :throttle_authenticated_api_requests_per_period, class: 'form-control'
     .form-group
-      = f.label :throttle_authenticated_api_period_in_seconds, 'Rate limit period in seconds', class: 'control-label col-sm-2'
+      = f.label :throttle_authenticated_api_period_in_seconds, '时间区间（秒）', class: 'control-label col-sm-2'
       .col-sm-10
         = f.number_field :throttle_authenticated_api_period_in_seconds, class: 'form-control'
     .form-group
@@ -822,15 +819,15 @@
         .checkbox
           = f.label :throttle_authenticated_web_enabled do
             = f.check_box :throttle_authenticated_web_enabled
-            Enable authenticated web request rate limit
+            启用已认证的 Web 请求速率限制
           %span.help-block
-            Helps reduce request volume (e.g. from crawlers or abusive bots)
+            可以帮助降低请求量（比如来自爬虫或者恶意机器人）
     .form-group
-      = f.label :throttle_authenticated_web_requests_per_period, 'Max requests per period per user', class: 'control-label col-sm-2'
+      = f.label :throttle_authenticated_web_requests_per_period, '每个用户每段时间内最大请求数量', class: 'control-label col-sm-2'
       .col-sm-10
         = f.number_field :throttle_authenticated_web_requests_per_period, class: 'form-control'
     .form-group
-      = f.label :throttle_authenticated_web_period_in_seconds, 'Rate limit period in seconds', class: 'control-label col-sm-2'
+      = f.label :throttle_authenticated_web_period_in_seconds, '时间区间（秒）', class: 'control-label col-sm-2'
       .col-sm-10
         = f.number_field :throttle_authenticated_web_period_in_seconds, class: 'form-control'
 

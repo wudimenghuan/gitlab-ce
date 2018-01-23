@@ -9,16 +9,16 @@
   %td
     - if protected_branch.wildcard?
       - matching_branches = protected_branch.matching(repository.branches)
-      = link_to pluralize(matching_branches.count, "matching branch"), namespace_project_protected_branch_path(@project.namespace, @project, protected_branch)
+      = link_to pluralize(matching_branches.count, "匹配分支"), namespace_project_protected_branch_path(@project.namespace, @project, protected_branch)
     - else
       - if commit = protected_branch.commit
         = link_to(commit.short_id, namespace_project_commit_path(@project.namespace, @project, commit.id), class: 'commit-sha')
         = time_ago_with_tooltip(commit.committed_date)
       - else
-        (branch was removed from repository)
+        (个分支从版本库中移除)
 
   = yield
 
   - if can_admin_project
     %td
-      = link_to 'Unprotect', [@project.namespace.becomes(Namespace), @project, protected_branch], data: { confirm: 'Branch will be writable for developers. Are you sure?' }, method: :delete, class: 'btn btn-warning'
+      = link_to '解除保护', [@project.namespace.becomes(Namespace), @project, protected_branch], data: { confirm: '将允许开发人员写入该分支，你确定么？' }, method: :delete, class: 'btn btn-warning'

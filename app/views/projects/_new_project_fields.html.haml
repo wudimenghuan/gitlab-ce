@@ -34,7 +34,7 @@
 .form-group.visibility-level-setting
   = f.label :visibility_level, class: 'label-light' do
     可见等级
-    = link_to icon('question-circle'), help_page_path("public_access/public_access"), aria: { label: 'Documentation for Visibility Level' }
+    = link_to icon('question-circle'), help_page_path("public_access/public_access"), aria: { label: '文档可见化等级' }
   = render 'shared/visibility_level', f: f, visibility_level: visibility_level.to_i, can_change_visibility_level: true, form_model: @project, with_label: false
 
 = f.submit '创建项目', class: "btn btn-create project-submit", tabindex: 4
