@@ -12,7 +12,7 @@
         %tr
           %th.col-sm-2 标题
           %th.col-sm-4 指纹
-          %th.col-sm-2 具有写权限
+          %th.col-sm-2 具有写权限的项目
           %th.col-sm-2 创建时间
           %th.col-sm-2
       %tbody
@@ -23,10 +23,8 @@
             %td
               %code.key-fingerprint= deploy_key.fingerprint
             %td
-              - if deploy_key.can_push?
-                是
-              - else
-                否
+              - deploy_key.projects_with_write_access.each do |project|
+                = link_to project.full_name, admin_project_path(project), class: 'label deploy-project-label'
             %td
               %span.cgray
                 创建于 #{time_ago_with_tooltip(deploy_key.created_at)}
