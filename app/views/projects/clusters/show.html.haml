@@ -1,5 +1,5 @@
 - @content_class = "limit-container-width" unless fluid_layout
-- breadcrumb_title "Cluster"
+- breadcrumb_title "集群"
 - page_title _("Cluster")
 
 - expanded = Rails.env.test?
@@ -62,7 +62,7 @@
     .settings-header
       %h4= s_('ClusterIntegration|Cluster details')
       %button.btn.js-settings-toggle
-        = expanded ? 'Collapse' : 'Expand'
+        = expanded ? '折叠' : '展开'
       %p= s_('ClusterIntegration|See and edit the details for your cluster')
 
     .settings-content
@@ -79,7 +79,7 @@
     .settings-header
       %h4= _('Advanced settings')
       %button.btn.js-settings-toggle
-        = expanded ? 'Collapse' : 'Expand'
+        = expanded ? '折叠' : '展开'
       %p= s_('ClusterIntegration|Manage Cluster integration on your GitLab project')
     .settings-content
       = render 'advanced_settings'

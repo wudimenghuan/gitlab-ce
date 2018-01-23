@@ -60,7 +60,7 @@
       %p
         更改您的用户名可能会产生意想不到的副作用。
         = succeed '.' do
-          = link_to 'Learn more', help_page_path('user/profile/index', anchor: 'changing-your-username'), target: '_blank'
+          = link_to '了解更多', help_page_path('user/profile/index', anchor: 'changing-your-username'), target: '_blank'
     .col-lg-8
       = form_for @user, url: update_username_profile_path, method: :put, html: {class: "update-username"} do |f|
         .form-group

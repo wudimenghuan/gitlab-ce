@@ -73,10 +73,10 @@ export default {
   computed: {
     featureAccessLevelOptions() {
       const options = [
-        [10, 'Only Project Members'],
+        [10, '只有项目成员'],
       ];
       if (this.visibilityLevel !== visibilityOptions.PRIVATE) {
-        options.push([20, 'Everyone With Access']);
+        options.push([20, '任何人都可以访问']);
       }
       return options;
     },
