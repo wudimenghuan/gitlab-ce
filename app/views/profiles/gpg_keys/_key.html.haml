@@ -17,9 +17,9 @@
   .pull-right
     %span.key-created-at
       created #{time_ago_with_tooltip(key.created_at)}
-    = link_to profile_gpg_key_path(key), data: { confirm: 'Are you sure? Removing this GPG key does not affect already signed commits.' }, method: :delete, class: "btn btn-danger prepend-left-10" do
-      %span.sr-only Remove
+    = link_to profile_gpg_key_path(key), data: { confirm: '你确认要删除 GPG 密钥么？删除这个 GPG 密钥不会影响已经签发的提交。' }, method: :delete, class: "btn btn-danger prepend-left-10" do
+      %span.sr-only 删除
       = icon('trash')
-    = link_to revoke_profile_gpg_key_path(key), data: { confirm: 'Are you sure? All commits that were signed with this GPG key will be unverified.' }, method: :put, class: "btn btn-danger prepend-left-10" do
-      %span.sr-only Revoke
-      Revoke
+    = link_to revoke_profile_gpg_key_path(key), data: { confirm: '你确定要撤销么？所有使用该 GPG 密钥签发的提交都会被改为未认证的提交。' }, method: :put, class: "btn btn-danger prepend-left-10" do
+      %span.sr-only 撤销
+      撤销

@@ -14,8 +14,8 @@ module Gitlab
       ImportSource.new('gitlab',         'GitLab.com',    Gitlab::GitlabImport::Importer),
       ImportSource.new('google_code',    'Google Code',   Gitlab::GoogleCodeImport::Importer),
       ImportSource.new('fogbugz',        'FogBugz',       Gitlab::FogbugzImport::Importer),
-      ImportSource.new('git',            'Repo by URL',   nil),
-      ImportSource.new('gitlab_project', 'GitLab export', Gitlab::ImportExport::Importer),
+      ImportSource.new('git',            '指向版本库的链接', nil),
+      ImportSource.new('gitlab_project', 'GitLab 导出',    Gitlab::ImportExport::Importer),
       ImportSource.new('gitea',          'Gitea',         Gitlab::LegacyGithubImport::Importer)
     ].freeze
 

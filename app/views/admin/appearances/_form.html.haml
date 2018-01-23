@@ -3,26 +3,26 @@
 
   %fieldset.app_logo
     %legend
-      Navigation bar:
+      导航条：
   .form-group
-    = f.label :header_logo, 'Header logo', class: 'control-label'
+    = f.label :header_logo, '标题图标', class: 'control-label'
     .col-sm-10
       - if @appearance.header_logo?
         = image_tag @appearance.header_logo_url, class: 'appearance-light-logo-preview'
         - if @appearance.persisted?
           %br
-          = link_to 'Remove header logo', header_logos_admin_appearances_path, data: { confirm: "Header logo will be removed. Are you sure?"}, method: :delete, class: "btn btn-remove btn-sm remove-logo"
+          = link_to '删除标题图标', header_logos_admin_appearances_path, data: { confirm: "你确定要删除标题图标么？"}, method: :delete, class: "btn btn-remove btn-sm remove-logo"
         %hr
       = f.hidden_field :header_logo_cache
       = f.file_field :header_logo, class: ""
       .hint
-        Maximum file size is 1MB. Pages are optimized for a 28px tall header logo
+        文件最大不可超过 1MB。页面是针对 28px 高的标题图标设计的。
 
   %fieldset.sign-in
     %legend
       登录/注册页面：
   .form-group
-    = f.label :title, "标题", class: 'control-label'
+    = f.label :title, '标题', class: 'control-label'
     .col-sm-10
       = f.text_field :title, class: "form-control"
   .form-group
@@ -32,13 +32,13 @@
       .hint
         描述采用 #{link_to "GitLab 特色的 Markdown", help_page_path('user/markdown'), target: '_blank'} 格式进行解析。
   .form-group
-    = f.label :logo, class: 'control-label'
+    = f.label :logo, '图标', class: 'control-label'
     .col-sm-10
       - if @appearance.logo?
         = image_tag @appearance.logo_url, class: 'appearance-logo-preview'
         - if @appearance.persisted?
           %br
-          = link_to '删除 logo', logo_admin_appearances_path, data: { confirm: "Logo 将被删除，请确认！"}, method: :delete, class: "btn btn-remove btn-sm remove-logo"
+          = link_to '删除图标', logo_admin_appearances_path, data: { confirm: "图标将被删除，请确认！"}, method: :delete, class: "btn btn-remove btn-sm remove-logo"
         %hr
       = f.hidden_field :logo_cache
       = f.file_field :logo, class: ""
@@ -47,13 +47,13 @@
 
   %fieldset
     %legend
-      导航条：
+      新项目指导：
   .form-group
     = f.label :new_project_guidelines, '新建项目指引', class: 'control-label'
     .col-sm-10
       = f.text_area :new_project_guidelines, class: "form-control", rows: 10
       .hint
-        Guidelines parsed with #{link_to "GitLab Flavored Markdown", help_page_path('user/markdown'), target: '_blank'}.
+        项目指导将使用 #{link_to "GitLab 特色的 Markdown", help_page_path('user/markdown'), target: '_blank'} 进行解析。
 
   .form-actions
     = f.submit '保存', class: 'btn btn-save append-right-10'

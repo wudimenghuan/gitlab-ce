@@ -2,9 +2,9 @@
   - if @protected_branches.empty?
     .panel-heading
       %h3.panel-title
-        Protected branch (#{@protected_branches.size})
+        受保护分支 (#{@protected_branches.size})
     %p.settings-message.text-center
-      There are currently no protected branches, protect a branch with the form above.
+      当前没有受保护的分支，可以通过上面的表单对某分支进行保护。
   - else
     %table.table.table-bordered
       %colgroup
@@ -16,10 +16,10 @@
           %col
       %thead
         %tr
-          %th Protected branch (#{@protected_branches.size})
-          %th Last commit
-          %th Allowed to merge
-          %th Allowed to push
+          %th 受保护分支 (#{@protected_branches.size})
+          %th 最后提交
+          %th 允许合并到
+          %th 允许推送到
           - if can_admin_project
             %th
       %tbody

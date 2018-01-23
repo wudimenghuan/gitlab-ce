@@ -40,11 +40,11 @@ import _ from 'underscore';
         $value = $block.find('.value');
         $loading = $block.find('.block-loading').fadeOut();
         selectedMilestoneDefault = (showAny ? '' : null);
-        selectedMilestoneDefault = (showNo && defaultNo ? 'No Milestone' : selectedMilestoneDefault);
+        selectedMilestoneDefault = (showNo && defaultNo ? '无里程碑' : selectedMilestoneDefault);
         selectedMilestone = $dropdown.data('selected') || selectedMilestoneDefault;
         if (issueUpdateURL) {
           milestoneLinkTemplate = _.template('<a href="/<%- full_path %>/milestones/<%- iid %>" class="bold has-tooltip" data-container="body" title="<%- remaining %>"><%- title %></a>');
-          milestoneLinkNoneTemplate = '<span class="no-value">None</span>';
+          milestoneLinkNoneTemplate = '<span class="no-value">无</span>';
           collapsedSidebarLabelTemplate = _.template('<span class="has-tooltip" data-container="body" title="<%- name %><br /><%- remaining %>" data-placement="left" data-html="true"> <%- title %> </span>');
         }
         return $dropdown.glDropdown({
@@ -79,7 +79,7 @@ import _ from 'underscore';
                 extraOptions.push({
                   id: -3,
                   name: '#started',
-                  title: 'Started'
+                  title: '已开始的'
                 });
               }
               if (extraOptions.length) {

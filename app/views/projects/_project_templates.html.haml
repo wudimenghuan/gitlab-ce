@@ -6,19 +6,19 @@
       .template-description= template.description
       %label.btn.btn-success.template-button.choose-template.append-right-10{ for: template.name }
         %input{ type: "radio",  autocomplete: "off", name: "project[template_name]", id: template.name, value: template.name }
-        %span Use template
-      %a.btn.btn-default{ href: template.preview, rel: 'noopener noreferrer', target: '_blank' } Preview
+        %span 使用模板
+      %a.btn.btn-default{ href: template.preview, rel: 'noopener noreferrer', target: '_blank' } 预览
 
   .project-fields-form
     .form-group
       %label.label-light
-        Template
+        模板
       .input-group.template-input-group
         .input-group-addon
           .selected-icon
             - Gitlab::ProjectTemplate.all.each do |template|
               = custom_icon(template.logo)
           .selected-template
-        %button.btn.btn-default.change-template{ type: "button" } Change template
+        %button.btn.btn-default.change-template{ type: "button" } 更改模板
 
     = render 'new_project_fields', f: f, project_name_id: "template-project-name"

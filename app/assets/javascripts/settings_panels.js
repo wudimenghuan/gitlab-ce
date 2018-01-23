@@ -1,5 +1,5 @@
 function expandSection($section) {
-  $section.find('.js-settings-toggle').text('Collapse');
+  $section.find('.js-settings-toggle').text('折叠');
   $section.find('.settings-content').off('scroll.expandSection').scrollTop(0);
   $section.addClass('expanded');
   if (!$section.hasClass('no-animate')) {
@@ -9,7 +9,7 @@ function expandSection($section) {
 }
 
 function closeSection($section) {
-  $section.find('.js-settings-toggle').text('Expand');
+  $section.find('.js-settings-toggle').text('展开');
   $section.find('.settings-content').on('scroll.expandSection', () => expandSection($section));
   $section.removeClass('expanded');
   if (!$section.hasClass('no-animate')) {
