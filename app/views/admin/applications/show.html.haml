@@ -25,9 +25,9 @@
 
     %tr
       %td
-        Trusted
+        可信任
       %td
-        = @application.trusted? ? 'Y' : 'N'
+        = @application.trusted? ? '是' : '否'
 
     = render "shared/tokens/scopes_list", token: @application
 

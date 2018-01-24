@@ -8,7 +8,7 @@
         = f.text_field :name, class: "form-control top", required: true, title: "必填项。"
       .username.form-group
         = f.label :username, "用户名"
-        = f.text_field :username, class: "form-control middle", pattern: Gitlab::PathRegex::NAMESPACE_FORMAT_REGEX_JS, required: true, title: 'Please create a username with only alphanumeric characters.'
+        = f.text_field :username, class: "form-control middle", pattern: Gitlab::PathRegex::NAMESPACE_FORMAT_REGEX_JS, required: true, title: '用户名只可以包含字母和数字。'
         %p.validation-error.hide 用户名已经被使用。
         %p.validation-success.hide 用户名有效。
         %p.validation-pending.hide 正在检查用户名有效性...
@@ -29,6 +29,6 @@
         = f.submit "注册", class: "btn-register btn"
 .clearfix.submit-container
   %p
-    %span.light 没有收到确认邮件？
+    %span.light 尚未收到确认邮件？
     = succeed '。' do
       = link_to "重新发送确认邮件", new_confirmation_path(resource_name)

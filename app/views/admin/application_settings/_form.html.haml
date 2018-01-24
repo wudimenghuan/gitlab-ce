@@ -511,11 +511,10 @@
         .checkbox
           = f.label :hashed_storage_enabled do
             = f.check_box :hashed_storage_enabled
-            使用混淆后的存储路径创建项目
+            使用哈希的存储路径创建项目
           .help-block
-            Enable immutable, hash-based paths and repository names to store repositories on disk. This prevents
-            repositories from having to be moved or renamed when the Project URL changes and may improve disk I/O performance.
-            %em (EXPERIMENTAL)
+            启用不可变的、基于哈希的路径和版本库名称在硬盘上保存版本库。这将避免项目链接改变时引发版本库在磁盘上被移动或者改名，由此可能会提高磁盘 I/O 的性能。
+            %em (实验性的)
     .form-group
       = f.label :repository_storages, '新项目存储路径', class: 'control-label col-sm-2'
       .col-sm-10

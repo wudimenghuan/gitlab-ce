@@ -5,7 +5,7 @@
     %legend
       登录/注册页面：
   .form-group
-    = f.label :title, "标题", class: 'control-label'
+    = f.label :title, '标题', class: 'control-label'
     .col-sm-10
       = f.text_field :title, class: "form-control"
   .form-group
@@ -15,35 +15,35 @@
       .hint
         描述采用 #{link_to "GitLab 特色的 Markdown", help_page_path('user/markdown'), target: '_blank'} 格式进行解析。
   .form-group
-    = f.label :logo, class: 'control-label'
+    = f.label :logo, '图标', class: 'control-label'
     .col-sm-10
       - if @appearance.logo?
         = image_tag @appearance.logo_url, class: 'appearance-logo-preview'
         - if @appearance.persisted?
           %br
-          = link_to '删除 logo', logo_admin_appearances_path, data: { confirm: "Logo 将被删除，请确认！"}, method: :delete, class: "btn btn-remove btn-sm remove-logo"
+          = link_to '删除图标', logo_admin_appearances_path, data: { confirm: "图标将被删除，请确认！"}, method: :delete, class: "btn btn-remove btn-sm remove-logo"
         %hr
       = f.hidden_field :logo_cache
       = f.file_field :logo, class: ""
       .hint
-        文件最大大小为 1MB。页面按照 640x360 像素的 LOGO 设计。
+        文件最大不可超过 1MB。页面按照 640x360 像素的 LOGO 设计。
 
   %fieldset.app_logo
     %legend
       导航条：
   .form-group
-    = f.label :header_logo, '头部 Logo', class: 'control-label'
+    = f.label :header_logo, '标题图标', class: 'control-label'
     .col-sm-10
       - if @appearance.header_logo?
         = image_tag @appearance.header_logo_url, class: 'appearance-light-logo-preview'
         - if @appearance.persisted?
           %br
-          = link_to '删除头部 logo', header_logos_admin_appearances_path, data: { confirm: "头部 Logo 将被删除，请确认！"}, method: :delete, class: "btn btn-remove btn-sm remove-logo"
+          = link_to '删除标题图标', header_logos_admin_appearances_path, data: { confirm: "标题图标将被删除，请确认！"}, method: :delete, class: "btn btn-remove btn-sm remove-logo"
         %hr
       = f.hidden_field :header_logo_cache
       = f.file_field :header_logo, class: ""
       .hint
-        文件最大大小为 1MB。页面按照 72x72 像素的头部 LOGO 设计。
+        文件最大不可超过 1MB。页面按照 72x72 像素的头部 LOGO 设计。
 
   .form-actions
     = f.submit '保存', class: 'btn btn-save append-right-10'
