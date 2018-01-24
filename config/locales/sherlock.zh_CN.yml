@@ -1,0 +1,37 @@
+zh_CN:
+  sherlock:
+    title: 福尔摩斯
+    delete_all_transactions: 删除所有记录
+    introduction: >
+      下面是由福尔摩斯所记录的所有记录列表。请求福尔摩斯自己的记录会被忽略。
+    no_transactions: 没有可显示的记录
+    no_queries: 没有可显示的查询
+    no_file_samples: 没有可显示的文件抽样
+    all_transactions: 所有记录
+    transaction: 记录
+    query: 查询
+    file_sample: 文件抽样
+    type: 类型
+    path: 路径
+    time: 时间
+    queries: 查询
+    finished_at: 结束于
+    ago: 之前
+    view: 视图
+    seconds: 秒
+    milliseconds: 毫秒
+    general: 全局
+    id: ID
+    time_inclusive: 时间 (包括)
+    backtrace: 调用栈
+    application_backtrace: 应用调用栈
+    full_backtrace: 完整调用栈
+    origin: 来源
+    line: 行
+    line_capitalized: 行
+    copy_to_clipboard: 复制到剪贴板
+    query_plan: 查询安排
+    events: 事件
+    percent: '%'
+    count: 共计
+    query_time: 查询时间
