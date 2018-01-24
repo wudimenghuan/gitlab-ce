@@ -46,33 +46,33 @@
     .col-lg-8
       .row
         - if @user.read_only_attribute?(:name)
-          = f.text_field :name, required: true, readonly: true, wrapper: { class: 'col-md-9' },
+          = f.text_field :name, required: true, label: '姓名', readonly: true, wrapper: { class: 'col-md-9' },
           help: "您的姓名将基于您的 #{ attribute_provider_label(:name) } 账号自动设置, 使得其他可以认识你。"
         - else
-          = f.text_field :name, required: true, wrapper: { class: 'col-md-9' }, help: "输入你的名字，让其他人认识你。"
+          = f.text_field :name, required: true, label: '姓名', wrapper: { class: 'col-md-9' }, help: "输入你的名字，让其他人认识你。"
         = f.text_field :id, readonly: true, label: '用户 ID', wrapper: { class: 'col-md-3' }
 
       - if @user.read_only_attribute?(:email)
-        = f.text_field :email, required: true, readonly: true, help: "您的电子邮箱已基于您的 #{ attribute_provider_label(:email) } 账号自动设置。"
+        = f.text_field :email, required: true, label: '电子邮箱', readonly: true, help: "您的电子邮箱已基于您的 #{ attribute_provider_label(:email) } 账号自动设置。"
       - else
         = f.text_field :email, required: true, label: '电子邮箱', value: (@user.email unless @user.temp_oauth_email?),
           help: user_email_help_text(@user)
       = f.select :public_email, options_for_select(@user.all_emails, selected: @user.public_email),
-        { help: '此邮箱将显示在公开的个人资料上。', include_blank: '不要在个人资料上显示' },
+        { label: "公开电子邮箱", help: '此邮箱将显示在公开的个人资料上。', include_blank: '不要在个人资料上显示' },
         control_class: 'select2'
       = f.select :preferred_language, Gitlab::I18n::AVAILABLE_LANGUAGES.map { |value, label| [label, value] },
-        { help: '这是一个实验性的功能（翻译尚未完成）。' },
+        { label: "语言偏好", help: '这是一个实验性的功能（翻译尚未完成）。' },
         control_class: 'select2'
       = f.text_field :skype
-      = f.text_field :linkedin
-      = f.text_field :twitter
+      = f.text_field :linkedin, label: '领英'
+      = f.text_field :twitter, label: '推特'
       = f.text_field :website_url, label: '个人主页'
       - if @user.read_only_attribute?(:location)
-        = f.text_field :location, readonly: true, help: "Your location was automatically set based on your #{ attribute_provider_label(:location) } account."
+        = f.text_field :location, readonly: true, help: "将根据你的 #{ attribute_provider_label(:location) } 账户自动设置你的地址。"
       - else
-        = f.text_field :location
-      = f.text_field :organization
-      = f.text_area :bio, rows: 4, maxlength: 250, help: '自我介绍(少于 250 字)。'
+        = f.text_field :location, label: '地址'
+      = f.text_field :organization, label: '组织'
+      = f.text_area :bio, label: '自我介绍', rows: 4, maxlength: 250, help: '自我介绍(少于 250 字)。'
       .prepend-top-default.append-bottom-default
         = f.submit '更新个人资料', class: 'btn btn-success'
         = link_to '取消', user_path(current_user), class: 'btn btn-cancel'

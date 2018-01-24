@@ -2,14 +2,14 @@
 
 .form-group
   = label_tag :merge_method_merge, class: 'label-light' do
-    Merge method
+    合并方法
   .radio
     = label_tag :project_merge_method_merge do
       = form.radio_button :merge_method, :merge, class: "js-merge-method-radio"
-      %strong Merge commit
+      %strong 合并提交
       %br
       %span.descr
-        A merge commit is created for every merge, and merging is allowed as long as there are no conflicts.
+        为每一个合并创建一个合并提交，并且只要没有冲突就允许合并。
 
   = render 'merge_request_rebase_settings', form: form
 

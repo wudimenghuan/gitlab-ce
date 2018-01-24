@@ -25,12 +25,12 @@
       enabledText: {
         type: String,
         required: false,
-        default: 'Enabled',
+        default: '启用',
       },
       disabledText: {
         type: String,
         required: false,
-        default: 'Disabled',
+        default: '禁用',
       },
     },
 

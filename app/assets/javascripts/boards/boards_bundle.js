@@ -102,7 +102,7 @@ $(() => {
 
             if (list.type === 'closed') {
               list.position = Infinity;
-              list.label = { description: 'Shows all closed issues. Moving an issue to this list closes it' };
+              list.label = { description: '显示所有已关闭的问题。将一个问题移到该列表将关闭该问题。' };
             } else if (list.type === 'backlog') {
               list.position = -1;
             }
@@ -113,7 +113,7 @@ $(() => {
           Store.addBlankState();
           this.loading = false;
         })
-        .catch(() => new Flash('An error occurred. Please try again.'));
+        .catch(() => new Flash('发生错误，请重试。'));
     },
     methods: {
       updateTokens() {
@@ -195,7 +195,7 @@ $(() => {
       },
       tooltipTitle() {
         if (this.disabled) {
-          return 'Please add a list to your board first';
+          return '请先在看板中添加一个列表';
         }
 
         return '';

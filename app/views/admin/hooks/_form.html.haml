@@ -21,16 +21,16 @@
       = form.check_box :repository_update_events, class: 'pull-left'
       .prepend-left-20
         = form.label :repository_update_events, class: 'list-label' do
-          %strong Repository update events
+          %strong 版本库更新事件
         %p.light
-          This URL will be triggered when repository is updated
+          此链接将在版本库每次更新时触发
     %div
       = form.check_box :push_events, class: 'pull-left'
       .prepend-left-20
         = form.label :push_events, class: 'list-label' do
           %strong 推送事件
         %p.light
-          此链接将在版本库每次更新时触发
+          此链接将在推送新版本到版本库时触发
     %div
       = form.check_box :tag_push_events, class: 'pull-left'
       .prepend-left-20

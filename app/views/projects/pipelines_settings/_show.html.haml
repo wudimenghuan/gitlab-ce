@@ -77,7 +77,7 @@
 
         %hr
         .form-group
-          = f.label :ci_config_path, 'Custom CI config path', class: 'label-light'
+          = f.label :ci_config_path, '自定义 CI 配置路径', class: 'label-light'
           = f.text_field :ci_config_path, class: 'form-control', placeholder: '.gitlab-ci.yml'
           %p.help-block
             The path to CI config file. Defaults to <code>.gitlab-ci.yml</code>
@@ -93,17 +93,16 @@
               允许所有人访问公共和内部项目的流水线，包含日志和工件。
               = link_to icon('question-circle'), help_page_path('user/project/pipelines/settings', anchor: 'visibility-of-pipelines'), target: '_blank'
             .bs-callout.bs-callout-info
-              %p If enabled:
+              %p 如果启用:
               %ul
                 %li
-                  For public projects, anyone can view pipelines and access job details (output logs and artifacts)
+                  对于公开项目，任何人可以查看流水线以及工作细节（输入日志以及元数据信息）
                 %li
-                  For internal projects, any logged in user can view pipelines and access job details (output logs and artifacts)
+                  对于内部项目，任何登录后的用户都可以查看流水线以及工作细节（输入日志以及元数据信息）
                 %li
-                  For private projects, any member (guest or higher) can view pipelines and access job details (output logs and artifacts)
+                  对于私有项目，任何成员（邀请的客人或者更高级别）可以查看流水线以及工作细节（输入日志以及元数据信息）
               %p
-                If disabled, the access level will depend on the user's
-                permissions in the project.
+                如果禁用，访问情况将取决于用户在项目中的权限情况而定。
 
         %hr
         .form-group
