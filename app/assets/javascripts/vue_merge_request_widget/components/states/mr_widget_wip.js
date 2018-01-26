@@ -37,7 +37,7 @@ export default {
   },
   template: `
     <div class="mr-widget-body media">
-      <status-icon status="failed" :show-disabled-button="Boolean(mr.removeWIPPath)" />
+      <status-icon status="warning" :show-disabled-button="Boolean(mr.removeWIPPath)" />
       <div class="media-body space-children">
         <span class="bold">
           此合并请求当前正在进行中

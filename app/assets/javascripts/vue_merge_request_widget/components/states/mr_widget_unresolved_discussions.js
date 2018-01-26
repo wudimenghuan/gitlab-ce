@@ -10,7 +10,7 @@ export default {
   },
   template: `
     <div class="mr-widget-body media">
-      <status-icon status="failed" :show-disabled-button="true" />
+      <status-icon status="warning" :show-disabled-button="true" />
       <div class="media-body space-children">
         <span class="bold">
           还有未解决的讨论。请解决这些讨论
