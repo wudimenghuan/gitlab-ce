@@ -23,7 +23,7 @@ export default {
   computed: {
     assigneeTitle() {
       const assignees = this.numberOfAssignees;
-      return assignees > 1 ? `${assignees} Assignees` : 'Assignee';
+      return assignees > 1 ? `${assignees} 个指派` : '个指派';
     },
   },
   template: `

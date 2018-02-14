@@ -133,7 +133,7 @@ export default {
           }
         })
         .catch(() => {
-          new Flash('Something went wrong while fetching the environments for this merge request. Please try again.'); // eslint-disable-line
+          new Flash('获取这个合并请求的运行环境出现了错误，请重试。'); // eslint-disable-line
         });
     },
     fetchActionsContent() {
@@ -147,7 +147,7 @@ export default {
           }
         })
         .catch(() => {
-          new Flash('Something went wrong. Please try again.'); // eslint-disable-line
+          new Flash('出现了错误，请重试。'); // eslint-disable-line
         });
     },
     handleNotification(data) {

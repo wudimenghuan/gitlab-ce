@@ -1,54 +1,54 @@
 - add_to_breadcrumbs "Projects", admin_projects_path
 - breadcrumb_title @project.name_with_namespace
-- page_title @project.name_with_namespace, "Projects"
+- page_title @project.name_with_namespace, "项目"
 %h3.page-title
-  Project: #{@project.name_with_namespace}
+  项目：#{@project.name_with_namespace}
   = link_to edit_project_path(@project), class: "btn btn-nr pull-right" do
     %i.fa.fa-pencil-square-o
-    Edit
+    编辑
 %hr
 - if @project.last_repository_check_failed?
   .row
     .col-md-12
       .panel
         .panel-heading.alert.alert-danger
-          Last repository check
-          = "(#{time_ago_in_words(@project.last_repository_check_at)} ago)"
-          failed. See
+          最后一次版本仓库检查
+          = "(#{time_ago_in_words(@project.last_repository_check_at)} 之前)"
+          失败. 查看
           = link_to 'repocheck.log', admin_logs_path
-          for error messages.
+          获取错误信息。
 .row
   .col-md-6
     .panel.panel-default
       .panel-heading
-        Project info:
+        项目信息：
       %ul.well-list
         %li
-          %span.light Name:
+          %span.light 名称：
           %strong
             = link_to @project.name, project_path(@project)
         %li
-          %span.light Namespace:
+          %span.light 命名空间：
           %strong
             - if @project.namespace
               = link_to @project.namespace.human_name, [:admin, @project.group || @project.owner]
             - else
-              Global
+              全局
         %li
-          %span.light Owned by:
+          %span.light 拥有者：
           %strong
             - if @project.owner
               = link_to @project.owner_name, [:admin, @project.owner]
             - else
-              (deleted)
+              (已删除)
 
         %li
-          %span.light Created by:
+          %span.light 创建者：
           %strong
-            = @project.creator.try(:name) || '(deleted)'
+            = @project.creator.try(:name) || '(已删除)'
 
         %li
-          %span.light Created on:
+          %span.light 创建时间：
           %strong
             = @project.created_at.to_s(:medium)
 
@@ -62,45 +62,45 @@
             = link_to @project.ssh_url_to_repo, project_path(@project)
         - if @project.repository.exists?
           %li
-            %span.light fs:
+            %span.light 文件系统：:
             %strong
               = @project.repository.path_to_repo
 
           %li
-            %span.light Storage:
+            %span.light 存储:
             %strong= storage_counter(@project.statistics.storage_size)
             (
             = storage_counter(@project.statistics.repository_size)
-            repository,
+            版本库,
             = storage_counter(@project.statistics.build_artifacts_size)
-            build artifacts,
+            构建工件,
             = storage_counter(@project.statistics.lfs_objects_size)
             LFS
             )
 
           %li
-            %span.light last commit:
+            %span.light 最后提交：
             %strong
               = last_commit(@project)
 
           %li
-            %span.light Git LFS status:
+            %span.light Git LFS 状态:
             %strong
               = project_lfs_status(@project)
               = link_to icon('question-circle'), help_page_path('workflow/lfs/manage_large_binaries_with_git_lfs')
         - else
           %li
-            %span.light repository:
+            %span.light 版本库：
             %strong.cred
-              does not exist
+              不存在
 
         - if @project.archived?
           %li
-            %span.light archived:
-            %strong repository is read-only
+            %span.light 已归档：
+            %strong 版本库只读
 
         %li
-          %span.light access:
+          %span.light 访问：
           %strong
             %span{ class: visibility_level_color(@project.visibility_level) }
               = visibility_level_icon(@project.visibility_level)
@@ -108,60 +108,60 @@
 
     .panel.panel-default
       .panel-heading
-        Transfer project
+        转移项目
       .panel-body
         = form_for @project, url: transfer_admin_project_path(@project), method: :put, html: { class: 'form-horizontal' } do |f|
           .form-group
-            = f.label :new_namespace_id, "Namespace", class: 'control-label'
+            = f.label :new_namespace_id, "命名空间", class: 'control-label'
             .col-sm-10
               .dropdown
-                = dropdown_toggle('Search for Namespace', { toggle: 'dropdown', field_name: 'new_namespace_id' }, { toggle_class: 'js-namespace-select large' })
+                = dropdown_toggle('搜索命名空间', { toggle: 'dropdown', field_name: 'new_namespace_id' }, { toggle_class: 'js-namespace-select large' })
                 .dropdown-menu.dropdown-select
-                  = dropdown_title('Namespaces')
-                  = dropdown_filter("Search for Namespace")
+                  = dropdown_title('命名空间')
+                  = dropdown_filter("搜索命名空间")
                   = dropdown_content
                   = dropdown_loading
 
           .form-group
             .col-sm-offset-2.col-sm-10
-              = f.submit 'Transfer', class: 'btn btn-primary'
+              = f.submit '转移', class: 'btn btn-primary'
 
     .panel.panel-default.repository-check
       .panel-heading
-        Repository check
+        版本库检查
       .panel-body
         = form_for @project, url: repository_check_admin_project_path(@project), method: :post do |f|
           .form-group
             - if @project.last_repository_check_at.nil?
-              This repository has never been checked.
+              此版本库还未被检查过。
             - else
-              This repository was last checked
+              此版本仓库最后检查时间在
               = @project.last_repository_check_at.to_s(:medium) + '.'
-              The check
+              该检查
               - if @project.last_repository_check_failed?
                 = succeed '.' do
-                  %strong.cred failed
-                See
+                  %strong.cred 失败
+                查看
                 = link_to 'repocheck.log', admin_logs_path
-                for error messages.
+                获取错误信息。
               - else
-                passed.
+                正常.
 
             = link_to icon('question-circle'), help_page_path('administration/repository_checks')
 
           .form-group
-            = f.submit 'Trigger repository check', class: 'btn btn-primary'
+            = f.submit '触发版本仓库检查', class: 'btn btn-primary'
 
   .col-md-6
     - if @group
       .panel.panel-default
         .panel-heading
           %strong= @group.name
-          group members
+          群组成员
           %span.badge= @group_members.size
           .pull-right
             = link_to admin_group_path(@group), class: 'btn btn-xs' do
-              = icon('pencil-square-o', text: 'Manage access')
+              = icon('pencil-square-o', text: '管理权限')
         %ul.well-list.content-list.members-list
           = render partial: 'shared/members/member', collection: @group_members, as: :member, locals: { show_controls: false }
         .panel-footer
@@ -172,10 +172,10 @@
     .panel.panel-default
       .panel-heading
         %strong= @project.name
-        project members
+        项目成员
         %span.badge= @project.users.size
         .pull-right
-          = link_to icon('pencil-square-o', text: 'Manage access'), polymorphic_url([@project, :members]), class: "btn btn-xs"
+          = link_to icon('pencil-square-o', text: '管理权限'), polymorphic_url([@project, :members]), class: "btn btn-xs"
       %ul.well-list.project_members.content-list.members-list
         = render partial: 'shared/members/member', collection: @project_members, as: :member, locals: { show_controls: false }
       .panel-footer

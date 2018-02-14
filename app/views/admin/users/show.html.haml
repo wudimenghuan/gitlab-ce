@@ -1,6 +1,6 @@
 - add_to_breadcrumbs "Users", admin_users_path
 - breadcrumb_title @user.name
-- page_title @user.name, "Users"
+- page_title @user.name, "用户"
 = render 'admin/users/head'
 
 .row
@@ -12,7 +12,7 @@
         %li
           = image_tag avatar_icon(@user, 60), class: "avatar s60"
         %li
-          %span.light Profile page:
+          %span.light 个人资料页面：
           %strong
             = link_to user_path(@user) do
               = @user.username
@@ -20,96 +20,96 @@
 
     .panel.panel-default
       .panel-heading
-        Account:
+        账号：
       %ul.well-list
         %li
-          %span.light Name:
+          %span.light 姓名：
           %strong= @user.name
         %li
-          %span.light Username:
+          %span.light 用户名：
           %strong
             = @user.username
         %li
-          %span.light Email:
+          %span.light 邮箱：
           %strong
             = mail_to @user.email
         - @user.emails.each do |email|
           %li
-            %span.light Secondary email:
+            %span.light 第二邮箱：
             %strong= email.email
-            = link_to remove_email_admin_user_path(@user, email), data: { confirm: "Are you sure you want to remove #{email.email}?" }, method: :delete, class: "btn-xs btn btn-remove pull-right", title: 'Remove secondary email', id: "remove_email_#{email.id}" do
+            = link_to remove_email_admin_user_path(@user, email), data: { confirm: "确定要删除 #{email.email}？" }, method: :delete, class: "btn-xs btn btn-remove pull-right", title: '删除第二邮箱', id: "remove_email_#{email.id}" do
               %i.fa.fa-times
 
         %li.two-factor-status
-          %span.light Two-factor Authentication:
+          %span.light 两步验证：
           %strong{ class: @user.two_factor_enabled? ? 'cgreen' : 'cred' }
             - if @user.two_factor_enabled?
-              Enabled
-              = link_to 'Disable', disable_two_factor_admin_user_path(@user), data: {confirm: 'Are you sure?'}, method: :patch, class: 'btn btn-xs btn-remove pull-right', title: 'Disable Two-factor Authentication'
+              已启用
+              = link_to '禁用', disable_two_factor_admin_user_path(@user), data: {confirm: '确定要继续么？'}, method: :patch, class: 'btn btn-xs btn-remove pull-right', title: '禁用两步验证'
             - else
-              Disabled
+              已禁用
 
         %li
-          %span.light External User:
+          %span.light 外部用户：
           %strong
-            = @user.external? ? "Yes" : "No"
+            = @user.external? ? "是" : "否"
         %li
-          %span.light Can create groups:
+          %span.light 是否可以创建群组：
           %strong
-            = @user.can_create_group ? "Yes" : "No"
+            = @user.can_create_group ? "是" : "否"
         %li
-          %span.light Personal projects limit:
+          %span.light 个人项目限制：
           %strong
             = @user.projects_limit
         %li
-          %span.light Member since:
+          %span.light 注册时间：
           %strong
             = @user.created_at.to_s(:medium)
         - if @user.confirmed_at
           %li
-            %span.light Confirmed at:
+            %span.light 确认时间：
             %strong
               = @user.confirmed_at.to_s(:medium)
         - else
           %li
-            %span.light Confirmed:
+            %span.light 已确认：
             %strong.cred
-              No
+              否
 
         %li
-          %span.light Current sign-in IP:
+          %span.light 当前登录 IP：
           %strong
             - if @user.current_sign_in_ip
               = @user.current_sign_in_ip
             - else
-              never
+              从未
 
         %li
-          %span.light Current sign-in at:
+          %span.light 当前登录时间：
           %strong
             - if @user.current_sign_in_at
               = @user.current_sign_in_at.to_s(:medium)
             - else
-              never
+              从未
 
         %li
-          %span.light Last sign-in IP:
+          %span.light 上次登录 IP：
           %strong
             - if @user.last_sign_in_ip
               = @user.last_sign_in_ip
             - else
-              never
+              从未
 
         %li
-          %span.light Last sign-in at:
+          %span.light 上次登录时间：
           %strong
             - if @user.last_sign_in_at
               = @user.last_sign_in_at.to_s(:medium)
             - else
-              never
+              从未
 
         %li
-          %span.light Sign-in count:
+          %span.light 登录次数：
           %strong
             = @user.sign_in_count
 
@@ -121,7 +121,7 @@
 
         - if @user.created_by
           %li
-            %span.light Created by:
+            %span.light 创建者：
             %strong
               = link_to @user.created_by.name, [:admin, @user.created_by]
 
@@ -130,52 +130,52 @@
       - unless @user.confirmed?
         .panel.panel-info
           .panel-heading
-            Confirm user
+            确认用户
           .panel-body
             - if @user.unconfirmed_email.present?
               - email = " (#{@user.unconfirmed_email})"
-            %p This user has an unconfirmed email address#{email}. You may force a confirmation.
+            %p 此用户有一个未确认的邮箱地址 #{email}。你可以强制确认。
             %br
-            = link_to 'Confirm user', confirm_admin_user_path(@user), method: :put, class: "btn btn-info", data: { confirm: 'Are you sure?' }
+            = link_to '确认用户', confirm_admin_user_path(@user), method: :put, class: "btn btn-info", data: { confirm: '确定要确认该邮箱地址？' }
       - if @user.blocked?
         .panel.panel-info
           .panel-heading
-            This user is blocked
+            该用户被禁用
           .panel-body
-            %p A blocked user cannot:
+            %p 被禁用的用户不能：
             %ul
-              %li Log in
-              %li Access Git repositories
+              %li 登录
+              %li 访问 Git 版本库
             %br
-            = link_to 'Unblock user', unblock_admin_user_path(@user), method: :put, class: "btn btn-info", data: { confirm: 'Are you sure?' }
+            = link_to '解锁用户', unblock_admin_user_path(@user), method: :put, class: "btn btn-info", data: { confirm: '确定要解锁该用户？' }
       - else
         .panel.panel-warning
           .panel-heading
-            Block this user
+            禁用用户
           .panel-body
-            %p Blocking user has the following effects:
+            %p 禁用用户有如下效果：
             %ul
-              %li User will not be able to login
-              %li User will not be able to access git repositories
-              %li Personal projects will be left
-              %li Owned groups will be left
+              %li 用户无法登录
+              %li 用户无法访问 git 版本仓库
+              %li 个人项目将被移除
+              %li 拥有的群组将被移除
             %br
-            = link_to 'Block user', block_admin_user_path(@user), data: { confirm: 'USER WILL BE BLOCKED! Are you sure?' }, method: :put, class: "btn btn-warning"
+            = link_to '禁用用户', block_admin_user_path(@user), data: { confirm: '用户将被禁用！确定要继续么？' }, method: :put, class: "btn btn-warning"
       - if @user.access_locked?
         .panel.panel-info
           .panel-heading
-            This account has been locked
+            该账号已经被锁定。
           .panel-body
-            %p This user has been temporarily locked due to excessive number of failed logins. You may manually unlock the account.
+            %p 该账号由于多次登录失败，已被临时锁定。 你可以手动解锁该账号。
             %br
-            = link_to 'Unlock user', unlock_admin_user_path(@user), method: :put, class: "btn btn-info", data: { confirm: 'Are you sure?' }
+            = link_to '解锁用户', unlock_admin_user_path(@user), method: :put, class: "btn btn-info", data: { confirm: '确定要解锁该用户？' }
 
       .panel.panel-danger
         .panel-heading
           = s_('AdminUsers|Delete user')
         .panel-body
           - if @user.can_be_removed? && can?(current_user, :destroy_user, @user)
-            %p Deleting a user has the following effects:
+            %p 删除用户有如下效果：
             = render 'users/deletion_guidance', user: @user
             %br
             %button.delete-user-button.btn.text-danger{ data: { toggle: 'modal',
@@ -188,13 +188,13 @@
           - else
             - if @user.solo_owned_groups.present?
               %p
-                This user is currently an owner in these groups:
+                此用户当前拥有以下群组：
                 %strong= @user.solo_owned_groups.map(&:name).join(', ')
               %p
-                You must transfer ownership or delete these groups before you can delete this user.
+                在删除此用户前，请转移这些群组的所有权或删除之。
             - else
               %p
-                You don't have access to delete this user.
+                您没有删除此用户的权限。
 
       .panel.panel-danger
         .panel-heading
@@ -202,13 +202,11 @@
         .panel-body
           - if can?(current_user, :destroy_user, @user)
             %p
-              This option deletes the user and any contributions that
-              would usually be moved to the
-              = succeed "." do
-                = link_to "system ghost user", help_page_path("user/profile/account/delete_account")
-              As well as the user's personal projects, groups owned solely by
-              the user, and projects in them, will also be removed. Commits
-              to other projects are unaffected.
+              这个选项将删除用户账户并将其贡献移动到
+              = succeed "。" do
+                = link_to "系统幽灵账户", help_page_path("user/profile/account/delete_account")
+              用户的个人项目、所拥有的群组及其中的项目都将被删除，不过用户对其它
+              项目的提交将不会受到影响。
             %br
               %button.delete-user-button.btn.text-danger{ data: { toggle: 'modal',
                 target: '#delete-user-modal',
@@ -219,6 +217,6 @@
                 = s_('AdminUsers|Delete user and contributions')
           - else
             %p
-              You don't have access to delete this user.
+              您没有删除此用户的权限。
 
         #delete-user-modal

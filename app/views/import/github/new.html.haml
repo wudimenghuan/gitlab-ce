@@ -2,42 +2,41 @@
 - header_title "Projects", root_path
 
 %h3.page-title
-  = icon 'github', text: 'Import Projects from GitHub'
+  = icon 'github', text: '从 GitHub 导入项目'
 
 - if github_import_configured?
   %p
-    To import a GitHub project, you first need to authorize GitLab to access
-    the list of your GitHub repositories:
+    要导入 GitHub 项目，您首先需要授权 GitLab 访问
+    您在 GitHub 下列版本库：
 
-  = link_to 'List your GitHub repositories', status_import_github_path, class: 'btn btn-success'
+  = link_to '列出您的 GitHub 版本库', status_import_github_path, class: 'btn btn-success'
 
   %hr
 
 %p
   - if github_import_configured?
-    Alternatively,
+    另外,
   - else
-    To import a GitHub project,
-  you can use a
+    要从 GitHub 导入项目,
+  您可以使用一个
   = succeed '.' do
-    = link_to 'Personal Access Token', 'https://github.com/settings/tokens'
-  When you create your Personal Access Token,
-  you will need to select the <code>repo</code> scope, so we can display a
-  list of your public and private repositories which are available for import.
+    = link_to '个人访问令牌', 'https://github.com/settings/tokens'
+  您在创建个人访问令牌时,
+  需要选择 <code>repo</code> 范围, 这样我们才可以
+  列出您的可被导出的公开及私有版本库。
 
 = form_tag personal_access_token_import_github_path, method: :post, class: 'form-inline' do
   .form-group
-    = text_field_tag :personal_access_token, '', class: 'form-control', placeholder: "Personal Access Token", size: 40
-    = submit_tag 'List your GitHub repositories', class: 'btn btn-success'
+    = text_field_tag :personal_access_token, '', class: 'form-control', placeholder: "个人访问令牌", size: 40
+    = submit_tag '列出您的 GitHub 版本库', class: 'btn btn-success'
 
 - unless github_import_configured?
   %hr
   %p
     Note:
     - if current_user.admin?
-      As an administrator you may like to configure
+      作为管理员，您可能需要配置
     - else
-      Consider asking your GitLab administrator to configure
-    = link_to 'GitHub integration', help_page_path("integration/github")
-    which will allow login via GitHub and allow importing projects without
-    generating a Personal Access Token.
+      请考虑要求您的 GitLab 管理员配置
+    = link_to 'GitHub 集成', help_page_path("integration/github")
+    这将可以通过 GitHub 登录，并允许导入项目，而不需要生成个人令牌。

@@ -4,7 +4,7 @@
     .header-content
       .title-container
         %h1.title
-          = link_to root_path, title: 'Dashboard', id: 'logo' do
+          = link_to root_path, title: '仪表板', id: 'logo' do
             = brand_header_logo
             - logo_text = brand_header_logo_type
             - if logo_text.present?
@@ -23,23 +23,23 @@
           %li.hidden-sm.hidden-xs
             = render 'layouts/search' unless current_controller?(:search)
           %li.visible-sm-inline-block.visible-xs-inline-block
-            = link_to search_path, title: 'Search', aria: { label: "Search" }, data: {toggle: 'tooltip', placement: 'bottom', container: 'body'} do
+            = link_to search_path, title: '搜索', aria: { label: "搜索" }, data: {toggle: 'tooltip', placement: 'bottom', container: 'body'} do
               = sprite_icon('search', size: 16)
           - if current_user
             = nav_link(path: 'dashboard#issues', html_options: { class: "user-counter" }) do
-              = link_to assigned_issues_dashboard_path, title: 'Issues', class: 'dashboard-shortcuts-issues', aria: { label: "Issues" }, data: {toggle: 'tooltip', placement: 'bottom', container: 'body'} do
+              = link_to assigned_issues_dashboard_path, title: '问题', class: 'dashboard-shortcuts-issues', aria: { label: "问题" }, data: {toggle: 'tooltip', placement: 'bottom', container: 'body'} do
                 = sprite_icon('issues', size: 16)
                 - issues_count = assigned_issuables_count(:issues)
                 %span.badge.issues-count{ class: ('hidden' if issues_count.zero?) }
                   = number_with_delimiter(issues_count)
             = nav_link(path: 'dashboard#merge_requests', html_options: { class: "user-counter" }) do
-              = link_to assigned_mrs_dashboard_path, title: 'Merge requests', class: 'dashboard-shortcuts-merge_requests', aria: { label: "Merge requests" }, data: {toggle: 'tooltip', placement: 'bottom', container: 'body'} do
+              = link_to assigned_mrs_dashboard_path, title: '合并请求', class: 'dashboard-shortcuts-merge_requests', aria: { label: "合并请求" }, data: {toggle: 'tooltip', placement: 'bottom', container: 'body'} do
                 = sprite_icon('git-merge', size: 16)
                 - merge_requests_count = assigned_issuables_count(:merge_requests)
                 %span.badge.merge-requests-count{ class: ('hidden' if merge_requests_count.zero?) }
                   = number_with_delimiter(merge_requests_count)
             = nav_link(controller: 'dashboard/todos', html_options: { class: "user-counter" }) do
-              = link_to dashboard_todos_path, title: 'Todos', aria: { label: "Todos" }, class: 'shortcuts-todos', data: {toggle: 'tooltip', placement: 'bottom', container: 'body'} do
+              = link_to dashboard_todos_path, title: '待办事项', aria: { label: "待办事项" }, class: 'shortcuts-todos', data: {toggle: 'tooltip', placement: 'bottom', container: 'body'} do
                 = sprite_icon('todo-done', size: 16)
                 %span.badge.todos-count{ class: ('hidden' if todos_pending_count.zero?) }
                   = todos_count_format(todos_pending_count)
@@ -55,25 +55,25 @@
                     @#{current_user.username}
                   %li.divider
                   %li
-                    = link_to "Profile", current_user, class: 'profile-link', data: { user: current_user.username }
+                    = link_to "个人资料", current_user, class: 'profile-link', data: { user: current_user.username }
                   %li
-                    = link_to "Settings", profile_path
+                    = link_to "设置", profile_path
                   - if current_user
                     %li
-                      = link_to "Help", help_path
+                      = link_to "帮助", help_path
                   %li.divider
                   %li
-                    = link_to "Sign out", destroy_user_session_path, class: "sign-out-link"
+                    = link_to "退出", destroy_user_session_path, class: "sign-out-link"
             - if session[:impersonator_id]
               %li.impersonation
-                = link_to admin_impersonation_path, class: 'impersonation-btn', method: :delete, title: "Stop impersonation", aria: { label: 'Stop impersonation' }, data: { toggle: 'tooltip', placement: 'bottom', container: 'body' } do
+                = link_to admin_impersonation_path, class: 'impersonation-btn', method: :delete, title: "停止扮演", aria: { label: '停止扮演' }, data: { toggle: 'tooltip', placement: 'bottom', container: 'body' } do
                   = icon('user-secret')
           - else
             %li
               %div
-                = link_to "Sign in / Register", new_session_path(:user, redirect_to_referer: 'yes'), class: 'btn btn-sign-in'
+                = link_to "登录 / 注册", new_session_path(:user, redirect_to_referer: 'yes'), class: 'btn btn-sign-in'
 
       %button.navbar-toggle.hidden-sm.hidden-md.hidden-lg{ type: 'button' }
-        %span.sr-only Toggle navigation
+        %span.sr-only 切换导航面板
         = sprite_icon('more', size: 12, css_class: 'more-icon js-navbar-toggle-right')
         = sprite_icon('close', size: 12, css_class: 'close-icon js-navbar-toggle-left')

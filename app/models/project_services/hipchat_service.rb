@@ -24,7 +24,7 @@ class HipchatService < Service
   end
 
   def description
-    'Private group chat and IM'
+    '私人团队聊天和 IM'
   end
 
   def self.to_param
@@ -102,7 +102,7 @@ class HipchatService < Service
   end
 
   def create_push_message(push)
-    ref_type = Gitlab::Git.tag_ref?(push[:ref]) ? 'tag' : 'branch'
+    ref_type = Gitlab::Git.tag_ref?(push[:ref]) ? '标签' : '分支'
     ref = Gitlab::Git.ref_name(push[:ref])
 
     before = push[:before]
@@ -112,23 +112,22 @@ class HipchatService < Service
     message << "#{push[:user_name]} "
 
     if Gitlab::Git.blank_ref?(before)
-      message << "pushed new #{ref_type} <a href=\""\
+      message << "推送了新的 #{ref_type} <a href=\""\
                  "#{project_url}/commits/#{CGI.escape(ref)}\">#{ref}</a>"\
-                 " to #{project_link}\n"
+                 " 到 #{project_link}\n"
     elsif Gitlab::Git.blank_ref?(after)
-      message << "removed #{ref_type} <b>#{ref}</b> from <a href=\"#{project.web_url}\">#{project_name}</a> \n"
+      message << "删除了 <a href=\"#{project.web_url}\">#{project_name}</a> 的 #{ref_type} <b>#{ref}</b>\n"
     else
-      message << "pushed to #{ref_type} <a href=\""\
-                  "#{project.web_url}/commits/#{CGI.escape(ref)}\">#{ref}</a> "
-      message << "of <a href=\"#{project.web_url}\">#{project.name_with_namespace.gsub!(/\s/, '')}</a> "
-      message << "(<a href=\"#{project.web_url}/compare/#{before}...#{after}\">Compare changes</a>)"
+      message << "推送了 <a href=\"#{project.web_url}/commits/#{CGI.escape(ref)}\">#{ref}</a> 的 #{ref_type} <a href=\""\
+                 "#{project.web_url}\">#{project.name_with_namespace.gsub!(/\s/, '')}</a> "
+      message << "(<a href=\"#{project.web_url}/compare/#{before}...#{after}\">比较</a>)"
 
       push[:commits].take(MAX_COMMITS).each do |commit|
         message << "<br /> - #{render_line(commit[:message])} (<a href=\"#{commit[:url]}\">#{commit[:id][0..5]}</a>)"
       end
 
       if push[:commits].count > MAX_COMMITS
-        message << "<br />... #{push[:commits].count - MAX_COMMITS} more commits"
+        message << "<br />... #{push[:commits].count - MAX_COMMITS} 次更多提交"
       end
     end
 
@@ -164,8 +163,8 @@ class HipchatService < Service
     issue_url = obj_attr[:url]
     description = obj_attr[:description]
 
-    issue_link = "<a href=\"#{issue_url}\">issue ##{issue_iid}</a>"
-    message = "#{user_name} #{state} #{issue_link} in #{project_link}: <b>#{title}</b>"
+    issue_link = "<a href=\"#{issue_url}\">问题 ##{issue_iid}</a>"
+    message = "#{user_name} #{state} #{project_link} 的 #{issue_link}：<b>#{title}</b>"
 
     message << "<pre>#{markdown(description)}</pre>"
 
@@ -183,9 +182,9 @@ class HipchatService < Service
     title = render_line(obj_attr[:title])
 
     merge_request_url = "#{project_url}/merge_requests/#{merge_request_id}"
-    merge_request_link = "<a href=\"#{merge_request_url}\">merge request !#{merge_request_id}</a>"
-    message = "#{user_name} #{state} #{merge_request_link} in " \
-      "#{project_link}: <b>#{title}</b>"
+    merge_request_link = "<a href=\"#{merge_request_url}\">合并请求 !#{merge_request_id}</a>"
+    message = "#{user_name} #{state} #{project_link} 的 #{merge_request_link}" \
+      "：<b>#{title}</b>"
 
     message << "<pre>#{markdown(description)}</pre>"
 
@@ -212,30 +211,30 @@ class HipchatService < Service
       commit_id = commit_attr[:id]
       subject_desc = commit_id
       subject_desc = Commit.truncate_sha(subject_desc)
-      subject_type = "commit"
+      subject_type = "提交"
       title = format_title(commit_attr[:message])
     when "Issue"
       subj_attr = HashWithIndifferentAccess.new(data[:issue])
       subject_id = subj_attr[:iid]
       subject_desc = "##{subject_id}"
-      subject_type = "issue"
+      subject_type = "问题"
       title = format_title(subj_attr[:title])
     when "MergeRequest"
       subj_attr = HashWithIndifferentAccess.new(data[:merge_request])
       subject_id = subj_attr[:iid]
       subject_desc = "!#{subject_id}"
-      subject_type = "merge request"
+      subject_type = "合并请求"
       title = format_title(subj_attr[:title])
     when "Snippet"
       subj_attr = HashWithIndifferentAccess.new(data[:snippet])
       subject_id = subj_attr[:id]
       subject_desc = "##{subject_id}"
-      subject_type = "snippet"
+      subject_type = "代码片段"
       title = format_title(subj_attr[:title])
     end
 
     subject_html = "<a href=\"#{note_url}\">#{subject_type} #{subject_desc}</a>"
-    message = "#{user_name} commented on #{subject_html} in #{project_link}: "
+    message = "#{user_name} 评论了 #{project_link} 的 #{subject_html}："
     message << title
 
     message << "<pre>#{markdown(note, ref: commit_id)}</pre>"
@@ -246,7 +245,7 @@ class HipchatService < Service
   def create_pipeline_message(data)
     pipeline_attributes = data[:object_attributes]
     pipeline_id = pipeline_attributes[:id]
-    ref_type = pipeline_attributes[:tag] ? 'tag' : 'branch'
+    ref_type = pipeline_attributes[:tag] ? '标签' : '分支'
     ref = pipeline_attributes[:ref]
     user_name = (data[:user] && data[:user][:name]) || 'API'
     status = pipeline_attributes[:status]
@@ -255,7 +254,7 @@ class HipchatService < Service
     branch_link = "<a href=\"#{project_url}/commits/#{CGI.escape(ref)}\">#{ref}</a>"
     pipeline_url = "<a href=\"#{project_url}/pipelines/#{pipeline_id}\">##{pipeline_id}</a>"
 
-    "#{project_link}: Pipeline #{pipeline_url} of #{branch_link} #{ref_type} by #{user_name} #{humanized_status(status)} in #{duration} second(s)"
+    "#{project_link}: 流水线 #{pipeline_url} #{ref_type} #{branch_link} 作者 #{user_name} 作业 #{humanized_status(status)} 用时 #{duration} 秒"
   end
 
   def message_color(data)
@@ -292,7 +291,7 @@ class HipchatService < Service
   def humanized_status(status)
     case status
     when 'success'
-      'passed'
+      '成功'
     else
       status
     end

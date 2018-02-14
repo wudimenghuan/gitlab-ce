@@ -1,37 +1,37 @@
 %fieldset
-  %legend Access
+  %legend 权限
   .form-group
-    = f.label :projects_limit, class: 'control-label'
+    = f.label :projects_limit, "项目限制", class: 'control-label'
     .col-sm-10= f.number_field :projects_limit, min: 0, max: Gitlab::Database::MAX_INT_VALUE, class: 'form-control'
 
   .form-group
-    = f.label :can_create_group, class: 'control-label'
+    = f.label :can_create_group,"可以创建群组", class: 'control-label'
     .col-sm-10= f.check_box :can_create_group
 
   .form-group
-    = f.label :access_level, class: 'control-label'
+    = f.label :access_level, "权限级别", class: 'control-label'
     .col-sm-10
       - editing_current_user = (current_user == @user)
 
       = f.radio_button :access_level, :regular, disabled: editing_current_user
       = label_tag :regular do
-        Regular
+        普通用户
       %p.light
-        Regular users have access to their groups and projects
+        普通用户可以访问他们的群组和项目
 
       = f.radio_button :access_level, :admin, disabled: editing_current_user
       = label_tag :admin do
-        Admin
+        管理员
       %p.light
-        Administrators have access to all groups, projects and users and can manage all features in this installation
+        管理员可以访问所有组，项目和用户，并且可以管理此安装中的所有功能
       - if editing_current_user
         %p.light
-          You cannot remove your own admin rights.
+          不能删除自己的管理权限。
 
   .form-group
     = f.label :external, class: 'control-label'
     .col-sm-10
       = f.check_box :external do
-        External
+        外部
       %p.light
-        External users cannot see internal or private projects unless access is explicitly granted. Also, external users cannot create projects or groups.
+        除非明确授权，外部用户无法看到任何内部和私有项目。同样，外部用户无法创建项目和群组。

@@ -10,8 +10,6 @@
     - should_link = event.tag? ? project.repository.tag_exists?(event.ref_name) : project.repository.branch_exists?(event.ref_name)
     = link_to_if should_link, event.ref_name, commits_link, class: 'ref-name'
 
-  = render "events/event_scope", event: event
-
 - if event.push_with_commits?
   .event-body
     %ul.well-list.event_commits
@@ -20,7 +18,7 @@
       - create_mr = event.new_ref? && create_mr_button?(project.default_branch, event.ref_name, project) && event.authored_by?(current_user)
       - if event.commits_count > 1
         %li.commits-stat
-          %span ... and #{pluralize(event.commits_count - 1, 'more commit')}.
+          %span ... 和 #{event.commits_count - 1} 次提交。
 
           - if event.md_ref?
             - from = event.commit_from
@@ -30,14 +28,14 @@
             - from_label = from
 
           = link_to project_compare_path(project, from: from, to: event.commit_to) do
-            Compare #{from_label}...#{truncate_sha(event.commit_to)}
+            比较 #{from_label}...#{truncate_sha(event.commit_to)}
 
           - if create_mr
             %span
-              or
+              或
               = link_to create_mr_path(project.default_branch, event.ref_name, project) do
                 create a merge request
       - elsif create_mr
         %li.commits-stat
           = link_to create_mr_path(project.default_branch, event.ref_name, project) do
-            Create Merge Request
+            创建合并请求

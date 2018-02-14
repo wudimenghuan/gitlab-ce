@@ -3,8 +3,8 @@
 %ul
   %li
     %p
-      Certain user content will be moved to a system-wide "Ghost User" in order to maintain content for posterity. For further information, please refer to the
-      = link_to 'user account deletion documentation.', help_page_path("user/profile/account/delete_account", anchor: "associated-records")
+      为了后续的维护，当前用户的内容将移动到一个系统范围的用户 "Ghost User" 。 想了解更多内容，请参考
+      = link_to '用户账户删除文档。', help_page_path("user/profile/account/delete_account", anchor: "associated-records")
   - personal_projects_count = user.personal_projects.count
   - unless personal_projects_count.zero?
-    %li #{pluralize(personal_projects_count, 'personal project')} will be removed and cannot be restored
+    %li #{pluralize(personal_projects_count, '个个人项目','个个人项目')} 将会移除并且无法撤销。

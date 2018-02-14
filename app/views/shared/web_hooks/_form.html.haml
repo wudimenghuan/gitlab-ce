@@ -1,82 +1,82 @@
 = form_errors(hook)
 
 .form-group
-  = form.label :url, 'URL', class: 'label-light'
+  = form.label :url, '链接(URL)', class: 'label-light'
   = form.text_field :url, class: 'form-control', placeholder: 'http://example.com/trigger-ci.json'
 .form-group
-  = form.label :token, 'Secret Token', class: 'label-light'
+  = form.label :token, '安全令牌', class: 'label-light'
   = form.text_field :token, class: 'form-control', placeholder: ''
   %p.help-block
-    Use this token to validate received payloads. It will be sent with the request in the X-Gitlab-Token HTTP header.
+    使用此令牌来验证接收信息的有效性。 它将通过 HTTP 头的 X-Gitlab-Token 发送。
 .form-group
-  = form.label :url, 'Trigger', class: 'label-light'
+  = form.label :url, '触发器', class: 'label-light'
   %ul.list-unstyled
     %li
       = form.check_box :push_events, class: 'pull-left'
       .prepend-left-20
         = form.label :push_events, class: 'list-label' do
-          %strong Push events
+          %strong 推送事件
         %p.light
-          This URL will be triggered by a push to the repository
+          此链接将在推送到版本仓库时触发
     %li
       = form.check_box :tag_push_events, class: 'pull-left'
       .prepend-left-20
         = form.label :tag_push_events, class: 'list-label' do
-          %strong Tag push events
+          %strong 标签推送事件
         %p.light
-          This URL will be triggered when a new tag is pushed to the repository
+          此链接将在推送新标签到版本仓库时触发
     %li
       = form.check_box :note_events, class: 'pull-left'
       .prepend-left-20
         = form.label :note_events, class: 'list-label' do
-          %strong Comments
+          %strong 评论
         %p.light
-          This URL will be triggered when someone adds a comment
+          增加新评论时将触发此链接
     %li
       = form.check_box :issues_events, class: 'pull-left'
       .prepend-left-20
         = form.label :issues_events, class: 'list-label' do
-          %strong Issues events
+          %strong 问题事件
         %p.light
-          This URL will be triggered when an issue is created/updated/merged
+          问题创建、更新、合并时将触发此链接
     %li
       = form.check_box :confidential_issues_events, class: 'pull-left'
       .prepend-left-20
         = form.label :confidential_issues_events, class: 'list-label' do
-          %strong Confidential Issues events
+          %strong 秘密问题事件
         %p.light
-          This URL will be triggered when a confidential issue is created/updated/merged
+          秘密问题创建、更新、合并时将触发此链接
     %li
       = form.check_box :merge_requests_events, class: 'pull-left'
       .prepend-left-20
         = form.label :merge_requests_events, class: 'list-label' do
-          %strong Merge request events
+          %strong 合并请求事件
         %p.light
-          This URL will be triggered when a merge request is created/updated/merged
+          合并请求创建、更新、合并时将触发此链接
     %li
       = form.check_box :job_events, class: 'pull-left'
       .prepend-left-20
         = form.label :job_events, class: 'list-label' do
-          %strong Job events
+          %strong 作业事件
         %p.light
-          This URL will be triggered when the job status changes
+          作业状态改变时将触发此链接
     %li
       = form.check_box :pipeline_events, class: 'pull-left'
       .prepend-left-20
         = form.label :pipeline_events, class: 'list-label' do
-          %strong Pipeline events
+          %strong 流水线事件
         %p.light
-          This URL will be triggered when the pipeline status changes
+          流水线状态改变时将触发此链接
     %li
       = form.check_box :wiki_page_events, class: 'pull-left'
       .prepend-left-20
         = form.label :wiki_page_events, class: 'list-label' do
-          %strong Wiki Page events
+          %strong 维基页面事件
         %p.light
-          This URL will be triggered when a wiki page is created/updated
+          维基页面创建/更新时将触发此链接
 .form-group
-  = form.label :enable_ssl_verification, 'SSL verification', class: 'label-light checkbox'
+  = form.label :enable_ssl_verification, 'SSL 证书验证', class: 'label-light checkbox'
   .checkbox
     = form.label :enable_ssl_verification do
       = form.check_box :enable_ssl_verification
-      %strong Enable SSL verification
+      %strong 开启 SSL 证书验证

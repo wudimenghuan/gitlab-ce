@@ -3,10 +3,10 @@
     %button.btn{ ":class" => "{ 'active': file.resolveMode == 'interactive' }",
       '@click' => "onClickResolveModeButton(file, 'interactive')",
       type: 'button' }
-      Interactive mode
+      交互模式
     %button.btn{ ':class' => "{ 'active': file.resolveMode == 'edit' }",
       '@click' => "onClickResolveModeButton(file, 'edit')",
       type: 'button' }
-      Edit inline
+      内嵌编辑
   %a.btn.view-file{ ":href" => "file.blobPath" }
-    View file @{{conflictsData.shortCommitSha}}
+    查看文件 @{{conflictsData.shortCommitSha}}

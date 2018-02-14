@@ -18,7 +18,7 @@
               toggle_class: "filtered-search-history-dropdown-toggle-button",
               dropdown_class: "filtered-search-history-dropdown",
               content_class: "filtered-search-history-dropdown-content",
-              title: "Recent searches" }) do
+              title: "历史搜索" }) do
               .js-filtered-search-history-dropdown{ data: { full_path: full_path } }
           .filtered-search-box-input-container.droplab-dropdown
             .scroll-container
@@ -31,7 +31,7 @@
                   %button.btn.btn-link
                     = icon('search')
                     %span
-                      Press Enter or click to search
+                      继续输入，然后按回车键
               %ul.filter-dropdown{ data: { dynamic: true, dropdown: true } }
                 %li.filter-dropdown-item
                   %button.btn.btn-link
@@ -55,7 +55,7 @@
               %ul{ data: { dropdown: true } }
                 %li.filter-dropdown-item{ data: { value: 'none' } }
                   %button.btn.btn-link
-                    No Assignee
+                    未指派
                 %li.divider.droplab-item-ignore
                 - if current_user
                   = render 'shared/issuable/user_dropdown_item',
@@ -68,13 +68,13 @@
               %ul{ data: { dropdown: true } }
                 %li.filter-dropdown-item{ data: { value: 'none' } }
                   %button.btn.btn-link
-                    No Milestone
+                    无里程碑
                 %li.filter-dropdown-item{ data: { value: 'upcoming' } }
                   %button.btn.btn-link
-                    Upcoming
+                    即将到期
                 %li.filter-dropdown-item{ 'data-value' => 'started' }
                   %button.btn.btn-link
-                    Started
+                    已经开始
                 %li.divider.droplab-item-ignore
               %ul.filter-dropdown{ data: { dynamic: true, dropdown: true } }
                 %li.filter-dropdown-item
@@ -84,7 +84,7 @@
               %ul{ data: { dropdown: true } }
                 %li.filter-dropdown-item{ data: { value: 'none' } }
                   %button.btn.btn-link
-                    No Label
+                    无标记
                 %li.divider.droplab-item-ignore
               %ul.filter-dropdown{ data: { dynamic: true, dropdown: true } }
                 %li.filter-dropdown-item
@@ -106,9 +106,9 @@
             - if can?(current_user, :admin_list, board.parent)
               .dropdown.prepend-left-10#js-add-list
                 %button.btn.btn-create.btn-inverted.js-new-board-list{ type: "button", data: board_list_data }
-                  Add list
+                  添加列表
                 .dropdown-menu.dropdown-menu-paging.dropdown-menu-align-right.dropdown-menu-issues-board-new.dropdown-menu-selectable
-                  = render partial: "shared/issuable/label_page_default", locals: { show_footer: true, show_create: true, show_boards_content: true, title: "Add list" }
+                  = render partial: "shared/issuable/label_page_default", locals: { show_footer: true, show_create: true, show_boards_content: true, title: "添加列表" }
                   - if can?(current_user, :admin_label, board.parent)
                     = render partial: "shared/issuable/label_page_create"
                   = dropdown_loading

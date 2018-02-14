@@ -4,9 +4,9 @@
       .modal-header
         %a.close{ href: "#", "data-dismiss" => "modal" } ×
         %h4
-          Keyboard Shortcuts
+          键盘快捷键
           %small
-            = link_to '(Show all)', '#', class: 'js-more-help-button'
+            = link_to '(显示全部)', '#', class: 'js-more-help-button'
       .modal-body
         .row
           .col-lg-4
@@ -14,15 +14,15 @@
               %tbody
                 %tr
                   %th
-                  %th Global Shortcuts
+                  %th 全局快捷键
                 %tr
                   %td.shortcut
                     .key s
-                  %td Focus Search
+                  %td 定位到搜索框
                 %tr
                   %td.shortcut
                     .key f
-                  %td Focus Filter
+                  %td 定位到过滤框
                 - if performance_bar_enabled?
                   %tr
                     %td.shortcut
@@ -31,228 +31,228 @@
                 %tr
                   %td.shortcut
                     .key ?
-                  %td Show/hide this dialog
+                  %td 显示/隐藏本对话框
                 %tr
                   %td.shortcut
                     - if browser.platform.mac?
                       .key &#8984; shift p
                     - else
                       .key ctrl shift p
-                  %td Toggle Markdown preview
+                  %td 切换 Markdown 预览
                 %tr
                   %td.shortcut
                     .key
                       %i.fa.fa-arrow-up
-                  %td Edit last comment (when focused on an empty textarea)
+                  %td 编辑最新的评论（当焦点位于空白的文本区域时）
                 %tr
                   %td.shortcut
                     .key shift t
                   %td
-                    Go to todos
+                    转到待办事项
                 %tr
                   %td.shortcut
                     .key shift a
                   %td
-                    Go to the activity feed
+                    转到活动 Feed
                 %tr
                   %td.shortcut
                     .key shift p
                   %td
-                    Go to projects
+                    转到项目
                 %tr
                   %td.shortcut
                     .key shift i
                   %td
-                    Go to issues
+                    转到问题
                 %tr
                   %td.shortcut
                     .key shift m
                   %td
-                    Go to merge requests
+                    转到合并请求
                 %tr
                   %td.shortcut
                     .key shift g
                   %td
-                    Go to groups
+                    转到群组
                 %tr
                   %td.shortcut
                     .key shift l
                   %td
-                    Go to milestones
+                    转到里程碑
                 %tr
                   %td.shortcut
                     .key shift s
                   %td
-                    Go to snippets
+                    转到代码碎片
               %tbody
                 %tr
                   %th
-                  %th Finding Project File
+                  %th 查找项目文件
                 %tr
                   %td.shortcut
                     .key
                       %i.fa.fa-arrow-up
-                  %td Move selection up
+                  %td 向上选择
                 %tr
                   %td.shortcut
                     .key
                       %i.fa.fa-arrow-down
-                  %td Move selection down
+                  %td 向下选择
                 %tr
                   %td.shortcut
                     .key enter
-                  %td Open Selection
+                  %td 打开选择项
                 %tr
                   %td.shortcut
                     .key esc
-                  %td Go back
+                  %td 后退
           .col-lg-4
             %table.shortcut-mappings
               %tbody
                 %tr
                   %th
-                  %th Project
+                  %th 项目
                 %tr
                   %td.shortcut
                     .key g
                     .key p
                   %td
-                    Go to the project's overview page
+                    转到项目概览页
                 %tr
                   %td.shortcut
                     .key g
                     .key e
                   %td
-                    Go to the project's activity feed
+                    转到项目动态
                 %tr
                   %td.shortcut
                     .key g
                     .key f
                   %td
-                    Go to files
+                    转到文件
                 %tr
                   %td.shortcut
                     .key g
                     .key c
                   %td
-                    Go to commits
+                    转到提交
                 %tr
                   %td.shortcut
                     .key g
                     .key j
                   %td
-                    Go to jobs
+                    转到作业
                 %tr
                   %td.shortcut
                     .key g
                     .key n
                   %td
-                    Go to network graph
+                    转到网络图表
                 %tr
                   %td.shortcut
                     .key g
                     .key d
                   %td
-                    Go to repository charts
+                    转到版本库图表
                 %tr
                   %td.shortcut
                     .key g
                     .key i
                   %td
-                    Go to issues
+                    转到问题
                 %tr
                   %td.shortcut
                     .key g
                     .key b
                   %td
-                    Go to issue boards
+                    转到问题看板
                 %tr
                   %td.shortcut
                     .key g
                     .key m
                   %td
-                    Go to merge requests
+                    转到合并请求
                 %tr
                   %td.shortcut
                     .key g
                     .key s
                   %td
-                    Go to snippets
+                    转到代码片段
                 %tr
                   %td.shortcut
                     .key g
                     .key w
                   %td
-                    Go to wiki
+                    转到维基
                 %tr
                   %td.shortcut
                     .key t
-                  %td Go to finding file
+                  %td 转到文件查找
                 %tr
                   %td.shortcut
                     .key i
-                  %td New issue
+                  %td 新建问题
 
               %tbody
                 %tr
                   %th
-                  %th Project Files browsing
+                  %th 项目文件浏览
                 %tr
                   %td.shortcut
                     .key
                       %i.fa.fa-arrow-up
-                  %td Move selection up
+                  %td 向上选择
                 %tr
                   %td.shortcut
                     .key
                       %i.fa.fa-arrow-down
-                  %td Move selection down
+                  %td 向下选择
                 %tr
                   %td.shortcut
                     .key enter
-                  %td Open Selection
+                  %td 打开选择项
               %tbody
                 %tr
                   %th
-                  %th Project File
+                  %th 项目文件
                 %tr
                   %td.shortcut
                     .key y
-                  %td Go to file permalink
+                  %td 转到文件固定链接
           .col-lg-4
             %table.shortcut-mappings
               %tbody.hidden-shortcut.network{ style: 'display:none' }
                 %tr
                   %th
-                  %th Network Graph
+                  %th 网络图表
                 %tr
                   %td.shortcut
                     .key
                       %i.fa.fa-arrow-left
                     \/
                     .key h
-                  %td Scroll left
+                  %td 向左滚动
                 %tr
                   %td.shortcut
                     .key
                       %i.fa.fa-arrow-right
                     \/
                     .key l
-                  %td Scroll right
+                  %td 向右滚动
                 %tr
                   %td.shortcut
                     .key
                       %i.fa.fa-arrow-up
                     \/
                     .key k
-                  %td Scroll up
+                  %td 向上滚动
                 %tr
                   %td.shortcut
                     .key
                       %i.fa.fa-arrow-down
                     \/
                     .key j
-                  %td Scroll down
+                  %td 向下滚动
                 %tr
                   %td.shortcut
                     .key
@@ -261,7 +261,7 @@
                     \/
                     .key
                       shift k
-                  %td Scroll to top
+                  %td 滚动到顶部
                 %tr
                   %td.shortcut
                     .key
@@ -270,60 +270,60 @@
                     \/
                     .key
                       shift j
-                  %td Scroll to bottom
+                  %td 滚动到底部
               %tbody.hidden-shortcut.issues{ style: 'display:none' }
                 %tr
                   %th
-                  %th Issues
+                  %th 问题
                 %tr
                   %td.shortcut
                     .key a
-                  %td Change assignee
+                  %td 修改指派
                 %tr
                   %td.shortcut
                     .key m
-                  %td Change milestone
+                  %td 修改里程碑
                 %tr
                   %td.shortcut
                     .key r
-                  %td Reply (quoting selected text)
+                  %td 回复 (并引用选择的文本)
                 %tr
                   %td.shortcut
                     .key e
-                  %td Edit issue
+                  %td 编辑问题
                 %tr
                   %td.shortcut
                     .key l
-                  %td Change Label
+                  %td 修改标记
               %tbody.hidden-shortcut.merge_requests{ style: 'display:none' }
                 %tr
                   %th
-                  %th Merge Requests
+                  %th 合并请求
                 %tr
                   %td.shortcut
                     .key a
-                  %td Change assignee
+                  %td 修改指派
                 %tr
                   %td.shortcut
                     .key m
-                  %td Change milestone
+                  %td 修改里程碑
                 %tr
                   %td.shortcut
                     .key r
-                  %td Reply (quoting selected text)
+                  %td 回复 (并引用选择的文本)
                 %tr
                   %td.shortcut
                     .key e
-                  %td Edit merge request
+                  %td 编辑合并请求
                 %tr
                   %td.shortcut
                     .key l
-                  %td Change Label
+                  %td 更改标记
               %tbody.hidden-shortcut.wiki{ style: 'display:none' }
                 %tr
                   %th
-                  %th Wiki pages
+                  %th 维基页面
                 %tr
                   %td.shortcut
                     .key e
-                  %td Edit wiki page
+                  %td 编辑维基页面

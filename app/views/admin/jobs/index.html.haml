@@ -17,7 +17,16 @@
           = s_('AdminArea|Stop all jobs')
 
   .row-content-block.second-block
-    #{(@scope || 'all').capitalize} jobs
+    - if @scope.nil?
+      所有的作业
+    - elsif @scope.capitalize == 'Pending'
+      正在排队的作业
+    - elsif @scope.capitalize == 'Running'
+      正在运行的作业
+    - elsif @scope.capitalize == 'Finished'
+      已结束的作业
+    - else
+      #{@scope.capitalize} 的作业
 
   %ul.content-list.builds-content-list.admin-builds-table
     = render "projects/jobs/table", builds: @builds, admin: true

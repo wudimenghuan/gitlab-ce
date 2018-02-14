@@ -5,19 +5,19 @@
 = form_errors(deploy_key)
 
 .form-group
-  = form.label :title, class: 'control-label'
+  = form.label :title, '标题', class: 'control-label'
   .col-sm-10= form.text_field :title, class: 'form-control'
 
 .form-group
   - if deploy_key.new_record?
-    = form.label :key, class: 'control-label'
+    = form.label :key, '密钥', class: 'control-label'
     .col-sm-10
       %p.light
-        Paste a machine public key here. Read more about how to generate it
-        = link_to 'here', help_page_path('ssh/README')
+        在这里粘贴一个机器的公钥。具体如何生成该公钥请点看
+        = link_to '这里', help_page_path('ssh/README')
       = form.text_area :key, class: 'form-control thin_area', rows: 5
   - else
-    = form.label :fingerprint, class: 'control-label'
+    = form.label :fingerprint, '指纹', class: 'control-label'
     .col-sm-10
       = form.text_field :fingerprint, class: 'form-control', readonly: 'readonly'
 
@@ -28,6 +28,6 @@
       .col-sm-10
         = deploy_keys_project_form.label :can_push do
           = deploy_keys_project_form.check_box :can_push
-          %strong Write access allowed
+          %strong 允许写操作
         %p.light.append-bottom-0
-          Allow this key to push to repository as well? (Default only allows pull access.)
+          允许使用该公钥向版本库推送修改么？（默认只允许拉取访问。）

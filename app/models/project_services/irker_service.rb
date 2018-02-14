@@ -9,12 +9,11 @@ class IrkerService < Service
   before_validation :get_channels
 
   def title
-    'Irker (IRC gateway)'
+    'Irker (IRC 网关)'
   end
 
   def description
-    'Send IRC messages, on update, to a list of recipients through an Irker '\
-    'gateway.'
+    '通过 Irker 网关将更新时的 IRC 消息发送到收件人列表。'
   end
 
   def self.to_param

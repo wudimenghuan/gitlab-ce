@@ -210,7 +210,7 @@ export default class Notes {
         discussionNoteForm = $textarea.closest('.js-discussion-note-form');
         if (discussionNoteForm.length) {
           if ($textarea.val() !== '') {
-            if (!confirm('Are you sure you want to cancel creating this comment?')) {
+            if (!confirm('您确定要取消发表评论？')) {
               return;
             }
           }
@@ -222,7 +222,7 @@ export default class Notes {
           originalText = $textarea.closest('form').data('original-note');
           newText = $textarea.val();
           if (originalText !== newText) {
-            if (!confirm('Are you sure you want to cancel editing this comment?')) {
+            if (!confirm('您确定要取消编辑评论？')) {
               return;
             }
           }
@@ -1623,7 +1623,7 @@ export default class Notes {
     // Show updated comment content temporarily
     $noteBodyText.html(formContent);
     $editingNote.removeClass('is-editing fade-in-full').addClass('being-posted fade-in-half');
-    $editingNote.find('.note-headline-meta a').html('<i class="fa fa-spinner fa-spin" aria-label="Comment is being updated" aria-hidden="true"></i>');
+    $editingNote.find('.note-headline-meta a').html('<i class="fa fa-spinner fa-spin" aria-label="评论已经更新" aria-hidden="true"></i>');
 
     /* eslint-disable promise/catch-or-return */
     // Make request to update comment on server

@@ -1,24 +1,24 @@
 = form_for [@project.namespace.becomes(Namespace), @project, @deploy_keys.new_key], url: namespace_project_deploy_keys_path, html: { class: "js-requires-input" } do |f|
   = form_errors(@deploy_keys.new_key)
   .form-group
-    = f.label :title, class: "label-light"
+    = f.label :title, "标题", class: "label-light"
     = f.text_field :title, class: 'form-control', required: true
   .form-group
-    = f.label :key, class: "label-light"
+    = f.label :key, "密钥", class: "label-light"
     = f.text_area :key, class: "form-control", rows: 5, required: true
   .form-group
     %p.light.append-bottom-0
-      Paste a machine public key here. Read more about how to generate it
-      = link_to "here", help_page_path("ssh/README")
+      在这里粘贴机器公钥。如何生成密钥请点击
+      = link_to "这里", help_page_path("ssh/README")
 
   = f.fields_for :deploy_keys_projects do |deploy_keys_project_form|
     .form-group
       .checkbox
         = deploy_keys_project_form.label :can_push do
           = deploy_keys_project_form.check_box :can_push
-          %strong Write access allowed
+          %strong 允许写入权限
     .form-group
       %p.light.append-bottom-0
-        Allow this key to push to repository as well? (Default only allows pull access.)
+        允许该密钥推送版本库? (默认权限为拉取。)
 
-  = f.submit "Add key", class: "btn-create btn"
+  = f.submit "添加密钥", class: "btn-create btn"

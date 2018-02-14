@@ -55,20 +55,20 @@
             this.isLoading = false;
             this.store.keys = data;
           })
-          .catch(() => new Flash('Error getting deploy keys'));
+          .catch(() => new Flash('获取部署密钥失败'));
       },
       enableKey(deployKey) {
         this.service.enableKey(deployKey.id)
           .then(() => this.fetchKeys())
-          .catch(() => new Flash('Error enabling deploy key'));
+          .catch(() => new Flash('启用部署密钥失败'));
       },
       disableKey(deployKey, callback) {
         // eslint-disable-next-line no-alert
-        if (confirm('You are going to remove this deploy key. Are you sure?')) {
+        if (confirm('您确定要删除此部署密钥？')) {
           this.service.disableKey(deployKey.id)
             .then(() => this.fetchKeys())
             .then(callback)
-            .catch(() => new Flash('Error removing deploy key'));
+            .catch(() => new Flash('删除部署密钥失败'));
         } else {
           callback();
         }
@@ -82,25 +82,25 @@
     <loading-icon
       v-if="isLoading && !hasKeys"
       size="2"
-      label="Loading deploy keys"
+      label="正在载入部署密钥"
     />
     <div v-else-if="hasKeys">
       <keys-panel
-        title="Enabled deploy keys for this project"
+        title="为此项目启用部署密钥"
         class="qa-project-deploy-keys"
         :keys="keys.enabled_keys"
         :store="store"
         :endpoint="endpoint"
       />
       <keys-panel
-        title="Deploy keys from projects you have access to"
+        title="从可访问的项目中部署密钥"
         :keys="keys.available_project_keys"
         :store="store"
         :endpoint="endpoint"
       />
       <keys-panel
         v-if="keys.public_keys.length"
-        title="Public deploy keys available to any project"
+        title="公共部署密钥可用于任何项目"
         :keys="keys.public_keys"
         :store="store"
         :endpoint="endpoint"

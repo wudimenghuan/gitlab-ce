@@ -7,7 +7,7 @@
 
 %h1
   GitLab
-  Community Edition
+  社区版
   - if user_signed_in?
     %span= Gitlab::VERSION
     %small= link_to Gitlab::REVISION, Gitlab::COM_URL + namespace_project_commits_path('gitlab-org', 'gitlab-ce', Gitlab::REVISION)
@@ -16,17 +16,20 @@
 
 - unless Gitlab::CurrentSettings.help_page_hide_commercial_content?
   %p.slead
-    GitLab is open source software to collaborate on code.
+    GitLab 是用于代码协作的开源软件。
     %br
-    Manage git repositories with fine-grained access controls that keep your code secure.
+    细粒度访问控制管理 git 仓库以保证代码安全。
     %br
-    Perform code reviews and enhance collaboration with merge requests.
+    使用合并请求进行代码审查并加强团体合作。
     %br
-    Each project can also have an issue tracker and a wiki.
+    每个项目均有自己的问题跟踪和维基页面。
     %br
-    Used by more than 100,000 organizations, GitLab is the most popular solution to manage git repositories on-premises.
+    超过 100,000 的组织在使用 GitLab，GitLab 是最受欢迎的 Git 代码托管解决方案。
     %br
-    Read more about GitLab at #{link_to promo_host, promo_url, target: '_blank', rel: 'noopener noreferrer'}.
+    了解 Gitlab 更多内容请访问 #{link_to promo_host, promo_url, target: '_blank', rel: 'noopener noreferrer'}。
+    %br
+    需要改进中文翻译，请#{link_to '派生https://gitlab.com/xhang/gitlab 项目', 'https://gitlab.com/xhang/gitlab/forks/new'}，
+    修改文件后提交#{link_to '合并请求', 'https://gitlab.com/xhang/gitlab/merge_requests/new'}。
     %p= link_to 'Check the current instance configuration ', help_instance_configuration_url
   %hr
 
@@ -37,15 +40,15 @@
   .col-md-4
     .panel.panel-default
       .panel-heading
-        Quick help
+        快速帮助
       %ul.well-list
-        %li= link_to 'See our website for getting help', support_url
+        %li= link_to '查看我们的网站获取帮助', support_url
         %li
           %button.btn-blank.btn-link.js-trigger-search-bar{ type: 'button' }
-            Use the search bar on the top of this page
+            使用页面顶部的搜索功能
         %li
           %button.btn-blank.btn-link.js-trigger-shortcut{ type: 'button' }
-            Use shortcuts
+            键盘快捷键
         - unless Gitlab::CurrentSettings.help_page_hide_commercial_content?
-          %li= link_to 'Get a support subscription', 'https://about.gitlab.com/pricing/'
-          %li= link_to 'Compare GitLab editions', 'https://about.gitlab.com/features/#compare'
+          %li= link_to '获取技术支持订阅', 'https://about.gitlab.com/pricing/'
+          %li= link_to '比较 GitLab 版本', 'https://about.gitlab.com/features/#compare'

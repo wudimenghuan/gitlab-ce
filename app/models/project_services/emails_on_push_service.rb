@@ -9,7 +9,7 @@ class EmailsOnPushService < Service
   end
 
   def description
-    'Email the commits and diff of each push to a list of recipients.'
+    '将每个推送的提交和差异发送到收件人列表。'
   end
 
   def self.to_param

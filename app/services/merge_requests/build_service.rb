@@ -85,10 +85,10 @@ module MergeRequests
     end
 
     def validate_branches
-      add_error('You must select source and target branch') unless branches_present?
-      add_error('You must select different branches') if same_source_and_target?
-      add_error("Source branch \"#{source_branch}\" does not exist") unless source_branch_exists?
-      add_error("Target branch \"#{target_branch}\" does not exist") unless target_branch_exists?
+      add_error('必须选择来源和目标分支') unless branches_present?
+      add_error('必须选择不同的分支') if same_source_and_target?
+      add_error("源分支 \"#{source_branch}\" 不存在") unless source_branch_exists?
+      add_error("目标分支 \"#{target_branch}\" 不存在") unless target_branch_exists?
     end
 
     def add_error(message)

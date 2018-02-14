@@ -41,20 +41,20 @@
 
         %hr
         .form-group.append-bottom-default.js-secret-runner-token
-          = f.label :runners_token, "Runner token", class: 'label-light'
+          = f.label :runners_token, "Runner 令牌", class: 'label-light'
           .form-control.js-secret-value-placeholder
             = '*' * 20
           = f.text_field :runners_token, class: "form-control hide js-secret-value", placeholder: 'xEeFCaDAB89'
-          %p.help-block The secure token used by the Runner to checkout the project
+          %p.help-block Runner 用来检出项目的安全令牌。
           %button.btn.btn-info.prepend-top-10.js-secret-value-reveal-button{ type: 'button', data: { secret_reveal_status: 'false' } }
             = _('Reveal value')
 
         %hr
         .form-group
           %h5.prepend-top-0
-            Git strategy for pipelines
+            流水线的Git策略
           %p
-            Choose between <code>clone</code> or <code>fetch</code> to get the recent application code
+            选择 <code>clone</code> 或者 <code>fetch</code> 方式来获取最新的程序代码
             = link_to icon('question-circle'), help_page_path('user/project/pipelines/settings', anchor: 'git-strategy'), target: '_blank'
           .radio
             = f.label :build_allow_git_fetch_false do
@@ -62,26 +62,26 @@
               %strong git clone
               %br
               %span.descr
-                Slower but makes sure the project workspace is pristine as it clones the repository from scratch for every job
+                比较慢，但可以在每次作业前保证你有一个干净的文件目录
           .radio
             = f.label :build_allow_git_fetch_true do
               = f.radio_button :build_allow_git_fetch, 'true'
               %strong git fetch
               %br
               %span.descr
-                Faster as it re-uses the project workspace (falling back to clone if it doesn't exist)
+                重用项目的工作空间，速度较快 (如果项目空间不存在，则采用克隆的方式)
 
         %hr
         .form-group
-          = f.label :build_timeout_in_minutes, 'Timeout', class: 'label-light'
+          = f.label :build_timeout_in_minutes, '超时', class: 'label-light'
           = f.number_field :build_timeout_in_minutes, class: 'form-control', min: '0'
           %p.help-block
-            Per job in minutes. If a job passes this threshold, it will be marked as failed
+            每次作业时间的最大分钟数. 如果超过该时间，则标记为失败。
             = link_to icon('question-circle'), help_page_path('user/project/pipelines/settings', anchor: 'timeout'), target: '_blank'
 
         %hr
         .form-group
-          = f.label :ci_config_path, 'Custom CI config path', class: 'label-light'
+          = f.label :ci_config_path, '自定义 CI 配置路径', class: 'label-light'
           = f.text_field :ci_config_path, class: 'form-control', placeholder: '.gitlab-ci.yml'
           %p.help-block
             The path to CI config file. Defaults to <code>.gitlab-ci.yml</code>
@@ -92,46 +92,44 @@
           .checkbox
             = f.label :public_builds do
               = f.check_box :public_builds
-              %strong Public pipelines
+              %strong 公共流水线
             .help-block
-              Allow public access to pipelines and job details, including output logs and artifacts
+              允许所有人访问公共和内部项目的流水线，包含日志和工件。
               = link_to icon('question-circle'), help_page_path('user/project/pipelines/settings', anchor: 'visibility-of-pipelines'), target: '_blank'
             .bs-callout.bs-callout-info
-              %p If enabled:
+              %p 如果启用:
               %ul
                 %li
-                  For public projects, anyone can view pipelines and access job details (output logs and artifacts)
+                  对于公开项目，任何人可以查看流水线以及工作细节（输入日志以及元数据信息）
                 %li
-                  For internal projects, any logged in user can view pipelines and access job details (output logs and artifacts)
+                  对于内部项目，任何登录后的用户都可以查看流水线以及工作细节（输入日志以及元数据信息）
                 %li
-                  For private projects, any member (guest or higher) can view pipelines and access job details (output logs and artifacts)
+                  对于私有项目，任何成员（邀请的客人或者更高级别）可以查看流水线以及工作细节（输入日志以及元数据信息）
               %p
-                If disabled, the access level will depend on the user's
-                permissions in the project.
+                如果禁用，访问情况将取决于用户在项目中的权限情况而定。
 
         %hr
         .form-group
           .checkbox
             = f.label :auto_cancel_pending_pipelines do
               = f.check_box :auto_cancel_pending_pipelines, {}, 'enabled', 'disabled'
-              %strong Auto-cancel redundant, pending pipelines
+              %strong 自动取消冗余的待处理流水线
             .help-block
-              New pipelines will cancel older, pending pipelines on the same branch
+              新流水线将取消同一分支上较旧的待处理管道
               = link_to icon('question-circle'), help_page_path('user/project/pipelines/settings', anchor: 'auto-cancel-pending-pipelines'), target: '_blank'
 
         %hr
         .form-group
-          = f.label :build_coverage_regex, "Test coverage parsing", class: 'label-light'
+          = f.label :build_coverage_regex, "测试覆盖解析", class: 'label-light'
           .input-group
             %span.input-group-addon /
             = f.text_field :build_coverage_regex, class: 'form-control', placeholder: 'Regular expression'
             %span.input-group-addon /
           %p.help-block
-            A regular expression that will be used to find the test coverage
-            output in the job trace. Leave blank to disable
+            我们将使用此正则表达式在作业信息中查找测试覆盖输出。如果不想使用此功能，请留空
             = link_to icon('question-circle'), help_page_path('user/project/pipelines/settings', anchor: 'test-coverage-parsing'), target: '_blank'
           .bs-callout.bs-callout-info
-            %p Below are examples of regex for existing tools:
+            %p 下面是现有工具的正则表达式例子：
             %ul
               %li
                 Simplecov (Ruby) -
@@ -152,7 +150,7 @@
                 excoveralls (Elixir) -
                 %code \[TOTAL\]\s+(\d+\.\d+)%
 
-        = f.submit 'Save changes', class: "btn btn-save"
+        = f.submit '保存修改', class: "btn btn-save"
 
 %hr
 

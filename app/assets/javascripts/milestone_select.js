@@ -60,28 +60,28 @@ export default class MilestoneSelect {
               extraOptions.push({
                 id: 0,
                 name: '',
-                title: 'Any Milestone'
+                title: '所有里程碑'
               });
             }
             if (showNo) {
               extraOptions.push({
                 id: -1,
                 name: 'No Milestone',
-                title: 'No Milestone'
+                title: '无里程碑'
               });
             }
             if (showUpcoming) {
               extraOptions.push({
                 id: -2,
                 name: '#upcoming',
-                title: 'Upcoming'
+                title: '即将到来'
               });
             }
             if (showStarted) {
               extraOptions.push({
                 id: -3,
                 name: '#started',
-                title: 'Started'
+                title: '已开始'
               });
             }
             if (extraOptions.length) {

@@ -2,10 +2,10 @@ class Milestone < ActiveRecord::Base
   # Represents a "No Milestone" state used for filtering Issues and Merge
   # Requests that have no milestone assigned.
   MilestoneStruct = Struct.new(:title, :name, :id)
-  None = MilestoneStruct.new('No Milestone', 'No Milestone', 0)
-  Any = MilestoneStruct.new('Any Milestone', '', -1)
-  Upcoming = MilestoneStruct.new('Upcoming', '#upcoming', -2)
-  Started = MilestoneStruct.new('Started', '#started', -3)
+  None = MilestoneStruct.new('无里程碑', '无里程碑', 0)
+  Any = MilestoneStruct.new('任何里程碑', '', -1)
+  Upcoming = MilestoneStruct.new('即将到来', '#upcoming', -2)
+  Started = MilestoneStruct.new('已开始', '#started', -3)
 
   include CacheMarkdownField
   include InternalId
@@ -261,7 +261,7 @@ class Milestone < ActiveRecord::Base
 
   def start_date_should_be_less_than_due_date
     if due_date <= start_date
-      errors.add(:due_date, "must be greater than start date")
+      errors.add(:due_date, "必须大于起始日期")
     end
   end
 

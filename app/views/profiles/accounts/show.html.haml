@@ -1,38 +1,38 @@
-- page_title "Account"
+- page_title "账号"
 - @content_class = "limit-container-width" unless fluid_layout
 = render 'profiles/head'
 
 - if current_user.ldap_user?
   .alert.alert-info
-    Some options are unavailable for LDAP accounts
+    部分设置对于 LDAP 账号无效
 
 .row.prepend-top-default
   .col-lg-4.profile-settings-sidebar
     %h4.prepend-top-0
-      Two-Factor Authentication
+      两步验证
     %p
-      Increase your account's security by enabling Two-Factor Authentication (2FA).
+      开启两步验证 (2FA) 增加账户安全性。
   .col-lg-8
     %p
-      Status: #{current_user.two_factor_enabled? ? 'Enabled' : 'Disabled'}
+      状态: #{current_user.two_factor_enabled? ? '启用' : '禁用'}
     - if current_user.two_factor_enabled?
-      = link_to 'Manage two-factor authentication', profile_two_factor_auth_path, class: 'btn btn-info'
+      = link_to '管理两步验证', profile_two_factor_auth_path, class: 'btn btn-info'
     - else
       .append-bottom-10
-        = link_to 'Enable two-factor authentication', profile_two_factor_auth_path, class: 'btn btn-success'
+        = link_to '启用两步验证', profile_two_factor_auth_path, class: 'btn btn-success'
 
 %hr
 - if button_based_providers.any?
   .row.prepend-top-default
     .col-lg-4.profile-settings-sidebar
       %h4.prepend-top-0
-        Social sign-in
+        社会化登录
       %p
-        Activate signin with one of the following services
+        使用以下服务之一激活登录
     .col-lg-8
       %label.label-light
-        Connected Accounts
-      %p Click on icon to activate signin with one of the following services
+        连接到的账户
+      %p 点击下列服务的图标激活第三方登录
       - button_based_providers.each do |provider|
         .provider-btn-group
           .provider-btn-image
@@ -40,38 +40,38 @@
           - if auth_active?(provider)
             - if unlink_allowed?(provider)
               = link_to unlink_profile_account_path(provider: provider), method: :delete, class: 'provider-btn' do
-                Disconnect
+                断开
             - else
               %a.provider-btn
-                Active
+                激活
           - else
             = link_to omniauth_authorize_path(:user, provider), method: :post, class: 'provider-btn not-active' do
-              Connect
+              连接
   %hr
 - if current_user.can_change_username?
   .row.prepend-top-default
     .col-lg-4.profile-settings-sidebar
       %h4.prepend-top-0.warning-title
-        Change username
+        修改用户名
       %p
-        Changing your username can have unintended side effects.
+        更改您的用户名可能会产生意想不到的副作用。
         = succeed '.' do
-          = link_to 'Learn more', help_page_path('user/profile/index', anchor: 'changing-your-username'), target: '_blank'
+          = link_to '了解更多', help_page_path('user/profile/index', anchor: 'changing-your-username'), target: '_blank'
     .col-lg-8
       = form_for @user, url: update_username_profile_path, method: :put, html: {class: "update-username"} do |f|
         .form-group
-          = f.label :username, "Path", class: "label-light"
+          = f.label :username, "路径", class: "label-light"
           .input-group
             .input-group-addon
               = root_url
             = f.text_field :username, required: true, class: 'form-control'
         .help-block
-          Current path:
+          当前路径：
           #{root_url}#{current_user.username}
         .prepend-top-default
           = f.button class: "btn btn-warning", type: "submit" do
             = icon "spinner spin", class: "hidden loading-username"
-            Update username
+            更新用户名
   %hr
 
 .row.prepend-top-default

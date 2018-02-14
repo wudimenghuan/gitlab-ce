@@ -63,7 +63,7 @@ gl.issueBoards.BoardsStore = {
     this.addList({
       id: 'blank',
       list_type: 'blank',
-      title: 'Welcome to your Issue Board!',
+      title: '欢迎来到您的问题看板！',
       position: 0
     });
 

@@ -1,6 +1,6 @@
 - content_for :create_access_levels do
   .create_access_levels-container
-    = dropdown_tag('Select',
+    = dropdown_tag('选择',
                    options: { toggle_class: 'js-allowed-to-create wide',
                    dropdown_class: 'dropdown-menu-selectable capitalize-header',
                    data: { field_name: 'protected_tag[create_access_levels_attributes][0][access_level]', input_id: 'create_access_levels_attributes' }})

@@ -57,7 +57,7 @@ module IssuableActions
     Issuable::DestroyService.new(issuable.project, current_user).execute(issuable)
 
     name = issuable.human_class_name
-    flash[:notice] = "The #{name} was successfully deleted."
+    flash[:notice] = "#{name} 删除成功。"
     index_path = polymorphic_path([parent, issuable.class])
 
     respond_to do |format|
@@ -74,7 +74,7 @@ module IssuableActions
     result = Issuable::BulkUpdateService.new(project, current_user, bulk_update_params).execute(resource_name)
     quantity = result[:count]
 
-    render json: { notice: "#{quantity} #{resource_name.pluralize(quantity)} updated" }
+    render json: { notice: "#{quantity} #{resource_name.pluralize(quantity)} 已更新" }
   end
 
   private

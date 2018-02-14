@@ -57,7 +57,7 @@
       :data-project-path="projectPath"
       :data-data="issuableTemplatesJson">
       <span class="dropdown-toggle-text">
-        Choose a template
+        选择模板
       </span>
       <i
         aria-hidden="true"
@@ -66,10 +66,10 @@
     </button>
     <div class="dropdown-menu dropdown-select">
       <div class="dropdown-title">
-        Choose a template
+        选择模板
         <button
           class="dropdown-title-button dropdown-menu-close"
-          aria-label="Close"
+          aria-label="关闭"
           type="button">
           <i
             aria-hidden="true"
@@ -81,7 +81,7 @@
         <input
           type="search"
           class="dropdown-input-field"
-          placeholder="Filter"
+          placeholder="过滤"
           autocomplete="off" />
         <i
           aria-hidden="true"
@@ -89,7 +89,7 @@
         </i>
         <i
           role="button"
-          aria-label="Clear templates search input"
+          aria-label="清除模板搜索输入"
           class="fa fa-times dropdown-input-clear js-dropdown-input-clear">
         </i>
       </div>
@@ -98,12 +98,12 @@
         <ul class="dropdown-footer-list">
           <li>
             <a class="no-template">
-              No template
+              没有模板
             </a>
           </li>
           <li>
             <a class="reset-template">
-              Reset template
+              重置模板
             </a>
           </li>
         </ul>

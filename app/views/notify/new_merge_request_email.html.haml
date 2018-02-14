@@ -1,13 +1,13 @@
 - if Gitlab::CurrentSettings.email_author_in_body
   %p.details
-    #{link_to @merge_request.author_name, user_url(@merge_request.author)} created a merge request:
+    #{link_to @merge_request.author_name, user_url(@merge_request.author)} 创建合并请求:
 
 %p.details
   != merge_path_description(@merge_request, '&rarr;')
 
 - if @merge_request.assignee_id.present?
   %p
-    Assignee: #{@merge_request.assignee_name}
+    指派给: #{@merge_request.assignee_name}
 
 - if @merge_request.description
   %div

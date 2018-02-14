@@ -1,4 +1,4 @@
-- page_title "Notifications"
+- page_title "通知"
 - @content_class = "limit-container-width" unless fluid_layout
 = render 'profiles/head'
 
@@ -15,19 +15,19 @@
       %h4.prepend-top-0
         = page_title
       %p
-        You can specify notification level per group or per project.
+        你也可以单独指定每个群组或项目的通知等级。
       %p
-        By default, all projects and groups will use the global notifications setting.
+        所有项目和群组默认使用全局通知设置。
     .col-lg-8
       %h5.prepend-top-0
-        Global notification settings
+        全局通知设置
 
       = form_for @user, url: profile_notifications_path, method: :put, html: { class: 'update-notifications prepend-top-default' } do |f|
         .form-group
-          = f.label :notification_email, class: "label-light"
+          = f.label :notification_email, '通知邮箱', class: "label-light"
           = f.select :notification_email, @user.all_emails, { include_blank: false }, class: "select2"
 
-      = label_tag :global_notification_level, "Global notification level", class: "label-light"
+      = label_tag :global_notification_level, "全局通知等级", class: "label-light"
       %br
       .clearfix
       .form-group.pull-left.global-notification-setting
@@ -38,19 +38,19 @@
       = form_for @user, url: profile_notifications_path, method: :put do |f|
         %label{ for: 'user_notified_of_own_activity' }
           = f.check_box :notified_of_own_activity
-          %span Receive notifications about your own activity
+          %span 接收与您的活动有关的通知
 
       %hr
       %h5
-        Groups (#{@group_notifications.count})
+        群组 (#{@group_notifications.count})
       %div
         %ul.bordered-list
           - @group_notifications.each do |setting|
             = render 'group_settings', setting: setting, group: setting.source
       %h5
-        Projects (#{@project_notifications.count})
+        项目 (#{@project_notifications.count})
       %p.account-well
-        To specify the notification level per project of a group you belong to, you need to visit project page and change notification level there.
+        给所属群组的每个项目指定通知等级，需要访问项目页面去设置通知等级。
       .append-bottom-default
         %ul.bordered-list
           - @project_notifications.each do |setting|

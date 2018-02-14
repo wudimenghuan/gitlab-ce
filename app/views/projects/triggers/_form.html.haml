@@ -6,6 +6,6 @@
       %label.label-light Token
       %p.form-control-static= @trigger.token
   .form-group
-    = f.label :key, "Description", class: "label-light"
-    = f.text_field :description, class: "form-control", required: true, title: 'Trigger description is required.', placeholder: "Trigger description"
+    = f.label :key, "描述", class: "label-light"
+    = f.text_field :description, class: "form-control", required: true, title: 'Trigger description is required.', placeholder: "触发器描述"
   = f.submit btn_text, class: "btn btn-save"

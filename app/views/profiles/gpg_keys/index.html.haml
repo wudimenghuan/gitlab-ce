@@ -1,4 +1,4 @@
-- page_title "GPG Keys"
+- page_title "GPG 密钥"
 - @content_class = "limit-container-width" unless fluid_layout
 = render 'profiles/head'
 
@@ -7,16 +7,16 @@
     %h4.prepend-top-0
       = page_title
     %p
-      GPG keys allow you to verify signed commits.
+      GPG密钥允许您对签名的提交进行验证。
   .col-lg-8
     %h5.prepend-top-0
-      Add a GPG key
+      添加 GPG 密钥
     %p.profile-settings-content
-      Before you can add a GPG key you need to
-      = link_to 'generate it.', help_page_path('user/project/repository/gpg_signed_commits/index.md')
+      在增加 GPG 密钥之前需要先
+      = link_to '生成密钥。', help_page_path('user/project/repository/gpg_signed_commits/index.md')
     = render 'form'
     %hr
     %h5
-      Your GPG keys (#{@gpg_keys.count})
+      您的 GPG 密钥 (#{@gpg_keys.count})
     .append-bottom-default
       = render 'key_table'

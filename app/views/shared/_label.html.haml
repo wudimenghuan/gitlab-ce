@@ -10,72 +10,72 @@
 
   .visible-xs.visible-sm-inline-block.dropdown
     %button.btn.btn-default.label-options-toggle{ type: 'button', data: { toggle: "dropdown" } }
-      Options
+      选项
       = icon('caret-down')
     .dropdown-menu.dropdown-menu-align-right
       %ul
         - if show_label_merge_requests_link
           %li
             = link_to_label(label, subject: subject, type: :merge_request) do
-              View merge requests
+              查看合并请求
         - if show_label_issues_link
           %li
             = link_to_label(label, subject: subject) do
-              View open issues
+              查看未关闭问题
         - if current_user
           %li.label-subscription
             - if can_subscribe_to_label_in_different_levels?(label)
               %a.js-unsubscribe-button.label-subscribe-button{ role: 'button', href: '#', class: ('hidden' if status.unsubscribed?), data: { url: toggle_subscription_path } }
-                %span Unsubscribe
+                %span 取消订阅
               %a.js-subscribe-button.label-subscribe-button{ role: 'button', href: '#', class: ('hidden' unless status.unsubscribed?), data: { url: toggle_subscription_project_label_path(@project, label) } }
-                %span Subscribe at project level
+                %span 在项目层面订阅
               %a.js-subscribe-button.label-subscribe-button{ role: 'button', href: '#', class: ('hidden' unless status.unsubscribed?), data: { url: toggle_subscription_group_label_path(label.group, label) } }
-                %span Subscribe at group level
+                %span 在群组层面订阅
             - else
               %a.js-subscribe-button.label-subscribe-button{ role: 'button', href: '#', data: { status: status, url: toggle_subscription_path } }
                 %span= label_subscription_toggle_button_text(label, @project)
 
         - if can?(current_user, :admin_label, label)
           %li
-            = link_to 'Edit', edit_label_path(label)
+            = link_to '编辑', edit_label_path(label)
           %li
-            = link_to 'Delete',
+            = link_to '删除',
               destroy_label_path(label),
-              title: 'Delete',
+              title: '删除',
               method: :delete,
-              data: {confirm: 'Remove this label? Are you sure?'},
+              data: {confirm: '确定要删除此标记？'},
               class: 'text-danger'
 
   .pull-right.hidden-xs.hidden-sm
     - if label.is_a?(ProjectLabel) && label.project.group && can?(current_user, :admin_label, label.project.group)
-      = link_to promote_project_label_path(label.project, label), title: "Promote to Group Label", class: 'btn btn-transparent btn-action', data: {confirm: "Promoting #{label.title} will make it available for all projects inside #{label.project.group.name}. Existing project labels with the same name will be merged. This action cannot be reversed.", toggle: "tooltip"}, method: :post do
-        %span.sr-only Promote to Group
+      = link_to promote_project_label_path(label.project, label), title: "提升到群组标记", class: 'btn btn-transparent btn-action', data: {confirm: "提升 #{label.title} 标记将使得此标记可用于 #{label.project.group.name}群组内的所有项目。并将合并具有相同名称的现有项目标签。是否确定？", toggle: "tooltip"}, method: :post do
+        %span.sr-only 提升到群组
         = sprite_icon('level-up')
     - if can?(current_user, :admin_label, label)
       = link_to edit_label_path(label), title: "Edit", class: 'btn btn-transparent btn-action', data: {toggle: "tooltip"} do
-        %span.sr-only Edit
+        %span.sr-only 编辑
         = sprite_icon('pencil')
       %span{ data: { toggle: 'modal', target: "#modal-delete-label-#{label.id}" } }
         = link_to "#", title: "Delete", class: 'btn btn-transparent btn-action remove-row', data: { toggle: "tooltip" } do
-          %span.sr-only Delete
+          %span.sr-only 删除
           = sprite_icon('remove')
     - if current_user
       .label-subscription.inline
         - if can_subscribe_to_label_in_different_levels?(label)
           %button.js-unsubscribe-button.label-subscribe-button.btn.btn-default{ type: 'button', class: ('hidden' if status.unsubscribed?), data: { url: toggle_subscription_path } }
-            %span Unsubscribe
+            %span 取消订阅
             = icon('spinner spin', class: 'label-subscribe-button-loading')
 
           .dropdown.dropdown-group-label{ class: ('hidden' unless status.unsubscribed?) }
             %button.dropdown-menu-toggle{ type: 'button', 'data-toggle' => 'dropdown' }
-              %span Subscribe
+              %span 订阅
               = icon('chevron-down')
             %ul.dropdown-menu
               %li
                 %a.js-subscribe-button{ class: ('hidden' unless status.unsubscribed?), data: { url: toggle_subscription_project_label_path(@project, label) } }
-                  Project level
+                  项目层面
                 %a.js-subscribe-button{ class: ('hidden' unless status.unsubscribed?), data: { url: toggle_subscription_group_label_path(label.group, label) } }
-                  Group level
+                  群组层面
         - else
           %button.js-subscribe-button.label-subscribe-button.btn.btn-default{ type: 'button', data: { status: status, url: toggle_subscription_path } }
             %span= label_subscription_toggle_button_text(label, @project)

@@ -10,8 +10,8 @@ export default {
       <status-icon status="success" :show-disabled-button="true" />
       <div class="media-body space-children">
         <span class="bold">
-          Ready to be merged automatically.
-          Ask someone with write access to this repository to merge this request
+          已准备好自动合并。
+          请询问具有此仓库写权限的成员来合并此请求。
         </span>
       </div>
     </div>

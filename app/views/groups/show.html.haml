@@ -1,9 +1,9 @@
 - @no_container = true
-- breadcrumb_title "Details"
+- breadcrumb_title "详细信息"
 - can_create_subgroups = can?(current_user, :create_subgroup, @group)
 
 = content_for :meta_tags do
-  = auto_discovery_link_tag(:atom, group_url(@group, rss_url_options), title: "#{@group.name} activity")
+  = auto_discovery_link_tag(:atom, group_url(@group, rss_url_options), title: "#{@group.name} 活动")
 
 = render 'groups/home_panel'
 

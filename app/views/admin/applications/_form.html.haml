@@ -2,30 +2,30 @@
   = form_errors(application)
 
   = content_tag :div, class: 'form-group' do
-    = f.label :name, class: 'col-sm-2 control-label'
+    = f.label :name, "名称", class: 'col-sm-2 control-label'
     .col-sm-10
       = f.text_field :name, class: 'form-control'
       = doorkeeper_errors_for application, :name
 
   = content_tag :div, class: 'form-group' do
-    = f.label :redirect_uri, class: 'col-sm-2 control-label'
+    = f.label :redirect_uri, "重定向 URI", class: 'col-sm-2 control-label'
     .col-sm-10
       = f.text_area :redirect_uri, class: 'form-control'
       = doorkeeper_errors_for application, :redirect_uri
       %span.help-block
-        Use one line per URI
+        每个 URI 使用一行
       - if Doorkeeper.configuration.native_redirect_uri
         %span.help-block
-          Use
+          使用
           %code= Doorkeeper.configuration.native_redirect_uri
-          for local tests
+          作为本地测试
 
   = content_tag :div, class: 'form-group' do
     = f.label :trusted, class: 'col-sm-2 control-label'
     .col-sm-10
       = f.check_box :trusted
       %span.help-block
-        Trusted applications are automatically authorized on GitLab OAuth flow.
+        授信应用将自动在 GitLab OAuth 流中授权。
 
   .form-group
     = f.label :scopes, class: 'col-sm-2 control-label'
@@ -33,5 +33,5 @@
       = render 'shared/tokens/scopes_form', prefix: 'doorkeeper_application', token: application, scopes: @scopes
 
   .form-actions
-    = f.submit 'Submit', class: "btn btn-save wide"
-    = link_to "Cancel", admin_applications_path, class: "btn btn-cancel"
+    = f.submit '提交', class: "btn btn-save wide"
+    = link_to "取消", admin_applications_path, class: "btn btn-cancel"

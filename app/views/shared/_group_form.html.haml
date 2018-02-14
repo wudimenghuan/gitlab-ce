@@ -4,7 +4,7 @@
 
 .form-group
   = f.label :path, class: 'control-label' do
-    Group path
+    群组路径
   .col-sm-10
     .input-group.gl-field-error-anchor
       .group-root-path.input-group-addon.has-tooltip{ title: group_path, :'data-placement' => 'bottom' }
@@ -15,25 +15,25 @@
       = f.text_field :path, placeholder: 'open-source', class: 'form-control',
         autofocus: local_assigns[:autofocus] || false, required: true,
         pattern: Gitlab::PathRegex::NAMESPACE_FORMAT_REGEX_JS,
-        title: 'Please choose a group path with no special characters.',
+        title: '请选择一个不包含特殊字符的群组名称。',
         "data-bind-in" => "#{'create_chat_team' if Gitlab.config.mattermost.enabled}"
 
     - if @group.persisted?
       .alert.alert-warning.prepend-top-10
         Changing group path can have unintended side effects.
         = succeed '.' do
-          = link_to 'Learn more', help_page_path('user/group/index', anchor: 'changing-a-groups-path'), target: '_blank'
+          = link_to '了解更多', help_page_path('user/group/index', anchor: 'changing-a-groups-path'), target: '_blank'
 
 .form-group.group-name-holder
   = f.label :name, class: 'control-label' do
-    Group name
+    群组名称
   .col-sm-10
     = f.text_field :name, class: 'form-control',
       required: true,
-      title: 'You can choose a descriptive name different from the path.'
+      title: '您可以选择一个跟路径不同的描述性名称。'
 
 .form-group.group-description-holder
-  = f.label :description, class: 'control-label'
+  = f.label :description, '描述', class: 'control-label'
   .col-sm-10
     = f.text_area :description, maxlength: 250,
         class: 'form-control js-gfm-input', rows: 4

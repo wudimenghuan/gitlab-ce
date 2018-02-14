@@ -2,8 +2,8 @@
 
 %li.group-row{ class: css_class }
   .controls
-    = link_to 'Edit', admin_group_edit_path(group), id: "edit_#{dom_id(group)}", class: 'btn'
-    = link_to 'Delete', [:admin, group], data: { confirm: "Are you sure you want to remove #{group.name}?" }, method: :delete, class: 'btn btn-remove'
+    = link_to '编辑', admin_group_edit_path(group), id: "edit_#{dom_id(group)}", class: 'btn'
+    = link_to '删除', [:admin, group], data: { confirm: "确定要移除 #{group.name} 群组？" }, method: :delete, class: 'btn btn-remove'
   .stats
     %span.badge
       = storage_counter(group.storage_size)

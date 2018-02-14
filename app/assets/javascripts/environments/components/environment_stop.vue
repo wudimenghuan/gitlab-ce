@@ -38,7 +38,7 @@
     methods: {
       onClick() {
         // eslint-disable-next-line no-alert
-        if (confirm('Are you sure you want to stop this environment?')) {
+        if (confirm('您确定要停止这个运行环境？')) {
           this.isLoading = true;
 
           $(this.$el).tooltip('destroy');

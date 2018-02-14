@@ -32,7 +32,7 @@ class Admin::ApplicationsController < Admin::ApplicationController
 
   def update
     if @application.update(application_params)
-      redirect_to admin_application_path(@application), notice: 'Application was successfully updated.'
+      redirect_to admin_application_path(@application), notice: '应用更新成功。'
     else
       render :edit
     end
@@ -40,7 +40,7 @@ class Admin::ApplicationsController < Admin::ApplicationController
 
   def destroy
     @application.destroy
-    redirect_to admin_applications_url, status: 302, notice: 'Application was successfully destroyed.'
+    redirect_to admin_applications_url, status: 302, notice: '应用销毁成功。'
   end
 
   private

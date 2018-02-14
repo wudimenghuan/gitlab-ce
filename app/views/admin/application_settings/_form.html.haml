@@ -2,25 +2,25 @@
   = form_errors(@application_setting)
 
   %fieldset
-    %legend Visibility and Access Controls
+    %legend 可见性与访问控制
     .form-group
-      = f.label :default_branch_protection, class: 'control-label col-sm-2'
+      = f.label :default_branch_protection, '默认保护分支', class: 'control-label col-sm-2'
       .col-sm-10
         = f.select :default_branch_protection, options_for_select(Gitlab::Access.protection_options, @application_setting.default_branch_protection), {}, class: 'form-control'
     .form-group.visibility-level-setting
-      = f.label :default_project_visibility, class: 'control-label col-sm-2'
+      = f.label :default_project_visibility, '默认项目可见度', class: 'control-label col-sm-2'
       .col-sm-10
         = render('shared/visibility_radios', model_method: :default_project_visibility, form: f, selected_level: @application_setting.default_project_visibility, form_model: Project.new)
     .form-group.visibility-level-setting
-      = f.label :default_snippet_visibility, class: 'control-label col-sm-2'
+      = f.label :default_snippet_visibility, '默认代码片段可见度', class: 'control-label col-sm-2'
       .col-sm-10
         = render('shared/visibility_radios', model_method: :default_snippet_visibility, form: f, selected_level: @application_setting.default_snippet_visibility, form_model: ProjectSnippet.new)
     .form-group.visibility-level-setting
-      = f.label :default_group_visibility, class: 'control-label col-sm-2'
+      = f.label :default_group_visibility, '默认群组可见度', class: 'control-label col-sm-2'
       .col-sm-10
         = render('shared/visibility_radios', model_method: :default_group_visibility, form: f, selected_level: @application_setting.default_group_visibility, form_model: Group.new)
     .form-group
-      = f.label :restricted_visibility_levels, class: 'control-label col-sm-2'
+      = f.label :restricted_visibility_levels, '可见度限制', class: 'control-label col-sm-2'
       .col-sm-10
         - checkbox_name = 'application_setting[restricted_visibility_levels][]'
         = hidden_field_tag(checkbox_name)
@@ -28,19 +28,19 @@
           .checkbox
             = level
         %span.help-block#restricted-visibility-help
-          Selected levels cannot be used by non-admin users for projects or snippets.
-          If the public level is restricted, user profiles are only visible to logged in users.
+          选择的等级将无法用于非管理用户的项目和代码片段。
+          如果公开等级被限制，用户个人资料只对已登录用户可见。
     .form-group
-      = f.label :import_sources, class: 'control-label col-sm-2'
+      = f.label :import_sources, '导入来源', class: 'control-label col-sm-2'
       .col-sm-10
         - import_sources_checkboxes('import-sources-help').each do |source|
           .checkbox= source
         %span.help-block#import-sources-help
-          Enabled sources for code import during project creation. OmniAuth must be configured for GitHub
+          项目创建时可用的代码导入来源。GitHub
           = link_to "(?)", help_page_path("integration/github")
           , Bitbucket
           = link_to "(?)", help_page_path("integration/bitbucket")
-          and GitLab.com
+          和 GitLab.com
           = link_to "(?)", help_page_path("integration/gitlab")
 
     .form-group
@@ -48,206 +48,206 @@
         .checkbox
           = f.label :project_export_enabled do
             = f.check_box :project_export_enabled
-            Project export enabled
+            启用项目浏览
 
     .form-group
-      %label.control-label.col-sm-2 Enabled Git access protocols
+      %label.control-label.col-sm-2 启用的 Git 访问协议
       .col-sm-10
-        = select(:application_setting, :enabled_git_access_protocol, [['Both SSH and HTTP(S)', nil], ['Only SSH', 'ssh'], ['Only HTTP(S)', 'http']], {}, class: 'form-control')
+        = select(:application_setting, :enabled_git_access_protocol, [['SSH 和 HTTP(S)', nil], ['只有 SSH', 'ssh'], ['只有 HTTP(S)', 'http']], {}, class: 'form-control')
         %span.help-block#clone-protocol-help
-          Allow only the selected protocols to be used for Git access.
+          仅允许通过所选协议进行Git访问。
 
     - ApplicationSetting::SUPPORTED_KEY_TYPES.each do |type|
       - field_name = :"#{type}_key_restriction"
       .form-group
-        = f.label field_name, "#{type.upcase} SSH keys", class: 'control-label col-sm-2'
+        = f.label field_name, "#{type.upcase} SSH 密钥", class: 'control-label col-sm-2'
         .col-sm-10
           = f.select field_name, key_restriction_options_for_select(type), {}, class: 'form-control'
 
   %fieldset
-    %legend Account and Limit Settings
+    %legend 账户与限制设置
     .form-group
       .col-sm-offset-2.col-sm-10
         .checkbox
           = f.label :gravatar_enabled do
             = f.check_box :gravatar_enabled
-            Gravatar enabled
+            开启 Gravatar 头像
     .form-group
-      = f.label :default_projects_limit, class: 'control-label col-sm-2'
+      = f.label :default_projects_limit, '默认项目限制', class: 'control-label col-sm-2'
       .col-sm-10
         = f.number_field :default_projects_limit, class: 'form-control'
     .form-group
-      = f.label :max_attachment_size, 'Maximum attachment size (MB)', class: 'control-label col-sm-2'
+      = f.label :max_attachment_size, '最大附件大小 (MB)', class: 'control-label col-sm-2'
       .col-sm-10
         = f.number_field :max_attachment_size, class: 'form-control'
     .form-group
-      = f.label :session_expire_delay, 'Session duration (minutes)', class: 'control-label col-sm-2'
+      = f.label :session_expire_delay, '会话保留时间 (分钟)', class: 'control-label col-sm-2'
       .col-sm-10
         = f.number_field :session_expire_delay, class: 'form-control'
-        %span.help-block#session_expire_delay_help_block GitLab restart is required to apply changes
+        %span.help-block#session_expire_delay_help_block 要应用此变更需要重启 GitLab
     .form-group
-      = f.label :user_oauth_applications, 'User OAuth applications', class: 'control-label col-sm-2'
+      = f.label :user_oauth_applications, '用户 OAuth 应用', class: 'control-label col-sm-2'
       .col-sm-10
         .checkbox
           = f.label :user_oauth_applications do
             = f.check_box :user_oauth_applications
-            Allow users to register any application to use GitLab as an OAuth provider
+            允许用户注册使用 GitLab 为 OAuth 提供者的应用
     .form-group
-      = f.label :user_default_external, 'New users set to external', class: 'control-label col-sm-2'
+      = f.label :user_default_external, '将新注册用户设置为外部用户', class: 'control-label col-sm-2'
       .col-sm-10
         .checkbox
           = f.label :user_default_external do
             = f.check_box :user_default_external
-            Newly registered users will by default be external
+            新注册用户默认为外部用户
 
   %fieldset
-    %legend Sign-up Restrictions
+    %legend 注册限制
     .form-group
       .col-sm-offset-2.col-sm-10
         .checkbox
           = f.label :signup_enabled do
             = f.check_box :signup_enabled
-            Sign-up enabled
+            开启注册
     .form-group
       .col-sm-offset-2.col-sm-10
         .checkbox
           = f.label :send_user_confirmation_email do
             = f.check_box :send_user_confirmation_email
-            Send confirmation email on sign-up
+            注册时发送确认邮件
     .form-group
-      = f.label :domain_whitelist, 'Whitelisted domains for sign-ups', class: 'control-label col-sm-2'
+      = f.label :domain_whitelist, '注册域名白名单', class: 'control-label col-sm-2'
       .col-sm-10
         = f.text_area :domain_whitelist_raw, placeholder: 'domain.com', class: 'form-control', rows: 8
-        .help-block ONLY users with e-mail addresses that match these domain(s) will be able to sign-up. Wildcards allowed. Use separate lines for multiple entries. Ex: domain.com, *.domain.com
+        .help-block 用户使用的邮箱地址后缀必须匹配这些域名才能注册。泛域名可用。使用英文逗号分隔多个域名。比如：domain.com, *.domain.com
     .form-group
-      = f.label :domain_blacklist_enabled, 'Domain Blacklist', class: 'control-label col-sm-2'
+      = f.label :domain_blacklist_enabled, '域名黑名单', class: 'control-label col-sm-2'
       .col-sm-10
         .checkbox
           = f.label :domain_blacklist_enabled do
             = f.check_box :domain_blacklist_enabled
-            Enable domain blacklist for sign ups
+            启用注册域名黑名单
     .form-group
       .col-sm-offset-2.col-sm-10
         .radio
           = label_tag :blacklist_type_file do
             = radio_button_tag :blacklist_type, :file
             .option-title
-              Upload blacklist file
+              上传黑名单文件
         .radio
           = label_tag :blacklist_type_raw do
             = radio_button_tag :blacklist_type, :raw, @application_setting.domain_blacklist.present? || @application_setting.domain_blacklist.blank?
             .option-title
-              Enter blacklist manually
+              手动输入黑名单
     .form-group.blacklist-file
-      = f.label :domain_blacklist_file, 'Blacklist file', class: 'control-label col-sm-2'
+      = f.label :domain_blacklist_file, '黑名单文件', class: 'control-label col-sm-2'
       .col-sm-10
         = f.file_field :domain_blacklist_file, class: 'form-control', accept: '.txt,.conf'
-        .help-block Users with e-mail addresses that match these domain(s) will NOT be able to sign-up. Wildcards allowed. Use separate lines or commas for multiple entries.
+        .help-block 不允许用户使用这个文件中的域名后缀的邮箱注册。泛域名可用。使用英文逗号分隔多个域名。
     .form-group.blacklist-raw
-      = f.label :domain_blacklist, 'Blacklisted domains for sign-ups', class: 'control-label col-sm-2'
+      = f.label :domain_blacklist, '注册域名黑名单', class: 'control-label col-sm-2'
       .col-sm-10
         = f.text_area :domain_blacklist_raw, placeholder: 'domain.com', class: 'form-control', rows: 8
-        .help-block Users with e-mail addresses that match these domain(s) will NOT be able to sign-up. Wildcards allowed. Use separate lines for multiple entries. Ex: domain.com, *.domain.com
+        .help-block 不允许用户使用这些域名后缀的邮箱注册。泛域名可用。使用英文逗号分隔多个域名。比如：domain.com, *.domain.com
 
     .form-group
-      = f.label :after_sign_up_text, class: 'control-label col-sm-2'
+      = f.label :after_sign_up_text, '注册成功提示', class: 'control-label col-sm-2'
       .col-sm-10
         = f.text_area :after_sign_up_text, class: 'form-control', rows: 4
-        .help-block Markdown enabled
+        .help-block 允许使用 Markdown 格式
 
   %fieldset
-    %legend Sign-in Restrictions
+    %legend 登录限制
     .form-group
       .col-sm-offset-2.col-sm-10
         .checkbox
           = f.label :password_authentication_enabled_for_web do
             = f.check_box :password_authentication_enabled_for_web
-            Password authentication enabled for web interface
+            启用Web接口密码认证
             .help-block
-              When disabled, an external authentication provider must be used.
+              如果禁用，必须提供一个外部认证接口。
     .form-group
       .col-sm-offset-2.col-sm-10
         .checkbox
           = f.label :password_authentication_enabled_for_git do
             = f.check_box :password_authentication_enabled_for_git
-            Password authentication enabled for Git over HTTP(S)
+            对于使用 HTTP(S) 的 Git 启用密码认证
             .help-block
-              When disabled, a Personal Access Token
+              当禁用时，必须使用个人访问令牌
               - if Gitlab::LDAP::Config.enabled?
-                or LDAP password
-              must be used to authenticate.
+                或 LDAP 密码
+              来进行认证。
     - if omniauth_enabled? && button_based_providers.any?
       .form-group
-        = f.label :enabled_oauth_sign_in_sources, 'Enabled OAuth sign-in sources', class: 'control-label col-sm-2'
+        = f.label :enabled_oauth_sign_in_sources, '开启 OAuth 登录源', class: 'control-label col-sm-2'
         .col-sm-10
           .btn-group{ data: { toggle: 'buttons' } }
             - oauth_providers_checkboxes.each do |source|
               = source
     .form-group
-      = f.label :two_factor_authentication, 'Two-factor authentication', class: 'control-label col-sm-2'
+      = f.label :two_factor_authentication, '两步验证', class: 'control-label col-sm-2'
       .col-sm-10
         .checkbox
           = f.label :require_two_factor_authentication do
             = f.check_box :require_two_factor_authentication
-            Require all users to setup Two-factor authentication
+            强制全部用户设置两步验证
     .form-group
-      = f.label :two_factor_authentication, 'Two-factor grace period (hours)', class: 'control-label col-sm-2'
+      = f.label :two_factor_authentication, '两步验证宽限期 (小时)', class: 'control-label col-sm-2'
       .col-sm-10
         = f.number_field :two_factor_grace_period, min: 0, class: 'form-control', placeholder: '0'
-        .help-block Amount of time (in hours) that users are allowed to skip forced configuration of two-factor authentication
+        .help-block 允许用户跳过强制两步验证配置的时间范围（小时）
     .form-group
-      = f.label :home_page_url, 'Home page URL', class: 'control-label col-sm-2'
+      = f.label :home_page_url, '主页链接', class: 'control-label col-sm-2'
       .col-sm-10
         = f.text_field :home_page_url, class: 'form-control', placeholder: 'http://company.example.com', :'aria-describedby' => 'home_help_block'
-        %span.help-block#home_help_block We will redirect non-logged in users to this page
+        %span.help-block#home_help_block 未登录用户将会重定向到此页面
     .form-group
-      = f.label :after_sign_out_path, class: 'control-label col-sm-2'
+      = f.label :after_sign_out_path, '退出后路径', class: 'control-label col-sm-2'
       .col-sm-10
         = f.text_field :after_sign_out_path, class: 'form-control', placeholder: 'http://company.example.com', :'aria-describedby' => 'after_sign_out_path_help_block'
-        %span.help-block#after_sign_out_path_help_block We will redirect users to this page after they sign out
+        %span.help-block#after_sign_out_path_help_block 用户退出后将会重定向到此页面
     .form-group
-      = f.label :sign_in_text, class: 'control-label col-sm-2'
+      = f.label :sign_in_text, '登录页面文字', class: 'control-label col-sm-2'
       .col-sm-10
         = f.text_area :sign_in_text, class: 'form-control', rows: 4
-        .help-block Markdown enabled
+        .help-block 允许使用 Markdown 格式
 
   %fieldset
-    %legend Help Page
+    %legend 帮助页面
     .form-group
-      = f.label :help_page_text, class: 'control-label col-sm-2'
+      = f.label :help_page_text, '帮助页面文字', class: 'control-label col-sm-2'
       .col-sm-10
         = f.text_area :help_page_text, class: 'form-control', rows: 4
-        .help-block Markdown enabled
+        .help-block 允许使用 Markdown 格式
     .form-group
       .col-sm-offset-2.col-sm-10
         .checkbox
           = f.label :help_page_hide_commercial_content do
             = f.check_box :help_page_hide_commercial_content
-            Hide marketing-related entries from help
+            从帮助中隐藏营销相关的条目
     .form-group
-      = f.label :help_page_support_url, 'Support page URL', class: 'control-label col-sm-2'
+      = f.label :help_page_support_url, '支持页面 URL', class: 'control-label col-sm-2'
       .col-sm-10
         = f.text_field :help_page_support_url, class: 'form-control', placeholder: 'http://company.example.com/getting-help', :'aria-describedby' => 'support_help_block'
-        %span.help-block#support_help_block Alternate support URL for help page
+        %span.help-block#support_help_block 替代支持页面 URL
 
   %fieldset
-    %legend Pages
+    %legend 页面
     .form-group
-      = f.label :max_pages_size, 'Maximum size of pages (MB)', class: 'control-label col-sm-2'
+      = f.label :max_pages_size, '页面大小限制 (MB)', class: 'control-label col-sm-2'
       .col-sm-10
         = f.number_field :max_pages_size, class: 'form-control'
-        .help-block 0 for unlimited
+        .help-block 设为0则不限制大小
 
   %fieldset
-    %legend Continuous Integration and Deployment
+    %legend 持续集成和部署
     .form-group
       .col-sm-offset-2.col-sm-10
         .checkbox
           = f.label :auto_devops_enabled do
             = f.check_box :auto_devops_enabled
-            Enabled Auto DevOps (Beta) for projects by default
+            项目默认启用 Auto DevOps (Beta)
         .help-block
-          It will automatically build, test, and deploy applications based on a predefined CI/CD configuration
+          将根据预先定义的 CI/CD 配置自动构建、测试并部署应用
           = link_to icon('question-circle'), help_page_path('topics/autodevops/index.md')
     .form-group
       = f.label :auto_devops_domain, class: 'control-label col-sm-2'
@@ -260,189 +260,184 @@
         .checkbox
           = f.label :shared_runners_enabled do
             = f.check_box :shared_runners_enabled
-            Enable shared runners for new projects
+            为新项目默认开启共享 runner
     .form-group
-      = f.label :shared_runners_text, class: 'control-label col-sm-2'
+      = f.label :shared_runners_text, '共享 runner 文本', class: 'control-label col-sm-2'
       .col-sm-10
         = f.text_area :shared_runners_text, class: 'form-control', rows: 4
-        .help-block Markdown enabled
+        .help-block 允许使用 Markdown 格式
     .form-group
-      = f.label :max_artifacts_size, 'Maximum artifacts size (MB)', class: 'control-label col-sm-2'
+      = f.label :max_artifacts_size, '最大工件大小 (MB)', class: 'control-label col-sm-2'
       .col-sm-10
         = f.number_field :max_artifacts_size, class: 'form-control'
         .help-block
-          Set the maximum file size for each job's artifacts
+          设置每个构建的工件的最大文件大小
           = link_to icon('question-circle'), help_page_path('user/admin_area/settings/continuous_integration', anchor: 'maximum-artifacts-size')
     .form-group
-      = f.label :default_artifacts_expire_in, 'Default artifacts expiration', class: 'control-label col-sm-2'
+      = f.label :default_artifacts_expire_in, '工件默认超时时间', class: 'control-label col-sm-2'
       .col-sm-10
         = f.text_field :default_artifacts_expire_in, class: 'form-control'
         .help-block
-          Set the default expiration time for each job's artifacts.
-          0 for unlimited.
+          设置工件的默认超时时间。
+          设为0则不限制。
           = link_to icon('question-circle'), help_page_path('user/admin_area/settings/continuous_integration', anchor: 'default-artifacts-expiration')
 
   - if Gitlab.config.registry.enabled
     %fieldset
-      %legend Container Registry
+      %legend 容器注册表
       .form-group
-        = f.label :container_registry_token_expire_delay, 'Authorization token duration (minutes)', class: 'control-label col-sm-2'
+        = f.label :container_registry_token_expire_delay, '授权令牌持续时间 （分钟）', class: 'control-label col-sm-2'
         .col-sm-10
           = f.number_field :container_registry_token_expire_delay, class: 'form-control'
 
   %fieldset
-    %legend Metrics - Influx
+    %legend 指标 - Influx
     %p
-      Setup InfluxDB to measure a wide variety of statistics like the time spent
-      in running SQL queries. These settings require a
-      = link_to 'restart', help_page_path('administration/restart_gitlab')
-      to take effect.
+      设置InfluxDB来测量各种统计信息，例如运行SQL查询所花费的时间。 这些设置需要
+      = link_to '重新启动', help_page_path('administration/restart_gitlab')
+      后才能生效。
       = link_to icon('question-circle'), help_page_path('administration/monitoring/performance/introduction')
     .form-group
       .col-sm-offset-2.col-sm-10
         .checkbox
           = f.label :metrics_enabled do
             = f.check_box :metrics_enabled
-            Enable InfluxDB Metrics
+            启用 InfluxDB 指标
     .form-group
-      = f.label :metrics_host, 'InfluxDB host', class: 'control-label col-sm-2'
+      = f.label :metrics_host, 'InfluxDB 主机', class: 'control-label col-sm-2'
       .col-sm-10
         = f.text_field :metrics_host, class: 'form-control', placeholder: 'influxdb.example.com'
     .form-group
-      = f.label :metrics_port, 'InfluxDB port', class: 'control-label col-sm-2'
+      = f.label :metrics_port, 'InfluxDB 端口', class: 'control-label col-sm-2'
       .col-sm-10
         = f.text_field :metrics_port, class: 'form-control', placeholder: '8089'
         .help-block
-          The UDP port to use for connecting to InfluxDB. InfluxDB requires that
-          your server configuration specifies a database to store data in when
-          sending messages to this port, without it metrics data will not be
-          saved.
+          用于连接到 InfluxDB 的 UDP 端口。
+          InfluxDB 需要您的服务器配置数据库用于存储发送到此端口的消息，
+          如果没有配置，指标数据将不会保存。
     .form-group
-      = f.label :metrics_pool_size, 'Connection pool size', class: 'control-label col-sm-2'
+      = f.label :metrics_pool_size, '连接池大小', class: 'control-label col-sm-2'
       .col-sm-10
         = f.number_field :metrics_pool_size, class: 'form-control'
         .help-block
-          The amount of InfluxDB connections to open. Connections are opened
-          lazily. Users using multi-threaded application servers should ensure
-          enough connections are available (at minimum the amount of application
-          server threads).
+          可用的 InfluxDB 连接数。
+          连接是延迟加载的，即只有需要的时候才会打开。
+          使用多线程应用服务器的用户应确保有足够的连接可用
+          （可用数至少是应用服务器线程的数量）。
     .form-group
-      = f.label :metrics_timeout, 'Connection timeout', class: 'control-label col-sm-2'
+      = f.label :metrics_timeout, '连接超时', class: 'control-label col-sm-2'
       .col-sm-10
         = f.number_field :metrics_timeout, class: 'form-control'
         .help-block
-          The amount of seconds after which an InfluxDB connection will time
-          out.
+          连接超时时间，单位秒。
     .form-group
-      = f.label :metrics_method_call_threshold, 'Method Call Threshold (ms)', class: 'control-label col-sm-2'
+      = f.label :metrics_method_call_threshold, '方法调用阈值 (毫秒)', class: 'control-label col-sm-2'
       .col-sm-10
         = f.number_field :metrics_method_call_threshold, class: 'form-control'
         .help-block
-          A method call is only tracked when it takes longer to complete than
-          the given amount of milliseconds.
+          只有超过此给定的毫秒阀值后完成的方法调用才会被跟踪。
     .form-group
-      = f.label :metrics_sample_interval, 'Sampler Interval (sec)', class: 'control-label col-sm-2'
+      = f.label :metrics_sample_interval, '采样间隔 (秒)', class: 'control-label col-sm-2'
       .col-sm-10
         = f.number_field :metrics_sample_interval, class: 'form-control'
         .help-block
-          The sampling interval in seconds. Sampled data includes memory usage,
-          retained Ruby objects, file descriptors and so on.
+          以秒为单位的采样间隔。
+          采样数据包括内存使用、保留的 Ruby 对象、文件描述符等。
     .form-group
-      = f.label :metrics_packet_size, 'Metrics per packet', class: 'control-label col-sm-2'
+      = f.label :metrics_packet_size, '指标数据包大小', class: 'control-label col-sm-2'
       .col-sm-10
         = f.number_field :metrics_packet_size, class: 'form-control'
         .help-block
-          The amount of points to store in a single UDP packet. More points
-          results in fewer but larger UDP packets being sent.
+          存储在单个UDP数据包中的点数。 增加点数可以减少发送次数，但会增加每个UDP数据包的大小。
 
   %fieldset
-    %legend Metrics - Prometheus
+    %legend 指标 - Prometheus
     %p
-      Enable a Prometheus metrics endpoint at
+      在
       %code= metrics_path
-      to expose a variety of statistics on the health and performance of GitLab. Additional information on authenticating and connecting to the metrics endpoint is available
-      = link_to 'here', admin_health_check_path
-      \. This setting requires a
-      = link_to 'restart', help_page_path('administration/restart_gitlab')
-      to take effect.
+      上启用 Prometheus 指标终端，以显示关于 GitLab 的健康和性能的各种统计信息。请参阅
+      = link_to '此处', admin_health_check_path
+      \。 此设置需要
+      = link_to '重新启动', help_page_path('administration/restart_gitlab')
+      才能生效。
       = link_to icon('question-circle'), help_page_path('administration/monitoring/prometheus/index')
     .form-group
       .col-sm-offset-2.col-sm-10
         .checkbox
           = f.label :prometheus_metrics_enabled do
             = f.check_box :prometheus_metrics_enabled
-            Enable Prometheus Metrics
+            启用 Prometheus 指标
           - unless Gitlab::Metrics.metrics_folder_present?
             .help-block
-              %strong.cred WARNING:
-              Environment variable
+              %strong.cred 警告:
+              环境变量
               %code prometheus_multiproc_dir
-              does not exist or is not pointing to a valid directory.
+              不存在或者是一个无效的目录。
               = link_to icon('question-circle'), help_page_path('administration/monitoring/prometheus/gitlab_metrics', anchor: 'metrics-shared-directory')
 
   %fieldset
-    %legend Profiling - Performance Bar
+    %legend 分析 - 性能栏
     %p
-      Enable the Performance Bar for a given group.
+      启用指定群组的性能栏
       = link_to icon('question-circle'), help_page_path('administration/monitoring/performance/performance_bar')
     .form-group
       .col-sm-offset-2.col-sm-10
         .checkbox
           = f.label :performance_bar_enabled do
             = f.check_box :performance_bar_enabled
-            Enable the Performance Bar
+            启用性能栏
     .form-group
-      = f.label :performance_bar_allowed_group_id, 'Allowed group', class: 'control-label col-sm-2'
+      = f.label :performance_bar_allowed_group_id, '已启用群组', class: 'control-label col-sm-2'
       .col-sm-10
         = f.text_field :performance_bar_allowed_group_id, class: 'form-control', placeholder: 'my-org/my-group', value: @application_setting.performance_bar_allowed_group&.full_path
 
   %fieldset
-    %legend Background Jobs
+    %legend 后台作业
     %p
-      These settings require a
-      = link_to 'restart', help_page_path('administration/restart_gitlab')
-      to take effect.
+      这些设置需要
+      = link_to '重启', help_page_path('administration/restart_gitlab')
+      才能生效。
     .form-group
       .col-sm-offset-2.col-sm-10
         .checkbox
           = f.label :sidekiq_throttling_enabled do
             = f.check_box :sidekiq_throttling_enabled
-            Enable Sidekiq Job Throttling
+            启用 Sidekiq 作业调节
           .help-block
-            Limit the amount of resources slow running jobs are assigned.
+            限制分配缓慢运行的作业的资源量。
     .form-group
-      = f.label :sidekiq_throttling_queues, 'Sidekiq queues to throttle', class: 'control-label col-sm-2'
+      = f.label :sidekiq_throttling_queues, '调节 Sidekiq 队列', class: 'control-label col-sm-2'
       .col-sm-10
         = f.select :sidekiq_throttling_queues, sidekiq_queue_options_for_select, { include_hidden: false }, multiple: true, class: 'select2 select-wide', data: { field: 'sidekiq_throttling_queues' }
         .help-block
-          Choose which queues you wish to throttle.
+          选择需要调节的队列。
     .form-group
-      = f.label :sidekiq_throttling_factor, 'Throttling Factor', class: 'control-label col-sm-2'
+      = f.label :sidekiq_throttling_factor, '调节系数', class: 'control-label col-sm-2'
       .col-sm-10
         = f.number_field :sidekiq_throttling_factor, class: 'form-control', min: '0.01', max: '0.99', step: '0.01'
         .help-block
-          The factor by which the queues should be throttled. A value between 0.0 and 1.0, exclusive.
+          队列调整系数，介于 0.0 到 1.0之间。
 
   %fieldset
-    %legend Spam and Anti-bot Protection
+    %legend 垃圾与防机器人保护
     .form-group
       .col-sm-offset-2.col-sm-10
         .checkbox
           = f.label :recaptcha_enabled do
             = f.check_box :recaptcha_enabled
-            Enable reCAPTCHA
-          %span.help-block#recaptcha_help_block Helps prevent bots from creating accounts
+            开启 reCAPTCHA
+          %span.help-block#recaptcha_help_block 有助于防止机器人创建帐户
 
     .form-group
-      = f.label :recaptcha_site_key, 'reCAPTCHA Site Key', class: 'control-label col-sm-2'
+      = f.label :recaptcha_site_key, 'reCAPTCHA 网站密钥', class: 'control-label col-sm-2'
       .col-sm-10
         = f.text_field :recaptcha_site_key, class: 'form-control'
         .help-block
-          Generate site and private keys at
+          在下面的网址生成网站密钥 (Site Key) 和私钥 (Private Key)：
           %a{ href: 'http://www.google.com/recaptcha', target: 'blank' } http://www.google.com/recaptcha
 
     .form-group
-      = f.label :recaptcha_private_key, 'reCAPTCHA Private Key', class: 'control-label col-sm-2'
+      = f.label :recaptcha_private_key, 'reCAPTCHA 私钥', class: 'control-label col-sm-2'
       .col-sm-10
         = f.text_field :recaptcha_private_key, class: 'form-control'
 
@@ -451,15 +446,15 @@
         .checkbox
           = f.label :akismet_enabled do
             = f.check_box :akismet_enabled
-            Enable Akismet
-          %span.help-block#akismet_help_block Helps prevent bots from creating issues
+            开启 Akismet
+          %span.help-block#akismet_help_block 用户阻止机器人创建问题
 
     .form-group
       = f.label :akismet_api_key, 'Akismet API Key', class: 'control-label col-sm-2'
       .col-sm-10
         = f.text_field :akismet_api_key, class: 'form-control'
         .help-block
-          Generate API key at
+          在下面的网址生成 API 密钥（API Key）：
           %a{ href: 'http://www.akismet.com', target: 'blank' } http://www.akismet.com
 
     .form-group
@@ -467,44 +462,44 @@
         .checkbox
           = f.label :unique_ips_limit_enabled do
             = f.check_box :unique_ips_limit_enabled
-            Limit sign in from multiple ips
+            限制从多个 IP 登录
           %span.help-block#unique_ip_help_block
-            Helps prevent malicious users hide their activity
+            帮助防止恶意用户隐藏他们的活动
 
     .form-group
-      = f.label :unique_ips_limit_per_user, 'IPs per user', class: 'control-label col-sm-2'
+      = f.label :unique_ips_limit_per_user, '每用户IP数', class: 'control-label col-sm-2'
       .col-sm-10
         = f.number_field :unique_ips_limit_per_user, class: 'form-control'
         .help-block
-          Maximum number of unique IPs per user
+          每个用户的唯一 IP 最大数目
 
     .form-group
-      = f.label :unique_ips_limit_time_window, 'IP expiration time', class: 'control-label col-sm-2'
+      = f.label :unique_ips_limit_time_window, 'IP 过期时间', class: 'control-label col-sm-2'
       .col-sm-10
         = f.number_field :unique_ips_limit_time_window, class: 'form-control'
         .help-block
-          How many seconds an IP will be counted towards the limit
+          一个 IP 会被触发限制计数的秒数
 
   %fieldset
-    %legend Abuse reports
+    %legend 违规报告
     .form-group
-      = f.label :admin_notification_email, 'Abuse reports notification email', class: 'control-label col-sm-2'
+      = f.label :admin_notification_email, '违规报告通知邮箱', class: 'control-label col-sm-2'
       .col-sm-10
         = f.text_field :admin_notification_email, class: 'form-control'
         .help-block
-          Abuse reports will be sent to this address if it is set. Abuse reports are always available in the admin area.
+          违规报告将会发送至此邮箱. 违规报告可随时在管理后台查看。
 
   %fieldset
-    %legend Error Reporting and Logging
+    %legend 错误报告和日志
     .form-group
       .col-sm-offset-2.col-sm-10
         .checkbox
           = f.label :sentry_enabled do
             = f.check_box :sentry_enabled
-            Enable Sentry
+            开启 Sentry
           .help-block
-            %p This setting requires a restart to take effect.
-            Sentry is an error reporting and logging tool which is currently not shipped with GitLab, get it here:
+            %p 这些设置需要重启才能生效。
+            Sentry 是一个错误报告和日志记录工具。GitLab 当前并未自带此工具，需要在下面的网址下载并安装：
             %a{ href: 'https://getsentry.com', target: '_blank', rel: 'noopener noreferrer' } https://getsentry.com
 
     .form-group
@@ -517,40 +512,40 @@
         .checkbox
           = f.label :clientside_sentry_enabled do
             = f.check_box :clientside_sentry_enabled
-            Enable Clientside Sentry
+            启用客户端的 Sentry
           .help-block
-            Sentry can also be used for reporting and logging clientside exceptions.
+            Sentry 也可以用于客户端的错误报告和记录。
             %a{ href: 'https://sentry.io/for/javascript/', target: '_blank', rel: 'noopener noreferrer' } https://sentry.io/for/javascript/
 
     .form-group
-      = f.label :clientside_sentry_dsn, 'Clientside Sentry DSN', class: 'control-label col-sm-2'
+      = f.label :clientside_sentry_dsn, '客户端 Sentry DSN', class: 'control-label col-sm-2'
       .col-sm-10
         = f.text_field :clientside_sentry_dsn, class: 'form-control'
 
   %fieldset
-    %legend Repository Storage
+    %legend 版本库存储
     .form-group
       .col-sm-offset-2.col-sm-10
         .checkbox
           = f.label :hashed_storage_enabled do
             = f.check_box :hashed_storage_enabled
-            Create new projects using hashed storage paths
+            使用哈希的存储路径创建项目
           .help-block
-            Enable immutable, hash-based paths and repository names to store repositories on disk. This prevents
-            repositories from having to be moved or renamed when the Project URL changes and may improve disk I/O performance.
-            %em (EXPERIMENTAL)
+            启用不可变的、基于哈希的路径和版本库名称在硬盘上保存版本库。这将避免项目链接改变时引发版本库在磁盘上被移动或者改名，由此可能会提高磁盘 I/O 的性能。
+            %em (实验性的)
     .form-group
-      = f.label :repository_storages, 'Storage paths for new projects', class: 'control-label col-sm-2'
+      = f.label :repository_storages, '新项目存储路径', class: 'control-label col-sm-2'
       .col-sm-10
         = f.select :repository_storages, repository_storages_options_for_select(@application_setting.repository_storages),
           {include_hidden: false}, multiple: true, class: 'form-control'
         .help-block
-          Manage repository storage paths. Learn more in the
+          在
           = succeed "." do
-            = link_to "repository storages documentation", help_page_path("administration/repository_storages")
+            = link_to "版本库存储文档", help_page_path("administration/repository_storages")
+          了解如何管理版本库存储路径。
 
   %fieldset
-    %legend Git Storage Circuitbreaker settings
+    %legend Git 存储熔断设置
     .form-group
       = f.label :circuitbreaker_check_interval, _('Check interval'), class: 'control-label col-sm-2'
       .col-sm-10
@@ -583,22 +578,22 @@
           = circuitbreaker_failure_reset_time_help_text
 
   %fieldset
-    %legend Repository Checks
+    %legend 版本库检查
     .form-group
       .col-sm-offset-2.col-sm-10
         .checkbox
           = f.label :repository_checks_enabled do
             = f.check_box :repository_checks_enabled
-            Enable Repository Checks
+            开启版本仓库检查
           .help-block
-            GitLab will periodically run
+            GitLab 将定期给所有项目和维基版本仓库运行
             %a{ href: 'https://www.kernel.org/pub/software/scm/git/docs/git-fsck.html', target: 'blank' } 'git fsck'
-            in all project and wiki repositories to look for silent disk corruption issues.
+            命令来寻找无记载的磁盘损坏问题。
     .form-group
       .col-sm-offset-2.col-sm-10
-        = link_to 'Clear all repository checks', clear_repository_check_states_admin_application_settings_path, data: { confirm: 'This will clear repository check states for ALL projects in the database. This cannot be undone. Are you sure?' }, method: :put, class: "btn btn-sm btn-remove"
+        = link_to '清除所有版本仓库检查', clear_repository_check_states_admin_application_settings_path, data: { confirm: '将清除数据库内所有项目的版本仓库检查状态。此操作无法被撤销。确定要继续么？' }, method: :put, class: "btn btn-sm btn-remove"
         .help-block
-          If you got a lot of false alarms from repository checks you can choose to clear all repository check information from the database.
+          如果在版本仓库检查中得到很多假警报，你可以选择清除数据库中的所有版本仓库检查信息。
 
   - if koding_enabled?
     %fieldset
@@ -608,19 +603,19 @@
           .checkbox
             = f.label :koding_enabled do
               = f.check_box :koding_enabled
-              Enable Koding
+              开启 Koding
           .help-block
-            Koding integration has been deprecated since GitLab 10.0. If you disable your Koding integration, you will not be able to enable it again.
+            从 Gitlab 10.0 开始，Koding 集成服务已经被淘汰了，如果您禁用了您的 Koding 集成服务，您将无法再重启启用。
       .form-group
         = f.label :koding_url, 'Koding URL', class: 'control-label col-sm-2'
         .col-sm-10
           = f.text_field :koding_url, class: 'form-control', placeholder: 'http://gitlab.your-koding-instance.com:8090'
           .help-block
-            Koding has integration enabled out of the box for the
+            Koding已经为
             %strong gitlab
-            team, and you need to provide that team's URL here. Learn more in the
-            = succeed "." do
-              = link_to "Koding administration documentation", help_page_path("administration/integration/koding")
+            集成提供了支持，您需要在这里提供Koding团队的URL。点击
+            = link_to "Koding 管理文档", help_page_path("administration/integration/koding")
+            了解更多的信息。
 
   %fieldset
     %legend PlantUML
@@ -629,165 +624,160 @@
         .checkbox
           = f.label :plantuml_enabled do
             = f.check_box :plantuml_enabled
-            Enable PlantUML
+            开启 PlantUML
     .form-group
       = f.label :plantuml_url, 'PlantUML URL', class: 'control-label col-sm-2'
       .col-sm-10
         = f.text_field :plantuml_url, class: 'form-control', placeholder: 'http://gitlab.your-plantuml-instance.com:8080'
         .help-block
-          Allow rendering of
+          允许使用外部的
           = link_to "PlantUML", "http://plantuml.com"
-          diagrams in Asciidoc documents using an external PlantUML service.
+          服务来渲染文本文档中的 PlantUML 图表。
 
   %fieldset
-    %legend#usage-statistics Usage statistics
+    %legend#usage-statistics 用量统计
     .form-group
       .col-sm-offset-2.col-sm-10
         .checkbox
           = f.label :version_check_enabled do
             = f.check_box :version_check_enabled
-            Version check enabled
+            开启版本检查
           .help-block
-            Let GitLab inform you when an update is available.
+            让GitLab在更新可用时通知您。
     .form-group
       .col-sm-offset-2.col-sm-10
         - can_be_configured = @application_setting.usage_ping_can_be_configured?
         .checkbox
           = f.label :usage_ping_enabled do
             = f.check_box :usage_ping_enabled, disabled: !can_be_configured
-            Usage ping enabled
+            启用使用率反馈
             = link_to icon('question-circle'), help_page_path("user/admin_area/settings/usage_statistics", anchor: "usage-ping")
           .help-block
             - if can_be_configured
-              Every week GitLab will report license usage back to GitLab, Inc.
-              Disable this option if you do not want this to occur. To see the
-              JSON payload that will be sent, visit the
+              每周 GitLab 将向 GitLab，Inc. 报告许可证使用情况。
+              如果您不希望报告使用情况，请禁用此选项。
+              要查看将发送的JSON有效内容，请访问
               = succeed '.' do
-                = link_to "Cohorts page", admin_cohorts_path(anchor: 'usage-ping')
+                = link_to "活跃度页面", admin_cohorts_path(anchor: 'usage-ping')
             - else
-              The usage ping is disabled, and cannot be configured through this
-              form. For more information, see the documentation on
-              = succeed '.' do
-                = link_to 'deactivating the usage ping', help_page_path('user/admin_area/settings/usage_statistics', anchor: 'deactivate-the-usage-ping')
+              使用率反馈已被禁用，不能通过这个表单进行配置。
+              请通过这个文档了解更多信息：
+              = succeed '。' do
+                = link_to '禁用使用率反馈', help_page_path('user/admin_area/settings/usage_statistics', anchor: 'deactivate-the-usage-ping')
 
   %fieldset
-    %legend Email
+    %legend 邮箱
     .form-group
       .col-sm-offset-2.col-sm-10
         .checkbox
           = f.label :email_author_in_body do
             = f.check_box :email_author_in_body
-            Include author name in notification email body
+            在通知邮件正文包含作者名称
           .help-block
-            Some email servers do not support overriding the email sender name.
-            Enable this option to include the name of the author of the issue,
-            merge request or comment in the email body instead.
+            有些邮件服务器不支持重写邮件发送人名称功能。
+            开启此选项将在邮件正文中提供问题、合并请求和评论作者的名称，
+            否则只试图重写邮件发送人为作者。
     .form-group
       .col-sm-offset-2.col-sm-10
         .checkbox
           = f.label :html_emails_enabled do
             = f.check_box :html_emails_enabled
-            Enable HTML emails
+            启用 HTML 邮件
           .help-block
-            By default GitLab sends emails in HTML and plain text formats so mail
-            clients can choose what format to use. Disable this option if you only
-            want to send emails in plain text format.
+            默认情况下，GitLab 同时以 HTML 和纯文本格式发送电子邮件，
+            所以邮件客户端可以选择使用什么格式。
+            如果您只想以纯文本格式发送电子邮件，请禁用此选项。
   %fieldset
-    %legend Automatic Git repository housekeeping
+    %legend Git 版本库自动维护
     .form-group
       .col-sm-offset-2.col-sm-10
         .checkbox
           = f.label :housekeeping_enabled do
             = f.check_box :housekeeping_enabled
-            Enable automatic repository housekeeping (git repack, git gc)
+            开启版本库自动维护 (git repack, git gc)
           .help-block
-            If you keep automatic housekeeping disabled for a long time Git
-            repository access on your GitLab server will become slower and your
-            repositories will use more disk space. We recommend to always leave
-            this enabled.
+            如果长时间禁用 GitLab 服务器版本库的自动维护功能，将会导致
+            服务器响应变慢，并且占用更多的存储空间，我们建议您始终保持为
+            开启状态。
         .checkbox
           = f.label :housekeeping_bitmaps_enabled do
             = f.check_box :housekeeping_bitmaps_enabled
-            Enable Git pack file bitmap creation
+            允许创建Git包文件Bitmap索引
           .help-block
-            Creating pack file bitmaps makes housekeeping take a little longer but
-            bitmaps should accelerate 'git clone' performance.
+            创建 Git 包文件的Bitmap索引会增加版本库维护时间
+            但 Bitmap索引能提高 'git clone' 命令的性能。
     .form-group
-      = f.label :housekeeping_incremental_repack_period, 'Incremental repack period', class: 'control-label col-sm-2'
+      = f.label :housekeeping_incremental_repack_period, '增量式重打包(Repack)周期', class: 'control-label col-sm-2'
       .col-sm-10
         = f.number_field :housekeeping_incremental_repack_period, class: 'form-control'
         .help-block
-          Number of Git pushes after which an incremental 'git repack' is run.
+          设定进行增量式 'git repack' 命令的推送次数。
     .form-group
-      = f.label :housekeeping_full_repack_period, 'Full repack period', class: 'control-label col-sm-2'
+      = f.label :housekeeping_full_repack_period, '完整重打包(Repack)周期', class: 'control-label col-sm-2'
       .col-sm-10
         = f.number_field :housekeeping_full_repack_period, class: 'form-control'
         .help-block
-          Number of Git pushes after which a full 'git repack' is run.
+          设定进行完整的 'git repack' 命令的推送次数。
     .form-group
-      = f.label :housekeeping_gc_period, 'Git GC period', class: 'control-label col-sm-2'
+      = f.label :housekeeping_gc_period, 'Git 垃圾收集(GC)周期', class: 'control-label col-sm-2'
       .col-sm-10
         = f.number_field :housekeeping_gc_period, class: 'form-control'
         .help-block
-          Number of Git pushes after which 'git gc' is run.
+          设定进行 'git gc' 命令的推送次数。
 
   %fieldset
-    %legend Gitaly Timeouts
+    %legend Gitaly 超时
     .form-group
-      = f.label :gitaly_timeout_default, 'Default Timeout Period', class: 'control-label col-sm-2'
+      = f.label :gitaly_timeout_default, '默认超时周期', class: 'control-label col-sm-2'
       .col-sm-10
         = f.number_field :gitaly_timeout_default, class: 'form-control'
         .help-block
-          Timeout for Gitaly calls from the GitLab application (in seconds). This timeout is not enforced
-          for git fetch/push operations or Sidekiq jobs.
+          从 GitLab 应用调用 Gitaly 的超时设置（秒）。该超时并不强制 git fetch/push 操作或者 Sidekiq 任务。
     .form-group
-      = f.label :gitaly_timeout_fast, 'Fast Timeout Period', class: 'control-label col-sm-2'
+      = f.label :gitaly_timeout_fast, '短超时周期', class: 'control-label col-sm-2'
       .col-sm-10
         = f.number_field :gitaly_timeout_fast, class: 'form-control'
         .help-block
-          Fast operation timeout (in seconds). Some Gitaly operations are expected to be fast.
-          If they exceed this threshold, there may be a problem with a storage shard and 'failing fast'
-          can help maintain the stability of the GitLab instance.
+          短操作的超时时间（秒）。有些 Gitaly 操作应当是比较快的。如果它们调用超过了这个阈值，可能分片存储出了问题。
+          “尽早失败”可以帮助维护 GitLab 服务器的稳定性。
     .form-group
-      = f.label :gitaly_timeout_medium, 'Medium Timeout Period', class: 'control-label col-sm-2'
+      = f.label :gitaly_timeout_medium, '中超时周期', class: 'control-label col-sm-2'
       .col-sm-10
         = f.number_field :gitaly_timeout_medium, class: 'form-control'
         .help-block
-          Medium operation timeout (in seconds). This should be a value between the Fast and the Default timeout.
+          中等操作的超时时间（秒）。这个数值应该介于短超时和默认超时之间。
 
   %fieldset
-    %legend Web terminal
+    %legend Web 终端
     .form-group
-      = f.label :terminal_max_session_time, 'Max session time', class: 'control-label col-sm-2'
+      = f.label :terminal_max_session_time, '最大会话时间', class: 'control-label col-sm-2'
       .col-sm-10
         = f.number_field :terminal_max_session_time, class: 'form-control'
         .help-block
-          Maximum time for web terminal websocket connection (in seconds).
-          0 for unlimited.
+          Web 终端 WebSocket 连接的最长时间（以秒为单位）。
+          设置为0，无限时间。
 
   %fieldset
-    %legend Real-time features
+    %legend 实时功能
     .form-group
-      = f.label :polling_interval_multiplier, 'Polling interval multiplier', class: 'control-label col-sm-2'
+      = f.label :polling_interval_multiplier, '轮询间隔倍数', class: 'control-label col-sm-2'
       .col-sm-10
         = f.text_field :polling_interval_multiplier, class: 'form-control'
         .help-block
-          Change this value to influence how frequently the GitLab UI polls for updates.
-          If you set the value to 2 all polling intervals are multiplied
-          by 2, which means that polling happens half as frequently.
-          The multiplier can also have a decimal value.
-          The default value (1) is a reasonable choice for the majority of GitLab
-          installations. Set to 0 to completely disable polling.
+          通过修改该值来调整 GitLab UI 轮询更新的频率。
+          如果将该值设置为2，则所有轮询间隔将乘以2，这意味着轮询频率将降为一半，
+          乘数也可以是任意的一个十进制数值。 默认值（1）是大多数 GitLab 安装的合理选择。
+          设置为0将完全禁用轮询更新功能。
           = link_to icon('question-circle'), help_page_path('administration/polling')
 
   %fieldset
-    %legend Performance optimization
+    %legend 性能优化
     .form-group
       .col-sm-offset-2.col-sm-10
         .checkbox
           = f.label :authorized_keys_enabled do
             = f.check_box :authorized_keys_enabled
-            Write to "authorized_keys" file
+            写入"authorized_keys" 文件
           .help-block
             By default, we write to the "authorized_keys" file to support Git
             over SSH without additional configuration. GitLab can be optimized
@@ -797,21 +787,21 @@
             = link_to icon('question-circle'), help_page_path('administration/operations/fast_ssh_key_lookup')
 
   %fieldset
-    %legend User and IP Rate Limits
+    %legend 用户以及 IP 访问限制
     .form-group
       .col-sm-offset-2.col-sm-10
         .checkbox
           = f.label :throttle_unauthenticated_enabled do
             = f.check_box :throttle_unauthenticated_enabled
-            Enable unauthenticated request rate limit
+            启用未认证的请求速率限制
           %span.help-block
-            Helps reduce request volume (e.g. from crawlers or abusive bots)
+            可以帮助降低请求量（比如来自爬虫或者恶意机器人）
     .form-group
-      = f.label :throttle_unauthenticated_requests_per_period, 'Max requests per period per IP', class: 'control-label col-sm-2'
+      = f.label :throttle_unauthenticated_requests_per_period, '每个 IP 每段时间的最大请求数量', class: 'control-label col-sm-2'
       .col-sm-10
         = f.number_field :throttle_unauthenticated_requests_per_period, class: 'form-control'
     .form-group
-      = f.label :throttle_unauthenticated_period_in_seconds, 'Rate limit period in seconds', class: 'control-label col-sm-2'
+      = f.label :throttle_unauthenticated_period_in_seconds, '时间区间（秒）', class: 'control-label col-sm-2'
       .col-sm-10
         = f.number_field :throttle_unauthenticated_period_in_seconds, class: 'form-control'
     .form-group
@@ -819,15 +809,15 @@
         .checkbox
           = f.label :throttle_authenticated_api_enabled do
             = f.check_box :throttle_authenticated_api_enabled
-            Enable authenticated API request rate limit
+            启用已认证的 API 请求速率限制
           %span.help-block
-            Helps reduce request volume (e.g. from crawlers or abusive bots)
+            可以帮助降低请求量（比如来自爬虫或者恶意机器人）
     .form-group
-      = f.label :throttle_authenticated_api_requests_per_period, 'Max requests per period per user', class: 'control-label col-sm-2'
+      = f.label :throttle_authenticated_api_requests_per_period, '每个用户每段时间内最大请求数量', class: 'control-label col-sm-2'
       .col-sm-10
         = f.number_field :throttle_authenticated_api_requests_per_period, class: 'form-control'
     .form-group
-      = f.label :throttle_authenticated_api_period_in_seconds, 'Rate limit period in seconds', class: 'control-label col-sm-2'
+      = f.label :throttle_authenticated_api_period_in_seconds, '时间区间（秒）', class: 'control-label col-sm-2'
       .col-sm-10
         = f.number_field :throttle_authenticated_api_period_in_seconds, class: 'form-control'
     .form-group
@@ -835,17 +825,17 @@
         .checkbox
           = f.label :throttle_authenticated_web_enabled do
             = f.check_box :throttle_authenticated_web_enabled
-            Enable authenticated web request rate limit
+            启用已认证的 Web 请求速率限制
           %span.help-block
-            Helps reduce request volume (e.g. from crawlers or abusive bots)
+            可以帮助降低请求量（比如来自爬虫或者恶意机器人）
     .form-group
-      = f.label :throttle_authenticated_web_requests_per_period, 'Max requests per period per user', class: 'control-label col-sm-2'
+      = f.label :throttle_authenticated_web_requests_per_period, '每个用户每段时间内最大请求数量', class: 'control-label col-sm-2'
       .col-sm-10
         = f.number_field :throttle_authenticated_web_requests_per_period, class: 'form-control'
     .form-group
-      = f.label :throttle_authenticated_web_period_in_seconds, 'Rate limit period in seconds', class: 'control-label col-sm-2'
+      = f.label :throttle_authenticated_web_period_in_seconds, '时间区间（秒）', class: 'control-label col-sm-2'
       .col-sm-10
         = f.number_field :throttle_authenticated_web_period_in_seconds, class: 'form-control'
 
   .form-actions
-    = f.submit 'Save', class: 'btn btn-save'
+    = f.submit '保存', class: 'btn btn-save'

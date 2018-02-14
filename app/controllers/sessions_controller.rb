@@ -71,7 +71,7 @@ class SessionsController < Devise::SessionsController
     end
 
     redirect_to edit_user_password_path(reset_password_token: @token),
-      notice: "Please create a password for your new account."
+      notice: "请为您的新帐户创建密码。"
   end
 
   def user_params

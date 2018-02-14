@@ -28,7 +28,7 @@ module SearchHelper
     to = collection.offset_value + collection.length
     count = collection.total_count
 
-    "Showing #{from} - #{to} of #{count} #{scope.humanize(capitalize: false)} for \"#{term}\""
+    "显示 \"#{term}\" 的 #{from} - #{to} of #{count} #{scope.humanize(capitalize: false)}"
   end
 
   def parse_search_result(result)
@@ -40,31 +40,31 @@ module SearchHelper
   # Autocomplete results for various settings pages
   def default_autocomplete
     [
-      { category: "Settings", label: "User settings",    url: profile_path },
-      { category: "Settings", label: "SSH Keys",         url: profile_keys_path },
-      { category: "Settings", label: "Dashboard",        url: root_path }
+      { category: "设置", label: "个人设置",    url: profile_path },
+      { category: "设置", label: "SSH 密钥",         url: profile_keys_path },
+      { category: "设置", label: "仪表板",        url: root_path }
     ]
   end
 
   # Autocomplete results for settings pages, for admins
   def default_autocomplete_admin
     [
-      { category: "Settings", label: "Admin Section", url: admin_root_path }
+      { category: "设置", label: "后台管理", url: admin_root_path }
     ]
   end
 
   # Autocomplete results for internal help pages
   def help_autocomplete
     [
-      { category: "Help", label: "API Help",           url: help_page_path("api/README") },
-      { category: "Help", label: "Markdown Help",      url: help_page_path("user/markdown") },
-      { category: "Help", label: "Permissions Help",   url: help_page_path("user/permissions") },
-      { category: "Help", label: "Public Access Help", url: help_page_path("public_access/public_access") },
-      { category: "Help", label: "Rake Tasks Help",    url: help_page_path("raketasks/README") },
-      { category: "Help", label: "SSH Keys Help",      url: help_page_path("ssh/README") },
-      { category: "Help", label: "System Hooks Help",  url: help_page_path("system_hooks/system_hooks") },
-      { category: "Help", label: "Webhooks Help",      url: help_page_path("user/project/integrations/webhooks") },
-      { category: "Help", label: "Workflow Help",      url: help_page_path("workflow/README") }
+      { category: "帮助", label: "API 帮助",           url: help_page_path("api/README") },
+      { category: "帮助", label: "Markdown 帮助",      url: help_page_path("user/markdown") },
+      { category: "帮助", label: "权限帮助",   url: help_page_path("user/permissions") },
+      { category: "帮助", label: "公开访问帮助", url: help_page_path("public_access/public_access") },
+      { category: "帮助", label: "Rake 任务帮助",    url: help_page_path("raketasks/README") },
+      { category: "帮助", label: "SSH 密钥帮助",      url: help_page_path("ssh/README") },
+      { category: "帮助", label: "系统钩子帮助",  url: help_page_path("system_hooks/system_hooks") },
+      { category: "帮助", label: "Webhooks 帮助",      url: help_page_path("user/project/integrations/webhooks") },
+      { category: "帮助", label: "工作流帮助",      url: help_page_path("workflow/README") }
     ]
   end
 
@@ -74,16 +74,16 @@ module SearchHelper
       ref = @ref || @project.repository.root_ref
 
       [
-        { category: "Current Project", label: "Files",          url: project_tree_path(@project, ref) },
-        { category: "Current Project", label: "Commits",        url: project_commits_path(@project, ref) },
-        { category: "Current Project", label: "Network",        url: project_network_path(@project, ref) },
-        { category: "Current Project", label: "Graph",          url: project_graph_path(@project, ref) },
-        { category: "Current Project", label: "Issues",         url: project_issues_path(@project) },
-        { category: "Current Project", label: "Merge Requests", url: project_merge_requests_path(@project) },
-        { category: "Current Project", label: "Milestones",     url: project_milestones_path(@project) },
-        { category: "Current Project", label: "Snippets",       url: project_snippets_path(@project) },
-        { category: "Current Project", label: "Members",        url: project_project_members_path(@project) },
-        { category: "Current Project", label: "Wiki",           url: project_wikis_path(@project) }
+        { category: "当前项目", label: "文件",                  url: project_tree_path(@project, ref) },
+        { category: "当前项目", label: "提交",                  url: project_commits_path(@project, ref) },
+        { category: "当前项目", label: "网络",                  url: project_network_path(@project, ref) },
+        { category: "当前项目", label: "图表",                  url: project_graph_path(@project, ref) },
+        { category: "当前项目", label: "问题",                  url: project_issues_path(@project) },
+        { category: "当前项目", label: "合并请求",              url: project_merge_requests_path(@project) },
+        { category: "当前项目", label: "里程碑",                url: project_milestones_path(@project) },
+        { category: "当前项目", label: "代码片段",              url: project_snippets_path(@project) },
+        { category: "当前项目", label: "成员",                  url: project_project_members_path(@project) },
+        { category: "当前项目", label: "维基",                  url: project_wikis_path(@project) }
       ]
     else
       []
@@ -94,7 +94,7 @@ module SearchHelper
   def groups_autocomplete(term, limit = 5)
     current_user.authorized_groups.order_id_desc.search(term).limit(limit).map do |group|
       {
-        category: "Groups",
+        category: "群组",
         id: group.id,
         label: "#{search_result_sanitize(group.full_name)}",
         url: group_path(group)
@@ -107,7 +107,7 @@ module SearchHelper
     current_user.authorized_projects.order_id_desc.search_by_title(term)
       .sorted_by_stars.non_archived.limit(limit).map do |p|
       {
-        category: "Projects",
+        category: "项目",
         id: p.id,
         value: "#{search_result_sanitize(p.name)}",
         label: "#{search_result_sanitize(p.name_with_namespace)}",
@@ -137,7 +137,7 @@ module SearchHelper
     opts =
       {
         id: "filtered-search-#{type}",
-        placeholder: 'Search or filter results...',
+        placeholder: '搜索或者过滤结果...',
         data: {
           'username-params' => UserSerializer.new.represent(@users)
         },

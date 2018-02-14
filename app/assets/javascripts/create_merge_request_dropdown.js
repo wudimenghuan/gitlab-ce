@@ -97,7 +97,7 @@ export default class CreateMergeRequestDropdown {
       .catch(() => {
         this.unavailable();
         this.disable();
-        Flash('Failed to check if a new branch can be created.');
+        Flash('无法检查是否可以创建新的分支。');
       });
   }
 

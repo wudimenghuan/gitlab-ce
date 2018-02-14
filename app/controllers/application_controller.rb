@@ -262,7 +262,7 @@ class ApplicationController < ActionController::Base
 
   def require_email
     if current_user && current_user.temp_oauth_email? && session[:impersonator_id].nil?
-      return redirect_to profile_path, notice: 'Please complete your profile with email address'
+      return redirect_to profile_path, notice: '请在个人资料中填写邮箱地址'
     end
   end
 

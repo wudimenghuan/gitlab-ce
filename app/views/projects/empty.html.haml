@@ -1,5 +1,5 @@
 - @no_container = true
-- breadcrumb_title "Details"
+- breadcrumb_title "详细信息"
 
 = render partial: 'flash_messages', locals: { project: @project }
 
@@ -7,23 +7,23 @@
 
 .row-content-block.second-block.center
   %h4
-    The repository for this project is empty
+    当前项目的版本仓库是空的
 
   - if can?(current_user, :push_code, @project)
     %p
-      If you already have files you can push them using command line instructions below.
+      可以通过下面的命令行推送一个已存在的版本库。
     %p
-      Otherwise you can start with adding a
-      = succeed ',' do
+      或者可以从增加
+      = succeed '，' do
         = link_to "README", add_special_file_path(@project, file_name: 'README.md')
       a
-      = succeed ',' do
-        = link_to "LICENSE", add_special_file_path(@project, file_name: 'LICENSE')
+      = succeed '，' do
+        = link_to "许可证", add_special_file_path(@project, file_name: 'LICENSE')
       or a
       = link_to '.gitignore', add_special_file_path(@project, file_name: '.gitignore')
-      to this project.
+      文件开始本项目。
     %p
-      You will need to be owner or have the master permission level for the initial push, as the master branch is automatically protected.
+      由于主分支(master)会被自动保护，只有当前项目的拥有者或者您具备主程序员权限才能进行初始推送。
 
     - if show_auto_devops_callout?(@project)
       %p
@@ -37,17 +37,17 @@
     .prepend-top-20
     .empty_wrapper
       %h3.page-title-empty
-        Command line instructions
+        命令行指令
       .git-empty
         %fieldset
-          %h5 Git global setup
+          %h5 Git 全局设置
           %pre.light-well
             :preserve
               git config --global user.name "#{h git_user_name}"
               git config --global user.email "#{h git_user_email}"
 
         %fieldset
-          %h5 Create a new repository
+          %h5 创建新版本库
           %pre.light-well
             :preserve
               git clone #{ content_tag(:span, default_url_to_repo, class: 'clone')}
@@ -58,7 +58,7 @@
               git push -u origin master
 
         %fieldset
-          %h5 Existing folder
+          %h5 已存在的文件夹
           %pre.light-well
             :preserve
               cd existing_folder
@@ -69,7 +69,7 @@
               git push -u origin master
 
         %fieldset
-          %h5 Existing Git repository
+          %h5 已存在的 Git 版本库
           %pre.light-well
             :preserve
               cd existing_repo
@@ -80,4 +80,4 @@
 
           - if can? current_user, :remove_project, @project
             .prepend-top-20
-              = link_to 'Remove project', [@project.namespace.becomes(Namespace), @project], data: { confirm: remove_project_message(@project)}, method: :delete, class: "btn btn-inverted btn-remove pull-right"
+              = link_to '删除项目', [@project.namespace.becomes(Namespace), @project], data: { confirm: remove_project_message(@project)}, method: :delete, class: "btn btn-inverted btn-remove pull-right"

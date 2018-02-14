@@ -1,5 +1,5 @@
 - @no_container = true
-- page_title "Logs"
+- page_title "日志"
 
 %div{ class: container_class }
   %ul.nav-links.log-tabs
@@ -7,7 +7,7 @@
       %li{ class: active_when(klass == @loggers.first) }>
         = link_to klass.file_name, "##{klass.file_name_noext}", data: { toggle: 'tab' }
   .row-content-block
-    To prevent performance issues admin logs output the last 2000 lines
+    为了防止性能问题管理日志只输出最后的 2000 行
   .tab-content
     - @loggers.each do |klass|
       .tab-pane{ class: active_when(klass == @loggers.first), id: klass.file_name_noext }
@@ -18,7 +18,7 @@
             .pull-right
               = link_to '#', class: 'log-bottom' do
                 %i.fa.fa-arrow-down
-                Scroll down
+                向下滚动
           .file-content.logs
             %ol
               - klass.read_latest.each do |line|

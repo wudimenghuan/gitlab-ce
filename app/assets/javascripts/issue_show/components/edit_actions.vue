@@ -38,7 +38,7 @@
       },
       deleteIssuable() {
         // eslint-disable-next-line no-alert
-        if (confirm('Issue will be removed! Are you sure?')) {
+        if (confirm('您确定要删除这个问题？')) {
           this.deleteLoading = true;
 
           eventHub.$emit('delete.issuable');
@@ -56,7 +56,7 @@
       type="submit"
       :disabled="formState.updateLoading || !isSubmitEnabled"
       @click.prevent="updateIssuable">
-      Save changes
+      保存修改
       <i
         class="fa fa-spinner fa-spin"
         aria-hidden="true"
@@ -67,7 +67,7 @@
       class="btn btn-default pull-right"
       type="button"
       @click="closeForm">
-      Cancel
+      取消
     </button>
     <button
       v-if="shouldShowDeleteButton"
@@ -76,7 +76,7 @@
       type="button"
       :disabled="deleteLoading"
       @click="deleteIssuable">
-      Delete
+      删除
       <i
         class="fa fa-spinner fa-spin"
         aria-hidden="true"

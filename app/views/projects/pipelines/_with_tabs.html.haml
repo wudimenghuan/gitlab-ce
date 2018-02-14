@@ -4,10 +4,10 @@
   %ul.pipelines-tabs.nav-links.no-top.no-bottom.mobile-separator
     %li.js-pipeline-tab-link
       = link_to project_pipeline_path(@project, @pipeline), data: { target: 'div#js-tab-pipeline', action: 'pipelines', toggle: 'tab' },  class: 'pipeline-tab' do
-        Pipeline
+        流水线
     %li.js-builds-tab-link
       = link_to builds_project_pipeline_path(@project, @pipeline), data: {target: 'div#js-tab-builds', action: 'builds', toggle: 'tab' }, class: 'builds-tab' do
-        Jobs
+        作业
         %span.badge.js-builds-counter= pipeline.total_size
     - if failed_builds.present?
       %li.js-failures-tab-link
@@ -22,25 +22,25 @@
   #js-tab-builds.tab-pane
     - if pipeline.yaml_errors.present?
       .bs-callout.bs-callout-danger
-        %h4 Found errors in your .gitlab-ci.yml:
+        %h4 在您的 .gitlab-ci.yml 文件中发现以下错误:
         %ul
           - pipeline.yaml_errors.split(",").each do |error|
             %li= error
-        You can also test your .gitlab-ci.yml in the #{link_to "Lint", ci_lint_path}
+        您可以通过 #{link_to "Lint", ci_lint_path} 工具对 .gitlab-ci.yml 文件进行检测
 
     - if pipeline.project.builds_enabled? && !pipeline.ci_yaml_file
       .bs-callout.bs-callout-warning
-        \.gitlab-ci.yml not found in this commit
+        未在本次提交中找到 .gitlab-ci.yml 文件
 
     .table-holder.pipeline-holder
       %table.table.ci-table.pipeline
         %thead
           %tr
-            %th Status
-            %th Job ID
-            %th Name
+            %th 状态
+            %th 作业 ID
+            %th 名称
             %th
-            %th Coverage
+              %th 覆盖率
             %th
         = render partial: "projects/stage/stage", collection: pipeline.legacy_stages, as: :stage
   - if failed_builds.present?

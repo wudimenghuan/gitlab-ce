@@ -29,16 +29,16 @@ module Gitlab
 
       def options
         {
-          "Guest"     => GUEST,
-          "Reporter"  => REPORTER,
-          "Developer" => DEVELOPER,
-          "Master"    => MASTER
+          "访客"     => GUEST,
+          "报告者"   => REPORTER,
+          "开发人员" => DEVELOPER,
+          "主程序员" => MASTER
         }
       end
 
       def options_with_owner
         options.merge(
-          "Owner" => OWNER
+          "所有者"   => OWNER
         )
       end
 
@@ -57,10 +57,10 @@ module Gitlab
 
       def protection_options
         {
-          "Not protected: Both developers and masters can push new commits, force push, or delete the branch." => PROTECTION_NONE,
-          "Protected against pushes: Developers cannot push new commits, but are allowed to accept merge requests to the branch. Masters can push to the branch." => PROTECTION_DEV_CAN_MERGE,
-          "Partially protected: Both developers and masters can push new commits, but cannot force push or delete the branch." => PROTECTION_DEV_CAN_PUSH,
-          "Fully protected: Developers cannot push new commits, but masters can. No-one can force push or delete the branch." => PROTECTION_FULL
+          "不保护：开发人员和主程序员都可以推送新提交、强制推送和删除分支。" => PROTECTION_NONE,
+          "防止推送：开发人员无法推送新的提交，但允许接受合并请求到分支，主程序员可推送新的提交。" => PROTECTION_DEV_CAN_MERGE,
+          "部分保护：主程序员和开发人员可以推送新提交，但不能强制推送和删除分支。" => PROTECTION_DEV_CAN_PUSH,
+          "完全保护：开发人员不能推送新提交，只有主程序员可以，不允许任何人强制推送或删除分支。" => PROTECTION_FULL
         }
       end
 

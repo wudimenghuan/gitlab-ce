@@ -25,10 +25,10 @@ module BlobHelper
     common_classes = "btn js-edit-blob #{options[:extra_class]}"
 
     if !on_top_of_branch?(project, ref)
-      button_tag 'Edit', class: "#{common_classes} disabled has-tooltip", title: "You can only edit files when you are on a branch", data: { container: 'body' }
+      button_tag '编辑', class: "#{common_classes} disabled has-tooltip", title: "你只能在分支上修改编辑文件", data: { container: 'body' }
     # This condition applies to anonymous or users who can edit directly
     elsif !current_user || (current_user && can_modify_blob?(blob, project, ref))
-      link_to 'Edit', edit_blob_path(project, ref, path, options), class: "#{common_classes} btn-sm"
+      link_to '编辑', edit_blob_path(project, ref, path, options), class: "#{common_classes} btn-sm"
     elsif current_user && can?(current_user, :fork_project, project)
       continue_params = {
         to: edit_blob_path(project, ref, path, options),
@@ -37,7 +37,7 @@ module BlobHelper
       }
       fork_path = project_forks_path(project, namespace_key: current_user.namespace.id, continue: continue_params)
 
-      button_tag 'Edit',
+      button_tag '编辑',
         class: "#{common_classes} js-edit-blob-link-fork-toggler",
         data: { action: 'edit', fork_path: fork_path }
     end
@@ -90,15 +90,15 @@ module BlobHelper
     common_classes = "btn btn-#{btn_class}"
 
     if !on_top_of_branch?(project, ref)
-      button_tag label, class: "#{common_classes} disabled has-tooltip", title: "You can only #{action} files when you are on a branch", data: { container: 'body' }
+      button_tag label, class: "#{common_classes} disabled has-tooltip", title: "你只能在分支上#{action}文件", data: { container: 'body' }
     elsif blob.stored_externally?
-      button_tag label, class: "#{common_classes} disabled has-tooltip", title: "It is not possible to #{action} files that are stored in LFS using the web interface", data: { container: 'body' }
+      button_tag label, class: "#{common_classes} disabled has-tooltip", title: "不能使用网页界面#{action}存储在 LFS 上的文件", data: { container: 'body' }
     elsif can_modify_blob?(blob, project, ref)
       button_tag label, class: "#{common_classes}", 'data-target' => "#modal-#{modal_type}-blob", 'data-toggle' => 'modal'
     elsif can?(current_user, :fork_project, project)
       continue_params = {
         to: request.fullpath,
-        notice: edit_in_new_fork_notice + " Try to #{action} this file again.",
+        notice: edit_in_new_fork_notice + "请重新尝试#{action}此文件。",
         notice_now: edit_in_new_fork_notice_now
       }
       fork_path = project_forks_path(project, namespace_key: current_user.namespace.id, continue: continue_params)
@@ -114,8 +114,8 @@ module BlobHelper
       project,
       ref,
       path,
-      label:      "Replace",
-      action:     "replace",
+      label:      "替换",
+      action:     "替换",
       btn_class:  "default",
       modal_type: "upload"
     )
@@ -126,8 +126,8 @@ module BlobHelper
       project,
       ref,
       path,
-      label:      "Delete",
-      action:     "delete",
+      label:      "删除",
+      action:     "删除",
       btn_class:  "remove",
       modal_type: "remove"
     )
@@ -138,14 +138,14 @@ module BlobHelper
   end
 
   def leave_edit_message
-    "Leave edit mode?\nAll unsaved changes will be lost."
+    "离开编辑模式？\n所有未保存的修改都会丢失。"
   end
 
   def editing_preview_title(filename)
     if Gitlab::MarkupHelper.previewable?(filename)
-      'Preview'
+      '预览'
     else
-      'Preview changes'
+      '预览修改'
     end
   end
 
@@ -258,13 +258,13 @@ module BlobHelper
   end
 
   def copy_file_path_button(file_path)
-    clipboard_button(text: file_path, gfm: "`#{file_path}`", class: 'btn-clipboard btn-transparent prepend-left-5', title: 'Copy file path to clipboard')
+    clipboard_button(text: file_path, gfm: "`#{file_path}`", class: 'btn-clipboard btn-transparent prepend-left-5', title: '复制文件路径到剪贴板')
   end
 
   def copy_blob_source_button(blob)
     return unless blob.rendered_as_text?(ignore_errors: false)
 
-    clipboard_button(target: ".blob-content[data-blob-id='#{blob.id}']", class: "btn btn-sm js-copy-blob-source-btn", title: "Copy source to clipboard")
+    clipboard_button(target: ".blob-content[data-blob-id='#{blob.id}']", class: "btn btn-sm js-copy-blob-source-btn", title: "复制源码到剪贴板")
   end
 
   def open_raw_blob_button(blob)
@@ -272,10 +272,10 @@ module BlobHelper
 
     if blob.raw_binary? || blob.stored_externally?
       icon = sprite_icon('download')
-      title = 'Download'
+      title = '下载'
     else
       icon = icon('file-code-o')
-      title = 'Open raw'
+      title = '打开原始文件'
     end
 
     link_to icon, blob_raw_path, class: 'btn btn-sm has-tooltip', target: '_blank', rel: 'noopener noreferrer', title: title, data: { container: 'body' }
@@ -286,15 +286,15 @@ module BlobHelper
     when :collapsed
       "it is larger than #{number_to_human_size(viewer.collapse_limit)}"
     when :too_large
-      "it is larger than #{number_to_human_size(viewer.size_limit)}"
+      "文件大小超过 #{number_to_human_size(viewer.size_limit)}"
     when :server_side_but_stored_externally
       case viewer.blob.external_storage
       when :lfs
-        'it is stored in LFS'
+        '文件存储在 LFS'
       when :build_artifact
         'it is stored as a job artifact'
       else
-        'it is stored externally'
+        '文件存储在外部'
       end
     end
   end
@@ -304,16 +304,16 @@ module BlobHelper
     options = []
 
     if error == :collapsed
-      options << link_to('load it anyway', url_for(params.merge(viewer: viewer.type, expanded: true, format: nil)))
+      options << link_to('仍然加载', url_for(params.merge(viewer: viewer.type, expanded: true, format: nil)))
     end
 
     # If the error is `:server_side_but_stored_externally`, the simple viewer will show the same error,
     # so don't bother switching.
     if viewer.rich? && viewer.blob.rendered_as_text? && error != :server_side_but_stored_externally
-      options << link_to('view the source', '#', class: 'js-blob-viewer-switch-btn', data: { viewer: 'simple' })
+      options << link_to('查看源码', '#', class: 'js-blob-viewer-switch-btn', data: { viewer: 'simple' })
     end
 
-    options << link_to('download it', blob_raw_path, target: '_blank', rel: 'noopener noreferrer')
+    options << link_to('下载', blob_raw_path, target: '_blank', rel: 'noopener noreferrer')
 
     options
   end

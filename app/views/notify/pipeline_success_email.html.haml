@@ -94,10 +94,10 @@
       %tbody
         %tr
           %td{ style: "font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:15px;font-weight:500;line-height:1.4;vertical-align:baseline;" }
-            Pipeline
+            流水线
             %a{ href: pipeline_url(@pipeline), style: "color:#3777b0;text-decoration:none;" }
               = "\##{@pipeline.id}"
-            triggered by
+            被
           - if @pipeline.user
             %td{ style: "font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:15px;line-height:1.4;vertical-align:middle;padding-right:5px;padding-left:5px", width: "24" }
               %img.avatar{ height: "24", src: avatar_icon(@pipeline.user, 24, only_path: false), style: "display:block;border-radius:12px;margin:-2px 0;", width: "24", alt: "" }/
@@ -107,11 +107,13 @@
           - else
             %td{ style: "font-family:'Menlo','Liberation Mono','Consolas','DejaVu Sans Mono','Ubuntu Mono','Courier New','andale mono','lucida console',monospace;font-size:14px;line-height:1.4;vertical-align:baseline;padding:0 5px;" }
               API
+            触发
 %tr
   %td{ colspan: 2, style: "font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;color:#333333;font-size:15px;font-weight:300;line-height:1.4;padding:15px 5px;text-align:center;" }
     - job_count = @pipeline.total_size
     - stage_count = @pipeline.stages_count
-    successfully completed
-    #{job_count} #{'job'.pluralize(job_count)}
-    in
-    #{stage_count} #{'stage'.pluralize(stage_count)}.
+    成功完成了
+    #{stage_count} 个步骤
+    中的
+    #{job_count} 个作业
+    

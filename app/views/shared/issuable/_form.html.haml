@@ -6,13 +6,13 @@
 
 - if @conflict
   .alert.alert-danger
-    Someone edited the #{issuable.class.model_name.human.downcase} the same time you did.
+    有人与您同时编辑了 #{issuable.class.model_name.human.downcase} 这个问题，请检出
     Please check out
-    = link_to "the #{issuable.class.model_name.human.downcase}", polymorphic_path([@project.namespace.becomes(Namespace), @project, issuable]), target: "_blank", rel: 'noopener noreferrer'
-    and make sure your changes will not unintentionally remove theirs
+    = link_to "这个问题 #{issuable.class.model_name.human.downcase}", polymorphic_path([@project.namespace.becomes(Namespace), @project, issuable]), target: "_blank", rel: 'noopener noreferrer'
+    并确保您不会无意中删除了其他人的更改。
 
 .form-group
-  = form.label :title, class: 'control-label'
+  = form.label :title, '标题', class: 'control-label'
 
   = render 'shared/issuable/form/template_selector', issuable: issuable
   = render 'shared/issuable/form/title', issuable: issuable, form: form, has_wip_commits: commits && commits.detect(&:work_in_progress?)
@@ -25,7 +25,7 @@
       .checkbox
         = form.label :confidential do
           = form.check_box :confidential
-          This issue is confidential and should only be visible to team members with at least Reporter access.
+          此问题是保密的，只对团队成员可见
 
 = render 'shared/issuable/form/metadata', issuable: issuable, form: form
 
@@ -57,23 +57,23 @@
 .row-content-block{ class: (is_footer ? "footer-block" : "middle-block") }
   .pull-right
     - if issuable.new_record?
-      = link_to 'Cancel', polymorphic_path([@project.namespace.becomes(Namespace), @project, issuable.class]), class: 'btn btn-cancel'
+      = link_to '取消', polymorphic_path([@project.namespace.becomes(Namespace), @project, issuable.class]), class: 'btn btn-cancel'
     - else
       - if can?(current_user, :"destroy_#{issuable.to_ability_name}", @project)
-        = link_to 'Delete', polymorphic_path([@project.namespace.becomes(Namespace), @project, issuable]), data: { confirm: "#{issuable.human_class_name} will be removed! Are you sure?" }, method: :delete, class: 'btn btn-danger btn-grouped'
-      = link_to 'Cancel', polymorphic_path([@project.namespace.becomes(Namespace), @project, issuable]), class: 'btn btn-grouped btn-cancel'
+        = link_to '删除', polymorphic_path([@project.namespace.becomes(Namespace), @project, issuable]), data: { confirm: "确认删除 #{issuable.human_class_name} ？" }, method: :delete, class: 'btn btn-danger btn-grouped'
+      = link_to '取消', polymorphic_path([@project.namespace.becomes(Namespace), @project, issuable]), class: 'btn btn-grouped btn-cancel'
 
   %span.append-right-10
     - if issuable.new_record?
-      = form.submit "Submit #{issuable.class.model_name.human.downcase}", class: 'btn btn-create qa-issuable-create-button'
+      = form.submit "提交 #{issuable.class.model_name.human.downcase}", class: 'btn btn-create qa-issuable-create-button'
     - else
-      = form.submit 'Save changes', class: 'btn btn-save'
+      = form.submit '保存修改', class: 'btn btn-save'
 
   - if !issuable.persisted? && !issuable.project.empty_repo? && (guide_url = contribution_guide_path(issuable.project))
     .inline.prepend-top-10
-      Please review the
-      %strong= link_to('contribution guidelines', guide_url)
-      for this project.
+      请先阅读此项目的
+      %strong= link_to('贡献指南', guide_url)
+      。
 
 
 = form.hidden_field :lock_version

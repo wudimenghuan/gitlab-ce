@@ -1,9 +1,9 @@
 - if viewer.valid?
   = icon('check fw')
-  This Route Map is valid.
+  这个路线图(Route Map)是有效的。
 - else
   = icon('warning fw')
-  This Route Map is invalid:
+  这个路线图(Route Map)是无效的：
   = viewer.validation_message
 
-= link_to 'Learn more', help_page_path('ci/environments', anchor: 'go-directly-from-source-files-to-public-pages-on-the-environment')
+= link_to '了解更多', help_page_path('ci/environments', anchor: 'go-directly-from-source-files-to-public-pages-on-the-environment')

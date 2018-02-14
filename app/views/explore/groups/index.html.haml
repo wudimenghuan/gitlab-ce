@@ -1,6 +1,6 @@
 - @hide_top_links = true
-- page_title    "Groups"
-- header_title  "Groups", dashboard_groups_path
+- page_title    "群组"
+- header_title  "群组", dashboard_groups_path
 
 - if current_user
   = render 'dashboard/groups_head'
@@ -14,8 +14,8 @@
     .svg-container
       = custom_icon('icon_explore_groups_splash')
     .inner-content
-      %p Below you will find all the groups that are public.
-      %p You can easily contribute to them by requesting to join these groups.
+      %p 在下方，您将看到所有的公开群组。
+      %p 您可以通过请求加入这些群组从而轻松地为他们做出贡献。
 
 - if params[:filter].blank? && @groups.empty?
   .nothing-here-block No public groups

@@ -1,12 +1,12 @@
-- page_title 'Preferences'
+- page_title '界面设置'
 - @content_class = "limit-container-width" unless fluid_layout
 = render 'profiles/head'
 
 = form_for @user, url: profile_preferences_path, remote: true, method: :put, html: { class: 'row prepend-top-default js-preferences-form' } do |f|
   .col-lg-4.application-theme
     %h4.prepend-top-0
-      GitLab navigation theme
-    %p Customize the appearance of the application header and navigation sidebar.
+      GitLab 导航主题
+    %p 自定义应用程序标题和导航边栏的外观。
   .col-lg-8.application-theme
     - Gitlab::Themes.each do |theme|
       = label_tag do
@@ -25,11 +25,11 @@
 
   .col-lg-4.profile-settings-sidebar
     %h4.prepend-top-0
-      Syntax highlighting theme
+      语法高亮主题
     %p
-      This setting allows you to customize the appearance of the syntax.
-      = succeed '.' do
-        = link_to 'Learn more', help_page_path('user/profile/preferences', anchor: 'syntax-highlighting-theme'), target: '_blank'
+      此设置允许自定义语法显示，
+      = succeed '。' do
+        = link_to '了解更多', help_page_path('user/profile/preferences', anchor: 'syntax-highlighting-theme'), target: '_blank'
   .col-lg-8.syntax-theme
     - Gitlab::ColorSchemes.each do |scheme|
       = label_tag do
@@ -42,27 +42,27 @@
 
   .col-lg-4.profile-settings-sidebar
     %h4.prepend-top-0
-      Behavior
+      行为
     %p
-      This setting allows you to customize the behavior of the system layout and default views.
-      = succeed '.' do
-        = link_to 'Learn more', help_page_path('user/profile/preferences', anchor: 'behavior'), target: '_blank'
+      此设置允许自定义系统布局和默认视图的行为，
+      = succeed '。' do
+        = link_to '了解更多', help_page_path('user/profile/preferences', anchor: 'behavior'), target: '_blank'
   .col-lg-8
     .form-group
       = f.label :layout, class: 'label-light' do
-        Layout width
+        页面宽度
       = f.select :layout, layout_choices, {}, class: 'form-control'
       .help-block
-        Choose between fixed (max. 1200px) and fluid (100%) application layout.
+        选择固定 (最大 1200px) 或自适应 (100%) 页面宽度。
     .form-group
       = f.label :dashboard, class: 'label-light' do
-        Default dashboard
+        默认仪表盘
       = f.select :dashboard, dashboard_choices, {}, class: 'form-control'
     .form-group
       = f.label :project_view, class: 'label-light' do
-        Project overview content
+        项目概览
       = f.select :project_view, project_view_choices, {}, class: 'form-control'
       .help-block
-        Choose what content you want to see on a project’s overview page
+        选择访问项目概览时看到的内容。
     .form-group
-      = f.submit 'Save changes', class: 'btn btn-save'
+      = f.submit '保存修改', class: 'btn btn-save'

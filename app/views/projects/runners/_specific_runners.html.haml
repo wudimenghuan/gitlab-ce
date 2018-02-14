@@ -1,16 +1,16 @@
-%h3 Specific Runners
+%h3 特定的 Runners
 
 = render partial: 'ci/runner/how_to_setup_runner',
          locals: { registration_token: @project.runners_token,
                    type: 'specific' }
 
 - if @project_runners.any?
-  %h4.underlined-title Runners activated for this project
+  %h4.underlined-title 当前项目有效可用的 runner
   %ul.bordered-list.activated-specific-runners
     = render partial: 'projects/runners/runner', collection: @project_runners, as: :runner
 
 - if @assignable_runners.any?
-  %h4.underlined-title Available specific runners
+  %h4.underlined-title 可用的特定 runner
   %ul.bordered-list.available-specific-runners
     = render partial: 'projects/runners/runner', collection: @assignable_runners, as: :runner
   = paginate @assignable_runners, theme: "gitlab"

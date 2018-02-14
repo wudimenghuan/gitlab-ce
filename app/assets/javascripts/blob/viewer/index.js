@@ -72,13 +72,13 @@ export default class BlobViewer {
     if (!this.copySourceBtn) return;
 
     if (this.simpleViewer.getAttribute('data-loaded')) {
-      this.copySourceBtn.setAttribute('title', 'Copy source to clipboard');
+      this.copySourceBtn.setAttribute('title', '复制源码到剪贴板');
       this.copySourceBtn.classList.remove('disabled');
     } else if (this.activeViewer === this.simpleViewer) {
-      this.copySourceBtn.setAttribute('title', 'Wait for the source to load to copy it to the clipboard');
+      this.copySourceBtn.setAttribute('title', '等待源码加载以将其复制到剪贴板');
       this.copySourceBtn.classList.add('disabled');
     } else {
-      this.copySourceBtn.setAttribute('title', 'Switch to the source to copy it to the clipboard');
+      this.copySourceBtn.setAttribute('title', '切换到源码以将其复制到剪贴板');
       this.copySourceBtn.classList.add('disabled');
     }
 

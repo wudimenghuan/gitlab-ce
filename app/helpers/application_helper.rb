@@ -96,10 +96,10 @@ module ApplicationHelper
     if project.repo_exists?
       time_ago_with_tooltip(project.repository.commit.committed_date)
     else
-      'Never'
+      '从未'
     end
   rescue
-    'Never'
+    '从未'
   end
 
   # Define whenever show last push event
@@ -181,11 +181,11 @@ module ApplicationHelper
     return unless object.edited?
 
     content_tag :small, class: 'edited-text' do
-      output = content_tag(:span, 'Edited ')
+      output = content_tag(:span, '编辑时间 ')
       output << time_ago_with_tooltip(object.last_edited_at, placement: placement, html_class: html_class)
 
       if !exclude_author && object.last_edited_by
-        output << content_tag(:span, ' by ')
+        output << content_tag(:span, ' 作者 ')
         output << link_to_member(object.project, object.last_edited_by, avatar: false, author_class: nil)
       end
 

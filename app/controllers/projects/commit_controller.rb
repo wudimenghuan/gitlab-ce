@@ -83,7 +83,7 @@ class Projects::CommitController < Projects::ApplicationController
 
     @branch_name = create_new_branch? ? @commit.revert_branch_name : @start_branch
 
-    create_commit(Commits::RevertService, success_notice: "The #{@commit.change_type_title(current_user)} has been successfully reverted.",
+    create_commit(Commits::RevertService, success_notice: "#{@commit.change_type_title(current_user)} 已成功撤销。",
                                           success_path: -> { successful_change_path }, failure_path: failed_change_path)
   end
 
@@ -94,7 +94,7 @@ class Projects::CommitController < Projects::ApplicationController
 
     @branch_name = create_new_branch? ? @commit.cherry_pick_branch_name : @start_branch
 
-    create_commit(Commits::CherryPickService, success_notice: "The #{@commit.change_type_title(current_user)} has been successfully cherry-picked.",
+    create_commit(Commits::CherryPickService, success_notice: "#{@commit.change_type_title(current_user)} 已成功挑选(Cherry-pick)。",
                                               success_path: -> { successful_change_path }, failure_path: failed_change_path)
   end
 

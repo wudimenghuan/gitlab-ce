@@ -1,7 +1,6 @@
 - title = capture do
-  This commit was signed with a <strong>verified</strong> signature and the
-  committer email is verified to belong to the same user.
+  这个提交由一个<strong>已验证</strong>的签名而签发。提交人的电子邮件确认属于同一用户。
 
-- locals = { signature: signature, title: title, label: 'Verified', css_class: 'valid', icon: 'status_success_borderless', show_user: true }
+- locals = { signature: signature, title: title, label: '已验证', css_class: 'valid', icon: 'status_success_borderless', show_user: true }
 
 = render partial: 'projects/commit/signature_badge', locals: locals

@@ -1,8 +1,8 @@
 - @no_container = true
-- page_title "Edit", @label.name, "Labels"
+- page_title "编辑", @label.name, "标记"
 
 %div{ class: container_class }
   %h3.page-title
-    Edit Label
+    编辑标记
   %hr
   = render 'shared/labels/form', url: project_label_path(@project, @label), back_path: project_labels_path(@project)

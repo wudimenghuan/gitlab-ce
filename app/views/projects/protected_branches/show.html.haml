@@ -1,4 +1,4 @@
-- page_title @protected_ref.name, "Protected Branches"
+- page_title @protected_ref.name, "保护分支"
 
 .row.prepend-top-default.append-bottom-default
   .col-lg-3
@@ -6,7 +6,7 @@
       = @protected_ref.name
 
   .col-lg-9
-    %h5 Matching Branches
+    %h5 匹配分支
     - if @matching_refs.present?
       .table-responsive
         %table.table.protected-branches-list
@@ -15,11 +15,11 @@
             %col{ width: "30%" }
           %thead
             %tr
-              %th Branch
-              %th Last commit
+              %th 分支
+              %th 最后提交
           %tbody
             - @matching_refs.each do |matching_branch|
               = render partial: "projects/protected_branches/shared/matching_branch", object: matching_branch
     - else
       %p.settings-message.text-center
-        Couldn't find any matching branches.
+        找不到任何匹配分支。

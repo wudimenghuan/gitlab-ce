@@ -30,7 +30,7 @@ class Projects::ServicesController < Projects::ApplicationController
       outcome = @service.test(data)
 
       unless outcome[:success]
-        message = { error: true, message: 'Test failed.', service_response: outcome[:result].to_s }
+        message = { error: true, message: '测试失败。', service_response: outcome[:result].to_s }
       end
 
       status = :ok
@@ -45,9 +45,9 @@ class Projects::ServicesController < Projects::ApplicationController
 
   def success_message
     if @service.active?
-      "#{@service.title} activated."
+      "#{@service.title} 已激活。"
     else
-      "#{@service.title} settings saved, but not activated."
+      "#{@service.title} 设置已保存，但未激活。"
     end
   end
 

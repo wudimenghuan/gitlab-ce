@@ -1,5 +1,5 @@
 - @no_container = true
-- page_title "Jobs"
+- page_title "作业"
 
 %div{ class: container_class }
   .top-area
@@ -9,11 +9,11 @@
     .nav-controls
       - if can?(current_user, :update_build, @project)
         - if @all_builds.running_or_pending.limit(1).any?
-          = link_to 'Cancel running', cancel_all_project_jobs_path(@project),
-            data: { confirm: 'Are you sure?' }, class: 'btn btn-danger', method: :post
+          = link_to '取消运行', cancel_all_project_jobs_path(@project),
+            data: { confirm: '确定要取消运行？' }, class: 'btn btn-danger', method: :post
 
         - unless @repository.gitlab_ci_yml
-          = link_to 'Get started with Pipelines', help_page_path('ci/quick_start/README'), class: 'btn btn-info'
+          = link_to '开始使用流水线', help_page_path('ci/quick_start/README'), class: 'btn btn-info'
 
         = link_to ci_lint_path, class: 'btn btn-default' do
           %span CI lint

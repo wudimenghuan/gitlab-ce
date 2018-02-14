@@ -2,28 +2,28 @@
   .panel.panel-default
     .panel-heading
       %h3.panel-title
-        Protect a tag
+        保护一个标签
     .panel-body
       .form-horizontal
         = form_errors(@protected_tag)
         .form-group
           = f.label :name, class: 'col-md-2 text-right' do
-            Tag:
+            标签:
           .col-md-10.protected-tags-dropdown
             = render partial: "projects/protected_tags/shared/dropdown", locals: { f: f }
             .help-block
-              = link_to 'Wildcards', help_page_path('user/project/protected_tags', anchor: 'wildcard-protected-tags')
-              such as
+              = link_to '通配符', help_page_path('user/project/protected_tags', anchor: 'wildcard-protected-tags')
+              支持比如
               %code v*
-              or
+              或
               %code *-release
-              are supported
+              。
         .form-group
           %label.col-md-2.text-right{ for: 'create_access_levels_attributes' }
-            Allowed to create:
+            允许创建:
           .col-md-10
             .create_access_levels-container
               = yield :create_access_levels
 
     .panel-footer
-      = f.submit 'Protect', class: 'btn-create btn', disabled: true
+      = f.submit '保护', class: 'btn-create btn', disabled: true

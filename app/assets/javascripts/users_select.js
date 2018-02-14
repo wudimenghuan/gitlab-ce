@@ -136,7 +136,7 @@ function UsersSelect(currentUser, els, options = {}) {
           .get(0);
 
         if (selectedUsers.length === 0) {
-          return 'Unassigned';
+          return '未指派';
         } else if (selectedUsers.length === 1) {
           return firstUser.name;
         } else if (isSelected) {
@@ -191,7 +191,7 @@ function UsersSelect(currentUser, els, options = {}) {
               };
             } else {
               user = {
-                name: 'Unassigned',
+                name: '未指派',
                 username: '',
                 avatar: ''
               };
@@ -267,7 +267,7 @@ function UsersSelect(currentUser, els, options = {}) {
               showDivider += 1;
               users.unshift({
                 beforeDivider: true,
-                name: 'Unassigned',
+                name: '未指派',
                 id: 0
               });
             }
@@ -387,7 +387,7 @@ function UsersSelect(currentUser, els, options = {}) {
             // Automatically removes the first on the list if more users are selected
             checkMaxSelect();
 
-            if (user.beforeDivider && user.name.toLowerCase() === 'unassigned') {
+            if (user.beforeDivider && user.name.toLowerCase() === '未指派') {
               // Unassigned selected
               previouslySelected.each((index, element) => {
                 const id = parseInt(element.value, 10);
@@ -567,7 +567,7 @@ function UsersSelect(currentUser, els, options = {}) {
               }
               if (showNullUser) {
                 nullUser = {
-                  name: 'Unassigned',
+                  name: '未指派',
                   id: 0
                 };
                 data.results.unshift(nullUser);
@@ -587,7 +587,7 @@ function UsersSelect(currentUser, els, options = {}) {
             if (showEmailUser && data.results.length === 0 && query.term.match(/^[^@]+@[^@]+$/)) {
               var trimmed = query.term.trim();
               emailUser = {
-                name: "Invite \"" + query.term + "\" by email",
+                name: "邀请 \"" + query.term + "\" by email",
                 username: trimmed,
                 id: trimmed,
                 invite: true
@@ -627,7 +627,7 @@ UsersSelect.prototype.initSelection = function(element, callback) {
   id = $(element).val();
   if (id === "0") {
     nullUser = {
-      name: 'Unassigned'
+      name: '未指派'
     };
     return callback(nullUser);
   } else if (id !== "") {

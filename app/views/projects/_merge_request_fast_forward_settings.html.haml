@@ -4,10 +4,10 @@
 .radio
   = label_tag :project_merge_method_ff do
     = form.radio_button :merge_method, :ff, class: "js-merge-method-radio"
-    %strong Fast-forward merge
+    %strong 快进合并
     %br
     %span.descr
-      No merge commits are created and all merges are fast-forwarded, which means that merging is only allowed if the branch could be fast-forwarded.
+      不会创建合并提交，所有的合并都是快进方式，也就是说只有可以快进和并的分支才允许合并。
     %br
     %span.descr
-      When fast-forward merge is not possible, the user is given the option to rebase.
+      当不可能快进合并时，用户可以选择 rebase。

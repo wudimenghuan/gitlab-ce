@@ -146,6 +146,10 @@ class Snippet < ActiveRecord::Base
     'snippet'
   end
 
+  def zh_name
+    '代码片段'
+  end
+
   class << self
     # Searches for snippets with a matching title or file name.
     #

@@ -35,44 +35,44 @@
       .col-md-4
         .info-well
           .well-segment.admin-well.admin-well-statistics
-            %h4 Statistics
+            %h4 统计
             %p
-              Forks
+              派生项目数
               %span.light.pull-right
                 = number_with_delimiter(ForkedProjectLink.count)
             %p
-              Issues
+              问题数
               %span.light.pull-right
                 = number_with_delimiter(Issue.count)
             %p
-              Merge Requests
+              合并请求数
               %span.light.pull-right
                 = number_with_delimiter(MergeRequest.count)
             %p
-              Notes
+              批注数
               %span.light.pull-right
                 = number_with_delimiter(Note.count)
             %p
-              Snippets
+              代码片段数
               %span.light.pull-right
                 = number_with_delimiter(Snippet.count)
             %p
-              SSH Keys
+              SSH 密钥数
               %span.light.pull-right
                 = number_with_delimiter(Key.count)
             %p
-              Milestones
+              里程碑数
               %span.light.pull-right
                 = number_with_delimiter(Milestone.count)
             %p
-              Active Users
+              激活用户数
               %span.light.pull-right
                 = number_with_delimiter(User.active.count)
       .col-md-4
         .info-well
           .well-segment.admin-well.admin-well-features
-            %h4 Features
-            - sign_up = "Sign up"
+            %h4 特性
+            - sign_up = "注册"
             %p{ "aria-label" => "#{sign_up}: status " + (allow_signup? ? "on" : "off") }
               = sign_up
               %span.light.pull-right
@@ -82,7 +82,7 @@
               = ldap
               %span.light.pull-right
                 = boolean_to_icon Gitlab.config.ldap.enabled
-            - gravatar = "Gravatar"
+            - gravatar = "头像"
             %p{ "aria-label" => "#{gravatar}: status " + (gravatar_enabled? ? "on" : "off") }
               = gravatar
               %span.light.pull-right
@@ -92,23 +92,23 @@
               = omniauth
               %span.light.pull-right
                 = boolean_to_icon Gitlab.config.omniauth.enabled
-            - reply_email = "Reply by email"
+            - reply_email = "邮件回复"
             %p{ "aria-label" => "#{reply_email}: status " + (Gitlab::IncomingEmail.enabled? ? "on" : "off") }
               = reply_email
               %span.light.pull-right
                 = boolean_to_icon Gitlab::IncomingEmail.enabled?
-            - container_reg = "Container Registry"
+            - container_reg = "容器注册表"
             %p{ "aria-label" => "#{container_reg}: status " + (Gitlab.config.registry.enabled ? "on" : "off") }
               = container_reg
               %span.light.pull-right
                 = boolean_to_icon Gitlab.config.registry.enabled
-            - gitlab_pages = 'GitLab Pages'
+            - gitlab_pages = 'GitLab 页面'
             - gitlab_pages_enabled = Gitlab.config.pages.enabled
             %p{ "aria-label" => "#{gitlab_pages}: status " + (gitlab_pages_enabled ? "on" : "off") }
               = gitlab_pages
               %span.light.pull-right
                 = boolean_to_icon gitlab_pages_enabled
-            - gitlab_shared_runners = 'Shared Runners'
+            - gitlab_shared_runners = '共享 Runners'
             - gitlab_shared_runners_enabled = Gitlab.config.gitlab_ci.shared_runners_enabled
             %p{ "aria-label" => "#{gitlab_shared_runners}: status " + (gitlab_shared_runners_enabled ? "on" : "off") }
               = gitlab_shared_runners
@@ -118,7 +118,7 @@
         .info-well
           .well-segment.admin-well
             %h4
-              Components
+              组件
               - if Gitlab::CurrentSettings.version_check_enabled
                 .pull-right
                   = version_status_badge
@@ -161,7 +161,7 @@
       .col-md-4
         .info-well
           .well-segment.admin-well
-            %h4 Latest projects
+            %h4 最近创建的项目
             - @projects.each do |project|
               %p
                 = link_to project.name_with_namespace, [:admin, project.namespace.becomes(Namespace), project], class: 'str-truncated-60'
@@ -170,7 +170,7 @@
       .col-md-4
         .info-well
           .well-segment.admin-well
-            %h4 Latest users
+            %h4 最近注册的用户
             - @users.each do |user|
               %p
                 = link_to [:admin, user], class: 'str-truncated-60' do
@@ -180,7 +180,7 @@
       .col-md-4
         .info-well
           .well-segment.admin-well
-            %h4 Latest groups
+            %h4 最近创建的群组
             - @groups.each do |group|
               %p
                 = link_to [:admin, group], class: 'str-truncated-60' do

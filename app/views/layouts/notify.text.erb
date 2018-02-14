@@ -3,10 +3,10 @@
 ---
 <%  if @target_url -%>
 <%    if @reply_by_email -%>
-<%=     "Reply to this email directly or view it on GitLab: #{@target_url}" -%>
+<%=     "直接回复此邮件或在 GitLab 上查看: #{@target_url}" -%>
 <%    else -%>
-<%=     "View it on GitLab: #{@target_url}" -%>
+<%=     "在 GitLab 上查看: #{@target_url}" -%>
 <%    end -%>
 <%  end -%>
 
-<%= "You're receiving this email because #{notification_reason_text(@reason)}." %>
+<%= "因为您在 #{notification_reason_text(@reason)}拥有账号，所以会收到此邮件。" %>

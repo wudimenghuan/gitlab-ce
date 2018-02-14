@@ -3,65 +3,65 @@
 
   %fieldset.app_logo
     %legend
-      Navigation bar:
+      导航条：
   .form-group
-    = f.label :header_logo, 'Header logo', class: 'control-label'
+    = f.label :header_logo, '标题图标', class: 'control-label'
     .col-sm-10
       - if @appearance.header_logo?
         = image_tag @appearance.header_logo_url, class: 'appearance-light-logo-preview'
         - if @appearance.persisted?
           %br
-          = link_to 'Remove header logo', header_logos_admin_appearances_path, data: { confirm: "Header logo will be removed. Are you sure?"}, method: :delete, class: "btn btn-remove btn-sm remove-logo"
+          = link_to '删除标题图标', header_logos_admin_appearances_path, data: { confirm: "你确定要删除标题图标么？"}, method: :delete, class: "btn btn-remove btn-sm remove-logo"
         %hr
       = f.hidden_field :header_logo_cache
       = f.file_field :header_logo, class: ""
       .hint
-        Maximum file size is 1MB. Pages are optimized for a 28px tall header logo
+        文件最大不可超过 1MB。页面是针对 28px 高的标题图标设计的。
 
   %fieldset.sign-in
     %legend
-      Sign in/Sign up pages:
+      登录/注册页面：
   .form-group
-    = f.label :title, class: 'control-label'
+    = f.label :title, '标题', class: 'control-label'
     .col-sm-10
       = f.text_field :title, class: "form-control"
   .form-group
-    = f.label :description, class: 'control-label'
+    = f.label :description, "描述", class: 'control-label'
     .col-sm-10
       = f.text_area :description, class: "form-control", rows: 10
       .hint
-        Description parsed with #{link_to "GitLab Flavored Markdown", help_page_path('user/markdown'), target: '_blank'}.
+        描述采用 #{link_to "GitLab 特色的 Markdown", help_page_path('user/markdown'), target: '_blank'} 格式进行解析。
   .form-group
-    = f.label :logo, class: 'control-label'
+    = f.label :logo, '图标', class: 'control-label'
     .col-sm-10
       - if @appearance.logo?
         = image_tag @appearance.logo_url, class: 'appearance-logo-preview'
         - if @appearance.persisted?
           %br
-          = link_to 'Remove logo', logo_admin_appearances_path, data: { confirm: "Logo will be removed. Are you sure?"}, method: :delete, class: "btn btn-remove btn-sm remove-logo"
+          = link_to '删除图标', logo_admin_appearances_path, data: { confirm: "图标将被删除，请确认！"}, method: :delete, class: "btn btn-remove btn-sm remove-logo"
         %hr
       = f.hidden_field :logo_cache
       = f.file_field :logo, class: ""
       .hint
-        Maximum file size is 1MB. Pages are optimized for a 640x360 px logo.
+        文件最大大小为 1MB。页面按照 640x360 像素的 LOGO 设计。
 
   %fieldset
     %legend
-      New project pages:
+      新项目指导：
   .form-group
-    = f.label :new_project_guidelines, class: 'control-label'
+    = f.label :new_project_guidelines, '新建项目指引', class: 'control-label'
     .col-sm-10
       = f.text_area :new_project_guidelines, class: "form-control", rows: 10
       .hint
-        Guidelines parsed with #{link_to "GitLab Flavored Markdown", help_page_path('user/markdown'), target: '_blank'}.
+        项目指导将使用 #{link_to "GitLab 特色的 Markdown", help_page_path('user/markdown'), target: '_blank'} 进行解析。
 
   .form-actions
-    = f.submit 'Save', class: 'btn btn-save append-right-10'
+    = f.submit '保存', class: 'btn btn-save append-right-10'
     - if @appearance.persisted?
-      Preview last save:
-      = link_to 'Sign-in page', preview_sign_in_admin_appearances_path, class: 'btn', target: '_blank', rel: 'noopener noreferrer'
-      = link_to 'New project page', new_project_path, class: 'btn', target: '_blank', rel: 'noopener noreferrer'
+      预览最后保存
+      = link_to '登录页面', preview_sign_in_admin_appearances_path, class: 'btn', target: '_blank', rel: 'noopener noreferrer'
+      = link_to '新建项目页面', new_project_path, class: 'btn', target: '_blank', rel: 'noopener noreferrer'
 
     - if @appearance.updated_at
       %span.pull-right
-        Last edit #{time_ago_with_tooltip(@appearance.updated_at)}
+        最后编辑时间 #{time_ago_with_tooltip(@appearance.updated_at)}

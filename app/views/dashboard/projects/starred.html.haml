@@ -1,8 +1,8 @@
 - @hide_top_links = true
 - @no_container = true
 - breadcrumb_title "Projects"
-- page_title "Starred Projects"
-- header_title "Projects", dashboard_projects_path
+- page_title "星标项目"
+- header_title "项目", dashboard_projects_path
 
 %div{ class: container_class }
   = render "projects/last_push"
@@ -11,5 +11,5 @@
   - if params[:filter_projects] || any_projects?(@projects)
     = render 'projects'
   - else
-    %h3 You don't have starred projects yet
-    %p.slead Visit project page and press on star icon and it will appear on this page.
+    %h3 你还没有给任何项目加注星标
+    %p.slead 访问项目页面然后按下星标图标即可将项目显示在此页面。

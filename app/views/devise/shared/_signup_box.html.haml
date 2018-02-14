@@ -4,31 +4,31 @@
       .devise-errors
         = devise_error_messages!
       .form-group
-        = f.label :name, 'Full name'
-        = f.text_field :name, class: "form-control top", required: true, title: "This field is required."
+        = f.label :name, '姓名'
+        = f.text_field :name, class: "form-control top", required: true, title: "必填项。"
       .username.form-group
-        = f.label :username
-        = f.text_field :username, class: "form-control middle", pattern: Gitlab::PathRegex::NAMESPACE_FORMAT_REGEX_JS, required: true, title: 'Please create a username with only alphanumeric characters.'
-        %p.validation-error.hide Username is already taken.
-        %p.validation-success.hide Username is available.
-        %p.validation-pending.hide Checking username availability...
+        = f.label :username, "用户名"
+        = f.text_field :username, class: "form-control middle", pattern: Gitlab::PathRegex::NAMESPACE_FORMAT_REGEX_JS, required: true, title: '用户名只可以包含字母和数字。'
+        %p.validation-error.hide 用户名已经被使用。
+        %p.validation-success.hide 用户名有效。
+        %p.validation-pending.hide 正在检查用户名有效性...
       .form-group
-        = f.label :email
-        = f.email_field :email, class: "form-control middle", required: true, title: "Please provide a valid email address."
+        = f.label :email, "邮箱"
+        = f.email_field :email, class: "form-control middle", required: true, title: "请提供一个有效的邮箱地址。"
       .form-group
-        = f.label :email_confirmation
-        = f.email_field :email_confirmation, class: "form-control middle", required: true, title: "Please retype the email address."
+        = f.label :email_confirmation, "确认邮箱"
+        = f.email_field :email_confirmation, class: "form-control middle", required: true, title: "请再次输入邮箱地址。"
       .form-group.append-bottom-20#password-strength
-        = f.label :password
-        = f.password_field :password, class: "form-control bottom", required: true, pattern: ".{#{@minimum_password_length},}", title: "Minimum length is #{@minimum_password_length} characters."
-        %p.gl-field-hint Minimum length is #{@minimum_password_length} characters
+        = f.label :password, "密码"
+        = f.password_field :password, class: "form-control bottom", required: true, pattern: ".{#{@minimum_password_length},}", title: "最小长度为 #{@minimum_password_length} 字符。"
+        %p.gl-field-hint 最小长度为 #{@minimum_password_length} 字符。
       %div
       - if Gitlab::Recaptcha.enabled?
         = recaptcha_tags
       .submit-container
-        = f.submit "Register", class: "btn-register btn"
+        = f.submit "注册", class: "btn-register btn"
 .clearfix.submit-container
   %p
-    %span.light Didn't receive a confirmation email?
-    = succeed '.' do
-      = link_to "Request a new one", new_confirmation_path(:user)
+    %span.light 尚未收到确认邮件？
+    = succeed '。' do
+      = link_to "重新发送确认邮件", new_confirmation_path(:user)

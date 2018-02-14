@@ -45,25 +45,25 @@
         class="table-section section-10 js-pipeline-status pipeline-status"
         role="rowheader"
       >
-        Status
+        状态
       </div>
       <div
         class="table-section section-15 js-pipeline-info pipeline-info"
         role="rowheader"
       >
-        Pipeline
+        流水线
       </div>
       <div
         class="table-section section-20 js-pipeline-commit pipeline-commit"
         role="rowheader"
       >
-        Commit
+        提交
       </div>
       <div
         class="table-section section-20 js-pipeline-stages pipeline-stages"
         role="rowheader"
       >
-        Stages
+        步骤
       </div>
     </div>
     <pipelines-table-row-component

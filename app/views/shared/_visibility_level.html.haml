@@ -3,7 +3,7 @@
 .form-group.visibility-level-setting
   - if with_label
     = f.label :visibility_level, class: 'control-label' do
-      Visibility Level
+      可见等级
       = link_to icon('question-circle'), help_page_path("public_access/public_access")
   %div{ :class => ("col-sm-10" if with_label) }
     - if can_change_visibility_level

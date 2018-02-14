@@ -1,4 +1,4 @@
-- page_title 'Two-Factor Authentication', 'Account'
+- page_title '两步验证', '账号'
 - add_to_breadcrumbs("Two-Factor Authentication", profile_account_path)
 - @content_class = "limit-container-width" unless fluid_layout
 
@@ -13,60 +13,59 @@
   .row.prepend-top-default
     .col-lg-4
       %h4.prepend-top-0
-        Register Two-Factor Authentication App
+        注册两步验证应用
       %p
-        Use an app on your mobile device to enable two-factor authentication (2FA).
+        使用移动设备上的应用来启用两步验证（2FA）。
     .col-lg-8
       - if current_user.two_factor_otp_enabled?
         %p
-          You've already enabled two-factor authentication using mobile authenticator applications. In order to register a different device, you must first disable two-factor authentication.
-          = link_to 'Disable two-factor authentication', profile_two_factor_auth_path,
+          您已在移动设备的App上启用了两步验证（2FA）。您需要先禁用两步验证(2FA)功能后，才能注册新的设备。
+          = link_to '禁用两步验证(2FA)', profile_two_factor_auth_path,
                 method: :delete,
-                data: { confirm: "Are you sure? This will invalidate your registered applications and U2F devices." },
+                data: { confirm: "你确定要继续？ 这将导致您已注册的应用程序和U2F设备无效。" },
                 class: 'btn btn-danger'
       - else
         %p
-          Download the Google Authenticator application from App Store or Google Play Store and scan this code.
-          More information is available in the #{link_to('documentation', help_page_path('profile/two_factor_authentication'))}.
+          从App Store或Google Play商店下载Google Authenticator 应用，然后扫描此二维码。
+          更多可用的信息请参阅此 #{link_to('文档', help_page_path('profile/two_factor_authentication'))}.
         .row.append-bottom-10
           .col-md-4
             = raw @qr_code
           .col-md-8
             .account-well
               %p.prepend-top-0.append-bottom-0
-                Can't scan the code?
+                无法扫描二维码？
               %p.prepend-top-0.append-bottom-0
-                To add the entry manually, provide the following details to the application on your phone.
+                请在手机应用中输入以下信息手动进行绑定。
               %p.prepend-top-0.append-bottom-0
-                Account:
+                账号:
                 = @account_string
               %p.prepend-top-0.append-bottom-0
-                Key:
+                密钥:
                 = current_user.otp_secret.scan(/.{4}/).join(' ')
               %p.two-factor-new-manual-content
-                Time based: Yes
+                基于时间: Yes
         = form_tag profile_two_factor_auth_path, method: :post do |f|
           - if @error
             .alert.alert-danger
               = @error
           .form-group
-            = label_tag :pin_code, nil, class: "label-light"
+            = label_tag :pin_code, "PIN 码", class: "label-light"
             = text_field_tag :pin_code, nil, class: "form-control", required: true
           .prepend-top-default
-            = submit_tag 'Register with two-factor app', class: 'btn btn-success'
+            = submit_tag '注册两步验证应用', class: 'btn btn-success'
 
   %hr
 
   .row.prepend-top-default
     .col-lg-4
       %h4.prepend-top-0
-        Register Universal Two-Factor (U2F) Device
+        注册通用两步验证设备(U2F)
       %p
-        Use a hardware device to add the second factor of authentication.
+        使用硬件设备进行两步验证。
       %p
-        As U2F devices are only supported by a few browsers, we require that you set up a
-        two-factor authentication app before a U2F device. That way you'll always be able to
-        log in - even when you're using an unsupported browser.
+        由于 U2F 设备仅受几个浏览器支持，因此我们需要您先设置一个
+        两步验证应用，这样即使您的浏览器不受支持，您也可以登录。
     .col-lg-8
       - if @u2f_registration.errors.present?
         = form_errors(@u2f_registration)
@@ -74,7 +73,7 @@
 
       %hr
 
-      %h5 U2F Devices (#{@u2f_registrations.length})
+      %h5 U2F 设备 (#{@u2f_registrations.length})
 
       - if @u2f_registrations.present?
         .table-responsive
@@ -85,16 +84,16 @@
               %col{ width: "20%" }
             %thead
               %tr
-                %th Name
-                %th Registered On
+                %th 名称
+                %th 注册于
                 %th
             %tbody
               - @u2f_registrations.each do |registration|
                 %tr
                   %td= registration.name.presence || "<no name set>"
                   %td= registration.created_at.to_date.to_s(:medium)
-                  %td= link_to "Delete", profile_u2f_registration_path(registration), method: :delete, class: "btn btn-danger pull-right", data: { confirm: "Are you sure you want to delete this device? This action cannot be undone." }
+                  %td= link_to "删除", profile_u2f_registration_path(registration), method: :delete, class: "btn btn-danger pull-right", data: { confirm: "设备删除后将无法恢复，确定继续？" }
 
       - else
         .settings-message.text-center
-          You don't have any U2F devices registered yet.
+          您还没有注册过 U2F 设备。

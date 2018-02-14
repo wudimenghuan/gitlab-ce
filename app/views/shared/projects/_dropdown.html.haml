@@ -4,7 +4,7 @@
   = dropdown_toggle(toggle_text, { toggle: 'dropdown' }, { id: 'sort-projects-dropdown' })
   %ul.dropdown-menu.dropdown-menu-align-right.dropdown-menu-selectable
     %li.dropdown-header
-      Sort by
+      排序：
     - projects_sort_options_hash.each do |value, title|
       %li
         = link_to filter_projects_path(sort: value), class: ("is-active" if @sort == value) do
@@ -13,10 +13,10 @@
     %li.divider
     %li
       = link_to filter_projects_path(archived: nil), class: ("is-active" unless params[:archived].present?) do
-        Hide archived projects
+        隐藏归档的项目
     %li
       = link_to filter_projects_path(archived: true), class: ("is-active" if Gitlab::Utils.to_boolean(params[:archived])) do
-        Show archived projects
+        显示归档的项目
     %li
       = link_to filter_projects_path(archived: 'only'), class: ("is-active" if params[:archived] == 'only') do
         Show archived projects only
@@ -24,18 +24,18 @@
       %li.divider
       %li
         = link_to filter_projects_path(personal: nil), class: ("is-active" unless params[:personal].present?) do
-          Owned by anyone
+          属于任何人
       %li
         = link_to filter_projects_path(personal: true), class: ("is-active" if params[:personal].present?) do
-          Owned by me
+          属于我
       - if @group && @group.shared_projects.present?
         %li.divider
         %li
           = link_to filter_projects_path(shared: nil), class: ("is-active" unless params[:shared].present?) do
-            All projects
+            全部项目
         %li
           = link_to filter_projects_path(shared: 0), class: ("is-active" if params[:shared] == '0') do
-            Hide shared projects
+            隐藏共享项目
         %li
           = link_to filter_projects_path(shared: 1), class: ("is-active" if params[:shared] == '1') do
-            Hide group projects
+            隐藏群组项目

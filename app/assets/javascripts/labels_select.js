@@ -58,7 +58,7 @@ export default class LabelsSelect {
       }
       if (issueUpdateURL) {
         labelHTMLTemplate = _.template('<% _.each(labels, function(label){ %> <a href="<%- ["",issueURLSplit[1], issueURLSplit[2],""].join("/") %>issues?label_name[]=<%- encodeURIComponent(label.title) %>"> <span class="label has-tooltip color-label" title="<%- label.description %>" style="background-color: <%- label.color %>; color: <%- label.text_color %>;"> <%- label.title %> </span> </a> <% }); %>');
-        labelNoneHTMLTemplate = '<span class="no-value">None</span>';
+        labelNoneHTMLTemplate = '<span class="no-value">无</span>';
       }
       const handleClick = options.handleClick;
 
@@ -154,13 +154,13 @@ export default class LabelsSelect {
                 if (showNo) {
                   extraData.unshift({
                     id: 0,
-                    title: 'No Label'
+                    title: '没有标记'
                   });
                 }
                 if (showAny) {
                   extraData.unshift({
                     isAny: true,
-                    title: 'Any Label'
+                    title: '所有标记'
                   });
                 }
                 if (extraData.length) {
@@ -248,7 +248,7 @@ export default class LabelsSelect {
 
           if (selected.id === 0) {
             this.selected = [];
-            return 'No Label';
+            return '无标记';
           }
           else if (isSelected) {
             this.selected.push(title);

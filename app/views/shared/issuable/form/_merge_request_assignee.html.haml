@@ -6,10 +6,10 @@
     - else
       = icon('user', 'aria-hidden': 'true')
   .title.hide-collapsed
-    Assignee
+    指派
     = icon('spinner spin', class: 'hidden block-loading', 'aria-hidden': 'true')
     - if can_edit_issuable
-      = link_to 'Edit', '#', class: 'js-sidebar-dropdown-toggle edit-link pull-right'
+      = link_to '编辑', '#', class: 'js-sidebar-dropdown-toggle edit-link pull-right'
   .value.hide-collapsed
     - if merge_request.assignee
       = link_to_member(@project, merge_request.assignee, size: 32, extra_class: 'bold') do
@@ -20,12 +20,12 @@
           = merge_request.assignee.to_reference
     - else
       %span.assign-yourself.no-value
-        No assignee
+        未指派
         - if can_edit_issuable
           \-
           %a.js-assign-yourself{ href: '#' }
-            assign yourself
+            指派给您自己
 
   .selectbox.hide-collapsed
     = f.hidden_field 'assignee_id', value: merge_request.assignee_id, id: 'issue_assignee_id'
-    = dropdown_tag('Select assignee', options: { toggle_class: 'js-user-search js-author-search', title: 'Assign to', filter: true, dropdown_class: 'dropdown-menu-user dropdown-menu-selectable dropdown-menu-author', placeholder: 'Search users', data: { first_user: (current_user.username if current_user), current_user: true, project_id: @project&.id, author_id: merge_request.author_id, field_name: 'merge_request[assignee_id]', issue_update: issuable_json_path(merge_request), ability_name: 'merge_request', null_user: true } })
+    = dropdown_tag('选择指派', options: { toggle_class: 'js-user-search js-author-search', title: '指派给', filter: true, dropdown_class: 'dropdown-menu-user dropdown-menu-selectable dropdown-menu-author', placeholder: '搜索用户', data: { first_user: (current_user.username if current_user), current_user: true, project_id: @project&.id, author_id: merge_request.author_id, field_name: 'merge_request[assignee_id]', issue_update: issuable_json_path(merge_request), ability_name: 'merge_request', null_user: true } })

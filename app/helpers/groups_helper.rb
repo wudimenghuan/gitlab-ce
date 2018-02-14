@@ -55,17 +55,17 @@ module GroupsHelper
     size = group.projects.size
 
     if lfs_status == size
-      'for all projects'
+      '在所有项目中'
     else
-      "for #{lfs_status} out of #{pluralize(size, 'project')}"
+      "共计 #{pluralize(size, '个项目', '个项目')}，有 #{lfs_status} 个项目"
     end
   end
 
   def group_lfs_status(group)
-    status = group.lfs_enabled? ? 'enabled' : 'disabled'
+    status = group.lfs_enabled? ? '启用' : '禁用'
 
     content_tag(:span, class: "lfs-#{status}") do
-      "#{status.humanize} #{projects_lfs_status(group)}"
+      "#{projects_lfs_status(group)} #{status.humanize}"
     end
   end
 

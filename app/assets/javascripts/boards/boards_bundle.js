@@ -110,7 +110,7 @@ $(() => {
           this.loading = false;
         })
         .catch(() => {
-          Flash('An error occurred while fetching the board lists. Please try again.');
+          Flash('获取看板列表出错，请重试。');
         });
     },
     methods: {
@@ -188,7 +188,7 @@ $(() => {
       },
       tooltipTitle() {
         if (this.disabled) {
-          return 'Please add a list to your board first';
+          return '请先在看板中添加一个列表';
         }
 
         return '';
@@ -231,7 +231,7 @@ $(() => {
           :title="tooltipTitle"
           :aria-disabled="disabled"
           @click="openModal">
-          Add issues
+          添加问题
         </button>
       </div>
     `,

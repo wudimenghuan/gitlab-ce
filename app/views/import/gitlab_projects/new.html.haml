@@ -1,17 +1,17 @@
-- page_title "GitLab Import"
-- header_title "Projects", root_path
+- page_title "GitLab 导入"
+- header_title "项目", root_path
 - content_for :page_specific_javascripts do
   = webpack_bundle_tag 'project_import_gl'
 
 %h3.page-title
   = icon('gitlab')
-  Import an exported GitLab project
+  导入一个已导出的 GitLab 项目
 %hr
 
 = form_tag import_gitlab_project_path, class: 'new_project', multipart: true do
   .row
     .form-group.col-xs-12.col-sm-6
-      = label_tag :namespace_id, 'Project path', class: 'label-light'
+      = label_tag :namespace_id, '项目路径', class: 'label-light'
       .form-group
         .input-group
           - if current_user.can_select_namespace?
@@ -24,19 +24,19 @@
               #{root_url}#{current_user.username}/
             = hidden_field_tag :namespace_id, value: current_user.namespace_id
     .form-group.col-xs-12.col-sm-6.project-path
-      = label_tag :path, 'Project name', class: 'label-light'
+      = label_tag :path, '项目名称', class: 'label-light'
       = text_field_tag :path, @path, placeholder: "my-awesome-project", class: "js-path-name form-control", tabindex: 2, autofocus: true, required: true
 
   .row
     .form-group.col-md-12
-      To move or copy an entire GitLab project from another GitLab installation to this one, navigate to the original project's settings page, generate an export file, and upload it here.
+      要将整个 GitLab 项目从其它的 GitLab 服务器上移动或复制到本服务器上，请从源项目的设置界面中导出项目文件，并在此上传。
   .row
     .form-group.col-sm-12
       = hidden_field_tag :namespace_id, @namespace.id
-      = label_tag :file, 'GitLab project export', class: 'label-light'
+      = label_tag :file, 'GitLab 项目导出文件', class: 'label-light'
       .form-group
         = file_field_tag :file, class: ''
   .row
     .form-actions
-      = submit_tag 'Import project', class: 'btn btn-create'
-      = link_to 'Cancel', new_project_path, class: 'btn btn-cancel'
+      = submit_tag '导入项目', class: 'btn btn-create'
+      = link_to '取消', new_project_path, class: 'btn btn-cancel'

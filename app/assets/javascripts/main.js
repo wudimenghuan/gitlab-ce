@@ -181,9 +181,9 @@ $(() => {
     const ref = xhrObj.status;
 
     if (ref === 401) {
-      Flash('You need to be logged in.');
+      Flash('您需要登录。');
     } else if (ref === 404 || ref === 500) {
-      Flash('Something went wrong on our end.');
+      Flash('服务器端出现了错误。');
     }
   });
 

@@ -182,8 +182,21 @@ class ProjectWiki
     Gitlab::Git::Wiki::CommitDetails.new(@user.name, @user.email, commit_message)
   end
 
+  def action_zh(action)
+    case action
+    when :deleted
+      "删除"
+    when :created
+      "创建"
+    when :update
+      "更新"
+    else
+      action
+    end
+  end
+
   def default_message(action, title)
-    "#{@user.username} #{action} page: #{title}"
+    "#{@user.username} #{action_zh(action)} 页面: #{title}"
   end
 
   def update_project_activity

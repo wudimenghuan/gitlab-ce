@@ -3,7 +3,7 @@
     = page_specific_javascript_bundle_tag('u2f')
 
 %div
-  = render 'devise/shared/tab_single', tab_title: 'Two-Factor Authentication'
+  = render 'devise/shared/tab_single', tab_title: '两步验证'
   .login-box
     .login-body
       - if @user.two_factor_otp_enabled?
@@ -11,11 +11,11 @@
           - resource_params = params[resource_name].presence || params
           = f.hidden_field :remember_me, value: resource_params.fetch(:remember_me, 0)
           %div
-            = f.label 'Two-Factor Authentication code', name:  :otp_attempt
-            = f.text_field :otp_attempt, class: 'form-control', required: true, autofocus: true, autocomplete: 'off', title: 'This field is required.'
-            %p.help-block.hint Enter the code from the two-factor app on your mobile device. If you've lost your device, you may enter one of your recovery codes.
+            = f.label '两步验证代码', name:  :otp_attempt
+            = f.text_field :otp_attempt, class: 'form-control', required: true, autofocus: true, autocomplete: 'off', title: '必填项'
+            %p.help-block.hint 输入手机上的 Two-Factor 应用验证码. 如果丢失了手机，可以输入恢复代码进行验证。
             .prepend-top-20
-              = f.submit "Verify code", class: "btn btn-save"
+              = f.submit "验证", class: "btn btn-save"
 
       - if @user.two_factor_u2f_enabled?
         = render "u2f/authenticate", locals: { params: params, resource: resource, resource_name: resource_name }

@@ -1,5 +1,5 @@
 %h3.page-title
-  New Merge Request
+  新建合并请求
 
 = form_for [@project.namespace.becomes(Namespace), @project, @merge_request], url: project_new_merge_request_path(@project), method: :get, html: { class: "merge-request-form form-inline js-requires-input" } do |f|
   .hide.alert.alert-danger.mr-compare-errors
@@ -7,24 +7,24 @@
     .col-md-6
       .panel.panel-default.panel-new-merge-request
         .panel-heading
-          Source branch
+          来源分支
         .panel-body.clearfix
           .merge-request-select.dropdown
             = f.hidden_field :source_project_id
             = dropdown_toggle @merge_request.source_project_path, { toggle: "dropdown", field_name: "#{f.object_name}[source_project_id]", disabled: @merge_request.persisted? }, { toggle_class: "js-compare-dropdown js-source-project" }
             .dropdown-menu.dropdown-menu-selectable.dropdown-source-project
-              = dropdown_title("Select source project")
-              = dropdown_filter("Search projects")
+              = dropdown_title("选择来源分支")
+              = dropdown_filter("搜索项目")
               = dropdown_content do
                 = render 'projects/merge_requests/dropdowns/project',
                   projects: [@merge_request.source_project],
                   selected: f.object.source_project_id
           .merge-request-select.dropdown
             = f.hidden_field :source_branch
-            = dropdown_toggle f.object.source_branch || "Select source branch", { toggle: "dropdown", field_name: "#{f.object_name}[source_branch]" }, { toggle_class: "js-compare-dropdown js-source-branch git-revision-dropdown-toggle" }
+            = dropdown_toggle f.object.source_branch || "选择来源分支", { toggle: "dropdown", field_name: "#{f.object_name}[source_branch]" }, { toggle_class: "js-compare-dropdown js-source-branch git-revision-dropdown-toggle" }
             .dropdown-menu.dropdown-menu-selectable.dropdown-source-branch.git-revision-dropdown
-              = dropdown_title("Select source branch")
-              = dropdown_filter("Search branches")
+              = dropdown_title("选择来源分支")
+              = dropdown_filter("搜索项目")
               = dropdown_content do
                 = render 'projects/merge_requests/dropdowns/branch',
                   branches: @merge_request.source_branches,
@@ -36,15 +36,15 @@
     .col-md-6
       .panel.panel-default.panel-new-merge-request
         .panel-heading
-          Target branch
+          目标分支
         .panel-body.clearfix
           - projects = target_projects(@project)
           .merge-request-select.dropdown
             = f.hidden_field :target_project_id
             = dropdown_toggle f.object.target_project.full_path, { toggle: "dropdown", field_name: "#{f.object_name}[target_project_id]", disabled: @merge_request.persisted? }, { toggle_class: "js-compare-dropdown js-target-project" }
             .dropdown-menu.dropdown-menu-selectable.dropdown-target-project
-              = dropdown_title("Select target project")
-              = dropdown_filter("Search projects")
+              = dropdown_title("选择目标分支")
+              = dropdown_filter("搜索项目")
               = dropdown_content do
                 = render 'projects/merge_requests/dropdowns/project',
                   projects: projects,
@@ -53,8 +53,8 @@
             = f.hidden_field :target_branch
             = dropdown_toggle f.object.target_branch, { toggle: "dropdown", field_name: "#{f.object_name}[target_branch]" }, { toggle_class: "js-compare-dropdown js-target-branch git-revision-dropdown-toggle" }
             .dropdown-menu.dropdown-menu-selectable.dropdown-target-branch.js-target-branch-dropdown.git-revision-dropdown
-              = dropdown_title("Select target branch")
-              = dropdown_filter("Search branches")
+              = dropdown_title("选择目标分支")
+              = dropdown_filter("搜索分支")
               = dropdown_content do
                 = render 'projects/merge_requests/dropdowns/branch',
                   branches: @merge_request.target_branches,
@@ -65,4 +65,4 @@
 
   - if @merge_request.errors.any?
     = form_errors(@merge_request)
-  = f.submit 'Compare branches and continue', class: "btn btn-new mr-compare-btn"
+  = f.submit '比较分支后继续', class: "btn btn-new mr-compare-btn"

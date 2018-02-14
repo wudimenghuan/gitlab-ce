@@ -11,7 +11,7 @@ class Import::GitlabProjectsController < Import::BaseController
 
   def create
     unless file_is_valid?
-      return redirect_back_or_default(options: { alert: "You need to upload a GitLab project export archive." })
+      return redirect_back_or_default(options: { alert: "您需要上传 GitLab 项目导出存档。" })
     end
 
     @project = ::Projects::GitlabProjectsImportService.new(current_user, project_params).execute
@@ -19,10 +19,10 @@ class Import::GitlabProjectsController < Import::BaseController
     if @project.saved?
       redirect_to(
         project_path(@project),
-        notice: "Project '#{@project.name}' is being imported."
+        notice: "正在导入项目 '#{@project.name}' 。"
       )
     else
-      redirect_back_or_default(options: { alert: "Project could not be imported: #{@project.errors.full_messages.join(', ')}" })
+      redirect_back_or_default(options: { alert: "项目无法被导入： #{@project.errors.full_messages.join(', ')}" })
     end
   end
 

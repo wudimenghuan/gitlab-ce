@@ -1,18 +1,18 @@
 - @hide_top_links = true
-- page_title 'Milestones'
-- header_title 'Milestones', dashboard_milestones_path
+- page_title '里程碑'
+- header_title '里程碑', dashboard_milestones_path
 
 .top-area
   = render 'shared/milestones_filter', counts: @milestone_states
 
   .nav-controls
-    = render 'shared/new_project_item_select', path: 'milestones/new', label: 'New milestone', include_groups: true, type: :milestones
+    = render 'shared/new_project_item_select', path: 'milestones/new', label: '新建里程碑', include_groups: true, type: :milestones
 
 .milestones
   %ul.content-list
     - if @milestones.blank?
       %li
-        .nothing-here-block No milestones to show
+        .nothing-here-block 没有里程碑显示
     - else
       - @milestones.each do |milestone|
         = render 'milestone', milestone: milestone

@@ -15,7 +15,7 @@
           .nav-icon-container
             = sprite_icon('project')
           %span.nav-item-name
-            Overview
+            概览
 
         %ul.sidebar-sub-level-items
           = nav_link(path: ['groups#show', 'groups#activity', 'groups#subgroups'], html_options: { class: "fly-out-top-item" } ) do
@@ -24,21 +24,21 @@
                 #{ _('Overview') }
           %li.divider.fly-out-top-item
           = nav_link(path: ['groups#show', 'groups#subgroups'], html_options: { class: 'home' }) do
-            = link_to group_path(@group), title: 'Group details' do
+            = link_to group_path(@group), title: '群组详情' do
               %span
-                Details
+                详情
 
           = nav_link(path: 'groups#activity') do
-            = link_to activity_group_path(@group), title: 'Activity' do
+            = link_to activity_group_path(@group), title: '活动' do
               %span
-                Activity
+                活动
 
       = nav_link(path: ['groups#issues', 'labels#index', 'milestones#index']) do
         = link_to issues_group_path(@group) do
           .nav-icon-container
             = sprite_icon('issues')
           %span.nav-item-name
-            Issues
+            问题
           %span.badge.count= number_with_delimiter(issues_count)
 
         %ul.sidebar-sub-level-items
@@ -49,26 +49,26 @@
               %span.badge.count.issue_counter.fly-out-badge= number_with_delimiter(issues_count)
           %li.divider.fly-out-top-item
           = nav_link(path: 'groups#issues', html_options: { class: 'home' }) do
-            = link_to issues_group_path(@group), title: 'List' do
+            = link_to issues_group_path(@group), title: '列表' do
               %span
-                List
+                列表
 
           = nav_link(path: 'labels#index') do
-            = link_to group_labels_path(@group), title: 'Labels' do
+            = link_to group_labels_path(@group), title: '标记' do
               %span
-                Labels
+                标记
 
           = nav_link(path: 'milestones#index') do
-            = link_to group_milestones_path(@group), title: 'Milestones' do
+            = link_to group_milestones_path(@group), title: '里程碑' do
               %span
-                Milestones
+                里程碑
 
       = nav_link(path: 'groups#merge_requests') do
         = link_to merge_requests_group_path(@group) do
           .nav-icon-container
             = sprite_icon('git-merge')
           %span.nav-item-name
-            Merge Requests
+            合并请求
           %span.badge.count= number_with_delimiter(merge_requests_count)
         %ul.sidebar-sub-level-items.is-fly-out-only
           = nav_link(path: 'groups#merge_requests', html_options: { class: "fly-out-top-item" } ) do
@@ -81,7 +81,7 @@
           .nav-icon-container
             = sprite_icon('users')
           %span.nav-item-name
-            Members
+            成员
         %ul.sidebar-sub-level-items.is-fly-out-only
           = nav_link(path: 'group_members#index', html_options: { class: "fly-out-top-item" } ) do
             = link_to group_group_members_path(@group) do
@@ -93,7 +93,7 @@
             .nav-icon-container
               = sprite_icon('settings')
             %span.nav-item-name
-              Settings
+              设置
           %ul.sidebar-sub-level-items
             = nav_link(path: %w[groups#projects groups#edit ci_cd#show], html_options: { class: "fly-out-top-item" } ) do
               = link_to edit_group_path(@group) do
@@ -101,14 +101,14 @@
                   #{ _('Settings') }
             %li.divider.fly-out-top-item
             = nav_link(path: 'groups#edit') do
-              = link_to edit_group_path(@group), title: 'General' do
+              = link_to edit_group_path(@group), title: '常规' do
                 %span
-                  General
+                  常规
 
             = nav_link(path: 'groups#projects') do
-              = link_to projects_group_path(@group), title: 'Projects' do
+              = link_to projects_group_path(@group), title: '项目' do
                 %span
-                  Projects
+                  项目
 
             = nav_link(controller: :ci_cd) do
               = link_to group_settings_ci_cd_path(@group), title: 'CI / CD' do

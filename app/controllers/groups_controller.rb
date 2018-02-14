@@ -34,9 +34,9 @@ class GroupsController < Groups::ApplicationController
 
     if @group.persisted?
       notice = if @group.chat_team.present?
-                 "Group '#{@group.name}' and its Mattermost team were successfully created."
+                 "群组 '#{@group.name}' 和它的 Mattermost 团队创建成功。"
                else
-                 "Group '#{@group.name}' was successfully created."
+                 "群组 '#{@group.name}' 创建成功。"
                end
 
       redirect_to @group, notice: notice
@@ -80,7 +80,7 @@ class GroupsController < Groups::ApplicationController
 
   def update
     if Groups::UpdateService.new(@group, current_user, group_params).execute
-      redirect_to edit_group_path(@group), notice: "Group '#{@group.name}' was successfully updated."
+      redirect_to edit_group_path(@group), notice: "群组 '#{@group.name}' 更新成功。"
     else
       @group.restore_path!
 
@@ -91,7 +91,7 @@ class GroupsController < Groups::ApplicationController
   def destroy
     Groups::DestroyService.new(@group, current_user).async_execute
 
-    redirect_to root_path, status: 302, alert: "Group '#{@group.name}' was scheduled for deletion."
+    redirect_to root_path, status: 302, alert: "群组 '#{@group.name}' 已经被安排删除。"
   end
 
   def transfer

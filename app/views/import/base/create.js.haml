@@ -6,8 +6,8 @@
     target_field.empty()
     target_field.append('#{link_to @project.full_path, project_path(@project)}')
     $("table.import-jobs tbody").prepend(job)
-    job.addClass("active").find(".import-actions").html("<i class='fa fa-spinner fa-spin'></i> started")
+    job.addClass("active").find(".import-actions").html("<i class='fa fa-spinner fa-spin'></i> 已开始")
 - else
   :plain
     job = $("tr#repo_#{@repo_id}")
-    job.find(".import-actions").html("<i class='fa fa-exclamation-circle'></i> Error saving project: #{escape_javascript(h(@project.errors.full_messages.join(',')))}")
+    job.find(".import-actions").html("<i class='fa fa-exclamation-circle'></i> 保存项目错误： #{escape_javascript(h(@project.errors.full_messages.join(',')))}")

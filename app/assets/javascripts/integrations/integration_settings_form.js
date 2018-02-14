@@ -64,10 +64,10 @@ export default class IntegrationSettingsForm {
    * Toggle Submit button label based on Integration status and ability to test service
    */
   toggleSubmitBtnLabel(serviceActive) {
-    let btnLabel = 'Save changes';
+    let btnLabel = '保存修改';
 
     if (serviceActive && this.canTestService) {
-      btnLabel = 'Test settings and save changes';
+      btnLabel = '测试设置并保存修改';
     }
 
     this.$submitBtnLabel.text(btnLabel);
@@ -101,7 +101,7 @@ export default class IntegrationSettingsForm {
       .then(({ data }) => {
         if (data.error) {
           flash(`${data.message} ${data.service_response}`, 'alert', document, {
-            title: 'Save anyway',
+            title: '继续保存',
             clickHandler: (e) => {
               e.preventDefault();
               this.$form.submit();
@@ -114,7 +114,7 @@ export default class IntegrationSettingsForm {
         this.toggleSubmitBtnState(false);
       })
       .catch(() => {
-        flash('Something went wrong on our end.');
+        flash('服务器端出现了错误。');
         this.toggleSubmitBtnState(false);
       });
   }

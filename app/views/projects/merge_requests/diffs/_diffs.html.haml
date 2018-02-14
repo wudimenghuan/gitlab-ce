@@ -10,11 +10,12 @@
     .col-xs-12
       .text-content.text-center
         %p
-          No changes between
+          分支
           %span.ref-name= @merge_request.source_branch
-          and
+          和
           %span.ref-name= @merge_request.target_branch
-          .text-center= link_to 'Create commit', project_new_blob_path(@project, @merge_request.source_branch), class: 'btn btn-save'
+          没有差别
+          .text-center= link_to '创建提交', project_new_blob_path(@project, @merge_request.source_branch), class: 'btn btn-save'
 - else
   - diff_viewable = @merge_request_diff ? @merge_request_diff.collected? || @merge_request_diff.overflow? : true
   - if diff_viewable

@@ -1,12 +1,12 @@
 .top-area
   %ul.nav-links
     = nav_link(page: dashboard_snippets_path, html_options: {class: 'home'}) do
-      = link_to dashboard_snippets_path, title: 'Your snippets', data: {placement: 'right'} do
-        Your snippets
+      = link_to dashboard_snippets_path, title: '您的代码片段', data: {placement: 'right'} do
+        您的代码片段
     = nav_link(page: explore_snippets_path) do
-      = link_to explore_snippets_path, title: 'Explore snippets', data: {placement: 'right'} do
-        Explore snippets
+      = link_to explore_snippets_path, title: '浏览代码片段', data: {placement: 'right'} do
+        浏览代码片段
 
   - if current_user
     .nav-controls.hidden-xs
-      = link_to "New snippet", new_snippet_path, class: "btn btn-new", title: "New snippet"
+      = link_to "新建代码片段", new_snippet_path, class: "btn btn-new", title: "新建代码片段"

@@ -1,33 +1,33 @@
-- page_title 'System Hooks'
+- page_title '系统钩子'
 %h3.page-title
-  System hooks
+  系统钩子
 
 %p.light
-  #{link_to 'System hooks ', help_page_path('system_hooks/system_hooks'), class: 'vlink'} can be
-  used for binding events when GitLab creates a User or Project.
+  #{link_to '系统钩子 ', help_page_path('system_hooks/system_hooks'), class: 'vlink'} 可用于
+  绑定 GitLab 创建用户或项目的事件。
 
 %hr
 
 = form_for @hook, as: :hook, url: admin_hooks_path, html: { class: 'form-horizontal' } do |f|
   = render partial: 'form', locals: { form: f, hook: @hook }
   .form-actions
-    = f.submit 'Add system hook', class: 'btn btn-create'
+    = f.submit '增加系统钩子', class: 'btn btn-create'
 %hr
 
 - if @hooks.any?
   .panel.panel-default
     .panel-heading
-      System hooks (#{@hooks.count})
+      系统钩子 (#{@hooks.count})
     %ul.content-list
       - @hooks.each do |hook|
         %li
           .controls
             = render 'shared/web_hooks/test_button', triggers: SystemHook.triggers, hook: hook, button_class: 'btn-sm'
-            = link_to 'Edit', edit_admin_hook_path(hook), class: 'btn btn-sm'
-            = link_to 'Remove', admin_hook_path(hook), data: { confirm: 'Are you sure?' }, method: :delete, class: 'btn btn-remove btn-sm'
+            = link_to '编辑', edit_admin_hook_path(hook), class: 'btn btn-sm'
+            = link_to '删除', admin_hook_path(hook), data: { confirm: '您确定要删除这个钩子？' }, method: :delete, class: 'btn btn-remove btn-sm'
           .monospace= hook.url
           %div
             - SystemHook.triggers.each_value do |event|
               - if hook.public_send(event)
                 %span.label.label-gray= event.to_s.titleize
-            %span.label.label-gray SSL Verification: #{hook.enable_ssl_verification ? 'enabled' : 'disabled'}
+            %span.label.label-gray SSL 证书验证: #{hook.enable_ssl_verification ? '已启用' : '已禁用'}

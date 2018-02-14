@@ -19,12 +19,12 @@
               - if brand_item&.description?
                 = brand_text
               - else
-                %h3 Open source software to collaborate on code
+                %h3 用于代码协作的开源软件
 
                 %p
-                  Manage Git repositories with fine-grained access controls that keep your code secure.
-                  Perform code reviews and enhance collaboration with merge requests.
-                  Each project can also have an issue tracker and a wiki.
+                  细粒度访问控制管理 git 仓库以保证代码安全。
+                  使用合并请求进行代码审查并加强团体合作。
+                  每个项目均有自己的问题跟踪和维基页面。
 
               - if Gitlab::CurrentSettings.sign_in_text.present?
                 = markdown_field(Gitlab::CurrentSettings.current_application_settings, :sign_in_text)
@@ -32,6 +32,7 @@
       %hr.footer-fixed
       .container.footer-container
         .footer-links
-          = link_to "Explore", explore_root_path
-          = link_to "Help", help_path
-          = link_to "About GitLab", "https://about.gitlab.com/"
+          = link_to "浏览", explore_root_path
+          = link_to "帮助", help_path
+          = link_to "关于 GitLab", "https://about.gitlab.com/"
+          = link_to "中文社区版", "https://gitlab.com/xhang/gitlab/"

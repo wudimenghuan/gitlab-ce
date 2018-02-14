@@ -1,5 +1,5 @@
 - @content_class = "limit-container-width" unless fluid_layout
-- page_title "CI / CD Settings"
+- page_title "CI / CD 设置"
 - page_title "CI / CD"
 
 - expanded = Rails.env.test?
@@ -7,22 +7,22 @@
 %section.settings#js-general-pipeline-settings.no-animate{ class: ('expanded' if expanded) }
   .settings-header
     %h4
-      General pipelines settings
+      常规流水线设置
     %button.btn.js-settings-toggle
-      = expanded ? 'Collapse' : 'Expand'
+      = expanded ? '收起' : '展开'
     %p
-      Update your CI/CD configuration, like job timeout or Auto DevOps.
+      更新您的 CI/CD 配置，比如作业超时或者 Auto DevOps.
   .settings-content
     = render 'projects/pipelines_settings/show'
 
 %section.settings.no-animate{ class: ('expanded' if expanded) }
   .settings-header
     %h4
-      Runners settings
+      Runners 设置
     %button.btn.js-settings-toggle
-      = expanded ? 'Collapse' : 'Expand'
+      = expanded ? '收起' : '展开'
     %p
-      Register and see your runners for this project.
+      注册和查看本项目的 runner
   .settings-content
     = render 'projects/runners/index'
 
@@ -32,7 +32,7 @@
       = _('Secret variables')
       = link_to icon('question-circle'), help_page_path('ci/variables/README', anchor: 'secret-variables'), target: '_blank', rel: 'noopener noreferrer'
     %button.btn.js-settings-toggle
-      = expanded ? 'Collapse' : 'Expand'
+      = expanded ? '收起' : '展开'
     %p.append-bottom-0
       = render "ci/variables/content"
   .settings-content
@@ -41,9 +41,9 @@
 %section.settings.no-animate{ class: ('expanded' if expanded) }
   .settings-header
     %h4
-      Pipeline triggers
+      流水线触发器
     %button.btn.js-settings-toggle
-      = expanded ? 'Collapse' : 'Expand'
+      = expanded ? '收起' : '展开'
     %p
       Triggers can force a specific branch or tag to get rebuilt with an API call.  These tokens will
       impersonate their associated user including their access to projects and their project

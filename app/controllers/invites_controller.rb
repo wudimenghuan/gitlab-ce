@@ -11,9 +11,9 @@ class InvitesController < ApplicationController
     if member.accept_invite!(current_user)
       label, path = source_info(member.source)
 
-      redirect_to path, notice: "You have been granted #{member.human_access} access to #{label}."
+      redirect_to path, notice: "已接受作为 #{member.human_access} 访问 #{label} 的邀请。"
     else
-      redirect_back_or_default(options: { alert: "The invitation could not be accepted." })
+      redirect_back_or_default(options: { alert: "此邀请无法被接受。" })
     end
   end
 
@@ -28,9 +28,9 @@ class InvitesController < ApplicationController
           new_user_session_path
         end
 
-      redirect_to path, notice: "You have declined the invitation to join #{label}."
+      redirect_to path, notice: "已拒绝加入 #{label} 的邀请。"
     else
-      redirect_back_or_default(options: { alert: "The invitation could not be declined." })
+      redirect_back_or_default(options: { alert: "此邀请无法被拒绝。" })
     end
   end
 
@@ -50,9 +50,9 @@ class InvitesController < ApplicationController
   def authenticate_user!
     return if current_user
 
-    notice = "To accept this invitation, sign in"
-    notice << " or create an account" if Gitlab::CurrentSettings.allow_signup?
-    notice << "."
+    notice = "要接受此邀请，请登录"
+    notice << " 或者创建账号" if Gitlab::CurrentSettings.allow_signup?
+    notice << "。"
 
     store_location_for :user, request.fullpath
     redirect_to new_user_session_path, notice: notice
@@ -62,14 +62,14 @@ class InvitesController < ApplicationController
     case source
     when Project
       project = member.source
-      label = "project #{project.name_with_namespace}"
+      label = "项目 #{project.name_with_namespace}"
       path = project_path(project)
     when Group
       group = member.source
-      label = "group #{group.name}"
+      label = "群组 #{group.name}"
       path = group_path(group)
     else
-      label = "who knows what"
+      label = "谁知道"
       path = dashboard_projects_path
     end
 

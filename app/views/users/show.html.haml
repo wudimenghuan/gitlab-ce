@@ -9,27 +9,27 @@
   = webpack_bundle_tag 'users'
 
 = content_for :meta_tags do
-  = auto_discovery_link_tag(:atom, user_url(@user, format: :atom), title: "#{@user.name} activity")
+  = auto_discovery_link_tag(:atom, user_url(@user, format: :atom), title: "#{@user.name}活动")
 
 .user-profile
   .cover-block.user-cover-block.top-area
     .cover-controls
       - if @user == current_user
-        = link_to profile_path, class: 'btn btn-gray has-tooltip', title: 'Edit profile', 'aria-label': 'Edit profile' do
+        = link_to profile_path, class: 'btn btn-gray has-tooltip', title: '编辑个人资料', 'aria-label': '编辑个人资料' do
           = icon('pencil')
       - elsif current_user
         - if @user.abuse_report
-          %button.btn.btn-danger{ title: 'Already reported for abuse',
+          %button.btn.btn-danger{ title: '已被举报',
             data: { toggle: 'tooltip', placement: 'bottom', container: 'body' } }
             = icon('exclamation-circle')
         - else
           = link_to new_abuse_report_path(user_id: @user.id, ref_url: request.referrer), class: 'btn btn-gray',
-            title: 'Report abuse', data: { toggle: 'tooltip', placement: 'bottom', container: 'body' } do
+            title: '违规举报', data: { toggle: 'tooltip', placement: 'bottom', container: 'body' } do
             = icon('exclamation-circle')
-      = link_to user_path(@user, rss_url_options), class: 'btn btn-gray has-tooltip', title: 'Subscribe', 'aria-label': 'Subscribe' do
+      = link_to user_path(@user, rss_url_options), class: 'btn btn-gray has-tooltip', title: '订阅', 'aria-label': '订阅' do
         = icon('rss')
       - if current_user && current_user.admin?
-        = link_to [:admin, @user], class: 'btn btn-gray', title: 'View user in admin area',
+        = link_to [:admin, @user], class: 'btn btn-gray', title: '在管理区域查看用户信息',
           data: {toggle: 'tooltip', placement: 'bottom', container: 'body'} do
           = icon('users')
 
@@ -46,7 +46,7 @@
           %span.middle-dot-divider
             @#{@user.username}
           %span.middle-dot-divider
-            Member since #{@user.created_at.to_date.to_s(:long)}
+            注册时间： #{@user.created_at.to_date.to_s(:long)}
 
         .cover-desc
           - unless @user.public_email.blank?
@@ -58,11 +58,11 @@
                 = icon('skype')
           - unless @user.linkedin.blank?
             .profile-link-holder.middle-dot-divider
-              = link_to linkedin_url(@user), title: "LinkedIn", target: '_blank', rel: 'noopener noreferrer nofollow' do
+              = link_to linkedin_url(@user), title: "领英", target: '_blank', rel: 'noopener noreferrer nofollow' do
                 = icon('linkedin-square')
           - unless @user.twitter.blank?
             .profile-link-holder.middle-dot-divider
-              = link_to twitter_url(@user), title: "Twitter", target: '_blank', rel: 'noopener noreferrer nofollow' do
+              = link_to twitter_url(@user), title: "推特", target: '_blank', rel: 'noopener noreferrer nofollow' do
                 = icon('twitter-square')
           - unless @user.website_url.blank?
             .profile-link-holder.middle-dot-divider
@@ -87,19 +87,19 @@
       %ul.nav-links.user-profile-nav.scrolling-tabs
         %li.js-activity-tab
           = link_to user_path, data: { target: 'div#activity', action: 'activity', toggle: 'tab' } do
-            Activity
+            活动
         %li.js-groups-tab
           = link_to user_groups_path, data: { target: 'div#groups', action: 'groups', toggle: 'tab', endpoint: user_groups_path(format: :json) } do
-            Groups
+            群组
         %li.js-contributed-tab
           = link_to user_contributed_projects_path, data: { target: 'div#contributed', action: 'contributed', toggle: 'tab', endpoint: user_contributed_projects_path(format: :json) } do
-            Contributed projects
+            贡献项目
         %li.js-projects-tab
           = link_to user_projects_path, data: { target: 'div#projects', action: 'projects', toggle: 'tab', endpoint: user_projects_path(format: :json) } do
-            Personal projects
+            个人项目
         %li.js-snippets-tab
           = link_to user_snippets_path, data: { target: 'div#snippets', action: 'snippets', toggle: 'tab', endpoint: user_snippets_path(format: :json) } do
-            Snippets
+            代码片段
 
   %div{ class: container_class }
     .tab-content
@@ -111,7 +111,7 @@
           .user-calendar-activities
 
         %h4.prepend-top-20
-          Most Recent Activity
+          最近活动
         .content_list{ data: { href: user_path } }
         = spinner
 

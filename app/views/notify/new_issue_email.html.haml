@@ -1,10 +1,10 @@
 - if Gitlab::CurrentSettings.email_author_in_body
   %p.details
-    #{link_to @issue.author_name, user_url(@issue.author)} created an issue:
+    #{link_to @issue.author_name, user_url(@issue.author)} 创建问题:
 
 - if @issue.assignees.any?
   %p
-    Assignee: #{@issue.assignee_list}
+    指派给： #{@issue.assignee_list}
 
 - if @issue.description
   %div

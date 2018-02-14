@@ -10,7 +10,7 @@ export default {
       <status-icon status="warning" :show-disabled-button="true" />
       <div class="media-body space-children">
         <span class="bold">
-          The source branch HEAD has recently changed. Please reload the page and review the changes before merging
+          源分支的 HEAD 在最近发生了变更。 请重新加载页面，并在合并之前查看更改。
         </span>
       </div>
     </div>

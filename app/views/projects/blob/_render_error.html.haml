@@ -1,7 +1,7 @@
 .file-content.code
   .nothing-here-block
-    The #{viewer.switcher_title} could not be displayed because #{blob_render_error_reason(viewer)}.
+    文件 #{viewer.switcher_title} 由于 #{blob_render_error_reason(viewer)} 而无法显示。
 
-    You can
-    = blob_render_error_options(viewer).to_sentence(two_words_connector: ' or ', last_word_connector: ', or ').html_safe
-    instead.
+    您可以通过
+    = blob_render_error_options(viewer).to_sentence(two_words_connector: ' 或者 ', last_word_connector: ', 或者 ').html_safe
+    来取代。

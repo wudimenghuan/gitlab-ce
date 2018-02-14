@@ -455,7 +455,7 @@ class MergeRequest < ActiveRecord::Base
 
   def validate_branches
     if target_project == source_project && target_branch == source_branch
-      errors.add :branch_conflict, "You can not use same project/branch for source and target"
+      errors.add :branch_conflict, "您不能在源分支和目标分支上选择相同的项目/分支"
     end
 
     if opened?
@@ -463,7 +463,7 @@ class MergeRequest < ActiveRecord::Base
       similar_mrs = similar_mrs.where('id not in (?)', self.id) if self.id
       if similar_mrs.any?
         errors.add :validate_branches,
-                   "Cannot Create: This merge request already exists: #{similar_mrs.pluck(:title)}"
+                   "创建失败: 该合并请求: #{similar_mrs.pluck(:title)} 已存在"
       end
     end
   end
@@ -480,7 +480,7 @@ class MergeRequest < ActiveRecord::Base
     return true unless source_project_missing?
 
     errors.add :validate_fork,
-               'Source project is not a fork of the target project'
+               '源项目不是从目标项目派生而来'
   end
 
   def merge_ongoing?
@@ -744,7 +744,7 @@ class MergeRequest < ActiveRecord::Base
     if target_project
       target_project.full_path
     else
-      "(removed)"
+      "(已删除)"
     end
   end
 
@@ -752,7 +752,7 @@ class MergeRequest < ActiveRecord::Base
     if source_project
       source_project.full_path
     else
-      "(removed)"
+      "(已删除)"
     end
   end
 
@@ -760,7 +760,7 @@ class MergeRequest < ActiveRecord::Base
     if source_project && source_project.namespace
       source_project.namespace.full_path
     else
-      "(removed)"
+      "(已删除)"
     end
   end
 
@@ -768,7 +768,7 @@ class MergeRequest < ActiveRecord::Base
     if target_project && target_project.namespace
       target_project.namespace.full_path
     else
-      "(removed)"
+      "(已删除)"
     end
   end
 
@@ -790,16 +790,16 @@ class MergeRequest < ActiveRecord::Base
     end
 
     message = [
-      "Merge branch '#{source_branch}' into '#{target_branch}'",
+      "合并分支 '#{source_branch}' 到 '#{target_branch}'",
       title
     ]
 
     if !include_description && closes_issues_references.present?
-      message << "Closes #{closes_issues_references.to_sentence}"
+      message << "关闭 #{closes_issues_references.to_sentence}"
     end
 
     message << "#{description}" if include_description && description.present?
-    message << "See merge request #{to_reference(full: true)}"
+    message << "查看合并请求 #{to_reference(full: true)}"
 
     message.join("\n\n")
   end
@@ -888,12 +888,16 @@ class MergeRequest < ActiveRecord::Base
 
   def state_human_name
     if merged?
-      "Merged"
+      "已合并"
     elsif closed?
-      "Closed"
+      "已关闭"
     else
-      "Open"
+      "未关闭"
     end
+  end
+
+  def zh_name
+    '合并请求'
   end
 
   def state_icon_name

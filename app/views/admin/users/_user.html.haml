@@ -5,17 +5,17 @@
     .user-name.row-title.str-truncated-100
       = link_to user.name, [:admin, user]
     - if user.blocked?
-      %span.label.label-danger blocked
+      %span.label.label-danger 禁用
     - if user.admin?
-      %span.label.label-success Admin
+      %span.label.label-success 管理
     - if user.external?
-      %span.label.label-default External
+      %span.label.label-default 外部
     - if user == current_user
-      %span It's you!
+      %span 自己
     .row-second-line.str-truncated-100
       = mail_to user.email, user.email
   .controls
-    = link_to 'Edit', edit_admin_user_path(user), id: "edit_#{dom_id(user)}", class: 'btn'
+    = link_to '编辑', edit_admin_user_path(user), id: "edit_#{dom_id(user)}", class: 'btn'
     - unless user == current_user
       .dropdown.inline
         %a.dropdown-new.btn.btn-default#project-settings-button{ href: '#', data: { toggle: 'dropdown' } }
@@ -23,17 +23,17 @@
           = icon('caret-down')
         %ul.dropdown-menu.dropdown-menu-align-right
           %li.dropdown-header
-            Settings
+            设置
             %li
               - if user.ldap_blocked?
                 %span.small Cannot unblock LDAP blocked users
               - elsif user.blocked?
-                = link_to 'Unblock', unblock_admin_user_path(user), method: :put
+                = link_to '启用', unblock_admin_user_path(user), method: :put
               - else
-                = link_to 'Block', block_admin_user_path(user), data: { confirm: 'USER WILL BE BLOCKED! Are you sure?' }, method: :put
+                = link_to '禁用', block_admin_user_path(user), data: { confirm: '用户将被禁用！确定要继续么？' }, method: :put
             - if user.access_locked?
               %li
-                = link_to 'Unlock', unlock_admin_user_path(user), method: :put, class: 'btn-grouped btn btn-xs btn-success', data: { confirm: 'Are you sure?' }
+                = link_to '启用', unlock_admin_user_path(user), method: :put, class: 'btn-grouped btn btn-xs btn-success', data: { confirm: '确认启用该用户？' }
           - if can?(current_user, :destroy_user, user)
             %li.divider
             - if user.can_be_removed?

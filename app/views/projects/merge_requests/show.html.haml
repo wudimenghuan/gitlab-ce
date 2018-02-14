@@ -1,7 +1,7 @@
 - @content_class = "limit-container-width" unless fluid_layout
 - add_to_breadcrumbs "Merge Requests", project_merge_requests_path(@project)
 - breadcrumb_title @merge_request.to_reference
-- page_title "#{@merge_request.title} (#{@merge_request.to_reference})", "Merge Requests"
+- page_title "#{@merge_request.title} (#{@merge_request.to_reference})", "合并请求"
 - page_description @merge_request.description
 - page_card_attributes @merge_request.card_attributes
 - content_for :page_specific_javascripts do
@@ -39,21 +39,21 @@
             %ul.merge-request-tabs
               %li.notes-tab
                 = tab_link_for @merge_request, :show, force_link: @commit.present? do
-                  Discussion
+                  讨论
                   %span.badge= @merge_request.related_notes.user.count
               - if @merge_request.source_project
                 %li.commits-tab
                   = tab_link_for @merge_request, :commits do
-                    Commits
+                    提交
                     %span.badge= @commits_count
               - if @pipelines.any?
                 %li.pipelines-tab
                   = tab_link_for @merge_request, :pipelines do
-                    Pipelines
+                    流水线
                     %span.badge.js-pipelines-mr-count= @pipelines.size
               %li.diffs-tab
                 = tab_link_for @merge_request, :diffs do
-                  Changes
+                  变更
                   %span.badge= @merge_request.diff_size
         #resolve-count-app.line-resolve-all-container.prepend-top-10{ "v-cloak" => true }
           %resolve-count{ "inline-template" => true, ":logged-out" => "#{current_user.nil?}" }
@@ -67,7 +67,7 @@
                   %template{ 'v-else' => '' }
                     = render 'shared/icons/icon_resolve_discussion.svg'
                 %span.line-resolve-text
-                  {{ resolvedDiscussionCount }}/{{ discussionCount }} {{ resolvedCountText }} resolved
+                  {{ resolvedDiscussionCount }}/{{ discussionCount }} {{ resolvedCountText }} 已解决
               = render "discussions/new_issue_for_all_discussions", merge_request: @merge_request
               = render "discussions/jump_to_next"
 

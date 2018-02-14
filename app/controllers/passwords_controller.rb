@@ -19,7 +19,7 @@ class PasswordsController < Devise::PasswordsController
       ).first_or_initialize
 
       unless user.reset_password_period_valid?
-        flash[:alert] = 'Your password reset token has expired.'
+        flash[:alert] = '使用的密码重置授权已过期。'
         redirect_to(new_user_password_url(user_email: user['email']))
       end
     end
@@ -48,7 +48,7 @@ class PasswordsController < Devise::PasswordsController
     end
 
     redirect_to after_sending_reset_password_instructions_path_for(resource_name),
-      alert: "Password authentication is unavailable."
+      alert: "密码验证无效。"
   end
 
   def throttle_reset

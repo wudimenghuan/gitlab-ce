@@ -1,4 +1,4 @@
-- page_title 'Chat'
+- page_title '聊天'
 - @content_class = "limit-container-width" unless fluid_layout
 = render 'profiles/head'
 
@@ -7,25 +7,25 @@
     %h4.prepend-top-0
       = page_title
     %p
-      You can see your Chat accounts.
+      您可以查看您的聊天帐户。
 
   .col-lg-8
-    %h5 Active chat names (#{@chat_names.size})
+    %h5 有效的聊天名称 (#{@chat_names.size})
 
     - if @chat_names.present?
       .table-responsive
         %table.table.chat-names
           %thead
             %tr
-              %th Project
-              %th Service
-              %th Team domain
-              %th Nickname
-              %th Last used
+              %th 项目
+              %th 服务
+              %th 团队域名
+              %th 昵称
+              %th 最近使用
               %th
           %tbody
             = render @chat_names
 
     - else
       .settings-message.text-center
-        You don't have any active chat names.
+        你现在还没有任何有效的聊天名称。

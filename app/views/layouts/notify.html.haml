@@ -14,20 +14,21 @@
         %br
         - if @target_url
           - if @reply_by_email
-            Reply to this email directly or
-            #{link_to "view it on GitLab", @target_url}.
+            直接回复此邮件或
+            #{link_to "在 GitLab 上查看", @target_url}.
           - else
-            #{link_to "View it on GitLab", @target_url}.
+            #{link_to "在 GitLab 上查看", @target_url}.
           %br
           -# Don't link the host in the line below, one link in the email is easier to quickly click than two.
-          You're receiving this email because #{notification_reason_text(@reason)}.
-          If you'd like to receive fewer emails, you can
+          因为您 #{notification_reason_text(@reason)} 所以会收到此通知。
+          如果你不喜欢接受此类通知邮件，你可以在通知设置中
           - if @labels_url
-            adjust your #{link_to 'label subscriptions', @labels_url}.
+            调整你的 #{link_to '标签订阅', @labels_url}.
           - else
             - if @unsubscribe_url
-              = link_to "unsubscribe", @unsubscribe_url
-              from this thread or
-            adjust your notification settings.
+              在此主题中
+              = link_to "取消订阅", @unsubscribe_url
+              或者
+            调整您的通知设置。
 
           = email_action @target_url

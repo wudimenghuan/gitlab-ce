@@ -1,25 +1,23 @@
-%h3 Shared Runners
+%h3 共享的 Runners
 
 .bs-callout.bs-callout-warning.shared-runners-description
   - if Gitlab::CurrentSettings.shared_runners_text.present?
     = markdown_field(Gitlab::CurrentSettings.current_application_settings, :shared_runners_text)
   - else
-    GitLab Shared Runners execute code of different projects on the same Runner
-    unless you configure GitLab Runner Autoscale with MaxBuilds 1 (which it is
-    on GitLab.com).
+    共享的 runners 会在同样的 runner 上执行不同项目的代码，除非配置好带有 MaxBuilds 1 的 GitLab Runner Autoscale (已在 GitLab.com 上启用)。
   %hr
+  在本项目&nbsp;
   - if @project.shared_runners_enabled?
     = link_to toggle_shared_runners_project_runners_path(@project), class: 'btn btn-warning', method: :post do
-      Disable shared Runners
+      禁用共享的 Runner
   - else
     = link_to toggle_shared_runners_project_runners_path(@project), class: 'btn btn-success', method: :post do
-      Enable shared Runners
-  &nbsp; for this project
+      启用共享的 runners
 
 - if @shared_runners_count.zero?
-  This GitLab server does not provide any shared Runners yet.
-  Please use the specific Runners or ask your administrator to create one.
+  此 GitLab 服务器还没有共享 Runner。
+  请使用特定的 Runner 或者请求管理员创建共享的 Runner。
 - else
-  %h4.underlined-title Available shared Runners : #{@shared_runners_count}
+  %h4.underlined-title 可用的共享 Runners : #{@shared_runners_count}
   %ul.bordered-list.available-shared-runners
     = render partial: 'projects/runners/runner', collection: @shared_runners, as: :runner

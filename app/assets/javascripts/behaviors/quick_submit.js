@@ -62,8 +62,8 @@ $(document).on('keyup.quick_submit', '.js-quick-submit input[type=submit], .js-q
 
   const $this = $(this);
   const title = isMac() ?
-    'You can also press &#8984;-Enter' :
-    'You can also press Ctrl-Enter';
+    '您也可以按 &#8984;-Enter' :
+    '您也可以按 Ctrl-Enter';
 
   $this.tooltip({
     container: 'body',

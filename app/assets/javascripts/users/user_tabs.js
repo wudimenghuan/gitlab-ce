@@ -64,7 +64,7 @@ const CALENDAR_TEMPLATE = `
   <div class="clearfix calendar">
     <div class="js-contrib-calendar"></div>
     <div class="calendar-hint">
-      Summary of issues, merge requests, push events, and comments
+      问题、合并请求、推送事件和评论摘要
     </div>
   </div>
 `;

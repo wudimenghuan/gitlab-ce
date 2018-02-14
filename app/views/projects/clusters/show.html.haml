@@ -1,5 +1,5 @@
 - @content_class = "limit-container-width" unless fluid_layout
-- add_to_breadcrumbs "Kubernetes Clusters", project_clusters_path(@project)
+- add_to_breadcrumbs "Kubernetes 集群", project_clusters_path(@project)
 - breadcrumb_title @cluster.name
 - page_title _("Kubernetes Cluster")
 
@@ -30,7 +30,7 @@
     .settings-header
       %h4= s_('ClusterIntegration|Kubernetes cluster details')
       %button.btn.js-settings-toggle
-        = expanded ? 'Collapse' : 'Expand'
+        = expanded ? '折叠' : '展开'
       %p= s_('ClusterIntegration|See and edit the details for your Kubernetes cluster')
     .settings-content
       - if @cluster.managed?
@@ -42,7 +42,7 @@
     .settings-header
       %h4= _('Advanced settings')
       %button.btn.js-settings-toggle
-        = expanded ? 'Collapse' : 'Expand'
+        = expanded ? '折叠' : '展开'
       %p= s_("ClusterIntegration|Advanced options on this Kubernetes cluster's integration")
     .settings-content
       = render 'advanced_settings'

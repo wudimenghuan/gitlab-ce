@@ -56,7 +56,7 @@
       class="settings-message text-center"
       v-else-if="showHelpBox"
     >
-      No deploy keys found. Create one with the form above.
+      找不到部署密钥。从上面的表单创建一个。
     </div>
   </div>
 </template>

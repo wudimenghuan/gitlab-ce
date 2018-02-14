@@ -4,32 +4,32 @@
 %div{ class: container_class }
   .bs-callout
     %p
-      A 'Runner' is a process which runs a job.
-      You can setup as many Runners as you need.
+      一个 'Runner' 就是一个运行作业的进程。
+      你可以按照自己的需要设置很多个 Runner。
       %br
-      Runners can be placed on separate users, servers, even on your local machine.
+      Runners 可以被部署在不同的用户、服务器上，甚至在你本地使用的机器上。
       %br
 
     %div
-      %span Each Runner can be in one of the following states:
+      %span 每个 Runner 可以是下列状态之一：
       %ul
         %li
-          %span.label.label-success shared
-          \- Runner runs jobs from all unassigned projects
+          %span.label.label-success 共享的
+          \- Runner 运行全部未指派项目的作业
         %li
-          %span.label.label-info specific
-          \- Runner runs jobs from assigned projects
+          %span.label.label-info 指定的
+          \- Runner 运行被指派到该 Runner 的项目的作业
         %li
-          %span.label.label-warning locked
-          \- Runner cannot be assigned to other projects
+          %span.label.label-warning 锁定的
+          \- Runner 不能被指定到其它项目
         %li
-          %span.label.label-danger paused
-          \- Runner will not receive any new jobs
+          %span.label.label-danger 暂停的
+          \- Runner 将不再接受任何新作业
 
   .bs-callout.clearfix
     .pull-left
       %p
-        You can reset runners registration token by pressing a button below.
+        你可以通过点击下面的按钮重置 Runner 注册令牌。
       .prepend-top-10
         = button_to _("Reset runners registration token"), reset_runners_token_admin_application_settings_path,
           method: :put, class: 'btn btn-default',
@@ -43,11 +43,11 @@
     .pull-left
       = form_tag admin_runners_path, id: 'runners-search', class: 'form-inline', method: :get do
         .form-group
-          = search_field_tag :search, params[:search], class: 'form-control', placeholder: 'Runner description or token', spellcheck: false
-        = submit_tag 'Search', class: 'btn'
+          = search_field_tag :search, params[:search], class: 'form-control', placeholder: 'Runner 描述或授权码', spellcheck: false
+        = submit_tag '搜索', class: 'btn'
 
     .pull-right.light
-      Runners with last contact more than a minute ago: #{@active_runners_cnt}
+      最后联系时间于一分钟前的 runner 数量：#{@active_runners_cnt}
 
   %br
 
@@ -57,18 +57,18 @@
         %table.table
           %thead
             %tr
-              %th Type
-              %th Runner token
-              %th Description
-              %th Version
-              %th Projects
-              %th Jobs
-              %th Tags
-              %th= link_to 'Last contact', admin_runners_path(params.slice(:search).merge(sort: 'contacted_asc'))
+              %th 类型
+              %th Runner 令牌
+              %th 描述
+              %th 版本
+              %th 项目
+              %th 作业
+              %th 标签
+              %th= link_to '最后联系', admin_runners_path(params.slice(:search).merge(sort: 'contacted_asc'))
               %th
 
           - @runners.each do |runner|
             = render "admin/runners/runner", runner: runner
       = paginate @runners, theme: "gitlab"
   - else
-    .nothing-here-block No runners found
+    .nothing-here-block 没有找到 Runner

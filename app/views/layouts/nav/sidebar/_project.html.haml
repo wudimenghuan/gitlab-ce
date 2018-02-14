@@ -13,7 +13,7 @@
           .nav-icon-container
             = sprite_icon('project')
           %span.nav-item-name
-            Overview
+            概览
 
         %ul.sidebar-sub-level-items
           = nav_link(path: 'projects#show', html_options: { class: "fly-out-top-item" } ) do
@@ -40,7 +40,7 @@
             .nav-icon-container
               = sprite_icon('doc_text')
             %span.nav-item-name
-              Repository
+              版本库
 
           %ul.sidebar-sub-level-items
             = nav_link(controller: %w(tree blob blame edit_tree new_tree find_file commit commits compare projects/repositories tags branches releases graphs network), html_options: { class: "fly-out-top-item" } ) do
@@ -86,7 +86,7 @@
             .nav-icon-container
               = sprite_icon('disk')
             %span.nav-item-name
-              Registry
+              注册表
 
       - if project_nav_tab? :issues
         = nav_link(controller: @project.issues_enabled? ? [:issues, :labels, :milestones, :boards] : :issues) do
@@ -94,7 +94,7 @@
             .nav-icon-container
               = sprite_icon('issues')
             %span.nav-item-name
-              Issues
+              问题
             - if @project.issues_enabled?
               %span.badge.count.issue_counter
                 = number_with_delimiter(@project.open_issues_count)
@@ -109,9 +109,9 @@
                     = number_with_delimiter(@project.open_issues_count)
             %li.divider.fly-out-top-item
             = nav_link(controller: :issues, action: :index) do
-              = link_to project_issues_path(@project), title: 'Issues' do
+              = link_to project_issues_path(@project), title: '问题' do
                 %span
-                  List
+                  列表
 
             = nav_link(controller: :boards) do
               = link_to project_boards_path(@project), title: boards_link_text do
@@ -119,14 +119,14 @@
                   = boards_link_text
 
             = nav_link(controller: :labels) do
-              = link_to project_labels_path(@project), title: 'Labels' do
+              = link_to project_labels_path(@project), title: '标记' do
                 %span
-                  Labels
+                  标记
 
             = nav_link(controller: :milestones) do
-              = link_to project_milestones_path(@project), title: 'Milestones' do
+              = link_to project_milestones_path(@project), title: '里程碑' do
                 %span
-                  Milestones
+                  里程碑
 
       - if project_nav_tab? :merge_requests
         = nav_link(controller: @project.issues_enabled? ? :merge_requests : [:merge_requests, :labels, :milestones]) do
@@ -134,7 +134,7 @@
             .nav-icon-container
               = sprite_icon('git-merge')
             %span.nav-item-name
-              Merge Requests
+              合并请求
             %span.badge.count.merge_counter.js-merge-counter
               = number_with_delimiter(@project.open_merge_requests_count)
           %ul.sidebar-sub-level-items.is-fly-out-only
@@ -161,27 +161,27 @@
             %li.divider.fly-out-top-item
             - if project_nav_tab? :pipelines
               = nav_link(path: ['pipelines#index', 'pipelines#show']) do
-                = link_to project_pipelines_path(@project), title: 'Pipelines', class: 'shortcuts-pipelines' do
+                = link_to project_pipelines_path(@project), title: '流水线', class: 'shortcuts-pipelines' do
                   %span
-                    Pipelines
+                    流水线
 
             - if project_nav_tab? :builds
               = nav_link(controller: [:jobs, :artifacts]) do
-                = link_to project_jobs_path(@project), title: 'Jobs', class: 'shortcuts-builds' do
+                = link_to project_jobs_path(@project), title: '作业', class: 'shortcuts-builds' do
                   %span
-                    Jobs
+                    作业
 
             - if project_nav_tab? :pipelines
               = nav_link(controller: :pipeline_schedules) do
-                = link_to pipeline_schedules_path(@project), title: 'Schedules', class: 'shortcuts-builds' do
+                = link_to pipeline_schedules_path(@project), title: '日程表', class: 'shortcuts-builds' do
                   %span
-                    Schedules
+                    日程表
 
             - if project_nav_tab? :environments
               = nav_link(controller: :environments) do
-                = link_to project_environments_path(@project), title: 'Environments', class: 'shortcuts-environments' do
+                = link_to project_environments_path(@project), title: '运行环境', class: 'shortcuts-environments' do
                   %span
-                    Environments
+                    运行环境
 
             - if project_nav_tab? :clusters
               - show_cluster_hint = show_gke_cluster_integration_callout?(@project)
@@ -214,9 +214,9 @@
 
             - if @project.feature_available?(:builds, current_user) && !@project.empty_repo?
               = nav_link(path: 'pipelines#charts') do
-                = link_to charts_project_pipelines_path(@project), title: 'Charts', class: 'shortcuts-pipelines-charts' do
+                = link_to charts_project_pipelines_path(@project), title: '图表', class: 'shortcuts-pipelines-charts' do
                   %span
-                    Charts
+                    图表
 
       - if project_nav_tab? :wiki
         = nav_link(controller: :wikis) do
@@ -224,7 +224,7 @@
             .nav-icon-container
               = sprite_icon('book')
             %span.nav-item-name
-              Wiki
+              维基
           %ul.sidebar-sub-level-items.is-fly-out-only
             = nav_link(controller: :wikis, html_options: { class: "fly-out-top-item" } ) do
               = link_to get_project_wiki_path(@project) do
@@ -237,7 +237,7 @@
             .nav-icon-container
               = sprite_icon('snippet')
             %span.nav-item-name
-              Snippets
+              代码片段
           %ul.sidebar-sub-level-items.is-fly-out-only
             = nav_link(controller: :snippets, html_options: { class: "fly-out-top-item" } ) do
               = link_to project_snippets_path(@project) do
@@ -250,7 +250,7 @@
             .nav-icon-container
               = sprite_icon('settings')
             %span.nav-item-name.qa-settings-item
-              Settings
+              设置
 
           %ul.sidebar-sub-level-items
             - can_edit = can?(current_user, :admin_project, @project)
@@ -261,22 +261,22 @@
                     #{ _('Settings') }
               %li.divider.fly-out-top-item
               = nav_link(path: %w[projects#edit]) do
-                = link_to edit_project_path(@project), title: 'General' do
+                = link_to edit_project_path(@project), title: '常规' do
                   %span
-                    General
+                    常规
             = nav_link(controller: :project_members) do
-              = link_to project_project_members_path(@project), title: 'Members' do
+              = link_to project_project_members_path(@project), title: '成员' do
                 %span
-                  Members
+                  成员
             - if can_edit
               = nav_link(controller: [:integrations, :services, :hooks, :hook_logs]) do
-                = link_to project_settings_integrations_path(@project), title: 'Integrations' do
+                = link_to project_settings_integrations_path(@project), title: '集成' do
                   %span
-                    Integrations
+                    集成
               = nav_link(controller: :repository) do
-                = link_to project_settings_repository_path(@project), title: 'Repository' do
+                = link_to project_settings_repository_path(@project), title: '版本库' do
                   %span
-                    Repository
+                    版本库
               - if @project.feature_available?(:builds, current_user)
                 = nav_link(controller: :ci_cd) do
                   = link_to project_settings_ci_cd_path(@project), title: 'CI / CD' do
@@ -284,17 +284,17 @@
                       CI / CD
               - if @project.pages_available?
                 = nav_link(controller: :pages) do
-                  = link_to project_pages_path(@project), title: 'Pages' do
+                  = link_to project_pages_path(@project), title: '页面' do
                     %span
-                      Pages
+                      页面
 
       - else
         = nav_link(controller: :project_members) do
-          = link_to project_settings_members_path(@project), title: 'Members', class: 'shortcuts-tree' do
+          = link_to project_settings_members_path(@project), title: '成员', class: 'shortcuts-tree' do
             .nav-icon-container
               = sprite_icon('users')
             %span.nav-item-name
-              Members
+              成员
           %ul.sidebar-sub-level-items.is-fly-out-only
             = nav_link(path: %w[members#show], html_options: { class: "fly-out-top-item" } ) do
               = link_to project_project_members_path(@project) do
@@ -305,41 +305,41 @@
 
       -# Shortcut to Project > Activity
       %li.hidden
-        = link_to activity_project_path(@project), title: 'Activity', class: 'shortcuts-project-activity' do
+        = link_to activity_project_path(@project), title: '活动', class: 'shortcuts-project-activity' do
           %span
-            Activity
+            活动
 
       -# Shortcut to Repository > Graph (formerly, Network)
       - if project_nav_tab? :network
         %li.hidden
-          = link_to project_network_path(@project, current_ref), title: 'Network', class: 'shortcuts-network' do
-            Graph
+          = link_to project_network_path(@project, current_ref), title: '网络', class: 'shortcuts-network' do
+            图像
 
       -# Shortcut to Repository > Charts (formerly, top-nav item "Graphs")
       - unless @project.empty_repo?
         %li.hidden
-          = link_to charts_project_graph_path(@project, current_ref), title: 'Charts', class: 'shortcuts-repository-charts' do
-            Charts
+          = link_to charts_project_graph_path(@project, current_ref), title: '聊天', class: 'shortcuts-repository-charts' do
+            聊天
 
       -# Shortcut to Issues > New Issue
       - if project_nav_tab?(:issues)
         %li.hidden
           = link_to new_project_issue_path(@project), class: 'shortcuts-new-issue' do
-            Create a new issue
+            创建新问题
 
       -# Shortcut to Pipelines > Jobs
       - if project_nav_tab? :builds
         %li.hidden
-          = link_to project_jobs_path(@project), title: 'Jobs', class: 'shortcuts-builds' do
-            Jobs
+          = link_to project_jobs_path(@project), title: '作业', class: 'shortcuts-builds' do
+            作业
 
       -# Shortcut to commits page
       - if project_nav_tab? :commits
         %li.hidden
-          = link_to project_commits_path(@project), title: 'Commits', class: 'shortcuts-commits' do
-            Commits
+          = link_to project_commits_path(@project), title: '提交', class: 'shortcuts-commits' do
+            提交
 
       -# Shortcut to issue boards
       - if project_nav_tab?(:issues)
         %li.hidden
-          = link_to 'Issue Boards', project_boards_path(@project), title: 'Issue Boards', class: 'shortcuts-issue-boards'
+          = link_to '问题看板', project_boards_path(@project), title: '问题看板', class: 'shortcuts-issue-boards'

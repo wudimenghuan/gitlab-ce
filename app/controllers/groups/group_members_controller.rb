@@ -40,9 +40,9 @@ class Groups::GroupMembersController < Groups::ApplicationController
     if @group_member.invite?
       @group_member.resend_invite
 
-      redirect_to redirect_path, notice: 'The invitation was successfully resent.'
+      redirect_to redirect_path, notice: '邀请重发成功。'
     else
-      redirect_to redirect_path, alert: 'The invitation has already been accepted.'
+      redirect_to redirect_path, alert: '邀请已经被接受。'
     end
   end
 

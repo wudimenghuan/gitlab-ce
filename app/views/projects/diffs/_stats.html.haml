@@ -1,22 +1,22 @@
 - sum_added_lines = diff_files.sum(&:added_lines)
 - sum_removed_lines = diff_files.sum(&:removed_lines)
 .commit-stat-summary.dropdown
-  Showing
+  正在显示
   %button.diff-stats-summary-toggler.js-diff-stats-dropdown{ type: "button", data: { toggle: "dropdown" } }<
-    = pluralize(diff_files.size, "changed file")
+    = pluralize(diff_files.size, "个修改的文件", "个修改的文件")
     = icon("caret-down", class: "prepend-left-5")
   %span.diff-stats-additions-deletions-expanded#diff-stats
-    with
-    %strong.cgreen #{sum_added_lines} additions
-    and
-    %strong.cred #{sum_removed_lines} deletions
+    包含
+    %strong.cgreen #{sum_added_lines} 行增加
+    和
+    %strong.cred #{sum_removed_lines} 行删除
   .diff-stats-additions-deletions-collapsed.pull-right.hidden-xs.hidden-sm{ "aria-hidden": "true", "aria-describedby": "diff-stats" }
     %strong.cgreen<
       +#{sum_added_lines}
     %strong.cred<
       \-#{sum_removed_lines}
   .dropdown-menu.diff-file-changes
-    = dropdown_filter("Search files")
+    = dropdown_filter("搜索文件")
     .dropdown-content
       %ul
         - diff_files.each do |diff_file|
@@ -38,4 +38,4 @@
                   \-#{diff_file.removed_lines}
         %li.dropdown-menu-empty-item.hidden
           %a
-            No files found.
+            没有找到文件。

@@ -2,19 +2,19 @@
   .col-sm-12
     = form_tag project_group_links_path(@project), class: 'js-requires-input', method: :post do
       .form-group
-        = label_tag :link_group_id, "Select a group to share with", class: "label-light"
+        = label_tag :link_group_id, "选择要共享的群组", class: "label-light"
         = groups_select_tag(:link_group_id, data: { skip_groups: @skip_groups }, class: "input-clamp", required: true)
       .form-group
-        = label_tag :link_group_access, "Max access level", class: "label-light"
+        = label_tag :link_group_access, "最高访问级别", class: "label-light"
         .select-wrapper
           = select_tag :link_group_access, options_for_select(ProjectGroupLink.access_options, ProjectGroupLink.default_access), class: "form-control select-control"
           = icon('chevron-down')
         .help-block.append-bottom-10
-          = link_to "Read more", help_page_path("user/permissions"), class: "vlink"
-          about role permissions
+          = link_to "点击这里", help_page_path("user/permissions"), class: "vlink"
+          了解更多关于角色权限的介绍。
       .form-group
-        = label_tag :expires_at, 'Access expiration date', class: 'label-light'
+        = label_tag :expires_at, '访问到期日期', class: 'label-light'
         .clearable-input
-          = text_field_tag :expires_at, nil, class: 'form-control js-access-expiration-date-groups', placeholder: 'Expiration date', id: 'expires_at_groups'
+          = text_field_tag :expires_at, nil, class: 'form-control js-access-expiration-date-groups', placeholder: '到期日期', id: 'expires_at_groups'
           %i.clear-icon.js-clear-input
-      = submit_tag "Share", class: "btn btn-create"
+      = submit_tag "共享", class: "btn btn-create"

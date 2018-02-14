@@ -16,7 +16,7 @@ export default {
   },
   computed: {
     toggleButtonText() {
-      return this.isConfidential ? 'Turn Off' : 'Turn On';
+      return this.isConfidential ? '禁用' : '启用';
     },
     updateConfidentialBool() {
       return !this.isConfidential;

@@ -65,7 +65,7 @@ export default class ProjectSelectComboButton {
       this.newItemBtn.attr('href', project.url);
       this.newItemBtn.text(`${this.formattedText.defaultTextPrefix} in ${project.name}`);
     } else {
-      this.newItemBtn.text(`Select project to create ${this.formattedText.presetTextSuffix}`);
+      this.newItemBtn.text(`选择一个项目来创建 ${this.formattedText.presetTextSuffix}`);
     }
   }
 

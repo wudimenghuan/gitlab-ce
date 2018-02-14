@@ -1,22 +1,23 @@
 .row.prepend-top-default.append-bottom-default
   .col-lg-3
     %h4.prepend-top-0
-      Environments
+      运行环境
     %p
-      Environments allow you to track deployments of your application
-      = succeed "." do
-        = link_to "Read more about environments", help_page_path("ci/environments")
+      运行环境允许你跟踪应用的部署情况
+      阅读关于
+      = succeed "的更多说明。" do
+        = link_to "运行环境", help_page_path("ci/environments")
 
   = form_for [@project.namespace.becomes(Namespace), @project, @environment], html: { class: 'col-lg-9' } do |f|
     = form_errors(@environment)
 
     .form-group
-      = f.label :name, 'Name', class: 'label-light'
+      = f.label :name, '名称', class: 'label-light'
       = f.text_field :name, required: true, class: 'form-control'
     .form-group
-      = f.label :external_url, 'External URL', class: 'label-light'
+      = f.label :external_url, '外部 URL', class: 'label-light'
       = f.url_field :external_url, class: 'form-control'
 
     .form-actions
-      = f.submit 'Save', class: 'btn btn-save'
-      = link_to 'Cancel', project_environments_path(@project), class: 'btn btn-cancel'
+      = f.submit '保存', class: 'btn btn-save'
+      = link_to '取消', project_environments_path(@project), class: 'btn btn-cancel'

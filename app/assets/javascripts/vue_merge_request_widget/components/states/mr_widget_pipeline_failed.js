@@ -10,7 +10,7 @@ export default {
       <status-icon status="warning" :show-disabled-button="true" />
       <div class="media-body space-children">
         <span class="bold">
-          The pipeline for this merge request failed. Please retry the job or push a new commit to fix the failure
+          此合并请求的流水线已失败。 请重试该作业或推送一个新的提交来修复失败。
         </span>
       </div>
     </div>

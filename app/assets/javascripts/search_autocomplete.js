@@ -441,13 +441,13 @@ export default class SearchAutocomplete {
         if (item.category === 'Projects') {
           this.projectInputEl.val(item.id);
           this.addLocationBadge({
-            value: 'This project',
+            value: '这个项目',
           });
         }
         if (item.category === 'Groups') {
           this.groupInputEl.val(item.id);
           this.addLocationBadge({
-            value: 'This group',
+            value: '这个群组',
           });
         }
       }

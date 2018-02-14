@@ -84,13 +84,13 @@ module ApplicationSettingsHelper
 
   def key_restriction_options_for_select(type)
     bit_size_options = Gitlab::SSHPublicKey.supported_sizes(type).map do |bits|
-      ["Must be at least #{bits} bits", bits]
+      ["至少 #{bits} 位", bits]
     end
 
     [
-      ['Are allowed', 0],
+      ['允许', 0],
       *bit_size_options,
-      ['Are forbidden', ApplicationSetting::FORBIDDEN_KEY_VALUE]
+      ['禁用', ApplicationSetting::FORBIDDEN_KEY_VALUE]
     ]
   end
 

@@ -40,14 +40,14 @@ export default {
       v-if="canCreatePipeline"
       :href="newPipelinePath"
       class="btn btn-create">
-      Run Pipeline
+      运行流水线
     </a>
 
     <a
       v-if="!hasCiEnabled"
       :href="helpPagePath"
       class="btn btn-info">
-      Get started with Pipelines
+      开始使用流水线
     </a>
 
     <a

@@ -11,7 +11,7 @@ class Admin::ServicesController < Admin::ApplicationController
   def edit
     unless service.present?
       redirect_to admin_application_settings_services_path,
-        alert: "Service is unknown or it doesn't exist"
+        alert: "服务未知或不存在"
     end
   end
 
@@ -20,7 +20,7 @@ class Admin::ServicesController < Admin::ApplicationController
       PropagateServiceTemplateWorker.perform_async(service.id) if service.active?
 
       redirect_to admin_application_settings_services_path,
-        notice: 'Application settings saved successfully'
+        notice: '程序设置已成功保存'
     else
       render :edit
     end
