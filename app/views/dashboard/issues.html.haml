@@ -2,7 +2,7 @@
 - page_title _("Issues")
 - @breadcrumb_link = issues_dashboard_path(assignee_username: current_user.username)
 = content_for :meta_tags do
-  = auto_discovery_link_tag(:atom, safe_params.merge(rss_url_options).to_h, title: "#{current_user.name} issues")
+  = auto_discovery_link_tag(:atom, safe_params.merge(rss_url_options).to_h, title: "#{current_user.name} 问题")
 
 = render_dashboard_gold_trial(current_user)
 

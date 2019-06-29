@@ -5,7 +5,7 @@ class LfsObjectsProject < ApplicationRecord
   belongs_to :lfs_object
 
   validates :lfs_object_id, presence: true
-  validates :lfs_object_id, uniqueness: { scope: [:project_id, :repository_type], message: "already exists in repository" }
+  validates :lfs_object_id, uniqueness: { scope: [:project_id, :repository_type], message: "已经存在于版本库中" }
   validates :project_id, presence: true
 
   after_commit :update_project_statistics, on: [:create, :destroy]

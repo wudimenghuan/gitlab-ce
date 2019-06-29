@@ -3,54 +3,50 @@
 
   %fieldset
     .sub-section
-      %h4 Repository checks
+      %h4 代码库检查
       .form-group
         .form-check
           = f.check_box :repository_checks_enabled, class: 'form-check-input'
           = f.label :repository_checks_enabled, class: 'form-check-label' do
-            Enable Repository Checks
+            启用代码库检查
           .form-text.text-muted
-            GitLab will periodically run
+            GitLab 将定期在所有项目和百科的代码库中运行
             %a{ href: 'https://git-scm.com/docs/git-fsck', target: 'blank' } 'git fsck'
-            in all project and wiki repositories to look for silent disk corruption issues.
+            以检查磁盘默默损坏的情况。
       .form-group
-        = link_to 'Clear all repository checks', clear_repository_check_states_admin_application_settings_path, data: { confirm: 'This will clear repository check states for ALL projects in the database. This cannot be undone. Are you sure?' }, method: :put, class: "btn btn-sm btn-remove"
+        = link_to 'Clear all repository checks', clear_repository_check_states_admin_application_settings_path, data: { confirm: '这将会清除数据库中所有项目的代码库检查状态。这个操作无法撤销。您确定吗？' }, method: :put, class: "btn btn-sm btn-remove"
         .form-text.text-muted
-          If you got a lot of false alarms from repository checks you can choose to clear all repository check information from the database.
+          如果你收到了大量的错误的代码库检查警告的话，你可以通过这种方式清空数据库中所有代码库检查信息。
 
     .sub-section
-      %h4 Housekeeping
+      %h4 总务
       .form-group
         .form-check
           = f.check_box :housekeeping_enabled, class: 'form-check-input'
           = f.label :housekeeping_enabled, class: 'form-check-label' do
-            Enable automatic repository housekeeping (git repack, git gc)
+            启用自动代码库清理 (git repack, git gc)
           .form-text.text-muted
-            If you keep automatic housekeeping disabled for a long time Git
-            repository access on your GitLab server will become slower and your
-            repositories will use more disk space. We recommend to always leave
-            this enabled.
+            如果禁用了自动清理很长时间后，GitLab 上访问 Git 代码库的过程将会越来越慢，而且代码库也会占用更多的磁盘空间。我们建议这个选项保持启用。
         .form-check
           = f.check_box :housekeeping_bitmaps_enabled, class: 'form-check-input'
           = f.label :housekeeping_bitmaps_enabled, class: 'form-check-label' do
-            Enable Git pack file bitmap creation
+            启用 Git 打包文件位图创建
           .form-text.text-muted
-            Creating pack file bitmaps makes housekeeping take a little longer but
-            bitmaps should accelerate 'git clone' performance.
+            创建打包文件位图将会使总务时间增长，但是会加快 'git clone' 的性能。
       .form-group
         = f.label :housekeeping_incremental_repack_period, 'Incremental repack period', class: 'label-bold'
         = f.number_field :housekeeping_incremental_repack_period, class: 'form-control'
         .form-text.text-muted
-          Number of Git pushes after which an incremental 'git repack' is run.
+          在运行递增的 'git repack' 后的 git push 的次数。
       .form-group
         = f.label :housekeeping_full_repack_period, 'Full repack period', class: 'label-bold'
         = f.number_field :housekeeping_full_repack_period, class: 'form-control'
         .form-text.text-muted
-          Number of Git pushes after which a full 'git repack' is run.
+          在运行完整 'git repack' 后的 git push 的次数。
       .form-group
         = f.label :housekeeping_gc_period, 'Git GC period', class: 'label-bold'
         = f.number_field :housekeeping_gc_period, class: 'form-control'
         .form-text.text-muted
-          Number of Git pushes after which 'git gc' is run.
+          在运行 'git gc' 后 git push 的次数。
 
-  = f.submit 'Save changes', class: "btn btn-success"
+  = f.submit _('Save changes'), class: "btn btn-success"

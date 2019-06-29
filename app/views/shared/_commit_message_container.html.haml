@@ -14,12 +14,11 @@
           id: "commit_message-#{nonce}"
     - if local_assigns[:hint]
       %p.hint
-        Try to keep the first line under 52 characters
-        and the others under 72.
+        建议第一行最多 52 个字节，其他行最多 72 字节。
     - if descriptions.present?
       .hint.js-with-description-hint
         = link_to "#", class: "js-with-description-link" do
-          Include description in commit message
+          在提交信息中包含描述
       .hint.js-without-description-hint.hide
         = link_to "#", class: "js-without-description-link" do
-          Don't include description in commit message
+          不在提交信息中包含描述

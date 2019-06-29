@@ -10,13 +10,13 @@
 .service-settings
   - if @service.show_active_box?
     .form-group.row
-      = form.label :active, "Active", class: "col-form-label col-sm-2"
+      = form.label :active, "激活", class: "col-form-label col-sm-2"
       .col-sm-10
         = form.check_box :active, disabled: disable_fields_service?(@service)
 
   - if @service.configurable_events.present?
     .form-group.row
-      .col-sm-2.text-right Trigger
+      .col-sm-2.text-right 触发
 
       .col-sm-10
         - @service.configurable_events.each do |event|

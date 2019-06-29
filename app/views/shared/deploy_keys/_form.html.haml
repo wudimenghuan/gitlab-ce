@@ -5,12 +5,12 @@
 = form_errors(deploy_key)
 
 .form-group
-  = form.label :title, class: 'col-form-label col-sm-2'
+  = form.label :title, '标题', class: 'col-form-label col-sm-2'
   .col-sm-10= form.text_field :title, class: 'form-control'
 
 .form-group
   - if deploy_key.new_record?
-    = form.label :key, class: 'col-form-label col-sm-2'
+    = form.label :key, '密钥', class: 'col-form-label col-sm-2'
     .col-sm-10
       %p.light
         - link_start = "<a href='#{help_page_path('ssh/README')}' target='_blank' rel='noreferrer noopener'>".html_safe
@@ -18,7 +18,7 @@
         = _('Paste a machine public key here. Read more about how to generate it %{link_start}here%{link_end}').html_safe % { link_start: link_start, link_end: link_end.html_safe }
       = form.text_area :key, class: 'form-control thin_area', rows: 5
   - else
-    = form.label :fingerprint, class: 'col-form-label col-sm-2'
+    = form.label :fingerprint, '指纹', class: 'col-form-label col-sm-2'
     .col-sm-10
       = form.text_field :fingerprint, class: 'form-control', readonly: 'readonly'
 

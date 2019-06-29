@@ -12,9 +12,9 @@
         %p
           %span.js-warning-text= _('This action can lead to data loss. To prevent accidental actions we ask you to confirm your intention.')
           %br
-          Please type
+          请输入
           %code.js-confirm-danger-match= phrase
-          to proceed or close this modal to cancel.
+          继续操作或关闭本对话框取消操作。
 
         .form-group
           = text_field_tag 'confirm_name_input', '', class: 'form-control js-confirm-danger-input'

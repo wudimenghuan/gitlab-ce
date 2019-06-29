@@ -1,9 +1,9 @@
 %p
-  Verification has failed for one of your GitLab Pages custom domains!
+  您的某个 GitLab Pages 自定义域名验证失败！
 %p
-  Project: #{link_to @project.human_name, project_url(@project)}
+  项目: #{link_to @project.human_name, project_url(@project)}
 %p
-  Domain: #{link_to @domain.domain, project_pages_domain_url(@project, @domain)}
+  域名: #{link_to @domain.domain, project_pages_domain_url(@project, @domain)}
 %p
   Unless you take action, it will be disabled on
   %strong= @domain.enabled_until.strftime('%F %T.')

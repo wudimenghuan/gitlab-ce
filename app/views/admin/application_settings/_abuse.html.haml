@@ -3,9 +3,9 @@
 
   %fieldset
     .form-group
-      = f.label :admin_notification_email, 'Abuse reports notification email', class: 'label-bold'
+      = f.label :admin_notification_email, '滥用报告通知邮件地址', class: 'label-bold'
       = f.text_field :admin_notification_email, class: 'form-control'
       .form-text.text-muted
-        Abuse reports will be sent to this address if it is set. Abuse reports are always available in the admin area.
+        如果设置，将会发送滥用报告给这个地址。在管理员区域中总是可以看到滥用报告。
 
-  = f.submit 'Save changes', class: "btn btn-success"
+  = f.submit _('Save changes'), class: "btn btn-success"

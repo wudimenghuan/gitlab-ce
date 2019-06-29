@@ -7,6 +7,7 @@
   - else
     = _('GitLab Shared Runners execute code of different projects on the same Runner unless you configure GitLab Runner Autoscale with MaxBuilds 1 (which it is on GitLab.com).')
   %hr
+  在本项目&nbsp;
   - if @project.shared_runners_enabled?
     = link_to toggle_shared_runners_project_runners_path(@project), class: 'btn btn-close', method: :post do
       = _('Disable shared Runners')

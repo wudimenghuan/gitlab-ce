@@ -49,7 +49,7 @@ class BuildkiteService < CiService
   end
 
   def description
-    'Continuous integration and deployments'
+    '持续集成和部署'
   end
 
   def self.to_param

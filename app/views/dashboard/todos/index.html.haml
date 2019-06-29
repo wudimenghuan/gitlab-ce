@@ -1,6 +1,6 @@
 - @hide_top_links = true
-- page_title "Todos"
-- header_title "Todos", dashboard_todos_path
+- page_title "待办事项"
+- header_title "待办事项", dashboard_todos_path
 
 = render_dashboard_gold_trial(current_user)
 
@@ -13,13 +13,13 @@
       %li.todos-pending{ class: active_when(params[:state].blank? || params[:state] == 'pending') }>
         = link_to todos_filter_path(state: 'pending') do
           %span
-            Todos
+            待办事项
           %span.badge.badge-pill
             = number_with_delimiter(todos_pending_count)
       %li.todos-done{ class: active_when(params[:state] == 'done') }>
         = link_to todos_filter_path(state: 'done') do
           %span
-            Done
+            已完成
           %span.badge.badge-pill
             = number_with_delimiter(todos_done_count)
 
@@ -27,10 +27,10 @@
       - if @todos.any?(&:pending?)
         .append-right-default
           = link_to destroy_all_dashboard_todos_path(todos_filter_params), class: 'btn btn-loading js-todos-mark-all', method: :delete, data: { href: destroy_all_dashboard_todos_path(todos_filter_params) } do
-            Mark all as done
+            全部标记完成
             = icon('spinner spin')
           = link_to bulk_restore_dashboard_todos_path, class: 'btn btn-loading js-todos-undo-all hidden', method: :patch , data: { href: bulk_restore_dashboard_todos_path(todos_filter_params) } do
-            Undo mark all as done
+            取消全部已完成标记
             = icon('spinner spin')
 
   .todos-filters
@@ -91,7 +91,7 @@
     .js-nothing-here-container.todos-all-done.hidden.svg-content
       = image_tag 'illustrations/todos_all_done.svg'
       %h4.text-center
-        You're all done!
+        您都做完了！
   - elsif current_user.todos.any?
     .todos-all-done
       .svg-content.svg-250
@@ -100,26 +100,26 @@
         %h4.text-center
           = Gitlab.config.gitlab.no_todos_messages.sample
         %p
-          Are you looking for things to do? Take a look at
+          想找点事情做？ 看看
           = succeed "," do
-            = link_to "the opened issues", issues_dashboard_path
-          contribute to
-          = link_to "merge requests", merge_requests_dashboard_path
-          or mention someone in a comment to assign a new todo automatically.
+            = link_to "未关闭问题", issues_dashboard_path
+          贡献一个
+          = link_to "合并请求", merge_requests_dashboard_path
+          或者在评论中提及(@)某人以自动分配新的待办事项。
       - else
         %h4.text-center
-          There are no todos to show.
+          没有待办事项。
   - else
     .todos-empty
       .todos-empty-hero.svg-content
         = image_tag 'illustrations/todos_empty.svg'
       .todos-empty-content
         %h4
-          Todos let you see what you should do next
+          待办事项可以让你知道你应该做什么
         %p
-          When an issue or merge request is assigned to you, or when you
+          当一个问题或者合并请求被指派给你, 或者当你在评论中被提到
           %strong
-            @mention
-          in a comment, this will trigger a new item in your todo list, automatically.
+            @
+          就会自动在你的待办事项列表里增加新的事项。
         %p
-          You will always know what to work on next.
+          你将永远会知道接下来需要做什么工作。

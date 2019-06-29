@@ -70,7 +70,7 @@ export default {
       type="submit"
       @click.prevent="updateIssuable"
     >
-      Save changes
+      保存修改
       <i v-if="formState.updateLoading" class="fa fa-spinner fa-spin" aria-hidden="true"> </i>
     </button>
     <button class="btn btn-default float-right" type="button" @click="closeForm">Cancel</button>

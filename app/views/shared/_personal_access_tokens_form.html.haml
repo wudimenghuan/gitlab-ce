@@ -1,9 +1,9 @@
-- type = impersonation ? "impersonation" : "personal access"
+- type = impersonation ? "扮演" : "个人访问"
 
 %h5.prepend-top-0
-  Add a #{type} token
+  添加一个 #{type} 令牌
 %p.profile-settings-content
-  Pick a name for the application, and we'll give you a unique #{type} token.
+  选择应用程序的名称，我们会为您提供一个唯一的 #{type} 令牌。
 
 = form_for token, url: path, method: :post, html: { class: 'js-requires-input' } do |f|
 
@@ -22,8 +22,8 @@
         = icon('calendar', { class: 'input-icon-right' })
 
   .form-group
-    = f.label :scopes, class: 'label-bold'
+    = f.label :scopes, "范围", class: 'label-bold'
     = render 'shared/tokens/scopes_form', prefix: 'personal_access_token', token: token, scopes: scopes
 
   .prepend-top-default
-    = f.submit "Create #{type} token", class: "btn btn-success qa-create-token-button"
+    = f.submit "创建 #{type} 令牌", class: "btn btn-success qa-create-token-button"

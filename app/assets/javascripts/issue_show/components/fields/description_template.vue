@@ -56,22 +56,22 @@ export default {
       data-selected="null"
       data-toggle="dropdown"
     >
-      <span class="dropdown-toggle-text"> Choose a template </span>
+      <span class="dropdown-toggle-text"> 选择模板 </span>
       <i aria-hidden="true" class="fa fa-chevron-down"> </i>
     </button>
     <div class="dropdown-menu dropdown-select">
       <div class="dropdown-title">
-        Choose a template
-        <button class="dropdown-title-button dropdown-menu-close" aria-label="Close" type="button">
+        选择模板
+        <button class="dropdown-title-button dropdown-menu-close" aria-label="关闭" type="button">
           <i aria-hidden="true" class="fa fa-times dropdown-menu-close-icon"> </i>
         </button>
       </div>
       <div class="dropdown-input">
-        <input type="search" class="dropdown-input-field" placeholder="Filter" autocomplete="off" />
+        <input type="search" class="dropdown-input-field" placeholder="过滤" autocomplete="off" />
         <i aria-hidden="true" class="fa fa-search dropdown-input-search"> </i>
         <i
           role="button"
-          aria-label="Clear templates search input"
+          aria-label="清除模板搜索输入"
           class="fa fa-times dropdown-input-clear js-dropdown-input-clear"
         >
         </i>
@@ -79,8 +79,8 @@ export default {
       <div class="dropdown-content"></div>
       <div class="dropdown-footer">
         <ul class="dropdown-footer-list">
-          <li><a class="no-template"> No template </a></li>
-          <li><a class="reset-template"> Reset template </a></li>
+          <li><a class="no-template"> 没有模板 </a></li>
+          <li><a class="reset-template"> 重置模板 </a></li>
         </ul>
       </div>
     </div>

@@ -3,12 +3,9 @@
   .toolbar-text
     = link_to _('Markdown'), help_page_path('user/markdown'), target: '_blank', tabindex: -1
     - if supports_quick_actions
-      and
+      及
       = link_to _('quick actions'), help_page_path('user/project/quick_actions'), target: '_blank', tabindex: -1
-      are
-    - else
-      is
-    supported
+    格式
 
   %span.uploading-container
     %span.uploading-progress-container.hide

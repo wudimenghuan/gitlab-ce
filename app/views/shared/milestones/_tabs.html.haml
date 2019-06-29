@@ -7,24 +7,24 @@
     - if issues_accessible
       %li.nav-item
         = link_to '#tab-issues', class: 'nav-link active', 'data-toggle' => 'tab', 'data-show' => '.tab-issues-buttons' do
-          Issues
+          问题
           %span.badge.badge-pill= milestone.issues_visible_to_user(current_user).size
       %li.nav-item
         = link_to '#tab-merge-requests', class: 'nav-link', 'data-toggle' => 'tab', 'data-endpoint': milestone_merge_request_tab_path(milestone) do
-          Merge Requests
+          合并请求
           %span.badge.badge-pill= milestone.merge_requests_visible_to_user(current_user).size
     - else
       %li.nav-item
         = link_to '#tab-merge-requests', class: 'nav-link active', 'data-toggle' => 'tab', 'data-endpoint': milestone_merge_request_tab_path(milestone) do
-          Merge Requests
+          合并请求
           %span.badge.badge-pill= milestone.merge_requests.size
     %li.nav-item
       = link_to '#tab-participants', class: 'nav-link', 'data-toggle' => 'tab', 'data-endpoint': milestone_participants_tab_path(milestone) do
-        Participants
+        参与者
         %span.badge.badge-pill= milestone.issue_participants_visible_by_user(current_user).count
     %li.nav-item
       = link_to '#tab-labels', class: 'nav-link', 'data-toggle' => 'tab', 'data-endpoint': milestone_labels_tab_path(milestone) do
-        Labels
+        标记
         %span.badge.badge-pill= milestone.issue_labels_visible_by_user(current_user).count
 
 - issues = milestone.sorted_issues(current_user)

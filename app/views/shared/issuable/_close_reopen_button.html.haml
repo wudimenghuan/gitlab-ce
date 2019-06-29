@@ -14,5 +14,5 @@
   - if can_update && !are_close_and_open_buttons_hidden
     = render 'shared/issuable/close_reopen_report_toggle', issuable: issuable
   - else
-    = link_to 'Report abuse', new_abuse_report_path(user_id: issuable.author.id, ref_url: issuable_url(issuable)),
+    = link_to '举报违规', new_abuse_report_path(user_id: issuable.author.id, ref_url: issuable_url(issuable)),
               class: 'd-none d-sm-none d-md-block btn btn-grouped btn-close-color', title: 'Report abuse'

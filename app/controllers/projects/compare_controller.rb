@@ -36,7 +36,7 @@ class Projects::CompareController < Projects::ApplicationController
 
   def create
     if params[:from].blank? || params[:to].blank?
-      flash[:alert] = "You must select a Source and a Target revision"
+      flash[:alert] = "您必须选择来源及目标修订"
       from_to_vars = {
         from: params[:from].presence,
         to: params[:to].presence

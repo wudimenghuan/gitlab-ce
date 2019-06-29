@@ -1,9 +1,9 @@
-Following a verification check, your GitLab Pages custom domain has been
-enabled. You should now be able to view your content at #{@domain.url}
+通过验证检查后， 您的 Gitlab 自定义域名已被
+启用。你可以通过 #{@domain.url} 访问您的内容。
 
-Project: #{@project.human_name} (#{project_url(@project)})
-Domain:  #{@domain.domain} (#{project_pages_domain_url(@project, @domain)})
+项目: #{@project.human_name} (#{project_url(@project)})
+域名:  #{@domain.domain} (#{project_pages_domain_url(@project, @domain)})
 
-Please visit
+请查看
 = help_page_url('user/project/pages/getting_started_part_three.md', anchor: 'dns-txt-record')
-for more information about custom domain verification.
+了解更多关于自定义域名的信息。

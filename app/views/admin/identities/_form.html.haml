@@ -3,7 +3,7 @@
 
   .form-group.row
     .col-sm-2.col-form-label
-      = f.label :provider
+      = f.label :provider, "提供者"
     .col-sm-10
       - values = Gitlab::Auth::OAuth::Provider.providers.map { |name| ["#{Gitlab::Auth::OAuth::Provider.label_for(name)} (#{name})", name] }
       = f.select :provider, values, { allow_blank: false }, class: 'form-control'

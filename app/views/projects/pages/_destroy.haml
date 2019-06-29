@@ -1,12 +1,12 @@
 - if @project.pages_deployed?
   - if can?(current_user, :remove_pages, @project)
     .card.border-danger
-      .card-header.bg-danger.text-white Remove pages
+      .card-header.bg-danger.text-white 删除页面
       .errors-holder
       .card-body
         %p
-          Removing pages will prevent them from being exposed to the outside world.
+          删除网页将防止它们暴露给外界。
         .form-actions
-          = link_to 'Remove pages', project_pages_path(@project), data: { confirm: 'Are you sure?'}, method: :delete, class: "btn btn-remove"
+          = link_to '删除网页', project_pages_path(@project), data: { confirm: '您确定要删除这个网页？'}, method: :delete, class: "btn btn-remove"
   - else
-    .nothing-here-block Only project maintainers can remove pages
+    .nothing-here-block 只有项目所有者可以删除网页

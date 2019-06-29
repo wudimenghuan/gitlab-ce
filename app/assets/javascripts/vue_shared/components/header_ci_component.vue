@@ -88,15 +88,15 @@ export default {
       <strong> {{ itemName }} #{{ itemId }} </strong>
 
       <template v-if="shouldRenderTriggeredLabel">
-        triggered
+        触发时间
       </template>
       <template v-else>
-        created
+        创建时间
       </template>
 
       <timeago-tooltip :time="time" />
 
-      by
+      作者
 
       <template v-if="user">
         <gl-link

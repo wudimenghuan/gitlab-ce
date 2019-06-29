@@ -33,13 +33,13 @@ class RegistrationsController < Devise::RegistrationsController
 
   def destroy
     if destroy_confirmation_valid?
-      current_user.delete_async(deleted_by: current_user)
-      session.try(:destroy)
+    current_user.delete_async(deleted_by: current_user)
+        session.try(:destroy)
       redirect_to new_user_session_path, status: 303, notice: s_('Profiles|Account scheduled for removal.')
     else
       redirect_to profile_account_path, status: 303, alert: destroy_confirmation_failure_message
+      end
     end
-  end
 
   protected
 

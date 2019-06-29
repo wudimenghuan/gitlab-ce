@@ -3,15 +3,15 @@
     .table-mobile-header{ role: 'rowheader' }= _('Type')
     .table-mobile-content
       - if runner.instance_type?
-        %span.badge.badge-success shared
+        %span.badge.badge-success 共享的
       - elsif runner.group_type?
-        %span.badge.badge-success group
+        %span.badge.badge-success 群组
       - else
-        %span.badge.badge-info specific
+        %span.badge.badge-info 特定的
       - if runner.locked?
-        %span.badge.badge-warning locked
+        %span.badge.badge-warning 锁定的
       - unless runner.active?
-        %span.badge.badge-danger paused
+        %span.badge.badge-danger 暂停的
 
   .table-section.section-10
     .table-mobile-header{ role: 'rowheader' }= _('Runner token')

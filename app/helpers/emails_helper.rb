@@ -47,14 +47,14 @@ module EmailsHelper
   def password_reset_token_valid_time
     valid_hours = Devise.reset_password_within / 60 / 60
     if valid_hours >= 24
-      unit = 'day'
+      unit = '天'
       valid_length = (valid_hours / 24).floor
     else
-      unit = 'hour'
+      unit = '小时'
       valid_length = valid_hours.floor
     end
 
-    pluralize(valid_length, unit)
+    pluralize(valid_length, unit, unit)
   end
 
   def header_logo

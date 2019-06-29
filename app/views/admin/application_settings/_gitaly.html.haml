@@ -3,22 +3,20 @@
 
   %fieldset
     .form-group
-      = f.label :gitaly_timeout_default, 'Default Timeout Period', class: 'label-bold'
+      = f.label :gitaly_timeout_default, '默认超时周期', class: 'label-bold'
       = f.number_field :gitaly_timeout_default, class: 'form-control'
       .form-text.text-muted
-        Timeout for Gitaly calls from the GitLab application (in seconds). This timeout is not enforced
-        for git fetch/push operations or Sidekiq jobs.
+        从 GitLab 应用调用 Gitaly 的超时设置（秒）。该超时并不强制 git fetch/push 操作或者 Sidekiq 任务。
     .form-group
-      = f.label :gitaly_timeout_fast, 'Fast Timeout Period', class: 'label-bold'
+      = f.label :gitaly_timeout_fast, '短超时周期', class: 'label-bold'
       = f.number_field :gitaly_timeout_fast, class: 'form-control'
       .form-text.text-muted
-        Fast operation timeout (in seconds). Some Gitaly operations are expected to be fast.
-        If they exceed this threshold, there may be a problem with a storage shard and 'failing fast'
-        can help maintain the stability of the GitLab instance.
+        短操作的超时时间（秒）。有些 Gitaly 操作应当是比较快的。如果它们调用超过了这个阈值，可能分片存储出了问题。
+        “尽早失败”可以帮助维护 GitLab 服务器的稳定性。
     .form-group
-      = f.label :gitaly_timeout_medium, 'Medium Timeout Period', class: 'label-bold'
+      = f.label :gitaly_timeout_medium, '中超时周期', class: 'label-bold'
       = f.number_field :gitaly_timeout_medium, class: 'form-control'
       .form-text.text-muted
-        Medium operation timeout (in seconds). This should be a value between the Fast and the Default timeout.
+        中等操作的超时时间（秒）。这个数值应该介于短超时和默认超时之间。
 
-  = f.submit 'Save changes', class: "btn btn-success"
+  = f.submit '保存修改', class: "btn btn-success"

@@ -6,11 +6,11 @@
       .form-check
         = f.check_box :version_check_enabled, class: 'form-check-input'
         = f.label :version_check_enabled, class: 'form-check-label' do
-          Enable version check
+          启用版本检查
         .form-text.text-muted
-          GitLab will inform you if a new version is available.
-          = link_to 'Learn more', help_page_path("user/admin_area/settings/usage_statistics", anchor: "version-check")
-          about what information is shared with GitLab Inc.
+          GitLab 将会在新版本可用的时候发出通知。
+          = link_to '查看这里', help_page_path("user/admin_area/settings/usage_statistics", anchor: "version-check")
+          了解 GitLab 公司所分享的信息。
     .form-group
       - can_be_configured = @application_setting.usage_ping_can_be_configured?
       .form-check
@@ -38,4 +38,4 @@
       = f.label :instance_statistics_visibility_private, _('Instance Statistics visibility')
       = f.select :instance_statistics_visibility_private, options_for_select({_('All users') => false, _('Only admins') => true}, Gitlab::CurrentSettings.instance_statistics_visibility_private?), {}, class: 'form-control'
 
-  = f.submit 'Save changes', class: "btn btn-success"
+  = f.submit _('Save changes'), class: "btn btn-success"

@@ -1,11 +1,11 @@
 - if @project.pages_deployed?
   .card
     .card-header
-      Access pages
+      访问网页
     .card-body
       %p
         %strong
-          Congratulations! Your pages are served under:
+          恭喜！ 您的网页通过以下网址提供服务:
 
       %p= link_to @project.pages_url, @project.pages_url
 

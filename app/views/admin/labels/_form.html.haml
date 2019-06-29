@@ -3,12 +3,12 @@
 
   .form-group.row
     .col-sm-2.col-form-label
-      = f.label :title
+      = f.label :title, "标题"
     .col-sm-10
       = f.text_field :title, class: "form-control", required: true
   .form-group.row
     .col-sm-2.col-form-label
-      = f.label :description
+      = f.label :description, "描述"
     .col-sm-10
       = f.text_field :description, class: "form-control js-quick-submit"
   .form-group.row

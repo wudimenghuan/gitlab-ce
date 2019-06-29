@@ -22,13 +22,13 @@
           .input-group-text.label-color-preview &nbsp;
         = f.text_field :color, class: "form-control qa-label-color"
       .form-text.text-muted
-        Choose any color.
+        选择任意颜色。
         %br
-        Or you can choose one of the suggested colors below
+        或者在下面选择一个推荐的颜色
       = render_suggested_colors
   .form-actions
     - if @label.persisted?
-      = f.submit 'Save changes', class: 'btn btn-success js-save-button'
+      = f.submit '保存修改', class: 'btn btn-success js-save-button'
     - else
-      = f.submit 'Create label', class: 'btn btn-success js-save-button qa-label-create-button'
-    = link_to 'Cancel', back_path, class: 'btn btn-cancel'
+      = f.submit '创建标记', class: 'btn btn-success js-save-button qa-label-create-button'
+    = link_to '取消', back_path, class: 'btn btn-cancel'

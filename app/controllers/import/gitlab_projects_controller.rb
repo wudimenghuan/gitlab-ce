@@ -24,7 +24,7 @@ class Import::GitlabProjectsController < Import::BaseController
         notice: _("Project '%{project_name}' is being imported.") % { project_name: @project.name }
       )
     else
-      redirect_back_or_default(options: { alert: "Project could not be imported: #{@project.errors.full_messages.join(', ')}" })
+      redirect_back_or_default(options: { alert: "项目无法被导入： #{@project.errors.full_messages.join(', ')}" })
     end
   end
 

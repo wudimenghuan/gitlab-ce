@@ -15,7 +15,7 @@
           - @builds.select { |build| build[:stage] == stage }.each do |build|
             - job = @jobs[build[:name].to_sym]
             %tr
-              %td #{stage.capitalize} Job - #{build[:name]}
+              %td #{stage.capitalize} 作业 - #{build[:name]}
               %td
                 %pre= job[:before_script].to_a.join('\n')
                 %pre= job[:script].to_a.join('\n')

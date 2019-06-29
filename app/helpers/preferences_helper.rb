@@ -4,8 +4,8 @@
 module PreferencesHelper
   def layout_choices
     [
-        ['Fixed', :fixed],
-        ['Fluid', :fluid]
+        ['固定', :fixed],
+        ['自适应', :fluid]
     ]
   end
 
@@ -37,8 +37,8 @@ module PreferencesHelper
 
   def project_view_choices
     [
-      ['Files and Readme (default)', :files],
-      ['Activity', :activity],
+      ['文件和 Readme 视图(默认)', :files],
+      ['活动', :activity],
       ['Readme', :readme]
     ]
   end

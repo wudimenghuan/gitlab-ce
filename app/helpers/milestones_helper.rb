@@ -115,14 +115,14 @@ module MilestonesHelper
   end
 
   def milestone_time_for(date, date_type)
-    title = date_type == :start ? "Start date" : "End date"
+    title = date_type == :start ? "开始日期" : "结束日期"
 
     if date
       time_ago = time_ago_in_words(date).sub("about ", "")
       state = if date.past?
-                "ago"
+                "以前"
               else
-                "remaining"
+                "剩余"
               end
 
       content = [

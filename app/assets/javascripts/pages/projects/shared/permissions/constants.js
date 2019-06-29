@@ -8,10 +8,10 @@ export const visibilityOptions = {
 
 export const visibilityLevelDescriptions = {
   [visibilityOptions.PRIVATE]: __(
-    'The project is accessible only by members of the project. Access must be granted explicitly to each user.',
+    '只有项目成员访问才允许访问该项目。必须明确给每一个用户授权访问。',
   ),
   [visibilityOptions.INTERNAL]: __('The project can be accessed by any user who is logged in.'),
   [visibilityOptions.PUBLIC]: __(
-    'The project can be accessed by anyone, regardless of authentication.',
+    '任何人都可以访问该项目，无论是否登录。',
   ),
 };

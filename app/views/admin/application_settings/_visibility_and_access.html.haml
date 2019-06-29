@@ -3,23 +3,23 @@
 
   %fieldset
     .form-group
-      = f.label :default_branch_protection, class: 'label-bold'
+      = f.label :default_branch_protection, '默认保护分支', class: 'label-bold'
       = f.select :default_branch_protection, options_for_select(Gitlab::Access.protection_options, @application_setting.default_branch_protection), {}, class: 'form-control'
     .form-group
       = f.label s_('ProjectCreationLevel|Default project creation protection'), class: 'label-bold'
       = f.select :default_project_creation, options_for_select(Gitlab::Access.project_creation_options, @application_setting.default_project_creation), {}, class: 'form-control'
     = render_if_exists 'admin/application_settings/default_project_deletion_protection_setting', form: f
     .form-group.visibility-level-setting
-      = f.label :default_project_visibility, class: 'label-bold'
+      = f.label :default_project_visibility, '默认项目可见度', class: 'label-bold'
       = render('shared/visibility_radios', model_method: :default_project_visibility, form: f, selected_level: @application_setting.default_project_visibility, form_model: Project.new)
     .form-group.visibility-level-setting
-      = f.label :default_snippet_visibility, class: 'label-bold'
+      = f.label :default_snippet_visibility, '默认代码片段可见度', class: 'label-bold'
       = render('shared/visibility_radios', model_method: :default_snippet_visibility, form: f, selected_level: @application_setting.default_snippet_visibility, form_model: ProjectSnippet.new)
     .form-group.visibility-level-setting
-      = f.label :default_group_visibility, class: 'label-bold'
+      = f.label :default_group_visibility, '默认群组可见度', class: 'label-bold'
       = render('shared/visibility_radios', model_method: :default_group_visibility, form: f, selected_level: @application_setting.default_group_visibility, form_model: Group.new)
     .form-group
-      = f.label :restricted_visibility_levels, class: 'label-bold'
+      = f.label :restricted_visibility_levels, '可见度限制', class: 'label-bold'
       - checkbox_name = 'application_setting[restricted_visibility_levels][]'
       = hidden_field_tag(checkbox_name)
       - restricted_level_checkboxes('restricted-visibility-help', checkbox_name, class: 'form-check-input').each do |level|
@@ -28,7 +28,7 @@
       %span.form-text.text-muted#restricted-visibility-help
         = _('Selected levels cannot be used by non-admin users for groups, projects or snippets. If the public level is restricted, user profiles are only visible to logged in users.')
     .form-group
-      = f.label :import_sources, class: 'label-bold'
+      = f.label :import_sources, '导入来源', class: 'label-bold'
       = hidden_field_tag 'application_setting[import_sources][]'
       - import_sources_checkboxes('import-sources-help', class: 'form-check-input').each do |source|
         .form-check= source
@@ -57,7 +57,7 @@
     - ApplicationSetting::SUPPORTED_KEY_TYPES.each do |type|
       - field_name = :"#{type}_key_restriction"
       .form-group
-        = f.label field_name, "#{type.upcase} SSH keys", class: 'label-bold'
+        = f.label field_name, "#{type.upcase} SSH 密钥", class: 'label-bold'
         = f.select field_name, key_restriction_options_for_select(type), {}, class: 'form-control'
 
   = f.submit _('Save changes'), class: "btn btn-success"

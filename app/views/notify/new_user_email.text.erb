@@ -1,4 +1,4 @@
-Hi <%= sanitize_name(@user.name) %>!
+<%= sanitize_name(@user.name) %> 您好！
 
 <% if Gitlab::CurrentSettings.allow_signup? %>
 Your account has been created successfully.
@@ -6,12 +6,12 @@ Your account has been created successfully.
 The Administrator created an account for you. Now you are a member of the company GitLab application.
 <% end %>
 
-login.................. <%= @user.email %>
+账号.................. <%= @user.email %>
 
 <% if @user.created_by_id %>
 Click here to set your password:
 <%= edit_password_url(@user, :reset_password_token => @token) %>
 
-This link is valid for <%= password_reset_token_valid_time %>. After it expires, you can request a new one here:
+这个链接在 <%= password_reset_token_valid_time %> 前有效。链接超时后，您需要再次申请：
 <%= new_user_password_url(user_email: @user.email) %>
 <% end %>

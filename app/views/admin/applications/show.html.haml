@@ -1,7 +1,7 @@
-- page_title @application.name, "Applications"
+- page_title @application.name, "应用"
 
 %h3.page-title
-  Application: #{@application.name}
+  应用: #{@application.name}
 
 .table-holder.oauth-application-show
   %table.table
@@ -32,12 +32,12 @@
             %span.monospace= uri
     %tr
       %td
-        Trusted
+        可信任
       %td
-        = @application.trusted? ? 'Y' : 'N'
+        = @application.trusted? ? '是' : '否'
 
     = render "shared/tokens/scopes_list", token: @application
 
 .form-actions
-  = link_to 'Edit', edit_admin_application_path(@application), class: 'btn btn-primary wide float-left'
+  = link_to '编辑', edit_admin_application_path(@application), class: 'btn btn-primary wide float-left'
   = render 'delete_form', application: @application, submit_btn_css: 'btn btn-danger prepend-left-10'

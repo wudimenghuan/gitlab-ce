@@ -1,35 +1,35 @@
 = form_errors(hook)
 
 .form-group
-  = form.label :url, 'URL', class: 'label-bold'
+  = form.label :url, '链接(URL)', class: 'label-bold'
   = form.text_field :url, class: 'form-control', placeholder: 'http://example.com/trigger-ci.json'
 .form-group
-  = form.label :token, 'Secret Token', class: 'label-bold'
+  = form.label :token, '安全令牌', class: 'label-bold'
   = form.text_field :token, class: 'form-control', placeholder: ''
   %p.form-text.text-muted
-    Use this token to validate received payloads. It will be sent with the request in the X-Gitlab-Token HTTP header.
+    使用此令牌来验证接收信息的有效性。 它将通过 HTTP 头的 X-Gitlab-Token 发送。
 .form-group
-  = form.label :url, 'Trigger', class: 'label-bold'
+  = form.label :url, '触发器', class: 'label-bold'
   %ul.list-unstyled.prepend-left-20
     %li
       = form.check_box :push_events, class: 'form-check-input'
       = form.label :push_events, class: 'list-label form-check-label ml-1' do
-        %strong Push events
+        %strong 推送事件
       %p.light.ml-1
-        This URL will be triggered by a push to the repository
+        此链接将在推送到版本仓库时触发
         = form.text_field :push_events_branch_filter, class: 'form-control', placeholder: 'Branch name or wildcard pattern to trigger on (leave blank for all)'
     %li
       = form.check_box :tag_push_events, class: 'form-check-input'
       = form.label :tag_push_events, class: 'list-label form-check-label ml-1' do
-        %strong Tag push events
+        %strong 标签推送事件
       %p.light.ml-1
-        This URL will be triggered when a new tag is pushed to the repository
+        此链接将在推送新标签到版本仓库时触发
     %li
       = form.check_box :note_events, class: 'form-check-input'
       = form.label :note_events, class: 'list-label form-check-label ml-1' do
-        %strong Comments
+        %strong 评论
       %p.light.ml-1
-        This URL will be triggered when someone adds a comment
+        增加新评论时将触发此链接
     %li
       = form.check_box :confidential_note_events, class: 'form-check-input'
       = form.label :confidential_note_events, class: 'list-label form-check-label ml-1' do
@@ -39,9 +39,9 @@
     %li
       = form.check_box :issues_events, class: 'form-check-input'
       = form.label :issues_events, class: 'list-label form-check-label ml-1' do
-        %strong Issues events
+        %strong 问题事件
       %p.light.ml-1
-        This URL will be triggered when an issue is created/updated/merged
+        问题创建、更新、合并时将触发此链接
     %li
       = form.check_box :confidential_issues_events, class: 'form-check-input'
       = form.label :confidential_issues_events, class: 'list-label form-check-label ml-1' do
@@ -51,30 +51,30 @@
     %li
       = form.check_box :merge_requests_events, class: 'form-check-input'
       = form.label :merge_requests_events, class: 'list-label form-check-label ml-1' do
-        %strong Merge request events
+        %strong 合并请求事件
       %p.light.ml-1
-        This URL will be triggered when a merge request is created/updated/merged
+        合并请求创建、更新、合并时将触发此链接
     %li
       = form.check_box :job_events, class: 'form-check-input'
       = form.label :job_events, class: 'list-label form-check-label ml-1' do
-        %strong Job events
+        %strong 作业事件
       %p.light.ml-1
-        This URL will be triggered when the job status changes
+        作业状态改变时将触发此链接
     %li
       = form.check_box :pipeline_events, class: 'form-check-input'
       = form.label :pipeline_events, class: 'list-label form-check-label ml-1' do
-        %strong Pipeline events
+        %strong 流水线事件
       %p.light.ml-1
-        This URL will be triggered when the pipeline status changes
+        流水线状态改变时将触发此链接
     %li
       = form.check_box :wiki_page_events, class: 'form-check-input'
       = form.label :wiki_page_events, class: 'list-label form-check-label ml-1' do
-        %strong Wiki Page events
+        %strong 维基页面事件
       %p.light.ml-1
-        This URL will be triggered when a wiki page is created/updated
+        维基页面创建/更新时将触发此链接
 .form-group
-  = form.label :enable_ssl_verification, 'SSL verification', class: 'label-bold checkbox'
+  = form.label :enable_ssl_verification, 'SSL 证书验证', class: 'label-bold checkbox'
   .form-check
     = form.check_box :enable_ssl_verification, class: 'form-check-input'
     = form.label :enable_ssl_verification, class: 'form-check-label ml-1' do
-      %strong Enable SSL verification
+      %strong 开启 SSL 证书验证

@@ -1,7 +1,7 @@
 %ul.nav-links.new-session-tabs.nav-tabs.nav{ class: ('custom-provider-tabs' if form_based_providers.any?) }
   - if crowd_enabled?
     %li.nav-item
-      = link_to "Crowd", "#crowd", class: "nav-link #{active_when(form_based_auth_provider_has_active_class?(:crowd))}", 'data-toggle' => 'tab'
+      = link_to "混合", "#crowd", class: "nav-link #{active_when(form_based_auth_provider_has_active_class?(:crowd))}", 'data-toggle' => 'tab'
   = render_if_exists "devise/shared/kerberos_tab"
   - @ldap_servers.each_with_index do |server, i|
     %li.nav-item
@@ -11,7 +11,7 @@
 
   - if password_authentication_enabled_for_web?
     %li.nav-item
-      = link_to 'Standard', '#login-pane', class: 'nav-link qa-standard-tab', 'data-toggle' => 'tab'
+      = link_to '标准', '#login-pane', class: 'nav-link qa-standard-tab', 'data-toggle' => 'tab'
   - if allow_signup?
     %li.nav-item
-      = link_to 'Register', '#register-pane', class: 'nav-link qa-register-tab', 'data-toggle' => 'tab'
+      = link_to '注册', '#register-pane', class: 'nav-link qa-register-tab', 'data-toggle' => 'tab'

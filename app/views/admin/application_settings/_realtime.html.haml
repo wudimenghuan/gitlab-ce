@@ -6,13 +6,9 @@
       = f.label :polling_interval_multiplier, 'Polling interval multiplier', class: 'label-bold'
       = f.text_field :polling_interval_multiplier, class: 'form-control'
       .form-text.text-muted
-        Change this value to influence how frequently the GitLab UI polls for updates.
-        If you set the value to 2 all polling intervals are multiplied
-        by 2, which means that polling happens half as frequently.
-        The multiplier can also have a decimal value.
-        The default value (1) is a reasonable choice for the majority of GitLab
-        installations. Set to 0 to completely disable polling.
+        改变这个值将影响 GitLab 界面拉取更新的频率。如果你设置该值为 2 则所有拉取间隔会乘以 2，也就是说拉取频率会减半。
+        该值可以为小数。默认值 (1) 对于大多数 GitLab 情况来说是比较合理的数值。设置为 0 将会禁用拉取。
         = link_to icon('question-circle'), help_page_path('administration/polling')
 
-  = f.submit 'Save changes', class: "btn btn-success"
+  = f.submit _('Save changes'), class: "btn btn-success"
 

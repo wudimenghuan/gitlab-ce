@@ -1,5 +1,5 @@
-- breadcrumb_title "Access Tokens"
-- page_title "Personal Access Tokens"
+- breadcrumb_title "访问令牌"
+- page_title "个人访问令牌"
 - @content_class = "limit-container-width" unless fluid_layout
 
 .row.prepend-top-default
@@ -7,10 +7,10 @@
     %h4.prepend-top-0
       = page_title
     %p
-      You can generate a personal access token for each application you use that needs access to the GitLab API.
+      您可以为需要访问GitLab API的每个应用程序生成个人访问令牌。
     %p
-      You can also use personal access tokens to authenticate against Git over HTTP.
-      They are the only accepted password when you have Two-Factor Authentication (2FA) enabled.
+      您还可以使用个人访问令牌通过HTTP进行Git验证。
+      当您启用两步认证（2FA）时，它们是唯一可接受的密码。
 
   .col-lg-8
     - if @new_personal_access_token
@@ -24,18 +24,18 @@
 .row.prepend-top-default
   .col-lg-4.profile-settings-sidebar
     %h4.prepend-top-0
-      Feed token
+      Feed 令牌
     %p
-      Your feed token is used to authenticate you when your RSS reader loads a personalized RSS feed or when your calendar application loads a personalized calendar, and is included in those feed URLs.
+      当你的 RSS 阅读器加载个人 RSS 种子的时候将使用你的 RSS 令牌来进行认证，并且会包含在你的个人 RSS 种子的 URL 里。
     %p
-      It cannot be used to access any other data.
+      该令牌无法用于访问其它数据。
   .col-lg-8.feed-token-reset
     = label_tag :feed_token, 'Feed token', class: "label-bold"
     = text_field_tag :feed_token, current_user.feed_token, class: 'form-control', readonly: true, onclick: 'this.select()'
     %p.form-text.text-muted
-      Keep this token secret. Anyone who gets ahold of it can read activity and issue RSS feeds or your calendar feed as if they were you.
-      You should
-      = link_to 'reset it', [:reset, :feed_token, :profile], method: :put, data: { confirm: 'Are you sure? Any RSS or calendar URLs currently in use will stop working.' }
+      请确保该令牌的安全。任何持有该令牌的人，都可以以你的身份来通过 RSS 种子阅读你的活动以及问题列表信息。
+      如果令牌泄露，你应该
+      = link_to '重置令牌', [:reset, :feed_token, :profile], method: :put, data: { confirm: '你确定要重置 RSS 令牌么？所有当前使用该令牌的 RSS 链接都将失效。' }
       if that ever happens.
 
 - if incoming_email_token_enabled?
@@ -43,16 +43,16 @@
   .row.prepend-top-default
     .col-lg-4.profile-settings-sidebar
       %h4.prepend-top-0
-        Incoming email token
+        进入邮件令牌
       %p
-        Your incoming email token is used to authenticate you when you create a new issue by email, and is included in your personal project-specific email addresses.
+        当你使用电子邮件创建新的问题的时候，将使用进入电子邮件令牌进行验证，该令牌包含在你的个人的项目相关的电子邮件地址中。
       %p
-        It cannot be used to access any other data.
+        该令牌无法用于访问其它数据。
     .col-lg-8.incoming-email-token-reset
-      = label_tag :incoming_email_token, 'Incoming email token', class: "label-bold"
+      = label_tag :incoming_email_token, '进入电子邮件令牌', class: "label-bold"
       = text_field_tag :incoming_email_token, current_user.incoming_email_token, class: 'form-control', readonly: true, onclick: 'this.select()'
       %p.form-text.text-muted
-        Keep this token secret. Anyone who gets ahold of it can create issues as if they were you.
-        You should
-        = link_to 'reset it', [:reset, :incoming_email_token, :profile], method: :put, data: { confirm: 'Are you sure? Any issue email addresses currently in use will stop working.' }
-        if that ever happens.
+        请确保该令牌的安全。任何持有该令牌的人，都可以以你的身份来创建问题。
+        如果令牌泄露，你应该
+        = link_to '重置令牌', [:reset, :incoming_email_token, :profile], method: :put, data: { confirm: '你确定要重置进入电子邮件令牌么？所以使用当前令牌的电子邮件地址都将停止工作。' }
+        。

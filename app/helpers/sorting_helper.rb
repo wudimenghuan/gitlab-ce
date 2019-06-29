@@ -40,8 +40,8 @@ module SortingHelper
   def old_projects_sort_options_hash
     options = {
       sort_value_latest_activity  => sort_title_latest_activity,
-      sort_value_name             => sort_title_name,
-      sort_value_oldest_activity  => sort_title_oldest_activity,
+      sort_value_name => sort_title_name,
+      sort_value_oldest_activity => sort_title_oldest_activity,
       sort_value_oldest_created   => sort_title_oldest_created,
       sort_value_recently_created => sort_title_recently_created,
       sort_value_stars_desc       => sort_title_most_stars
@@ -114,11 +114,11 @@ module SortingHelper
 
   def member_sort_options_hash
     {
-      sort_value_access_level_asc  => sort_title_access_level_asc,
+      sort_value_access_level_asc => sort_title_access_level_asc,
       sort_value_access_level_desc => sort_title_access_level_desc,
-      sort_value_last_joined       => sort_title_last_joined,
-      sort_value_name              => sort_title_name_asc,
-      sort_value_name_desc         => sort_title_name_desc,
+      sort_value_last_joined => sort_title_last_joined,
+      sort_value_name => sort_title_name_asc,
+      sort_value_name_desc => sort_title_name_desc,
       sort_value_oldest_joined     => sort_title_oldest_joined,
       sort_value_oldest_signin     => sort_title_oldest_signin,
       sort_value_recently_signin   => sort_title_recently_signin
@@ -127,10 +127,10 @@ module SortingHelper
 
   def milestone_sort_options_hash
     {
-      sort_value_name             => sort_title_name_asc,
-      sort_value_name_desc        => sort_title_name_desc,
+      sort_value_name => sort_title_name_asc,
+      sort_value_name_desc => sort_title_name_desc,
       sort_value_due_date_later   => sort_title_due_date_later,
-      sort_value_due_date_soon    => sort_title_due_date_soon,
+      sort_value_due_date_soon => sort_title_due_date_soon,
       sort_value_start_date_later => sort_title_start_date_later,
       sort_value_start_date_soon  => sort_title_start_date_soon
     }
@@ -138,7 +138,7 @@ module SortingHelper
 
   def branches_sort_options_hash
     {
-      sort_value_name             => sort_title_name,
+      sort_value_name => sort_title_name,
       sort_value_oldest_updated   => sort_title_oldest_updated,
       sort_value_recently_updated => sort_title_recently_updated
     }
@@ -146,7 +146,7 @@ module SortingHelper
 
   def tags_sort_options_hash
     {
-      sort_value_name             => sort_title_name,
+      sort_value_name => sort_title_name,
       sort_value_oldest_updated   => sort_title_oldest_updated,
       sort_value_recently_updated => sort_title_recently_updated
     }

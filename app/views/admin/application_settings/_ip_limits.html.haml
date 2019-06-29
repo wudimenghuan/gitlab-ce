@@ -6,40 +6,40 @@
       .form-check
         = f.check_box :throttle_unauthenticated_enabled, class: 'form-check-input'
         = f.label :throttle_unauthenticated_enabled, class: 'form-check-label' do
-          Enable unauthenticated request rate limit
+          启用未认证的请求速率限制
         %span.form-text.text-muted
-          Helps reduce request volume (e.g. from crawlers or abusive bots)
+          可以帮助降低请求量（比如来自爬虫或者恶意机器人）
     .form-group
-      = f.label :throttle_unauthenticated_requests_per_period, 'Max requests per period per IP', class: 'label-bold'
+      = f.label :throttle_unauthenticated_requests_per_period, '每个 IP 每段时间的最大请求数量', class: 'label-bold'
       = f.number_field :throttle_unauthenticated_requests_per_period, class: 'form-control'
     .form-group
-      = f.label :throttle_unauthenticated_period_in_seconds, 'Rate limit period in seconds', class: 'label-bold'
+      = f.label :throttle_unauthenticated_period_in_seconds, '时间区间（秒）', class: 'label-bold'
       = f.number_field :throttle_unauthenticated_period_in_seconds, class: 'form-control'
     .form-group
       .form-check
         = f.check_box :throttle_authenticated_api_enabled, class: 'form-check-input'
         = f.label :throttle_authenticated_api_enabled, class: 'form-check-label' do
-          Enable authenticated API request rate limit
+          启用已认证的 API 请求速率限制
         %span.form-text.text-muted
-          Helps reduce request volume (e.g. from crawlers or abusive bots)
+          可以帮助降低请求量（比如来自爬虫或者恶意机器人）
     .form-group
-      = f.label :throttle_authenticated_api_requests_per_period, 'Max requests per period per user', class: 'label-bold'
+      = f.label :throttle_authenticated_api_requests_per_period, '每个用户每段时间内最大请求数量', class: 'label-bold'
       = f.number_field :throttle_authenticated_api_requests_per_period, class: 'form-control'
     .form-group
-      = f.label :throttle_authenticated_api_period_in_seconds, 'Rate limit period in seconds', class: 'label-bold'
+      = f.label :throttle_authenticated_api_period_in_seconds, '请求周期限制（秒）', class: 'label-bold'
       = f.number_field :throttle_authenticated_api_period_in_seconds, class: 'form-control'
     .form-group
       .form-check
         = f.check_box :throttle_authenticated_web_enabled, class: 'form-check-input'
         = f.label :throttle_authenticated_web_enabled, class: 'form-check-label' do
-          Enable authenticated web request rate limit
+          启用已认证的 Web 请求速率限制
         %span.form-text.text-muted
-          Helps reduce request volume (e.g. from crawlers or abusive bots)
+          可以帮助降低请求量（比如来自爬虫或者恶意机器人）
     .form-group
-      = f.label :throttle_authenticated_web_requests_per_period, 'Max requests per period per user', class: 'label-bold'
+      = f.label :throttle_authenticated_web_requests_per_period, '每个用户每段时间内最大请求数量', class: 'label-bold'
       = f.number_field :throttle_authenticated_web_requests_per_period, class: 'form-control'
     .form-group
-      = f.label :throttle_authenticated_web_period_in_seconds, 'Rate limit period in seconds', class: 'label-bold'
+      = f.label :throttle_authenticated_web_period_in_seconds, '请求周期限制（秒）', class: 'label-bold'
       = f.number_field :throttle_authenticated_web_period_in_seconds, class: 'form-control'
 
-  = f.submit 'Save changes', class: "btn btn-success"
+  = f.submit '保存修改', class: "btn btn-success"

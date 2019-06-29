@@ -2,23 +2,22 @@
 %h3.page-title= _("Invitation")
 
 %p
-  You have been invited
+  你被
   - if inviter = @member.created_by
-    by
     = link_to inviter.name, user_url(inviter)
-  to join
+  邀请加入
   - case @member.source
   - when Project
     - project = @member.source
-    project
+    项目
     %strong
       = link_to project.full_name, project_url(project)
   - when Group
     - group = @member.source
-    group
+    群组
     %strong
       = link_to group.name, group_url(group)
-  as #{@member.human_access}.
+  ，身份是 #{@member.human_access}。
 
 - is_member = @member.source.users.include?(current_user)
 

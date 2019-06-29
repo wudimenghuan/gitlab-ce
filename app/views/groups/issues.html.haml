@@ -1,4 +1,4 @@
-- page_title "Issues"
+- page_title "问题"
 = content_for :meta_tags do
   = auto_discovery_link_tag(:atom, safe_params.merge(rss_url_options).to_h, title: "#{@group.name} issues")
 
@@ -9,7 +9,7 @@
     = render 'shared/issuable/nav', type: :issues
     .nav-controls
       = render 'shared/issuable/feed_buttons'
-      = render 'shared/new_project_item_select', path: 'issues/new', label: "New issue", type: :issues, with_feature_enabled: 'issues', with_shared: false, include_projects_in_subgroups: true
+      = render 'shared/new_project_item_select', path: 'issues/new', label: "新建问题", type: :issues, with_feature_enabled: 'issues', with_shared: false, include_projects_in_subgroups: true
 
   = render 'shared/issuable/search_bar', type: :issues
 

@@ -9,7 +9,7 @@ class CustomIssueTrackerService < IssueTrackerService
     if self.properties && self.properties['title'].present?
       self.properties['title']
     else
-      'Custom Issue Tracker'
+      '自定义问题跟踪系统'
     end
   end
 
@@ -21,7 +21,7 @@ class CustomIssueTrackerService < IssueTrackerService
     if self.properties && self.properties['description'].present?
       self.properties['description']
     else
-      'Custom issue tracker'
+      '自定义问题跟踪系统'
     end
   end
 

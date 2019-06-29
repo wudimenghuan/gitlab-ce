@@ -1,7 +1,7 @@
 - @no_container = true
 - @can_bulk_update = can?(current_user, :admin_issue, @project)
 
-- page_title "Issues"
+- page_title "问题"
 - new_issue_email = @project.new_issuable_address(current_user, 'issue')
 
 = content_for :meta_tags do

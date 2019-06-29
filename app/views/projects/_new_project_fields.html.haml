@@ -42,12 +42,12 @@
 .form-group
   = f.label :description, class: 'label-bold' do
     Project description
-    %span (optional)
-  = f.text_area :description, placeholder: 'Description format', class: "form-control", rows: 3, maxlength: 250, data: { track_label: "#{track_label}", track_event: "activate_form_input", track_property: "project_description", track_value: "" }
+    %span (可选)
+  = f.text_area :description, placeholder: '描述格式', class: "form-control", rows: 3, maxlength: 250, data: { track_label: "#{track_label}", track_event: "activate_form_input", track_property: "project_description", track_value: "" }
 
 = f.label :visibility_level, class: 'label-bold' do
-  Visibility Level
-  = link_to icon('question-circle'), help_page_path("public_access/public_access"), aria: { label: 'Documentation for Visibility Level' }, target: '_blank', rel: 'noopener noreferrer'
+  可见等级
+  = link_to icon('question-circle'), help_page_path("public_access/public_access"), aria: { label: '文档可见化等级' }, target: '_blank', rel: 'noopener noreferrer'
 = render 'shared/visibility_level', f: f, visibility_level: visibility_level.to_i, can_change_visibility_level: true, form_model: @project, with_label: false
 
 - if !hide_init_with_readme

@@ -2,10 +2,10 @@
   .diff-editor-wrap{ "v-show" => "file.showEditor" }
     .discard-changes-alert-wrap{ "v-if" => "file.promptDiscardConfirmation" }
       .discard-changes-alert
-        Are you sure you want to discard your changes?
+        您确定要舍弃所做的修改？
         .discard-actions
-          %button.btn.btn-sm.btn-close{ "@click" => "acceptDiscardConfirmation(file)" } Discard changes
-          %button.btn.btn-sm{ "@click" => "cancelDiscardConfirmation(file)" } Cancel
+          %button.btn.btn-sm.btn-close{ "@click" => "acceptDiscardConfirmation(file)" } 舍弃修改
+          %button.btn.btn-sm{ "@click" => "cancelDiscardConfirmation(file)" } 取消
     .editor-wrap{ ":class" => "classObject" }
       .loading
         %i.fa.fa-spinner.fa-spin

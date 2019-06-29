@@ -3,10 +3,9 @@
 
   %fieldset
     .form-group
-      = f.label :terminal_max_session_time, 'Max session time', class: 'label-bold'
+      = f.label :terminal_max_session_time, '最长会话时间', class: 'label-bold'
       = f.number_field :terminal_max_session_time, class: 'form-control'
       .form-text.text-muted
-        Maximum time for web terminal websocket connection (in seconds).
-        0 for unlimited.
+        网页终端 websocket 连接的最大时间（秒）。无限制则为 0。
 
-  = f.submit 'Save changes', class: "btn btn-success"
+  = f.submit _('Save changes'), class: "btn btn-success"

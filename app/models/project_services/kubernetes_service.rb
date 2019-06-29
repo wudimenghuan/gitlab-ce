@@ -66,7 +66,7 @@ class KubernetesService < Service
   end
 
   def description
-    'Kubernetes / OpenShift integration'
+    'Kubernetes / OpenShift 集成'
   end
 
   def self.to_param

@@ -180,6 +180,17 @@ class Issue < ApplicationRecord
     project
   end
 
+  def state_human_name
+    if closed?
+      "已关闭"
+    else
+      "未关闭"
+    end
+  end
+
+  def zh_name
+    '问题'
+  end
   def moved?
     !moved_to.nil?
   end

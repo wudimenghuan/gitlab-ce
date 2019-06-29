@@ -41,11 +41,11 @@
       %ul.controls
         - if merge_request.merged?
           %li.issuable-status.d-none.d-sm-inline-block
-            MERGED
+            已合并
         - elsif merge_request.closed?
           %li.issuable-status.d-none.d-sm-inline-block
             = icon('ban')
-            CLOSED
+            已关闭
         - if can?(current_user, :read_pipeline, merge_request.head_pipeline)
           %li.issuable-pipeline-status.d-none.d-sm-inline-block
             = render 'ci/status/icon', status: merge_request.head_pipeline.detailed_status(current_user)
@@ -61,4 +61,4 @@
         = render 'shared/issuable_meta_data', issuable: merge_request
 
       .float-right.issuable-updated-at.d-none.d-sm-inline-block
-        %span updated #{time_ago_with_tooltip(merge_request.updated_at, placement: 'bottom', html_class: 'merge_request_updated_ago')}
+        %span 更新于 #{time_ago_with_tooltip(merge_request.updated_at, placement: 'bottom', html_class: 'merge_request_updated_ago')}

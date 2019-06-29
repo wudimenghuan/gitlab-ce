@@ -18,7 +18,7 @@ module EventsHelper
     author = event.author
 
     if author
-      name = self_added ? 'You' : author.name
+      name = self_added ? '您' : author.name
       link_to name, user_path(author.username), title: name
     else
       escape_once(event.author_name)
@@ -33,7 +33,7 @@ module EventsHelper
                   event.target_type.titleize.downcase
                 end
               else
-                'project'
+                '项目'
               end
 
     [event.action_name, target].join(" ")
@@ -81,15 +81,15 @@ module EventsHelper
     words << event_action_name(event)
 
     if event.push_action?
+      words << "的"
       words << event.ref_type
       words << event.ref_name
-      words << "at"
     elsif event.commented_action?
+      words << "的"
       words << event.note_target_reference
-      words << "at"
     elsif event.milestone?
+      words << "的"
       words << "##{event.target_iid}" if event.target_iid
-      words << "in"
     elsif event.target
       prefix =
         if event.merge_request?
@@ -100,10 +100,7 @@ module EventsHelper
 
       words << "#{prefix}#{event.target_iid}:" if event.target_iid
       words << event.target.title if event.target.respond_to?(:title)
-      words << "at"
     end
-
-    words << event.project_name
 
     words.join(" ")
   end
@@ -179,7 +176,7 @@ module EventsHelper
         concat link_to(event.note_target_reference, event_note_target_url(event), title: event.target_title, class: 'has-tooltip event-target-link append-right-4')
       end
     else
-      content_tag(:strong, '(deleted)')
+      content_tag(:strong, '(已删除)')
     end
   end
 

@@ -4,14 +4,14 @@
     - if @broadcast_message.message.present?
       = render_broadcast_message(@broadcast_message)
     - else
-      Your message here
+      广播消息预览
 
 = form_for [:admin, @broadcast_message], html: { class: 'broadcast-message-form js-quick-submit js-requires-input'} do |f|
   = form_errors(@broadcast_message)
 
   .form-group.row
     .col-sm-2.col-form-label
-      = f.label :message
+      = f.label :message, "消息"
     .col-sm-10
       = f.text_area :message, class: "form-control js-autosize",
         required: true,
@@ -19,15 +19,15 @@
         data: { preview_path: preview_admin_broadcast_messages_path }
   .form-group.row.js-toggle-colors-container
     .col-sm-10.offset-sm-2
-      = link_to 'Customize colors', '#', class: 'js-toggle-colors-link'
+      = link_to '自定义颜色', '#', class: 'js-toggle-colors-link'
   .form-group.row.js-toggle-colors-container.toggle-colors.hide
     .col-sm-2.col-form-label
-      = f.label :color, "Background Color"
+      = f.label :color, "背景颜色"
     .col-sm-10
       = f.color_field :color, class: "form-control"
   .form-group.row.js-toggle-colors-container.toggle-colors.hide
     .col-sm-2.col-form-label
-      = f.label :font, "Font Color"
+      = f.label :font, "字体颜色"
     .col-sm-10
       = f.color_field :font, class: "form-control"
   .form-group.row
@@ -42,6 +42,6 @@
       = f.datetime_select :ends_at, {}, class: 'form-control form-control-inline'
   .form-actions
     - if @broadcast_message.persisted?
-      = f.submit "Update broadcast message", class: "btn btn-success"
+      = f.submit "更新广播信息", class: "btn btn-success"
     - else
-      = f.submit "Add broadcast message", class: "btn btn-success"
+      = f.submit "增加广播信息", class: "btn btn-success"

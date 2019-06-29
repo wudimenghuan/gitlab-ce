@@ -1,14 +1,15 @@
 - @no_container = true
 - add_to_breadcrumbs "Tags", project_tags_path(@project)
 - breadcrumb_title @tag.name
-- page_title "Edit", @tag.name, "Tags"
+- page_title "编辑", @tag.name, "标签"
 
 %div{ class: container_class }
   .sub-header-block.no-bottom-space
     .oneline
       .title
-        Release notes for tag
+        标签
         %strong= @tag.name
+        的发布备注
 
 
   = form_for(@release, method: :put, url: project_tag_release_path(@project, @tag.name),
@@ -18,5 +19,5 @@
       = render 'shared/notes/hints'
     .error-alert
     .prepend-top-default
-      = f.submit 'Save changes', class: 'btn btn-success'
-      = link_to "Cancel", project_tag_path(@project, @tag.name), class: "btn btn-default btn-cancel"
+      = f.submit '保存修改', class: 'btn btn-success'
+      = link_to "取消", project_tag_path(@project, @tag.name), class: "btn btn-default btn-cancel"

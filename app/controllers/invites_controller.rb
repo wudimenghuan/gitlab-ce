@@ -64,14 +64,14 @@ class InvitesController < ApplicationController
     case source
     when Project
       project = member.source
-      label = "project #{project.full_name}"
+      label = "项目 #{project.full_name}"
       path = project_path(project)
     when Group
       group = member.source
-      label = "group #{group.name}"
+      label = "群组 #{group.name}"
       path = group_path(group)
     else
-      label = "who knows what"
+      label = "谁知道"
       path = dashboard_projects_path
     end
 

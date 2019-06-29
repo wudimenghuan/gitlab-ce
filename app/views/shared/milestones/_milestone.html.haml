@@ -30,9 +30,9 @@
 
     .col-sm-4.milestone-progress
       = milestone_progress_bar(milestone)
-      = link_to pluralize(milestone.total_issues_count(current_user), 'Issue'), issues_path
+      = link_to pluralize(milestone.total_issues_count(current_user), '个问题', '个问题'), issues_path
       &middot;
-      = link_to pluralize(milestone.merge_requests_visible_to_user(current_user).size, 'Merge Request'), merge_requests_path
+      = link_to pluralize(milestone.merge_requests_visible_to_user(current_user).size, '个合并请求', '个合并请求'), merge_requests_path
       .float-lg-right.light #{milestone.percent_complete(current_user)}% complete
     .col-sm-2
       .milestone-actions.d-flex.justify-content-sm-start.justify-content-md-end
@@ -56,9 +56,9 @@
         - if @group
           - if can?(current_user, :admin_milestone, @group)
             - if milestone.closed?
-              = link_to 'Reopen Milestone', group_milestone_route(milestone, {state_event: :activate }), method: :put, class: "btn btn-sm btn-grouped btn-reopen"
+              = link_to '重新打开里程碑', group_milestone_route(milestone, {state_event: :activate }), method: :put, class: "btn btn-sm btn-grouped btn-reopen"
             - else
-              = link_to 'Close Milestone', group_milestone_route(milestone, {state_event: :close }), method: :put, class: "btn btn-sm btn-grouped btn-close"
+              = link_to '关闭里程碑', group_milestone_route(milestone, {state_event: :close }), method: :put, class: "btn btn-sm btn-grouped btn-close"
         - if dashboard
           .label-badge.label-badge-gray
             = milestone_type

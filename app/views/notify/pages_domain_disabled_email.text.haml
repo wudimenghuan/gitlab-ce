@@ -1,13 +1,12 @@
-Following a verification check, your GitLab Pages custom domain has been
-**disabled**. This means that your content is no longer visible at #{@domain.url}
+通过验证检查后， 您的 Gitlab 自定义域名已被
+**禁用**。 这意味着您位于 #{@domain.url} 的内容将无法被访问。
 
-Project: #{@project.human_name} (#{project_url(@project)})
-Domain:  #{@domain.domain} (#{project_pages_domain_url(@project, @domain)})
+项目: #{@project.human_name} (#{project_url(@project)})
+域名:  #{@domain.domain} (#{project_pages_domain_url(@project, @domain)})
 
-If this domain has been disabled in error, please follow these instructions
-to verify and re-enable your domain:
+如果这个域名是被错误禁用，请按照
+这些指示来确认并重新启用您的域名：
 
 = help_page_url('user/project/pages/getting_started_part_three.md', anchor: 'dns-txt-record')
 
-If you no longer wish to use this domain with GitLab Pages, please remove it
-from your GitLab project and delete any related DNS records.
+如果您不想继续将此域名用于GitLab 页面，请将其从GitLab项目中删除，并删除相关的DNS记录。

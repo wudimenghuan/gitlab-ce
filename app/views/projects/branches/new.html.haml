@@ -1,4 +1,4 @@
-- page_title "New Branch"
+- page_title "新建分支"
 - default_ref = params[:ref] || @project.default_branch
 
 - if @error
@@ -6,17 +6,17 @@
     %button.close{ type: "button", "data-dismiss" => "alert" } &times;
     = @error
 %h3.page-title
-  New Branch
+  新建分支
 %hr
 
 = form_tag namespace_project_branches_path, method: :post, id: "new-branch-form", class: "js-create-branch-form js-requires-input" do
   .form-group.row
-    = label_tag :branch_name, nil, class: 'col-form-label col-sm-2'
+    = label_tag :branch_name, '分支名称', class: 'col-form-label col-sm-2'
     .col-sm-10
       = text_field_tag :branch_name, params[:branch_name], required: true, autofocus: true, class: 'form-control js-branch-name monospace'
       .form-text.text-muted.text-danger.js-branch-name-error
   .form-group.row
-    = label_tag :ref, 'Create from', class: 'col-form-label col-sm-2'
+    = label_tag :ref, '创建自', class: 'col-form-label col-sm-2'
     .col-sm-10.create-from
       .dropdown
         = hidden_field_tag :ref, default_ref
@@ -24,9 +24,9 @@
           .text-left.dropdown-toggle-text= default_ref
           = icon('chevron-down')
         = render 'shared/ref_dropdown', dropdown_class: 'wide'
-      .form-text.text-muted Existing branch name, tag, or commit SHA
+      .form-text.text-muted 已存在的分支名、标签或提交 SHA
   .form-actions
-    = button_tag 'Create branch', class: 'btn btn-success', tabindex: 3
-    = link_to 'Cancel', project_branches_path(@project), class: 'btn btn-cancel'
+    = button_tag '创建分支', class: 'btn btn-success', tabindex: 3
+    = link_to '取消', project_branches_path(@project), class: 'btn btn-cancel'
 -# haml-lint:disable InlineJavaScript
 %script#availableRefs{ type: "application/json" }= @project.repository.ref_names.to_json.html_safe

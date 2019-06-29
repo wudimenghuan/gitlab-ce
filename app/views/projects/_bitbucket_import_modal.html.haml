@@ -2,13 +2,13 @@
   .modal-dialog
     .modal-content
       .modal-header
-        %h3.modal-title Import projects from Bitbucket
+        %h3.modal-title 从 Bitbucket 导入项目
         %button.close{ type: "button", "data-dismiss": "modal", "aria-label" => _('Close') }
           %span{ "aria-hidden": true } &times;
       .modal-body
-        To enable importing projects from Bitbucket,
+        要开启从 Bitbucket 导入项目，
         - if current_user.admin?
-          as administrator you need to configure
+          作为管理员你需要配置
         - else
           ask your GitLab administrator to configure
-        = link_to 'OAuth integration', help_page_path("integration/bitbucket")
+        = link_to 'OAuth 集成', help_page_path("integration/bitbucket")

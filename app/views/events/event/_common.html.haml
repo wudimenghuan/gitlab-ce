@@ -4,6 +4,16 @@
 
 .event-title.d-flex.flex-wrap
   = inline_event_icon(event)
+    = event.action_name
+
+  - if !event.target_type
+    项目
+
+  - if event.project
+    = link_to_project event.project
+  - else
+    = event.project_name
+
   - if event.target
     %span.event-type.d-inline-block.append-right-4{ class: event.action_name }
       = event.action_name

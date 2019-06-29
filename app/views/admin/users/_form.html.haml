@@ -3,40 +3,40 @@
     = form_errors(@user)
 
     %fieldset
-      %legend Account
+      %legend 账号
       .form-group.row
         .col-sm-2.col-form-label
           = f.label :name
         .col-sm-10
           = f.text_field :name, required: true, autocomplete: 'off', class: 'form-control'
-          %span.help-inline * required
+          %span.help-inline * 必须填写
       .form-group.row
         .col-sm-2.col-form-label
           = f.label :username
         .col-sm-10
           = f.text_field :username, required: true, autocomplete: 'off', autocorrect: 'off', autocapitalize: 'off', spellcheck: false, class: 'form-control'
-          %span.help-inline * required
+          %span.help-inline * 必须填写
       .form-group.row
         .col-sm-2.col-form-label
           = f.label :email
         .col-sm-10
           = f.text_field :email, required: true, autocomplete: 'off', class: 'form-control'
-          %span.help-inline * required
+          %span.help-inline * 必须填写
 
     - if @user.new_record?
       %fieldset
-        %legend Password
+        %legend 密码
         .form-group.row
           .col-sm-2.col-form-label
             = f.label :password
           .col-sm-10
             %strong
-              Reset link will be generated and sent to the user.
+              重置链接将自动生成临时密码发送给用户。
               %br
-              User will be forced to set the password on first sign in.
+              用户在第一次登录后需要强制修改密码。
     - else
       %fieldset
-        %legend Password
+        %legend 密码
         .form-group.row
           .col-sm-2.col-form-label
             = f.label :password
@@ -55,7 +55,7 @@
     = render_if_exists 'admin/users/limits', f: f
 
     %fieldset
-      %legend Profile
+      %legend 个人资料
       .form-group.row
         .col-sm-2.col-form-label
           = f.label :avatar
@@ -87,8 +87,8 @@
 
     .form-actions
       - if @user.new_record?
-        = f.submit 'Create user', class: "btn btn-success"
-        = link_to 'Cancel', admin_users_path, class: "btn btn-cancel"
+        = f.submit '创建用户', class: "btn btn-success"
+        = link_to '取消', admin_users_path, class: "btn btn-cancel"
       - else
-        = f.submit 'Save changes', class: "btn btn-success"
-        = link_to 'Cancel', admin_user_path(@user), class: "btn btn-cancel"
+        = f.submit '保存修改', class: "btn btn-success"
+        = link_to '取消', admin_user_path(@user), class: "btn btn-cancel"

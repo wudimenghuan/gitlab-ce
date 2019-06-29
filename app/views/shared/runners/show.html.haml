@@ -5,20 +5,20 @@
   .float-right
     - if @runner.instance_type?
       %span.runner-state.runner-state-shared
-        Shared
+        共享的
     - elsif @runner.group_type?
       %span.runner-state.runner-state-shared
         Group
     - else
       %span.runner-state.runner-state-specific
-        Specific
+        指定的
 
 .table-holder
   %table.table
     %thead
       %tr
-        %th Property Name
-        %th Value
+        %th 属性名称
+        %th 值
     %tr
       %td Active
       %td= @runner.active? ? 'Yes' : 'No'
@@ -33,39 +33,39 @@
         %td Locked to this project
         %td= @runner.locked? ? 'Yes' : 'No'
     %tr
-      %td Tags
+      %td 标签
       %td
         - @runner.tag_list.sort.each do |tag|
           %span.badge.badge-primary
             = tag
     %tr
-      %td Name
+      %td 名称
       %td= @runner.name
     %tr
-      %td Version
+      %td 版本
       %td= @runner.version
     %tr
-      %td IP Address
+      %td IP 地址
       %td= @runner.ip_address
     %tr
-      %td Revision
+      %td 修订版本
       %td= @runner.revision
     %tr
-      %td Platform
+      %td 平台
       %td= @runner.platform
     %tr
-      %td Architecture
+      %td 架构
       %td= @runner.architecture
     %tr
-      %td Description
+      %td 描述
       %td= @runner.description
     %tr
       %td Maximum job timeout
       %td= @runner.maximum_timeout_human_readable
     %tr
-      %td Last contact
+      %td 最后联系时间
       %td
         - if @runner.contacted_at
           = time_ago_with_tooltip @runner.contacted_at
         - else
-          Never
+          从未

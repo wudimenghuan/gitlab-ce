@@ -77,7 +77,7 @@ class Projects::LabelsController < Projects::ApplicationController
 
     redirect_to project_labels_path(@project),
                 status: 302,
-                notice: 'Label was removed'
+                notice: '标记已删除'
   end
 
   def remove_priority

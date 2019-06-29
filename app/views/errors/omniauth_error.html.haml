@@ -1,15 +1,15 @@
-- content_for(:title, 'Auth Error')
+- content_for(:title, '认证错误')
 
 .container
   = render "shared/errors/graphic_422.svg"
-  %h3 Sign-in using #{@provider} auth failed
+  %h3 使用 #{@provider} 认证登录失败
 
-  %p.light.subtitle Sign-in failed because #{@error}.
+  %p.light.subtitle 登录失败，错误： #{@error}.
 
-  %p Try logging in using your username or email. If you have forgotten your password, try recovering it
+  %p 使用您的用户名或者邮箱尝试登录 如果您忘记密码，请尝试找回密码。
 
-  = link_to "Sign in", new_session_path(:user), class: 'btn primary'
-  = link_to "Recover password", new_password_path(:user), class: 'btn secondary'
+  = link_to "登录", new_session_path(:user), class: 'btn primary'
+  = link_to "找回密码", new_password_path(:user), class: 'btn secondary'
 
   %hr
-  %p.light If none of the options work, try contacting a GitLab administrator.
+  %p.light 如果不是上述原因，请联系 GitLab 管理员。

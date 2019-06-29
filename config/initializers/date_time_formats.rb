@@ -1,7 +1,7 @@
 # :short  - 10 Nov
 # :medium - Nov 10, 2007
 # :long   - November 10, 2007
-Date::DATE_FORMATS[:medium] = '%b %-d, %Y'
+Date::DATE_FORMATS[:medium] = '%Y-%m-%d'
 Date::DATE_FORMATS[:csv] = '%Y-%m-%d'
 
 # :short  - 18 Jan 06:10

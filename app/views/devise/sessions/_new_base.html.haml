@@ -9,12 +9,12 @@
     .remember-me
       %label{ for: "user_remember_me" }
         = f.check_box :remember_me, class: 'remember-me-checkbox'
-        %span Remember me
+        %span 记住我
       .float-right.forgot-password
-        = link_to "Forgot your password?", new_password_path(:user)
+        = link_to "忘记密码？", new_password_path(:user)
     %div
     - if captcha_enabled?
       = recaptcha_tags
 
   .submit-container.move-submit-down
-    = f.submit "Sign in", class: "btn btn-success qa-sign-in-button"
+    = f.submit "登录", class: "btn btn-success qa-sign-in-button"

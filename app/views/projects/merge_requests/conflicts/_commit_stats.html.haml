@@ -2,15 +2,13 @@
   .inline-parallel-buttons{ "v-if" => "showDiffViewTypeSwitcher" }
     .btn-group
       %button.btn{ ":class" => "{'active': !isParallel}", "@click" => "handleViewTypeChange('inline')" }
-        Inline
+        内嵌
       %button.btn{ ":class" => "{'active': isParallel}", "@click" => "handleViewTypeChange('parallel')" }
-        Side-by-side
+        并排
 
   .js-toggle-container
     .commit-stat-summary
-      Showing
-      %strong.cred {{conflictsCountText}}
-      between
+      正在显示
       %strong.ref-name {{conflictsData.sourceBranch}}
-      and
+      和
       %strong.ref-name {{conflictsData.targetBranch}}

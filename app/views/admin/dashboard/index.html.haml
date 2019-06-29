@@ -11,72 +11,72 @@
           .well-segment.well-centered
             = link_to admin_projects_path do
               %h3.text-center
-                Projects:
+                项目:
                 = approximate_count_with_delimiters(@counts, Project)
             %hr
-            = link_to('New project', new_project_path, class: "btn btn-success")
+            = link_to('新建项目', new_project_path, class: "btn btn-success")
       .col-sm-4
         .info-well.dark-well
           .well-segment.well-centered
             = link_to admin_users_path do
               %h3.text-center
-                Users:
+                用户:
                 = approximate_count_with_delimiters(@counts, User)
             %hr
             .btn-group.d-flex{ role: 'group' }
-              = link_to 'New user', new_admin_user_path, class: "btn btn-success"
+              = link_to '新建用户', new_admin_user_path, class: "btn btn-success"
               = render_if_exists 'admin/dashboard/users_statistics'
       .col-sm-4
         .info-well.dark-well
           .well-segment.well-centered
             = link_to admin_groups_path do
               %h3.text-center
-                Groups:
+                群组:
                 = approximate_count_with_delimiters(@counts, Group)
             %hr
-            = link_to 'New group', new_admin_group_path, class: "btn btn-success"
+            = link_to '新建群组', new_admin_group_path, class: "btn btn-success"
     .row
       .col-md-4
         .info-well
           .well-segment.admin-well.admin-well-statistics
-            %h4 Statistics
+            %h4 统计
             %p
-              Forks
+              派生项目数
               %span.light.float-right
                 = approximate_fork_count_with_delimiters(@counts)
             %p
-              Issues
+              问题数
               %span.light.float-right
                 = approximate_count_with_delimiters(@counts, Issue)
             %p
-              Merge Requests
+              合并请求数
               %span.light.float-right
                 = approximate_count_with_delimiters(@counts, MergeRequest)
             %p
-              Notes
+              批注数
               %span.light.float-right
                 = approximate_count_with_delimiters(@counts, Note)
             %p
-              Snippets
+              代码片段数
               %span.light.float-right
                 = approximate_count_with_delimiters(@counts, Snippet)
             %p
-              SSH Keys
+              SSH 密钥数
               %span.light.float-right
                 = approximate_count_with_delimiters(@counts, Key)
             %p
-              Milestones
+              里程碑数
               %span.light.float-right
                 = approximate_count_with_delimiters(@counts, Milestone)
             %p
-              Active Users
+              激活用户数
               %span.light.float-right
                 = number_with_delimiter(User.active.count)
       .col-md-4
         .info-well
           .well-segment.admin-well.admin-well-features
-            %h4 Features
-            - sign_up = "Sign up"
+            %h4 特性
+            - sign_up = "注册"
             %p{ "aria-label" => "#{sign_up}: status " + (allow_signup? ? "on" : "off") }
               = sign_up
               %span.light.float-right
@@ -86,7 +86,7 @@
               = ldap
               %span.light.float-right
                 = boolean_to_icon Gitlab.config.ldap.enabled
-            - gravatar = "Gravatar"
+            - gravatar = "头像"
             %p{ "aria-label" => "#{gravatar}: status " + (gravatar_enabled? ? "on" : "off") }
               = gravatar
               %span.light.float-right
@@ -96,7 +96,7 @@
               = omniauth
               %span.light.float-right
                 = boolean_to_icon Gitlab::Auth.omniauth_enabled?
-            - reply_email = "Reply by email"
+            - reply_email = "邮件回复"
             %p{ "aria-label" => "#{reply_email}: status " + (Gitlab::IncomingEmail.enabled? ? "on" : "off") }
               = reply_email
               %span.light.float-right
@@ -104,18 +104,18 @@
 
             = render_if_exists 'admin/dashboard/elastic_and_geo'
 
-            - container_reg = "Container Registry"
+            - container_reg = "容器注册表"
             %p{ "aria-label" => "#{container_reg}: status " + (Gitlab.config.registry.enabled ? "on" : "off") }
               = container_reg
               %span.light.float-right
                 = boolean_to_icon Gitlab.config.registry.enabled
-            - gitlab_pages = 'GitLab Pages'
+            - gitlab_pages = 'GitLab 页面'
             - gitlab_pages_enabled = Gitlab.config.pages.enabled
             %p{ "aria-label" => "#{gitlab_pages}: status " + (gitlab_pages_enabled ? "on" : "off") }
               = gitlab_pages
               %span.light.float-right
                 = boolean_to_icon gitlab_pages_enabled
-            - gitlab_shared_runners = 'Shared Runners'
+            - gitlab_shared_runners = '共享 Runners'
             - gitlab_shared_runners_enabled = Gitlab.config.gitlab_ci.shared_runners_enabled
             %p{ "aria-label" => "#{gitlab_shared_runners}: status " + (gitlab_shared_runners_enabled ? "on" : "off") }
               = gitlab_shared_runners
@@ -125,7 +125,7 @@
         .info-well
           .well-segment.admin-well
             %h4
-              Components
+              组件
               - if Gitlab::CurrentSettings.version_check_enabled
                 .float-right
                   = version_status_badge
@@ -172,7 +172,7 @@
       .col-md-4
         .info-well
           .well-segment.admin-well
-            %h4 Latest projects
+            %h4 最近创建的项目
             - @projects.each do |project|
               %p
                 = link_to project.full_name, admin_project_path(project), class: 'str-truncated-60'
@@ -181,7 +181,7 @@
       .col-md-4
         .info-well
           .well-segment.admin-well
-            %h4 Latest users
+            %h4 最近注册的用户
             - @users.each do |user|
               %p
                 = link_to [:admin, user], class: 'str-truncated-60' do
@@ -191,7 +191,7 @@
       .col-md-4
         .info-well
           .well-segment.admin-well
-            %h4 Latest groups
+            %h4 最近创建的群组
             - @groups.each do |group|
               %p
                 = link_to [:admin, group], class: 'str-truncated-60' do

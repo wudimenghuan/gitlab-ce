@@ -3,7 +3,7 @@
     .card-header
       Protected tag (#{@protected_tags_count})
     %p.settings-message.text-center
-      There are currently no protected tags, protect a tag with the form above.
+      没有保护标签，请在上面选择一个标签。
   - else
     - can_admin_project = can?(current_user, :admin_project, @project)
 
@@ -16,9 +16,9 @@
           %col
       %thead
         %tr
-          %th Protected tag (#{@protected_tags_count})
-          %th Last commit
-          %th Allowed to create
+          %th 保护标签 (#{@protected_tags_count})
+          %th 最后提交
+          %th 允许创建
           - if can_admin_project
             %th
       %tbody

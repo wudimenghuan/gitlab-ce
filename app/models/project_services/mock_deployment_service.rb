@@ -4,11 +4,11 @@ class MockDeploymentService < Service
   default_value_for :category, 'deployment'
 
   def title
-    'Mock deployment'
+    'Mock 部署'
   end
 
   def description
-    'Mock deployment service'
+    'Mock 部署服务'
   end
 
   def self.to_param

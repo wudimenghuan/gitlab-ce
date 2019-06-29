@@ -15,7 +15,7 @@
     - if current_action?(:new) || current_action?(:create)
       %span.pull-left.append-right-10
         \/
-      = text_field_tag 'file_name', params[:file_name], placeholder: "File name",
+      = text_field_tag 'file_name', params[:file_name], placeholder: "文件名",
         required: true, class: 'form-control new-file-name js-file-path-name-input'
 
     .file-buttons
@@ -24,10 +24,10 @@
       = button_tag class: 'soft-wrap-toggle btn', type: 'button', tabindex: '-1' do
         %span.no-wrap
           = custom_icon('icon_no_wrap')
-          No wrap
+          不自动换行
         %span.soft-wrap
           = custom_icon('icon_soft_wrap')
-          Soft wrap
+          自动换行
       .encoding-selector
         = select_tag :encoding, options_for_select([ "base64", "text" ], "text"), class: 'select2', tabindex: '-1'
 

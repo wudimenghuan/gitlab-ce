@@ -4,22 +4,22 @@
 
   .row
     .col-lg-4.profile-settings-sidebar
-      %h4.prepend-top-0 Navigation bar
+      %h4.prepend-top-0 导航条
 
     .col-lg-8
       .form-group
-        = f.label :header_logo, 'Header logo', class: 'col-form-label label-bold pt-0'
+        = f.label :header_logo, '标题图标', class: 'col-form-label label-bold pt-0'
         %p
           - if @appearance.header_logo?
             = image_tag @appearance.header_logo_path, class: 'appearance-light-logo-preview'
             - if @appearance.persisted?
               %br
-              = link_to 'Remove header logo', header_logos_admin_appearances_path, data: { confirm: "Header logo will be removed. Are you sure?"}, method: :delete, class: "btn btn-inverted btn-remove btn-sm remove-logo"
+              = link_to '删除标题图标', header_logos_admin_appearances_path, data: { confirm: "您确定要删除标题图标么？"}, method: :delete, class: "btn btn-inverted btn-remove btn-sm remove-logo"
             %hr
           = f.hidden_field :header_logo_cache
           = f.file_field :header_logo, class: ""
           .hint
-            Maximum file size is 1MB. Pages are optimized for a 28px tall header logo
+            文件最大不可超过 1MB。页面是针对 28px 高的标题图标设计的。
   %hr
   .row
     .col-lg-4.profile-settings-sidebar
@@ -27,71 +27,71 @@
 
     .col-lg-8
       .form-group
-        = f.label :favicon, 'Favicon', class: 'col-form-label label-bold pt-0'
+        = f.label :favicon, '网站图标', class: 'col-form-label label-bold pt-0'
         %p
           - if @appearance.favicon?
             = image_tag @appearance.favicon_path, class: 'appearance-light-logo-preview'
             - if @appearance.persisted?
               %br
-              = link_to 'Remove favicon', favicon_admin_appearances_path, data: { confirm: "Favicon will be removed. Are you sure?"}, method: :delete, class: "btn btn-inverted btn-remove btn-sm remove-logo"
+              = link_to '删除网站图标', favicon_admin_appearances_path, data: { confirm: "您确定要删除网站图标？"}, method: :delete, class: "btn btn-inverted btn-remove btn-sm remove-logo"
             %hr
           = f.hidden_field :favicon_cache
           = f.file_field :favicon, class: ''
           .hint
-            Maximum file size is 1MB. Image size must be 32x32px. Allowed image formats are #{favicon_extension_whitelist}.
+            图标最大不可超过 1MB. 图标像素必须为 32x32px. 支持以下格式的图标 #{favicon_extension_whitelist}.
             %br
-            Images with incorrect dimensions are not resized automatically, and may result in unexpected behavior.
+            尺寸不正确的图像不会自动调整大小，并可能导致意外的行为。
 
   = render partial: 'admin/appearances/system_header_footer_form', locals: { form: f }
 
   %hr
   .row
     .col-lg-4.profile-settings-sidebar
-      %h4.prepend-top-0 Sign in/Sign up pages
+      %h4.prepend-top-0 登录/注册页面：
 
     .col-lg-8
       .form-group
-        = f.label :title, class: 'col-form-label label-bold'
+        = f.label :title, '标题', class: 'col-form-label label-bold'
         = f.text_field :title, class: "form-control"
       .form-group
-        = f.label :description, class: 'col-form-label label-bold'
+        = f.label :description, "描述", class: 'col-form-label label-bold'
         = f.text_area :description, class: "form-control", rows: 10
         .hint
-          Description parsed with #{link_to "GitLab Flavored Markdown", help_page_path('user/markdown'), target: '_blank'}.
+          描述采用 #{link_to "GitLab 特色的 Markdown", help_page_path('user/markdown'), target: '_blank'}.
       .form-group
-        = f.label :logo, class: 'col-form-label label-bold pt-0'
+        = f.label :logo, '图标', class: 'col-form-label label-bold pt-0'
         %p
           - if @appearance.logo?
             = image_tag @appearance.logo_path, class: 'appearance-logo-preview'
             - if @appearance.persisted?
               %br
-              = link_to 'Remove logo', logo_admin_appearances_path, data: { confirm: "Logo will be removed. Are you sure?"}, method: :delete, class: "btn btn-inverted btn-remove btn-sm remove-logo"
+              = link_to '删除图标', logo_admin_appearances_path, data: { confirm: "Logo will be removed. Are you sure?"}, method: :delete, class: "btn btn-inverted btn-remove btn-sm remove-logo"
             %hr
           = f.hidden_field :logo_cache
           = f.file_field :logo, class: ""
           .hint
-            Maximum file size is 1MB. Pages are optimized for a 640x360 px logo.
+            文件最大大小为 1MB。页面按照 640x360 像素的 LOGO 设计。
 
   %hr
   .row
     .col-lg-4.profile-settings-sidebar
-      %h4.prepend-top-0 New project pages
+      %h4.prepend-top-0 新项目页面
 
     .col-lg-8
       .form-group
-        = f.label :new_project_guidelines, class: 'col-form-label label-bold'
+        = f.label :new_project_guidelines, '新建项目指引', class: 'col-form-label label-bold'
         %p
           = f.text_area :new_project_guidelines, class: "form-control", rows: 10
           .hint
-            Guidelines parsed with #{link_to "GitLab Flavored Markdown", help_page_path('user/markdown'), target: '_blank'}.
+            项目指导将使用 #{link_to "GitLab 特色的 Markdown", help_page_path('user/markdown'), target: '_blank'}.
 
       .prepend-top-default.append-bottom-default
-        = f.submit 'Update appearance settings', class: 'btn btn-success'
+        = f.submit '更新外观设置', class: 'btn btn-success'
         - if @appearance.persisted?
-          Preview last save:
-          = link_to 'Sign-in page', preview_sign_in_admin_appearances_path, class: 'btn', target: '_blank', rel: 'noopener noreferrer'
-          = link_to 'New project page', new_project_path, class: 'btn', target: '_blank', rel: 'noopener noreferrer'
+          预览最后保存:
+          = link_to '登录页面', preview_sign_in_admin_appearances_path, class: 'btn', target: '_blank', rel: 'noopener noreferrer'
+          = link_to '新建项目页面', new_project_path, class: 'btn', target: '_blank', rel: 'noopener noreferrer'
 
         - if @appearance.updated_at
           %span.float-right
-            Last edit #{time_ago_with_tooltip(@appearance.updated_at)}
+            最后编辑时间 #{time_ago_with_tooltip(@appearance.updated_at)}

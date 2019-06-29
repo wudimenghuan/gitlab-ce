@@ -9,7 +9,7 @@
   %td
     - if protected_branch.wildcard?
       - matching_branches = protected_branch.matching(repository.branches)
-      = link_to pluralize(matching_branches.count, "matching branch"), namespace_project_protected_branch_path(@project.namespace, @project, protected_branch)
+      = link_to pluralize(matching_branches.count, "匹配分支"), namespace_project_protected_branch_path(@project.namespace, @project, protected_branch)
     - else
       - if commit = protected_branch.commit
         = link_to(commit.short_id, namespace_project_commit_path(@project.namespace, @project, commit.id), class: 'commit-sha')

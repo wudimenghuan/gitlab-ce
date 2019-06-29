@@ -18,7 +18,7 @@ module TimeHelper
   end
 
   def date_from_to(from, to)
-    "#{from.to_s(:short)} - #{to.to_s(:short)}"
+    "#{from.strftime('%m-%d')} - #{to.strftime('%m-%d')}"
   end
 
   def duration_in_numbers(duration_in_seconds)

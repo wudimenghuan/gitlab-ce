@@ -3,16 +3,15 @@
 
   %fieldset
     %p
-      Set up InfluxDB to measure a wide variety of statistics like the time spent
-      in running SQL queries. These settings require a
-      = link_to 'restart', help_page_path('administration/restart_gitlab')
-      to take effect.
+      设置InfluxDB来测量各种统计信息，例如运行SQL查询所花费的时间。 这些设置需要
+      = link_to '重新启动', help_page_path('administration/restart_gitlab')
+      后才能生效。
       = link_to icon('question-circle'), help_page_path('administration/monitoring/performance/introduction')
     .form-group
       .form-check
         = f.check_box :metrics_enabled, class: 'form-check-input'
         = f.label :metrics_enabled, class: 'form-check-label' do
-          Enable InfluxDB Metrics
+          启用 InfluxDB 指标
     .form-group
       = f.label :metrics_host, 'InfluxDB host', class: 'label-bold'
       = f.text_field :metrics_host, class: 'form-control', placeholder: 'influxdb.example.com'
@@ -20,41 +19,37 @@
       = f.label :metrics_port, 'InfluxDB port', class: 'label-bold'
       = f.text_field :metrics_port, class: 'form-control', placeholder: '8089'
       .form-text.text-muted
-        The UDP port to use for connecting to InfluxDB. InfluxDB requires that
-        your server configuration specifies a database to store data in when
-        sending messages to this port, without it metrics data will not be
-        saved.
+        用于连接到 InfluxDB 的 UDP 端口。
+        InfluxDB 需要您的服务器配置数据库用于存储发送到此端口的消息，
+        如果没有配置，指标数据将不会保存。
     .form-group
       = f.label :metrics_pool_size, 'Connection pool size', class: 'label-bold'
       = f.number_field :metrics_pool_size, class: 'form-control'
       .form-text.text-muted
-        The amount of InfluxDB connections to open. Connections are opened
-        lazily. Users using multi-threaded application servers should ensure
-        enough connections are available (at minimum the amount of application
-        server threads).
+        可用的 InfluxDB 连接数。
+        连接是延迟加载的，即只有需要的时候才会打开。
+        使用多线程应用服务器的用户应确保有足够的连接可用
+        （可用数至少是应用服务器线程的数量）。
     .form-group
       = f.label :metrics_timeout, 'Connection timeout', class: 'label-bold'
       = f.number_field :metrics_timeout, class: 'form-control'
       .form-text.text-muted
-        The amount of seconds after which an InfluxDB connection will time
-        out.
+        连接超时时间，单位秒。
     .form-group
       = f.label :metrics_method_call_threshold, 'Method Call Threshold (ms)', class: 'label-bold'
       = f.number_field :metrics_method_call_threshold, class: 'form-control'
       .form-text.text-muted
-        A method call is only tracked when it takes longer to complete than
-        the given amount of milliseconds.
+        只有超过此给定的毫秒阀值后完成的方法调用才会被跟踪。
     .form-group
       = f.label :metrics_sample_interval, 'Sampler Interval (sec)', class: 'label-bold'
       = f.number_field :metrics_sample_interval, class: 'form-control'
       .form-text.text-muted
-        The sampling interval in seconds. Sampled data includes memory usage,
-        retained Ruby objects, file descriptors and so on.
+        以秒为单位的采样间隔。
+        采样数据包括内存使用、保留的 Ruby 对象、文件描述符等。
     .form-group
       = f.label :metrics_packet_size, 'Metrics per packet', class: 'label-bold'
       = f.number_field :metrics_packet_size, class: 'form-control'
       .form-text.text-muted
-        The amount of points to store in a single UDP packet. More points
-        results in fewer but larger UDP packets being sent.
+        存储在单个UDP数据包中的点数。 增加点数可以减少发送次数，但会增加每个UDP数据包的大小。
 
-  = f.submit 'Save changes', class: "btn btn-success"
+  = f.submit '保存修改', class: "btn btn-success"

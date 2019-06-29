@@ -20,7 +20,7 @@ class Member < ApplicationRecord
   validates :user, presence: true, unless: :invite?
   validates :source, presence: true
   validates :user_id, uniqueness: { scope: [:source_type, :source_id],
-                                    message: "already exists in source",
+                                    message: "已经存在于源",
                                     allow_nil: true }
   validates :access_level, inclusion: { in: Gitlab::Access.all_values }, presence: true
   validate :higher_access_level_than_group, unless: :importing?
