@@ -265,6 +265,10 @@ class Issue < ApplicationRecord
     merge_requests_closing_issues.count
   end
 
+  def labels_hook_attrs
+    labels.map(&:hook_attrs)
+  end
+
   private
 
   def ensure_metrics
